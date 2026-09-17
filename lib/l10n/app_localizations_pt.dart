@@ -645,11 +645,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get moduleDetailLessonUnlocked => 'Desbloqueada';
 
   @override
-  String get moduleDetailAlgebraTitle => 'Aula 1 — Álgebra Fundamental';
+  String get moduleDetailAlgebraTitle => 'Álgebra Fundamental';
 
   @override
   String get moduleDetailAlgebraSubtitle =>
-      '8 aulas • expressões, potências e fatoração';
+      '14 aulas • números reais, polinômios, fatoração e frações algébricas';
 
   @override
   String get moduleDetailEquationsTitle => 'Aula 2 — Equações e Inequações';

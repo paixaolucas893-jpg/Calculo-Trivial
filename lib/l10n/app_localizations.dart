@@ -1223,13 +1223,13 @@ abstract class AppLocalizations {
   /// No description provided for @moduleDetailAlgebraTitle.
   ///
   /// In pt, this message translates to:
-  /// **'Aula 1 — Álgebra Fundamental'**
+  /// **'Álgebra Fundamental'**
   String get moduleDetailAlgebraTitle;
 
   /// No description provided for @moduleDetailAlgebraSubtitle.
   ///
   /// In pt, this message translates to:
-  /// **'8 aulas • expressões, potências e fatoração'**
+  /// **'14 aulas • números reais, polinômios, fatoração e frações algébricas'**
   String get moduleDetailAlgebraSubtitle;
 
   /// No description provided for @moduleDetailEquationsTitle.
