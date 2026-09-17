@@ -6,60 +6,353 @@ const List<CourseLessonData> algebraCourseLessons = [
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
     eyebrow: 'Fundamentos',
-    title: 'A linguagem da Álgebra',
-    description: 'variáveis, constantes e expressões',
-    duration: '≈ 5 min',
+    title: 'Linguagem algébrica',
+    description: 'traduzindo palavras, relações e situações para a Álgebra',
+    duration: '≈ 12 min',
     objective:
-        'interpretar letras como números variáveis e reconhecer a estrutura de uma expressão algébrica',
+        'traduzir frases e situações para expressões algébricas e interpretar o significado de expressões escritas com símbolos',
     symbol: 'x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Pré-requisito',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'A variável guarda uma possibilidade',
+            visual: LessonVisual.checklist,
+            title: 'O que você já precisa saber',
             content:
-                'Quando escrevemos 3x + 2, a letra x representa um número que pode variar. A expressão não pede uma resposta única; ela descreve uma regra que produz valores diferentes conforme x muda.',
+                'Nas aulas anteriores, você conheceu variáveis, constantes, coeficientes, termos e expressões. Agora vamos usar esses elementos para representar relações descritas com palavras.',
             emphasis:
-                'Em Cálculo, quase tudo começa assim: uma quantidade varia e outra responde a essa variação.',
+                'Aqui a pergunta deixa de ser apenas “o que significa x?” e passa a ser “como escrevo matematicamente uma situação?”.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Entenda a ideia',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Álgebra é uma linguagem',
+            content:
+                'Assim como uma frase comunica uma ideia usando palavras, uma expressão algébrica comunica uma relação usando números, letras e operações. A habilidade central desta aula é passar de uma linguagem para a outra sem mudar o significado.',
+            emphasis:
+                'Traduzir corretamente é mais importante do que decorar símbolos.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Uma quantidade desconhecida',
+            content:
+                'Quando um problema diz “um número” e não informa qual é esse número, podemos representá-lo por uma variável. Por exemplo, podemos chamar esse número de x.',
+            emphasis:
+                '“Um número” → x. A letra escolhida pode mudar; o importante é deixar claro o que ela representa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Palavras que indicam operações',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Adição e subtração',
+            content:
+                'Expressões como “a soma de x e 5” e “x aumentado em 5” representam x + 5. Já “x diminuído de 5” representa x − 5.',
+            emphasis:
+                'As palavras mudam, mas a relação matemática pode ser a mesma.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Multiplicação',
+            content:
+                'O dobro de x é 2x. O triplo de x é 3x. O quádruplo de x é 4x. Quando um número aparece junto de uma variável, a multiplicação geralmente é escrita sem o símbolo ×.',
+            emphasis: '2x significa 2 · x.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Divisão',
+            content:
+                'A metade de x pode ser escrita como x/2. A terça parte de x é x/3. O quociente entre x e y pode ser representado por x/y, desde que y seja diferente de zero.',
+            emphasis: 'A ordem importa: x/y geralmente não é igual a y/x.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Potências',
+            content:
+                'O quadrado de x é x². O cubo de x é x³. Já o quadrado da soma de x e y é (x + y)².',
+            emphasis: 'x² + y² e (x + y)² representam expressões diferentes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Traduza frases',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Valor numérico sem mistério',
-            problem: 'Calcule 2x² − 3x + 1 para x = 4.',
+            title: 'Do português para a Álgebra',
+            problem:
+                'Escreva algebricamente: “o triplo de um número aumentado em 5”.',
             steps: [
-              'Substitua x por 4: 2(4)² − 3(4) + 1.',
-              'Resolva a potência antes da multiplicação: 2·16 − 12 + 1.',
-              'Calcule da esquerda para a direita: 32 − 12 + 1 = 21.',
+              'Escolha uma variável para representar o número. Vamos usar x.',
+              'O triplo do número é 3x.',
+              'A expressão diz que esse resultado é aumentado em 5.',
+              'Adicione 5: 3x + 5.',
             ],
-            result: 'O valor numérico é 21.',
+            result: 'A expressão é 3x + 5.',
             interpretation:
-                'A expressão é a mesma, mas o valor aparece quando escolhemos uma entrada.',
+                'Primeiro identificamos a quantidade desconhecida; depois traduzimos as operações na ordem descrita.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Metade de uma quantidade',
+            problem:
+                'Escreva algebricamente: “a metade da soma de um número com 8”.',
+            steps: [
+              'Represente o número por x.',
+              'A soma do número com 8 é x + 8.',
+              'Queremos a metade de toda essa soma.',
+              'Use parênteses para manter a soma agrupada: (x + 8)/2.',
+            ],
+            result: 'A expressão é (x + 8)/2.',
+            interpretation:
+                'Os parênteses mostram que primeiro consideramos a soma completa e depois dividimos por 2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'A ordem das palavras importa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '“5 a menos que x” não é “5 menos x”',
+            content:
+                'A frase “5 a menos que x” significa retirar 5 de x, portanto x − 5. Já “5 menos x” significa começar em 5 e retirar x, portanto 5 − x.',
+            emphasis:
+                'x − 5 e 5 − x geralmente produzem resultados diferentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Compare as duas frases',
+            problem: 'Traduza “7 a menos que um número” e “7 menos um número”.',
+            steps: [
+              'Represente o número por x.',
+              '“7 a menos que um número” significa retirar 7 de x: x − 7.',
+              '“7 menos um número” começa em 7 e retira x: 7 − x.',
+              'Compare as expressões: a ordem foi invertida.',
+            ],
+            result: 'As expressões são x − 7 e 7 − x.',
+            interpretation:
+                'Na subtração, trocar a ordem dos termos muda o significado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Parênteses mudam o significado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '2x + 3 e 2(x + 3)',
+            content:
+                'Em 2x + 3, apenas x é multiplicado por 2. Em 2(x + 3), toda a soma x + 3 é multiplicada por 2.',
+            emphasis: '2(x + 3) = 2x + 6, portanto não é igual a 2x + 3.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'x² + 4 e (x + 2)²',
+            content:
+                'x² + 4 significa somar 4 ao quadrado de x. Já (x + 2)² significa elevar toda a soma ao quadrado.',
+            emphasis: '(x + 2)² = x² + 4x + 4, e não x² + 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Números consecutivos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Como representar números consecutivos',
+            content:
+                'Se x representa um número inteiro, o próximo inteiro é x + 1. O seguinte é x + 2. Assim, três números inteiros consecutivos podem ser representados por x, x + 1 e x + 2.',
+            emphasis:
+                'Não precisamos conhecer os números para representar a relação entre eles.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Soma de números consecutivos',
+            problem: 'Represente a soma de dois números inteiros consecutivos.',
+            steps: [
+              'Represente o primeiro inteiro por x.',
+              'O inteiro seguinte é x + 1.',
+              'Some os dois números: x + (x + 1).',
+              'Se desejar simplificar, combine os termos: 2x + 1.',
+            ],
+            result: 'A soma pode ser escrita como x + (x + 1) = 2x + 1.',
+            interpretation:
+                'A expressão mostra uma propriedade importante: a soma de dois inteiros consecutivos é sempre ímpar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Modele uma situação real',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Corrida por aplicativo',
+            problem:
+                'Uma corrida cobra uma taxa fixa de R\$ 6,00 mais R\$ 2,50 por quilômetro percorrido. Escreva uma expressão para o custo da corrida.',
+            steps: [
+              'Defina x como a quantidade de quilômetros percorridos.',
+              'O custo variável é R\$ 2,50 por quilômetro: 2,5x.',
+              'Existe também uma taxa fixa de R\$ 6,00.',
+              'Some as duas partes: 6 + 2,5x.',
+            ],
+            result: 'O custo pode ser representado por C = 6 + 2,5x.',
+            interpretation:
+                'O número 6 representa a parte fixa; 2,5x representa a parte que varia com a distância.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Uma expressão pode representar um modelo',
+            content:
+                'Quando relacionamos uma expressão a uma situação real, cada símbolo ganha significado. A variável representa uma grandeza e os números representam relações entre as grandezas.',
+            emphasis:
+                'Essa ideia será fundamental quando começarmos a estudar funções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Leia a Álgebra de volta',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Dos símbolos para as palavras',
+            problem: 'Interprete a expressão 4x − 9.',
+            steps: [
+              'Identifique 4x como quatro vezes x.',
+              'Isso pode ser dito como “o quádruplo de um número”.',
+              'Depois aparece a subtração de 9.',
+              'Junte as ideias em uma frase.',
+            ],
+            result:
+                'Uma interpretação possível é: “o quádruplo de um número menos 9”.',
+            interpretation:
+                'Uma mesma expressão pode admitir diferentes frases equivalentes, desde que preservem exatamente as mesmas operações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros comuns',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar soma por multiplicação',
+            content:
+                '“Um número aumentado em 4” é x + 4. Não é 4x. Já “quatro vezes um número” é 4x.',
+            emphasis:
+                'Procure identificar qual operação a frase realmente descreve.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o agrupamento',
+            content:
+                '“O dobro da soma de x com 3” é 2(x + 3). Escrever 2x + 3 muda a situação.',
+            emphasis:
+                'Palavras como “da soma”, “da diferença” e “do produto” costumam indicar que uma expressão inteira precisa permanecer agrupada.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inverter uma subtração',
+            content:
+                'A subtração não é comutativa. Portanto, interpretar corretamente expressões como “3 a menos que x” é essencial.',
+            emphasis:
+                'Sempre pergunte: de qual quantidade estou retirando a outra?',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Exercício guiado 1',
+            problem: 'Represente “o dobro de um número somado com 7”.',
+            steps: [
+              'Represente o número por x.',
+              'O dobro do número é 2x.',
+              'Some 7.',
+            ],
+            result: '2x + 7.',
+            interpretation:
+                'A multiplicação está associada apenas ao número representado por x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Exercício guiado 2',
+            problem: 'Represente “o triplo da diferença entre um número e 4”.',
+            steps: [
+              'Represente o número por x.',
+              'A diferença entre o número e 4 é x − 4.',
+              'O triplo de toda a diferença exige agrupamento.',
+              'Multiplique a expressão inteira por 3.',
+            ],
+            result: '3(x − 4).',
+            interpretation:
+                'Os parênteses preservam a diferença antes da multiplicação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Pratique sozinho',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Tente antes de olhar qualquer solução',
+            content:
+                '1. Escreva “a terça parte de um número mais 5”.\n'
+                '2. Escreva “o quadrado da diferença entre x e 3”.\n'
+                '3. Represente três inteiros consecutivos.\n'
+                '4. Interprete em palavras a expressão 5x + 2.\n'
+                '5. Uma academia cobra R\$ 40 de matrícula e R\$ 65 por mês. Escreva uma expressão para o custo após x meses.',
+            emphasis:
+                'O objetivo é identificar a estrutura da situação antes de fazer qualquer cálculo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Conexão com o que vem depois',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Da expressão para a função',
+            content:
+                'Quando uma expressão descreve como uma quantidade depende de outra, estamos muito próximos da ideia de função. Por exemplo, C = 6 + 2,5x relaciona distância e custo.',
+            emphasis:
+                'Aprender a traduzir situações agora facilitará equações, funções, modelagem e problemas de Cálculo mais adiante.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Na expressão 5a² − 7, qual parte varia?',
-      choices: ['O número 5', 'A letra a', 'O número −7'],
+      question:
+          'Qual expressão representa “o dobro da soma de um número x com 5”?',
+      choices: ['2x + 5', '2(x + 5)', 'x + 10'],
       correctIndex: 1,
-      explanation: 'A letra a é a variável. Os números 5 e −7 são constantes.',
+      explanation:
+          'A frase pede o dobro de toda a soma x + 5. Por isso, primeiro agrupamos x + 5 e depois multiplicamos por 2: 2(x + 5).',
     ),
     takeaways: [
-      'Variável representa um número que pode mudar.',
-      'Coeficientes multiplicam partes literais.',
-      'Substituir um valor na variável produz um valor numérico.',
-      'A ordem das operações evita leituras erradas.',
+      'A Álgebra é uma linguagem para representar relações.',
+      'Uma variável pode representar uma quantidade desconhecida ou variável.',
+      'Palavras diferentes podem indicar a mesma operação matemática.',
+      'Na subtração e na divisão, a ordem das quantidades importa.',
+      'Parênteses indicam que uma expressão inteira deve ser tratada como um grupo.',
+      'Situações reais podem ser representadas por expressões algébricas.',
+      'Traduzir entre palavras e símbolos prepara o caminho para equações e funções.',
     ],
     closing:
-        'Entender a linguagem algébrica transforma símbolos em instruções claras.',
+        'Você não está apenas manipulando letras: está aprendendo a transformar situações e relações em matemática.',
   ),
   CourseLessonData(
     id: 'algebra-02-termos-semelhantes',
@@ -67,60 +360,283 @@ const List<CourseLessonData> algebraCourseLessons = [
     trailTitle: 'Álgebra Fundamental',
     eyebrow: 'Fundamentos',
     title: 'Termos semelhantes',
-    description: 'coeficientes, constantes e redução',
-    duration: '≈ 5 min',
+    description: 'coeficientes, parte literal e redução de expressões',
+    duration: '≈ 12 min',
     objective:
-        'simplificar somas e subtrações combinando apenas termos com a mesma parte literal',
+        'identificar termos semelhantes e simplificar expressões algébricas combinando corretamente seus coeficientes',
     symbol: '3x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Pré-requisito',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Só combina quem é da mesma família',
+            visual: LessonVisual.checklist,
+            title: 'O que você já precisa saber',
             content:
-                'Termos semelhantes possuem exatamente a mesma parte literal, com as mesmas variáveis e os mesmos expoentes. Por isso 4x e −7x podem ser combinados, mas 4x e 4x² não podem.',
+                'Antes de combinar termos, você precisa reconhecer variável, coeficiente, termo, constante e parte literal de uma expressão algébrica.',
             emphasis:
-                'A regra é simples: some os coeficientes e preserve a parte literal.',
+                'Nesta aula, não vamos mudar a parte literal: vamos aprender quando os coeficientes podem ser combinados.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Entenda a ideia',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Só podemos combinar termos da mesma espécie',
+            content:
+                'Termos semelhantes possuem exatamente a mesma parte literal, com as mesmas variáveis elevadas aos mesmos expoentes. Assim, 4x e −7x são semelhantes, porque ambos têm parte literal x.',
+            emphasis:
+                'Para decidir se dois termos são semelhantes, ignore temporariamente os coeficientes e compare apenas a parte literal.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Coeficiente e parte literal',
+            content:
+                'Em 5x², o coeficiente é 5 e a parte literal é x². Em −3xy, o coeficiente é −3 e a parte literal é xy.',
+            emphasis:
+                'Os coeficientes podem ser diferentes. O que precisa coincidir é a parte literal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Como reconhecer termos semelhantes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Compare as partes literais',
+            content:
+                'Os termos 3x² e −8x² são semelhantes. Os termos 5xy e 2xy também são semelhantes. Porém, x e x² não são semelhantes, assim como xy e x²y não são.',
+            emphasis: 'Mesmas variáveis e mesmos expoentes: essa é a condição.',
+          ),
           WorkedExampleBlockData(
-            title: 'Agrupando com cuidado',
+            title: 'Classificando termos',
+            problem:
+                'Entre 4x², −3x, 7x², 5 e 2x, identifique os grupos de termos semelhantes.',
+            steps: [
+              'Compare as partes literais.',
+              '4x² e 7x² possuem parte literal x².',
+              '−3x e 2x possuem parte literal x.',
+              'O número 5 é um termo constante.',
+            ],
+            result: 'Os grupos são {4x², 7x²}, {−3x, 2x} e {5}.',
+            interpretation:
+                'Cada grupo pode ser combinado internamente, mas não com os outros grupos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Reduza termos semelhantes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Some ou subtraia apenas os coeficientes',
+            content:
+                'Quando dois termos são semelhantes, mantemos a parte literal e operamos apenas os coeficientes.',
+            emphasis:
+                '3x + 5x = 8x porque 3 + 5 = 8 e a parte literal x permanece.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Redução passo a passo',
             problem: 'Simplifique 6x² − 3x + 5x² + 8x − 4.',
             steps: [
-              'Agrupe os termos x²: 6x² + 5x² = 11x².',
-              'Agrupe os termos x: −3x + 8x = 5x.',
-              'A constante −4 permanece como está.',
+              'Agrupe os termos em x²: 6x² + 5x².',
+              'Agrupe os termos em x: −3x + 8x.',
+              'A constante −4 permanece separada.',
+              'Some os coeficientes dos termos quadráticos: 6 + 5 = 11.',
+              'Some os coeficientes dos termos lineares: −3 + 8 = 5.',
             ],
-            result: 'A forma simplificada é 11x² + 5x − 4.',
+            result: 'A forma reduzida é 11x² + 5x − 4.',
             interpretation:
-                'Nenhum termo mudou de natureza; apenas juntamos partes compatíveis.',
+                'Nenhum expoente foi alterado. Apenas os coeficientes dos termos compatíveis foram combinados.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Sinais exigem atenção',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Coeficientes negativos',
+            problem: 'Simplifique −7x + 4x − 2x.',
+            steps: [
+              'Todos os termos têm a mesma parte literal x.',
+              'Combine os coeficientes: −7 + 4 − 2.',
+              'Calcule: −7 + 4 = −3.',
+              'Depois: −3 − 2 = −5.',
+            ],
+            result: 'A expressão simplificada é −5x.',
+            interpretation:
+                'O sinal pertence ao coeficiente e deve acompanhar o termo durante toda a operação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Constantes também são termos semelhantes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Constantes combinam com constantes',
+            content:
+                'Números sem variável podem ser combinados entre si. Por exemplo, em 3x + 7 − 2 + 5x, os termos 7 e −2 são constantes e podem ser reduzidos para 5.',
+            emphasis:
+                'Uma constante não pode ser combinada com um termo que possui variável.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Variáveis e constantes',
+            problem: 'Simplifique 2x + 5 + 3x − 8.',
+            steps: [
+              'Agrupe os termos em x: 2x + 3x.',
+              'Agrupe as constantes: 5 − 8.',
+              'Calcule: 5x e −3.',
+            ],
+            result: 'A expressão reduzida é 5x − 3.',
+            interpretation:
+                'Cada tipo de termo é tratado dentro de seu próprio grupo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Mais de uma variável',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A ordem escrita não muda o produto',
+            content:
+                'Os termos 3xy e 5yx são semelhantes, porque xy = yx. Já 3x²y e 5xy² não são semelhantes, pois os expoentes das variáveis são diferentes.',
+            emphasis: 'Compare variável por variável e expoente por expoente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Expressão com x e y',
+            problem: 'Simplifique 4xy − 2x² + 3xy + 5x².',
+            steps: [
+              'Agrupe os termos xy: 4xy + 3xy.',
+              'Agrupe os termos x²: −2x² + 5x².',
+              'Combine os coeficientes de cada grupo.',
+            ],
+            result: 'A forma reduzida é 7xy + 3x².',
+            interpretation:
+                'Apesar de haver duas variáveis na expressão, a regra continua sendo comparar a parte literal completa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros comuns',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Somar termos com expoentes diferentes',
+            content:
+                'x e x² não são termos semelhantes. Portanto, x + x² não pode ser reduzido para 2x² nem para 2x³.',
+            emphasis:
+                'Expoentes diferentes significam partes literais diferentes.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Somar coeficiente com expoente',
+            content:
+                'Em 3x² + 5x², somamos 3 + 5. O expoente 2 não participa dessa soma.',
+            emphasis: '3x² + 5x² = 8x², e não 8x⁴.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Perder o sinal do termo',
+            content:
+                'Em −4x + 7x, o primeiro coeficiente é −4. Ignorar esse sinal muda completamente o resultado.',
+            emphasis: 'O sinal faz parte do coeficiente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Exercício guiado 1',
+            problem: 'Simplifique 5a + 2a − 3.',
+            steps: [
+              '5a e 2a são semelhantes.',
+              'Some os coeficientes: 5 + 2 = 7.',
+              'A constante −3 permanece.',
+            ],
+            result: '7a − 3.',
+            interpretation:
+                'Só os termos com a mesma parte literal foram combinados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Exercício guiado 2',
+            problem: 'Simplifique 3x² + 4x − x² + 2x + 6.',
+            steps: [
+              'Agrupe x²: 3x² − x².',
+              'Agrupe x: 4x + 2x.',
+              'Mantenha a constante 6.',
+              'Reduza cada grupo.',
+            ],
+            result: '2x² + 6x + 6.',
+            interpretation:
+                'Organizar a expressão por grupos reduz bastante a chance de erro.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Pratique sozinho',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Tente antes de consultar qualquer solução',
+            content:
+                '1. Simplifique 7x + 2x − 5.\n'
+                '2. Simplifique 4a² − 3a + 6a² + a.\n'
+                '3. Simplifique 5xy − 2xy + 3x².\n'
+                '4. Explique por que 3x e 3x² não são termos semelhantes.\n'
+                '5. Simplifique −8y + 3 + 5y − 10.',
+            emphasis:
+                'Antes de calcular, marque quais termos pertencem ao mesmo grupo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com o que vem depois',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Reduzir antes de avançar',
+            content:
+                'A capacidade de reconhecer e combinar termos semelhantes será usada constantemente na distributiva, em polinômios, equações, funções e expressões que aparecem em Cálculo.',
+            emphasis:
+                'Quanto mais cedo uma expressão é organizada corretamente, menor a chance de erro nas etapas seguintes.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual expressão é equivalente a 2x + 5x − 3?',
-      choices: ['7x − 3', '10x − 3', '4x'],
+      question: 'Qual é a forma reduzida de 4x² − 3x + 2x² + 5x − 7?',
+      choices: ['6x² + 2x − 7', '6x⁴ + 2x − 7', '6x² + 8x − 7'],
       correctIndex: 0,
       explanation:
-          'Somamos apenas 2x e 5x, obtendo 7x. A constante −3 permanece.',
+          '4x² e 2x² são semelhantes, resultando em 6x². −3x e 5x também são semelhantes, resultando em 2x. A constante −7 permanece.',
     ),
     takeaways: [
-      'Termos semelhantes têm a mesma parte literal.',
-      'Expoentes diferentes impedem a combinação.',
-      'Constantes combinam apenas com constantes.',
-      'Escrever por grupos deixa a conta mais segura.',
+      'Termos semelhantes têm exatamente a mesma parte literal.',
+      'Os coeficientes podem ser diferentes.',
+      'Para reduzir termos semelhantes, operamos apenas os coeficientes.',
+      'A parte literal e seus expoentes permanecem inalterados.',
+      'Constantes podem ser combinadas com constantes.',
+      'Sinais fazem parte dos coeficientes.',
+      'Termos com expoentes diferentes não podem ser combinados.',
     ],
     closing:
-        'Dominar termos semelhantes deixa equações, funções e derivadas muito mais leves.',
+        'Reconhecer termos semelhantes transforma expressões aparentemente longas em estruturas muito mais simples e organizadas.',
   ),
   CourseLessonData(
     id: 'algebra-03-distributiva',
@@ -423,8 +939,7 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'O sinal negativo afeta todo o segundo polinômio',
             content:
                 'Ao subtrair um polinômio, o sinal negativo deve ser distribuído para todos os seus termos antes de combinar termos semelhantes.',
-            emphasis:
-                '(2x² + 3x) − (x² − 4x + 1) = 2x² + 3x − x² + 4x − 1.',
+            emphasis: '(2x² + 3x) − (x² − 4x + 1) = 2x² + 3x − x² + 4x − 1.',
           ),
         ],
       ),
@@ -437,8 +952,7 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'Distribua e use as propriedades das potências',
             content:
                 'Quando um monômio multiplica um polinômio, ele deve multiplicar cada termo. Multiplicamos os coeficientes e, para bases iguais, somamos os expoentes.',
-            emphasis:
-                '2x(3x² − 4x + 5) = 6x³ − 8x² + 10x.',
+            emphasis: '2x(3x² − 4x + 5) = 6x³ − 8x² + 10x.',
           ),
           WorkedExampleBlockData(
             title: 'Multiplicando monômios',
@@ -463,8 +977,7 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'Cada termo multiplica cada termo',
             content:
                 'Na multiplicação de dois polinômios, aplicamos a propriedade distributiva repetidamente. Depois, reduzimos os termos semelhantes.',
-            emphasis:
-                '(x + 2)(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6.',
+            emphasis: '(x + 2)(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6.',
           ),
           WorkedExampleBlockData(
             title: 'Binômio vezes binômio',
@@ -491,8 +1004,7 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'Divida coeficientes e subtraia expoentes',
             content:
                 'Quando dividimos monômios, dividimos os coeficientes e usamos a regra do quociente para bases iguais, sempre respeitando a condição de que o denominador não seja zero.',
-            emphasis:
-                '(12x³y²)/(3xy) = 4x²y, com x ≠ 0 e y ≠ 0.',
+            emphasis: '(12x³y²)/(3xy) = 4x²y, com x ≠ 0 e y ≠ 0.',
           ),
         ],
       ),
@@ -505,19 +1017,14 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'Não combine termos diferentes',
             content:
                 'Depois de uma multiplicação, só podemos reduzir termos realmente semelhantes. Expoentes diferentes representam termos diferentes.',
-            emphasis:
-                'x² + 3x não é 4x² nem 4x³.',
+            emphasis: 'x² + 3x não é 4x² nem 4x³.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
       question: 'Qual é o resultado de (x + 2)(x + 5)?',
-      choices: [
-        'x² + 7x + 10',
-        'x² + 10x + 7',
-        'x² + 7',
-      ],
+      choices: ['x² + 7x + 10', 'x² + 10x + 7', 'x² + 7'],
       correctIndex: 0,
       explanation:
           'Aplicando a distributiva: x² + 5x + 2x + 10 = x² + 7x + 10.',
