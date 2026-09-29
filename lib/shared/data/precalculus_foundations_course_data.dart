@@ -286,64 +286,242 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     trailTitle: 'Pré-Cálculo — Fundamentos',
     eyebrow: 'Unidade 0',
     title: 'Operações, sinais e prioridade',
-    description: 'ordem das operações, parênteses e frações',
-    duration: '≈ 12 min',
+    description: 'estrutura de expressões, sinais, agrupamentos e propriedades',
+    duration: '≈ 25 min',
     objective:
-        'executar operações respeitando prioridade, sinais e agrupamentos, reduzindo erros que se propagam em álgebra e cálculo',
+        'avaliar expressões numéricas e algébricas com segurança, respeitando agrupamentos, prioridade operacional, sinais e propriedades fundamentais dos números reais',
     symbol: '()÷×',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'A ordem faz parte da expressão',
+        title: 'A estrutura vem antes da conta',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Agrupamentos vêm antes',
+            title: 'Hierarquia operacional',
             content:
-                'Resolva primeiro parênteses e outros agrupamentos, depois potências e raízes, em seguida multiplicações e divisões, e por fim adições e subtrações. Operações de mesma prioridade são feitas da esquerda para a direita.',
+                'Uma expressão deve ser lida por níveis. Primeiro resolvemos agrupamentos; depois potências e raízes; em seguida multiplicações e divisões; por fim adições e subtrações. Operações de mesma prioridade são executadas da esquerda para a direita.',
             emphasis:
-                'A expressão 2 + 3·4 vale 14, não 20, porque a multiplicação vem antes da adição.',
+                'A prioridade não é uma convenção opcional: ela garante que uma expressão tenha interpretação inequívoca.',
           ),
           ConceptBlockData(
             visual: LessonVisual.compare,
-            title: 'O sinal pode pertencer ao número ou à operação',
+            title: 'O sinal pode estar dentro ou fora da potência',
             content:
-                'Em (−3)², o número −3 inteiro é elevado ao quadrado e o resultado é 9. Em −3², a potência atua primeiro sobre 3 e depois aplicamos o sinal negativo: −9.',
+                'Em (−3)², a base é −3 e o resultado é 9. Em −3², a base da potência é 3; calculamos 3² = 9 e depois aplicamos o sinal negativo, obtendo −9.',
             emphasis:
-                'Parênteses mudam o objeto sobre o qual a potência atua.',
+                'Parênteses alteram qual objeto está sendo elevado à potência.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Propriedades dos números reais',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Uma expressão com várias prioridades',
-            problem: 'Calcule 18 ÷ 3·2 − (5 − 8).',
-            steps: [
-              'Resolva o parêntese: 5 − 8 = −3.',
-              'Faça divisão e multiplicação da esquerda para a direita: 18 ÷ 3 = 6 e 6·2 = 12.',
-              'Subtraia o número negativo: 12 − (−3) = 12 + 3 = 15.',
-            ],
-            result: 'O valor da expressão é 15.',
-            interpretation:
-                'Cada etapa preserva a expressão original e evita alterar sua estrutura por uma regra inexistente.',
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Comutativa e associativa',
+            content:
+                'Para números reais a, b e c, a + b = b + a e ab = ba. Também vale (a + b) + c = a + (b + c) e (ab)c = a(bc). Essas propriedades permitem reordenar e reagrupar somas e produtos sem alterar o resultado.',
+            emphasis:
+                'Subtração e divisão não são comutativas nem associativas em geral.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Distributiva, identidades e inversos',
+            content:
+                'A distributiva conecta multiplicação e adição: a(b + c) = ab + ac. O zero é a identidade aditiva e 1 é a identidade multiplicativa. Todo real a possui oposto −a; todo real não nulo possui recíproco 1/a.',
+            emphasis:
+                'O recíproco de 0 não existe, porque divisão por zero não está definida.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Sinais e subtração',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Subtrair é somar o oposto',
+            content:
+                'A expressão a − b pode ser interpretada como a + (−b). Essa leitura ajuda a controlar sinais e explica por que subtrair um número negativo equivale a somar seu oposto positivo.',
+            emphasis:
+                'Por exemplo, 7 − (−4) = 7 + 4 = 11.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Produto e quociente de números com sinal',
+            content:
+                'Produtos e quocientes de números com sinais iguais são positivos; com sinais diferentes, são negativos. Essa regra decorre da consistência das propriedades algébricas dos números reais.',
+            emphasis:
+                'Não aplique regras de sinais mecanicamente sem identificar primeiro qual operação está sendo feita.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplos resolvidos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Vários níveis de prioridade',
+            problem: 'Calcule 18 ÷ 3·2 − (5 − 8).',
+            steps: [
+              'Resolva o agrupamento: 5 − 8 = −3.',
+              'Divisão e multiplicação têm a mesma prioridade: 18 ÷ 3 = 6 e 6·2 = 12.',
+              'Subtraia o número negativo: 12 − (−3) = 15.',
+            ],
+            result: '15.',
+            interpretation:
+                'A leitura da estrutura evita o erro comum de executar a multiplicação antes da divisão apenas por ela aparecer como “multiplicação”.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Potência e sinal',
+            problem: 'Compare −2⁴ e (−2)⁴.',
+            steps: [
+              'Em −2⁴, calcule 2⁴ = 16.',
+              'Aplique o sinal externo: −16.',
+              'Em (−2)⁴, a base é −2.',
+              'Como o expoente é par, (−2)⁴ = 16.',
+            ],
+            result: '−2⁴ = −16 e (−2)⁴ = 16.',
+            interpretation:
+                'A diferença não está na regra de sinais, mas na identificação correta da base.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Usando propriedades para simplificar',
+            problem: 'Calcule 25·17 + 25·3 sem efetuar dois produtos separados.',
+            steps: [
+              'Identifique o fator comum 25.',
+              'Use a distributiva ao contrário: 25·17 + 25·3 = 25(17 + 3).',
+              'Some dentro do parêntese: 17 + 3 = 20.',
+              'Calcule 25·20 = 500.',
+            ],
+            result: '500.',
+            interpretation:
+                'Propriedades algébricas não são apenas teóricas; elas podem reduzir o custo de um cálculo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fração complexa simples',
+            problem: 'Calcule (3/4 − 1/6) ÷ (5/8).',
+            steps: [
+              'Use denominador comum 12: 3/4 = 9/12 e 1/6 = 2/12.',
+              'Subtraia: 9/12 − 2/12 = 7/12.',
+              'Dividir por 5/8 equivale a multiplicar por 8/5.',
+              'Simplifique: (7/12)(8/5) = 14/15.',
+            ],
+            result: '14/15.',
+            interpretation:
+                'A troca por multiplicação pelo recíproco é válida apenas porque o divisor 5/8 é não nulo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Erros que se propagam',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não existe prioridade da multiplicação sobre a divisão',
+            title: 'Multiplicação não tem prioridade sobre divisão',
             content:
-                'Multiplicação e divisão têm a mesma prioridade. Quando aparecem no mesmo nível, calculamos da esquerda para a direita.',
+                'Multiplicação e divisão pertencem ao mesmo nível de prioridade. Em 24 ÷ 6·2, calculamos da esquerda para a direita: 24 ÷ 6 = 4 e 4·2 = 8.',
             emphasis:
-                'O mesmo vale para adição e subtração.',
+                'Aplicar uma prioridade inexistente altera o valor da expressão.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Distribuir sobre soma exige multiplicar todos os termos',
+            content:
+                'Em −3(x − 4), o fator −3 multiplica x e também −4: −3x + 12. Multiplicar apenas o primeiro termo quebra a igualdade.',
+            emphasis:
+                'Depois de distribuir, verifique se cada termo interno recebeu o fator externo.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — prioridade',
+            problem: 'Calcule 4 + 2(3² − 5).',
+            steps: [
+              'Calcule a potência: 3² = 9.',
+              'Resolva o parêntese: 9 − 5 = 4.',
+              'Multiplique: 2·4 = 8.',
+              'Some: 4 + 8 = 12.',
+            ],
+            result: '12.',
+            interpretation:
+                'Cada etapa resolve apenas o nível de maior prioridade disponível.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — distributiva e sinais',
+            problem: 'Simplifique −2(3 − x) + 5.',
+            steps: [
+              'Distribua −2: −2·3 + (−2)(−x).',
+              'Obtenha −6 + 2x.',
+              'Some o termo restante: −6 + 2x + 5.',
+              'Combine constantes: 2x − 1.',
+            ],
+            result: '2x − 1.',
+            interpretation:
+                'O sinal negativo externo participa de cada multiplicação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva mostrando as etapas',
+            content:
+                '1. Calcule 7 + 3·5.\n'
+                '2. Calcule (7 + 3)·5.\n'
+                '3. Calcule −3² e (−3)².\n'
+                '4. Calcule 36 ÷ 6·3.\n'
+                '5. Calcule 10 − (4 − 9).\n'
+                '6. Simplifique 4(2x − 3).\n'
+                '7. Simplifique −5(a + 2).\n'
+                '8. Use a distributiva para calcular 19·7 + 19·3.\n'
+                '9. Explique por que 8 − 3 ≠ 3 − 8.\n'
+                '10. Explique por que 12 ÷ 4 ≠ 4 ÷ 12.\n'
+                '11. Calcule (5/6 + 1/3) ÷ 2.\n'
+                '12. Identifique a propriedade usada em 6(x + 4) = 6x + 24.',
+            emphasis:
+                'Não escreva somente o resultado: registre a propriedade ou a prioridade usada nas etapas decisivas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'Erros aritméticos viram erros de Cálculo',
+            content:
+                'Simplificação algébrica aparece antes de limites, derivadas e integrais. Uma troca de sinal ou prioridade incorreta pode produzir uma função diferente da original e invalidar todo o desenvolvimento posterior.',
+            emphasis:
+                'Precisão algébrica é uma condição de entrada para Cálculo, não uma habilidade separada dele.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, seção 1.1, incluindo ordem das operações e propriedades dos números reais; OpenStax, Precalculus; James Stewart, Calculus, revisão de Álgebra; Thomas’ Calculus, materiais de pré-requisitos; e MIT OpenCourseWare 18.01/18.01SC, que explicita Álgebra e Trigonometria como pré-requisitos para Cálculo universitário.',
+            emphasis:
+                'Os exercícios do Cálculo Trivial são autorais ou adaptados pedagogicamente a partir dos conceitos, sem copiar listas protegidas.',
           ),
         ],
       ),
@@ -353,16 +531,19 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
       choices: ['−8', '0', '8'],
       correctIndex: 1,
       explanation:
-          '−2² = −4, enquanto (−2)² = 4. Logo, −4 + 4 = 0.',
+          '−2² = −(2²) = −4, enquanto (−2)² = 4. Portanto, −4 + 4 = 0.',
     ),
     takeaways: [
       'Agrupamentos antecedem potências, produtos e somas.',
-      'Operações de mesma prioridade seguem da esquerda para a direita.',
-      'Parênteses determinam se um sinal participa de uma potência.',
-      'Erros de prioridade se propagam para equações, funções e limites.',
+      'Multiplicação e divisão têm a mesma prioridade e seguem da esquerda para a direita.',
+      'Parênteses determinam se um sinal pertence à base de uma potência.',
+      'Comutatividade e associatividade valem para soma e produto, não para subtração e divisão.',
+      'A distributiva conecta multiplicação e adição.',
+      'Divisão por zero não está definida.',
+      'Precisão operacional evita erros que se propagam em Álgebra e Cálculo.',
     ],
     closing:
-        'Ler a estrutura antes de calcular é mais importante do que calcular rápido.',
+        'Calcular corretamente não é executar regras depressa; é preservar a estrutura matemática da expressão em cada etapa.',
   ),
   CourseLessonData(
     id: 'precalculo-00-03-linguagem',
@@ -886,78 +1067,263 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     trailTitle: 'Precalculus — Foundations',
     eyebrow: 'Unit 0',
     title: 'Operations, signs, and precedence',
-    description: 'order of operations, grouping, and fractions',
-    duration: '≈ 12 min',
+    description: 'expression structure, signs, grouping, and real-number properties',
+    duration: '≈ 25 min',
     objective:
-        'perform operations while respecting precedence, signs, and grouping so errors do not propagate into algebra and calculus',
+        'evaluate numerical and algebraic expressions reliably by respecting grouping, operational precedence, signs, and the fundamental properties of real numbers',
     symbol: '()÷×',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Order is part of the expression',
+        title: 'Structure comes before computation',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Grouping comes first',
+            title: 'Operational hierarchy',
             content:
-                'Evaluate grouping symbols first, then powers and roots, then multiplication and division, and finally addition and subtraction. Operations with the same precedence are handled from left to right.',
+                'An expression is read in levels. Evaluate grouping symbols first, then powers and roots, then multiplication and division, and finally addition and subtraction. Operations with equal precedence are evaluated from left to right.',
             emphasis:
-                'The expression 2 + 3·4 equals 14, not 20, because multiplication precedes addition.',
+                'Precedence is not optional; it makes the interpretation of an expression unambiguous.',
           ),
           ConceptBlockData(
             visual: LessonVisual.compare,
-            title: 'A sign may belong to the number or the operation',
+            title: 'A sign may be inside or outside a power',
             content:
-                'In (−3)², the entire number −3 is squared, giving 9. In −3², the power applies to 3 first and the negative sign is applied afterward, giving −9.',
+                'In (−3)², the base is −3 and the result is 9. In −3², the base of the power is 3; first compute 3² = 9 and then apply the external negative sign, giving −9.',
+            emphasis:
+                'Parentheses change the object being raised to a power.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Properties of real numbers',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Several precedence levels',
-            problem: 'Evaluate 18 ÷ 3·2 − (5 − 8).',
-            steps: [
-              'Evaluate the parentheses: 5 − 8 = −3.',
-              'Perform division and multiplication left to right: 18 ÷ 3 = 6, then 6·2 = 12.',
-              'Subtract the negative number: 12 − (−3) = 15.',
-            ],
-            result: 'The expression equals 15.',
-            interpretation:
-                'Each step preserves the original structure instead of inventing a new precedence rule.',
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Commutative and associative properties',
+            content:
+                'For real numbers a, b, and c, a + b = b + a and ab = ba. Also, (a + b) + c = a + (b + c) and (ab)c = a(bc). These properties allow sums and products to be reordered and regrouped without changing their values.',
+            emphasis:
+                'Subtraction and division are generally neither commutative nor associative.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Distributive property, identities, and inverses',
+            content:
+                'The distributive property links multiplication and addition: a(b + c) = ab + ac. Zero is the additive identity and 1 is the multiplicative identity. Every real a has an additive inverse −a; every nonzero real has a reciprocal 1/a.',
+            emphasis:
+                'Zero has no reciprocal because division by zero is undefined.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Common mistake',
+        title: 'Signs and subtraction',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Subtracting means adding the opposite',
+            content:
+                'The expression a − b can be read as a + (−b). This viewpoint helps control signs and explains why subtracting a negative number is equivalent to adding its positive opposite.',
+            emphasis: 'For example, 7 − (−4) = 7 + 4 = 11.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Signed products and quotients',
+            content:
+                'Products and quotients of numbers with the same sign are positive; with different signs they are negative. These sign rules are consistent with the algebraic properties of the real numbers.',
+            emphasis:
+                'Do not apply sign rules mechanically before identifying which operation is actually present.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Worked examples',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Several precedence levels',
+            problem: 'Evaluate 18 ÷ 3·2 − (5 − 8).',
+            steps: [
+              'Evaluate the grouping: 5 − 8 = −3.',
+              'Division and multiplication have equal precedence: 18 ÷ 3 = 6 and 6·2 = 12.',
+              'Subtract the negative number: 12 − (−3) = 15.',
+            ],
+            result: '15.',
+            interpretation:
+                'Reading the structure prevents the common error of treating multiplication as if it always outranked division.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Power and sign',
+            problem: 'Compare −2⁴ and (−2)⁴.',
+            steps: [
+              'In −2⁴, compute 2⁴ = 16.',
+              'Apply the external sign: −16.',
+              'In (−2)⁴, the base is −2.',
+              'Because the exponent is even, (−2)⁴ = 16.',
+            ],
+            result: '−2⁴ = −16 and (−2)⁴ = 16.',
+            interpretation:
+                'The difference comes from identifying the base correctly.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Using properties to simplify',
+            problem: 'Evaluate 25·17 + 25·3 without computing two separate products.',
+            steps: [
+              'Identify the common factor 25.',
+              'Use the distributive property in reverse: 25(17 + 3).',
+              'Add inside the parentheses: 20.',
+              'Compute 25·20 = 500.',
+            ],
+            result: '500.',
+            interpretation:
+                'Algebraic properties can make numerical computation more efficient.',
+          ),
+          WorkedExampleBlockData(
+            title: 'A simple complex fraction',
+            problem: 'Evaluate (3/4 − 1/6) ÷ (5/8).',
+            steps: [
+              'Use denominator 12: 3/4 = 9/12 and 1/6 = 2/12.',
+              'Subtract: 7/12.',
+              'Dividing by 5/8 means multiplying by 8/5.',
+              'Simplify: (7/12)(8/5) = 14/15.',
+            ],
+            result: '14/15.',
+            interpretation:
+                'Replacing division by multiplication by the reciprocal is valid because the divisor 5/8 is nonzero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Errors that propagate',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'Multiplication does not outrank division',
             content:
-                'Multiplication and division share the same precedence and are evaluated from left to right. The same is true for addition and subtraction.',
+                'Multiplication and division share a precedence level. In 24 ÷ 6·2, evaluate left to right: 24 ÷ 6 = 4 and 4·2 = 8.',
+            emphasis:
+                'Inventing a precedence rule changes the value of the expression.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Distributing over a sum means multiplying every term',
+            content:
+                'In −3(x − 4), the factor −3 multiplies both x and −4, producing −3x + 12. Multiplying only the first term breaks the equality.',
+            emphasis:
+                'After distributing, verify that every term inside the grouping received the external factor.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — precedence',
+            problem: 'Evaluate 4 + 2(3² − 5).',
+            steps: [
+              'Compute the power: 3² = 9.',
+              'Evaluate the grouping: 9 − 5 = 4.',
+              'Multiply: 2·4 = 8.',
+              'Add: 4 + 8 = 12.',
+            ],
+            result: '12.',
+            interpretation:
+                'Each step resolves only the highest-priority operation currently available.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — distribution and signs',
+            problem: 'Simplify −2(3 − x) + 5.',
+            steps: [
+              'Distribute −2: −2·3 + (−2)(−x).',
+              'Obtain −6 + 2x.',
+              'Add the remaining term: −6 + 2x + 5.',
+              'Combine constants: 2x − 1.',
+            ],
+            result: '2x − 1.',
+            interpretation:
+                'The external negative factor participates in every multiplication.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Show your steps',
+            content:
+                '1. Evaluate 7 + 3·5.\n'
+                '2. Evaluate (7 + 3)·5.\n'
+                '3. Evaluate −3² and (−3)².\n'
+                '4. Evaluate 36 ÷ 6·3.\n'
+                '5. Evaluate 10 − (4 − 9).\n'
+                '6. Simplify 4(2x − 3).\n'
+                '7. Simplify −5(a + 2).\n'
+                '8. Use distribution to evaluate 19·7 + 19·3.\n'
+                '9. Explain why 8 − 3 ≠ 3 − 8.\n'
+                '10. Explain why 12 ÷ 4 ≠ 4 ÷ 12.\n'
+                '11. Evaluate (5/6 + 1/3) ÷ 2.\n'
+                '12. Identify the property used in 6(x + 4) = 6x + 24.',
+            emphasis:
+                'Do not record only the result: identify the property or precedence rule used at decisive steps.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'Arithmetic errors become Calculus errors',
+            content:
+                'Algebraic simplification appears before limits, derivatives, and integrals. A sign or precedence error can create a different function from the original and invalidate everything that follows.',
+            emphasis:
+                'Algebraic precision is an entry requirement for Calculus, not a separate skill.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax, Algebra and Trigonometry 2e, Section 1.1, including order of operations and properties of real numbers; OpenStax, Precalculus; James Stewart, Calculus, Algebra review; Thomas’ Calculus, prerequisite materials; and MIT OpenCourseWare 18.01/18.01SC, which explicitly identifies algebra and trigonometry as prerequisites for university Calculus.',
+            emphasis:
+                'Cálculo Trivial uses original or pedagogically adapted exercises rather than reproducing protected problem sets verbatim.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is −2² + (−2)²?',
+      question: 'What is the value of −2² + (−2)²?',
       choices: ['−8', '0', '8'],
       correctIndex: 1,
-      explanation: '−2² = −4, while (−2)² = 4. Therefore the sum is 0.',
+      explanation:
+          '−2² = −(2²) = −4, while (−2)² = 4. Therefore, −4 + 4 = 0.',
     ),
     takeaways: [
       'Grouping precedes powers, products, and sums.',
-      'Equal-precedence operations are evaluated left to right.',
-      'Parentheses determine whether a sign is part of a power.',
-      'Precedence errors propagate into equations, functions, and limits.',
+      'Multiplication and division have equal precedence and are evaluated left to right.',
+      'Parentheses determine whether a sign belongs to the base of a power.',
+      'Commutativity and associativity hold for addition and multiplication, not for subtraction and division.',
+      'The distributive property connects multiplication and addition.',
+      'Division by zero is undefined.',
+      'Operational precision prevents errors from propagating into Algebra and Calculus.',
     ],
     closing:
-        'Reading structure before calculating is more valuable than calculating quickly.',
+        'Correct computation is not about executing rules quickly; it is about preserving the mathematical structure of the expression at every step.',
   ),
   CourseLessonData(
     id: 'precalculo-00-03-linguagem',
