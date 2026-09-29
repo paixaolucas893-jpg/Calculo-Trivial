@@ -19,83 +19,266 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     trailTitle: 'Pré-Cálculo — Fundamentos',
     eyebrow: 'Unidade 0',
     title: 'Números reais e reta real',
-    description: 'conjuntos numéricos, inclusão e intervalos',
-    duration: '≈ 12 min',
+    description: 'conjuntos numéricos, ordem, intervalos e representação na reta',
+    duration: '≈ 25 min',
     objective:
-        'classificar números reais, interpretar inclusões entre conjuntos e representar desigualdades por intervalos na reta real',
+        'classificar números reais, justificar relações de inclusão entre conjuntos, comparar números, interpretar desigualdades e representar conjuntos por intervalos e na reta real',
     symbol: 'ℝ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Organize os números antes de calcular',
+        title: 'Estrutura dos números reais',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.route,
-            title: 'Os reais reúnem diferentes tipos de números',
+            title: 'De contagens ao contínuo real',
             content:
-                'Os naturais ℕ aparecem em contagens. Os inteiros ℤ acrescentam os negativos e o zero. Os racionais ℚ são números que podem ser escritos como fração de inteiros, com denominador diferente de zero. Irracionais, como √2 e π, não podem ser escritos dessa forma. Racionais e irracionais formam o conjunto dos reais ℝ.',
+                'Os números naturais ℕ modelam contagens. Os inteiros ℤ incluem os naturais, o zero e os inteiros negativos. Os racionais ℚ são os números que podem ser escritos na forma p/q, com p e q inteiros e q ≠ 0. Os irracionais são reais que não admitem essa representação. Racionais e irracionais formam o conjunto dos números reais ℝ.',
             emphasis:
-                'Uma inclusão útil é ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Um número pode pertencer a mais de um desses conjuntos.',
+                'Uma cadeia de inclusão útil é ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Pertencer a um conjunto menor não impede pertencer aos conjuntos maiores que o contêm.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Intervalos traduzem desigualdades',
+            visual: LessonVisual.compare,
+            title: 'Racional ou irracional?',
             content:
-                'A desigualdade 2 < x ≤ 5 descreve todos os reais maiores que 2 e menores ou iguais a 5. Em notação de intervalo, escrevemos (2, 5]. Parêntese indica extremidade excluída; colchete indica extremidade incluída.',
+                'Todo racional possui expansão decimal finita ou periódica. Todo irracional possui expansão decimal infinita e não periódica. Assim, 3/8, −7 e 0,125 são racionais; √2 e π são irracionais.',
             emphasis:
-                'Com ±∞ usamos sempre parênteses, porque infinito não é um número real que possa pertencer ao intervalo.',
+                'A definição formal de racional é poder escrevê-lo como razão de dois inteiros com denominador não nulo.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Ordem e reta real',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Cada real corresponde a um ponto',
+            content:
+                'A reta real organiza os números segundo a relação de ordem. Se a < b, então o ponto que representa a está à esquerda do ponto que representa b. Essa representação permite interpretar comparação, distância, intervalos e posteriormente domínio de funções e vizinhanças usadas em limites.',
+            emphasis:
+                'Na reta real, mover-se para a direita significa aumentar o valor; mover-se para a esquerda significa diminuí-lo.',
+          ),
           WorkedExampleBlockData(
-            title: 'Da desigualdade para o intervalo',
-            problem: 'Represente −3 ≤ x < 4 em notação de intervalo.',
+            title: 'Comparando números de naturezas diferentes',
+            problem: 'Coloque −3/2, √2, 0 e 1,4 em ordem crescente.',
             steps: [
-              'A extremidade −3 está incluída porque aparece ≤.',
-              'A extremidade 4 está excluída porque aparece <.',
-              'Escreva os valores em ordem crescente: [−3, 4).',
+              'Converta apenas o necessário: −3/2 = −1,5.',
+              'Use √2 ≈ 1,4142.',
+              'Compare: −1,5 < 0 < 1,4 < 1,4142.',
+              'Retorne às formas exatas quando apropriado.',
             ],
-            result: 'O conjunto solução é [−3, 4).',
+            result: '−3/2 < 0 < 1,4 < √2.',
             interpretation:
-                'Na reta real, o ponto −3 é fechado e o ponto 4 é aberto; todos os pontos entre eles pertencem ao conjunto.',
+                'Aproximações podem ajudar a comparar, mas a forma exata continua sendo preferível quando disponível.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Intervalos e desigualdades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Intervalos são conjuntos de números reais',
+            content:
+                'O intervalo (a, b) contém os reais x tais que a < x < b. O intervalo [a, b] contém os reais x tais que a ≤ x ≤ b. As formas [a, b) e (a, b] incluem apenas uma das extremidades.',
+            emphasis:
+                'Parêntese indica extremidade excluída; colchete indica extremidade incluída.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Intervalos ilimitados',
+            content:
+                'Condições como x ≥ 2 e x < −1 descrevem intervalos ilimitados: [2, +∞) e (−∞, −1). Os símbolos ±∞ indicam ausência de extremidade finita e não são números reais.',
+            emphasis:
+                'Por isso, ±∞ aparecem sempre com parênteses.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplos resolvidos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Da desigualdade para o intervalo',
+            problem: 'Represente −3 ≤ x < 4 em notação de intervalo.',
+            steps: [
+              '−3 está incluído porque a relação é ≤.',
+              '4 está excluído porque a relação é <.',
+              'Escreva as extremidades em ordem crescente.',
+            ],
+            result: '[−3, 4).',
+            interpretation:
+                'Na reta real, −3 é marcado com ponto fechado, 4 com ponto aberto e todos os valores entre eles pertencem ao conjunto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Do intervalo para a desigualdade',
+            problem: 'Escreva (−∞, 5] como desigualdade.',
+            steps: [
+              'O intervalo se estende indefinidamente para a esquerda.',
+              'A extremidade finita é 5.',
+              'O colchete em 5 indica que 5 pertence ao conjunto.',
+            ],
+            result: 'x ≤ 5.',
+            interpretation:
+                'Notação de intervalo e desigualdade podem representar exatamente o mesmo conjunto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'União de intervalos',
+            problem: 'Represente x < −2 ou x ≥ 3 em notação de intervalos.',
+            steps: [
+              'x < −2 corresponde a (−∞, −2).',
+              'x ≥ 3 corresponde a [3, +∞).',
+              'A palavra “ou” indica união.',
+            ],
+            result: '(−∞, −2) ∪ [3, +∞).',
+            interpretation:
+                'A união reúne os valores que satisfazem pelo menos uma das condições.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Interseção de condições',
+            problem: 'Determine os x que satisfazem x > −1 e x ≤ 4.',
+            steps: [
+              'x > −1 exige valores à direita de −1.',
+              'x ≤ 4 permite valores até 4, incluindo 4.',
+              'A palavra “e” exige as duas condições simultaneamente.',
+            ],
+            result: '−1 < x ≤ 4, isto é, (−1, 4].',
+            interpretation:
+                'A interseção mantém somente a região comum às duas condições.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Precisão conceitual',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não confunda intervalo com dois números isolados',
+            title: 'Um intervalo não é um par de números',
             content:
-                'O intervalo [1, 3] contém infinitos números reais: 1, 1,2, √2, 2,5, 3 e todos os demais reais entre 1 e 3.',
+                'O intervalo [1, 3] contém infinitos números reais. As extremidades apenas delimitam o conjunto. Entre 1 e 3 estão, por exemplo, 1,2, √2, 2, 5/2 e infinitos outros valores.',
             emphasis:
-                'Intervalo é um conjunto contínuo de valores, não apenas suas extremidades.',
+                'Confundir um intervalo com suas extremidades prejudica o estudo posterior de domínio, continuidade e limites.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '√4 e x² = 4 são afirmações diferentes',
+            content:
+                'A expressão √4 representa a raiz quadrada principal e vale 2. Já a equação x² = 4 possui duas soluções reais: x = −2 e x = 2.',
+            emphasis:
+                'Uma expressão possui um valor; uma equação pede os valores que tornam uma igualdade verdadeira.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Classificação completa',
+            problem: 'Classifique −12, 7/3 e √9 nos conjuntos numéricos usuais.',
+            steps: [
+              '−12 é inteiro; portanto também é racional e real.',
+              '7/3 é razão de inteiros com denominador não nulo; portanto é racional e real.',
+              '√9 = 3 é natural; logo também é inteiro, racional e real.',
+            ],
+            result:
+                '−12 ∈ ℤ, ℚ, ℝ; 7/3 ∈ ℚ, ℝ; √9 = 3 ∈ ℕ, ℤ, ℚ, ℝ.',
+            interpretation:
+                'Uma classificação completa registra todas as pertinências verdadeiras.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Construindo um intervalo com duas condições',
+            problem: 'Represente x ≥ −4 e x < 2.',
+            steps: [
+              'x ≥ −4 inclui −4.',
+              'x < 2 exclui 2.',
+              'As duas condições devem valer ao mesmo tempo.',
+            ],
+            result: '[−4, 2).',
+            interpretation:
+                'Esse raciocínio reaparece ao determinar domínios de funções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e justifique',
+            content:
+                '1. Classifique −5 nos conjuntos ℕ, ℤ, ℚ e ℝ.\n'
+                '2. Classifique 0,75 e justifique por que é racional.\n'
+                '3. Explique por que √2 não é racional.\n'
+                '4. Coloque −2, −1/2, 0, √3 e 2 em ordem crescente.\n'
+                '5. Escreva x > 3 em notação de intervalo.\n'
+                '6. Escreva x ≤ −1 em notação de intervalo.\n'
+                '7. Converta [−2, 5) em desigualdade.\n'
+                '8. Converta (0, +∞) em desigualdade.\n'
+                '9. Represente x < −3 ou x ≥ 1 como união de intervalos.\n'
+                '10. Represente simultaneamente x ≥ −2 e x < 6.\n'
+                '11. Decida se 2 pertence a (2, 7] e justifique.\n'
+                '12. Explique por que +∞ nunca pode aparecer com colchete.',
+            emphasis:
+                'Em nível universitário, a justificativa e a notação fazem parte da resposta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Domínio, vizinhança e limite vivem na reta real',
+            content:
+                'Em Cálculo, intervalos descrevem domínios, regiões onde funções crescem ou decrescem e conjuntos nos quais uma propriedade é válida. Desigualdades da forma a < x < b também fundamentam a linguagem de vizinhanças e, mais adiante, a definição formal de limite.',
+            emphasis:
+                'Dominar a reta real agora reduz dificuldades posteriores em funções, limites, continuidade e derivadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, seção 1.1, Real Numbers: Algebra Essentials; OpenStax, Precalculus; James Stewart, Calculus, revisão de Álgebra e Pré-Cálculo; Thomas’ Calculus, revisão de pré-requisitos algébricos; e Gelson Iezzi e colaboradores, Fundamentos de Matemática Elementar.',
+            emphasis:
+                'Os exemplos e exercícios do Cálculo Trivial são autorais ou adaptados pedagogicamente, sem reprodução literal de listas protegidas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual intervalo representa x > −2?',
-      choices: ['[−2, +∞)', '(−2, +∞)', '(−∞, −2]'],
+      question:
+          'Qual alternativa representa corretamente o conjunto dos reais que satisfazem −2 < x ≤ 5?',
+      choices: ['[−2, 5]', '(−2, 5]', '(−∞, −2) ∪ [5, +∞)'],
       correctIndex: 1,
       explanation:
-          'Como −2 não está incluído, usamos parêntese. Todos os valores maiores seguem até +∞: (−2, +∞).',
+          '−2 é excluído porque a desigualdade é estrita; 5 é incluído porque aparece ≤. Portanto, o intervalo é (−2, 5].',
     ),
     takeaways: [
-      'ℕ, ℤ e ℚ estão contidos em ℝ.',
-      'Racionais podem ser escritos como razão de inteiros; irracionais não.',
-      'Parêntese exclui uma extremidade e colchete inclui.',
-      'Intervalos serão usados para domínio, limites e análise de funções.',
+      'ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ.',
+      'Racionais são razões de inteiros com denominador não nulo; irracionais são reais não racionais.',
+      'A reta real representa simultaneamente posição e ordem.',
+      'Desigualdades e intervalos descrevem conjuntos de números reais.',
+      'União corresponde ao “ou”; interseção corresponde ao “e” entre condições.',
+      '±∞ não são números reais e nunca são extremidades incluídas.',
+      'Intervalos serão essenciais para domínio, limites, continuidade e análise de funções.',
     ],
     closing:
-        'A reta real é o espaço básico onde o Pré-Cálculo descreve valores possíveis e restrições.',
+        'A reta real não é apenas uma figura: ela é a estrutura sobre a qual grande parte do Cálculo de uma variável é formulada.',
   ),
   CourseLessonData(
     id: 'precalculo-00-02-operacoes',
@@ -436,81 +619,266 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     trailTitle: 'Precalculus — Foundations',
     eyebrow: 'Unit 0',
     title: 'Real numbers and the real line',
-    description: 'number sets, inclusion, and intervals',
-    duration: '≈ 12 min',
+    description: 'number systems, order, intervals, and the real-line model',
+    duration: '≈ 25 min',
     objective:
-        'classify real numbers, interpret set inclusions, and represent inequalities as intervals on the real line',
+        'classify real numbers, justify set inclusions, compare numbers, interpret inequalities, and represent sets using intervals and the real line',
     symbol: 'ℝ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Organize numbers before calculating',
+        title: 'Structure of the real numbers',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.route,
-            title: 'The real numbers contain different number systems',
+            title: 'From counting numbers to the real continuum',
             content:
-                'Natural numbers ℕ arise in counting. Integers ℤ add zero and negative numbers. Rational numbers ℚ can be written as a ratio of integers with nonzero denominator. Irrational numbers, such as √2 and π, cannot. Rational and irrational numbers together form the real numbers ℝ.',
+                'Natural numbers ℕ model counting. Integers ℤ include the natural numbers, zero, and negative integers. Rational numbers ℚ can be written as p/q, where p and q are integers and q ≠ 0. Irrational numbers are real numbers that cannot be written in this form. Rational and irrational numbers together form ℝ.',
             emphasis:
-                'A useful inclusion is ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. One number may belong to several of these sets.',
+                'A useful inclusion chain is ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Membership in a smaller set does not prevent membership in every larger set containing it.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Intervals translate inequalities',
+            visual: LessonVisual.compare,
+            title: 'Rational or irrational?',
             content:
-                'The inequality 2 < x ≤ 5 describes every real number greater than 2 and less than or equal to 5. Interval notation writes this as (2, 5]. Parentheses exclude an endpoint; brackets include it.',
+                'Every rational number has a terminating or repeating decimal expansion. An irrational number has an infinite nonrepeating decimal expansion. Thus 3/8, −7, and 0.125 are rational, whereas √2 and π are irrational.',
             emphasis:
-                'We always use parentheses with ±∞ because infinity is not a real endpoint.',
+                'Formally, a rational number is one that can be written as a ratio of two integers with nonzero denominator.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Order and the real line',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Each real number corresponds to a point',
+            content:
+                'The real line arranges numbers according to order. If a < b, then the point representing a lies to the left of the point representing b. This model supports comparison, distance, intervals, domains of functions, and later the neighborhoods used in limits.',
+            emphasis:
+                'Moving right increases value; moving left decreases value.',
+          ),
           WorkedExampleBlockData(
-            title: 'From inequality to interval',
-            problem: 'Write −3 ≤ x < 4 in interval notation.',
+            title: 'Comparing numbers in different forms',
+            problem: 'Arrange −3/2, √2, 0, and 1.4 in increasing order.',
             steps: [
-              'The endpoint −3 is included because the inequality uses ≤.',
-              'The endpoint 4 is excluded because the inequality uses <.',
-              'Write the endpoints in increasing order: [−3, 4).',
+              'Convert only what is useful: −3/2 = −1.5.',
+              'Use √2 ≈ 1.4142.',
+              'Compare: −1.5 < 0 < 1.4 < 1.4142.',
+              'Return to exact forms where appropriate.',
             ],
-            result: 'The solution set is [−3, 4).',
+            result: '−3/2 < 0 < 1.4 < √2.',
             interpretation:
-                'On the real line, −3 is closed, 4 is open, and every point between them belongs to the set.',
+                'Approximations can help compare values, but exact forms remain preferable when available.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Common mistake',
+        title: 'Intervals and inequalities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Intervals are sets of real numbers',
+            content:
+                'The interval (a, b) contains all real x such that a < x < b. The interval [a, b] contains all real x such that a ≤ x ≤ b. The forms [a, b) and (a, b] include exactly one endpoint.',
+            emphasis:
+                'Parentheses exclude an endpoint; brackets include an endpoint.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Unbounded intervals',
+            content:
+                'Conditions such as x ≥ 2 and x < −1 describe unbounded intervals: [2, +∞) and (−∞, −1). The symbols ±∞ indicate the absence of a finite endpoint and are not real numbers.',
+            emphasis:
+                'Therefore ±∞ always appear with parentheses.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Worked examples',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'From inequality to interval',
+            problem: 'Write −3 ≤ x < 4 in interval notation.',
+            steps: [
+              '−3 is included because the relation is ≤.',
+              '4 is excluded because the relation is <.',
+              'Write the endpoints in increasing order.',
+            ],
+            result: '[−3, 4).',
+            interpretation:
+                'On the real line, −3 is closed, 4 is open, and every value between them belongs to the set.',
+          ),
+          WorkedExampleBlockData(
+            title: 'From interval to inequality',
+            problem: 'Write (−∞, 5] as an inequality.',
+            steps: [
+              'The interval extends without bound to the left.',
+              'Its finite endpoint is 5.',
+              'The bracket at 5 means 5 belongs to the set.',
+            ],
+            result: 'x ≤ 5.',
+            interpretation:
+                'Interval notation and inequality notation can describe exactly the same set.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Union of intervals',
+            problem: 'Write x < −2 or x ≥ 3 in interval notation.',
+            steps: [
+              'x < −2 corresponds to (−∞, −2).',
+              'x ≥ 3 corresponds to [3, +∞).',
+              'The word “or” indicates union.',
+            ],
+            result: '(−∞, −2) ∪ [3, +∞).',
+            interpretation:
+                'A union contains values satisfying at least one condition.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Intersection of conditions',
+            problem: 'Find the real x satisfying x > −1 and x ≤ 4.',
+            steps: [
+              'x > −1 requires values to the right of −1.',
+              'x ≤ 4 allows values up to and including 4.',
+              'The word “and” requires both conditions simultaneously.',
+            ],
+            result: '−1 < x ≤ 4, or (−1, 4].',
+            interpretation:
+                'An intersection keeps only the region common to both conditions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Conceptual precision',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'An interval is not just two isolated numbers',
+            title: 'An interval is not a pair of numbers',
             content:
-                'The interval [1, 3] contains infinitely many real numbers, including 1, 1.2, √2, 2.5, 3, and every other real number between 1 and 3.',
+                'The interval [1, 3] contains infinitely many real numbers. Its endpoints only bound the set. Values such as 1.2, √2, 2, and 5/2 lie between them.',
+            emphasis:
+                'Confusing an interval with its endpoints causes later errors with domains, continuity, and limits.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '√4 and x² = 4 are different statements',
+            content:
+                'The expression √4 denotes the principal square root and equals 2. The equation x² = 4, however, has two real solutions: x = −2 and x = 2.',
+            emphasis:
+                'An expression has a value; an equation asks for values that make an equality true.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Complete classification',
+            problem: 'Classify −12, 7/3, and √9 using the usual number systems.',
+            steps: [
+              '−12 is an integer, so it is also rational and real.',
+              '7/3 is a ratio of integers with nonzero denominator, so it is rational and real.',
+              '√9 = 3 is natural, hence also integer, rational, and real.',
+            ],
+            result:
+                '−12 ∈ ℤ, ℚ, ℝ; 7/3 ∈ ℚ, ℝ; √9 = 3 ∈ ℕ, ℤ, ℚ, ℝ.',
+            interpretation:
+                'A complete classification records every valid set membership.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Building an interval from two conditions',
+            problem: 'Represent x ≥ −4 and x < 2.',
+            steps: [
+              'x ≥ −4 includes −4.',
+              'x < 2 excludes 2.',
+              'Both conditions must hold simultaneously.',
+            ],
+            result: '[−4, 2).',
+            interpretation:
+                'This reasoning will reappear when determining domains of functions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and justify',
+            content:
+                '1. Classify −5 within ℕ, ℤ, ℚ, and ℝ.\n'
+                '2. Classify 0.75 and justify why it is rational.\n'
+                '3. Explain why √2 is not rational.\n'
+                '4. Arrange −2, −1/2, 0, √3, and 2 in increasing order.\n'
+                '5. Write x > 3 in interval notation.\n'
+                '6. Write x ≤ −1 in interval notation.\n'
+                '7. Convert [−2, 5) to an inequality.\n'
+                '8. Convert (0, +∞) to an inequality.\n'
+                '9. Represent x < −3 or x ≥ 1 as a union of intervals.\n'
+                '10. Represent x ≥ −2 and x < 6 simultaneously.\n'
+                '11. Decide whether 2 belongs to (2, 7] and justify.\n'
+                '12. Explain why +∞ can never appear with a bracket.',
+            emphasis:
+                'At university level, justification and notation are part of the answer.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Domains, neighborhoods, and limits live on the real line',
+            content:
+                'In Calculus, intervals describe domains, regions where functions increase or decrease, and sets on which a property holds. Inequalities of the form a < x < b also underlie neighborhoods and later the formal definition of a limit.',
+            emphasis:
+                'Mastering the real line now reduces later difficulty with functions, limits, continuity, and derivatives.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax, Algebra and Trigonometry 2e, Section 1.1, Real Numbers: Algebra Essentials; OpenStax, Precalculus; James Stewart, Calculus, Algebra and Precalculus review; Thomas’ Calculus, algebraic prerequisites review; and Gelson Iezzi et al., Fundamentos de Matemática Elementar.',
+            emphasis:
+                'Cálculo Trivial uses original or pedagogically adapted examples and exercises rather than reproducing protected problem sets verbatim.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which interval represents x > −2?',
-      choices: ['[−2, +∞)', '(−2, +∞)', '(−∞, −2]'],
+      question:
+          'Which interval correctly represents the real numbers satisfying −2 < x ≤ 5?',
+      choices: ['[−2, 5]', '(−2, 5]', '(−∞, −2) ∪ [5, +∞)'],
       correctIndex: 1,
       explanation:
-          'Because −2 is excluded, use a parenthesis. All greater values continue toward +∞: (−2, +∞).',
+          '−2 is excluded because the inequality is strict; 5 is included because the relation is ≤. Therefore the interval is (−2, 5].',
     ),
     takeaways: [
-      'ℕ, ℤ, and ℚ are contained in ℝ.',
-      'Rational numbers are ratios of integers; irrational numbers are not.',
-      'Parentheses exclude endpoints and brackets include them.',
-      'Intervals will describe domains, limits, and function behavior.',
+      'ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ.',
+      'Rational numbers are ratios of integers with nonzero denominator; irrational numbers are real numbers that are not rational.',
+      'The real line represents both position and order.',
+      'Inequalities and intervals describe sets of real numbers.',
+      'Union corresponds to “or”; intersection corresponds to “and” between conditions.',
+      '±∞ are not real numbers and are never included endpoints.',
+      'Intervals are essential for domains, limits, continuity, and function analysis.',
     ],
     closing:
-        'The real line is the basic space where Precalculus describes possible values and restrictions.',
+        'The real line is not merely a diagram: it is the structure on which much of single-variable Calculus is formulated.',
   ),
   CourseLessonData(
     id: 'precalculo-00-02-operacoes',
