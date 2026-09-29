@@ -551,80 +551,300 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     trailTitle: 'Pré-Cálculo — Fundamentos',
     eyebrow: 'Unidade 0',
     title: 'Variáveis, constantes e expressões',
-    description: 'termos, coeficientes, símbolos e valor numérico',
-    duration: '≈ 12 min',
+    description: 'estrutura algébrica, termos, coeficientes, substituição e interpretação',
+    duration: '≈ 25 min',
     objective:
-        'identificar a estrutura de expressões algébricas e interpretar corretamente variáveis, constantes, coeficientes e termos',
+        'interpretar expressões algébricas com precisão, identificar termos, coeficientes, constantes e variáveis, distinguir expressão de equação e avaliar expressões por substituição',
     symbol: '3x+2',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Leia uma expressão como linguagem',
+        title: 'A linguagem algébrica',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Cada parte tem uma função',
+            title: 'Símbolos representam relações',
             content:
-                'Na expressão 4x² − 3x + 7, x é a variável; 4 e −3 são coeficientes dos termos com variável; 7 é termo constante. Os termos são separados por adições ou subtrações consideradas no nível principal da expressão.',
+                'Uma expressão algébrica combina números, variáveis e operações para representar uma quantidade. A variável pode representar um número desconhecido, um parâmetro ou uma grandeza que muda. Uma constante mantém valor fixo no contexto considerado.',
             emphasis:
-                'Uma expressão descreve um valor; uma equação acrescenta uma igualdade a ser satisfeita.',
+                'A Álgebra não trata letras como objetos misteriosos: elas representam quantidades e relações entre quantidades.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.idea,
-            title: 'A variável representa possibilidade',
+            visual: LessonVisual.compare,
+            title: 'Expressão, equação e identidade',
             content:
-                'Uma letra não é um objeto misterioso: ela representa um número ainda não fixado ou uma quantidade que pode variar. Quando atribuímos um valor à variável, podemos calcular o valor numérico da expressão.',
+                'Uma expressão, como 3x + 5, representa uma quantidade. Uma equação, como 3x + 5 = 11, afirma que duas expressões têm o mesmo valor para determinados valores de x. Uma identidade, como 2(x + 1) = 2x + 2, é verdadeira para todos os valores do domínio.',
+            emphasis:
+                'Distinguir esses objetos evita confundir “calcular”, “resolver” e “demonstrar equivalência”.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Termos, coeficientes e constantes',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Substituição com sinais',
-            problem: 'Calcule 2x² − 5x + 1 para x = −2.',
-            steps: [
-              'Substitua x por −2 usando parênteses: 2(−2)² − 5(−2) + 1.',
-              'Calcule a potência: (−2)² = 4.',
-              'Efetue os produtos: 2·4 = 8 e −5(−2) = +10.',
-              'Some: 8 + 10 + 1 = 19.',
-            ],
-            result: 'O valor numérico é 19.',
-            interpretation:
-                'Usar parênteses na substituição conserva o sinal do valor inserido.',
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Como decompor uma expressão',
+            content:
+                'Na expressão 4x² − 3x + 7, os termos são 4x², −3x e 7. Os coeficientes dos termos com variável são 4 e −3. O termo 7 é constante. Em x, o coeficiente é 1; em −x, o coeficiente é −1.',
+            emphasis:
+                'O sinal faz parte do termo quando identificamos os termos de uma soma algébrica.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Parte literal e grau de um termo',
+            content:
+                'Em 5x³y², o coeficiente é 5 e a parte literal é x³y². Em um monômio, o grau é a soma dos expoentes das variáveis; portanto, 5x³y² tem grau 5.',
+            emphasis:
+                'Coeficiente e expoente exercem papéis diferentes: 3x² significa 3·x·x, não (3x)².',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Avaliação por substituição',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Substituir é preservar a estrutura',
+            content:
+                'Avaliar uma expressão significa substituir as variáveis por valores e executar as operações respeitando a estrutura original. Quando o valor substituído é negativo, o uso de parênteses é essencial para preservar corretamente sinais e potências.',
+            emphasis:
+                'Se x = −2, então x² deve ser escrito como (−2)² durante a substituição.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Substituição com sinal negativo',
+            problem: 'Calcule 2x² − 5x + 1 para x = −2.',
+            steps: [
+              'Substitua x por −2 usando parênteses: 2(−2)² − 5(−2) + 1.',
+              'Calcule a potência: (−2)² = 4.',
+              'Efetue os produtos: 2·4 = 8 e −5(−2) = +10.',
+              'Some os termos: 8 + 10 + 1 = 19.',
+            ],
+            result: '19.',
+            interpretation:
+                'Os parênteses impedem que o sinal negativo seja perdido ou aplicado à operação errada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Modelagem e interpretação',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Traduzindo uma situação',
+            problem:
+                'Uma empresa cobra R\$ 12 de taxa fixa mais R\$ 4 por unidade produzida. Escreva uma expressão para o custo total de x unidades.',
+            steps: [
+              'Defina x como o número de unidades produzidas.',
+              'A parcela variável é 4x.',
+              'A taxa fixa é 12.',
+              'Some as parcelas: C = 12 + 4x.',
+            ],
+            result: 'C = 12 + 4x.',
+            interpretation:
+                'O coeficiente 4 representa a taxa por unidade; a constante 12 representa a parcela independente de x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Interpretando uma expressão',
+            problem: 'Interprete P = 1500 − 20t em um contexto de estoque.',
+            steps: [
+              'P representa uma quantidade dependente de t.',
+              'A constante 1500 representa o valor inicial quando t = 0.',
+              'O coeficiente −20 indica redução de 20 unidades para cada aumento de uma unidade em t.',
+            ],
+            result:
+                'O modelo descreve um estoque inicial de 1500 unidades que diminui 20 unidades por unidade de tempo.',
+            interpretation:
+                'Ler coeficientes e constantes como informações do modelo prepara o estudo de funções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Precisão conceitual',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'x² e 2x não significam a mesma coisa',
+            title: 'x² e 2x não são equivalentes',
             content:
-                'x² significa x·x. Já 2x significa 2·x. Expoente e coeficiente desempenham papéis diferentes.',
+                'x² significa x·x. Já 2x significa 2·x. Por exemplo, se x = 3, então x² = 9 e 2x = 6.',
+            emphasis:
+                'Expoente e coeficiente não são intercambiáveis.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '3(x + 2) não é 3x + 2',
+            content:
+                'O fator 3 multiplica toda a expressão x + 2. Pela distributiva, 3(x + 2) = 3x + 6.',
+            emphasis:
+                'Ignorar agrupamentos muda a expressão original.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Uma expressão não é “resolvida” sem uma condição',
+            content:
+                'A expressão 2x + 5 pode ser simplificada ou avaliada para um valor de x, mas não possui uma solução por si só. Resolver é uma tarefa associada a equações, inequações ou outros enunciados que impõem uma condição.',
+            emphasis:
+                'Use vocabulário matemático preciso: avaliar, simplificar, expandir, fatorar e resolver são ações diferentes.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Exemplos resolvidos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Identificação estrutural',
+            problem: 'Analise a expressão −7a³b + 4ab² − 9.',
+            steps: [
+              'Os termos são −7a³b, 4ab² e −9.',
+              'Os coeficientes dos termos com variáveis são −7 e 4.',
+              'O termo constante é −9.',
+              'As partes literais são a³b e ab².',
+            ],
+            result:
+                'A expressão possui três termos, dois termos variáveis e um termo constante.',
+            interpretation:
+                'Separar a estrutura corretamente é pré-requisito para combinar termos, fatorar e trabalhar com polinômios.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Avaliação com duas variáveis',
+            problem: 'Avalie 3x²y − 2xy + 4 para x = −1 e y = 2.',
+            steps: [
+              'Substitua: 3(−1)²(2) − 2(−1)(2) + 4.',
+              'Calcule (−1)² = 1.',
+              'Efetue os produtos: 3·1·2 = 6 e −2(−1)(2) = +4.',
+              'Some: 6 + 4 + 4 = 14.',
+            ],
+            result: '14.',
+            interpretation:
+                'Com várias variáveis, cada substituição deve preservar sua própria posição e agrupamento.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equivalência por distributiva',
+            problem: 'Mostre que 5(x − 2) + 3x e 8x − 10 são equivalentes.',
+            steps: [
+              'Distribua 5: 5x − 10 + 3x.',
+              'Combine termos semelhantes: 8x − 10.',
+              'A expressão obtida coincide com a segunda.',
+            ],
+            result: '5(x − 2) + 3x = 8x − 10.',
+            interpretation:
+                'Expressões diferentes na aparência podem representar a mesma quantidade para todos os valores permitidos de x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — leitura da expressão',
+            problem: 'Na expressão 6x² − x + 5, identifique termos e coeficientes.',
+            steps: [
+              'Separe pelos sinais de adição ou subtração no nível principal.',
+              'Os termos são 6x², −x e 5.',
+              'Os coeficientes dos termos com x são 6 e −1.',
+              'O termo constante é 5.',
+            ],
+            result: 'Termos: 6x², −x, 5; coeficientes: 6 e −1; constante: 5.',
+            interpretation:
+                'O coeficiente implícito de −x é −1.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — substituição',
+            problem: 'Calcule a² − 2ab + b² para a = 3 e b = −1.',
+            steps: [
+              'Substitua: 3² − 2(3)(−1) + (−1)².',
+              'Calcule as potências: 9 e 1.',
+              'Calcule o produto: −2(3)(−1) = +6.',
+              'Some: 9 + 6 + 1 = 16.',
+            ],
+            result: '16.',
+            interpretation:
+                'Parênteses são indispensáveis quando o valor substituído é negativo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e explique',
+            content:
+                '1. Identifique os termos de 5x² − 3x + 8.\n'
+                '2. Determine o coeficiente de −x³.\n'
+                '3. Na expressão 4ab² − 7, identifique coeficiente, parte literal e constante.\n'
+                '4. Explique a diferença entre expressão e equação.\n'
+                '5. Avalie 3x − 4 para x = −2.\n'
+                '6. Avalie x² + 2x + 1 para x = −3.\n'
+                '7. Avalie 2ab − b² para a = 4 e b = −2.\n'
+                '8. Escreva uma expressão para “cinco a mais que o dobro de x”.\n'
+                '9. Escreva uma expressão para “a metade da soma de x e 6”.\n'
+                '10. Interprete o coeficiente e a constante em C = 9 + 2,5x.\n'
+                '11. Verifique se 3(x + 4) e 3x + 12 são equivalentes.\n'
+                '12. Explique por que x² e 2x não podem ser tratados como a mesma expressão.',
+            emphasis:
+                'As respostas devem usar linguagem matemática precisa e mostrar a estrutura da expressão.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Expressões se tornam funções',
+            content:
+                'Em Cálculo, uma função associa valores de entrada a valores de saída por meio de uma regra. A capacidade de interpretar uma expressão como relação entre grandezas é indispensável para domínio, composição, limites, derivadas e modelagem.',
+            emphasis:
+                'Antes de estudar como uma função varia, é preciso saber ler corretamente a expressão que a define.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Intermediate Algebra 2e, seção 1.1, Use the Language of Algebra; OpenStax, Algebra and Trigonometry 2e, seção 1.4, Polynomials, para termos, coeficientes e constantes; James Stewart, Calculus, Algebra Review; Thomas’ Calculus, revisão algébrica; e MIT OpenCourseWare 18.01SC, que assume domínio de Álgebra como pré-requisito para o Cálculo universitário.',
+            emphasis:
+                'Os exemplos e exercícios do Cálculo Trivial são autorais ou adaptados pedagogicamente e não reproduzem listas protegidas literalmente.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Na expressão −6a³ + 4, qual é o coeficiente do termo com a³?',
+      question:
+          'Na expressão −6a³ + 4, qual é o coeficiente do termo que contém a³?',
       choices: ['−6', '3', '4'],
       correctIndex: 0,
       explanation:
-          'O coeficiente é o fator numérico que multiplica a parte literal; portanto, é −6.',
+          'O coeficiente é o fator numérico que multiplica a parte literal. Em −6a³, esse fator é −6.',
     ),
     takeaways: [
-      'Variável representa uma quantidade que pode assumir valores.',
-      'Coeficiente multiplica a parte literal de um termo.',
-      'Constantes não dependem da variável.',
-      'Substituições com números negativos devem preservar parênteses.',
+      'Expressões combinam números, variáveis e operações para representar quantidades.',
+      'Termos são separados por adições e subtrações no nível principal da expressão.',
+      'Coeficiente multiplica a parte literal; constante independe das variáveis.',
+      'Expressão, equação e identidade são objetos matemáticos diferentes.',
+      'Substituições devem preservar sinais, parênteses e potências.',
+      'Expressões equivalentes podem ter formas diferentes e representar a mesma quantidade.',
+      'A leitura algébrica correta prepara o estudo formal de funções e Cálculo.',
     ],
     closing:
-        'Com a linguagem algébrica clara, as próximas técnicas deixam de parecer regras isoladas.',
+        'Ler Álgebra com precisão é aprender a enxergar estrutura, e não apenas símbolos.',
   ),
   CourseLessonData(
     id: 'precalculo-00-04-potencias-raizes',
@@ -1331,38 +1551,70 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     trailTitle: 'Precalculus — Foundations',
     eyebrow: 'Unit 0',
     title: 'Variables, constants, and expressions',
-    description: 'terms, coefficients, symbols, and numerical value',
-    duration: '≈ 12 min',
+    description: 'algebraic structure, terms, coefficients, substitution, and interpretation',
+    duration: '≈ 25 min',
     objective:
-        'identify the structure of algebraic expressions and correctly interpret variables, constants, coefficients, and terms',
+        'interpret algebraic expressions precisely, identify terms, coefficients, constants, and variables, distinguish expressions from equations, and evaluate expressions by substitution',
     symbol: '3x+2',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Read an expression as language',
+        title: 'The language of Algebra',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Each part has a role',
+            title: 'Symbols represent relationships',
             content:
-                'In 4x² − 3x + 7, x is the variable; 4 and −3 are coefficients; and 7 is a constant term. Terms are separated by top-level additions or subtractions.',
+                'An algebraic expression combines numbers, variables, and operations to represent a quantity. A variable may represent an unknown number, a parameter, or a changing quantity. A constant keeps a fixed value within the context being considered.',
             emphasis:
-                'An expression describes a value; an equation adds an equality that must be satisfied.',
+                'Algebra does not treat letters as mysterious objects; they represent quantities and relationships among quantities.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.idea,
-            title: 'A variable represents possibility',
+            visual: LessonVisual.compare,
+            title: 'Expression, equation, and identity',
             content:
-                'A letter represents a number that is not yet fixed or a quantity that may vary. Once a value is assigned, the expression can be evaluated numerically.',
+                'An expression such as 3x + 5 represents a quantity. An equation such as 3x + 5 = 11 states that two expressions have the same value for particular values of x. An identity such as 2(x + 1) = 2x + 2 is true for every value in its domain.',
+            emphasis:
+                'Distinguishing these objects prevents confusion among evaluating, solving, and proving equivalence.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Terms, coefficients, and constants',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'How to decompose an expression',
+            content:
+                'In 4x² − 3x + 7, the terms are 4x², −3x, and 7. The coefficients of the variable terms are 4 and −3. The term 7 is constant. In x the coefficient is 1; in −x the coefficient is −1.',
+            emphasis:
+                'The sign belongs to the term when identifying the terms of an algebraic sum.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Literal part and degree of a term',
+            content:
+                'In 5x³y², the coefficient is 5 and the literal part is x³y². For a monomial, the degree is the sum of the exponents of its variables, so 5x³y² has degree 5.',
+            emphasis:
+                'Coefficient and exponent play different roles: 3x² means 3·x·x, not (3x)².',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Evaluation by substitution',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Substitution must preserve structure',
+            content:
+                'To evaluate an expression, replace variables by values and perform the operations while preserving the original structure. When the substituted value is negative, parentheses are essential for handling signs and powers correctly.',
+            emphasis:
+                'If x = −2, then x² should be written as (−2)² during substitution.',
+          ),
           WorkedExampleBlockData(
-            title: 'Substitution with signs',
+            title: 'Substitution with a negative value',
             problem: 'Evaluate 2x² − 5x + 1 for x = −2.',
             steps: [
               'Substitute using parentheses: 2(−2)² − 5(−2) + 1.',
@@ -1370,41 +1622,229 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
               'Multiply: 2·4 = 8 and −5(−2) = +10.',
               'Add: 8 + 10 + 1 = 19.',
             ],
-            result: 'The numerical value is 19.',
+            result: '19.',
             interpretation:
-                'Parentheses preserve the sign of a substituted negative value.',
+                'Parentheses prevent the negative sign from being lost or attached to the wrong operation.',
           ),
         ],
       ),
       LessonSectionData(
-        number: '3',
-        title: 'Common mistake',
+        number: '4',
+        title: 'Modeling and interpretation',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Translating a situation',
+            problem:
+                'A company charges a fixed fee of 12 dollars plus 4 dollars per unit produced. Write an expression for the total cost of x units.',
+            steps: [
+              'Let x be the number of units produced.',
+              'The variable part is 4x.',
+              'The fixed part is 12.',
+              'Combine them: C = 12 + 4x.',
+            ],
+            result: 'C = 12 + 4x.',
+            interpretation:
+                'The coefficient 4 is the rate per unit, while the constant 12 is independent of x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Interpreting an expression',
+            problem: 'Interpret P = 1500 − 20t in an inventory context.',
+            steps: [
+              'P is a quantity depending on t.',
+              'The constant 1500 is the initial value when t = 0.',
+              'The coefficient −20 indicates a decrease of 20 units for each one-unit increase in t.',
+            ],
+            result:
+                'The model describes an initial inventory of 1500 units decreasing by 20 units per unit of time.',
+            interpretation:
+                'Reading coefficients and constants as information in a model prepares the study of functions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Conceptual precision',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'x² and 2x are different structures',
+            title: 'x² and 2x are not equivalent',
             content:
-                'x² means x·x, while 2x means 2·x. Exponents and coefficients have different roles.',
+                'x² means x·x, whereas 2x means 2·x. For example, if x = 3, then x² = 9 and 2x = 6.',
+            emphasis:
+                'Exponents and coefficients are not interchangeable.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '3(x + 2) is not 3x + 2',
+            content:
+                'The factor 3 multiplies the entire expression x + 2. By the distributive property, 3(x + 2) = 3x + 6.',
+            emphasis:
+                'Ignoring grouping changes the original expression.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'An expression is not “solved” without a condition',
+            content:
+                'The expression 2x + 5 may be simplified or evaluated for a chosen value of x, but it has no solution by itself. Solving is associated with equations, inequalities, or other conditions.',
+            emphasis:
+                'Use precise mathematical verbs: evaluate, simplify, expand, factor, and solve are different actions.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Worked examples',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Structural identification',
+            problem: 'Analyze the expression −7a³b + 4ab² − 9.',
+            steps: [
+              'The terms are −7a³b, 4ab², and −9.',
+              'The coefficients of the variable terms are −7 and 4.',
+              'The constant term is −9.',
+              'The literal parts are a³b and ab².',
+            ],
+            result:
+                'The expression has three terms, two variable terms, and one constant term.',
+            interpretation:
+                'Correct structural decomposition is a prerequisite for combining terms, factoring, and working with polynomials.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Evaluation with two variables',
+            problem: 'Evaluate 3x²y − 2xy + 4 for x = −1 and y = 2.',
+            steps: [
+              'Substitute: 3(−1)²(2) − 2(−1)(2) + 4.',
+              'Evaluate (−1)² = 1.',
+              'Multiply: 3·1·2 = 6 and −2(−1)(2) = +4.',
+              'Add: 6 + 4 + 4 = 14.',
+            ],
+            result: '14.',
+            interpretation:
+                'With several variables, each substitution must preserve its own position and grouping.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equivalence by distribution',
+            problem: 'Show that 5(x − 2) + 3x and 8x − 10 are equivalent.',
+            steps: [
+              'Distribute 5: 5x − 10 + 3x.',
+              'Combine like terms: 8x − 10.',
+              'The resulting expression matches the second expression.',
+            ],
+            result: '5(x − 2) + 3x = 8x − 10.',
+            interpretation:
+                'Expressions that look different may represent the same quantity for every allowed value of x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — reading the expression',
+            problem: 'In 6x² − x + 5, identify the terms and coefficients.',
+            steps: [
+              'Separate terms at top-level addition and subtraction.',
+              'The terms are 6x², −x, and 5.',
+              'The coefficients of the x-terms are 6 and −1.',
+              'The constant term is 5.',
+            ],
+            result: 'Terms: 6x², −x, 5; coefficients: 6 and −1; constant: 5.',
+            interpretation:
+                'The implied coefficient of −x is −1.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — substitution',
+            problem: 'Evaluate a² − 2ab + b² for a = 3 and b = −1.',
+            steps: [
+              'Substitute: 3² − 2(3)(−1) + (−1)².',
+              'Evaluate the powers: 9 and 1.',
+              'Compute the product: −2(3)(−1) = +6.',
+              'Add: 9 + 6 + 1 = 16.',
+            ],
+            result: '16.',
+            interpretation:
+                'Parentheses are essential when a substituted value is negative.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and explain',
+            content:
+                '1. Identify the terms of 5x² − 3x + 8.\n'
+                '2. Determine the coefficient of −x³.\n'
+                '3. In 4ab² − 7, identify the coefficient, literal part, and constant.\n'
+                '4. Explain the difference between an expression and an equation.\n'
+                '5. Evaluate 3x − 4 for x = −2.\n'
+                '6. Evaluate x² + 2x + 1 for x = −3.\n'
+                '7. Evaluate 2ab − b² for a = 4 and b = −2.\n'
+                '8. Write an expression for “five more than twice x.”\n'
+                '9. Write an expression for “half the sum of x and 6.”\n'
+                '10. Interpret the coefficient and constant in C = 9 + 2.5x.\n'
+                '11. Verify that 3(x + 4) and 3x + 12 are equivalent.\n'
+                '12. Explain why x² and 2x cannot be treated as the same expression.',
+            emphasis:
+                'Answers should use precise mathematical language and display the structure of the expression.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Expressions become functions',
+            content:
+                'In Calculus, a function associates input values with output values through a rule. The ability to interpret an expression as a relationship among quantities is essential for domains, composition, limits, derivatives, and modeling.',
+            emphasis:
+                'Before studying how a function changes, you must be able to read the expression defining it correctly.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax, Intermediate Algebra 2e, Section 1.1, Use the Language of Algebra; OpenStax, Algebra and Trigonometry 2e, Section 1.4, Polynomials, for terms, coefficients, and constants; James Stewart, Calculus, Algebra Review; Thomas’ Calculus, algebra review; and MIT OpenCourseWare 18.01SC, which assumes algebra as a prerequisite for university Calculus.',
+            emphasis:
+                'Cálculo Trivial uses original or pedagogically adapted examples and exercises rather than reproducing protected problem sets verbatim.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'In −6a³ + 4, what is the coefficient of a³?',
+      question:
+          'In −6a³ + 4, what is the coefficient of the term containing a³?',
       choices: ['−6', '3', '4'],
       correctIndex: 0,
       explanation:
-          'The coefficient is the numerical factor multiplying the literal part, so it is −6.',
+          'The coefficient is the numerical factor multiplying the literal part. In −6a³, that factor is −6.',
     ),
     takeaways: [
-      'A variable represents a quantity that may take values.',
-      'A coefficient multiplies the literal part of a term.',
-      'Constants do not depend on the variable.',
-      'Negative substitutions should preserve parentheses.',
+      'Expressions combine numbers, variables, and operations to represent quantities.',
+      'Terms are separated by top-level addition and subtraction.',
+      'A coefficient multiplies the literal part; a constant is independent of the variables.',
+      'Expressions, equations, and identities are different mathematical objects.',
+      'Substitution must preserve signs, parentheses, and powers.',
+      'Equivalent expressions may have different forms while representing the same quantity.',
+      'Accurate algebraic reading prepares the formal study of functions and Calculus.',
     ],
     closing:
-        'Once algebraic language is clear, later techniques stop looking like isolated rules.',
+        'Reading Algebra precisely means learning to see structure rather than only symbols.',
   ),
   CourseLessonData(
     id: 'precalculo-00-04-potencias-raizes',
