@@ -21,6 +21,7 @@ export interface AccountDeletionExecutor {
 
 interface DeleteAccountRequest {
   authUid: string | null;
+  authTime: number | null;
   data: unknown;
 }
 
@@ -181,6 +182,24 @@ export async function handleDeleteAccount(
     );
   }
 
+  const nowSeconds =
+    Math.floor(Date.now() / 1000);
+
+  const maximumAuthenticationAgeSeconds =
+    5 * 60;
+
+  if (
+    request.authTime === null ||
+    !Number.isFinite(request.authTime) ||
+    request.authTime > nowSeconds ||
+    nowSeconds - request.authTime >
+      maximumAuthenticationAgeSeconds
+  ) {
+    throw new HttpsError(
+      "failed-precondition",
+      "Faça login novamente antes de excluir a conta.",
+    );
+  }
   if (hasUnexpectedData(request.data)) {
     throw new HttpsError(
       "invalid-argument",

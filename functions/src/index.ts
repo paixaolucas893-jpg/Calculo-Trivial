@@ -240,6 +240,11 @@ export const deleteAccount =
           authUid:
             request.auth?.uid ??
             null,
+          authTime:
+            typeof request.auth?.token.auth_time ===
+            "number" ?
+              request.auth.token.auth_time :
+              null,
           data: request.data,
         },
         accountDeletion,

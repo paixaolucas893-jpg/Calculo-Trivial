@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "617140538662-q895gev8un5d43krekfqf0gdg17kepqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucaszion01.calculotrivial",
+            "certificate_hash": "ae0a5da02fe178b97a7a166db702bc0e95b46de0"
+          }
+        },
+        {
+          "client_id": "617140538662-uc6lrrq7os6kgkqu34t3tl2cms003pgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucaszion01.calculotrivial",
+            "certificate_hash": "7b6e31b55fa2a7e01ddf7bf126d1a4e03b41ab6c"
+          }
+        },
+        {
           "client_id": "617140538662-mi3bk1kl73ea0fd4ql5o7t93cnp5npif.apps.googleusercontent.com",
           "client_type": 3
         }

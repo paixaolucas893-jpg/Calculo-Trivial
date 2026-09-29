@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:calcquest/l10n/app_localizations.dart';
 import 'package:calcquest/shared/services/google_sign_in_service.dart';
+import 'package:calcquest/shared/services/play_store_feedback_service.dart';
 import 'package:calcquest/shared/services/revenuecat_service.dart';
 import 'package:calcquest/shared/state/app_locale_controller.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
@@ -485,6 +486,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           'a sessão Google após a exclusão: $error',
         );
       }
+
+      await PlayStoreFeedbackService.clearForUser(user.uid);
 
       await FirebaseAuth.instance.signOut();
       AppProgress.clearSession();

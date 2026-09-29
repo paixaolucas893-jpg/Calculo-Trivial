@@ -8,7 +8,10 @@ class GoogleSignInService {
   static Future<void>? _initialization;
 
   static Future<void> _ensureInitialized() {
-    return _initialization ??= _googleSignIn.initialize();
+    return _initialization ??= _googleSignIn.initialize(
+      serverClientId:
+          '617140538662-mi3bk1kl73ea0fd4ql5o7t93cnp5npif.apps.googleusercontent.com',
+    );
   }
 
   static Future<AuthCredential> _googleCredential() async {

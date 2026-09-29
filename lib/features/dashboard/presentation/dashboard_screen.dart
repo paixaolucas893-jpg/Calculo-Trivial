@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:calcquest/l10n/app_localizations.dart';
+import 'package:calcquest/shared/services/play_store_feedback_service.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -40,8 +42,148 @@ class _DashboardScreenState extends State<DashboardScreen>
       vsync: this,
       duration: const Duration(milliseconds: 900),
     )..forward();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _maybeShowPlayStoreFeedback();
+    });
   }
 
+  Future<void> _maybeShowPlayStoreFeedback() async {
+    final userId =
+        FirebaseAuth.instance.currentUser?.uid;
+
+    final shouldPrompt =
+        await PlayStoreFeedbackService.shouldPrompt(
+      userId: userId,
+      isFirstAccess: widget.isFirstAccess,
+      totalAnswerAttempts:
+          AppProgress.totalAnswerAttempts,
+      completedContentLessons:
+          AppProgress.completedContentLessonIds.length,
+    );
+
+    if (!mounted || !shouldPrompt) {
+      return;
+    }
+
+    final isEnglish =
+        Localizations.localeOf(context).languageCode == 'en';
+
+    final action = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text(
+            isEnglish
+                ? 'Enjoying Cálculo Trivial?'
+                : 'Está gostando do Cálculo Trivial?',
+          ),
+          content: Text(
+            isEnglish
+                ? 'Your review on Google Play helps improve the app and helps other students discover it.'
+                : 'Sua avaliação na Google Play ajuda a melhorar o app e também ajuda outros estudantes a encontrá-lo.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop('never');
+              },
+              child: Text(
+                isEnglish
+                    ? "Don't show again"
+                    : 'Não mostrar novamente',
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop('later');
+              },
+              child: Text(
+                isEnglish
+                    ? 'Not now'
+                    : 'Agora não',
+              ),
+            ),
+            FilledButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop('feedback');
+              },
+              child: Text(
+                isEnglish
+                    ? 'Give feedback'
+                    : 'Dar feedback',
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (!mounted || action == null) {
+      return;
+    }
+
+    if (action == 'later') {
+      await PlayStoreFeedbackService.postpone(userId);
+      return;
+    }
+
+    if (action == 'never') {
+      await PlayStoreFeedbackService.neverAskAgain(userId);
+      return;
+    }
+
+    if (action != 'feedback') {
+      return;
+    }
+
+    final marketUri = Uri.parse(
+      'market://details?id=com.lucaszion01.calculotrivial',
+    );
+
+    final webUri = Uri.parse(
+      'https://play.google.com/store/apps/details?id=com.lucaszion01.calculotrivial',
+    );
+
+    var opened = false;
+
+    try {
+      opened = await launchUrl(
+        marketUri,
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (_) {
+      opened = false;
+    }
+
+    if (!opened) {
+      try {
+        opened = await launchUrl(
+          webUri,
+          mode: LaunchMode.externalApplication,
+        );
+      } catch (_) {
+        opened = false;
+      }
+    }
+
+    if (opened) {
+      await PlayStoreFeedbackService.markFeedbackOpened(userId);
+      return;
+    }
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            isEnglish
+                ? 'Unable to open Google Play.'
+                : 'Não foi possível abrir a Google Play.',
+          ),
+        ),
+      );
+    }
+  }
   @override
   void dispose() {
     _entranceController.dispose();
