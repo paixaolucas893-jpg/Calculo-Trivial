@@ -1270,72 +1270,409 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Funções clássicas',
     title: 'Funções racionais e assíntotas',
-    description: 'domínio, zeros e comportamento assintótico',
-    duration: '≈ 18 min',
+    description:
+        'domínio, zeros, furos, assíntotas verticais, horizontais e oblíquas, sinais e comportamento no infinito',
+    duration: '≈ 42 min',
     objective:
-        'analisar domínio, zeros, descontinuidades e assíntotas de funções racionais simples',
-    symbol: 'P/Q',
+        'analisar funções racionais a partir de domínio, zeros, fatores, descontinuidades removíveis, assíntotas e comportamento lateral e no infinito, preservando a distinção entre a função original e sua expressão simplificada',
+    symbol: 'P(x)/Q(x)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Denominador controla restrições',
+        title: 'Definição de função racional',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.infinity,
-            title: 'Zeros do denominador merecem atenção',
+            visual: LessonVisual.notation,
+            title: 'Quociente de polinômios',
             content:
-                'Uma função racional tem a forma P(x)/Q(x), com Q(x)≠0. Zeros de Q são excluídos do domínio e podem gerar assíntotas verticais ou descontinuidades removíveis, dependendo de fatores comuns.',
+                'Uma função racional tem a forma [[math:R(x)=\\frac{P(x)}{Q(x)}]], em que P e Q são polinômios e Q não é o polinômio nulo.',
             emphasis:
-                'Cancelar um fator simplifica a fórmula, mas não devolve ao domínio o ponto originalmente proibido.',
+                'O domínio natural exclui todos os valores que zeram Q(x).',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Racional não significa apenas “ter fração”',
+            content:
+                'A característica estrutural é ser quociente de polinômios. Expressões como √x/(x−1) não são funções racionais porque o numerador não é polinomial.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Domínio e pontos proibidos',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Resolva Q(x)=0 antes de qualquer simplificação',
+            content:
+                'Os zeros do denominador original são excluídos do domínio. Essa informação deve ser registrada antes de cancelar fatores.',
+            emphasis:
+                'Simplificação algébrica não altera retroativamente o domínio da função originalmente dada.',
+            tone: LearningCardTone.warning,
+          ),
           WorkedExampleBlockData(
-            title: 'Assíntota vertical e horizontal',
-            problem: 'Analise f(x)=(2x+1)/(x−3).',
+            title: 'Domínio com denominador fatorável',
+            problem: 'Determine o domínio de f(x)=(x+1)/(x²−9).',
             steps: [
-              'O domínio exclui x=3.',
-              'Como o denominador tende a zero perto de 3 e não há cancelamento, x=3 é candidato a assíntota vertical.',
-              'Numerador e denominador têm o mesmo grau.',
-              'A razão dos coeficientes líderes é 2/1=2.',
+              'Fatore o denominador: x²−9=(x−3)(x+3).',
+              'O denominador zera em x=3 e x=−3.',
             ],
-            result: 'Assíntota vertical x=3 e horizontal y=2.',
+            result: 'D_f=ℝ\{−3,3}.',
             interpretation:
-                'As assíntotas descrevem tendências do gráfico perto de pontos críticos e no infinito.',
+                'Os dois pontos são removidos antes de qualquer análise gráfica.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Zeros da função',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'O numerador deve zerar sem zerar o denominador',
+            content:
+                'Um valor a é zero de R quando P(a)=0 e Q(a)≠0. Se numerador e denominador zeram ao mesmo tempo, é preciso analisar o fator comum e o domínio original.',
+            emphasis:
+                'Zero da função é intercepto no eixo x; ponto proibido não é intercepto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Zero permitido',
+            problem: 'Encontre os zeros de f(x)=(x−2)/(x+5).',
+            steps: [
+              'O numerador zera em x=2.',
+              'O denominador em x=2 vale 7, portanto não zera.',
+            ],
+            result: 'O único zero é x=2.',
+            interpretation:
+                'O gráfico intercepta o eixo x no ponto (2,0).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Fatores comuns e descontinuidades removíveis',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Ponto removível não volta ao domínio',
+            title: 'Cancelar fator não preenche o furo',
             content:
-                'Se (x−2) cancela no numerador e denominador, a expressão simplificada pode ser definida em x=2, mas a função original continua sem valor nesse ponto.',
+                'Se numerador e denominador possuem um fator comum, podemos simplificar a expressão para estudar o comportamento, mas o ponto que zerava o denominador original permanece fora do domínio.',
+            emphasis:
+                'A função simplificada e a função original coincidem no domínio original, mas não são necessariamente a mesma função.',
             tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Identificando um furo',
+            problem: 'Analise f(x)=(x²−4)/(x−2).',
+            steps: [
+              'Fatore: x²−4=(x−2)(x+2).',
+              'O domínio original exclui x=2.',
+              'Para x≠2, simplifique para f(x)=x+2.',
+              'O valor que a expressão simplificada teria em x=2 é 4.',
+            ],
+            result: 'O gráfico é a reta y=x+2 com um furo em (2,4).',
+            interpretation:
+                'A descontinuidade é removível porque o comportamento vizinho é finito, embora a função original não esteja definida em x=2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Assíntotas verticais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Denominador não cancelado tende a zero',
+            content:
+                'Depois de simplificar fatores comuns e preservar o domínio original, zeros restantes do denominador são candidatos a assíntotas verticais. O comportamento precisa crescer sem limite ao aproximar-se do ponto.',
+            emphasis:
+                'Nem todo zero do denominador original vira assíntota vertical; fatores cancelados geram furos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Comportamento lateral diferente',
+            problem: 'Analise f(x)=1/(x−3) perto de x=3.',
+            steps: [
+              'Quando x→3⁻, x−3 é negativo e muito pequeno.',
+              'Logo f(x)→−∞.',
+              'Quando x→3⁺, x−3 é positivo e muito pequeno.',
+              'Logo f(x)→+∞.',
+            ],
+            result: 'x=3 é assíntota vertical.',
+            interpretation:
+                'A mesma assíntota pode ter comportamentos laterais com sinais opostos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Assíntotas horizontais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Compare os graus de P e Q',
+            content:
+                'Para R(x)=P(x)/Q(x): se grau(P)<grau(Q), a assíntota horizontal é y=0. Se os graus são iguais, a assíntota horizontal é a razão dos coeficientes líderes.',
+            emphasis:
+                'Essas regras descrevem comportamento quando |x| cresce sem limite.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Graus iguais',
+            problem: 'Analise o comportamento no infinito de f(x)=(2x+1)/(x−3).',
+            steps: [
+              'Numerador e denominador têm grau 1.',
+              'Os coeficientes líderes são 2 e 1.',
+              'A razão é 2.',
+            ],
+            result: 'Assíntota horizontal y=2.',
+            interpretation:
+                'Para |x| muito grande, os termos líderes dominam o quociente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Numerador de menor grau',
+            problem: 'Encontre a assíntota horizontal de g(x)=(3x−1)/(x²+4).',
+            steps: [
+              'O numerador tem grau 1.',
+              'O denominador tem grau 2.',
+            ],
+            result: 'Assíntota horizontal y=0.',
+            interpretation:
+                'O denominador cresce mais rapidamente que o numerador.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Quando não existe assíntota horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Numerador de grau maior',
+            content:
+                'Se grau(P)>grau(Q), não há assíntota horizontal. Nesse caso, divisão polinomial pode revelar uma assíntota oblíqua ou polinomial.',
+            emphasis:
+                '“Não há horizontal” não significa “não há comportamento assintótico”.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Assíntota oblíqua',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Diferença de graus igual a 1',
+            content:
+                'Quando grau(P)=grau(Q)+1, a divisão polinomial produz [[math:R(x)=mx+b+\\frac{r(x)}{Q(x)}]], e o termo fracionário tende a zero no infinito. Assim, y=mx+b é uma assíntota oblíqua.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Divisão polinomial',
+            problem: 'Encontre a assíntota oblíqua de f(x)=(x²+1)/(x−1).',
+            steps: [
+              'Divida x²+1 por x−1.',
+              'Obtenha x²+1=(x−1)(x+1)+2.',
+              'Logo f(x)=x+1+2/(x−1).',
+              'Quando |x|→∞, 2/(x−1)→0.',
+            ],
+            result: 'Assíntota oblíqua y=x+1.',
+            interpretation:
+                'O gráfico se aproxima de uma reta inclinada em vez de uma reta horizontal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Interceptos e esboço global',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Combine informações independentes',
+            content:
+                'Para esboçar uma função racional, reúna domínio, zeros, intercepto em y, furos, assíntotas verticais, assíntotas no infinito e sinais em intervalos.',
+            emphasis:
+                'Uma única característica nunca descreve o gráfico completo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Análise estrutural completa',
+            problem: 'Analise f(x)=(2x+1)/(x−3).',
+            steps: [
+              'Domínio: x≠3.',
+              'Zero: 2x+1=0, então x=−1/2.',
+              'Intercepto em y: f(0)=−1/3.',
+              'Assíntota vertical: x=3.',
+              'Assíntota horizontal: y=2.',
+            ],
+            result: 'O esboço deve respeitar todos esses elementos simultaneamente.',
+            interpretation:
+                'A forma racional permite prever muita geometria antes de calcular pontos adicionais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'A função pode cruzar uma assíntota horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Assíntota não é uma parede',
+            content:
+                'Uma assíntota horizontal descreve comportamento quando x→±∞. O gráfico pode cruzar essa reta em valores finitos de x.',
+            emphasis:
+                'A proibição de cruzamento não faz parte da definição de assíntota.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Sinal de uma função racional',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Zeros e pontos proibidos dividem a reta',
+            content:
+                'Para determinar onde R(x)>0 ou R(x)<0, fature numerador e denominador, marque zeros e valores proibidos e analise o sinal em cada intervalo.',
+            emphasis:
+                'Essa é a mesma estrutura usada em inequações racionais e será reutilizada em derivadas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Transformar todo zero do denominador em assíntota',
+            content:
+                'Se o fator cancela, pode haver apenas um furo.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o domínio após cancelamento',
+            content:
+                'O ponto removido pelo denominador original continua excluído.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar regra de assíntota horizontal quando o numerador tem grau maior',
+            content:
+                'Nesse caso é necessário examinar a divisão polinomial.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — furo e assíntota',
+            problem: 'Analise f(x)=(x²−1)/(x²−x).',
+            steps: [
+              'Fatore: (x−1)(x+1)/[x(x−1)].',
+              'Domínio original: x≠0 e x≠1.',
+              'Para x≠0,1, simplifique para (x+1)/x.',
+              'x=1 produz um furo.',
+              'x=0 permanece zero não cancelado do denominador.',
+            ],
+            result: 'Furo em (1,2) e assíntota vertical x=0.',
+            interpretation:
+                'Dois zeros do denominador original podem produzir fenômenos diferentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — horizontal',
+            problem: 'Encontre a assíntota horizontal de (5x²−1)/(2x²+3x).',
+            steps: [
+              'Os graus são iguais a 2.',
+              'A razão dos coeficientes líderes é 5/2.',
+            ],
+            result: 'y=5/2.',
+            interpretation:
+                'Termos de menor grau não alteram o limite no infinito.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analise antes de esboçar',
+            content:
+                '1. Determine o domínio de 1/(x−4).\n'
+                '2. Determine o domínio de (x+1)/(x²−9).\n'
+                '3. Encontre os zeros de (x−2)/(x+5).\n'
+                '4. Analise (x²−4)/(x−2) e localize o furo.\n'
+                '5. Encontre a assíntota vertical de 1/(x+3).\n'
+                '6. Descreva os limites laterais de 1/(x−2).\n'
+                '7. Encontre a assíntota horizontal de (3x+1)/(2x−5).\n'
+                '8. Encontre a assíntota horizontal de x/(x²+1).\n'
+                '9. Decida se (x²+1)/(x−1) possui assíntota horizontal.\n'
+                '10. Encontre sua assíntota oblíqua.\n'
+                '11. Explique por que um fator cancelado não restaura o domínio.\n'
+                '12. Dê um exemplo de função racional com um furo e uma assíntota vertical.\n'
+                '13. Determine onde (x−1)/(x+2)>0.\n'
+                '14. Explique por que uma função pode cruzar a assíntota horizontal.\n'
+                '15. Faça uma análise estrutural completa de (x+2)/(x−1).',
+            emphasis:
+                'Registre domínio, zeros, furos e assíntotas em linhas separadas antes de construir o esboço.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Conexão com limites e continuidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Assíntotas são linguagem de limites',
+            content:
+                'Assíntotas verticais descrevem comportamento quando x se aproxima de um valor finito; assíntotas horizontais e oblíquas descrevem comportamento quando x→±∞. Furos antecipam a ideia de descontinuidade removível.',
+            emphasis:
+                'Esta aula é uma preparação direta para limites e continuidade.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas e Guidorizzi para funções racionais, assíntotas, limites e continuidade.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual valor é excluído do domínio de (x+1)/(x−7)?',
-      choices: ['−1', '1', '7'],
-      correctIndex: 2,
-      explanation: 'x=7 zera o denominador.',
+      question: 'Na função (x²−4)/(x−2), o que ocorre em x=2?',
+      choices: [
+        'Há uma assíntota vertical',
+        'Há uma descontinuidade removível',
+        'A função possui zero em x=2',
+      ],
+      correctIndex: 1,
+      explanation:
+          'O fator x−2 cancela algebricamente, mas x=2 permanece fora do domínio original. O gráfico tem um furo no ponto correspondente.',
     ),
     takeaways: [
-      'Domínio exclui zeros do denominador.',
-      'Fatores comuns podem criar descontinuidades removíveis.',
-      'Assíntotas verticais aparecem perto de certas restrições.',
-      'Graus ajudam a prever comportamento no infinito.',
+      'Funções racionais são quocientes de polinômios.',
+      'Zeros do denominador original são excluídos do domínio.',
+      'Fatores cancelados podem produzir descontinuidades removíveis.',
+      'Fatores não cancelados do denominador podem gerar assíntotas verticais.',
+      'Graus determinam grande parte do comportamento no infinito.',
+      'Divisão polinomial pode revelar assíntotas oblíquas.',
+      'Assíntotas descrevem tendências e não funcionam como barreiras.',
+      'Domínio, zeros, sinais e assíntotas devem ser analisados em conjunto.',
     ],
-    closing: 'Funções racionais formam uma ponte direta para limites e continuidade.',
+    closing:
+        'Funções racionais são o primeiro grande encontro entre álgebra, geometria e comportamento limite de uma função.',
   ),
   CourseLessonData(
     id: 'funcoes-06-exponenciais',
@@ -3207,15 +3544,414 @@ const List<CourseLessonData> _englishLessons = [
         'Polynomial functions show how an algebraic expression can be read geometrically before many points are computed.',
   ),
   CourseLessonData(
-    id: 'funcoes-05-racionais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Rational functions and asymptotes', description: 'domain, zeros, and asymptotic behavior', duration: '≈ 18 min', objective: 'analyze domains, zeros, discontinuities, and simple asymptotes of rational functions', symbol: 'P/Q',
+    id: 'funcoes-05-racionais',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Classical functions',
+    title: 'Rational functions and asymptotes',
+    description:
+        'domain, zeros, holes, vertical, horizontal, and slant asymptotes, signs, and end behavior',
+    duration: '≈ 42 min',
+    objective:
+        'analyze rational functions through domain, zeros, factors, removable discontinuities, asymptotes, one-sided behavior, and behavior at infinity while preserving the distinction between the original function and a simplified expression',
+    symbol: 'P(x)/Q(x)',
     sections: [
-      LessonSectionData(number: '1', title: 'The denominator controls restrictions', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'Denominator zeros matter', content: 'A rational function is P(x)/Q(x) with Q(x)≠0. Zeros of Q are excluded and may create vertical asymptotes or removable discontinuities.', emphasis: 'Canceling a factor does not restore an originally forbidden point.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Vertical and horizontal asymptotes', problem: 'Analyze f(x)=(2x+1)/(x−3).', steps: ['Exclude x=3.', 'No cancellation occurs, so x=3 is a vertical-asymptote candidate.', 'Both polynomials have degree 1.', 'Leading-coefficient ratio is 2.'], result: 'Vertical asymptote x=3 and horizontal asymptote y=2.', interpretation: 'Asymptotes describe trends near restrictions and at infinity.')]),
-      LessonSectionData(number: '3', title: 'Common mistake', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'A hole stays outside the original domain', content: 'A canceled factor may simplify the formula but not the original domain.', tone: LearningCardTone.warning)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Definition of a rational function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A quotient of polynomials',
+            content:
+                'A rational function has the form [[math:R(x)=\\frac{P(x)}{Q(x)}]], where P and Q are polynomials and Q is not the zero polynomial.',
+            emphasis:
+                'The natural domain excludes every value that makes Q(x)=0.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Rational does not merely mean “contains a fraction”',
+            content:
+                'The structural requirement is a quotient of polynomials. An expression such as √x/(x−1) is not rational because its numerator is not polynomial.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Domain and forbidden points',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Solve Q(x)=0 before simplifying',
+            content:
+                'Zeros of the original denominator are excluded from the domain. Record them before cancelling any common factors.',
+            emphasis:
+                'Algebraic simplification does not retroactively change the domain of the originally defined function.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Domain with a factorable denominator',
+            problem: 'Find the domain of f(x)=(x+1)/(x²−9).',
+            steps: [
+              'Factor x²−9=(x−3)(x+3).',
+              'The denominator is zero at x=3 and x=−3.',
+            ],
+            result: 'D_f=ℝ\{−3,3}.',
+            interpretation:
+                'Both points are excluded before any graph analysis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Zeros of a rational function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'The numerator must vanish while the denominator does not',
+            content:
+                'A value a is a zero of R when P(a)=0 and Q(a)≠0. If numerator and denominator both vanish, common factors and the original domain must be examined.',
+            emphasis:
+                'A zero is an x-intercept; an excluded point is not.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An allowed zero',
+            problem: 'Find the zeros of f(x)=(x−2)/(x+5).',
+            steps: [
+              'The numerator is zero at x=2.',
+              'The denominator at x=2 equals 7, so it is nonzero.',
+            ],
+            result: 'The only zero is x=2.',
+            interpretation:
+                'The graph crosses the x-axis at (2,0).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Common factors and removable discontinuities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling a factor does not fill a hole',
+            content:
+                'If numerator and denominator share a factor, the expression may be simplified for analysis, but the value excluded by the original denominator remains outside the domain.',
+            emphasis:
+                'The simplified expression and original function agree on the original domain but need not be the same function.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Identifying a hole',
+            problem: 'Analyze f(x)=(x²−4)/(x−2).',
+            steps: [
+              'Factor x²−4=(x−2)(x+2).',
+              'The original domain excludes x=2.',
+              'For x≠2, simplify to x+2.',
+              'The simplified expression would equal 4 at x=2.',
+            ],
+            result: 'The graph is y=x+2 with a hole at (2,4).',
+            interpretation:
+                'The discontinuity is removable because nearby behavior is finite although the original function is undefined at x=2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Vertical asymptotes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'An uncancelled denominator approaches zero',
+            content:
+                'After common factors are simplified while preserving the original domain, remaining denominator zeros are candidates for vertical asymptotes when the function grows without bound nearby.',
+            emphasis:
+                'Not every original denominator zero becomes a vertical asymptote; cancelled factors produce holes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Different one-sided behavior',
+            problem: 'Analyze f(x)=1/(x−3) near x=3.',
+            steps: [
+              'As x→3⁻, x−3 is negative and very small.',
+              'Thus f(x)→−∞.',
+              'As x→3⁺, x−3 is positive and very small.',
+              'Thus f(x)→+∞.',
+            ],
+            result: 'x=3 is a vertical asymptote.',
+            interpretation:
+                'The same vertical asymptote may have opposite one-sided signs.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Horizontal asymptotes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Compare the degrees of P and Q',
+            content:
+                'For R(x)=P(x)/Q(x): if deg(P)<deg(Q), the horizontal asymptote is y=0. If the degrees are equal, the horizontal asymptote is the ratio of leading coefficients.',
+            emphasis:
+                'These rules describe behavior as |x| becomes large.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equal degrees',
+            problem: 'Analyze end behavior of f(x)=(2x+1)/(x−3).',
+            steps: [
+              'Both numerator and denominator have degree 1.',
+              'Their leading coefficients are 2 and 1.',
+              'The ratio is 2.',
+            ],
+            result: 'Horizontal asymptote y=2.',
+            interpretation:
+                'For large |x|, the leading terms dominate the quotient.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Lower numerator degree',
+            problem: 'Find the horizontal asymptote of g(x)=(3x−1)/(x²+4).',
+            steps: [
+              'The numerator has degree 1.',
+              'The denominator has degree 2.',
+            ],
+            result: 'Horizontal asymptote y=0.',
+            interpretation:
+                'The denominator grows faster than the numerator.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'When there is no horizontal asymptote',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Higher numerator degree',
+            content:
+                'If deg(P)>deg(Q), there is no horizontal asymptote. Polynomial division may instead reveal a slant or higher-degree polynomial asymptote.',
+            emphasis:
+                '“No horizontal asymptote” does not mean “no asymptotic behavior.”',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Slant asymptotes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Degree difference equal to 1',
+            content:
+                'When deg(P)=deg(Q)+1, polynomial division gives [[math:R(x)=mx+b+\\frac{r(x)}{Q(x)}]], and the fractional term tends to zero at infinity. Thus y=mx+b is a slant asymptote.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Polynomial division',
+            problem: 'Find the slant asymptote of f(x)=(x²+1)/(x−1).',
+            steps: [
+              'Divide x²+1 by x−1.',
+              'Obtain x²+1=(x−1)(x+1)+2.',
+              'So f(x)=x+1+2/(x−1).',
+              'As |x|→∞, 2/(x−1)→0.',
+            ],
+            result: 'Slant asymptote y=x+1.',
+            interpretation:
+                'The graph approaches a tilted line rather than a horizontal one.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Intercepts and global sketching',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Combine independent pieces of information',
+            content:
+                'To sketch a rational function, combine domain, zeros, y-intercept, holes, vertical asymptotes, asymptotes at infinity, and signs on intervals.',
+            emphasis:
+                'No single feature determines the full graph.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Complete structural analysis',
+            problem: 'Analyze f(x)=(2x+1)/(x−3).',
+            steps: [
+              'Domain: x≠3.',
+              'Zero: x=−1/2.',
+              'Y-intercept: f(0)=−1/3.',
+              'Vertical asymptote: x=3.',
+              'Horizontal asymptote: y=2.',
+            ],
+            result: 'A consistent sketch must respect all of these features.',
+            interpretation:
+                'The rational form reveals substantial geometry before additional plotting.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'A function may cross a horizontal asymptote',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'An asymptote is not a wall',
+            content:
+                'A horizontal asymptote describes behavior as x→±∞. The graph may cross that line at finite x-values.',
+            emphasis:
+                'Non-crossing is not part of the definition of an asymptote.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Sign of a rational function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Zeros and excluded points split the real line',
+            content:
+                'To determine where R(x)>0 or R(x)<0, factor numerator and denominator, mark zeros and forbidden points, and analyze the sign on each interval.',
+            emphasis:
+                'This is the same structure used in rational inequalities and later in derivative sign charts.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Turning every denominator zero into an asymptote',
+            content:
+                'If the factor cancels, the result may be only a hole.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting the domain after cancellation',
+            content:
+                'The value excluded by the original denominator remains excluded.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Using horizontal-asymptote rules when numerator degree is larger',
+            content:
+                'In that case polynomial division must be examined.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — hole and asymptote',
+            problem: 'Analyze f(x)=(x²−1)/(x²−x).',
+            steps: [
+              'Factor: (x−1)(x+1)/[x(x−1)].',
+              'Original domain: x≠0 and x≠1.',
+              'For x≠0,1, simplify to (x+1)/x.',
+              'x=1 creates a hole.',
+              'x=0 remains an uncancelled denominator zero.',
+            ],
+            result: 'Hole at (1,2) and vertical asymptote x=0.',
+            interpretation:
+                'Two original denominator zeros can produce different phenomena.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — horizontal asymptote',
+            problem: 'Find the horizontal asymptote of (5x²−1)/(2x²+3x).',
+            steps: [
+              'Both degrees equal 2.',
+              'The ratio of leading coefficients is 5/2.',
+            ],
+            result: 'y=5/2.',
+            interpretation:
+                'Lower-degree terms do not change the limit at infinity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analyze before sketching',
+            content:
+                '1. Find the domain of 1/(x−4).\n'
+                '2. Find the domain of (x+1)/(x²−9).\n'
+                '3. Find the zeros of (x−2)/(x+5).\n'
+                '4. Analyze (x²−4)/(x−2) and locate the hole.\n'
+                '5. Find the vertical asymptote of 1/(x+3).\n'
+                '6. Describe the one-sided limits of 1/(x−2).\n'
+                '7. Find the horizontal asymptote of (3x+1)/(2x−5).\n'
+                '8. Find the horizontal asymptote of x/(x²+1).\n'
+                '9. Decide whether (x²+1)/(x−1) has a horizontal asymptote.\n'
+                '10. Find its slant asymptote.\n'
+                '11. Explain why a cancelled factor does not restore the domain.\n'
+                '12. Give an example with both a hole and a vertical asymptote.\n'
+                '13. Determine where (x−1)/(x+2)>0.\n'
+                '14. Explain why a function can cross its horizontal asymptote.\n'
+                '15. Perform a complete structural analysis of (x+2)/(x−1).',
+            emphasis:
+                'Record domain, zeros, holes, and asymptotes separately before sketching.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Connection to limits and continuity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Asymptotes are limit language',
+            content:
+                'Vertical asymptotes describe behavior near finite inputs; horizontal and slant asymptotes describe behavior as x→±∞. Holes anticipate removable discontinuities.',
+            emphasis:
+                'This lesson is direct preparation for limits and continuity.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas, and Guidorizzi for rational functions, asymptotes, limits, and continuity.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'Which value is excluded from (x+1)/(x−7)?', choices: ['−1', '1', '7'], correctIndex: 2, explanation: 'x=7 makes the denominator zero.'),
-    takeaways: ['Exclude denominator zeros.', 'Common factors can create holes.', 'Vertical asymptotes occur near some restrictions.', 'Degrees help predict end behavior.'],
-    closing: 'Rational functions connect directly to limits and continuity.',
+    check: LessonCheckData(
+      question: 'For (x²−4)/(x−2), what occurs at x=2?',
+      choices: [
+        'There is a vertical asymptote',
+        'There is a removable discontinuity',
+        'The function has a zero at x=2',
+      ],
+      correctIndex: 1,
+      explanation:
+          'The factor x−2 cancels algebraically, but x=2 remains outside the original domain. The graph has a hole at the corresponding point.',
+    ),
+    takeaways: [
+      'Rational functions are quotients of polynomials.',
+      'Zeros of the original denominator are excluded from the domain.',
+      'Cancelled factors may create removable discontinuities.',
+      'Uncancelled denominator factors may produce vertical asymptotes.',
+      'Degrees determine much of the behavior at infinity.',
+      'Polynomial division may reveal slant asymptotes.',
+      'Asymptotes describe trends rather than barriers.',
+      'Domain, zeros, signs, and asymptotes should be analyzed together.',
+    ],
+    closing:
+        'Rational functions are the first major meeting point of algebra, geometry, and limiting behavior.',
   ),
   CourseLessonData(
     id: 'funcoes-06-exponenciais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Exponential functions', description: 'growth, decay, and the number e', duration: '≈ 16 min', objective: 'interpret exponential functions and distinguish growth from decay', symbol: 'aˣ',
