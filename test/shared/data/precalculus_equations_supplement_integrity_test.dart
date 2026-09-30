@@ -20,30 +20,50 @@ void main() {
       );
     });
 
-    test('todas as aulas permanecem no módulo seguro de Equações', () {
+    test('todas as aulas seguem o padrão universitário completo', () {
       for (final lesson in precalculusEquationsSupplementLessons) {
         expect(lesson.topicId, 'equacoes-inequacoes');
         expect(lesson.objective.trim(), isNotEmpty);
-        expect(lesson.sections.length, greaterThanOrEqualTo(3));
-        expect(lesson.takeaways.length, greaterThanOrEqualTo(4));
+        expect(
+          lesson.sections.length,
+          greaterThanOrEqualTo(10),
+          reason: '${lesson.id} ainda está curta demais.',
+        );
+        expect(
+          lesson.takeaways.length,
+          greaterThanOrEqualTo(6),
+          reason: '${lesson.id} precisa de síntese conceitual mais robusta.',
+        );
+        expect(
+          lesson.duration,
+          isNot(anyOf(contains('15 min'), contains('18 min'))),
+          reason: '${lesson.id} ainda usa a duração do formato resumido.',
+        );
         expect(lesson.check.question.trim(), isNotEmpty);
         expect(lesson.check.choices.length, greaterThanOrEqualTo(3));
         expect(
           lesson.check.correctIndex,
           inInclusiveRange(0, lesson.check.choices.length - 1),
         );
+        expect(lesson.check.explanation.trim(), isNotEmpty);
       }
     });
 
-    test('IDs permanecem iguais em português e inglês', () {
-      final portugueseIds = precalculusEquationsSupplementLessons
-          .map((lesson) => lesson.id)
-          .toList();
-      final englishIds = localizedPrecalculusEquationsSupplementLessons(
+    test('IDs e durações permanecem iguais em português e inglês', () {
+      final portuguese = precalculusEquationsSupplementLessons;
+      final english = localizedPrecalculusEquationsSupplementLessons(
         const Locale('en'),
-      ).map((lesson) => lesson.id).toList();
+      );
 
-      expect(englishIds, equals(portugueseIds));
+      expect(
+        english.map((lesson) => lesson.id).toList(),
+        equals(portuguese.map((lesson) => lesson.id).toList()),
+      );
+
+      expect(
+        english.map((lesson) => lesson.duration).toList(),
+        equals(portuguese.map((lesson) => lesson.duration).toList()),
+      );
     });
   });
 }
