@@ -6,6 +6,7 @@ import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
 import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/guided_factoring_practice_card.dart';
+import 'package:calcquest/shared/widgets/academic_math_text.dart';
 import 'package:calcquest/shared/widgets/learning_content.dart';
 import 'package:calcquest/shared/widgets/lesson_visualization_resolver.dart';
 import 'package:calcquest/shared/widgets/limits_example_variability_card.dart';
@@ -362,7 +363,7 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                   const SizedBox(height: AppSpacing.md),
                   LessonTakeawaysCard(items: lesson.takeaways),
                   const SizedBox(height: AppSpacing.lg),
-                  Text(
+                  AcademicMathText(
                     lesson.closing,
                     textAlign: TextAlign.center,
                     style: AppTypography.bodyMedium,
