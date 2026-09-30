@@ -18,57 +18,265 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Pré-Cálculo',
     title: 'Equações com radicais',
-    description: 'isolamento, potenciação e verificação',
-    duration: '≈ 15 min',
+    description:
+        'domínio, isolamento, potenciação, soluções estranhas e verificação',
+    duration: '≈ 32 min',
     objective:
-        'resolver equações simples com radicais reconhecendo quando a potenciação pode introduzir soluções estranhas',
+        'resolver equações com radicais preservando restrições de domínio, identificar quando a potenciação pode introduzir soluções estranhas e verificar sistematicamente cada candidato na equação original',
     symbol: '√x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Isole antes de elevar',
+        title: 'Equações radicais exigem domínio',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
-            title: 'A raiz deve ficar sozinha',
+            visual: LessonVisual.warning,
+            title: 'A existência da raiz vem antes da álgebra',
             content:
-                'Em uma equação radical, primeiro isolamos a expressão que contém a raiz. Depois elevamos ambos os lados a uma potência adequada. A nova equação pode ter soluções que não pertenciam à original, por isso a verificação final é obrigatória.',
+                'Em uma equação com raiz de índice par, o radicando deve ser não negativo. Se a raiz estiver no denominador, o radicando deve ser estritamente positivo.',
             emphasis:
-                'Potenciar preserva toda solução original, mas pode criar candidatas extras.',
+                'A análise de domínio pode eliminar candidatos antes mesmo da resolução algébrica.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Isole o radical primeiro',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Resolver e verificar',
-            problem: 'Resolva √(x + 1) = x − 1.',
-            steps: [
-              'Como a raiz é não negativa, precisamos ter x − 1 ≥ 0, então x ≥ 1.',
-              'Eleve os dois lados ao quadrado: x + 1 = (x − 1)².',
-              'Expanda: x + 1 = x² − 2x + 1.',
-              'Reorganize: x² − 3x = 0, então x(x − 3) = 0.',
-              'Os candidatos são x = 0 e x = 3.',
-              'A restrição x ≥ 1 já elimina x = 0; verificando x = 3, √4 = 2 e 3 − 1 = 2.',
-            ],
-            result: 'A única solução é x = 3.',
-            interpretation:
-                'A verificação remove candidatos incompatíveis com a equação original.',
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Potenciar depois de organizar',
+            content:
+                'A estratégia mais segura é isolar a expressão radical e só então elevar ambos os membros a uma potência compatível com o índice da raiz.',
+            emphasis:
+                'Elevar ao quadrado preserva toda solução original, mas pode introduzir candidatos extras.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Por que aparecem soluções estranhas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A implicação não é reversível em geral',
+            content:
+                'Se a=b, então a²=b². Porém, a²=b² não implica necessariamente a=b, pois também pode ocorrer a=−b. Por isso, elevar ao quadrado pode ampliar o conjunto de candidatos.',
+            emphasis:
+                'A equação transformada pode ter mais soluções do que a equação original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplo completo com uma raiz',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Resolver e verificar',
+            problem: 'Resolva √(x+1)=x−1.',
+            steps: [
+              'A raiz é não negativa, então x−1≥0 e, portanto, x≥1.',
+              'Eleve ao quadrado: x+1=(x−1)².',
+              'Expanda: x+1=x²−2x+1.',
+              'Reorganize: x²−3x=0.',
+              'Fatore: x(x−3)=0.',
+              'Candidatos: x=0 e x=3.',
+              'A restrição x≥1 elimina x=0.',
+              'Verifique x=3 na equação original: √4=2 e 3−1=2.',
+            ],
+            result: 'S={3}.',
+            interpretation:
+                'A verificação final remove candidatos incompatíveis com a equação original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Radical em apenas um membro',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Isolamento simples',
+            problem: 'Resolva √(2x+3)=5.',
+            steps: [
+              'Condição de domínio: 2x+3≥0.',
+              'Eleve ao quadrado: 2x+3=25.',
+              'Então 2x=22 e x=11.',
+              'Verifique: √25=5.',
+            ],
+            result: 'S={11}.',
+            interpretation:
+                'Quando um lado já é uma constante não negativa, o processo é direto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Radicais nos dois membros',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Duas raízes quadradas',
+            problem: 'Resolva √(x+6)=√(2x−1).',
+            steps: [
+              'Domínio: x+6≥0 e 2x−1≥0, então x≥1/2.',
+              'Eleve ao quadrado: x+6=2x−1.',
+              'Resolva: x=7.',
+              'Verifique no domínio e na equação original.',
+            ],
+            result: 'S={7}.',
+            interpretation:
+                'Com raízes quadradas principais nos dois lados, a igualdade dos radicais permite comparar os radicandos dentro do domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Mais de um radical',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Pode ser necessário repetir o processo',
+            content:
+                'Quando há dois radicais e não é possível compará-los diretamente, isole um deles, eleve à potência adequada, reorganize e, se ainda restar radical, repita o procedimento.',
+            emphasis:
+                'Cada potenciação aumenta a necessidade de verificação final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Raízes de índice ímpar',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'O comportamento é diferente',
+            content:
+                'Raízes de índice ímpar admitem radicandos negativos. Além disso, elevar ambos os lados a uma potência ímpar é uma transformação reversível nos reais.',
+            emphasis:
+                'O risco clássico de soluções estranhas é especialmente associado a potências pares.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Raiz cúbica',
+            problem: 'Resolva ∛(2x−1)=3.',
+            steps: [
+              'Eleve ambos os membros ao cubo.',
+              '2x−1=27.',
+              '2x=28.',
+            ],
+            result: 'x=14.',
+            interpretation:
+                'Não há restrição de sinal para a raiz cúbica real.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não pare na equação transformada',
+            title: 'Elevar antes de isolar',
             content:
-                'Uma solução da equação obtida após elevar ao quadrado não é automaticamente solução da equação original.',
+                'Quadrar uma soma contendo radical pode criar expressões desnecessariamente complexas. Isole o radical sempre que possível.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o domínio',
+            content:
+                'Um candidato obtido algebricamente pode violar a condição de existência da raiz.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não verificar candidatos',
+            content:
+                'Soluções da equação transformada não são automaticamente soluções da equação original.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Resolva √(x+4)=x−2.',
+            steps: [
+              'Como a raiz é não negativa, x−2≥0, então x≥2.',
+              'Eleve ao quadrado: x+4=(x−2)².',
+              'Obtenha x²−5x=0.',
+              'Candidatos: x=0 e x=5.',
+              'A restrição elimina x=0.',
+            ],
+            result: 'S={5}.',
+            interpretation:
+                'A condição de sinal do segundo membro já antecipava parte da verificação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Resolva √(3x−2)=4.',
+            steps: [
+              'Eleve ao quadrado: 3x−2=16.',
+              '3x=18.',
+            ],
+            result: 'x=6.',
+            interpretation:
+                'A verificação confirma √16=4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e verifique cada candidato',
+            content:
+                '1. √x=4.\n'
+                '2. √(x+5)=3.\n'
+                '3. √(2x−1)=5.\n'
+                '4. √(x+2)=x.\n'
+                '5. √(x+6)=x−2.\n'
+                '6. √(x+3)=√(2x−4).\n'
+                '7. ∛(x−1)=2.\n'
+                '8. Determine o domínio de √(3−x).\n'
+                '9. Explique por que elevar ao quadrado pode criar soluções estranhas.\n'
+                '10. Dê um exemplo de candidato estranho.\n'
+                '11. Resolva √(x−1)+1=4.\n'
+                '12. Resolva √(2x+7)=x+1.\n'
+                '13. Compare o comportamento de raízes pares e ímpares.\n'
+                '14. Explique por que a verificação deve ser feita na equação original.\n'
+                '15. Crie uma equação radical cuja solução seja x=5.',
+            emphasis:
+                'Escreva primeiro as restrições de domínio e só depois inicie a manipulação algébrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Domínio e equivalência continuam centrais',
+            content:
+                'Funções radicais aparecem em limites, derivadas e modelagem. Saber preservar domínio e distinguir equivalência de mera implicação evita erros em manipulações posteriores.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas e Guidorizzi para funções radicais, domínio e transformações algébricas.',
           ),
         ],
       ),
@@ -82,17 +290,19 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
       ],
       correctIndex: 0,
       explanation:
-          'A potenciação não é uma transformação reversível em todos os casos, então pode criar candidatos que não satisfazem a equação original.',
+          'Elevar ao quadrado não é reversível em todos os casos. A equação transformada pode ter candidatos que não satisfazem a equação original.',
     ),
     takeaways: [
+      'Domínio deve ser analisado antes da resolução.',
       'Isole o radical antes de elevar a uma potência.',
-      'Observe restrições impostas pela raiz.',
-      'Resolva a equação transformada.',
-      'Verifique cada candidato na equação original.',
+      'Potências pares podem introduzir soluções estranhas.',
+      'Raízes de índice ímpar têm comportamento diferente.',
+      'Candidatos devem ser verificados na equação original.',
+      'Mais de um radical pode exigir potenciações sucessivas.',
     ],
     closing:
-        'Equações com radicais treinam uma habilidade essencial: transformar sem esquecer as condições do problema.',
-  ),
+        'Equações radicais exigem disciplina lógica: domínio, transformação, candidatos e verificação formam um único processo.',
+  )
   CourseLessonData(
     id: 'equations-10-inequacoes-quadraticas',
     topicId: 'equacoes-inequacoes',
@@ -258,56 +468,264 @@ const List<CourseLessonData> _englishLessons = [
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Precalculus',
     title: 'Radical equations',
-    description: 'isolation, powers, and verification',
-    duration: '≈ 15 min',
+    description:
+        'domain, isolation, powers, extraneous solutions, and verification',
+    duration: '≈ 32 min',
     objective:
-        'solve simple radical equations while recognizing that raising powers can introduce extraneous solutions',
+        'solve radical equations while preserving domain restrictions, identify when powers may introduce extraneous solutions, and verify every candidate in the original equation',
     symbol: '√x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Isolate before raising powers',
+        title: 'Radical equations require domain analysis',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
-            title: 'Leave the radical by itself',
+            visual: LessonVisual.warning,
+            title: 'Existence comes before algebra',
             content:
-                'First isolate the radical expression, then raise both sides to a suitable power. The transformed equation may contain candidates that were not solutions of the original equation, so final verification is required.',
+                'For an even-index root, the radicand must be nonnegative. If the root appears in a denominator, the radicand must be strictly positive.',
             emphasis:
-                'Raising powers preserves original solutions but may introduce extra candidates.',
+                'Domain analysis can eliminate candidates before algebraic solving begins.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Isolate the radical first',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Solve and verify',
-            problem: 'Solve √(x + 1) = x − 1.',
-            steps: [
-              'Because a square root is nonnegative, require x − 1 ≥ 0, so x ≥ 1.',
-              'Square both sides: x + 1 = (x − 1)².',
-              'Expand and rearrange: x² − 3x = 0.',
-              'Candidates are x = 0 and x = 3.',
-              'The restriction removes x = 0; checking x = 3 gives 2 = 2.',
-            ],
-            result: 'The only solution is x = 3.',
-            interpretation:
-                'Verification removes candidates that do not satisfy the original equation.',
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Raise powers only after organizing',
+            content:
+                'The safest strategy is to isolate the radical expression and only then raise both sides to a power compatible with the radical index.',
+            emphasis:
+                'Squaring preserves every original solution but may introduce extra candidates.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Common mistake',
+        title: 'Why extraneous solutions appear',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'The implication is not reversible in general',
+            content:
+                'If a=b, then a²=b². But a²=b² does not imply only a=b, because a=−b is also possible. Squaring can therefore enlarge the candidate set.',
+            emphasis:
+                'The transformed equation may have more solutions than the original equation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Complete example with one radical',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Solve and verify',
+            problem: 'Solve √(x+1)=x−1.',
+            steps: [
+              'The square root is nonnegative, so x−1≥0 and x≥1.',
+              'Square both sides: x+1=(x−1)².',
+              'Expand and rearrange: x²−3x=0.',
+              'Factor: x(x−3)=0.',
+              'Candidates: x=0 and x=3.',
+              'The restriction eliminates x=0.',
+              'Check x=3 in the original equation.',
+            ],
+            result: 'S={3}.',
+            interpretation:
+                'Final verification removes candidates that do not satisfy the original equation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'A radical on one side',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Simple isolation',
+            problem: 'Solve √(2x+3)=5.',
+            steps: [
+              'Domain condition: 2x+3≥0.',
+              'Square: 2x+3=25.',
+              'Then x=11.',
+              'Check √25=5.',
+            ],
+            result: 'S={11}.',
+            interpretation:
+                'When the other side is already a nonnegative constant, the process is direct.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Radicals on both sides',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Two square roots',
+            problem: 'Solve √(x+6)=√(2x−1).',
+            steps: [
+              'Domain: x≥1/2.',
+              'Square both sides: x+6=2x−1.',
+              'Solve: x=7.',
+              'Verify in the original equation.',
+            ],
+            result: 'S={7}.',
+            interpretation:
+                'Within the domain, equality of principal square roots allows comparison of radicands.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'More than one radical',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'The process may need to be repeated',
+            content:
+                'With multiple radicals, isolate one radical, raise both sides to a suitable power, reorganize, and repeat if another radical remains.',
+            emphasis:
+                'Each power operation increases the importance of final verification.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Odd-index roots',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Their behavior is different',
+            content:
+                'Odd-index roots allow negative radicands. Raising both sides to the corresponding odd power is reversible over the real numbers.',
+            emphasis:
+                'The classic extraneous-solution problem is especially associated with even powers.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cube root',
+            problem: 'Solve ∛(2x−1)=3.',
+            steps: [
+              'Cube both sides.',
+              '2x−1=27.',
+              'Then x=14.',
+            ],
+            result: 'S={14}.',
+            interpretation:
+                'Real cube roots have no sign restriction on the radicand.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Frequent errors',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Do not stop at the transformed equation',
+            title: 'Raising powers before isolating',
             content:
-                'A solution of the squared equation is not automatically a solution of the original radical equation.',
+                'Squaring a sum containing a radical can create unnecessary complexity. Isolate the radical first whenever possible.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the domain',
+            content:
+                'An algebraic candidate may violate the existence condition of the radical.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Skipping verification',
+            content:
+                'Solutions of the transformed equation are not automatically solutions of the original equation.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Solve √(x+4)=x−2.',
+            steps: [
+              'Because the root is nonnegative, x≥2.',
+              'Square: x+4=(x−2)².',
+              'Obtain x²−5x=0.',
+              'Candidates are 0 and 5.',
+              'The restriction removes 0.',
+            ],
+            result: 'S={5}.',
+            interpretation:
+                'The sign condition already predicted part of the verification.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Solve √(3x−2)=4.',
+            steps: [
+              'Square: 3x−2=16.',
+              'Then x=6.',
+            ],
+            result: 'S={6}.',
+            interpretation:
+                'Checking confirms √16=4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and verify every candidate',
+            content:
+                '1. √x=4.\n'
+                '2. √(x+5)=3.\n'
+                '3. √(2x−1)=5.\n'
+                '4. √(x+2)=x.\n'
+                '5. √(x+6)=x−2.\n'
+                '6. √(x+3)=√(2x−4).\n'
+                '7. ∛(x−1)=2.\n'
+                '8. Find the domain of √(3−x).\n'
+                '9. Explain why squaring can introduce extraneous solutions.\n'
+                '10. Give an example of an extraneous candidate.\n'
+                '11. Solve √(x−1)+1=4.\n'
+                '12. Solve √(2x+7)=x+1.\n'
+                '13. Compare even- and odd-index roots.\n'
+                '14. Explain why verification must use the original equation.\n'
+                '15. Create a radical equation whose solution is x=5.',
+            emphasis:
+                'Write domain restrictions before beginning algebraic manipulation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Domain and equivalence remain central',
+            content:
+                'Radical functions appear in limits, derivatives, and modeling. Preserving domain and distinguishing equivalence from one-way implication prevents later algebraic errors.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas, and Guidorizzi for radical functions, domain, and algebraic transformations.',
           ),
         ],
       ),
@@ -321,17 +739,19 @@ const List<CourseLessonData> _englishLessons = [
       ],
       correctIndex: 0,
       explanation:
-          'Raising powers is not reversible in every case and can create candidates that fail the original equation.',
+          'Squaring is not reversible in every case. The transformed equation may contain candidates that fail the original equation.',
     ),
     takeaways: [
-      'Isolate the radical first.',
-      'Respect restrictions from the radical.',
-      'Solve the transformed equation.',
-      'Verify every candidate in the original equation.',
+      'Analyze the domain before solving.',
+      'Isolate the radical before raising powers.',
+      'Even powers can introduce extraneous solutions.',
+      'Odd-index roots behave differently.',
+      'Candidates must be checked in the original equation.',
+      'Multiple radicals may require repeated power operations.',
     ],
     closing:
-        'Radical equations train you to transform equations without losing their conditions.',
-  ),
+        'Radical equations require logical discipline: domain, transformation, candidates, and verification form one process.',
+  )
   CourseLessonData(
     id: 'equations-10-inequacoes-quadraticas',
     topicId: 'equacoes-inequacoes',
