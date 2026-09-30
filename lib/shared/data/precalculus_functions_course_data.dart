@@ -4361,48 +4361,334 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Geometria analítica',
     title: 'Cônicas em duas dimensões',
-    description: 'circunferência, parábola, elipse e hipérbole',
-    duration: '≈ 20 min',
+    description:
+        'circunferência, parábola, elipse, hipérbole, formas padrão, focos, eixos e assíntotas',
+    duration: '≈ 38 min',
     objective:
-        'reconhecer as formas padrão das principais cônicas e interpretar seus parâmetros geométricos',
+        'reconhecer e interpretar as principais cônicas a partir de suas equações padrão, completar quadrados quando necessário e distinguir parâmetros geométricos como centro, vértice, focos, eixos e assíntotas',
     symbol: 'x²+y²',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Quatro famílias geométricas',
+        title: 'O que são cônicas',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.compare,
-            title: 'A forma algébrica revela a curva',
+            title: 'Quatro famílias clássicas',
             content:
-                'Circunferência: (x−h)²+(y−k)²=r². Elipse: soma de dois termos quadráticos positivos normalizados por eixos distintos. Hipérbole: diferença entre termos quadráticos. Parábola: uma variável aparece ao quadrado e a outra, em forma padrão, aparece linearmente.',
-            emphasis: 'Completar quadrados ajuda a transformar equações gerais em formas padrão.',
+                'Circunferência, parábola, elipse e hipérbole podem ser obtidas por seções de um cone duplo e possuem equações algébricas características no plano.',
+            emphasis:
+                'A forma da equação revela a geometria da curva.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Circunferência',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(x−h)²+(y−k)²=r²',
+            content:
+                'A circunferência de centro (h,k) e raio r>0 é descrita por [[math:(x-h)^2+(y-k)^2=r^2]].',
+          ),
           WorkedExampleBlockData(
-            title: 'Ler uma circunferência',
+            title: 'Lendo centro e raio',
             problem: 'Interprete (x−2)²+(y+1)²=9.',
-            steps: ['Compare com (x−h)²+(y−k)²=r².', 'h=2 e k=−1.', 'r²=9, então r=3.'],
-            result: 'Centro (2,−1) e raio 3.',
-            interpretation: 'A equação codifica diretamente posição e tamanho da circunferência.',
+            steps: [
+              'h=2.',
+              'k=−1.',
+              'r=3.',
+            ],
+            result: 'Centro (2,−1), raio 3.',
+            interpretation:
+                'A forma padrão codifica posição e tamanho diretamente.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Nem toda cônica é função y=f(x)',
+        title: 'Completando quadrados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Da forma geral à forma padrão',
+            problem: 'Reescreva x²+y²−4x+6y−12=0.',
+            steps: [
+              'Agrupe x²−4x e y²+6y.',
+              'Complete quadrados: (x−2)²−4 e (y+3)²−9.',
+              'Substitua e simplifique.',
+            ],
+            result: '(x−2)²+(y+3)²=25.',
+            interpretation:
+                'A circunferência tem centro (2,−3) e raio 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Parábola',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Uma variável ao quadrado',
+            content:
+                'Na orientação vertical, [[math:(x-h)^2=4p(y-k)]]. O vértice é (h,k), o foco é (h,k+p) e a diretriz é y=k−p.',
+            emphasis:
+                'O sinal de p determina se a parábola abre para cima ou para baixo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Lendo uma parábola',
+            problem: 'Interprete (x−1)²=8(y+2).',
+            steps: [
+              'Compare com (x−h)²=4p(y−k).',
+              'h=1, k=−2 e 4p=8.',
+              'p=2.',
+            ],
+            result: 'Vértice (1,−2), foco (1,0), diretriz y=−4.',
+            interpretation:
+                'O parâmetro p mede a distância focal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Elipse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Soma de termos quadráticos normalizados',
+            content:
+                'Uma elipse horizontal pode ser escrita como [[math:\\frac{(x-h)^2}{a^2}+\\frac{(y-k)^2}{b^2}=1]], com a>b>0. O centro é (h,k).',
+            emphasis:
+                'O maior denominador indica o eixo maior.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Eixos de uma elipse',
+            problem: 'Interprete x²/25+y²/9=1.',
+            steps: [
+              'Centro na origem.',
+              'a=5 e b=3.',
+              'Eixo maior horizontal.',
+            ],
+            result: 'Vértices principais (±5,0) e co-vértices (0,±3).',
+            interpretation:
+                'Os denominadores fornecem diretamente os semieixos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Focos da elipse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'c²=a²−b²',
+            content:
+                'Para uma elipse com a≥b, a distância focal satisfaz [[math:c^2=a^2-b^2]]. Os focos ficam sobre o eixo maior.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Focos',
+            problem: 'Encontre os focos de x²/25+y²/9=1.',
+            steps: [
+              'c²=25−9=16.',
+              'c=4.',
+            ],
+            result: 'Focos (±4,0).',
+            interpretation:
+                'Os focos ficam mais próximos do centro que os vértices.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Hipérbole',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Diferença de termos quadráticos',
+            content:
+                'Uma hipérbole horizontal tem forma [[math:\\frac{(x-h)^2}{a^2}-\\frac{(y-k)^2}{b^2}=1]].',
+            emphasis:
+                'O termo positivo indica a direção de abertura.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Lendo a hipérbole',
+            problem: 'Interprete x²/9−y²/4=1.',
+            steps: [
+              'Centro na origem.',
+              'a=3, b=2.',
+              'Abertura horizontal.',
+            ],
+            result: 'Vértices (±3,0).',
+            interpretation:
+                'O sinal positivo em x² determina a orientação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Assíntotas da hipérbole',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Retas-guia do gráfico',
+            content:
+                'Para [[math:\\frac{(x-h)^2}{a^2}-\\frac{(y-k)^2}{b^2}=1]], as assíntotas são [[math:y-k=\\pm\\frac{b}{a}(x-h)]].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Assíntotas',
+            problem: 'Encontre as assíntotas de x²/9−y²/4=1.',
+            steps: [
+              'b/a=2/3.',
+            ],
+            result: 'y=±(2/3)x.',
+            interpretation:
+                'Os ramos se aproximam dessas retas sem coincidir globalmente com elas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Focos da hipérbole',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'c²=a²+b²',
+            content:
+                'Na hipérbole, a distância focal satisfaz [[math:c^2=a^2+b^2]].',
+            emphasis:
+                'Observe a diferença em relação à elipse.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Reconhecendo pela equação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Padrões algébricos',
+            content:
+                'Dois termos quadráticos com mesmo coeficiente e mesmo sinal sugerem circunferência. Dois termos quadráticos de mesmo sinal e escalas diferentes sugerem elipse. Sinais opostos sugerem hipérbole. Apenas uma variável ao quadrado sugere parábola.',
+            emphasis:
+                'Termos cruzados xy podem indicar rotação e exigem tratamento mais avançado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Cônica versus função',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Teste da reta vertical continua valendo',
+            title: 'Teste da reta vertical',
             content:
-                'Uma circunferência completa não é gráfico de uma única função y=f(x), pois algumas retas verticais cortam a curva em dois pontos.',
+                'Uma circunferência ou elipse completa não representa uma única função y=f(x). Uma parábola vertical sim; uma parábola horizontal não.',
             tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Interseções com eixos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Use x=0 ou y=0',
+            content:
+                'Interceptos podem ser encontrados impondo x=0 ou y=0 e resolvendo a equação resultante, desde que existam soluções reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar a orientação da hipérbole',
+            content:
+                'O termo positivo, e não o maior denominador, determina a direção de abertura.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o fator 4p na parábola',
+            content:
+                'A forma padrão usa 4p, não apenas p.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir c² da elipse e da hipérbole',
+            content:
+                'Elipse: c²=a²−b². Hipérbole: c²=a²+b².',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Classifique e interprete (x−1)²/16+(y+2)²/4=1.',
+            steps: [
+              'Há soma de dois termos quadráticos positivos.',
+              'É uma elipse.',
+              'Centro (1,−2), a=4 e b=2.',
+            ],
+            result: 'Elipse horizontal com centro (1,−2).',
+            interpretation:
+                'A forma padrão permite classificação imediata.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Encontre centro e raio de x²+y²=36.\n'
+                '2. Interprete (x−3)²+(y+1)²=16.\n'
+                '3. Complete quadrados em x²+y²+2x−6y−6=0.\n'
+                '4. Interprete x²=12y.\n'
+                '5. Interprete (x−2)²=−8(y+1).\n'
+                '6. Interprete x²/16+y²/9=1.\n'
+                '7. Encontre os focos dessa elipse.\n'
+                '8. Interprete x²/25−y²/4=1.\n'
+                '9. Encontre suas assíntotas.\n'
+                '10. Classifique 4x²+9y²=36.\n'
+                '11. Classifique 9x²−4y²=36.\n'
+                '12. Explique por que uma circunferência não é função global y=f(x).\n'
+                '13. Determine interceptos de x²/9+y²/4=1.\n'
+                '14. Compare as fórmulas focais de elipse e hipérbole.\n'
+                '15. Dê um exemplo de parábola horizontal.',
+            emphasis:
+                'Primeiro transforme para forma padrão; depois interprete parâmetros geométricos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Conexão com Cálculo e geometria avançada',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Cônicas reaparecem em derivação implícita e várias variáveis',
+            content:
+                'Curvas definidas implicitamente, como circunferências e elipses, são usadas em derivação implícita. Em várias variáveis, formas quadráticas semelhantes descrevem superfícies como elipsoides e hiperboloides.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Stewart, Thomas e Guidorizzi para geometria analítica e cônicas.',
           ),
         ],
       ),
@@ -4411,15 +4697,20 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Em x²+y²=25, qual é o raio?',
       choices: ['5', '25', '√50'],
       correctIndex: 0,
-      explanation: 'r²=25, então r=5.',
+      explanation:
+          'Comparando com x²+y²=r², temos r²=25 e, portanto, r=5.',
     ),
     takeaways: [
-      'Cônicas têm formas padrão reconhecíveis.',
-      'Circunferência codifica centro e raio.',
-      'Elipse e hipérbole usam dois termos quadráticos.',
-      'Uma curva pode não ser função global de x.',
+      'Cônicas têm formas padrão que revelam sua geometria.',
+      'Completar quadrados recupera centro e parâmetros.',
+      'Parábolas são descritas por vértice, foco e diretriz.',
+      'Elipses usam soma de termos quadráticos.',
+      'Hipérboles usam diferença e possuem assíntotas.',
+      'Elipse e hipérbole têm relações focais diferentes.',
+      'Nem toda cônica é gráfico global de uma função y=f(x).',
     ],
-    closing: 'Cônicas ampliam a leitura geométrica antes de estudar curvas e superfícies mais avançadas.',
+    closing:
+        'Cônicas mostram como equações de segundo grau codificam famílias geométricas completas no plano.',
   ),
   CourseLessonData(
     id: 'funcoes-14-taxa-media-sintese',
@@ -4427,69 +4718,325 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Ponte para Cálculo',
     title: 'Taxa média de variação e síntese',
-    description: 'secantes, comportamento e preparação para limites',
-    duration: '≈ 20 min',
+    description:
+        'quociente incremental, secantes, unidades, interpretação gráfica e preparação para taxa instantânea',
+    duration: '≈ 34 min',
     objective:
-        'calcular taxa média de variação e conectar álgebra, gráficos e funções à ideia que dará origem à derivada',
+        'calcular e interpretar taxa média de variação, relacioná-la à inclinação da secante, analisar unidades e sinais e compreender como o quociente incremental conduz naturalmente à derivada',
     symbol: 'Δy/Δx',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Variação de saída por variação de entrada',
+        title: 'Variação de entrada e de saída',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.graph,
-            title: 'Taxa média é inclinação de secante',
+            visual: LessonVisual.notation,
+            title: 'Δx e Δy',
             content:
-                'Entre x=a e x=b, a taxa média de variação de f é [f(b)−f(a)]/(b−a). Geometricamente, ela é a inclinação da reta secante que passa pelos pontos (a,f(a)) e (b,f(b)).',
-            emphasis: 'A derivada nascerá quando fizermos b se aproximar de a.',
+                'Se a entrada muda de a para b, então Δx=b−a. A saída muda de f(a) para f(b), então Δy=f(b)−f(a).',
+            emphasis:
+                'Taxa relaciona duas variações, não apenas dois valores isolados.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Taxa média de variação',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Taxa média em uma quadrática',
-            problem: 'Para f(x)=x², calcule a taxa média de variação entre x=1 e x=3.',
-            steps: ['f(1)=1 e f(3)=9.', 'Δy=9−1=8.', 'Δx=3−1=2.', 'Taxa média=8/2=4.'],
-            result: 'A taxa média é 4.',
-            interpretation: 'A secante entre (1,1) e (3,9) possui inclinação 4.',
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Quociente das variações',
+            content:
+                'Entre a e b, [[math:\\frac{\\Delta y}{\\Delta x}=\\frac{f(b)-f(a)}{b-a}]], com a≠b.',
+            emphasis:
+                'A ordem usada no numerador deve corresponder à mesma ordem no denominador.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Mapa do que você construiu',
+        title: 'Interpretação geométrica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Inclinação da reta secante',
+            content:
+                'A taxa média é a inclinação da reta que passa por (a,f(a)) e (b,f(b)). Essa reta é chamada secante.',
+            emphasis:
+                'A geometria da reta transforma a taxa em inclinação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplo quadrático',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Taxa média em f(x)=x²',
+            problem: 'Calcule entre x=1 e x=3.',
+            steps: [
+              'f(1)=1 e f(3)=9.',
+              'Δy=8.',
+              'Δx=2.',
+            ],
+            result: 'Taxa média=4.',
+            interpretation:
+                'A secante entre (1,1) e (3,9) tem inclinação 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Unidades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Unidade da saída por unidade da entrada',
+            content:
+                'Se posição é medida em metros e tempo em segundos, a taxa média tem unidade m/s. Se custo é em reais e quantidade em unidades, a taxa pode ser R$/unidade.',
+            emphasis:
+                'Unidades ajudam a interpretar fisicamente o resultado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Sinal da taxa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Crescimento ou decrescimento médio',
+            content:
+                'Taxa média positiva indica aumento líquido no intervalo; negativa indica diminuição; zero indica que os valores nas extremidades coincidem.',
+            emphasis:
+                'Taxa média zero não significa que a função ficou constante durante todo o intervalo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Funções lineares',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'A taxa média é sempre a mesma',
+            content:
+                'Para f(x)=mx+b, qualquer taxa média de variação é igual a m. Isso ocorre porque o gráfico já é uma reta.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Constância',
+            problem: 'Para f(x)=3x−2, calcule a taxa média entre 1 e 5.',
+            steps: [
+              'f(1)=1 e f(5)=13.',
+              '(13−1)/(5−1)=12/4.',
+            ],
+            result: '3.',
+            interpretation:
+                'O resultado coincide com a inclinação da reta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Funções não lineares',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A taxa depende do intervalo',
+            content:
+                'Em funções não lineares, diferentes intervalos produzem diferentes inclinações de secantes.',
+            emphasis:
+                'Isso sinaliza a necessidade de uma taxa local ou instantânea.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Quociente incremental',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '[f(a+h)−f(a)]/h',
+            content:
+                'Escrevendo b=a+h, a taxa média assume a forma [[math:\\frac{f(a+h)-f(a)}{h}]], com h≠0.',
+            emphasis:
+                'Essa expressão é o quociente incremental que aparecerá diretamente na definição de derivada.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Simplificação algébrica',
+            problem: 'Para f(x)=x², simplifique [f(a+h)−f(a)]/h.',
+            steps: [
+              'f(a+h)=(a+h)².',
+              'Subtraia a².',
+              'Obtenha 2ah+h².',
+              'Fatore h e simplifique.',
+            ],
+            result: '2a+h, para h≠0.',
+            interpretation:
+                'A forma simplificada permite estudar o que acontece quando h se aproxima de zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Secante aproximando a tangente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'h→0',
+            content:
+                'À medida que h se aproxima de zero, o segundo ponto da secante se aproxima do primeiro. Se as inclinações convergem, obtemos a inclinação da reta tangente.',
+            emphasis:
+                'Essa passagem de secante para tangente exige o conceito de limite.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Aplicações',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Velocidade média',
+            problem: 'Uma posição é s(t)=t² metros. Calcule a velocidade média de t=2 a t=5.',
+            steps: [
+              's(2)=4.',
+              's(5)=25.',
+              'Δs=21 e Δt=3.',
+            ],
+            result: '7 m/s.',
+            interpretation:
+                'A taxa média de posição em relação ao tempo é velocidade média.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar a ordem apenas em uma diferença',
+            content:
+                'Se usar f(a)−f(b), deve usar também a−b. Trocar a ordem em ambos mantém a mesma razão.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir taxa média com valor médio',
+            content:
+                'Taxa média de variação não é a média aritmética [f(a)+f(b)]/2.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Substituir h=0 no quociente incremental',
+            content:
+                'Antes do limite, h=0 não é permitido porque produziria divisão por zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Para f(x)=x²+1, calcule a taxa média entre x=0 e x=2.',
+            steps: [
+              'f(0)=1.',
+              'f(2)=5.',
+              '(5−1)/(2−0)=4/2.',
+            ],
+            result: '2.',
+            interpretation:
+                'A secante correspondente possui inclinação 2.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Calcule a taxa média de x² entre 0 e 2.\n'
+                '2. Calcule a taxa média de x³ entre 1 e 2.\n'
+                '3. Calcule a taxa média de 5x−7 em qualquer intervalo escolhido.\n'
+                '4. Interprete geometricamente o resultado da questão 3.\n'
+                '5. Determine as unidades de uma taxa de distância por tempo.\n'
+                '6. Explique o significado de taxa negativa.\n'
+                '7. Dê um exemplo de taxa média zero sem função constante.\n'
+                '8. Simplifique [((a+h)²+1)−(a²+1)]/h.\n'
+                '9. Simplifique o quociente incremental de f(x)=3x+2.\n'
+                '10. Compare taxas médias de x² nos intervalos [0,1] e [1,2].\n'
+                '11. Calcule velocidade média para s(t)=2t² de 1 a 3.\n'
+                '12. Explique por que h não pode ser zero antes do limite.\n'
+                '13. Relacione secante e tangente.\n'
+                '14. Explique por que funções lineares têm taxa média constante.\n'
+                '15. Descreva em palavras como a derivada nascerá da taxa média.',
+            emphasis:
+                'Em problemas aplicados, escreva a unidade junto do resultado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Síntese da unidade de Funções',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Pré-Cálculo vira linguagem para Cálculo',
+            title: 'O mapa conceitual',
             content:
-                'Domínio diz onde a função existe; gráficos mostram comportamento; álgebra permite simplificar; trigonometria amplia modelos periódicos; exponenciais e logaritmos descrevem crescimento; taxa média prepara a ideia de taxa instantânea.',
+                'Domínio diz onde a função existe. Imagem descreve as saídas. Transformações organizam gráficos. Polinômios, racionais, exponenciais, logaritmos e trigonométricas fornecem famílias fundamentais. Geometria analítica interpreta posição e inclinação. Taxa média conecta tudo à variação.',
             tone: LearningCardTone.success,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Ponte explícita para Limites',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'A próxima pergunta é “o que acontece quando nos aproximamos?”',
+            content:
+                'Para transformar taxa média em taxa instantânea, precisamos estudar o comportamento de uma expressão quando h→0. Essa pergunta é exatamente o ponto de entrada para Limites.',
+            emphasis:
+                'Limites não aparecem como assunto isolado; eles resolvem uma necessidade criada pela análise de funções.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Referências e síntese final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas e Guidorizzi para taxa média, secantes, quociente incremental e introdução à derivada.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'A taxa média [f(b)−f(a)]/(b−a) representa geometricamente:',
+      question: 'Geometricamente, [f(b)−f(a)]/(b−a) representa:',
       choices: ['Inclinação da secante', 'Área sob o gráfico', 'Valor máximo da função'],
       correctIndex: 0,
-      explanation: 'Ela é a inclinação da reta que une os dois pontos do gráfico.',
+      explanation:
+          'A expressão é exatamente a inclinação da reta que passa pelos dois pontos do gráfico.',
     ),
     takeaways: [
-      'Taxa média mede Δsaída/Δentrada.',
+      'Taxa média é Δsaída/Δentrada.',
       'Geometricamente, é a inclinação de uma secante.',
-      'A derivada surge de um limite dessa taxa.',
-      'Todo o Pré-Cálculo converge para interpretação de funções.',
+      'Unidades fazem parte da interpretação.',
+      'Funções lineares têm taxa média constante.',
+      'Funções não lineares têm taxas dependentes do intervalo.',
+      'O quociente incremental é [f(a+h)−f(a)]/h.',
+      'A reta tangente nasce como limite de secantes.',
+      'Limites são a próxima etapa natural do Pré-Cálculo.',
     ],
-    closing: 'Com esta base, Limites deixam de ser um assunto isolado e passam a ser a próxima etapa natural.',
+    closing:
+        'A unidade termina quando variação média deixa de ser apenas uma fórmula e passa a revelar a necessidade matemática do conceito de limite.',
   ),
-];
-
-const List<CourseLessonData> _englishLessons = [
   CourseLessonData(
     id: 'funcoes-01-conceito-dominio-imagem',
     topicId: 'funcoes',
@@ -8836,25 +9383,198 @@ const List<CourseLessonData> _englishLessons = [
         'Analytic geometry turns algebraic relationships into position, direction, distance, and rate of change in the plane.',
   ),
   CourseLessonData(
-    id: 'funcoes-13-conicas', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Analytic geometry', title: 'Conic sections in 2D', description: 'circle, parabola, ellipse, and hyperbola', duration: '≈ 20 min', objective: 'recognize standard forms of major conics and interpret their geometric parameters', symbol: 'x²+y²',
+    id: 'funcoes-13-conicas',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Analytic geometry',
+    title: 'Conic sections in two dimensions',
+    description:
+        'circle, parabola, ellipse, hyperbola, standard forms, foci, axes, and asymptotes',
+    duration: '≈ 38 min',
+    objective:
+        'recognize and interpret the main conics from standard equations, complete the square when needed, and distinguish geometric parameters such as center, vertex, foci, axes, and asymptotes',
+    symbol: 'x²+y²',
     sections: [
-      LessonSectionData(number: '1', title: 'Four geometric families', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Algebraic form reveals the curve', content: 'Circle: (x−h)²+(y−k)²=r². Ellipses use a sum of normalized squared terms; hyperbolas use a difference; parabolas have one squared variable in standard orientation.', emphasis: 'Completing the square helps recover standard forms.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Read a circle', problem: 'Interpret (x−2)²+(y+1)²=9.', steps: ['Compare with standard form.', 'Center is (2,−1).', 'Radius is 3.'], result: 'Center (2,−1), radius 3.', interpretation: 'The equation directly encodes position and size.')]),
-      LessonSectionData(number: '3', title: 'Not every conic is y=f(x)', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'The vertical-line test still applies', content: 'A complete circle is not the graph of a single function y=f(x).', tone: LearningCardTone.warning)]),
+      LessonSectionData(number: '1', title: 'What conics are', blocks: [
+        ConceptBlockData(visual: LessonVisual.compare, title: 'Four classical families', content: 'Circle, parabola, ellipse, and hyperbola arise as sections of a double cone and have characteristic algebraic equations in the plane.', emphasis: 'Equation structure reveals curve geometry.'),
+      ]),
+      LessonSectionData(number: '2', title: 'Circle', blocks: [
+        ConceptBlockData(visual: LessonVisual.notation, title: '(x−h)²+(y−k)²=r²', content: 'A circle centered at (h,k) with radius r>0 is [[math:(x-h)^2+(y-k)^2=r^2]].'),
+        WorkedExampleBlockData(title: 'Read center and radius', problem: 'Interpret (x−2)²+(y+1)²=9.', steps: ['h=2.', 'k=−1.', 'r=3.'], result: 'Center (2,−1), radius 3.', interpretation: 'Standard form directly encodes position and size.'),
+      ]),
+      LessonSectionData(number: '3', title: 'Completing the square', blocks: [
+        WorkedExampleBlockData(title: 'General form to standard form', problem: 'Rewrite x²+y²−4x+6y−12=0.', steps: ['Group x²−4x and y²+6y.', 'Complete squares.', 'Simplify.'], result: '(x−2)²+(y+3)²=25.', interpretation: 'Center (2,−3), radius 5.'),
+      ]),
+      LessonSectionData(number: '4', title: 'Parabola', blocks: [
+        ConceptBlockData(visual: LessonVisual.graph, title: 'One squared variable', content: 'A vertical parabola has [[math:(x-h)^2=4p(y-k)]]. Vertex (h,k), focus (h,k+p), directrix y=k−p.', emphasis: 'The sign of p determines whether it opens up or down.'),
+        WorkedExampleBlockData(title: 'Reading a parabola', problem: 'Interpret (x−1)²=8(y+2).', steps: ['Compare with standard form.', 'h=1, k=−2, 4p=8.', 'p=2.'], result: 'Vertex (1,−2), focus (1,0), directrix y=−4.', interpretation: 'p measures focal distance.'),
+      ]),
+      LessonSectionData(number: '5', title: 'Ellipse', blocks: [
+        ConceptBlockData(visual: LessonVisual.notation, title: 'Sum of normalized squares', content: 'A horizontal ellipse is [[math:\\frac{(x-h)^2}{a^2}+\\frac{(y-k)^2}{b^2}=1]], with a>b>0.', emphasis: 'The larger denominator identifies the major axis.'),
+        WorkedExampleBlockData(title: 'Ellipse axes', problem: 'Interpret x²/25+y²/9=1.', steps: ['Center at origin.', 'a=5, b=3.', 'Major axis horizontal.'], result: 'Vertices (±5,0), co-vertices (0,±3).', interpretation: 'Denominators give the semiaxes.'),
+      ]),
+      LessonSectionData(number: '6', title: 'Ellipse foci', blocks: [
+        ConceptBlockData(visual: LessonVisual.calculate, title: 'c²=a²−b²', content: 'For an ellipse, [[math:c^2=a^2-b^2]]. Foci lie on the major axis.'),
+        WorkedExampleBlockData(title: 'Foci', problem: 'Find the foci of x²/25+y²/9=1.', steps: ['c²=25−9=16.', 'c=4.'], result: 'Foci (±4,0).', interpretation: 'Foci lie inside the vertices.'),
+      ]),
+      LessonSectionData(number: '7', title: 'Hyperbola', blocks: [
+        ConceptBlockData(visual: LessonVisual.notation, title: 'Difference of squared terms', content: 'A horizontal hyperbola is [[math:\\frac{(x-h)^2}{a^2}-\\frac{(y-k)^2}{b^2}=1]].', emphasis: 'The positive term determines opening direction.'),
+        WorkedExampleBlockData(title: 'Reading a hyperbola', problem: 'Interpret x²/9−y²/4=1.', steps: ['Center at origin.', 'a=3, b=2.', 'Horizontal opening.'], result: 'Vertices (±3,0).', interpretation: 'The positive x² term sets orientation.'),
+      ]),
+      LessonSectionData(number: '8', title: 'Hyperbola asymptotes', blocks: [
+        ConceptBlockData(visual: LessonVisual.infinity, title: 'Guide lines', content: 'For a horizontal hyperbola, asymptotes are [[math:y-k=\\pm\\frac{b}{a}(x-h)]].'),
+        WorkedExampleBlockData(title: 'Asymptotes', problem: 'Find asymptotes of x²/9−y²/4=1.', steps: ['b/a=2/3.'], result: 'y=±(2/3)x.', interpretation: 'Branches approach these lines.'),
+      ]),
+      LessonSectionData(number: '9', title: 'Hyperbola foci', blocks: [
+        ConceptBlockData(visual: LessonVisual.calculate, title: 'c²=a²+b²', content: 'For a hyperbola, [[math:c^2=a^2+b^2]].', emphasis: 'This differs from the ellipse relation.'),
+      ]),
+      LessonSectionData(number: '10', title: 'Recognizing conics from equations', blocks: [
+        ConceptBlockData(visual: LessonVisual.compare, title: 'Algebraic patterns', content: 'Equal-sign squared terms suggest circle or ellipse; opposite signs suggest hyperbola; only one squared variable suggests parabola.', emphasis: 'xy terms may indicate rotation and require more advanced treatment.'),
+      ]),
+      LessonSectionData(number: '11', title: 'Conic versus function', blocks: [
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Vertical line test', content: 'A complete circle or ellipse is not a single function y=f(x). A vertical parabola is; a horizontal parabola is not.', tone: LearningCardTone.warning),
+      ]),
+      LessonSectionData(number: '12', title: 'Axis intercepts', blocks: [
+        ConceptBlockData(visual: LessonVisual.calculate, title: 'Set x=0 or y=0', content: 'Intercepts are found by setting one coordinate to zero and solving when real solutions exist.'),
+      ]),
+      LessonSectionData(number: '13', title: 'Frequent errors', blocks: [
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Wrong hyperbola orientation', content: 'The positive term determines opening direction.', tone: LearningCardTone.warning),
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Forgetting 4p in a parabola', content: 'Standard form uses 4p, not p alone.', tone: LearningCardTone.warning),
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Mixing ellipse and hyperbola focal formulas', content: 'Ellipse: c²=a²−b². Hyperbola: c²=a²+b².', tone: LearningCardTone.warning),
+      ]),
+      LessonSectionData(number: '14', title: 'Guided exercises and practice', blocks: [
+        WorkedExampleBlockData(title: 'Guided example', problem: 'Classify (x−1)²/16+(y+2)²/4=1.', steps: ['Sum of positive squared terms.', 'It is an ellipse.', 'Center (1,−2), a=4, b=2.'], result: 'Horizontal ellipse centered at (1,−2).', interpretation: 'Standard form allows immediate classification.'),
+        ConceptBlockData(visual: LessonVisual.checklist, title: 'Practice before the final activity', content:
+          '1. Find center and radius of x²+y²=36.\n'
+          '2. Interpret (x−3)²+(y+1)²=16.\n'
+          '3. Complete the square in x²+y²+2x−6y−6=0.\n'
+          '4. Interpret x²=12y.\n'
+          '5. Interpret (x−2)²=−8(y+1).\n'
+          '6. Interpret x²/16+y²/9=1.\n'
+          '7. Find its foci.\n'
+          '8. Interpret x²/25−y²/4=1.\n'
+          '9. Find its asymptotes.\n'
+          '10. Classify 4x²+9y²=36.\n'
+          '11. Classify 9x²−4y²=36.\n'
+          '12. Explain why a circle is not globally y=f(x).\n'
+          '13. Find intercepts of x²/9+y²/4=1.\n'
+          '14. Compare ellipse and hyperbola focal formulas.\n'
+          '15. Give an example of a horizontal parabola.',
+          emphasis: 'First convert to standard form; then interpret geometric parameters.'),
+      ]),
+      LessonSectionData(number: '15', title: 'Connection to Calculus and advanced geometry', blocks: [
+        ConceptBlockData(visual: LessonVisual.infinity, title: 'Conics return in implicit differentiation and multivariable geometry', content: 'Implicit curves such as circles and ellipses appear in implicit differentiation. Similar quadratic forms describe ellipsoids and hyperboloids in several variables.', tone: LearningCardTone.information),
+      ]),
+      LessonSectionData(number: '16', title: 'References and synthesis', blocks: [
+        ConceptBlockData(visual: LessonVisual.idea, title: 'Academic basis', content: 'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Stewart, Thomas, and Guidorizzi for analytic geometry and conic sections.'),
+      ]),
     ],
-    check: LessonCheckData(question: 'What is the radius of x²+y²=25?', choices: ['5', '25', '√50'], correctIndex: 0, explanation: 'r²=25, so r=5.'),
-    takeaways: ['Conics have recognizable standard forms.', 'A circle encodes center and radius.', 'Ellipses and hyperbolas use two squared terms.', 'A curve need not be a function of x globally.'],
-    closing: 'Conics broaden geometric interpretation before more advanced curves.',
+    check: LessonCheckData(question: 'In x²+y²=25, what is the radius?', choices: ['5', '25', '√50'], correctIndex: 0, explanation: 'Comparing with x²+y²=r² gives r²=25, hence r=5.'),
+    takeaways: [
+      'Conics have standard forms that reveal geometry.',
+      'Completing the square recovers centers and parameters.',
+      'Parabolas use vertex, focus, and directrix.',
+      'Ellipses use sums of squared terms.',
+      'Hyperbolas use differences and have asymptotes.',
+      'Ellipse and hyperbola use different focal relations.',
+      'Not every conic is globally a graph y=f(x).',
+    ],
+    closing: 'Conics show how quadratic equations encode complete geometric families in the plane.',
   ),
   CourseLessonData(
-    id: 'funcoes-14-taxa-media-sintese', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Bridge to Calculus', title: 'Average rate of change and synthesis', description: 'secant lines, behavior, and preparation for limits', duration: '≈ 20 min', objective: 'compute average rate of change and connect Precalculus to the idea of derivative', symbol: 'Δy/Δx',
+    id: 'funcoes-14-taxa-media-sintese',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Bridge to Calculus',
+    title: 'Average rate of change and synthesis',
+    description:
+        'difference quotient, secant lines, units, graphical interpretation, and preparation for instantaneous rate',
+    duration: '≈ 34 min',
+    objective:
+        'compute and interpret average rate of change, connect it to secant slope, analyze units and signs, and understand how the difference quotient naturally leads to derivative',
+    symbol: 'Δy/Δx',
     sections: [
-      LessonSectionData(number: '1', title: 'Output change per input change', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Average rate is secant slope', content: 'Between a and b, average rate is [f(b)−f(a)]/(b−a), the slope of the secant through (a,f(a)) and (b,f(b)).', emphasis: 'Derivative emerges as b approaches a.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Average rate for a quadratic', problem: 'For f(x)=x², find the average rate from x=1 to x=3.', steps: ['f(1)=1 and f(3)=9.', 'Δy=8.', 'Δx=2.', 'Rate=4.'], result: 'Average rate=4.', interpretation: 'The secant through (1,1) and (3,9) has slope 4.')]),
-      LessonSectionData(number: '3', title: 'Your Precalculus map', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Everything now feeds Calculus', content: 'Domain tells where functions exist; algebra simplifies; graphs show behavior; trig models periodicity; exponentials and logs model growth; average rate prepares instantaneous rate.', tone: LearningCardTone.success)]),
+      LessonSectionData(number: '1', title: 'Input and output change', blocks: [
+        ConceptBlockData(visual: LessonVisual.notation, title: 'Δx and Δy', content: 'If input changes from a to b, Δx=b−a. Output changes from f(a) to f(b), so Δy=f(b)−f(a).', emphasis: 'A rate relates two changes, not merely two isolated values.'),
+      ]),
+      LessonSectionData(number: '2', title: 'Average rate of change', blocks: [
+        ConceptBlockData(visual: LessonVisual.calculate, title: 'Quotient of changes', content: 'Between a and b, [[math:\\frac{\\Delta y}{\\Delta x}=\\frac{f(b)-f(a)}{b-a}]], with a≠b.', emphasis: 'Numerator and denominator must use the same ordering.'),
+      ]),
+      LessonSectionData(number: '3', title: 'Geometric interpretation', blocks: [
+        ConceptBlockData(visual: LessonVisual.graph, title: 'Secant-line slope', content: 'Average rate is the slope of the line through (a,f(a)) and (b,f(b)). This is a secant line.', emphasis: 'Line geometry turns rate into slope.'),
+      ]),
+      LessonSectionData(number: '4', title: 'Quadratic example', blocks: [
+        WorkedExampleBlockData(title: 'Average rate for f(x)=x²', problem: 'Compute from x=1 to x=3.', steps: ['f(1)=1 and f(3)=9.', 'Δy=8.', 'Δx=2.'], result: 'Average rate=4.', interpretation: 'The secant has slope 4.'),
+      ]),
+      LessonSectionData(number: '5', title: 'Units', blocks: [
+        ConceptBlockData(visual: LessonVisual.idea, title: 'Output units per input units', content: 'Position in meters and time in seconds produces m/s. Cost in currency and quantity in items produces currency/item.', emphasis: 'Units are part of the meaning of a rate.'),
+      ]),
+      LessonSectionData(number: '6', title: 'Sign of a rate', blocks: [
+        ConceptBlockData(visual: LessonVisual.compare, title: 'Average increase or decrease', content: 'Positive rate indicates net increase, negative rate net decrease, and zero rate equal endpoint values.', emphasis: 'Zero average rate does not mean the function was constant throughout the interval.'),
+      ]),
+      LessonSectionData(number: '7', title: 'Linear functions', blocks: [
+        ConceptBlockData(visual: LessonVisual.graph, title: 'Average rate is always the same', content: 'For f(x)=mx+b, every average rate equals m because the graph is already a line.'),
+        WorkedExampleBlockData(title: 'Constancy', problem: 'For f(x)=3x−2, find average rate from 1 to 5.', steps: ['f(1)=1 and f(5)=13.', '(13−1)/(5−1)=12/4.'], result: '3.', interpretation: 'The result equals the line slope.'),
+      ]),
+      LessonSectionData(number: '8', title: 'Nonlinear functions', blocks: [
+        ConceptBlockData(visual: LessonVisual.compare, title: 'Rate depends on the interval', content: 'For nonlinear functions, different intervals give different secant slopes.', emphasis: 'This creates the need for a local or instantaneous rate.'),
+      ]),
+      LessonSectionData(number: '9', title: 'Difference quotient', blocks: [
+        ConceptBlockData(visual: LessonVisual.notation, title: '[f(a+h)−f(a)]/h', content: 'Writing b=a+h gives [[math:\\frac{f(a+h)-f(a)}{h}]], with h≠0.', emphasis: 'This is the difference quotient used directly in the derivative definition.'),
+        WorkedExampleBlockData(title: 'Algebraic simplification', problem: 'For f(x)=x², simplify [f(a+h)−f(a)]/h.', steps: ['f(a+h)=(a+h)².', 'Subtract a².', 'Factor h.', 'Simplify.'], result: '2a+h, h≠0.', interpretation: 'The simplified form can be studied as h approaches zero.'),
+      ]),
+      LessonSectionData(number: '10', title: 'Secant approaching tangent', blocks: [
+        ConceptBlockData(visual: LessonVisual.infinity, title: 'h→0', content: 'As h approaches zero, the second secant point approaches the first. If the slopes converge, the limiting slope is the tangent slope.', emphasis: 'This transition requires the concept of limit.'),
+      ]),
+      LessonSectionData(number: '11', title: 'Applications', blocks: [
+        WorkedExampleBlockData(title: 'Average velocity', problem: 'If s(t)=t² meters, find average velocity from t=2 to t=5.', steps: ['s(2)=4.', 's(5)=25.', 'Δs=21 and Δt=3.'], result: '7 m/s.', interpretation: 'Average position change per time is average velocity.'),
+      ]),
+      LessonSectionData(number: '12', title: 'Frequent errors', blocks: [
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Changing order in only one difference', content: 'If using f(a)−f(b), use a−b as well.', tone: LearningCardTone.warning),
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Confusing average rate with average value', content: 'Average rate is not [f(a)+f(b)]/2.', tone: LearningCardTone.warning),
+        ConceptBlockData(visual: LessonVisual.warning, title: 'Setting h=0 in the difference quotient', content: 'Before taking a limit, h=0 is forbidden because it creates division by zero.', tone: LearningCardTone.warning),
+      ]),
+      LessonSectionData(number: '13', title: 'Guided exercises and practice', blocks: [
+        WorkedExampleBlockData(title: 'Guided example', problem: 'For f(x)=x²+1, find average rate from x=0 to x=2.', steps: ['f(0)=1.', 'f(2)=5.', '(5−1)/(2−0)=2.'], result: '2.', interpretation: 'The corresponding secant has slope 2.'),
+        ConceptBlockData(visual: LessonVisual.checklist, title: 'Practice before the final activity', content:
+          '1. Find average rate of x² on [0,2].\n'
+          '2. Find average rate of x³ on [1,2].\n'
+          '3. Find average rate of 5x−7 on any interval.\n'
+          '4. Interpret question 3 geometrically.\n'
+          '5. Determine units of distance/time.\n'
+          '6. Explain a negative rate.\n'
+          '7. Give an example of zero average rate without a constant function.\n'
+          '8. Simplify [((a+h)²+1)−(a²+1)]/h.\n'
+          '9. Simplify the difference quotient for f(x)=3x+2.\n'
+          '10. Compare average rates of x² on [0,1] and [1,2].\n'
+          '11. Find average velocity for s(t)=2t² from 1 to 3.\n'
+          '12. Explain why h cannot equal zero before the limit.\n'
+          '13. Relate secant and tangent.\n'
+          '14. Explain why linear functions have constant average rate.\n'
+          '15. Describe how derivative emerges from average rate.',
+          emphasis: 'In applications, include units with the result.'),
+      ]),
+      LessonSectionData(number: '14', title: 'Synthesis of the Functions unit', blocks: [
+        ConceptBlockData(visual: LessonVisual.checklist, title: 'Concept map', content: 'Domain tells where a function exists. Range describes outputs. Transformations organize graphs. Polynomial, rational, exponential, logarithmic, and trigonometric families provide core models. Analytic geometry interprets position and slope. Average rate connects everything to change.', tone: LearningCardTone.success),
+      ]),
+      LessonSectionData(number: '15', title: 'Explicit bridge to Limits', blocks: [
+        ConceptBlockData(visual: LessonVisual.infinity, title: 'The next question is “what happens as we approach?”', content: 'To turn average rate into instantaneous rate, we must study an expression as h→0. That question is exactly the entry point to Limits.', emphasis: 'Limits arise as a mathematical necessity created by function analysis.', tone: LearningCardTone.information),
+      ]),
+      LessonSectionData(number: '16', title: 'References and final synthesis', blocks: [
+        ConceptBlockData(visual: LessonVisual.idea, title: 'Academic basis', content: 'References: OpenStax Precalculus 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas, and Guidorizzi for average rate, secant lines, difference quotients, and introduction to derivative.'),
+      ]),
     ],
-    check: LessonCheckData(question: 'Geometrically, average rate of change is:', choices: ['Secant slope', 'Area under the graph', 'Maximum function value'], correctIndex: 0, explanation: 'It is the slope of the line through two graph points.'),
-    takeaways: ['Average rate is Δoutput/Δinput.', 'It is secant slope.', 'Derivative is a limit of this rate.', 'Precalculus converges on function interpretation.'],
-    closing: 'With this foundation, Limits become the natural next step.',
-  ),
+    check: LessonCheckData(question: 'Geometrically, [f(b)−f(a)]/(b−a) represents:', choices: ['Secant slope', 'Area under the graph', 'Maximum value'], correctIndex: 0, explanation: 'It is exactly the slope of the line through the two graph points.'),
+    takeaways: [
+      'Average rate is Δoutput/Δinput.',
+      'Geometrically, it is a secant slope.',
+      'Units are part of interpretation.',
+      'Linear functions have constant average rate.',
+      'Nonlinear functions have interval-dependent rates.',
+      'The difference quotient is [f(a+h)−f(a)]/h.',
+      'A tangent line arises as a limit of secants.',
+      'Limits are the natural next step after Precalculus.',
+    ],
+    closing: 'The unit ends when average change stops being just a formula and reveals the mathematical need for the concept of limit.',
+  )
 ];
