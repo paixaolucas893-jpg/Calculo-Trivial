@@ -20,7 +20,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     title: 'Algebraic language',
     description:
         'translating words, relationships, and situations into Algebra',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'translate sentences and situations into algebraic expressions and interpret the meaning of expressions written with symbols',
     symbol: 'x',
@@ -369,182 +369,758 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     id: 'algebra-02-termos-semelhantes',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Algebra and factoring',
     title: 'Like terms',
-    description: 'coefficients, constants, and simplification',
-    duration: '≈ 5 min',
+    description:
+        'identifying algebraic structure, combining coefficients, signs, and multivariable terms',
+    duration: '≈ 25 min',
     objective:
-        'simplify sums and differences by combining only terms with the same literal part',
-    symbol: '3x',
+        'identify like terms, distinguish coefficients from literal parts, combine terms correctly, and recognize when algebraic terms cannot be combined',
+    symbol: '3x+2x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'Terms must have the same literal part',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Only terms from the same family combine',
+            visual: LessonVisual.notation,
+            title: 'What makes terms like terms',
             content:
-                'Like terms have exactly the same literal part, with the same variables and the same exponents. That is why 4x and −7x can be combined, while 4x and 4x² cannot.',
+                'Two terms are like terms when they have exactly the same variables raised to exactly the same powers. Only their coefficients may differ.',
             emphasis:
-                'The rule is simple: add the coefficients and preserve the literal part.',
+                '3x²y and −5x²y are like terms; 3xy² and 3x²y are not.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Classifying terms',
+            problem: 'Group 4x², −3x, 7x², 5, 2x, and −1 into families.',
+            steps: [
+              'Quadratic terms: 4x² and 7x².',
+              'Linear terms: −3x and 2x.',
+              'Constants: 5 and −1.',
+            ],
+            result: 'Three families of like terms.',
+            interpretation:
+                'The coefficient does not determine the family; the literal part does.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Coefficient and literal part',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Separate number from structure',
+            content:
+                'In −6x³y², the coefficient is −6 and the literal part is x³y². Combining like terms changes only the coefficients.',
+            emphasis:
+                'The exponents stay unchanged when like terms are combined.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Combining like terms',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Add or subtract coefficients',
+            content:
+                'Because ax+bx=(a+b)x, combining like terms is an application of the distributive property in reverse.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reduction step by step',
+            problem: 'Simplify 7x²−3x+4−2x²+5x−9.',
+            steps: [
+              'Quadratic terms: 7x²−2x²=5x².',
+              'Linear terms: −3x+5x=2x.',
+              'Constants: 4−9=−5.',
+            ],
+            result: '5x²+2x−5.',
+            interpretation:
+                'Organizing terms by family makes the reduction transparent.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Signs belong to the term',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Do not detach the sign from its coefficient',
+            content:
+                'In an expression such as 4x−7x+2x, the coefficient of the middle term is −7, not 7.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Negative coefficients',
+            problem: 'Simplify −8a+3a−5a.',
+            steps: [
+              'Add the coefficients: −8+3−5=−10.',
+              'Keep the literal part a.',
+            ],
+            result: '−10a.',
+            interpretation:
+                'The arithmetic of signed coefficients controls the result.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Constants are like terms',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A constant is a term with no variable factor',
+            content:
+                'All constants combine with other constants. They do not combine with variable terms unless the variable part has already been evaluated.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'More than one variable',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Order does not change a product',
+            content:
+                'Because multiplication is commutative, xy and yx represent the same literal part. Thus 3xy and −5yx are like terms.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Multivariable reduction',
+            problem: 'Simplify 4xy−2x²y+3yx+5x²y.',
+            steps: [
+              'Recognize 4xy and 3yx as like terms: 7xy.',
+              'Recognize −2x²y and 5x²y as like terms: 3x²y.',
+            ],
+            result: '3x²y+7xy.',
+            interpretation:
+                'Same variables are not enough; the exponents must also match.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Combining different exponents',
+            content:
+                'x²+x³ cannot be reduced to 2x⁵ or 2x³. The terms are not like terms.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Adding a coefficient to an exponent',
+            content:
+                '3x²+4x²=7x², not 7x⁴. Combining terms acts on coefficients only.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Grouping carefully',
-            problem: 'Simplify 6x² − 3x + 5x² + 8x − 4.',
+            title: 'Guided 1',
+            problem: 'Simplify 5x²+2x−3−8x²+7x+1.',
             steps: [
-              'Group the x² terms: 6x² + 5x² = 11x².',
-              'Group the x terms: −3x + 8x = 5x.',
-              'The constant −4 remains unchanged.',
+              'Quadratic terms: 5x²−8x²=−3x².',
+              'Linear terms: 2x+7x=9x.',
+              'Constants: −3+1=−2.',
             ],
-            result: 'The simplified form is 11x² + 5x − 4.',
+            result: '−3x²+9x−2.',
             interpretation:
-                'No term changed its nature; we only combined compatible parts.',
+                'Reduce one family at a time.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Simplify 6ab²−4a²b+3ab²+a²b.',
+            steps: [
+              'ab² terms: 6ab²+3ab²=9ab².',
+              'a²b terms: −4a²b+a²b=−3a²b.',
+            ],
+            result: '9ab²−3a²b.',
+            interpretation:
+                'The variable set is the same, but the exponent pattern separates the families.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Combine only compatible terms',
+            content:
+                '1. Simplify 3x+5x.\n'
+                '2. Simplify 7a−2a+4a.\n'
+                '3. Simplify 4x²+3x−x².\n'
+                '4. Simplify 2y³−5y³+y.\n'
+                '5. Simplify 6+3x−2+5x.\n'
+                '6. Identify the coefficient of −9x⁴.\n'
+                '7. Decide whether 3xy and −2yx are like terms.\n'
+                '8. Decide whether x²y and xy² are like terms.\n'
+                '9. Simplify 5ab−2ba+7ab.\n'
+                '10. Simplify 3x²−4x+2−x²+x−8.\n'
+                '11. Explain why x²+x³ cannot be combined.\n'
+                '12. Give two terms like −4a²b³.\n'
+                '13. Simplify −2m+7−5m−3.\n'
+                '14. Put 4−x³+2x−3x³ into reduced standard form.\n'
+                '15. Explain how the distributive property justifies combining like terms.',
+            emphasis:
+                'Write the coefficient arithmetic explicitly whenever signs are involved.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to what comes next',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Reduction keeps later algebra readable',
+            content:
+                'Combining like terms appears after expansion, during polynomial operations, in equations, and in Calculus manipulations. It is a normalization step that makes structure visible.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which expression is equivalent to 2x + 5x − 3?',
-      choices: ['7x − 3', '10x − 3', '4x'],
+      question: 'Which expression is equivalent to 4x²−3x+2x²+5x?',
+      choices: ['6x²+2x', '6x⁴+2x', '4x²+4x'],
       correctIndex: 0,
       explanation:
-          'We add only 2x and 5x, obtaining 7x. The constant −3 remains.',
+          'Combine quadratic terms: 4x²+2x²=6x². Combine linear terms: −3x+5x=2x.',
     ),
     takeaways: [
-      'Like terms have the same literal part.',
-      'Different exponents prevent terms from being combined.',
-      'Constants combine only with constants.',
-      'Grouping terms makes calculations safer.',
+      'Like terms have identical literal parts and exponents.',
+      'Only coefficients are combined.',
+      'Signs belong to coefficients.',
+      'Constants combine with constants.',
+      'Multivariable terms require matching exponent patterns.',
+      'Combining like terms is the distributive property in reverse.',
     ],
     closing:
-        'Mastering like terms makes equations, functions, and derivatives much easier.',
-  ),
+        'Recognizing like terms is recognizing algebraic structure before doing arithmetic.',
+  )
   CourseLessonData(
     id: 'algebra-03-distributiva',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Algebra and factoring',
     title: 'Distributive property and signs',
-    description: 'parentheses, products, and negative signs',
-    duration: '≈ 5 min',
+    description:
+        'expanding products, removing parentheses, controlling negative signs, and preserving equivalence',
+    duration: '≈ 25 min',
     objective:
-        'apply the distributive property without losing signs inside parentheses',
+        'apply the distributive property to one or more grouped expressions, control signs, recognize equivalent forms, and avoid invalid expansions',
     symbol: 'a(b+c)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'Distribution connects multiplication and addition',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
-            title: 'Distributing means crossing the parentheses',
+            visual: LessonVisual.notation,
+            title: 'Algebraic definition',
             content:
-                'In a(b + c), the factor a multiplies every term inside the parentheses. Thus, a(b + c) = ab + ac. If there is subtraction, the sign of the term also takes part in the multiplication.',
+                'For real numbers or compatible algebraic expressions, a(b+c)=ab+ac and a(b−c)=ab−ac. The outside factor multiplies every term inside the grouping.',
             emphasis:
-                'A classic mistake is multiplying only the first term and forgetting the second.',
+                'Distributing is not merely “removing parentheses”; every internal term must be multiplied.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Simple distribution',
+            problem: 'Expand 4(2x−3).',
+            steps: [
+              '4·2x=8x.',
+              '4·(−3)=−12.',
+            ],
+            result: '8x−12.',
+            interpretation:
+                'Both terms inside the parentheses received the outside factor.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'A negative sign before parentheses',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A leading minus means multiplication by −1',
+            content:
+                '−(a+b)=−a−b and −(a−b)=−a+b. Every sign inside the grouping is affected.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Controlling signs',
+            problem: 'Simplify 5x−(2x−7).',
+            steps: [
+              'Distribute −1: 5x−2x+7.',
+              'Combine like terms.',
+            ],
+            result: '3x+7.',
+            interpretation:
+                'The −7 became +7 because it was multiplied by −1.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Literal coefficients distribute too',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Parentheses with a negative sign',
-            problem: 'Simplify −2(x − 5) + 3x.',
+            title: 'Algebraic outside factor',
+            problem: 'Expand 3x(2x²−x+4).',
             steps: [
-              'Distribute −2: −2x + 10.',
-              'Add the remaining term: −2x + 10 + 3x.',
-              'Combine like terms: x + 10.',
+              '3x·2x²=6x³.',
+              '3x·(−x)=−3x².',
+              '3x·4=12x.',
             ],
-            result: 'The simplified expression is x + 10.',
+            result: '6x³−3x²+12x.',
             interpretation:
-                'The term −5 became +10 because a negative times a negative is positive.',
+                'Distribution and exponent laws work together.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Double distribution',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Every term multiplies every term',
+            content:
+                '(a+b)(c+d)=ac+ad+bc+bd. This is the foundation of polynomial multiplication and special products.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Binomial times binomial',
+            problem: 'Expand (x+3)(x−5).',
+            steps: [
+              'x·x=x².',
+              'x·(−5)=−5x.',
+              '3·x=3x.',
+              '3·(−5)=−15.',
+              'Combine −5x+3x.',
+            ],
+            result: 'x²−2x−15.',
+            interpretation:
+                'Like-term reduction comes after expansion.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Distribution in reverse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Expanding and factoring are inverse perspectives',
+            content:
+                'Because ab+ac=a(b+c), a common factor can be extracted from a sum. For example, 6x+9=3(2x+3).',
+            emphasis:
+                'This reverse view prepares factoring.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Algebraic equivalence',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Different forms can represent the same expression',
+            content:
+                '2(x+4) and 2x+8 have the same value for every real x. A valid algebraic transformation must preserve this identity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Distributing to only one term',
+            content:
+                '3(x+2)=3x+2 is false. The correct expansion is 3x+6.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing a square with distribution',
+            content:
+                '(a+b)² is not a²+b². It equals a²+2ab+b².',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Simplify −2(3x−4)+5x.',
+            steps: [
+              'Distribute −2: −6x+8.',
+              'Add 5x and combine.',
+            ],
+            result: '−x+8.',
+            interpretation:
+                'The negative outside factor affects every product.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Expand (2x−1)(x+4).',
+            steps: [
+              '2x·x=2x².',
+              '2x·4=8x.',
+              '−1·x=−x.',
+              '−1·4=−4.',
+              'Combine 8x−x.',
+            ],
+            result: '2x²+7x−4.',
+            interpretation:
+                'Double distribution produces four products before reduction.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expand or simplify and justify the signs',
+            content:
+                '1. 5(x+2).\n'
+                '2. −3(x−4).\n'
+                '3. 2a(3a+5).\n'
+                '4. 7−(2x+1).\n'
+                '5. 4x−2(x−3).\n'
+                '6. 3(2x+1)−5x.\n'
+                '7. (x+2)(x+5).\n'
+                '8. (x−4)(x+3).\n'
+                '9. (2x+1)(x−2).\n'
+                '10. −(a−b+c).\n'
+                '11. Decide whether 4(x+1) and 4x+1 are equivalent.\n'
+                '12. Factor 8x+12 by reversing distribution.\n'
+                '13. Explain why (x+2)² is not x²+4.\n'
+                '14. Simplify 2(x+3)−3(x−1).\n'
+                '15. Expand (3x−2)(2x+5).',
+            emphasis:
+                'For products of polynomials, record every product before combining like terms.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Expanding and factoring reveal different structures',
+            content:
+                'Limits and derivatives often require changing between expanded and factored forms. The distributive property is the bridge between them.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the expanded form of 3(x − 4)?',
-      choices: ['3x − 4', '3x − 12', 'x − 12'],
+      question: 'What is the expanded form of −2(x−5)?',
+      choices: ['−2x−10', '−2x+10', '2x−10'],
       correctIndex: 1,
-      explanation: 'The 3 multiplies both x and −4, so 3(x − 4) = 3x − 12.',
+      explanation:
+          '−2 multiplies both terms: −2·x=−2x and −2·(−5)=+10.',
     ),
     takeaways: [
-      'The distributive property connects multiplication and addition.',
-      'Every term inside the parentheses must be multiplied.',
-      'Negative signs must be carried carefully.',
-      'After distributing, combine like terms.',
+      'Distribution multiplies the outside factor by every inside term.',
+      'A negative sign before parentheses is multiplication by −1.',
+      'Double distribution multiplies every term by every term.',
+      'Expanding and factoring are opposite uses of the same property.',
+      'Valid transformations preserve algebraic equivalence.',
+      'Sign errors become especially dangerous in long expressions.',
     ],
     closing:
-        'The distributive property is one of the most common tools for preparing expressions before Calculus.',
-  ),
+        'Mastering distribution means controlling expression structure rather than merely removing parentheses.',
+  )
   CourseLessonData(
     id: 'algebra-04-potencias',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
-    title: 'Powers and exponents',
-    description: 'multiplication and division rules',
-    duration: '≈ 5 min',
+    eyebrow: 'Algebra and factoring',
+    title: 'Powers in algebraic expressions',
+    description:
+        'exponent laws applied to monomials, coefficients, and algebraic simplification',
+    duration: '≈ 25 min',
     objective:
-        'use exponent rules to simplify monomials and algebraic expressions',
-    symbol: 'x²',
+        'apply exponent laws to algebraic expressions, distinguish valid from invalid operations, and simplify products, quotients, and powers of monomials with proper domain restrictions',
+    symbol: 'xⁿ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'Structural review',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Same base, correct rule',
+            visual: LessonVisual.notation,
+            title: 'Base, exponent, and coefficient',
             content:
-                'When multiplying powers with the same base, add the exponents: x²·x³ = x⁵. When dividing, subtract the exponents, provided the base is not zero: x⁵/x² = x³.',
-            emphasis: 'Do not add the bases. The exponent is what changes.',
+                'In 3x⁴, the coefficient is 3 and the literal part is x⁴. The exponent 4 applies to x, not to the coefficient. In (3x)⁴, the whole product 3x is the base.',
+            emphasis:
+                'Parentheses determine exactly what is raised to a power.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Compare two expressions',
+            problem: 'Compare 3x² and (3x)².',
+            steps: [
+              '3x² means 3·x².',
+              '(3x)²=3²x²=9x².',
+            ],
+            result: 'They are not equivalent.',
+            interpretation:
+                'Grouping changes the base of the power.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Product of powers with the same base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Add exponents only in products',
+            content:
+                'For the same base, xᵐ·xⁿ=xᵐ⁺ⁿ. This follows from concatenating equal factors.',
+            emphasis:
+                'x²·x³=x⁵, but x²+x³ is not x⁵.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Product of monomials',
+            problem: 'Simplify (4x³)(−2x⁵).',
+            steps: [
+              'Multiply coefficients: 4·(−2)=−8.',
+              'Add exponents of x: 3+5=8.',
+            ],
+            result: '−8x⁸.',
+            interpretation:
+                'Coefficients and literal parts are handled separately.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quotient of powers',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Subtract exponents for a nonzero base',
+            content:
+                'For x ≠ 0, xᵐ/xⁿ=xᵐ⁻ⁿ. The restriction comes from the denominator of the original expression.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quotient of monomials',
+            problem: 'Simplify 12x⁷/(3x²), with x ≠ 0.',
+            steps: [
+              '12/3=4.',
+              '7−2=5.',
+            ],
+            result: '4x⁵, with x ≠ 0.',
+            interpretation:
+                'Simplification does not restore a value excluded by the original denominator.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Power of a power and power of a product',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Multiply exponents in a power of a power',
+            content:
+                '(xᵐ)ⁿ=xᵐⁿ and (ab)ⁿ=aⁿbⁿ. These rules describe different structures and should not be confused with exponent addition.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Power of a monomial',
+            problem: 'Simplify (−2x³y²)³.',
+            steps: [
+              '(−2)³=−8.',
+              '(x³)³=x⁹.',
+              '(y²)³=y⁶.',
+            ],
+            result: '−8x⁹y⁶.',
+            interpretation:
+                'The outside exponent acts on every factor in the base.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Zero and negative exponents in Algebra',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Zero and negative exponents carry restrictions',
+            content:
+                'For x ≠ 0, x⁰=1 and x⁻ⁿ=1/xⁿ. Domain restrictions remain part of the original algebraic expression.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Removing a negative exponent',
+            problem: 'Rewrite 6x⁻²y³ without negative exponents.',
+            steps: [
+              'x⁻²=1/x², with x ≠ 0.',
+              'Keep the other factors in the numerator.',
+            ],
+            result: '6y³/x², with x ≠ 0.',
+            interpretation:
+                'A negative exponent changes multiplicative position, not the sign of the term.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'More than one variable',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Coefficient and variable',
-            problem: 'Simplify (−2x³)².',
+            title: 'Multivariable product',
+            problem: 'Simplify (3x²y)(−4xy³).',
             steps: [
-              'Square the coefficient: (−2)² = 4.',
-              'Multiply the variable exponents: (x³)² = x⁶.',
-              'Combine the parts: 4x⁶.',
+              'Coefficients: 3·(−4)=−12.',
+              'x powers: x²·x=x³.',
+              'y powers: y·y³=y⁴.',
             ],
-            result: 'The simplified form is 4x⁶.',
+            result: '−12x³y⁴.',
             interpretation:
-                'Squaring makes the coefficient positive and doubles the exponent of the variable.',
+                'Each base is treated independently.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Do not add exponents in a sum',
+            content:
+                'x²+x³ cannot be reduced to x⁵ because exponent addition requires multiplication.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(x+y)² is not x²+y²',
+            content:
+                'The power applies to the entire binomial: (x+y)²=x²+2xy+y².',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Do not lose original restrictions',
+            content:
+                'x³/x simplifies to x², but the original expression required x ≠ 0.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Simplify (2x²)³·x⁻¹.',
+            steps: [
+              '(2x²)³=8x⁶.',
+              'Multiply by x⁻¹.',
+              'Add exponents: 6+(−1)=5.',
+            ],
+            result: '8x⁵, with x ≠ 0.',
+            interpretation:
+                'The restriction comes from the original x⁻¹ factor.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Simplify (6a⁵b²)/(3a²b).',
+            steps: [
+              '6/3=2.',
+              'a⁵/a²=a³.',
+              'b²/b=b.',
+            ],
+            result: '2a³b, with a,b ≠ 0 in the original quotient.',
+            interpretation:
+                'Equal bases are simplified independently.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Simplify and state restrictions when needed',
+            content:
+                '1. x³·x⁵.\n'
+                '2. a⁷/a².\n'
+                '3. (y⁴)³.\n'
+                '4. (2x)⁴.\n'
+                '5. (−3a²)².\n'
+                '6. (4x³)(−2x²).\n'
+                '7. (12m⁶)/(4m²).\n'
+                '8. x⁻⁴.\n'
+                '9. 5a²b·3ab³.\n'
+                '10. (−2x²y³)².\n'
+                '11. Explain why x²+x⁴ is not x⁶.\n'
+                '12. Compare 2x³ and (2x)³.\n'
+                '13. Rewrite x⁵/x⁷ without negative exponents.\n'
+                '14. State the original restriction of (x²−x)/x.\n'
+                '15. Simplify (3a²b⁻¹)².',
+            emphasis:
+                'Separate coefficient arithmetic from exponent work on each literal base.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Powers appear throughout functions, limits, and derivatives',
+            content:
+                'Power functions and polynomials are built from these structures. Accurate exponent manipulation is essential for difference quotients, derivatives, and growth analysis.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the result of x⁴·x²?',
-      choices: ['x⁶', 'x⁸', '2x⁶'],
-      correctIndex: 0,
-      explanation: 'The bases are equal, so add the exponents: 4 + 2 = 6.',
+      question: 'What is the simplification of (3x²)²?',
+      choices: ['6x⁴', '9x⁴', '9x²'],
+      correctIndex: 1,
+      explanation:
+          'The exponent 2 acts on both 3 and x²: 3²=9 and (x²)²=x⁴.',
     ),
     takeaways: [
-      'Multiplying powers with the same base adds exponents.',
-      'Dividing powers with the same base subtracts exponents.',
+      'Products with the same base add exponents; quotients subtract them.',
       'A power of a power multiplies exponents.',
-      'Coefficients also follow sign rules.',
+      'A power of a product acts on every factor.',
+      'Zero and negative exponents require domain awareness.',
+      'Coefficients and literal bases should be handled separately.',
+      'Exponent laws do not apply directly to sums.',
     ],
     closing:
-        'Strong exponent skills simplify polynomials, functions, and limits.',
-  ),
+        'Exponent laws are structural rules: they work only when the operation and the base are identified correctly.',
+  )
   CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
