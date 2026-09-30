@@ -2109,69 +2109,345 @@ const List<CourseLessonData> equationsCourseLessons = [
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e Inequações',
-    eyebrow: 'Consolidação',
-    title: 'Módulo e estratégia final',
-    description: 'distância, duas possibilidades e revisão',
-    duration: '≈ 5 min',
+    eyebrow: 'Valor absoluto',
+    title: 'Equações e inequações com valor absoluto',
+    description:
+        'distância, definição por casos, equações, inequações, domínio e estratégia de resolução',
+    duration: '≈ 34 min',
     objective:
-        'interpretar equações modulares simples e escolher estratégias adequadas para diferentes problemas',
+        'resolver equações e inequações com valor absoluto por interpretação geométrica e análise por casos, reconhecer condições de existência e integrar as estratégias estudadas na unidade',
     symbol: '|x|',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Módulo representa distância',
+        title: 'Valor absoluto como distância',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Distância nunca é negativa',
+            title: 'A interpretação geométrica vem primeiro',
             content:
-                'O valor absoluto |x| representa a distância entre x e zero. '
-                'Por isso, |x| = 5 possui duas soluções: 5 e −5.',
-            emphasis: '|x| = a, com a > 0, normalmente produz x = a ou x = −a.',
+                'Para números reais, |x−a| representa a distância entre x e a. Essa leitura permite interpretar equações e inequações com módulo como condições de distância na reta real.',
+            emphasis:
+                'Distância nunca é negativa.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Escolha a ferramenta',
+        title: 'Definição por casos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A função módulo é definida por partes',
+            content:
+                'Formalmente, [[math:|u|=\\begin{cases}u,&u\\ge0\\\\-u,&u<0\\end{cases}]]. Resolver problemas com módulo significa, em última instância, controlar esses dois comportamentos.',
+            emphasis:
+                'O sinal do conteúdo do módulo determina qual expressão é válida em cada região.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Equações do tipo |u|=a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'O sinal de a decide o caso',
+            content:
+                'Se a>0, então |u|=a equivale a u=a ou u=−a. Se a=0, então u=0. Se a<0, não existe solução real.',
+            emphasis:
+                'Antes de abrir casos, observe o lado direito.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas soluções',
+            problem: 'Resolva |2x−5|=7.',
+            steps: [
+              'Primeiro caso: 2x−5=7, então 2x=12 e x=6.',
+              'Segundo caso: 2x−5=−7, então 2x=−2 e x=−1.',
+              'Verifique ambos na equação original.',
+            ],
+            result: 'S={−1,6}.',
+            interpretation:
+                'O conteúdo 2x−5 pode estar a 7 unidades de zero dos dois lados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Nenhuma solução',
+            problem: 'Resolva |3x+1|=−2.',
+            steps: [
+              'Todo valor absoluto real é ≥0.',
+              'O lado direito é negativo.',
+            ],
+            result: 'S=∅.',
+            interpretation:
+                'A análise de existência evita manipulações desnecessárias.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Inequações do tipo |u|<a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Região interna',
+            content:
+                'Para a>0, [[math:|u|<a]] equivale a [[math:-a<u<a]], e [[math:|u|\\le a]] equivale a [[math:-a\\le u\\le a]].',
+            emphasis:
+                '“Menor que” descreve valores dentro de uma faixa de distância.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Intervalo central',
+            problem: 'Resolva |x−3|≤2.',
+            steps: [
+              'Escreva −2≤x−3≤2.',
+              'Some 3 aos três membros.',
+            ],
+            result: '1≤x≤5, isto é, [1,5].',
+            interpretation:
+                'A solução contém todos os pontos a no máximo 2 unidades de 3.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequações do tipo |u|>a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Regiões externas',
+            content:
+                'Para a>0, [[math:|u|>a]] equivale a [[math:u<-a]] ou [[math:u>a]]. Com ≥, os extremos são incluídos.',
+            emphasis:
+                '“Maior que” descreve duas regiões fora de uma faixa central.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas regiões',
+            problem: 'Resolva |2x+1|>5.',
+            steps: [
+              'Primeiro caso: 2x+1<−5, então x<−3.',
+              'Segundo caso: 2x+1>5, então x>2.',
+            ],
+            result: 'S=(−∞,−3)∪(2,+∞).',
+            interpretation:
+                'A solução está fora do intervalo central.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Casos especiais em inequações modulares',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'O valor de a muda tudo',
+            content:
+                'Se a<0, então |u|<a e |u|≤a não têm solução real. Já |u|>a pode ser verdadeira para todo real quando a<0, pois |u|≥0.',
+            emphasis:
+                'Não aplique mecanicamente fórmulas de intervalo sem analisar o sinal de a.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Resolução pela definição por casos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Quando o módulo está dentro de uma expressão maior',
+            problem: 'Resolva |x−1|+2=5.',
+            steps: [
+              'Isole o módulo: |x−1|=3.',
+              'Agora use os dois casos: x−1=3 ou x−1=−3.',
+              'Resolva: x=4 ou x=−2.',
+            ],
+            result: 'S={−2,4}.',
+            interpretation:
+                'Sempre que possível, isole o módulo antes de abrir casos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Módulos em ambos os membros',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '|u|=|v|',
+            content:
+                'Para números reais, |u|=|v| equivale a u=v ou u=−v. Essa propriedade traduz igualdade de distâncias em dois casos algébricos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Igualdade de distâncias',
+            problem: 'Resolva |x−2|=|x+4|.',
+            steps: [
+              'Caso 1: x−2=x+4, que é impossível.',
+              'Caso 2: x−2=−(x+4).',
+              'Então x−2=−x−4, logo 2x=−2 e x=−1.',
+            ],
+            result: 'S={−1}.',
+            interpretation:
+                '−1 é o ponto médio entre 2 e −4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Conexão com distância entre pontos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Equações modulares podem ser problemas geométricos',
+            content:
+                '|x−a|=r descreve dois pontos a distância r de a quando r>0. Já |x−a|≤r descreve um intervalo fechado de centro a e raio r.',
+            emphasis:
+                'A leitura geométrica frequentemente é mais rápida que a manipulação simbólica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer uma das possibilidades',
+            content:
+                '|u|=a com a>0 gera dois casos. Resolver apenas u=a perde uma solução válida.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Tratar |u| como se fosse u',
+            content:
+                'A identidade |u|=u só é válida quando u≥0. Em regiões onde u<0, |u|=−u.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir < com >',
+            content:
+                '|u|<a produz uma faixa interna. |u|>a produz duas regiões externas.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — equação',
+            problem: 'Resolva |3x−6|=9.',
+            steps: [
+              '3x−6=9 ou 3x−6=−9.',
+              'Primeiro caso: x=5.',
+              'Segundo caso: x=−1.',
+            ],
+            result: 'S={−1,5}.',
+            interpretation:
+                'As duas soluções produzem a mesma distância.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — inequação',
+            problem: 'Resolva |x+2|<5.',
+            steps: [
+              'Escreva −5<x+2<5.',
+              'Subtraia 2 dos três membros.',
+            ],
+            result: 'S=(−7,3).',
+            interpretation:
+                'O intervalo tem centro −2 e raio 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Prática antes da atividade final',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Antes de calcular, classifique',
+            title: 'Resolva e interprete geometricamente quando possível',
             content:
-                'Observe se existem parênteses, frações, x², duas incógnitas, '
-                'desigualdade ou valor absoluto. A estrutura indica a estratégia.',
+                '1. |x|=6.\n'
+                '2. |x|=0.\n'
+                '3. |x|=−3.\n'
+                '4. |2x−1|=5.\n'
+                '5. |x+4|≤3.\n'
+                '6. |x−2|<7.\n'
+                '7. |3x+1|>4.\n'
+                '8. |x|≥5.\n'
+                '9. |x−1|+2=6.\n'
+                '10. |2x+3|−1=4.\n'
+                '11. |x−2|=|x+6|.\n'
+                '12. Explique o significado geométrico de |x−5|≤2.\n'
+                '13. Classifique |x+1|<−2.\n'
+                '14. Classifique |x−3|>−1.\n'
+                '15. Compare as soluções de |x|<4 e |x|>4.',
             emphasis:
-                'Reconhecer o tipo do problema reduz erros e evita fórmulas desnecessárias.',
+                'Escreva conjuntos solução em notação de intervalo quando a resposta não for discreta.',
           ),
-          WorkedExampleBlockData(
-            title: 'Equação modular',
-            problem: 'Resolva |x| = 7.',
-            steps: [
-              'Interprete |x| como distância até zero.',
-              'Existem dois pontos a sete unidades do zero.',
-              'Esses pontos são 7 e −7.',
-            ],
-            result: 'x = −7 ou x = 7.',
-            interpretation: 'As duas soluções possuem o mesmo valor absoluto.',
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Síntese estratégica da unidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Reconheça a estrutura antes de escolher a técnica',
+            content:
+                'Equação linear: isole a variável. Frações: preserve domínio e elimine denominadores. Sistema: substituição ou eliminação. Quadrática: fatoração, raiz, completar quadrados ou fórmula. Inequação: monitore a ordem. Módulo: interprete distância e casos.',
+            emphasis:
+                'Classificar corretamente o problema é parte da solução.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Valor absoluto volta em limites, continuidade e erro',
+            content:
+                'A linguagem [[math:|x-a|<\\delta]] e [[math:|f(x)-L|<\\varepsilon]] é central na definição formal de limite. Inequações com módulo também expressam tolerâncias, margens de erro e vizinhanças.',
+            emphasis:
+                'Dominar módulo como distância prepara diretamente o raciocínio ε–δ.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para valor absoluto, distância e definição formal de limite.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Quais valores resolvem |x| = 3?',
-      choices: ['Somente x = 3', 'x = −3 ou x = 3', 'x = 0 ou x = 3'],
+      question: 'Quais valores resolvem |x|=3?',
+      choices: ['Somente x=3', 'x=−3 ou x=3', 'x=0 ou x=3'],
       correctIndex: 1,
       explanation:
           'Tanto −3 quanto 3 estão a três unidades de distância do zero.',
     ),
     takeaways: [
       'Valor absoluto representa distância.',
-      'Equações modulares podem produzir duas soluções.',
-      'A estrutura indica a estratégia adequada.',
-      'Verificar a solução continua sendo fundamental.',
+      'Equações |u|=a exigem análise do sinal de a.',
+      'Inequações |u|<a descrevem regiões internas.',
+      'Inequações |u|>a descrevem regiões externas.',
+      'A definição por casos justifica as regras operacionais.',
+      'Igualdade de valores absolutos é igualdade de distâncias.',
+      'Reconhecer a estrutura indica a estratégia adequada.',
+      'Valor absoluto prepara a linguagem formal de limites.',
     ],
     closing:
-        'Você agora possui uma base sólida para enfrentar diferentes equações e inequações.',
-  ),
+        'A unidade se completa quando equações, inequações e módulo são vistos como diferentes formas de descrever relações entre valores e conjuntos.',
+  )
 ];
