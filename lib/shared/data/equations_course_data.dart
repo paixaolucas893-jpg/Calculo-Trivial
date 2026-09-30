@@ -3,7 +3,7 @@ import 'package:calcquest/shared/domain/course_lesson_data.dart';
 const List<CourseLessonData> equationsCourseLessons = [
   CourseLessonData(
     id: 'equations-01-equilibrio',
-    topicId: 'equacoes',
+    topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e inequações',
     eyebrow: 'Equações',
     title: 'Equações, igualdade e equivalência',
@@ -224,10 +224,10 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Resolver uma equação é preservar logicamente uma igualdade até que suas soluções fiquem explícitas.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-02-primeiro-grau',
-    topicId: 'equacoes',
+    topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e inequações',
     eyebrow: 'Equações lineares',
     title: 'Equações do primeiro grau',
@@ -476,7 +476,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Resolver uma equação linear é transformar uma relação até tornar explícito o único valor compatível com ela.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-03-parenteses-fracoes',
     topicId: 'equacoes-inequacoes',
