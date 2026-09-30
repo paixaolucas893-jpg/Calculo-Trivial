@@ -4,6 +4,7 @@ export 'package:calcquest/shared/domain/course_lesson_data.dart'
     show LearningCardTone;
 
 import 'package:calcquest/shared/domain/course_lesson_data.dart';
+import 'package:calcquest/shared/widgets/academic_math_text.dart';
 import 'package:calcquest/shared/localization/lesson_ui_text.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -318,7 +319,7 @@ class LessonConceptCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
-            Text(content, style: AppTypography.bodyLarge),
+            AcademicMathText(content, style: AppTypography.bodyLarge),
             if (emphasis != null) ...[
               const SizedBox(height: AppSpacing.sm),
               Container(
@@ -329,7 +330,7 @@ class LessonConceptCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
                   border: Border(left: BorderSide(color: _accent, width: 4)),
                 ),
-                child: Text(
+                child: AcademicMathText(
                   emphasis!,
                   style: AppTypography.bodyMedium.copyWith(
                     color: AppColors.textPrimary,
@@ -405,7 +406,7 @@ class WorkedExampleCard extends StatelessWidget {
                 color: AppColors.white.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
               ),
-              child: Text(
+              child: AcademicMathText(
                 problem,
                 textAlign: TextAlign.center,
                 style: AppTypography.headingSmall.copyWith(
@@ -438,7 +439,7 @@ class WorkedExampleCard extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 2),
-                      child: Text(
+                      child: AcademicMathText(
                         steps[index],
                         style: AppTypography.bodyMedium.copyWith(
                           color: AppColors.white,
@@ -459,7 +460,7 @@ class WorkedExampleCard extends StatelessWidget {
                 color: AppColors.successLight,
                 borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
               ),
-              child: Text(
+              child: AcademicMathText(
                 result,
                 style: AppTypography.titleMedium.copyWith(
                   color: AppColors.successDark,
@@ -467,7 +468,7 @@ class WorkedExampleCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.sm),
-            Text(
+            AcademicMathText(
               interpretation,
               style: AppTypography.bodyMedium.copyWith(
                 color: AppColors.primaryLight,
@@ -549,7 +550,10 @@ class _LessonCheckCardState extends State<LessonCheckCard> {
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
-            Text(widget.question, style: AppTypography.bodyLarge),
+            AcademicMathText(
+              widget.question,
+              style: AppTypography.bodyLarge,
+            ),
             const SizedBox(height: AppSpacing.md),
             for (var index = 0; index < widget.choices.length; index++) ...[
               SizedBox(
@@ -575,7 +579,7 @@ class _LessonCheckCardState extends State<LessonCheckCard> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text(
+                        child: AcademicMathText(
                           widget.choices[index],
                           style: AppTypography.bodyMedium,
                         ),
@@ -699,7 +703,10 @@ class LessonTakeawaysCard extends StatelessWidget {
                 ),
                 const SizedBox(width: AppSpacing.sm),
                 Expanded(
-                  child: Text(items[index], style: AppTypography.bodyMedium),
+                  child: AcademicMathText(
+                    items[index],
+                    style: AppTypography.bodyMedium,
+                  ),
                 ),
               ],
             ),
