@@ -309,159 +309,555 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Pré-Cálculo',
     title: 'Inequações quadráticas',
-    description: 'raízes críticas, sinal e intervalos',
-    duration: '≈ 15 min',
+    description:
+        'raízes críticas, fatoração, estudo de sinal, multiplicidade e interpretação gráfica',
+    duration: '≈ 32 min',
     objective:
-        'resolver inequações quadráticas por fatoração e estudo de sinal em intervalos',
-    symbol: 'x²≥0',
+        'resolver inequações quadráticas por fatoração e estudo de sinal, interpretar o papel das raízes e da multiplicidade e relacionar o conjunto solução ao gráfico da parábola',
+    symbol: 'ax²+bx+c',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'As raízes dividem a reta',
+        title: 'Uma inequação quadrática pergunta pelo sinal',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Pontos críticos organizam o sinal',
+            visual: LessonVisual.idea,
+            title: 'Positivo, negativo ou zero',
             content:
-                'Depois de levar todos os termos para um lado, fatoramos a expressão quando possível. Os zeros dos fatores dividem a reta em intervalos. Em cada intervalo, o sinal do produto permanece constante até atravessarmos uma raiz.',
+                'Resolver f(x)>0, f(x)<0, f(x)≥0 ou f(x)≤0 para uma função quadrática significa identificar em quais regiões da reta o valor da expressão é positivo, negativo ou nulo.',
             emphasis:
-                'A inequação pede intervalos, não apenas as raízes da equação associada.',
+                'As raízes da equação f(x)=0 são fronteiras naturais do estudo de sinal.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Leve tudo para um lado',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Produto positivo',
-            problem: 'Resolva x² − 5x + 6 > 0.',
-            steps: [
-              'Fatore: x² − 5x + 6 = (x − 2)(x − 3).',
-              'Os pontos críticos são x = 2 e x = 3.',
-              'Para x < 2, os dois fatores são negativos e o produto é positivo.',
-              'Para 2 < x < 3, os fatores têm sinais opostos e o produto é negativo.',
-              'Para x > 3, os dois fatores são positivos.',
-              'Como a desigualdade é estrita, 2 e 3 não entram.',
-            ],
-            result: 'A solução é (−∞, 2) ∪ (3, +∞).',
-            interpretation:
-                'A solução reúne os intervalos onde o gráfico da quadrática está acima do eixo x.',
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Compare uma única expressão com zero',
+            content:
+                'Antes de estudar o sinal, reorganize a inequação para a forma ax²+bx+c comparada com zero. Isso permite fatorar ou usar as raízes da quadrática.',
+            emphasis:
+                'A estrutura de sinal fica mais clara quando um dos membros é zero.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Conexão com gráficos',
+        title: 'As raízes dividem a reta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Pontos críticos organizam intervalos',
+            content:
+                'Se uma quadrática possui raízes reais r₁ e r₂, elas dividem a reta em intervalos. O sinal da expressão permanece constante dentro de cada intervalo enquanto nenhuma raiz é atravessada.',
+            emphasis:
+                'A inequação pede intervalos, não apenas as raízes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Estudo de sinal por fatores',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Produto positivo',
+            problem: 'Resolva x²−5x+6>0.',
+            steps: [
+              'Fatore: (x−2)(x−3)>0.',
+              'Pontos críticos: 2 e 3.',
+              'Para x<2, os dois fatores são negativos: produto positivo.',
+              'Para 2<x<3, os fatores têm sinais opostos: produto negativo.',
+              'Para x>3, os dois fatores são positivos.',
+            ],
+            result: 'S=(−∞,2)∪(3,+∞).',
+            interpretation:
+                'A solução reúne os intervalos onde a parábola está acima do eixo x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequação não estrita',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Incluindo as raízes',
+            problem: 'Resolva x²−5x+6≤0.',
+            steps: [
+              'Fatore: (x−2)(x−3)≤0.',
+              'Entre as raízes, o produto é negativo.',
+              'Nas raízes, o produto vale zero.',
+            ],
+            result: 'S=[2,3].',
+            interpretation:
+                'O símbolo ≤ inclui os pontos onde a quadrática zera.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'O papel do coeficiente líder',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Sinal é posição vertical',
+            title: 'A orientação da parábola antecipa o sinal',
             content:
-                'Quando f(x) > 0, o gráfico está acima do eixo x. Quando f(x) < 0, está abaixo. O estudo de sinal antecipa a análise de crescimento e comportamento usada no Cálculo.',
+                'Se a>0, a parábola abre para cima; com duas raízes reais distintas, ela tende a ser positiva fora das raízes e negativa entre elas. Se a<0, o padrão se inverte.',
+            emphasis:
+                'Essa leitura gráfica é uma verificação poderosa do estudo de sinais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Raiz dupla e multiplicidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'O sinal pode não mudar ao atravessar uma raiz',
+            content:
+                'Em (x−r)², a raiz r tem multiplicidade par. O fator é não negativo dos dois lados de r, então o sinal não muda ao atravessar essa raiz.',
+            emphasis:
+                'Raízes de multiplicidade ímpar trocam o sinal; raízes de multiplicidade par preservam o sinal.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quadrado perfeito',
+            problem: 'Resolva (x−2)²≥0.',
+            steps: [
+              'Todo quadrado real é não negativo.',
+              'Em x=2, a expressão vale zero.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'A raiz dupla não cria uma região negativa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Quando não há raízes reais',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Sinal constante',
+            problem: 'Resolva x²+4x+5>0.',
+            steps: [
+              'Calcule Δ=16−20=−4<0.',
+              'Como a=1>0 e não há raízes reais, a parábola permanece acima do eixo x.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'Sem raízes reais, uma quadrática não troca de sinal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Método gráfico e método algébrico',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Duas leituras do mesmo problema',
+            content:
+                'Algebricamente, usamos fatores e sinais. Graficamente, observamos onde a parábola fica acima ou abaixo do eixo x. Os dois métodos devem produzir o mesmo conjunto solução.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Responder apenas com as raízes',
+            content:
+                'As raízes são fronteiras do estudo de sinal, mas a solução da inequação é formada por intervalos.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar se a desigualdade inclui igualdade',
+            content:
+                'Em > e <, as raízes não entram. Em ≥ e ≤, entram quando pertencem ao domínio.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Assumir alternância de sinal em raiz dupla',
+            content:
+                'Uma raiz de multiplicidade par não provoca troca de sinal.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Resolva x²−x−6≥0.',
+            steps: [
+              'Fatore: (x−3)(x+2)≥0.',
+              'Pontos críticos: −2 e 3.',
+              'O produto é não negativo fora do intervalo entre as raízes.',
+            ],
+            result: 'S=(−∞,−2]∪[3,+∞).',
+            interpretation:
+                'As raízes entram por causa do símbolo ≥.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Resolva −x²+4x−3>0.',
+            steps: [
+              'Fatore: −(x−1)(x−3)>0.',
+              'A parábola abre para baixo.',
+              'O sinal positivo ocorre entre as raízes.',
+            ],
+            result: 'S=(1,3).',
+            interpretation:
+                'O coeficiente líder negativo inverte o padrão externo/interno.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva por estudo de sinal',
+            content:
+                '1. x²−9>0.\n'
+                '2. x²−9≤0.\n'
+                '3. x²−5x+6≥0.\n'
+                '4. x²+x−6<0.\n'
+                '5. −x²+5x−6>0.\n'
+                '6. (x−4)²≤0.\n'
+                '7. (x+1)²>0.\n'
+                '8. x²+4x+5>0.\n'
+                '9. x²+4x+5<0.\n'
+                '10. 2x²−8x+6≤0.\n'
+                '11. Explique o efeito de uma raiz dupla no sinal.\n'
+                '12. Determine onde f(x)=x²−2x−3 é positiva.\n'
+                '13. Determine onde f(x)=−x²+4 é não negativa.\n'
+                '14. Compare o método gráfico e o método por fatores.\n'
+                '15. Crie uma inequação quadrática cuja solução seja [−1,2].',
+            emphasis:
+                'Registre os pontos críticos, os sinais em cada intervalo e a notação final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Estudo de sinal prepara crescimento e concavidade',
+            content:
+                'No Cálculo, tabelas de sinal são usadas para determinar onde derivadas são positivas ou negativas e, portanto, onde funções crescem, decrescem ou mudam de concavidade.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para estudo de sinais e análise de funções.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Se (x − 1)(x + 4) ≤ 0, qual intervalo resolve a inequação?',
-      choices: ['[−4, 1]', '(−∞, −4] ∪ [1, +∞)', '(−4, 1)'],
+      question: 'Se (x−1)(x+4)≤0, qual intervalo resolve a inequação?',
+      choices: ['[−4,1]', '(−∞,−4]∪[1,+∞)', '(−4,1)'],
       correctIndex: 0,
       explanation:
-          'O produto é não positivo entre as raízes. Como ≤ inclui os zeros, entram −4 e 1.',
+          'O produto é não positivo entre as raízes. Como ≤ inclui zero, os extremos −4 e 1 pertencem à solução.',
     ),
     takeaways: [
-      'Leve a inequação para a forma expressão comparada com zero.',
-      'As raízes são pontos críticos do estudo de sinal.',
-      'Teste o sinal em cada intervalo.',
-      'Use colchetes quando a igualdade também for aceita.',
+      'Leve a inequação para uma expressão comparada com zero.',
+      'Raízes são pontos críticos do estudo de sinal.',
+      'A multiplicidade determina se o sinal muda em uma raiz.',
+      'O coeficiente líder ajuda a prever o padrão de sinais.',
+      'A solução é formada por intervalos.',
+      'A interpretação gráfica confirma o estudo algébrico.',
     ],
     closing:
-        'Resolver uma inequação quadrática é descobrir em quais regiões uma função é positiva ou negativa.',
-  ),
+        'Resolver uma inequação quadrática é localizar, na reta real, onde a parábola assume o sinal pedido.',
+  )
   CourseLessonData(
     id: 'equations-11-inequacoes-racionais',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Pré-Cálculo',
     title: 'Inequações racionais',
-    description: 'zeros, pontos proibidos e tabela de sinais',
-    duration: '≈ 18 min',
+    description:
+        'domínio, zeros, pontos proibidos, multiplicidade e tabela de sinais',
+    duration: '≈ 34 min',
     objective:
-        'resolver inequações racionais distinguindo zeros do numerador de valores proibidos do denominador',
+        'resolver inequações racionais por estudo de sinal, distinguindo zeros do numerador de valores proibidos do denominador, preservando o domínio e analisando multiplicidades',
     symbol: 'P/Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Nem todo ponto crítico pode entrar',
+        title: 'Domínio vem antes do sinal',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'Denominador zero é sempre proibido',
             content:
-                'Em uma inequação racional, zeros do numerador podem pertencer à solução quando a desigualdade inclui igualdade. Zeros do denominador nunca pertencem ao domínio e devem permanecer excluídos.',
+                'Em P(x)/Q(x), todo zero de Q(x) deve ser excluído antes do estudo de sinal. Esse ponto nunca pertence à solução, mesmo quando a inequação inclui igualdade.',
             emphasis:
-                'Marque separadamente zeros e pontos proibidos antes de montar a tabela de sinais.',
+                'Zeros do numerador e zeros do denominador têm papéis diferentes.',
             tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Zeros do numerador',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Zero permitido, denominador proibido',
-            problem: 'Resolva (x − 2)/(x + 1) ≥ 0.',
-            steps: [
-              'O numerador zera em x = 2.',
-              'O denominador zera em x = −1; esse valor é proibido.',
-              'Os pontos −1 e 2 dividem a reta em três intervalos.',
-              'Em (−∞, −1), numerador e denominador são negativos: quociente positivo.',
-              'Em (−1, 2), os sinais são opostos: quociente negativo.',
-              'Em (2, +∞), ambos são positivos.',
-              'Como ≥ aceita zero, x = 2 entra; x = −1 nunca entra.',
-            ],
-            result: 'A solução é (−∞, −1) ∪ [2, +∞).',
-            interpretation:
-                'A exclusão de −1 vem do domínio, não do sinal da inequação.',
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Podem entrar quando a igualdade é aceita',
+            content:
+                'Se P(r)=0 e Q(r)≠0, então a fração vale zero em r. Assim, r pode pertencer à solução de ≥0 ou ≤0, mas não de >0 ou <0.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
+        title: 'Pontos críticos dividem a reta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Junte zeros e pontos proibidos',
+            content:
+                'Os zeros do numerador e do denominador dividem a reta em intervalos. Dentro de cada intervalo, o sinal de cada fator e do quociente permanece constante.',
+            emphasis:
+                'Monte a tabela de sinais somente depois de fatorar e marcar todos os pontos críticos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplo fundamental',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Zero permitido, denominador proibido',
+            problem: 'Resolva (x−2)/(x+1)≥0.',
+            steps: [
+              'Zero do numerador: x=2.',
+              'Zero do denominador: x=−1, valor proibido.',
+              'Os intervalos são (−∞,−1), (−1,2) e (2,+∞).',
+              'No primeiro, quociente positivo.',
+              'No segundo, quociente negativo.',
+              'No terceiro, quociente positivo.',
+              'Como ≥ inclui zero, x=2 entra; x=−1 nunca entra.',
+            ],
+            result: 'S=(−∞,−1)∪[2,+∞).',
+            interpretation:
+                'A exclusão de −1 é consequência do domínio, não apenas da desigualdade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Fatoração antes da tabela',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Numerador quadrático',
+            problem: 'Resolva (x²−9)/(x−1)<0.',
+            steps: [
+              'Fatore x²−9=(x−3)(x+3).',
+              'Pontos críticos: −3, 1 e 3.',
+              'x=1 é proibido; ±3 zeram o numerador.',
+              'Analise os sinais fator a fator em cada intervalo.',
+            ],
+            result: 'S=(−∞,−3)∪(1,3).',
+            interpretation:
+                'A fatoração torna visível a contribuição de cada fator para o sinal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Multiplicidade também importa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Fator de expoente par não troca sinal',
+            content:
+                'Se um fator aparece com multiplicidade par, como (x−2)², seu sinal não muda ao atravessar x=2. O mesmo princípio usado em inequações polinomiais vale em numeradores e denominadores fatorados.',
+            emphasis:
+                'Multiplicidade ímpar troca o sinal; multiplicidade par preserva.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Cancelamento e domínio original',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Um fator cancelado pode deixar um ponto removido',
+            content:
+                'Em uma expressão como (x−2)(x+1)/(x−2), o fator x−2 pode ser cancelado para estudar o sinal, mas x=2 continua fora do domínio original.',
+            emphasis:
+                'Simplificação não restaura pontos proibidos.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Inequações com produto de frações',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Transforme tudo em fatores',
+            content:
+                'Produtos e quocientes de expressões racionais podem ser tratados em uma única tabela de sinais, desde que todos os fatores do numerador e do denominador sejam identificados e o domínio seja preservado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Incluir zero do denominador',
+            content:
+                'Nenhum símbolo de igualdade permite incluir um valor em que a expressão não existe.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Multiplicar pela variável sem saber seu sinal',
+            content:
+                'Multiplicar uma inequação racional por um denominador variável pode exigir inversão do sinal dependendo do valor de x. A tabela de sinais evita esse problema.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar e esquecer o domínio',
+            content:
+                'Fatores cancelados continuam determinando pontos excluídos da expressão original.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Resolva (x+3)/(x−5)<0.',
+            steps: [
+              'Zero do numerador: −3.',
+              'Ponto proibido: 5.',
+              'O quociente é negativo quando numerador e denominador têm sinais opostos.',
+            ],
+            result: 'S=(−3,5).',
+            interpretation:
+                'Os extremos não entram: −3 produz zero e 5 não pertence ao domínio.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Resolva (x−1)(x+2)/(x−4)≥0.',
+            steps: [
+              'Pontos críticos: −2, 1 e 4.',
+              '−2 e 1 zeram o numerador; 4 é proibido.',
+              'Analise o sinal nos quatro intervalos.',
+            ],
+            result: 'S=[−2,1]∪(4,+∞).',
+            interpretation:
+                'Os zeros entram por causa de ≥; o ponto 4 permanece excluído.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Fatore, marque pontos críticos e estude o sinal',
+            content:
+                '1. (x−1)/(x+2)>0.\n'
+                '2. (x+4)/(x−3)≤0.\n'
+                '3. (x²−4)/(x−1)>0.\n'
+                '4. (x−2)/(x²−9)≥0.\n'
+                '5. (x−1)(x+3)/(x−5)<0.\n'
+                '6. (x−2)²/(x+1)>0.\n'
+                '7. (x+1)/(x−4)²≤0.\n'
+                '8. Determine o domínio de (x²−1)/(x²−4).\n'
+                '9. Explique a diferença entre zero do numerador e zero do denominador.\n'
+                '10. Explique por que não devemos multiplicar diretamente por x−3 sem conhecer seu sinal.\n'
+                '11. Simplifique (x−2)(x+1)/(x−2) e preserve o domínio.\n'
+                '12. Resolva (x²−9)/(x²−1)≥0.\n'
+                '13. Analise o efeito de uma multiplicidade par no denominador.\n'
+                '14. Relacione pontos proibidos com descontinuidades.\n'
+                '15. Crie uma inequação racional cuja solução tenha dois intervalos.',
+            emphasis:
+                'Separe claramente: zeros permitidos, pontos proibidos e intervalos de sinal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
         title: 'Conexão com Cálculo',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.infinity,
-            title: 'Pontos proibidos antecipam assíntotas',
+            title: 'Domínio, descontinuidades e sinais',
             content:
-                'Em funções racionais, zeros do denominador são candidatos a descontinuidades e assíntotas verticais. Reconhecê-los já no Pré-Cálculo prepara a análise de limites.',
+                'Zeros do denominador são candidatos a descontinuidades e assíntotas verticais. Tabelas de sinal de expressões racionais reaparecem na análise de derivadas, crescimento e comportamento de funções.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para funções racionais, domínio, sinais e assíntotas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Em (x + 3)/(x − 5) < 0, qual valor jamais pode pertencer à solução?',
+      question: 'Em (x+3)/(x−5)<0, qual valor jamais pode pertencer à solução?',
       choices: ['−3', '0', '5'],
       correctIndex: 2,
       explanation:
-          'x = 5 zera o denominador, então a expressão não está definida nesse ponto.',
+          'x=5 zera o denominador. A expressão não está definida nesse ponto, independentemente do símbolo da inequação.',
     ),
     takeaways: [
-      'Zeros do numerador e do denominador têm papéis diferentes.',
-      'Denominador zero é sempre excluído.',
-      'Pontos críticos dividem a reta para o estudo de sinal.',
-      'Inequações racionais preparam domínio e assíntotas.',
+      'Domínio deve ser determinado antes do estudo de sinal.',
+      'Zeros do numerador podem entrar em desigualdades não estritas.',
+      'Zeros do denominador nunca entram.',
+      'Fatoração revela pontos críticos e multiplicidades.',
+      'Cancelamento não restaura pontos excluídos.',
+      'Tabelas de sinal evitam multiplicações inseguras por expressões de sinal desconhecido.',
     ],
     closing:
-        'O estudo de sinal de quocientes conecta álgebra, domínio e comportamento de funções.',
-  ),
-];
-
-const List<CourseLessonData> _englishLessons = [
+        'Inequações racionais unem domínio e sinal: resolver corretamente exige controlar ambos ao mesmo tempo.',
+  )
   CourseLessonData(
     id: 'equations-09-radicais',
     topicId: 'equacoes-inequacoes',
