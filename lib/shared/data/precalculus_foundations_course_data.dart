@@ -1257,85 +1257,353 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     topicId: 'algebra-fundamental',
     trailTitle: 'Pré-Cálculo — Fundamentos',
     eyebrow: 'Unidade 0',
-    title: 'Valor absoluto e distância',
-    description: 'módulo, distância e inequações simples',
-    duration: '≈ 15 min',
+    title: 'Valor absoluto, distância e inequações',
+    description:
+        'definição por casos, propriedades, distância na reta real, equações, inequações e desigualdade triangular',
+    duration: '≈ 30 min',
     objective:
-        'interpretar valor absoluto como distância e resolver relações simples de igualdade e desigualdade envolvendo módulo',
+        'interpretar valor absoluto como magnitude e distância, aplicar sua definição por casos, resolver equações e inequações com módulo, justificar propriedades fundamentais e conectar a linguagem de distância à formulação de limites',
     symbol: '|x|',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Módulo mede distância, não sinal',
+        title: 'Definição formal de valor absoluto',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Distância até zero',
+            visual: LessonVisual.notation,
+            title: 'Uma função definida por casos',
             content:
-                '|x| representa a distância entre x e 0 na reta real. Por isso |5| = 5 e |−5| = 5. Em forma por casos, |x| = x quando x ≥ 0 e |x| = −x quando x < 0.',
+                'Para x real, o valor absoluto de x é definido por [[math:|x|=\\begin{cases}x,&x\\ge 0\\\\-x,&x<0\\end{cases}]]. A definição não “apaga” um sinal: ela escolhe, em cada caso, a expressão que produz a magnitude não negativa de x.',
             emphasis:
-                'O valor absoluto nunca é negativo.',
+                'Se x ≥ 0, então |x| = x. Se x < 0, então |x| = −x, que é positivo porque x já é negativo.',
           ),
           ConceptBlockData(
             visual: LessonVisual.route,
-            title: 'Distância entre dois números',
+            title: 'Interpretação geométrica',
             content:
-                'A distância entre x e a pode ser escrita como |x − a|. Assim, |x − 3| < 2 significa que x está a menos de 2 unidades do número 3.',
+                'Na reta real, |x| representa a distância entre x e 0. Por isso |5| = 5 e |−5| = 5: os pontos 5 e −5 estão à mesma distância da origem.',
             emphasis:
-                'Geometricamente, |x − 3| < 2 descreve o intervalo (1, 5).',
+                'Valor absoluto mede magnitude ou distância; distância nunca é negativa.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Propriedades fundamentais',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Uma inequação como distância',
-            problem: 'Resolva |x − 4| ≤ 3.',
-            steps: [
-              'Leia como distância: x está a no máximo 3 unidades de 4.',
-              'A extremidade esquerda é 4 − 3 = 1.',
-              'A extremidade direita é 4 + 3 = 7.',
-              'Como a distância pode ser exatamente 3, as extremidades são incluídas.',
-            ],
-            result: '1 ≤ x ≤ 7, ou [1, 7].',
-            interpretation:
-                'A solução é um intervalo centrado em 4 com raio 3.',
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Propriedades básicas',
+            content:
+                'Para x e y reais: |x| ≥ 0; |x| = 0 se, e somente se, x = 0; |−x| = |x|; |xy| = |x||y|; e, para y ≠ 0, |x/y| = |x|/|y|. Além disso, |x|² = x² e [[math:|x|=\\sqrt{x^2}]].',
+            emphasis:
+                'As condições de validade importam: a propriedade do quociente exige y ≠ 0.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Valor absoluto não se distribui sobre soma',
+            content:
+                'Em geral, |x + y| ≠ |x| + |y|. Por exemplo, com x = 3 e y = −2, temos |3 + (−2)| = 1, enquanto |3| + |−2| = 5.',
+            emphasis:
+                'O que sempre vale é a desigualdade triangular: |x + y| ≤ |x| + |y|.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
+        title: 'Distância entre dois números reais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'A fórmula da distância na reta',
+            content:
+                'A distância entre dois números reais a e b é [[math:d(a,b)=|a-b|]]. Como |a − b| = |b − a|, a ordem dos pontos não altera a distância.',
+            emphasis:
+                'A expressão |x − a| mede exatamente quão distante x está do ponto a.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distância entre dois pontos',
+            problem: 'Calcule a distância entre −4 e 7.',
+            steps: [
+              'Use d(a,b) = |a − b|.',
+              'd(−4,7) = |−4 − 7|.',
+              'd(−4,7) = |−11| = 11.',
+            ],
+            result: 'A distância é 11.',
+            interpretation:
+                'Se invertermos a ordem, |7 − (−4)| = |11| = 11. A distância é simétrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equações com valor absoluto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'O modelo |u| = a',
+            content:
+                'Se a > 0, a equação |u| = a equivale a u = a ou u = −a. Se a = 0, então u = 0. Se a < 0, não há solução real, pois valor absoluto nunca é negativo.',
+            emphasis:
+                'Antes de abrir dois casos, observe o número do lado direito.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equação com duas soluções',
+            problem: 'Resolva |2x − 5| = 7.',
+            steps: [
+              'Considere os dois casos: 2x − 5 = 7 ou 2x − 5 = −7.',
+              'No primeiro caso, 2x = 12 e x = 6.',
+              'No segundo caso, 2x = −2 e x = −1.',
+              'Verifique na expressão original: ambos produzem valor absoluto 7.',
+            ],
+            result: 'Solução: {−1, 6}.',
+            interpretation:
+                'Geometricamente, 2x − 5 pode estar a 7 unidades de zero em qualquer um dos dois lados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equação sem solução real',
+            problem: 'Resolva |3x + 1| = −4.',
+            steps: [
+              'Para todo número real u, |u| ≥ 0.',
+              'O lado direito é −4, que é negativo.',
+            ],
+            result: 'Não existe solução real.',
+            interpretation:
+                'A análise da imagem da função módulo evita manipulações desnecessárias.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequações e intervalos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Menor que: pontos dentro de um intervalo',
+            content:
+                'Para a > 0, |x| < a equivale a −a < x < a, e |x| ≤ a equivale a −a ≤ x ≤ a. A condição descreve pontos cuja distância até 0 é menor que — ou no máximo igual a — a.',
+            emphasis:
+                'Com centro c, |x − c| < r descreve o intervalo (c − r, c + r).',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Maior que: pontos fora de um intervalo',
+            content:
+                'Para a > 0, |x| > a equivale a x < −a ou x > a. Analogamente, |x| ≥ a equivale a x ≤ −a ou x ≥ a.',
+            emphasis:
+                '“Menor que” produz uma região interna; “maior que” produz duas regiões externas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Inequação como vizinhança',
+            problem: 'Resolva |x − 4| ≤ 3.',
+            steps: [
+              'Interprete como distância: x está a no máximo 3 unidades de 4.',
+              'Escreva −3 ≤ x − 4 ≤ 3.',
+              'Some 4 aos três membros: 1 ≤ x ≤ 7.',
+            ],
+            result: 'Solução: [1, 7].',
+            interpretation:
+                'O intervalo tem centro 4 e raio 3.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Região externa',
+            problem: 'Resolva |2x + 1| > 5.',
+            steps: [
+              'Separe em dois casos: 2x + 1 < −5 ou 2x + 1 > 5.',
+              'Primeiro caso: 2x < −6, então x < −3.',
+              'Segundo caso: 2x > 4, então x > 2.',
+            ],
+            result: 'Solução: (−∞, −3) ∪ (2, +∞).',
+            interpretation:
+                'A solução fica fora do intervalo em que |2x + 1| seria menor ou igual a 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Centro, raio e vizinhanças',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'A expressão |x − a| < r',
+            content:
+                'Para r > 0, a condição |x − a| < r significa que x está a menos de r unidades de a. Algebraicamente, a − r < x < a + r. Em linguagem de Cálculo, esse intervalo é uma vizinhança aberta de a.',
+            emphasis:
+                'Valor absoluto transforma uma afirmação geométrica de proximidade em uma desigualdade algébrica.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Da distância para o intervalo',
+            problem: 'Descreva |x − 2| < 0,1 como intervalo.',
+            steps: [
+              'O centro é 2 e o raio é 0,1.',
+              'Extremidade esquerda: 2 − 0,1 = 1,9.',
+              'Extremidade direita: 2 + 0,1 = 2,1.',
+              'A desigualdade é estrita, então as extremidades não pertencem ao conjunto.',
+            ],
+            result: 'x ∈ (1,9, 2,1).',
+            interpretation:
+                'Essa é exatamente a linguagem usada para dizer que x está “próximo” de 2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Desigualdade triangular',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'Uma propriedade central de distância',
+            content:
+                'Para quaisquer x e y reais, [[math:|x+y|\\le |x|+|y|]]. Essa é a desigualdade triangular. Ela expressa a ideia de que o caminho direto entre dois pontos não é maior do que um caminho que passa por uma etapa intermediária.',
+            emphasis:
+                'A igualdade pode ocorrer, mas não é obrigatória. Por isso não podemos substituir ≤ por =.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Desigualdade triangular reversa',
+            content:
+                'Também vale [[math:\\bigl||x|-|y|\\bigr|\\le |x-y|]]. Ela compara a diferença entre magnitudes com a distância entre os próprios números.',
+            emphasis:
+                'Essas desigualdades serão úteis em estimativas de erro, limites e continuidade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros conceituais frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '−|x| não é o mesmo que |−x|',
+            content:
+                '|−x| = |x| é sempre não negativo. Já −|x| é sempre não positivo. Por exemplo, se x = 3, então |−3| = 3, enquanto −|3| = −3.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '|x| = a não significa x = a',
+            content:
+                'Quando a > 0, existem em geral duas possibilidades: x = a ou x = −a. Ignorar uma delas elimina uma solução válida.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não transforme |x + y| em |x| + |y|',
+            content:
+                'Valor absoluto é multiplicativo em produtos, mas não aditivo em somas. Para somas, a relação geral disponível é uma desigualdade, não uma igualdade.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — equação',
+            problem: 'Resolva |3x − 6| = 9.',
+            steps: [
+              'Escreva 3x − 6 = 9 ou 3x − 6 = −9.',
+              'Primeiro caso: 3x = 15, então x = 5.',
+              'Segundo caso: 3x = −3, então x = −1.',
+              'Substitua os dois valores para conferir.',
+            ],
+            result: 'Solução: {−1, 5}.',
+            interpretation:
+                'As duas soluções correspondem às duas posições possíveis a uma mesma distância.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — inequação',
+            problem: 'Resolva |x + 2| < 5.',
+            steps: [
+              'Escreva −5 < x + 2 < 5.',
+              'Subtraia 2 dos três membros.',
+              'Obtenha −7 < x < 3.',
+            ],
+            result: 'Solução: (−7, 3).',
+            interpretation:
+                'O intervalo tem centro −2 e raio 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva justificando cada transformação',
+            content:
+                '1. Calcule |−12|.\n'
+                '2. Compare |−7| e |7|.\n'
+                '3. Calcule a distância entre −3 e 8.\n'
+                '4. Mostre, por casos, que |x| ≥ 0 para todo x real.\n'
+                '5. Resolva |x| = 6.\n'
+                '6. Resolva |2x − 1| = 5.\n'
+                '7. Decida se |x + 4| = −2 possui solução real.\n'
+                '8. Resolva |x| < 4.\n'
+                '9. Resolva |x| ≥ 3.\n'
+                '10. Resolva |x − 5| ≤ 2.\n'
+                '11. Resolva |2x + 3| > 7.\n'
+                '12. Escreva (−2, 6) na forma |x − c| < r.\n'
+                '13. Explique por que |x + y| = |x| + |y| não vale em geral.\n'
+                '14. Verifique a desigualdade triangular para x = 4 e y = −7.\n'
+                '15. Explique geometricamente o significado de |x − a| < ε.',
+            emphasis:
+                'Nas inequações, apresente tanto a forma algébrica quanto a notação de intervalo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
         title: 'Conexão com o Cálculo',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.infinity,
-            title: 'Distâncias aparecem na definição de limite',
+            title: 'Valor absoluto é a linguagem da proximidade',
             content:
-                'Mais adiante, expressões como |x − a| e |f(x) − L| permitirão medir quão perto x está de a e quão perto f(x) está de L. Entender módulo como distância prepara a linguagem formal de limites.',
+                'Na definição formal de limite, |x − a| mede a distância entre x e a, enquanto |f(x) − L| mede a distância entre f(x) e L. A expressão [[math:0<|x-a|<\\delta]] descreve x próximo de a, e [[math:|f(x)-L|<\\varepsilon]] expressa que f(x) está próximo de L.',
+            emphasis:
+                'Dominar valor absoluto como distância prepara diretamente a linguagem ε–δ de limites e continuidade.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, tópicos de valor absoluto, equações e inequações; OpenStax, Precalculus 2e, relações de distância e funções; Sullivan, Precalculus; Blitzer, Precalculus; James Stewart, Calculus, revisão de inequações e linguagem de distância; Thomas’ Calculus, revisão algébrica e definição de limite; e MIT OpenCourseWare 18.01SC para a conexão entre distância e limites.',
+            emphasis:
+                'Os exemplos e exercícios foram organizados e adaptados pedagogicamente para o Cálculo Trivial, sem reprodução literal de listas protegidas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual intervalo resolve |x − 2| < 4?',
-      choices: ['(−2, 6)', '[−2, 6]', '(−6, 2)'],
+      question: 'Qual conjunto resolve |x − 3| < 2?',
+      choices: ['(1, 5)', '[1, 5]', '(−1, 5)'],
       correctIndex: 0,
       explanation:
-          'A distância de x até 2 deve ser menor que 4. As extremidades são 2 − 4 = −2 e 2 + 4 = 6, sem inclusão.',
+          '|x − 3| < 2 significa que a distância entre x e 3 é menor que 2. Portanto, −2 < x − 3 < 2 e, somando 3, obtemos 1 < x < 5.',
     ),
     takeaways: [
-      'Valor absoluto representa distância até zero.',
-      '|x − a| representa a distância entre x e a.',
-      'Inequações com módulo podem ser interpretadas geometricamente.',
-      'A linguagem de distância será essencial na definição de limite.',
+      'Valor absoluto é uma função definida por casos e produz sempre um valor não negativo.',
+      '|x| representa a distância de x até 0; |x − a| representa a distância de x até a.',
+      'Equações |u| = a exigem análise do sinal de a e, quando a > 0, geram dois casos.',
+      'Inequações com módulo descrevem regiões internas ou externas em torno de um centro.',
+      'A desigualdade triangular controla a magnitude de uma soma.',
+      'Valor absoluto não se distribui sobre soma.',
+      'A linguagem |x − a| < r descreve uma vizinhança e prepara a definição formal de limite.',
     ],
     closing:
-        'Quando módulo vira distância, muitas regras passam a ter significado geométrico.',
-  ),
-];
+        'Valor absoluto deixa de ser uma regra de sinais quando é entendido como a linguagem algébrica da distância e da proximidade.',
+  )];
 
 const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
   CourseLessonData(
@@ -2581,79 +2849,350 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     topicId: 'algebra-fundamental',
     trailTitle: 'Precalculus — Foundations',
     eyebrow: 'Unit 0',
-    title: 'Absolute value and distance',
-    description: 'modulus, distance, and simple inequalities',
-    duration: '≈ 15 min',
+    title: 'Absolute value, distance, and inequalities',
+    description:
+        'piecewise definition, properties, distance on the real line, equations, inequalities, and the triangle inequality',
+    duration: '≈ 30 min',
     objective:
-        'interpret absolute value as distance and solve simple equalities and inequalities involving absolute value',
+        'interpret absolute value as magnitude and distance, apply its piecewise definition, solve absolute-value equations and inequalities, justify fundamental properties, and connect distance language to the formulation of limits',
     symbol: '|x|',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Absolute value measures distance, not sign',
+        title: 'Formal definition of absolute value',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Distance from zero',
+            visual: LessonVisual.notation,
+            title: 'A piecewise-defined function',
             content:
-                '|x| is the distance between x and 0 on the real line. Thus |5| = 5 and |−5| = 5. Piecewise, |x| = x for x ≥ 0 and |x| = −x for x < 0.',
-            emphasis: 'Absolute value is never negative.',
+                'For a real number x, absolute value is defined by [[math:|x|=\\begin{cases}x,&x\\ge 0\\\\-x,&x<0\\end{cases}]]. The definition does not merely “erase” a sign: in each case it selects the expression that produces the nonnegative magnitude of x.',
+            emphasis:
+                'If x ≥ 0, then |x| = x. If x < 0, then |x| = −x, which is positive because x is already negative.',
           ),
           ConceptBlockData(
             visual: LessonVisual.route,
-            title: 'Distance between two numbers',
+            title: 'Geometric interpretation',
             content:
-                'The distance between x and a is |x − a|. Thus |x − 3| < 2 means x lies less than 2 units away from 3.',
-            emphasis: 'Geometrically, |x − 3| < 2 describes (1, 5).',
+                'On the real line, |x| is the distance between x and 0. Thus |5| = 5 and |−5| = 5 because 5 and −5 are equally far from the origin.',
+            emphasis:
+                'Absolute value measures magnitude or distance; distance is never negative.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Fundamental properties',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'An inequality as distance',
-            problem: 'Solve |x − 4| ≤ 3.',
-            steps: [
-              'Read it as distance: x is at most 3 units from 4.',
-              'The left endpoint is 4 − 3 = 1.',
-              'The right endpoint is 4 + 3 = 7.',
-              'Because distance may equal 3, both endpoints are included.',
-            ],
-            result: '1 ≤ x ≤ 7, or [1, 7].',
-            interpretation: 'The solution is an interval centered at 4 with radius 3.',
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Basic properties',
+            content:
+                'For real x and y: |x| ≥ 0; |x| = 0 if and only if x = 0; |−x| = |x|; |xy| = |x||y|; and, for y ≠ 0, |x/y| = |x|/|y|. Also, |x|² = x² and [[math:|x|=\\sqrt{x^2}]].',
+            emphasis:
+                'Validity conditions matter: the quotient property requires y ≠ 0.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Absolute value does not distribute over addition',
+            content:
+                'In general, |x + y| ≠ |x| + |y|. For x = 3 and y = −2, |3 + (−2)| = 1 whereas |3| + |−2| = 5.',
+            emphasis:
+                'What always holds is the triangle inequality: |x + y| ≤ |x| + |y|.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
+        title: 'Distance between real numbers',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'The distance formula on the real line',
+            content:
+                'The distance between real numbers a and b is [[math:d(a,b)=|a-b|]]. Since |a − b| = |b − a|, reversing the points does not change the distance.',
+            emphasis:
+                'The expression |x − a| measures exactly how far x is from a.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distance between two points',
+            problem: 'Find the distance between −4 and 7.',
+            steps: [
+              'Use d(a,b) = |a − b|.',
+              'd(−4,7) = |−4 − 7|.',
+              'd(−4,7) = |−11| = 11.',
+            ],
+            result: 'The distance is 11.',
+            interpretation:
+                'Reversing the order gives |7 − (−4)| = |11| = 11. Distance is symmetric.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Absolute-value equations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'The model |u| = a',
+            content:
+                'If a > 0, |u| = a is equivalent to u = a or u = −a. If a = 0, then u = 0. If a < 0, there is no real solution because absolute value cannot be negative.',
+            emphasis:
+                'Inspect the number on the right before splitting into cases.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An equation with two solutions',
+            problem: 'Solve |2x − 5| = 7.',
+            steps: [
+              'Use two cases: 2x − 5 = 7 or 2x − 5 = −7.',
+              'First case: 2x = 12, so x = 6.',
+              'Second case: 2x = −2, so x = −1.',
+              'Check both values in the original equation.',
+            ],
+            result: 'Solution: {−1, 6}.',
+            interpretation:
+                'The inside expression can lie 7 units from zero on either side.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An equation with no real solution',
+            problem: 'Solve |3x + 1| = −4.',
+            steps: [
+              'For every real u, |u| ≥ 0.',
+              'The right-hand side is −4, which is negative.',
+            ],
+            result: 'There is no real solution.',
+            interpretation:
+                'Using the range of the absolute-value function avoids unnecessary algebra.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequalities and intervals',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Less than: points inside an interval',
+            content:
+                'For a > 0, |x| < a is equivalent to −a < x < a, and |x| ≤ a is equivalent to −a ≤ x ≤ a. These conditions describe points whose distance from 0 is less than, or at most, a.',
+            emphasis:
+                'With center c, |x − c| < r describes the interval (c − r, c + r).',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Greater than: points outside an interval',
+            content:
+                'For a > 0, |x| > a is equivalent to x < −a or x > a. Likewise, |x| ≥ a is equivalent to x ≤ −a or x ≥ a.',
+            emphasis:
+                '“Less than” gives an inside region; “greater than” gives two outside regions.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An inequality as a neighborhood',
+            problem: 'Solve |x − 4| ≤ 3.',
+            steps: [
+              'Interpret distance: x is at most 3 units from 4.',
+              'Write −3 ≤ x − 4 ≤ 3.',
+              'Add 4 throughout: 1 ≤ x ≤ 7.',
+            ],
+            result: 'Solution: [1, 7].',
+            interpretation:
+                'The interval has center 4 and radius 3.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An outside region',
+            problem: 'Solve |2x + 1| > 5.',
+            steps: [
+              'Split into 2x + 1 < −5 or 2x + 1 > 5.',
+              'First case: 2x < −6, so x < −3.',
+              'Second case: 2x > 4, so x > 2.',
+            ],
+            result: 'Solution: (−∞, −3) ∪ (2, +∞).',
+            interpretation:
+                'The solution lies outside the interval where |2x + 1| would be at most 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Centers, radii, and neighborhoods',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'The expression |x − a| < r',
+            content:
+                'For r > 0, |x − a| < r means that x lies less than r units from a. Algebraically, a − r < x < a + r. In Calculus, this interval is an open neighborhood of a.',
+            emphasis:
+                'Absolute value turns a geometric statement of proximity into an algebraic inequality.',
+          ),
+          WorkedExampleBlockData(
+            title: 'From distance to interval notation',
+            problem: 'Write |x − 2| < 0.1 as an interval.',
+            steps: [
+              'The center is 2 and the radius is 0.1.',
+              'Left endpoint: 2 − 0.1 = 1.9.',
+              'Right endpoint: 2 + 0.1 = 2.1.',
+              'The inequality is strict, so the endpoints are excluded.',
+            ],
+            result: 'x ∈ (1.9, 2.1).',
+            interpretation:
+                'This is precisely the language used to say that x is “close” to 2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'The triangle inequality',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'A central property of distance',
+            content:
+                'For all real x and y, [[math:|x+y|\\le |x|+|y|]]. This is the triangle inequality. It states that a direct displacement cannot exceed a route broken into intermediate displacements.',
+            emphasis:
+                'Equality can occur, but it is not guaranteed. Therefore ≤ cannot be replaced by =.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Reverse triangle inequality',
+            content:
+                'We also have [[math:\\bigl||x|-|y|\\bigr|\\le |x-y|]]. It compares the difference between magnitudes with the distance between the numbers themselves.',
+            emphasis:
+                'These inequalities are useful in error estimates, limits, and continuity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Frequent conceptual errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '−|x| is not the same as |−x|',
+            content:
+                '|−x| = |x| is always nonnegative. By contrast, −|x| is always nonpositive. If x = 3, then |−3| = 3 whereas −|3| = −3.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '|x| = a does not simply mean x = a',
+            content:
+                'When a > 0 there are generally two possibilities: x = a or x = −a. Ignoring one case removes a valid solution.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Do not replace |x + y| with |x| + |y|',
+            content:
+                'Absolute value is multiplicative over products, but it is not additive over sums. For sums, the general relation is an inequality rather than an equality.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — equation',
+            problem: 'Solve |3x − 6| = 9.',
+            steps: [
+              'Write 3x − 6 = 9 or 3x − 6 = −9.',
+              'First case: 3x = 15, so x = 5.',
+              'Second case: 3x = −3, so x = −1.',
+              'Substitute both values to verify.',
+            ],
+            result: 'Solution: {−1, 5}.',
+            interpretation:
+                'The two solutions correspond to two positions at the same distance.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — inequality',
+            problem: 'Solve |x + 2| < 5.',
+            steps: [
+              'Write −5 < x + 2 < 5.',
+              'Subtract 2 throughout.',
+              'Obtain −7 < x < 3.',
+            ],
+            result: 'Solution: (−7, 3).',
+            interpretation:
+                'The interval has center −2 and radius 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Justify each transformation',
+            content:
+                '1. Evaluate |−12|.\n'
+                '2. Compare |−7| and |7|.\n'
+                '3. Find the distance between −3 and 8.\n'
+                '4. Use cases to show that |x| ≥ 0 for every real x.\n'
+                '5. Solve |x| = 6.\n'
+                '6. Solve |2x − 1| = 5.\n'
+                '7. Decide whether |x + 4| = −2 has a real solution.\n'
+                '8. Solve |x| < 4.\n'
+                '9. Solve |x| ≥ 3.\n'
+                '10. Solve |x − 5| ≤ 2.\n'
+                '11. Solve |2x + 3| > 7.\n'
+                '12. Write (−2, 6) in the form |x − c| < r.\n'
+                '13. Explain why |x + y| = |x| + |y| does not hold in general.\n'
+                '14. Verify the triangle inequality for x = 4 and y = −7.\n'
+                '15. Explain geometrically what |x − a| < ε means.',
+            emphasis:
+                'For inequalities, give both the algebraic form and interval notation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
         title: 'Connection to Calculus',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.infinity,
-            title: 'Distances appear in the definition of limit',
+            title: 'Absolute value is the language of proximity',
             content:
-                'Later, expressions such as |x − a| and |f(x) − L| measure how close x is to a and how close f(x) is to L. Absolute value as distance prepares the formal language of limits.',
+                'In the formal definition of a limit, |x − a| measures the distance between x and a, while |f(x) − L| measures the distance between f(x) and L. The condition [[math:0<|x-a|<\\delta]] says that x is close to a, and [[math:|f(x)-L|<\\varepsilon]] says that f(x) is close to L.',
+            emphasis:
+                'Understanding absolute value as distance directly prepares the ε–δ language of limits and continuity.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax, Algebra and Trigonometry 2e, topics on absolute value, equations, and inequalities; OpenStax, Precalculus 2e, distance relations and functions; Sullivan, Precalculus; Blitzer, Precalculus; James Stewart, Calculus, review of inequalities and distance language; Thomas’ Calculus, algebra review and the definition of limit; and MIT OpenCourseWare 18.01SC for the connection between distance and limits.',
+            emphasis:
+                'The examples and exercises are organized and pedagogically adapted for Cálculo Trivial without reproducing protected problem sets verbatim.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which interval solves |x − 2| < 4?',
-      choices: ['(−2, 6)', '[−2, 6]', '(−6, 2)'],
+      question: 'Which set solves |x − 3| < 2?',
+      choices: ['(1, 5)', '[1, 5]', '(−1, 5)'],
       correctIndex: 0,
       explanation:
-          'x must be less than 4 units from 2. The endpoints are −2 and 6, neither included.',
+          '|x − 3| < 2 means that the distance between x and 3 is less than 2. Thus −2 < x − 3 < 2, and adding 3 gives 1 < x < 5.',
     ),
     takeaways: [
-      'Absolute value represents distance from zero.',
-      '|x − a| represents the distance between x and a.',
-      'Absolute-value inequalities have a geometric interpretation.',
-      'Distance language is essential in the formal definition of a limit.',
+      'Absolute value is a piecewise-defined function and is always nonnegative.',
+      '|x| is the distance from x to 0; |x − a| is the distance from x to a.',
+      'Equations |u| = a require checking the sign of a and, when a > 0, splitting into two cases.',
+      'Absolute-value inequalities describe inside or outside regions around a center.',
+      'The triangle inequality controls the magnitude of a sum.',
+      'Absolute value does not distribute over addition.',
+      'The language |x − a| < r describes a neighborhood and prepares the formal definition of limit.',
     ],
     closing:
-        'Once absolute value becomes distance, many rules gain geometric meaning.',
-  ),
-];
+        'Absolute value stops being a sign rule when it is understood as the algebraic language of distance and proximity.',
+  )];
