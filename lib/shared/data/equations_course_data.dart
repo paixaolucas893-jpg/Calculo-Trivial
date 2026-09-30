@@ -1785,61 +1785,326 @@ const List<CourseLessonData> equationsCourseLessons = [
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Desigualdades',
-    title: 'Inequações',
-    description: 'intervalos e inversão do sinal',
-    duration: '≈ 5 min',
+    title: 'Inequações lineares e intervalos',
+    description:
+        'ordem na reta real, transformações equivalentes, inversão do sinal, intervalos e interpretação gráfica',
+    duration: '≈ 32 min',
     objective:
-        'resolver inequações lineares e interpretar a solução como conjunto de valores',
+        'resolver inequações lineares, justificar quando o sentido da desigualdade é preservado ou invertido, representar soluções em intervalos e interpretar conjuntos solução na reta real',
     symbol: '≤',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'A resposta agora é uma região',
+        title: 'Inequação é uma relação de ordem',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Não buscamos apenas um número',
+            visual: LessonVisual.notation,
+            title: 'Comparar em vez de igualar',
             content:
-                'Uma inequação compara valores usando <, >, ≤ ou ≥. '
-                'A solução costuma ser um conjunto de números.',
-            emphasis: 'x > 4 representa todos os números reais maiores que 4.',
+                'Uma inequação compara duas expressões usando <, >, ≤ ou ≥. Resolver uma inequação significa encontrar todos os valores do domínio para os quais a relação de ordem é verdadeira.',
+            emphasis:
+                'A resposta costuma ser um intervalo ou uma união de intervalos, não apenas um número.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Leitura na reta real',
+            content:
+                'x>4 representa todos os pontos à direita de 4 na reta real. x≤−2 representa todos os pontos à esquerda de −2, incluindo o próprio −2.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'O cuidado mais importante',
+        title: 'Soma e subtração preservam a ordem',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Adicionar o mesmo valor aos dois membros',
+            content:
+                'Se a<b, então a+c<b+c para qualquer real c. A mesma propriedade vale para >, ≤ e ≥.',
+            emphasis:
+                'Somar ou subtrair a mesma quantidade não exige inverter o sinal.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Inequação linear simples',
+            problem: 'Resolva x+5<9.',
+            steps: [
+              'Subtraia 5 dos dois membros.',
+              'Obtenha x<4.',
+            ],
+            result: 'S=(−∞,4).',
+            interpretation:
+                'O número 4 não pertence ao conjunto porque a desigualdade é estrita.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplicação por número positivo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'A ordem é preservada',
+            content:
+                'Se a<b e c>0, então ac<bc. Multiplicar ou dividir ambos os membros por um número positivo mantém o sentido da desigualdade.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Coeficiente positivo',
+            problem: 'Resolva 3x≤15.',
+            steps: [
+              'Divida ambos os membros por 3.',
+              'Como 3>0, mantenha ≤.',
+            ],
+            result: 'x≤5, isto é, (−∞,5].',
+            interpretation:
+                'O ponto 5 está incluído porque a desigualdade usa ≤.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Multiplicação por número negativo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'O sentido da desigualdade é invertido',
+            content:
+                'Se a<b e c<0, então ac>bc. Multiplicar ou dividir por número negativo inverte < para >, > para <, ≤ para ≥ e ≥ para ≤.',
+            emphasis:
+                'A inversão não é uma regra decorada: multiplicar por −1 reflete os pontos da reta em torno de zero.',
+            tone: LearningCardTone.warning,
+          ),
           WorkedExampleBlockData(
             title: 'Divisão por número negativo',
-            problem: 'Resolva −3x > 12.',
+            problem: 'Resolva −3x>12.',
             steps: [
-              'Divida os dois lados por −3.',
-              'Como a divisão é por número negativo, inverta > para <.',
-              'Obtenha x < −4.',
+              'Divida os dois membros por −3.',
+              'Como o divisor é negativo, inverta > para <.',
             ],
-            result: 'A solução é x < −4.',
+            result: 'x<−4, isto é, (−∞,−4).',
             interpretation:
                 'Sem inverter o sinal, o conjunto solução seria incorreto.',
           ),
         ],
       ),
+      LessonSectionData(
+        number: '5',
+        title: 'Variável nos dois membros',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Agrupando termos',
+            problem: 'Resolva 5x−3≤2x+9.',
+            steps: [
+              'Subtraia 2x: 3x−3≤9.',
+              'Some 3: 3x≤12.',
+              'Divida por 3.',
+            ],
+            result: 'x≤4, isto é, (−∞,4].',
+            interpretation:
+                'A lógica é parecida com equações, mas a direção da desigualdade deve ser monitorada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Inequações duplas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Três membros podem ser manipulados ao mesmo tempo',
+            content:
+                'Uma desigualdade como 1<2x+3≤7 representa duas condições simultâneas. Podemos aplicar a mesma operação aos três membros.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Intervalo limitado',
+            problem: 'Resolva 1<2x+3≤7.',
+            steps: [
+              'Subtraia 3 dos três membros: −2<2x≤4.',
+              'Divida tudo por 2: −1<x≤2.',
+            ],
+            result: 'S=(−1,2].',
+            interpretation:
+                'O extremo esquerdo é aberto; o direito é fechado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'União e interseção de condições',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '“E” e “ou” representam operações entre conjuntos',
+            content:
+                'Condições simultâneas ligadas por “e” correspondem à interseção dos conjuntos solução. Condições alternativas ligadas por “ou” correspondem à união.',
+            emphasis:
+                'x>1 e x≤5 produz (1,5]. Já x<−2 ou x≥3 produz (−∞,−2)∪[3,+∞).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Notação de intervalo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Parênteses e colchetes',
+            content:
+                'Parênteses indicam extremo não incluído; colchetes indicam extremo incluído. Infinito nunca é incluído e, por isso, sempre aparece com parêntese.',
+            emphasis:
+                'x≥3 corresponde a [3,+∞), enquanto x<3 corresponde a (−∞,3).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Modelagem com inequações',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Restrição de orçamento',
+            problem: 'Você tem no máximo R$ 80 para pagar uma taxa fixa de R$ 20 e ingressos de R$ 12 cada. Quantos ingressos x podem ser comprados?',
+            steps: [
+              'Modele: 20+12x≤80.',
+              'Subtraia 20: 12x≤60.',
+              'Divida por 12: x≤5.',
+              'Como x representa quantidade de ingressos, x deve ser inteiro não negativo.',
+            ],
+            result: 'No máximo 5 ingressos.',
+            interpretation:
+                'O contexto pode impor restrições adicionais além da inequação algébrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inverter o sinal sem multiplicar por negativo',
+            content:
+                'Somar ou subtrair não muda o sentido. A inversão ocorre somente ao multiplicar ou dividir por um número negativo.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer se o extremo pertence ao conjunto',
+            content:
+                'x<4 e x≤4 têm conjuntos diferentes. A presença ou ausência do ponto 4 deve aparecer na notação de intervalo.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o domínio do problema',
+            content:
+                'Uma inequação pode ter solução real contínua, mas o contexto pode exigir apenas inteiros, naturais ou valores não negativos.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — sinal negativo',
+            problem: 'Resolva 7−2x≥15.',
+            steps: [
+              'Subtraia 7: −2x≥8.',
+              'Divida por −2 e inverta o sinal.',
+            ],
+            result: 'x≤−4.',
+            interpretation:
+                'A inversão ocorre na divisão pelo número negativo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — desigualdade dupla',
+            problem: 'Resolva −5≤3x+1<10.',
+            steps: [
+              'Subtraia 1: −6≤3x<9.',
+              'Divida por 3: −2≤x<3.',
+            ],
+            result: 'S=[−2,3).',
+            interpretation:
+                'A mesma transformação foi aplicada aos três membros.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e represente em intervalos',
+            content:
+                '1. x+4>9.\n'
+                '2. 3x≤18.\n'
+                '3. −2x<10.\n'
+                '4. 5−x≥1.\n'
+                '5. 4x−3>2x+5.\n'
+                '6. 7x+2≤3x+14.\n'
+                '7. −3≤x+1<6.\n'
+                '8. 2<3x−1≤11.\n'
+                '9. Escreva x≥−4 em notação de intervalo.\n'
+                '10. Escreva (−2,5] como desigualdade.\n'
+                '11. Determine a interseção de x>1 e x≤6.\n'
+                '12. Determine a união de x<−3 ou x≥2.\n'
+                '13. Explique por que o sinal inverte ao multiplicar por −1.\n'
+                '14. Modele uma situação de orçamento usando ≤.\n'
+                '15. Compare as soluções de −2x≤8 e 2x≤8.',
+            emphasis:
+                'Em cada questão, apresente a desigualdade final e a notação de intervalo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Inequações descrevem regiões onde funções têm certo comportamento',
+            content:
+                'Em análise de funções, inequações determinam onde f(x)>0, onde uma derivada é positiva ou negativa, intervalos de crescimento e decrescimento e restrições de domínio.',
+            emphasis:
+                'Estudo de sinal em Cálculo é uma extensão direta desta linguagem de intervalos.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para intervalos, sinais e análise de funções.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
-      question: 'Qual é a solução de −2x ≤ 8?',
-      choices: ['x ≤ −4', 'x ≥ −4', 'x ≥ 4'],
+      question: 'Qual é a solução de −2x≤8?',
+      choices: ['x≤−4', 'x≥−4', 'x≥4'],
       correctIndex: 1,
-      explanation: 'Dividindo por −2, invertemos ≤ para ≥. Portanto, x ≥ −4.',
+      explanation:
+          'Dividindo ambos os membros por −2, invertemos ≤ para ≥. Portanto, x≥−4.',
     ),
     takeaways: [
-      'Inequações descrevem conjuntos de valores.',
-      'Soma e subtração preservam a desigualdade.',
-      'Multiplicar ou dividir por negativo inverte o sinal.',
-      'A solução pode ser representada na reta numérica.',
+      'Inequações descrevem conjuntos de valores ordenados.',
+      'Soma e subtração preservam o sentido da desigualdade.',
+      'Multiplicar ou dividir por número negativo inverte o sinal.',
+      'Soluções podem ser representadas por intervalos.',
+      'Desigualdades duplas representam condições simultâneas.',
+      'União e interseção organizam condições com “ou” e “e”.',
+      'O contexto pode restringir o domínio das soluções.',
     ],
     closing:
-        'Nas inequações, preservar a ordem é tão importante quanto isolar a incógnita.',
-  ),
+        'Resolver inequações é raciocinar sobre ordem e conjuntos, não apenas repetir os passos usados em equações.',
+  )
   CourseLessonData(
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
