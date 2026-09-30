@@ -339,7 +339,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     ],
     closing:
         'Compreender domínio, imagem e notação funcional é pré-requisito para toda a análise de funções que vem depois.',
-  )
+  ),
   CourseLessonData(
     id: 'funcoes-02-composicao-inversa',
     topicId: 'funcoes',
@@ -673,61 +673,269 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     ],
     closing:
         'Composição descreve processos encadeados; inversão descreve quando e como esses processos podem ser desfeitos sem ambiguidade.',
-  )
+  ),
   CourseLessonData(
     id: 'funcoes-03-transformacoes-graficos',
     topicId: 'funcoes',
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Gráficos',
     title: 'Transformações de gráficos',
-    description: 'translações, reflexões e escalas',
-    duration: '≈ 16 min',
+    description:
+        'translações, reflexões, escalas, ordem das transformações e efeitos sobre domínio e imagem',
+    duration: '≈ 34 min',
     objective:
-        'prever como alterações algébricas deslocam, refletem e deformam o gráfico de uma função',
-    symbol: 'f(x−h)',
+        'prever e justificar transformações de gráficos a partir de alterações algébricas, distinguir mudanças internas e externas e acompanhar seus efeitos sobre pontos, domínio e imagem',
+    symbol: 'a·f(b(x−h))+k',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Leia a transformação antes de desenhar',
+        title: 'Uma função de referência',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Mudanças fora e dentro da função',
+            title: 'Transformar é reaproveitar um gráfico conhecido',
             content:
-                'f(x)+k desloca o gráfico verticalmente; f(x−h) desloca horizontalmente para a direita em h. −f(x) reflete no eixo x e f(−x) reflete no eixo y. Multiplicadores externos alteram a escala vertical.',
+                'Partimos de uma função base y=f(x) e produzimos novas funções alterando entradas e saídas. A forma geral [[math:y=a\,f(b(x-h))+k]] concentra translações, reflexões e escalas.',
             emphasis:
-                'O sinal dentro do argumento parece invertido: f(x−3) desloca 3 unidades para a direita.',
+                'Transformações permitem prever geometria sem reconstruir o gráfico ponto a ponto.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Translação vertical',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'f(x)+k',
+            content:
+                'Somar k fora da função altera todas as saídas: k>0 desloca o gráfico para cima e k<0 desloca para baixo.',
+            emphasis:
+                'O domínio permanece o mesmo; a imagem é deslocada verticalmente.',
+          ),
           WorkedExampleBlockData(
-            title: 'Partindo da parábola básica',
-            problem: 'Descreva o gráfico de y = −2(x−3)² + 1 a partir de y=x².',
+            title: 'Deslocamento vertical',
+            problem: 'Compare y=x² e y=x²−3.',
             steps: [
-              'x−3 desloca 3 unidades para a direita.',
-              'O fator −2 reflete no eixo x e produz alongamento vertical por 2.',
-              '+1 desloca o resultado 1 unidade para cima.',
+              'Cada saída de x² é reduzida em 3.',
+              'O vértice passa de (0,0) para (0,−3).',
             ],
-            result: 'Vértice em (3,1), parábola voltada para baixo e mais estreita que y=x².',
+            result: 'O gráfico desloca 3 unidades para baixo.',
             interpretation:
-                'A forma algébrica codifica diretamente a geometria do gráfico.',
+                'Uma transformação externa age diretamente sobre os valores de y.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Translação horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'f(x−h)',
+            content:
+                'Substituir x por x−h desloca o gráfico h unidades para a direita; x+h desloca h unidades para a esquerda.',
+            emphasis:
+                'O sinal horizontal parece invertido porque estamos alterando a entrada necessária para obter a mesma saída.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Por que x−3 move para a direita',
+            problem: 'Compare f(x)=x² e g(x)=(x−3)².',
+            steps: [
+              'Em f, o valor mínimo ocorre quando x=0.',
+              'Em g, o mesmo mínimo ocorre quando x−3=0.',
+              'Logo x=3.',
+            ],
+            result: 'O vértice se desloca para (3,0).',
+            interpretation:
+                'A equação interna mostra onde cada característica do gráfico reaparece.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Reflexões',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '−f(x) e f(−x) são diferentes',
+            content:
+                '−f(x) troca cada saída y por −y e reflete no eixo x. Já f(−x) troca cada entrada x por −x e reflete no eixo y.',
+            emphasis:
+                'Transformação externa afeta saídas; transformação interna afeta entradas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Escala vertical',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'a·f(x)',
+            content:
+                'Multiplicar a função por a multiplica todas as ordenadas por a. Se |a|>1 há alongamento vertical; se 0<|a|<1 há compressão vertical; se a<0 há também reflexão no eixo x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Alongamento e reflexão',
+            problem: 'Descreva y=−2x² a partir de y=x².',
+            steps: [
+              'O fator 2 duplica a distância vertical ao eixo x.',
+              'O sinal negativo reflete o gráfico no eixo x.',
+            ],
+            result: 'Parábola mais estreita, voltada para baixo.',
+            interpretation:
+                'Escala e reflexão podem ocorrer simultaneamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Escala horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'f(bx)',
+            content:
+                'A transformação interna f(bx) altera a escala horizontal por fator 1/|b|. Se |b|>1, o gráfico é comprimido horizontalmente; se 0<|b|<1, é alongado. Se b<0, ocorre também reflexão no eixo y.',
+            emphasis:
+                'Escalas internas usam o fator recíproco.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Transformações combinadas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Lendo uma forma completa',
+            problem: 'Descreva y=−2(x−3)²+1 a partir de y=x².',
+            steps: [
+              'x−3: desloque 3 unidades para a direita.',
+              '−2: reflita no eixo x e alongue verticalmente por 2.',
+              '+1: desloque 1 unidade para cima.',
+            ],
+            result: 'Vértice (3,1), concavidade para baixo e alongamento vertical por 2.',
+            interpretation:
+                'A forma algébrica codifica posição, orientação e escala.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Transformando pontos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Acompanhe um ponto conhecido',
+            content:
+                'Se (u,v) pertence ao gráfico de y=f(x), então para y=a·f(b(x−h))+k o ponto correspondente satisfaz x=h+u/b e y=av+k.',
+            emphasis:
+                'Esse método permite construir gráficos transformados a partir de poucos pontos notáveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Efeito sobre domínio e imagem',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Transformações também movem conjuntos',
+            content:
+                'Translações horizontais alteram o domínio pela mesma geometria aplicada às entradas. Transformações verticais alteram a imagem. Reflexões e escalas podem inverter ou redimensionar esses conjuntos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não confunda −f(x) com f(−x)',
+            title: 'Trocar o sentido do deslocamento horizontal',
             content:
-                '−f(x) muda as saídas e reflete no eixo x; f(−x) muda as entradas e reflete no eixo y.',
+                'f(x−3) desloca para a direita, não para a esquerda.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir −f(x) e f(−x)',
+            content:
+                'A primeira reflete no eixo x; a segunda, no eixo y.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar b como fator horizontal direto',
+            content:
+                'Em f(2x), a escala horizontal é 1/2, não 2.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Descreva y=3√(x+2)−4 a partir de y=√x.',
+            steps: [
+              'x+2 desloca 2 para a esquerda.',
+              '3 alonga verticalmente por 3.',
+              '−4 desloca 4 para baixo.',
+            ],
+            result: 'O ponto inicial (0,0) passa para (−2,−4).',
+            interpretation:
+                'O domínio também passa de [0,+∞) para [−2,+∞).',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Descreva f(x)+5.\n'
+                '2. Descreva f(x−4).\n'
+                '3. Descreva f(x+2).\n'
+                '4. Compare −f(x) e f(−x).\n'
+                '5. Descreva 3f(x).\n'
+                '6. Descreva f(2x).\n'
+                '7. Descreva −f(−x).\n'
+                '8. Transforme y=x² em y=(x+1)²−4.\n'
+                '9. Descreva y=−(x−2)²+5.\n'
+                '10. Determine o novo domínio de √(x−6).\n'
+                '11. Determine a imagem de 2x²+3.\n'
+                '12. Acompanhe o ponto (1,1) sob y=2f(x−3)+4.\n'
+                '13. Explique por que f(3x) comprime horizontalmente.\n'
+                '14. Dê um exemplo em que reflexão não altera o gráfico.\n'
+                '15. Esboce uma sequência de transformações de |x|.',
+            emphasis:
+                'Sempre separe transformações internas das externas antes de descrever o gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Transformações preservam estruturas importantes',
+            content:
+                'Em Cálculo, gráficos transformados ajudam a prever limites, continuidade e derivadas sem recomeçar a análise. Translações e escalas também aparecem em famílias parametrizadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para transformações e leitura gráfica.',
           ),
         ],
       ),
@@ -736,15 +944,19 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'O que f(x+4) faz com o gráfico de f(x)?',
       choices: ['Move 4 para a esquerda', 'Move 4 para a direita', 'Move 4 para cima'],
       correctIndex: 0,
-      explanation: 'Somar 4 dentro do argumento desloca o gráfico 4 unidades para a esquerda.',
+      explanation:
+          'Para reproduzir em x o valor que f produzia em x+4, o gráfico precisa aparecer 4 unidades à esquerda.',
     ),
     takeaways: [
-      'Mudanças externas alteram saídas.',
-      'Mudanças internas alteram entradas.',
-      'Sinais negativos podem produzir reflexões distintas.',
-      'Transformações permitem esboçar famílias inteiras de funções.',
+      'Transformações externas alteram saídas.',
+      'Transformações internas alteram entradas.',
+      'Translações horizontais têm sinal aparente invertido.',
+      'Reflexões em x e y correspondem a operações diferentes.',
+      'Escalas internas usam fator recíproco.',
+      'Domínio e imagem também se transformam.',
     ],
-    closing: 'Transformações tornam leitura de gráficos muito mais rápida antes de entrar em Cálculo.',
+    closing:
+        'Ler transformações diretamente da fórmula reduz o gráfico a uma sequência controlada de operações geométricas.',
   ),
   CourseLessonData(
     id: 'funcoes-04-polinomiais',
@@ -1836,7 +2048,7 @@ const List<CourseLessonData> _englishLessons = [
     ],
     closing:
         'Understanding domain, range, and function notation is prerequisite to every later function-analysis topic.',
-  )
+  ),
   CourseLessonData(
     id: 'funcoes-02-composicao-inversa',
     topicId: 'funcoes',
@@ -2170,17 +2382,290 @@ const List<CourseLessonData> _englishLessons = [
     ],
     closing:
         'Composition describes chained processes; inversion describes when and how those processes can be undone without ambiguity.',
-  )
+  ),
   CourseLessonData(
-    id: 'funcoes-03-transformacoes-graficos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Graphs', title: 'Graph transformations', description: 'translations, reflections, and scaling', duration: '≈ 16 min', objective: 'predict graph changes from algebraic transformations', symbol: 'f(x−h)',
+    id: 'funcoes-03-transformacoes-graficos',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Graphs',
+    title: 'Graph transformations',
+    description:
+        'translations, reflections, scaling, transformation order, and effects on domain and range',
+    duration: '≈ 34 min',
+    objective:
+        'predict and justify graph transformations from algebraic changes, distinguish internal from external transformations, and track effects on points, domain, and range',
+    symbol: 'a·f(b(x−h))+k',
     sections: [
-      LessonSectionData(number: '1', title: 'Read the transformation before drawing', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Outside versus inside', content: 'f(x)+k shifts vertically; f(x−h) shifts right by h; −f(x) reflects across the x-axis; f(−x) reflects across the y-axis.', emphasis: 'Inside horizontal shifts use the opposite-looking sign.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'From the basic parabola', problem: 'Describe y=−2(x−3)²+1 from y=x².', steps: ['Shift right 3.', 'Reflect across x-axis and stretch vertically by 2.', 'Shift up 1.'], result: 'Vertex (3,1), opening downward.', interpretation: 'The algebraic form encodes the graph geometry.')]),
-      LessonSectionData(number: '3', title: 'Common mistake', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: '−f(x) and f(−x) are different', content: 'The first reflects outputs across x-axis; the second reflects inputs across y-axis.', tone: LearningCardTone.warning)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Uma função de referência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Transformar é reaproveitar um gráfico conhecido',
+            content:
+                'Partimos de uma função base y=f(x) e produzimos novas funções alterando entradas e saídas. A forma geral [[math:y=a\,f(b(x-h))+k]] concentra translações, reflexões e escalas.',
+            emphasis:
+                'Transformações permitem prever geometria sem reconstruir o gráfico ponto a ponto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Translation vertical',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'f(x)+k',
+            content:
+                'Somar k fora da função altera todas as saídas: k>0 desloca o gráfico para cima e k<0 desloca para baixo.',
+            emphasis:
+                'O domínio permanece o mesmo; a imagem é deslocada verticalmente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Deslocamento vertical',
+            problem: 'Compare y=x² e y=x²−3.',
+            steps: [
+              'Cada saída de x² é reduzida em 3.',
+              'O vértice passa de (0,0) para (0,−3).',
+            ],
+            result: 'O gráfico desloca 3 unidades para baixo.',
+            interpretation:
+                'Uma transformação externa age diretamente sobre os valores de y.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Translation horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'f(x−h)',
+            content:
+                'Substituir x por x−h desloca o gráfico h unidades para a direita; x+h desloca h unidades para a esquerda.',
+            emphasis:
+                'O sinal horizontal parece invertido porque estamos alterando a entrada necessária para obter a mesma saída.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Por que x−3 move para a direita',
+            problem: 'Compare f(x)=x² e g(x)=(x−3)².',
+            steps: [
+              'Em f, o valor mínimo ocorre quando x=0.',
+              'Em g, o mesmo mínimo ocorre quando x−3=0.',
+              'Logo x=3.',
+            ],
+            result: 'O vértice se desloca para (3,0).',
+            interpretation:
+                'A equação interna mostra onde cada característica do gráfico reaparece.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Reflections',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '−f(x) e f(−x) são diferentes',
+            content:
+                '−f(x) troca cada saída y por −y e reflete no eixo x. Já f(−x) troca cada entrada x por −x e reflete no eixo y.',
+            emphasis:
+                'Transformação externa afeta saídas; transformação interna afeta entradas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Vertical scaling',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'a·f(x)',
+            content:
+                'Multiplicar a função por a multiplica todas as ordenadas por a. Se |a|>1 há alongamento vertical; se 0<|a|<1 há compressão vertical; se a<0 há também reflexão no eixo x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Alongamento e reflexão',
+            problem: 'Descreva y=−2x² a partir de y=x².',
+            steps: [
+              'O fator 2 duplica a distância vertical ao eixo x.',
+              'O sinal negativo reflete o gráfico no eixo x.',
+            ],
+            result: 'Parábola mais estreita, voltada para baixo.',
+            interpretation:
+                'Escala e reflexão podem ocorrer simultaneamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Horizontal scaling',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'f(bx)',
+            content:
+                'A transformação interna f(bx) altera a escala horizontal por fator 1/|b|. Se |b|>1, o gráfico é comprimido horizontalmente; se 0<|b|<1, é alongado. Se b<0, ocorre também reflexão no eixo y.',
+            emphasis:
+                'Escalas internas usam o fator recíproco.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Combined transformations',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Lendo uma forma completa',
+            problem: 'Descreva y=−2(x−3)²+1 a partir de y=x².',
+            steps: [
+              'x−3: desloque 3 unidades para a direita.',
+              '−2: reflita no eixo x e alongue verticalmente por 2.',
+              '+1: desloque 1 unidade para cima.',
+            ],
+            result: 'Vértice (3,1), concavidade para baixo e alongamento vertical por 2.',
+            interpretation:
+                'A forma algébrica codifica posição, orientação e escala.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Transforming points',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Acompanhe um ponto conhecido',
+            content:
+                'Se (u,v) pertence ao gráfico de y=f(x), então para y=a·f(b(x−h))+k o ponto correspondente satisfaz x=h+u/b e y=av+k.',
+            emphasis:
+                'Esse método permite construir gráficos transformados a partir de poucos pontos notáveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Effect on domain and range',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Transformações também movem conjuntos',
+            content:
+                'Translações horizontais alteram o domínio pela mesma geometria aplicada às entradas. Transformações verticais alteram a imagem. Reflections e escalas podem inverter ou redimensionar esses conjuntos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar o sentido do deslocamento horizontal',
+            content:
+                'f(x−3) desloca para a direita, não para a esquerda.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir −f(x) e f(−x)',
+            content:
+                'A primeira reflete no eixo x; a segunda, no eixo y.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar b como fator horizontal direto',
+            content:
+                'Em f(2x), a escala horizontal é 1/2, não 2.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Descreva y=3√(x+2)−4 a partir de y=√x.',
+            steps: [
+              'x+2 desloca 2 para a esquerda.',
+              '3 alonga verticalmente por 3.',
+              '−4 desloca 4 para baixo.',
+            ],
+            result: 'O ponto inicial (0,0) passa para (−2,−4).',
+            interpretation:
+                'O domínio também passa de [0,+∞) para [−2,+∞).',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Descreva f(x)+5.\n'
+                '2. Descreva f(x−4).\n'
+                '3. Descreva f(x+2).\n'
+                '4. Compare −f(x) e f(−x).\n'
+                '5. Descreva 3f(x).\n'
+                '6. Descreva f(2x).\n'
+                '7. Descreva −f(−x).\n'
+                '8. Transforme y=x² em y=(x+1)²−4.\n'
+                '9. Descreva y=−(x−2)²+5.\n'
+                '10. Determine o novo domínio de √(x−6).\n'
+                '11. Determine a imagem de 2x²+3.\n'
+                '12. Acompanhe o ponto (1,1) sob y=2f(x−3)+4.\n'
+                '13. Explique por que f(3x) comprime horizontalmente.\n'
+                '14. Dê um exemplo em que reflexão não altera o gráfico.\n'
+                '15. Esboce uma sequência de transformações de |x|.',
+            emphasis:
+                'Sempre separe transformações internas das externas antes de descrever o gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Transformações preservam estruturas importantes',
+            content:
+                'Em Cálculo, gráficos transformados ajudam a prever limites, continuidade e derivadas sem recomeçar a análise. Translações e escalas também aparecem em famílias parametrizadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para transformações e leitura gráfica.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'What does f(x+4) do?', choices: ['Shift left 4', 'Shift right 4', 'Shift up 4'], correctIndex: 0, explanation: 'Adding inside the argument shifts left.'),
-    takeaways: ['Outside changes affect outputs.', 'Inside changes affect inputs.', 'Negative signs produce different reflections.', 'Transformations help sketch families of functions.'],
-    closing: 'Graph transformations make later function analysis faster.',
+    check: LessonCheckData(
+      question: 'O que f(x+4) faz com o gráfico de f(x)?',
+      choices: ['Move 4 para a esquerda', 'Move 4 para a direita', 'Move 4 para cima'],
+      correctIndex: 0,
+      explanation:
+          'Para reproduzir em x o valor que f produzia em x+4, o gráfico precisa aparecer 4 unidades à esquerda.',
+    ),
+    takeaways: [
+      'Transformações externas alteram saídas.',
+      'Transformações internas alteram entradas.',
+      'Translações horizontais têm sinal aparente invertido.',
+      'Reflections em x e y correspondem a operações diferentes.',
+      'Escalas internas usam fator recíproco.',
+      'Domínio e imagem também se transformam.',
+    ],
+    closing:
+        'Ler transformações diretamente da fórmula reduz o gráfico a uma sequência controlada de operações geométricas.',
   ),
   CourseLessonData(
     id: 'funcoes-04-polinomiais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Polynomial functions', description: 'degree, zeros, multiplicity, and end behavior', duration: '≈ 18 min', objective: 'analyze zeros, degree, multiplicity, and end behavior of polynomial functions', symbol: 'P(x)',
