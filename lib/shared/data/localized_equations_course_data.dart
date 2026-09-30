@@ -1790,60 +1790,326 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Inequalities',
-    title: 'Inequalities',
-    description: 'intervals and reversing the sign',
-    duration: '≈ 5 min',
+    title: 'Linear inequalities and intervals',
+    description:
+        'order on the real line, equivalent transformations, reversing the sign, intervals, and graphical interpretation',
+    duration: '≈ 32 min',
     objective:
-        'solve linear inequalities and interpret the solution as a set of values',
+        'solve linear inequalities, justify when inequality direction is preserved or reversed, represent solutions with intervals, and interpret solution sets on the real line',
     symbol: '≤',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'The answer is now a region',
+        title: 'An inequality is an order relation',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'We are not looking for just one number',
+            visual: LessonVisual.notation,
+            title: 'Compare instead of equate',
             content:
-                'An inequality compares values using <, >, ≤, or ≥. The solution is usually a set of numbers.',
-            emphasis: 'x > 4 represents every real number greater than 4.',
+                'An inequality compares two expressions using <, >, ≤, or ≥. Solving means finding every value in the domain for which the order relation is true.',
+            emphasis:
+                'The answer is usually an interval or a union of intervals rather than a single number.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Reading on the real line',
+            content:
+                'x>4 represents every point to the right of 4. x≤−2 represents every point to the left of −2, including −2 itself.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'The most important caution',
+        title: 'Addition and subtraction preserve order',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Add the same quantity to both sides',
+            content:
+                'If a<b, then a+c<b+c for every real c. The same idea applies to >, ≤, and ≥.',
+            emphasis:
+                'Adding or subtracting the same amount never requires reversing the inequality sign.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Simple linear inequality',
+            problem: 'Solve x+5<9.',
+            steps: [
+              'Subtract 5 from both sides.',
+              'Obtain x<4.',
+            ],
+            result: 'S=(−∞,4).',
+            interpretation:
+                'The number 4 is excluded because the inequality is strict.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplication by a positive number',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Order is preserved',
+            content:
+                'If a<b and c>0, then ac<bc. Multiplying or dividing both sides by a positive number preserves the inequality direction.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Positive coefficient',
+            problem: 'Solve 3x≤15.',
+            steps: [
+              'Divide both sides by 3.',
+              'Because 3>0, keep ≤.',
+            ],
+            result: 'x≤5, that is, (−∞,5].',
+            interpretation:
+                'The endpoint 5 is included because the relation is ≤.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Multiplication by a negative number',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'The inequality direction reverses',
+            content:
+                'If a<b and c<0, then ac>bc. Multiplying or dividing by a negative number reverses < to >, > to <, ≤ to ≥, and ≥ to ≤.',
+            emphasis:
+                'This is not arbitrary: multiplying by −1 reflects points across zero on the number line.',
+            tone: LearningCardTone.warning,
+          ),
           WorkedExampleBlockData(
             title: 'Division by a negative number',
-            problem: 'Solve −3x > 12.',
+            problem: 'Solve −3x>12.',
             steps: [
               'Divide both sides by −3.',
-              'Because the divisor is negative, reverse > to <.',
-              'Obtain x < −4.',
+              'Reverse > to < because the divisor is negative.',
             ],
-            result: 'The solution is x < −4.',
+            result: 'x<−4, that is, (−∞,−4).',
             interpretation:
-                'Without reversing the sign, the solution set would be wrong.',
+                'Failing to reverse the sign gives the wrong solution set.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Variable on both sides',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Collecting terms',
+            problem: 'Solve 5x−3≤2x+9.',
+            steps: [
+              'Subtract 2x: 3x−3≤9.',
+              'Add 3: 3x≤12.',
+              'Divide by 3.',
+            ],
+            result: 'x≤4, that is, (−∞,4].',
+            interpretation:
+                'The procedure resembles equations, but the inequality direction must be monitored.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Compound inequalities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Three members can be transformed together',
+            content:
+                'A statement such as 1<2x+3≤7 represents two simultaneous conditions. The same operation may be applied to all three parts.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Bounded interval',
+            problem: 'Solve 1<2x+3≤7.',
+            steps: [
+              'Subtract 3 throughout: −2<2x≤4.',
+              'Divide by 2: −1<x≤2.',
+            ],
+            result: 'S=(−1,2].',
+            interpretation:
+                'The left endpoint is open; the right endpoint is closed.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Union and intersection of conditions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '“And” and “or” are set operations',
+            content:
+                'Simultaneous conditions linked by “and” correspond to intersection. Alternative conditions linked by “or” correspond to union.',
+            emphasis:
+                'x>1 and x≤5 gives (1,5]. x<−2 or x≥3 gives (−∞,−2)∪[3,+∞).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Interval notation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Parentheses and brackets',
+            content:
+                'Parentheses indicate an excluded endpoint; brackets indicate an included endpoint. Infinity is never included and always uses a parenthesis.',
+            emphasis:
+                'x≥3 corresponds to [3,+∞), while x<3 corresponds to (−∞,3).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Modeling with inequalities',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Budget restriction',
+            problem: 'You have at most R$ 80 to pay a fixed R$ 20 fee plus tickets costing R$ 12 each. How many tickets x can you buy?',
+            steps: [
+              'Model: 20+12x≤80.',
+              'Subtract 20: 12x≤60.',
+              'Divide by 12: x≤5.',
+              'Because x counts tickets, x must be a nonnegative integer.',
+            ],
+            result: 'At most 5 tickets.',
+            interpretation:
+                'Context may impose extra restrictions beyond the algebraic inequality.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reversing the sign without multiplying by a negative',
+            content:
+                'Addition and subtraction do not reverse the inequality. Reversal occurs only when multiplying or dividing by a negative number.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting endpoint inclusion',
+            content:
+                'x<4 and x≤4 describe different sets. The interval notation must reflect whether 4 belongs to the set.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the problem domain',
+            content:
+                'An inequality may have a continuous real solution set while the context restricts answers to integers, natural numbers, or nonnegative values.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — negative coefficient',
+            problem: 'Solve 7−2x≥15.',
+            steps: [
+              'Subtract 7: −2x≥8.',
+              'Divide by −2 and reverse the sign.',
+            ],
+            result: 'x≤−4.',
+            interpretation:
+                'The reversal occurs exactly at division by the negative number.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — compound inequality',
+            problem: 'Solve −5≤3x+1<10.',
+            steps: [
+              'Subtract 1: −6≤3x<9.',
+              'Divide by 3: −2≤x<3.',
+            ],
+            result: 'S=[−2,3).',
+            interpretation:
+                'The same transformation was applied to all three parts.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and represent with intervals',
+            content:
+                '1. x+4>9.\n'
+                '2. 3x≤18.\n'
+                '3. −2x<10.\n'
+                '4. 5−x≥1.\n'
+                '5. 4x−3>2x+5.\n'
+                '6. 7x+2≤3x+14.\n'
+                '7. −3≤x+1<6.\n'
+                '8. 2<3x−1≤11.\n'
+                '9. Write x≥−4 in interval notation.\n'
+                '10. Write (−2,5] as an inequality.\n'
+                '11. Find the intersection of x>1 and x≤6.\n'
+                '12. Find the union of x<−3 or x≥2.\n'
+                '13. Explain why multiplying by −1 reverses order.\n'
+                '14. Model a budget situation using ≤.\n'
+                '15. Compare the solution sets of −2x≤8 and 2x≤8.',
+            emphasis:
+                'For every problem, give both the final inequality and interval notation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Inequalities describe regions of function behavior',
+            content:
+                'Function analysis uses inequalities to determine where f(x)>0, where a derivative is positive or negative, intervals of increase and decrease, and domain restrictions.',
+            emphasis:
+                'Sign analysis in Calculus is a direct extension of interval reasoning.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for intervals, sign analysis, and function behavior.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the solution of −2x ≤ 8?',
-      choices: ['x ≤ −4', 'x ≥ −4', 'x ≥ 4'],
+      question: 'What is the solution of −2x≤8?',
+      choices: ['x≤−4', 'x≥−4', 'x≥4'],
       correctIndex: 1,
-      explanation: 'Dividing by −2 reverses ≤ to ≥. Therefore, x ≥ −4.',
+      explanation:
+          'Dividing both sides by −2 reverses ≤ to ≥. Therefore x≥−4.',
     ),
     takeaways: [
-      'Inequalities describe sets of values.',
-      'Addition and subtraction preserve the inequality direction.',
-      'Multiplying or dividing by a negative reverses the sign.',
-      'The solution can be represented on a number line.',
+      'Inequalities describe ordered sets of values.',
+      'Addition and subtraction preserve inequality direction.',
+      'Multiplying or dividing by a negative number reverses the sign.',
+      'Solutions can be represented by intervals.',
+      'Compound inequalities encode simultaneous conditions.',
+      'Union and intersection organize “or” and “and” conditions.',
+      'Context may restrict the domain of acceptable solutions.',
     ],
     closing:
-        'In inequalities, preserving order is as important as isolating the unknown.',
-  ),
+        'Solving inequalities means reasoning about order and sets, not simply repeating equation-solving steps.',
+  )
   CourseLessonData(
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
