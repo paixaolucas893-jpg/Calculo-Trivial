@@ -799,7 +799,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Equations with parentheses and fractions become manageable when their structure is prepared before isolating the variable.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-04-casos-especiais',
     topicId: 'equacoes-inequacoes',
