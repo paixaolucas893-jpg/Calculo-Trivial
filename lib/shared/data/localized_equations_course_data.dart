@@ -1092,7 +1092,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Special cases show that solving an equation also means deciding how many solutions exist and why.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-05-sistemas-lineares',
     topicId: 'equacoes-inequacoes',
