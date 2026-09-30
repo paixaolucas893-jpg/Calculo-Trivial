@@ -2104,7 +2104,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Resolver inequações é raciocinar sobre ordem e conjuntos, não apenas repetir os passos usados em equações.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
