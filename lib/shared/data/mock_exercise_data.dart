@@ -341,7 +341,8 @@ const List<ExerciseData> mockExercises = [
     title: 'Questão 20 de 24',
     statement: 'Simplifique:\\n2(x + 1) + (x − 3)(x + 3)',
     correctOptionId: 'a',
-    explanation: 'Use duas ferramentas: 2(x + 1) = 2x + 2 e (x − 3)(x + 3) = x² − 9. Somando, obtemos x² + 2x − 7.',
+    explanation:
+        'Use duas ferramentas: 2(x + 1) = 2x + 2 e (x − 3)(x + 3) = x² − 9. Somando, obtemos x² + 2x − 7.',
     contentLessonId: 'algebra-08-sintese',
     skill: 'Escolher ferramentas algébricas',
     difficulty: ExerciseDifficulty.challenge,
@@ -351,11 +352,12 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'c', text: '2x² − 7'),
       ExerciseOptionData(id: 'd', text: 'x² − 2x − 7'),
     ],
- ,
+  ),
   ExerciseData(
     id: 'polinomios-estrutura-1',
     title: 'Questão 21 de 24',
-    statement: 'Considere P(x)=−3x⁵+2x²−7. Qual é o grau e o coeficiente líder?',
+    statement:
+        'Considere P(x)=−3x⁵+2x²−7. Qual é o grau e o coeficiente líder?',
     correctOptionId: 'b',
     explanation:
         'O maior expoente presente é 5, portanto o grau de P é 5. O coeficiente do termo de maior grau −3x⁵ é −3, então esse é o coeficiente líder.',
@@ -419,5 +421,5 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'c', text: 'x³ − x² − 2x + 8'),
       ExerciseOptionData(id: 'd', text: 'x³ + x² − 2x − 8'),
     ],
-  ), )
+  ),
 ];
