@@ -136,7 +136,7 @@ class LessonHeroCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: AppSpacing.xs),
-                      Text(
+                      AcademicMathText(
                         description,
                         style: AppTypography.bodyMedium.copyWith(
                           color: AppColors.primaryLight,
@@ -165,7 +165,7 @@ class LessonHeroCard extends StatelessWidget {
                   ),
                   const SizedBox(width: AppSpacing.sm),
                   Expanded(
-                    child: Text(
+                    child: AcademicMathText(
                       uiText.objective(objective),
                       style: AppTypography.bodyMedium.copyWith(
                         color: AppColors.white,
@@ -616,7 +616,7 @@ class _LessonCheckCardState extends State<LessonCheckCard> {
                       AppSpacing.radiusMedium,
                     ),
                   ),
-                  child: Text(
+                  child: AcademicMathText(
                     uiText.feedback(
                       isCorrect: _isCorrect,
                       explanation: widget.explanation,
