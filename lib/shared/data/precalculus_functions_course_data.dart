@@ -964,55 +964,284 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Funções clássicas',
     title: 'Funções polinomiais',
-    description: 'grau, zeros, multiplicidade e comportamento',
-    duration: '≈ 18 min',
+    description:
+        'grau, coeficiente líder, zeros, multiplicidade, comportamento nas extremidades e leitura gráfica',
+    duration: '≈ 36 min',
     objective:
-        'analisar zeros, grau, multiplicidade e comportamento nas extremidades de funções polinomiais',
+        'analisar funções polinomiais a partir de grau, coeficiente líder, zeros e multiplicidades, relacionar formas algébricas ao gráfico e prever comportamento nas extremidades',
     symbol: 'P(x)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'O grau controla o comportamento dominante',
+        title: 'Definição de função polinomial',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.graph,
-            title: 'Zeros ligam álgebra e gráfico',
+            visual: LessonVisual.notation,
+            title: 'Soma finita de potências inteiras não negativas',
             content:
-                'Se P(a)=0, então x=a é um zero e, em condições usuais, (x−a) é fator do polinômio. A multiplicidade ajuda a prever se o gráfico cruza ou apenas toca o eixo x.',
+                'Uma função polinomial tem a forma [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0]], com n inteiro não negativo, coeficientes reais e [[math:a_n\ne0]].',
             emphasis:
-                'Para |x| muito grande, o termo de maior grau domina o comportamento do polinômio.',
+                'O domínio natural de todo polinômio real é ℝ.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Grau e coeficiente líder',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'O termo dominante',
+            content:
+                'O grau é o maior expoente com coeficiente não nulo. O coeficiente líder é o coeficiente desse termo. Para |x| muito grande, o termo líder controla o comportamento global.',
+            emphasis:
+                'Grau e sinal do coeficiente líder permitem prever as extremidades do gráfico.',
+          ),
           WorkedExampleBlockData(
-            title: 'Zeros e multiplicidade',
-            problem: 'Analise P(x)=(x−2)²(x+1).',
+            title: 'Lendo a estrutura',
+            problem: 'Analise P(x)=−2x⁵+3x²−7.',
             steps: [
-              'Os zeros são x=2 e x=−1.',
-              'x=2 possui multiplicidade 2, então o gráfico tende a tocar o eixo e retornar.',
-              'x=−1 possui multiplicidade 1, então o gráfico cruza o eixo.',
-              'O grau total é 3 e o coeficiente líder é positivo.',
+              'O maior expoente é 5.',
+              'Logo o grau é 5.',
+              'O coeficiente líder é −2.',
             ],
-            result: 'Polinômio cúbico com zeros −1 e 2, sendo 2 um zero duplo.',
+            result: 'Grau 5 e coeficiente líder −2.',
             interpretation:
-                'A forma fatorada fornece informações geométricas sem calcular muitos pontos.',
+                'Por ser grau ímpar e coeficiente líder negativo, as extremidades apontam em sentidos opostos com queda à direita.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
+        title: 'Comportamento nas extremidades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Paridade do grau e sinal do líder',
+            content:
+                'Grau par produz extremidades no mesmo sentido; grau ímpar produz sentidos opostos. Coeficiente líder positivo aponta para cima à direita; negativo, para baixo à direita.',
+            emphasis:
+                'Essa leitura descreve comportamento quando x→±∞, não detalhes locais do gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Zeros e fatores',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Teorema do fator',
+            content:
+                'Se P(a)=0, então x−a é fator de P(x). Reciprocamente, se x−a é fator, então a é zero da função.',
+            emphasis:
+                'A forma fatorada conecta diretamente álgebra e interceptos no eixo x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Forma fatorada',
+            problem: 'Encontre os zeros de P(x)=(x−2)(x+1)(x−4).',
+            steps: [
+              'Iguale cada fator a zero.',
+              'x−2=0, x+1=0 e x−4=0.',
+            ],
+            result: 'Zeros: −1, 2 e 4.',
+            interpretation:
+                'Cada zero fornece um intercepto potencial com o eixo x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Multiplicidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Cruzar ou tocar o eixo',
+            content:
+                'Se um fator (x−a)^m aparece, m é a multiplicidade da raiz a. Multiplicidade ímpar tende a produzir cruzamento do eixo x; multiplicidade par tende a produzir contato sem troca de sinal.',
+            emphasis:
+                'Quanto maior a multiplicidade, mais achatado o gráfico tende a ficar perto da raiz.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Multiplicidades diferentes',
+            problem: 'Analise P(x)=(x−2)²(x+1)³.',
+            steps: [
+              'x=2 tem multiplicidade 2.',
+              'x=−1 tem multiplicidade 3.',
+              'Em x=2 o sinal não muda.',
+              'Em x=−1 o sinal muda.',
+            ],
+            result: 'O gráfico toca em x=2 e cruza em x=−1.',
+            interpretation:
+                'A multiplicidade fornece informação local sem necessidade de muitos pontos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Intercepto no eixo y',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Calcule P(0)',
+            content:
+                'O intercepto com o eixo y ocorre em x=0 e tem ordenada P(0)=a₀.',
+            emphasis:
+                'Na forma expandida, o termo constante já fornece diretamente esse intercepto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Forma expandida e forma fatorada',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Cada forma revela informações diferentes',
+            content:
+                'A forma expandida mostra grau, coeficientes e intercepto em y. A forma fatorada mostra zeros e multiplicidades. Nenhuma forma é universalmente superior.',
+            emphasis:
+                'Escolher a representação adequada faz parte da análise.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Número possível de zeros reais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'No máximo n zeros reais distintos',
+            content:
+                'Um polinômio não nulo de grau n possui no máximo n zeros reais distintos. Pode ter menos, porque algumas raízes podem ser complexas ou repetidas.',
+            emphasis:
+                'Grau 4 não significa obrigatoriamente quatro interceptos reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Simetria em casos especiais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Polinômios pares e ímpares',
+            content:
+                'Se P(−x)=P(x), a função é par e o gráfico é simétrico em relação ao eixo y. Se P(−x)=−P(x), é ímpar e possui simetria central em relação à origem.',
+            emphasis:
+                'Uma função polinomial pode não ser nem par nem ímpar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Esboço estrutural de um polinômio',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Juntando as informações',
+            problem: 'Esboce qualitativamente P(x)=(x−2)²(x+1).',
+            steps: [
+              'Grau total 3 e coeficiente líder positivo.',
+              'Extremidade esquerda para baixo e direita para cima.',
+              'Zero −1 de multiplicidade 1: cruza o eixo.',
+              'Zero 2 de multiplicidade 2: toca e retorna.',
+              'P(0)=4, então o gráfico passa por (0,4).',
+            ],
+            result: 'O comportamento essencial do gráfico fica determinado sem tabela extensa.',
+            interpretation:
+                'O esboço combina informação global e local.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir grau com número de termos',
+            content:
+                'x⁷+1 tem apenas dois termos, mas grau 7.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Assumir que toda raiz cruza o eixo',
+            content:
+                'Raízes de multiplicidade par podem apenas tocar o eixo x.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Concluir o gráfico inteiro só pelo termo dominante',
+            content:
+                'O termo líder controla as extremidades, mas não determina sozinho zeros, máximos locais ou outras características internas.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Analise P(x)=−(x−1)²(x+3).',
+            steps: [
+              'Grau 3 e coeficiente líder negativo.',
+              'Zeros: 1 com multiplicidade 2 e −3 com multiplicidade 1.',
+              'P(0)=−3.',
+            ],
+            result: 'Cruza em −3, toca em 1 e cai à direita.',
+            interpretation:
+                'As três informações bastam para um esboço qualitativo consistente.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Determine grau e coeficiente líder de 4x⁶−x+1.\n'
+                '2. Descreva o comportamento nas extremidades de x⁵.\n'
+                '3. Descreva o comportamento de −x⁴.\n'
+                '4. Encontre os zeros de (x−3)(x+2).\n'
+                '5. Determine as multiplicidades em (x−1)³(x+4)².\n'
+                '6. Calcule o intercepto em y de 2x³−5x+7.\n'
+                '7. Compare forma expandida e fatorada.\n'
+                '8. Esboce qualitativamente (x+2)²(x−1).\n'
+                '9. Diga se x⁴+2x²+1 é par.\n'
+                '10. Diga se x³−x é ímpar.\n'
+                '11. Dê um polinômio de grau 4 sem zeros reais.\n'
+                '12. Explique por que um cúbico real possui pelo menos um zero real.\n'
+                '13. Determine um polinômio com zeros 1 e −2, sendo 1 duplo.\n'
+                '14. Explique a influência da multiplicidade no sinal.\n'
+                '15. Construa um esboço usando apenas fatores e termo líder.',
+            emphasis:
+                'Em esboços, registre primeiro extremidades, zeros, multiplicidades e intercepto em y.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
         title: 'Conexão com Cálculo',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.infinity,
-            title: 'Termo dominante prepara limites no infinito',
+            title: 'Polinômios são o laboratório básico do Cálculo',
             content:
-                'A ideia de que o termo de maior grau domina será usada para limites no infinito e comparação de crescimento.',
+                'Polinômios são contínuos e diferenciáveis em todo ℝ. Termo dominante aparece em limites no infinito, enquanto zeros e multiplicidades ajudam em estudo de sinais e análise de derivadas.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para funções polinomiais, zeros e comportamento assintótico.',
           ),
         ],
       ),
@@ -1021,15 +1250,19 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Qual é um zero de P(x)=(x−5)(x+2)?',
       choices: ['5', '2', '−5'],
       correctIndex: 0,
-      explanation: 'Quando x=5, o fator x−5 zera e portanto P(5)=0.',
+      explanation:
+          'Quando x=5, o fator x−5 é zero e, portanto, P(5)=0.',
     ),
     takeaways: [
-      'Zeros de polinômios correspondem a fatores lineares.',
-      'Multiplicidade afeta a forma do gráfico perto da raiz.',
-      'O grau informa o termo dominante.',
-      'A forma fatorada facilita leitura geométrica.',
+      'O domínio natural de um polinômio real é ℝ.',
+      'Grau e coeficiente líder controlam o comportamento nas extremidades.',
+      'Zeros correspondem a fatores lineares.',
+      'Multiplicidade controla troca de sinal e contato com o eixo x.',
+      'Forma expandida e fatorada revelam informações diferentes.',
+      'O termo dominante descreve comportamento global, não toda a geometria local.',
     ],
-    closing: 'Polinômios são modelos centrais para desenvolver intuição de comportamento de funções.',
+    closing:
+        'Funções polinomiais mostram como uma expressão algébrica pode ser lida geometricamente antes mesmo de calcular muitos pontos.',
   ),
   CourseLessonData(
     id: 'funcoes-05-racionais',
@@ -2666,17 +2899,312 @@ const List<CourseLessonData> _englishLessons = [
     ],
     closing:
         'Reading transformations directly from the formula turns graphing into a controlled sequence of geometric operations.',
-  )
+  ),
   CourseLessonData(
-    id: 'funcoes-04-polinomiais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Polynomial functions', description: 'degree, zeros, multiplicity, and end behavior', duration: '≈ 18 min', objective: 'analyze zeros, degree, multiplicity, and end behavior of polynomial functions', symbol: 'P(x)',
+    id: 'funcoes-04-polinomiais',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Classical functions',
+    title: 'Polynomial functions',
+    description:
+        'degree, leading coefficient, zeros, multiplicity, end behavior, and graph interpretation',
+    duration: '≈ 36 min',
+    objective:
+        'analyze polynomial functions using degree, leading coefficient, zeros, and multiplicities, connect algebraic forms to the graph, and predict end behavior',
+    symbol: 'P(x)',
     sections: [
-      LessonSectionData(number: '1', title: 'Degree controls dominant behavior', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Zeros connect algebra and graphs', content: 'If P(a)=0, then x=a is a zero and x−a is a factor. Multiplicity helps predict whether the graph crosses or only touches the x-axis.', emphasis: 'For large |x|, the leading term dominates.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Zeros and multiplicity', problem: 'Analyze P(x)=(x−2)²(x+1).', steps: ['Zeros are 2 and −1.', '2 has multiplicity 2, so the graph tends to touch.', '−1 has multiplicity 1, so the graph crosses.', 'Total degree is 3.'], result: 'Cubic with zeros −1 and 2, with 2 a double zero.', interpretation: 'Factored form exposes geometry quickly.')]),
-      LessonSectionData(number: '3', title: 'Calculus connection', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'Leading terms prepare limits at infinity', content: 'Dominant-term reasoning will return in limits at infinity and growth comparison.', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Definition of a polynomial function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Finite sum of nonnegative integer powers',
+            content:
+                'A polynomial function has the form [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0]], where n is a nonnegative integer, the coefficients are real, and [[math:a_n\ne0]].',
+            emphasis:
+                'The natural domain of every real polynomial is ℝ.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Degree and leading coefficient',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'The dominant term',
+            content:
+                'The degree is the largest exponent with nonzero coefficient. The leading coefficient belongs to that term. For large |x|, the leading term controls global behavior.',
+            emphasis:
+                'Degree parity and the sign of the leading coefficient predict the graph ends.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reading structure',
+            problem: 'Analyze P(x)=−2x⁵+3x²−7.',
+            steps: [
+              'The largest exponent is 5.',
+              'So the degree is 5.',
+              'The leading coefficient is −2.',
+            ],
+            result: 'Degree 5 with leading coefficient −2.',
+            interpretation:
+                'Odd degree and negative leading coefficient produce opposite end directions with the right end falling.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'End behavior',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Degree parity and leading sign',
+            content:
+                'Even degree gives ends in the same direction; odd degree gives opposite directions. A positive leading coefficient points upward on the right; a negative one points downward.',
+            emphasis:
+                'This describes behavior as x→±∞, not every local feature.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Zeros and factors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Factor theorem',
+            content:
+                'If P(a)=0, then x−a is a factor of P(x). Conversely, if x−a is a factor, then a is a zero of the function.',
+            emphasis:
+                'Factored form directly connects algebra to x-intercepts.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Factored form',
+            problem: 'Find the zeros of P(x)=(x−2)(x+1)(x−4).',
+            steps: [
+              'Set each factor equal to zero.',
+              'Solve x−2=0, x+1=0, and x−4=0.',
+            ],
+            result: 'Zeros: −1, 2, and 4.',
+            interpretation:
+                'Each zero gives a potential x-axis intercept.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Multiplicity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Crossing or touching the axis',
+            content:
+                'If (x−a)^m is a factor, m is the multiplicity of root a. Odd multiplicity tends to produce a crossing; even multiplicity tends to produce contact without sign change.',
+            emphasis:
+                'Higher multiplicity typically makes the graph flatter near the root.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Different multiplicities',
+            problem: 'Analyze P(x)=(x−2)²(x+1)³.',
+            steps: [
+              'x=2 has multiplicity 2.',
+              'x=−1 has multiplicity 3.',
+              'The sign does not change at x=2.',
+              'The sign changes at x=−1.',
+            ],
+            result: 'The graph touches at x=2 and crosses at x=−1.',
+            interpretation:
+                'Multiplicity gives local graph information without many plotted points.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Y-intercept',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Compute P(0)',
+            content:
+                'The y-intercept occurs at x=0 and has value P(0)=a₀.',
+            emphasis:
+                'In expanded form, the constant term gives this intercept immediately.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Expanded form and factored form',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Different forms reveal different information',
+            content:
+                'Expanded form shows degree, coefficients, and y-intercept. Factored form shows zeros and multiplicities. Neither form is always superior.',
+            emphasis:
+                'Choosing a representation is part of the analysis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Possible number of real zeros',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'At most n distinct real zeros',
+            content:
+                'A nonzero polynomial of degree n has at most n distinct real zeros. It may have fewer because some roots are complex or repeated.',
+            emphasis:
+                'Degree 4 does not guarantee four real x-intercepts.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Symmetry in special cases',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Even and odd polynomials',
+            content:
+                'If P(−x)=P(x), the function is even and symmetric about the y-axis. If P(−x)=−P(x), it is odd and has origin symmetry.',
+            emphasis:
+                'A polynomial function may be neither even nor odd.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Structural sketch of a polynomial',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combining the information',
+            problem: 'Sketch P(x)=(x−2)²(x+1) qualitatively.',
+            steps: [
+              'Total degree 3 with positive leading coefficient.',
+              'Left end down and right end up.',
+              'Root −1 has multiplicity 1: cross the axis.',
+              'Root 2 has multiplicity 2: touch and turn.',
+              'P(0)=4, so the graph passes through (0,4).',
+            ],
+            result: 'The essential graph behavior is determined without a long value table.',
+            interpretation:
+                'The sketch combines global and local information.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing degree with number of terms',
+            content:
+                'x⁷+1 has only two terms but degree 7.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Assuming every root crosses the axis',
+            content:
+                'Even-multiplicity roots may only touch the x-axis.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inferring the whole graph from the leading term',
+            content:
+                'The leading term controls the ends but not all zeros, local extrema, or interior geometry.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided example',
+            problem: 'Analyze P(x)=−(x−1)²(x+3).',
+            steps: [
+              'Degree 3 with negative leading coefficient.',
+              'Roots: 1 with multiplicity 2 and −3 with multiplicity 1.',
+              'P(0)=−3.',
+            ],
+            result: 'Cross at −3, touch at 1, and fall to the right.',
+            interpretation:
+                'These pieces are enough for a consistent qualitative sketch.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Practice before the final activity',
+            content:
+                '1. Find degree and leading coefficient of 4x⁶−x+1.\n'
+                '2. Describe the end behavior of x⁵.\n'
+                '3. Describe the end behavior of −x⁴.\n'
+                '4. Find the zeros of (x−3)(x+2).\n'
+                '5. Find multiplicities in (x−1)³(x+4)².\n'
+                '6. Find the y-intercept of 2x³−5x+7.\n'
+                '7. Compare expanded and factored forms.\n'
+                '8. Sketch (x+2)²(x−1) qualitatively.\n'
+                '9. Decide whether x⁴+2x²+1 is even.\n'
+                '10. Decide whether x³−x is odd.\n'
+                '11. Give a degree-4 polynomial with no real zeros.\n'
+                '12. Explain why a real cubic has at least one real zero.\n'
+                '13. Build a polynomial with roots 1 and −2, with 1 double.\n'
+                '14. Explain how multiplicity affects sign.\n'
+                '15. Build a sketch using only factors and the leading term.',
+            emphasis:
+                'For sketches, record end behavior, zeros, multiplicities, and y-intercept first.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Polynomials are a basic Calculus laboratory',
+            content:
+                'Polynomial functions are continuous and differentiable on all ℝ. The leading term appears in limits at infinity, while zeros and multiplicities support sign analysis and derivative studies.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for polynomial functions, zeros, and end behavior.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'Which is a zero of (x−5)(x+2)?', choices: ['5', '2', '−5'], correctIndex: 0, explanation: 'x=5 makes x−5 equal zero.'),
-    takeaways: ['Zeros correspond to factors.', 'Multiplicity affects local graph shape.', 'Degree identifies dominant behavior.', 'Factored form supports graph reading.'],
-    closing: 'Polynomials are core models for function behavior.',
+    check: LessonCheckData(
+      question: 'Which is a zero of P(x)=(x−5)(x+2)?',
+      choices: ['5', '2', '−5'],
+      correctIndex: 0,
+      explanation:
+          'At x=5, the factor x−5 is zero, so P(5)=0.',
+    ),
+    takeaways: [
+      'The natural domain of a real polynomial is ℝ.',
+      'Degree and leading coefficient control end behavior.',
+      'Zeros correspond to linear factors.',
+      'Multiplicity controls sign changes and axis contact.',
+      'Expanded and factored forms reveal different information.',
+      'The leading term describes global behavior, not all local geometry.',
+    ],
+    closing:
+        'Polynomial functions show how an algebraic expression can be read geometrically before many points are computed.',
   ),
   CourseLessonData(
     id: 'funcoes-05-racionais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Rational functions and asymptotes', description: 'domain, zeros, and asymptotic behavior', duration: '≈ 18 min', objective: 'analyze domains, zeros, discontinuities, and simple asymptotes of rational functions', symbol: 'P/Q',
