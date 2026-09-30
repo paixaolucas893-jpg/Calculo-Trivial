@@ -1386,7 +1386,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Resolver um sistema é encontrar os valores que tornam várias condições verdadeiras ao mesmo tempo.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-06-quadraticas',
     topicId: 'equacoes-inequacoes',
