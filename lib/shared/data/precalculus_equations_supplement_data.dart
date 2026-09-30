@@ -302,7 +302,7 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     ],
     closing:
         'Equações radicais exigem disciplina lógica: domínio, transformação, candidatos e verificação formam um único processo.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-10-inequacoes-quadraticas',
     topicId: 'equacoes-inequacoes',
@@ -592,7 +592,7 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     ],
     closing:
         'Resolver uma inequação quadrática é localizar, na reta real, onde a parábola assume o sinal pedido.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-11-inequacoes-racionais',
     topicId: 'equacoes-inequacoes',
@@ -857,7 +857,7 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     ],
     closing:
         'Inequações racionais unem domínio e sinal: resolver corretamente exige controlar ambos ao mesmo tempo.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-09-radicais',
     topicId: 'equacoes-inequacoes',
@@ -1147,7 +1147,7 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     ],
     closing:
         'Radical equations require logical discipline: domain, transformation, candidates, and verification form one process.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-10-inequacoes-quadraticas',
     topicId: 'equacoes-inequacoes',
@@ -1437,7 +1437,7 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     ],
     closing:
         'Solving a quadratic inequality means locating where the parabola has the requested sign.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-11-inequacoes-racionais',
     topicId: 'equacoes-inequacoes',
