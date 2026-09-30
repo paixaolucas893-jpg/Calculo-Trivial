@@ -3598,65 +3598,360 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Trigonometria',
     title: 'Funções trigonométricas inversas',
-    description: 'arco seno, arco cosseno e arco tangente',
-    duration: '≈ 18 min',
+    description:
+        'arcseno, arccoseno, arctangente, domínios restritos, intervalos principais, composições e gráficos',
+    duration: '≈ 34 min',
     objective:
-        'interpretar arcsen, arccos e arctan como funções inversas com domínios e imagens restritos',
+        'compreender por que funções trigonométricas precisam ser restringidas para serem invertidas, determinar domínios e imagens das inversas, avaliar composições e interpretar seus gráficos',
     symbol: 'arctan',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'É preciso restringir para inverter',
+        title: 'Por que restringir o domínio',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.compare,
-            title: 'Funções periódicas não são injetoras globalmente',
+            title: 'Periodicidade impede injetividade global',
             content:
-                'Seno e cosseno repetem valores, então restringimos seus domínios antes de definir inversas. arcsen x retorna um ângulo em [−π/2,π/2], arccos x em [0,π] e arctan x em (−π/2,π/2).',
-            emphasis: 'sen⁻¹x significa arcsen x, não 1/sen x.',
+                'Seno, cosseno e tangente repetem valores. Para definir funções inversas, escolhemos intervalos onde cada função original é injetiva.',
+            emphasis:
+                'A restrição não altera os valores da função dentro do intervalo; ela seleciona um único representante para cada saída.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Arcseno',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'arcsen x = sen⁻¹x',
+            content:
+                'A função seno é restringida ao intervalo [[math:[-\\pi/2,\\pi/2]]], onde é crescente e assume todos os valores de −1 a 1. Sua inversa é arcsen.',
+            emphasis:
+                'Domínio de arcsen: [−1,1]. Imagem: [−π/2,π/2].',
+          ),
           WorkedExampleBlockData(
-            title: 'Recuperar o ângulo principal',
+            title: 'Ângulo principal',
             problem: 'Calcule arcsen(1/2).',
-            steps: ['Procure o ângulo no intervalo principal [−π/2,π/2].', 'sen(π/6)=1/2.'],
+            steps: [
+              'Procure um ângulo no intervalo principal [−π/2,π/2].',
+              'sen(π/6)=1/2.',
+            ],
             result: 'arcsen(1/2)=π/6.',
-            interpretation: 'A função inversa devolve o representante escolhido no intervalo principal.',
+            interpretation:
+                'A inversa devolve o único ângulo do intervalo escolhido.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Domínio e imagem',
+        title: 'Arccosseno',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.table,
-            title: 'Memorize restrições com significado',
+            visual: LessonVisual.notation,
+            title: 'arccos x',
             content:
-                'arcsen e arccos recebem apenas valores em [−1,1], pois seno e cosseno nunca saem desse intervalo. arctan aceita qualquer real.',
+                'O cosseno é restringido a [[math:[0,\\pi]]], onde é decrescente e percorre todos os valores de 1 a −1.',
+            emphasis:
+                'Domínio de arccos: [−1,1]. Imagem: [0,π].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Valor principal',
+            problem: 'Calcule arccos(−1/2).',
+            steps: [
+              'Procure o ângulo em [0,π].',
+              'cos(2π/3)=−1/2.',
+            ],
+            result: 'arccos(−1/2)=2π/3.',
+            interpretation:
+                'Mesmo que outros ângulos tenham o mesmo cosseno, a função inversa retorna apenas o representante principal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Arctangente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'arctan x',
+            content:
+                'A tangente é restringida a [[math:(-\\pi/2,\\pi/2)]], onde é estritamente crescente e sua imagem é ℝ.',
+            emphasis:
+                'Domínio de arctan: ℝ. Imagem: (−π/2,π/2).',
+          ),
+          WorkedExampleBlockData(
+            title: 'Valor conhecido',
+            problem: 'Calcule arctan(1).',
+            steps: [
+              'Procure o ângulo principal cuja tangente vale 1.',
+            ],
+            result: 'arctan(1)=π/4.',
+            interpretation:
+                'π/4 pertence ao intervalo principal da tangente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inversa não é recíproco',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'sen⁻¹x não significa 1/sen x',
+            content:
+                'A notação sen⁻¹x é usada para arcsen x. Já 1/sen x é cossec x. Da mesma forma, cos⁻¹x é arccos x, não sec x.',
+            emphasis:
+                'O sobrescrito −1 em funções indica inversa funcional, não expoente algébrico.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Composição inversa na ordem correta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'sen(arcsen x)=x',
+            content:
+                'Para x∈[−1,1], [[math:\\sin(\\arcsin x)=x]]. Analogamente, cos(arccos x)=x para x∈[−1,1] e tan(arctan x)=x para todo real x.',
+            emphasis:
+                'Essas composições funcionam diretamente porque a entrada já pertence ao domínio da função inversa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'A composição na outra ordem exige cuidado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'arcsen(sen x) nem sempre é x',
+            content:
+                'arcsen(sen x)=x somente quando x está no intervalo principal [−π/2,π/2]. Fora dele, arcsen devolve o ângulo principal com o mesmo seno.',
+            emphasis:
+                'A composição inversa recupera exatamente a entrada apenas dentro do domínio restrito usado para definir a inversa.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Exemplo fora do intervalo principal',
+            problem: 'Calcule arcsen(sen(5π/6)).',
+            steps: [
+              'sen(5π/6)=1/2.',
+              'arcsen(1/2)=π/6.',
+            ],
+            result: 'arcsen(sen(5π/6))=π/6, não 5π/6.',
+            interpretation:
+                'A função inversa escolhe o representante principal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Gráficos das inversas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Reflexão em y=x',
+            content:
+                'Os gráficos de uma função invertível e de sua inversa são simétricos em relação à reta y=x. Assim, domínio e imagem trocam de papel.',
+            emphasis:
+                'As restrições dos intervalos principais tornam essa reflexão funcionalmente válida.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Assíntotas do arctan',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Imagem limitada',
+            content:
+                'Como arctan x∈(−π/2,π/2), o gráfico possui assíntotas horizontais y=π/2 e y=−π/2.',
+            emphasis:
+                'A tangente tinha assíntotas verticais; sua inversa possui assíntotas horizontais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Resolvendo equações com inversas trigonométricas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Isolando o ângulo principal',
+            problem: 'Resolva arcsen x=π/3.',
+            steps: [
+              'π/3 pertence à imagem de arcsen.',
+              'Aplique seno aos dois membros.',
+            ],
+            result: 'x=sen(π/3)=√3/2.',
+            interpretation:
+                'A função inversa converte diretamente entre razão trigonométrica e ângulo principal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Composições algébricas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Triângulo auxiliar',
+            problem: 'Simplifique cos(arcsen x), para x∈[−1,1].',
+            steps: [
+              'Defina θ=arcsen x, então senθ=x e θ∈[−π/2,π/2].',
+              'Use sen²θ+cos²θ=1.',
+              'cos²θ=1−x².',
+              'Nesse intervalo, cosθ≥0.',
+            ],
+            result: 'cos(arcsen x)=√(1−x²).',
+            interpretation:
+                'A restrição do intervalo principal determina o sinal correto da raiz.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Domínio em composições',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'A entrada da inversa deve ser admissível',
+            content:
+                'Em arcsen(g(x)) e arccos(g(x)), precisamos impor −1≤g(x)≤1. Em arctan(g(x)), qualquer valor real de g(x) é permitido.',
+            emphasis:
+                'O domínio da composição depende da imagem da função interna.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir inversa com recíproco',
+            content:
+                'arctan x não é cot x e arcsen x não é cossec x.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o intervalo principal',
+            content:
+                'Ao calcular uma inversa trigonométrica, a resposta deve pertencer à imagem oficial da função inversa.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar composição fora do domínio restrito',
+            content:
+                'arcsen(sen x)=x não vale para todo x real.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Calcule arccos(√2/2).',
+            steps: [
+              'Procure o ângulo em [0,π].',
+              'cos(π/4)=√2/2.',
+            ],
+            result: 'π/4.',
+            interpretation:
+                'O intervalo principal elimina outras soluções coterminais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Calcule arctan(tan(3π/4)).',
+            steps: [
+              'tan(3π/4)=−1.',
+              'arctan(−1)=−π/4.',
+            ],
+            result: '−π/4.',
+            interpretation:
+                '3π/4 está fora do intervalo principal da arctangente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Avalie, componha e determine domínios',
+            content:
+                '1. Calcule arcsen(0).\n'
+                '2. Calcule arcsen(−1).\n'
+                '3. Calcule arccos(0).\n'
+                '4. Calcule arccos(−1).\n'
+                '5. Calcule arctan(√3).\n'
+                '6. Determine o domínio de arcsen(2x).\n'
+                '7. Determine o domínio de arccos(x−1).\n'
+                '8. Simplifique sen(arcsen x).\n'
+                '9. Simplifique cos(arccos x).\n'
+                '10. Calcule arcsen(sen(2π/3)).\n'
+                '11. Calcule arccos(cos(4π/3)).\n'
+                '12. Simplifique cos(arcsen x).\n'
+                '13. Explique por que arctan tem domínio ℝ.\n'
+                '14. Explique geometricamente a reflexão em y=x.\n'
+                '15. Diferencie claramente inversa funcional e recíproco.',
+            emphasis:
+                'Antes de responder, verifique sempre o intervalo principal da função inversa envolvida.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Inversas trigonométricas aparecem em derivadas e integrais',
+            content:
+                'As derivadas de arcsen, arccos e arctan dependem de relações algébricas como 1−x² e 1+x². Essas funções também surgem naturalmente em antiderivadas e substituições trigonométricas.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para funções trigonométricas inversas e aplicações em Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o domínio de arcsen x?',
-      choices: ['ℝ', '[−1,1]', '(0,+∞)'],
+      question: 'Qual é a imagem de arcsen x?',
+      choices: ['[−1,1]', '[−π/2,π/2]', '[0,π]'],
       correctIndex: 1,
-      explanation: 'Seno só produz valores entre −1 e 1, então sua inversa só pode receber valores nesse intervalo.',
+      explanation:
+          'O seno é restringido a [−π/2,π/2] para se tornar injetivo; esse intervalo passa a ser a imagem de arcsen.',
     ),
     takeaways: [
-      'Restringimos funções trigonométricas para torná-las invertíveis.',
-      'arcsen e arccos têm domínio [−1,1].',
-      'arctan tem domínio ℝ.',
-      'Notação inversa não significa recíproco.',
+      'Funções trigonométricas precisam de restrições para serem invertíveis.',
+      'arcsen tem domínio [−1,1] e imagem [−π/2,π/2].',
+      'arccos tem domínio [−1,1] e imagem [0,π].',
+      'arctan tem domínio ℝ e imagem (−π/2,π/2).',
+      'Inversa funcional não é o mesmo que recíproco.',
+      'Composições inversas dependem dos intervalos principais.',
+      'Domínio e imagem trocam de papel entre uma função invertível e sua inversa.',
     ],
-    closing: 'Funções trigonométricas inversas aparecem em integrais, geometria e resolução de problemas.',
+    closing:
+        'Funções trigonométricas inversas transformam razões em ângulos, mas só funcionam de modo unívoco porque intervalos principais foram cuidadosamente escolhidos.',
   ),
   CourseLessonData(
     id: 'funcoes-12-geometria-analitica',
@@ -7442,15 +7737,365 @@ const List<CourseLessonData> _englishLessons = [
         'Trigonometric identities provide the algebraic language for transforming, simplifying, and solving periodic relationships.',
   ),
   CourseLessonData(
-    id: 'funcoes-11-inversas-trig', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Inverse trigonometric functions', description: 'arcsine, arccosine, and arctangent', duration: '≈ 18 min', objective: 'interpret inverse trig functions with restricted domains and ranges', symbol: 'arctan',
+    id: 'funcoes-11-inversas-trig',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Trigonometry',
+    title: 'Inverse trigonometric functions',
+    description:
+        'arcsine, arccosine, arctangent, restricted domains, principal ranges, compositions, and graphs',
+    duration: '≈ 34 min',
+    objective:
+        'understand why trigonometric functions must be restricted before inversion, determine domains and ranges of inverse trig functions, evaluate compositions, and interpret their graphs',
+    symbol: 'arctan',
     sections: [
-      LessonSectionData(number: '1', title: 'Restriction makes inversion possible', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Periodic functions are not globally one-to-one', content: 'We restrict sine and cosine before defining inverses. arcsin returns values in [−π/2,π/2], arccos in [0,π], and arctan in (−π/2,π/2).', emphasis: 'sin⁻¹x means arcsin x, not 1/sin x.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Recover the principal angle', problem: 'Find arcsin(1/2).', steps: ['Use the principal interval.', 'sin(π/6)=1/2.'], result: 'arcsin(1/2)=π/6.', interpretation: 'The inverse returns the chosen principal representative.')]),
-      LessonSectionData(number: '3', title: 'Domain and range', blocks: [ConceptBlockData(visual: LessonVisual.table, title: 'Restrictions have meaning', content: 'arcsin and arccos accept inputs only in [−1,1]; arctan accepts all real inputs.', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Why domain restriction is necessary',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Periodicity prevents global injectivity',
+            content:
+                'Sine, cosine, and tangent repeat values. To define inverse functions, we select intervals where each original function is one-to-one.',
+            emphasis:
+                'The restriction does not change function values within the interval; it selects one representative for each output.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Arcsine',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'arcsin x = sin⁻¹x',
+            content:
+                'Sine is restricted to [[math:[-\\pi/2,\\pi/2]]], where it is increasing and covers every value from −1 to 1. Its inverse is arcsin.',
+            emphasis:
+                'Domain of arcsin: [−1,1]. Range: [−π/2,π/2].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Principal angle',
+            problem: 'Compute arcsin(1/2).',
+            steps: [
+              'Look for an angle in [−π/2,π/2].',
+              'sin(π/6)=1/2.',
+            ],
+            result: 'arcsin(1/2)=π/6.',
+            interpretation:
+                'The inverse returns the unique angle in the selected interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Arccosine',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'arccos x',
+            content:
+                'Cosine is restricted to [[math:[0,\\pi]]], where it is decreasing and covers all values from 1 to −1.',
+            emphasis:
+                'Domain of arccos: [−1,1]. Range: [0,π].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Principal value',
+            problem: 'Compute arccos(−1/2).',
+            steps: [
+              'Look for the angle in [0,π].',
+              'cos(2π/3)=−1/2.',
+            ],
+            result: 'arccos(−1/2)=2π/3.',
+            interpretation:
+                'Other angles share the cosine value, but the inverse returns only the principal representative.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Arctangent',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'arctan x',
+            content:
+                'Tangent is restricted to [[math:(-\\pi/2,\\pi/2)]], where it is strictly increasing and has range ℝ.',
+            emphasis:
+                'Domain of arctan: ℝ. Range: (−π/2,π/2).',
+          ),
+          WorkedExampleBlockData(
+            title: 'Known value',
+            problem: 'Compute arctan(1).',
+            steps: [
+              'Find the principal angle whose tangent is 1.',
+            ],
+            result: 'arctan(1)=π/4.',
+            interpretation:
+                'π/4 lies in the principal tangent interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inverse is not reciprocal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'sin⁻¹x does not mean 1/sin x',
+            content:
+                'The notation sin⁻¹x is used for arcsin x. The reciprocal 1/sin x is csc x. Likewise, cos⁻¹x means arccos x, not sec x.',
+            emphasis:
+                'The superscript −1 on a function denotes functional inversion, not an algebraic exponent.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Inverse composition in the direct order',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'sin(arcsin x)=x',
+            content:
+                'For x∈[−1,1], [[math:\\sin(\\arcsin x)=x]]. Similarly, cos(arccos x)=x on [−1,1], and tan(arctan x)=x for every real x.',
+            emphasis:
+                'These work directly because the input already lies in the inverse function domain.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'The reverse composition requires care',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'arcsin(sin x) is not always x',
+            content:
+                'arcsin(sin x)=x only when x lies in [−π/2,π/2]. Outside that interval, arcsin returns the principal angle with the same sine.',
+            emphasis:
+                'Inverse composition recovers the input exactly only on the restricted domain used to define the inverse.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Outside the principal interval',
+            problem: 'Compute arcsin(sin(5π/6)).',
+            steps: [
+              'sin(5π/6)=1/2.',
+              'arcsin(1/2)=π/6.',
+            ],
+            result: 'arcsin(sin(5π/6))=π/6, not 5π/6.',
+            interpretation:
+                'The inverse selects the principal representative.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Graphs of inverse functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Reflection across y=x',
+            content:
+                'The graph of an invertible function and its inverse are symmetric about y=x. Domain and range exchange roles.',
+            emphasis:
+                'Principal-interval restrictions make this reflection functionally valid.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Arctangent asymptotes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Bounded range',
+            content:
+                'Because arctan x∈(−π/2,π/2), its graph has horizontal asymptotes y=π/2 and y=−π/2.',
+            emphasis:
+                'Tangent had vertical asymptotes; its inverse has horizontal asymptotes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Equations with inverse trig functions',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Isolating a principal angle',
+            problem: 'Solve arcsin x=π/3.',
+            steps: [
+              'π/3 belongs to the arcsin range.',
+              'Apply sine to both sides.',
+            ],
+            result: 'x=sin(π/3)=√3/2.',
+            interpretation:
+                'The inverse function converts directly between a ratio and its principal angle.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Algebraic compositions',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Auxiliary triangle reasoning',
+            problem: 'Simplify cos(arcsin x), x∈[−1,1].',
+            steps: [
+              'Let θ=arcsin x, so sinθ=x and θ∈[−π/2,π/2].',
+              'Use sin²θ+cos²θ=1.',
+              'Then cos²θ=1−x².',
+              'On this interval, cosθ≥0.',
+            ],
+            result: 'cos(arcsin x)=√(1−x²).',
+            interpretation:
+                'The principal interval determines the correct square-root sign.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Domains of compositions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'The inverse input must be admissible',
+            content:
+                'For arcsin(g(x)) and arccos(g(x)), require −1≤g(x)≤1. For arctan(g(x)), any real output of g is acceptable.',
+            emphasis:
+                'The composite domain depends on the inner function range.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing inverse and reciprocal',
+            content:
+                'arctan x is not cot x, and arcsin x is not csc x.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the principal range',
+            content:
+                'An inverse trigonometric output must belong to its official principal range.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling compositions outside the restricted domain',
+            content:
+                'arcsin(sin x)=x is not valid for every real x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Compute arccos(√2/2).',
+            steps: [
+              'Look for the angle in [0,π].',
+              'cos(π/4)=√2/2.',
+            ],
+            result: 'π/4.',
+            interpretation:
+                'The principal interval eliminates coterminal alternatives.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Compute arctan(tan(3π/4)).',
+            steps: [
+              'tan(3π/4)=−1.',
+              'arctan(−1)=−π/4.',
+            ],
+            result: '−π/4.',
+            interpretation:
+                '3π/4 lies outside the principal arctangent interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Evaluate, compose, and determine domains',
+            content:
+                '1. Compute arcsin(0).\n'
+                '2. Compute arcsin(−1).\n'
+                '3. Compute arccos(0).\n'
+                '4. Compute arccos(−1).\n'
+                '5. Compute arctan(√3).\n'
+                '6. Find the domain of arcsin(2x).\n'
+                '7. Find the domain of arccos(x−1).\n'
+                '8. Simplify sin(arcsin x).\n'
+                '9. Simplify cos(arccos x).\n'
+                '10. Compute arcsin(sin(2π/3)).\n'
+                '11. Compute arccos(cos(4π/3)).\n'
+                '12. Simplify cos(arcsin x).\n'
+                '13. Explain why arctan has domain ℝ.\n'
+                '14. Explain the reflection across y=x geometrically.\n'
+                '15. Clearly distinguish functional inverse and reciprocal.',
+            emphasis:
+                'Before answering, always check the principal range of the inverse function involved.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Inverse trig functions appear in derivatives and integrals',
+            content:
+                'Derivatives of arcsin, arccos, and arctan involve algebraic expressions such as 1−x² and 1+x². These functions also arise naturally in antiderivatives and trigonometric substitutions.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for inverse trigonometric functions and Calculus applications.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'What is the domain of arcsin x?', choices: ['ℝ', '[−1,1]', '(0,+∞)'], correctIndex: 1, explanation: 'Sine outputs only values from −1 to 1.'),
-    takeaways: ['Trig functions need restrictions before inversion.', 'arcsin and arccos have domain [−1,1].', 'arctan has domain ℝ.', 'Inverse notation is not reciprocal notation.'],
-    closing: 'Inverse trig functions appear in geometry, integration, and applied problems.',
+    check: LessonCheckData(
+      question: 'What is the range of arcsin x?',
+      choices: ['[−1,1]', '[−π/2,π/2]', '[0,π]'],
+      correctIndex: 1,
+      explanation:
+          'Sine is restricted to [−π/2,π/2] to become one-to-one, and this interval becomes the range of arcsin.',
+    ),
+    takeaways: [
+      'Trigonometric functions require restrictions before they are invertible.',
+      'arcsin has domain [−1,1] and range [−π/2,π/2].',
+      'arccos has domain [−1,1] and range [0,π].',
+      'arctan has domain ℝ and range (−π/2,π/2).',
+      'Functional inverse is not the same as reciprocal.',
+      'Inverse compositions depend on principal intervals.',
+      'Domain and range exchange roles between an invertible function and its inverse.',
+    ],
+    closing:
+        'Inverse trigonometric functions convert ratios into angles, but they are single-valued only because principal intervals are carefully chosen.',
   ),
   CourseLessonData(
     id: 'funcoes-12-geometria-analitica', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Analytic geometry', title: 'Points, distance, and lines', description: 'coordinate plane, slope, and line equations', duration: '≈ 18 min', objective: 'use distance, midpoint, and slope to interpret lines in the plane', symbol: 'm=Δy/Δx',
