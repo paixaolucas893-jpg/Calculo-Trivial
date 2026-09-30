@@ -1680,54 +1680,325 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Funções clássicas',
     title: 'Funções exponenciais',
-    description: 'crescimento, decaimento e número e',
-    duration: '≈ 16 min',
+    description:
+        'definição, domínio, imagem, crescimento, decaimento, transformações, modelos e número e',
+    duration: '≈ 36 min',
     objective:
-        'interpretar funções exponenciais e distinguir crescimento de decaimento a partir da base',
+        'analisar funções exponenciais a partir da base, determinar domínio e imagem, interpretar crescimento e decaimento, resolver modelos simples e compreender o papel especial do número e',
     symbol: 'aˣ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'A variável está no expoente',
+        title: 'Definição de função exponencial',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.graph,
-            title: 'Base determina crescimento',
+            visual: LessonVisual.notation,
+            title: 'A variável aparece no expoente',
             content:
-                'Na função f(x)=aˣ, com a>0 e a≠1, se a>1 há crescimento exponencial; se 0<a<1 há decaimento. O domínio é ℝ e a imagem é (0,+∞).',
-            emphasis: 'A função exponencial nunca assume valor zero.',
-          ),
-          ConceptBlockData(
-            visual: LessonVisual.idea,
-            title: 'A base e é natural no Cálculo',
-            content:
-                'O número e≈2,718 aparece naturalmente em crescimento contínuo. A função eˣ terá propriedades especialmente simples quando estudarmos derivadas.',
+                'Uma função exponencial básica tem a forma [[math:f(x)=a^x]], com [[math:a>0]] e [[math:a\\ne1]]. A base positiva garante valores reais para todo x real; a exclusão de a=1 evita a função constante.',
+            emphasis:
+                'Em x² a variável está na base; em 2ˣ a variável está no expoente.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Domínio, imagem e intercepto',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Modelo de crescimento',
-            problem: 'Uma quantidade é modelada por P(t)=100·2ᵗ. Qual o valor em t=3?',
-            steps: ['Substitua t por 3: P(3)=100·2³.', 'Calcule 2³=8.', 'Multiplique: 100·8=800.'],
-            result: 'P(3)=800.',
-            interpretation: 'A quantidade dobra a cada unidade de tempo.',
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Estrutura básica do gráfico',
+            content:
+                'Para f(x)=aˣ com a>0 e a≠1, o domínio é ℝ, a imagem é (0,+∞) e f(0)=1. Portanto, todo gráfico exponencial básico passa por (0,1).',
+            emphasis:
+                'A função exponencial nunca assume valor zero.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Comparação',
+        title: 'Crescimento exponencial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Base maior que 1',
+            content:
+                'Se a>1, então f(x)=aˣ é crescente. Multiplicar x por incrementos iguais multiplica a saída por fatores constantes.',
+            emphasis:
+                'Em crescimento exponencial, razões sucessivas são constantes quando os incrementos de entrada são iguais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Dobro por unidade',
+            problem: 'Considere P(t)=100·2ᵗ. Calcule P(3).',
+            steps: [
+              'Substitua t=3.',
+              'P(3)=100·2³.',
+              '2³=8.',
+            ],
+            result: 'P(3)=800.',
+            interpretation:
+                'A quantidade dobra a cada unidade de tempo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Decaimento exponencial',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.compare,
-            title: 'Exponencial não é potência comum',
+            title: 'Base entre 0 e 1',
             content:
-                'Em x², a variável está na base. Em 2ˣ, a variável está no expoente. Esses dois tipos de função têm comportamentos muito diferentes.',
+                'Se 0<a<1, então aˣ é decrescente. Como [[math:a^x=(1/b)^x=b^{-x}]] para b>1, decaimento pode ser visto como crescimento refletido no eixo y.',
+            emphasis:
+                'A função continua positiva para todo x real.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Metade por etapa',
+            problem: 'Considere M(t)=80·(1/2)ᵗ. Calcule M(3).',
+            steps: [
+              'Substitua t=3.',
+              '(1/2)³=1/8.',
+              '80·1/8=10.',
+            ],
+            result: 'M(3)=10.',
+            interpretation:
+                'A quantidade é reduzida pela metade a cada unidade de tempo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Assíntota horizontal',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'y=0 na exponencial básica',
+            content:
+                'Para a>1, aˣ→0 quando x→−∞. Para 0<a<1, aˣ→0 quando x→+∞. Assim, y=0 é assíntota horizontal da função exponencial básica.',
+            emphasis:
+                'O gráfico se aproxima do eixo x, mas não o toca.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Transformações exponenciais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'A forma C·a^(x−h)+k',
+            content:
+                'Na forma [[math:f(x)=C\\,a^{x-h}+k]], h desloca horizontalmente, k desloca verticalmente e C escala ou reflete verticalmente.',
+            emphasis:
+                'A assíntota horizontal passa de y=0 para y=k.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Lendo a transformação',
+            problem: 'Analise f(x)=3·2^(x−1)−4.',
+            steps: [
+              'x−1 desloca 1 unidade para a direita.',
+              'O fator 3 alonga verticalmente.',
+              '−4 desloca 4 unidades para baixo.',
+            ],
+            result: 'Assíntota horizontal y=−4.',
+            interpretation:
+                'As transformações alteram posição e escala sem mudar a natureza exponencial.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Equações exponenciais com mesma base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Use a injetividade',
+            content:
+                'Para a>0 e a≠1, a função aˣ é injetiva. Portanto, se [[math:a^{u}=a^{v}]], então u=v.',
+            emphasis:
+                'Igualar expoentes só é válido quando as bases são iguais e admissíveis.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Igualando expoentes',
+            problem: 'Resolva 2^(x+1)=8.',
+            steps: [
+              'Escreva 8 como 2³.',
+              'Então 2^(x+1)=2³.',
+              'Iguale os expoentes: x+1=3.',
+            ],
+            result: 'x=2.',
+            interpretation:
+                'A injetividade da exponencial justifica o passo central.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Quando as bases não coincidem',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Logaritmos resolvem o caso geral',
+            content:
+                'Equações como 3ˣ=7 não admitem reescrita simples com a mesma base. Nesse caso, logaritmos permitem isolar o expoente.',
+            emphasis:
+                'A aula seguinte desenvolverá essa ferramenta formalmente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Modelos do tipo P(t)=P₀aᵗ',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Valor inicial e fator multiplicativo',
+            content:
+                'Em [[math:P(t)=P_0a^t]], P₀ é o valor inicial porque P(0)=P₀. A base a representa o fator multiplicativo por unidade de tempo.',
+            emphasis:
+                'a=1+r modela crescimento percentual r; a=1−r modela decaimento percentual quando 0<r<1.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Crescimento percentual',
+            problem: 'Uma população inicia em 500 e cresce 8% ao ano. Escreva o modelo.',
+            steps: [
+              'Valor inicial: P₀=500.',
+              'Taxa: r=0,08.',
+              'Fator anual: 1+r=1,08.',
+            ],
+            result: 'P(t)=500·1,08ᵗ.',
+            interpretation:
+                'A porcentagem vira um fator multiplicativo recorrente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'O número e',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A base natural do Cálculo',
+            content:
+                'O número [[math:e\\approx2{,}71828]] surge naturalmente em processos de crescimento contínuo e na análise de limites. A função eˣ possui a propriedade especial de ter derivada igual a si mesma.',
+            emphasis:
+                'Essa propriedade será demonstrada formalmente em Cálculo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Crescimento contínuo',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Modelo com e',
+            problem: 'Uma quantidade segue Q(t)=200e^(0,3t). Calcule Q(0).',
+            steps: [
+              'Substitua t=0.',
+              'e^0=1.',
+            ],
+            result: 'Q(0)=200.',
+            interpretation:
+                'O coeficiente externo continua representando o valor inicial.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Sinal do expoente',
+            content:
+                'Em Ce^(kt), k>0 representa crescimento contínuo e k<0 representa decaimento contínuo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir exponencial com polinômio',
+            content:
+                '2ˣ não é x². A posição da variável altera completamente a estrutura da função.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar base negativa em uma função exponencial real global',
+            content:
+                'Uma expressão como (−2)ˣ não define uma função real para todo x real.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Somar porcentagem ao valor inicial em todas as etapas',
+            content:
+                'Crescimento exponencial multiplica pelo mesmo fator; não adiciona a mesma quantidade absoluta em cada período.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Resolva 5^(2x−1)=125.',
+            steps: [
+              'Escreva 125=5³.',
+              'Iguale expoentes: 2x−1=3.',
+              '2x=4.',
+            ],
+            result: 'x=2.',
+            interpretation:
+                'A mesma base transforma a equação exponencial em uma equação linear.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Classifique 3ˣ como crescimento ou decaimento.\n'
+                '2. Classifique (1/4)ˣ.\n'
+                '3. Determine domínio e imagem de 2ˣ.\n'
+                '4. Calcule 2⁻³.\n'
+                '5. Resolva 3^(x+1)=27.\n'
+                '6. Resolva 4^(2x)=16.\n'
+                '7. Determine a assíntota de 5ˣ−2.\n'
+                '8. Descreva 2·3^(x−4)+1.\n'
+                '9. Modele crescimento anual de 6% com valor inicial 1000.\n'
+                '10. Modele decaimento anual de 12% com valor inicial 500.\n'
+                '11. Explique por que aˣ nunca vale zero.\n'
+                '12. Compare x³ e 3ˣ.\n'
+                '13. Explique o papel de P₀ em P(t)=P₀aᵗ.\n'
+                '14. Classifique e^(−0,5t).\n'
+                '15. Explique por que e é especial no Cálculo.',
+            emphasis:
+                'Em modelos, identifique explicitamente valor inicial, taxa e fator multiplicativo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Exponenciais conectam crescimento e derivada',
+            content:
+                'A derivada mede taxa instantânea. Em eˣ, a taxa instantânea é proporcional ao próprio valor da função, tornando essa função central em equações diferenciais, juros contínuos e modelos naturais.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para funções exponenciais, modelos e número e.',
           ),
         ],
       ),
@@ -1736,15 +2007,20 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Qual função representa decaimento exponencial?',
       choices: ['2ˣ', '(1/2)ˣ', 'x²'],
       correctIndex: 1,
-      explanation: 'Uma base entre 0 e 1 produz decaimento exponencial.',
+      explanation:
+          'Uma base estritamente entre 0 e 1 produz uma função exponencial decrescente.',
     ),
     takeaways: [
-      'Na exponencial, a variável está no expoente.',
-      'Base maior que 1 produz crescimento.',
-      'Base entre 0 e 1 produz decaimento.',
-      'eˣ será central no Cálculo.',
+      'Na função exponencial, a variável está no expoente.',
+      'A base deve ser positiva e diferente de 1.',
+      'O domínio básico é ℝ e a imagem é (0,+∞).',
+      'Base maior que 1 produz crescimento; base entre 0 e 1 produz decaimento.',
+      'Transformações deslocam a assíntota horizontal.',
+      'Modelos exponenciais usam fatores multiplicativos constantes.',
+      'O número e é a base natural do Cálculo.',
     ],
-    closing: 'Exponenciais modelam processos em que a taxa de mudança acompanha o próprio tamanho da quantidade.',
+    closing:
+        'Funções exponenciais descrevem processos em que mudanças proporcionais se acumulam multiplicativamente.',
   ),
   CourseLessonData(
     id: 'funcoes-07-logaritmos',
@@ -3954,15 +4230,352 @@ const List<CourseLessonData> _englishLessons = [
         'Rational functions are the first major meeting point of algebra, geometry, and limiting behavior.',
   ),
   CourseLessonData(
-    id: 'funcoes-06-exponenciais', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Exponential functions', description: 'growth, decay, and the number e', duration: '≈ 16 min', objective: 'interpret exponential functions and distinguish growth from decay', symbol: 'aˣ',
+    id: 'funcoes-06-exponenciais',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Classical functions',
+    title: 'Exponential functions',
+    description:
+        'definition, domain, range, growth, decay, transformations, models, and the number e',
+    duration: '≈ 36 min',
+    objective:
+        'analyze exponential functions from their base, determine domain and range, interpret growth and decay, solve simple models, and understand the special role of e',
+    symbol: 'aˣ',
     sections: [
-      LessonSectionData(number: '1', title: 'The variable is in the exponent', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'The base controls growth', content: 'For f(x)=aˣ with a>0 and a≠1, a>1 gives growth and 0<a<1 gives decay. Domain is ℝ and range is (0,+∞).', emphasis: 'An exponential function never equals zero.'), ConceptBlockData(visual: LessonVisual.idea, title: 'e is natural in Calculus', content: 'The number e≈2.718 appears in continuous growth and gives especially simple derivative rules.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Growth model', problem: 'P(t)=100·2ᵗ. Find P(3).', steps: ['P(3)=100·2³.', '2³=8.', '100·8=800.'], result: 'P(3)=800.', interpretation: 'The quantity doubles each time unit.')]),
-      LessonSectionData(number: '3', title: 'Compare', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Exponential versus power', content: 'x² has the variable in the base, while 2ˣ has it in the exponent.', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Definition of an exponential function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'The variable is in the exponent',
+            content:
+                'A basic exponential function has the form [[math:f(x)=a^x]], with [[math:a>0]] and [[math:a\\ne1]]. A positive base gives real values for every real x, while a=1 would produce a constant function.',
+            emphasis:
+                'In x² the variable is the base; in 2ˣ the variable is the exponent.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Domain, range, and intercept',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Basic graph structure',
+            content:
+                'For f(x)=aˣ with a>0 and a≠1, the domain is ℝ, the range is (0,+∞), and f(0)=1. Every basic exponential graph passes through (0,1).',
+            emphasis:
+                'An exponential function never equals zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Exponential growth',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Base greater than 1',
+            content:
+                'If a>1, then aˣ is increasing. Equal increments in x multiply outputs by constant ratios.',
+            emphasis:
+                'Exponential growth is characterized by constant multiplicative factors over equal input increments.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Doubling each unit',
+            problem: 'Let P(t)=100·2ᵗ. Compute P(3).',
+            steps: [
+              'Substitute t=3.',
+              'P(3)=100·2³.',
+              '2³=8.',
+            ],
+            result: 'P(3)=800.',
+            interpretation:
+                'The quantity doubles every unit of time.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exponential decay',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Base between 0 and 1',
+            content:
+                'If 0<a<1, then aˣ is decreasing. Because [[math:a^x=(1/b)^x=b^{-x}]] for b>1, decay can be viewed as growth reflected across the y-axis.',
+            emphasis:
+                'The function remains positive for all real x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Halving each step',
+            problem: 'Let M(t)=80·(1/2)ᵗ. Compute M(3).',
+            steps: [
+              'Substitute t=3.',
+              '(1/2)³=1/8.',
+              '80·1/8=10.',
+            ],
+            result: 'M(3)=10.',
+            interpretation:
+                'The quantity is halved every unit of time.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Horizontal asymptote',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'y=0 for the basic exponential',
+            content:
+                'For a>1, aˣ→0 as x→−∞. For 0<a<1, aˣ→0 as x→+∞. Thus y=0 is the horizontal asymptote of the basic exponential.',
+            emphasis:
+                'The graph approaches the x-axis without touching it.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Exponential transformations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'The form C·a^(x−h)+k',
+            content:
+                'In [[math:f(x)=C\\,a^{x-h}+k]], h shifts horizontally, k shifts vertically, and C scales or reflects vertically.',
+            emphasis:
+                'The horizontal asymptote moves from y=0 to y=k.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reading a transformation',
+            problem: 'Analyze f(x)=3·2^(x−1)−4.',
+            steps: [
+              'x−1 shifts right by 1.',
+              'The factor 3 stretches vertically.',
+              '−4 shifts down by 4.',
+            ],
+            result: 'Horizontal asymptote y=−4.',
+            interpretation:
+                'Transformations change position and scale while preserving exponential structure.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exponential equations with the same base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Use injectivity',
+            content:
+                'For a>0 and a≠1, aˣ is injective. Therefore, if [[math:a^{u}=a^{v}]], then u=v.',
+            emphasis:
+                'Equating exponents requires matching valid bases.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equating exponents',
+            problem: 'Solve 2^(x+1)=8.',
+            steps: [
+              'Rewrite 8 as 2³.',
+              'Then 2^(x+1)=2³.',
+              'Set x+1=3.',
+            ],
+            result: 'x=2.',
+            interpretation:
+                'Injectivity justifies the central step.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'When the bases do not match',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Logarithms solve the general case',
+            content:
+                'Equations such as 3ˣ=7 cannot usually be rewritten with a common elementary base. Logarithms allow the exponent to be isolated.',
+            emphasis:
+                'The next lesson develops this tool formally.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Models of the form P(t)=P₀aᵗ',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Initial value and multiplicative factor',
+            content:
+                'In [[math:P(t)=P_0a^t]], P₀ is the initial value because P(0)=P₀. The base a is the multiplicative factor per unit time.',
+            emphasis:
+                'a=1+r models percentage growth r; a=1−r models percentage decay when 0<r<1.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Percentage growth',
+            problem: 'A population starts at 500 and grows 8% per year. Write the model.',
+            steps: [
+              'Initial value: P₀=500.',
+              'Rate: r=0.08.',
+              'Annual factor: 1+r=1.08.',
+            ],
+            result: 'P(t)=500·1.08ᵗ.',
+            interpretation:
+                'A percentage rate becomes a recurring multiplicative factor.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'The number e',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'The natural base of Calculus',
+            content:
+                'The number [[math:e\\approx2.71828]] arises naturally in continuous growth and limit analysis. The function eˣ has the special property that its derivative equals itself.',
+            emphasis:
+                'That property will be established formally in Calculus.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Continuous growth',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'A model with e',
+            problem: 'A quantity follows Q(t)=200e^(0.3t). Compute Q(0).',
+            steps: [
+              'Substitute t=0.',
+              'e^0=1.',
+            ],
+            result: 'Q(0)=200.',
+            interpretation:
+                'The outside coefficient still represents the initial value.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Sign of the exponent coefficient',
+            content:
+                'In Ce^(kt), k>0 represents continuous growth and k<0 represents continuous decay.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing exponential and polynomial functions',
+            content:
+                '2ˣ is not x². The position of the variable changes the entire function structure.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Using a negative base for a global real exponential',
+            content:
+                'An expression such as (−2)ˣ does not define a real-valued function for every real x.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Adding a fixed amount instead of multiplying',
+            content:
+                'Exponential growth multiplies by a constant factor; it does not add the same absolute amount each period.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided example',
+            problem: 'Solve 5^(2x−1)=125.',
+            steps: [
+              'Rewrite 125=5³.',
+              'Set 2x−1=3.',
+              'Then 2x=4.',
+            ],
+            result: 'x=2.',
+            interpretation:
+                'A common base reduces the exponential equation to a linear equation.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Practice before the final activity',
+            content:
+                '1. Classify 3ˣ as growth or decay.\n'
+                '2. Classify (1/4)ˣ.\n'
+                '3. Find the domain and range of 2ˣ.\n'
+                '4. Compute 2⁻³.\n'
+                '5. Solve 3^(x+1)=27.\n'
+                '6. Solve 4^(2x)=16.\n'
+                '7. Find the asymptote of 5ˣ−2.\n'
+                '8. Describe 2·3^(x−4)+1.\n'
+                '9. Model 6% annual growth with initial value 1000.\n'
+                '10. Model 12% annual decay with initial value 500.\n'
+                '11. Explain why aˣ never equals zero.\n'
+                '12. Compare x³ and 3ˣ.\n'
+                '13. Explain the role of P₀ in P(t)=P₀aᵗ.\n'
+                '14. Classify e^(−0.5t).\n'
+                '15. Explain why e is special in Calculus.',
+            emphasis:
+                'In models, identify the initial value, rate, and multiplicative factor explicitly.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Exponentials connect growth and derivatives',
+            content:
+                'A derivative measures instantaneous rate. For eˣ, the instantaneous rate equals the function value, making it central in differential equations, continuous compounding, and natural growth models.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for exponential functions, modeling, and the number e.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'Which function represents exponential decay?', choices: ['2ˣ', '(1/2)ˣ', 'x²'], correctIndex: 1, explanation: 'A base between 0 and 1 produces decay.'),
-    takeaways: ['The variable is in the exponent.', 'Base >1 gives growth.', '0<base<1 gives decay.', 'eˣ is central in Calculus.'],
-    closing: 'Exponentials model processes whose change scales with current size.',
+    check: LessonCheckData(
+      question: 'Which function represents exponential decay?',
+      choices: ['2ˣ', '(1/2)ˣ', 'x²'],
+      correctIndex: 1,
+      explanation:
+          'A base strictly between 0 and 1 produces a decreasing exponential function.',
+    ),
+    takeaways: [
+      'In an exponential function, the variable is in the exponent.',
+      'The base must be positive and different from 1.',
+      'The basic domain is ℝ and the range is (0,+∞).',
+      'A base greater than 1 gives growth; a base between 0 and 1 gives decay.',
+      'Transformations shift the horizontal asymptote.',
+      'Exponential models use constant multiplicative factors.',
+      'The number e is the natural base of Calculus.',
+    ],
+    closing:
+        'Exponential functions describe processes in which proportional changes accumulate multiplicatively.',
   ),
   CourseLessonData(
     id: 'funcoes-07-logaritmos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Logarithms', description: 'definition, properties, and inverse relationship', duration: '≈ 18 min', objective: 'interpret logarithms as exponents and use basic logarithmic properties', symbol: 'logₐx',
