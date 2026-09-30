@@ -116,8 +116,9 @@ class LessonHeroCard extends StatelessWidget {
                       color: AppColors.white.withValues(alpha: 0.18),
                     ),
                   ),
-                  child: Text(
+                  child: AcademicMathText(
                     symbol,
+                    textAlign: TextAlign.center,
                     style: AppTypography.headingSmall.copyWith(
                       color: AppColors.white,
                       fontWeight: FontWeight.w800,
@@ -222,10 +223,16 @@ class LessonSectionHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: AppTypography.titleLarge),
+                AcademicMathText(
+                  title,
+                  style: AppTypography.titleLarge,
+                ),
                 if (subtitle != null) ...[
                   const SizedBox(height: AppSpacing.xxs),
-                  Text(subtitle!, style: AppTypography.bodySmall),
+                  AcademicMathText(
+                    subtitle!,
+                    style: AppTypography.bodySmall,
+                  ),
                 ],
               ],
             ),
@@ -315,7 +322,12 @@ class LessonConceptCard extends StatelessWidget {
                   child: Icon(icon, color: _accent),
                 ),
                 const SizedBox(width: AppSpacing.sm),
-                Expanded(child: Text(title, style: AppTypography.titleMedium)),
+                Expanded(
+                  child: AcademicMathText(
+                    title,
+                    style: AppTypography.titleMedium,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
