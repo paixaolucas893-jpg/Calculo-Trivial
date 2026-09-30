@@ -3959,48 +3959,378 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Geometria analítica',
     title: 'Pontos, distância e retas',
-    description: 'plano cartesiano, inclinação e equações da reta',
-    duration: '≈ 18 min',
+    description:
+        'coordenadas, distância, ponto médio, vetores direção, inclinação, formas da reta, paralelismo e perpendicularidade',
+    duration: '≈ 36 min',
     objective:
-        'usar distância, ponto médio e inclinação para interpretar retas no plano cartesiano',
+        'usar coordenadas para medir distância e ponto médio, interpretar inclinação como taxa de variação, construir equações de retas em diferentes formas e analisar paralelismo e perpendicularidade',
     symbol: 'm=Δy/Δx',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Inclinação mede variação',
+        title: 'Pontos no plano cartesiano',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Reta como taxa constante',
+            title: 'Um ponto é um par ordenado',
             content:
-                'Entre dois pontos (x₁,y₁) e (x₂,y₂), a inclinação é m=(y₂−y₁)/(x₂−x₁), se x₂≠x₁. A forma y=mx+b mostra inclinação m e intercepto vertical b.',
-            emphasis: 'Inclinação é uma taxa média de variação constante para funções lineares.',
+                'Um ponto P=(x,y) registra uma posição no plano. A primeira coordenada mede deslocamento horizontal; a segunda, deslocamento vertical.',
+            emphasis:
+                'Ponto e vetor não são o mesmo objeto, embora possam usar pares de números.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
-        blocks: [
-          WorkedExampleBlockData(
-            title: 'Reta por dois pontos',
-            problem: 'Encontre a reta que passa por (1,2) e (4,8).',
-            steps: ['m=(8−2)/(4−1)=6/3=2.', 'Use y−2=2(x−1).', 'Expanda: y=2x.'],
-            result: 'A reta é y=2x.',
-            interpretation: 'A cada unidade acrescentada a x, y cresce 2 unidades.',
-          ),
-        ],
-      ),
-      LessonSectionData(
-        number: '3',
-        title: 'Distância no plano',
+        title: 'Distância entre dois pontos',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.calculate,
             title: 'Pitágoras em coordenadas',
             content:
-                'A distância entre dois pontos é √[(x₂−x₁)²+(y₂−y₁)²]. O ponto médio é ((x₁+x₂)/2,(y₁+y₂)/2).',
+                'Para P₁=(x₁,y₁) e P₂=(x₂,y₂), a distância é [[math:d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}]].',
+            emphasis:
+                'A fórmula vem do teorema de Pitágoras aplicado às variações horizontal e vertical.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distância entre dois pontos',
+            problem: 'Calcule a distância entre (1,2) e (4,6).',
+            steps: [
+              'Δx=4−1=3.',
+              'Δy=6−2=4.',
+              'd=√(3²+4²).',
+            ],
+            result: 'd=5.',
+            interpretation:
+                'O deslocamento forma um triângulo 3–4–5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Ponto médio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Média das coordenadas',
+            content:
+                'O ponto médio do segmento com extremos P₁ e P₂ é [[math:M=(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2})]].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Centro do segmento',
+            problem: 'Encontre o ponto médio entre (−2,3) e (6,7).',
+            steps: [
+              'M_x=(−2+6)/2=2.',
+              'M_y=(3+7)/2=5.',
+            ],
+            result: 'M=(2,5).',
+            interpretation:
+                'O ponto médio está à mesma distância dos dois extremos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Vetor direção e variações',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Δx e Δy descrevem direção',
+            content:
+                'Entre dois pontos, o vetor direção pode ser representado por (Δx,Δy)=(x₂−x₁,y₂−y₁). Ele indica como nos deslocamos horizontal e verticalmente.',
+            emphasis:
+                'A inclinação usa a razão entre essas duas variações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inclinação de uma reta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Taxa de variação constante',
+            content:
+                'Se x₂≠x₁, a inclinação é [[math:m=\\frac{y_2-y_1}{x_2-x_1}=\\frac{\\Delta y}{\\Delta x}]].',
+            emphasis:
+                'm>0 indica crescimento, m<0 decrescimento, m=0 reta horizontal.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Calculando a inclinação',
+            problem: 'Encontre a inclinação entre (1,2) e (4,8).',
+            steps: [
+              'Δy=8−2=6.',
+              'Δx=4−1=3.',
+            ],
+            result: 'm=6/3=2.',
+            interpretation:
+                'A cada aumento de 1 em x, y aumenta 2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Retas verticais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inclinação indefinida',
+            content:
+                'Em uma reta vertical, Δx=0 e a razão Δy/Δx não está definida. Sua equação tem a forma x=a.',
+            emphasis:
+                'Reta vertical não pode ser escrita como y=mx+b.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Forma reduzida',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'y=mx+b',
+            content:
+                'Na forma reduzida [[math:y=mx+b]], m é a inclinação e b é o intercepto com o eixo y.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Lendo uma reta',
+            problem: 'Interprete y=−3x+5.',
+            steps: [
+              'Inclinação m=−3.',
+              'Intercepto vertical b=5.',
+            ],
+            result: 'A reta é decrescente e passa por (0,5).',
+            interpretation:
+                'A forma reduzida deixa taxa e intercepto explícitos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Forma ponto-inclinação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'y−y₁=m(x−x₁)',
+            content:
+                'Se conhecemos um ponto (x₁,y₁) e a inclinação m, a reta pode ser escrita como [[math:y-y_1=m(x-x_1)]].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reta por ponto e inclinação',
+            problem: 'Encontre a reta de inclinação 2 que passa por (3,1).',
+            steps: [
+              'Use y−1=2(x−3).',
+              'Expanda: y−1=2x−6.',
+            ],
+            result: 'y=2x−5.',
+            interpretation:
+                'Um ponto e uma direção determinam uma única reta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Reta determinada por dois pontos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Dois pontos',
+            problem: 'Encontre a reta que passa por (−1,4) e (2,−2).',
+            steps: [
+              'm=(−2−4)/(2−(−1))=−6/3=−2.',
+              'Use y−4=−2(x+1).',
+              'Expanda.',
+            ],
+            result: 'y=−2x+2.',
+            interpretation:
+                'Primeiro obtemos a inclinação; depois usamos uma forma da reta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Forma geral da reta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Ax+By+C=0',
+            content:
+                'A forma geral [[math:Ax+By+C=0]] representa retas quando A e B não são ambos zero. Se B≠0, podemos isolá-la para obter y=mx+b.',
+            emphasis:
+                'A forma geral inclui naturalmente retas verticais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Retas paralelas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Mesma direção',
+            content:
+                'Duas retas não verticais distintas são paralelas quando possuem a mesma inclinação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Paralela por um ponto',
+            problem: 'Encontre a reta paralela a y=3x−1 que passa por (2,5).',
+            steps: [
+              'A reta paralela deve ter m=3.',
+              'Use y−5=3(x−2).',
+            ],
+            result: 'y=3x−1.',
+            interpretation:
+                'Neste caso, o ponto dado já pertence à reta original; portanto a reta coincidente é obtida.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Retas perpendiculares',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Produto das inclinações igual a −1',
+            content:
+                'Para retas não verticais e não horizontais, perpendicularidade satisfaz [[math:m_1m_2=-1]]. Assim, as inclinações são recíprocas opostas.',
+            emphasis:
+                'Uma reta horizontal é perpendicular a uma reta vertical.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Perpendicular',
+            problem: 'Encontre a inclinação de uma reta perpendicular a uma reta de inclinação 2/3.',
+            steps: [
+              'Tome o recíproco: 3/2.',
+              'Troque o sinal.',
+            ],
+            result: 'm=−3/2.',
+            interpretation:
+                'O produto (2/3)(−3/2)=−1 confirma a perpendicularidade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Interseção de duas retas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Sistema linear geométrico',
+            problem: 'Encontre a interseção de y=2x+1 e y=−x+7.',
+            steps: [
+              'Iguale as expressões: 2x+1=−x+7.',
+              '3x=6, então x=2.',
+              'Substitua: y=5.',
+            ],
+            result: 'As retas se intersectam em (2,5).',
+            interpretation:
+                'Resolver um sistema linear equivale geometricamente a localizar a interseção.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Distância de um ponto a uma reta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Fórmula útil',
+            content:
+                'Para a reta Ax+By+C=0 e o ponto (x₀,y₀), a distância é [[math:d=\\frac{|Ax_0+By_0+C|}{\\sqrt{A^2+B^2}}]].',
+            emphasis:
+                'A distância é medida na direção perpendicular à reta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inverter Δx e Δy',
+            content:
+                'Inclinação é Δy/Δx, não Δx/Δy.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Atribuir inclinação infinita a reta vertical',
+            content:
+                'Em matemática elementar, dizemos que a inclinação é indefinida.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o sinal em perpendiculares',
+            content:
+                'O recíproco deve ter sinal oposto.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Encontre a reta perpendicular a y=2x+4 que passa por (1,3).',
+            steps: [
+              'A inclinação perpendicular é −1/2.',
+              'Use y−3=−(1/2)(x−1).',
+            ],
+            result: 'y=−x/2+7/2.',
+            interpretation:
+                'Ponto e inclinação perpendicular determinam a reta.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Calcule a distância entre (0,0) e (3,4).\n'
+                '2. Encontre o ponto médio entre (2,−1) e (8,5).\n'
+                '3. Calcule a inclinação entre (−1,2) e (3,10).\n'
+                '4. Interprete y=4x−7.\n'
+                '5. Encontre a reta com m=−2 passando por (1,5).\n'
+                '6. Encontre a reta por (0,3) e (2,7).\n'
+                '7. Converta 2x−3y+6=0 para forma reduzida.\n'
+                '8. Encontre uma reta paralela a y=−x+4 por (2,0).\n'
+                '9. Encontre uma reta perpendicular a y=(1/3)x−2.\n'
+                '10. Encontre a interseção de y=x+1 e y=−2x+7.\n'
+                '11. Explique por que x=4 é vertical.\n'
+                '12. Explique geometricamente o significado de m=0.\n'
+                '13. Calcule a distância do ponto (0,0) à reta 3x+4y−20=0.\n'
+                '14. Relacione inclinação com taxa média de variação.\n'
+                '15. Crie uma reta que passe por dois pontos escolhidos por você.',
+            emphasis:
+                'Sempre identifique primeiro quais dados estão disponíveis: dois pontos, ponto e inclinação ou forma geral.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'A derivada será uma inclinação local',
+            content:
+                'A reta secante usa dois pontos e fornece taxa média. A reta tangente surgirá como limite de secantes, e sua inclinação será a derivada.',
+            emphasis:
+                'Geometria analítica fornece a interpretação visual da derivada.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Stewart e Thomas para geometria analítica, retas e interpretação de taxas.',
           ),
         ],
       ),
@@ -4009,15 +4339,21 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Qual é a inclinação entre (0,1) e (2,5)?',
       choices: ['1', '2', '4'],
       correctIndex: 1,
-      explanation: 'm=(5−1)/(2−0)=4/2=2.',
+      explanation:
+          'm=(5−1)/(2−0)=4/2=2.',
     ),
     takeaways: [
-      'Inclinação é Δy/Δx.',
-      'Reta linear possui taxa de variação constante.',
       'Distância vem do teorema de Pitágoras.',
-      'Geometria analítica conecta fórmulas e gráficos.',
+      'Ponto médio é obtido pela média das coordenadas.',
+      'Inclinação é Δy/Δx.',
+      'Uma reta pode ser representada em diferentes formas equivalentes.',
+      'Retas paralelas compartilham direção.',
+      'Inclinações perpendiculares são recíprocas opostas.',
+      'Sistemas lineares representam interseções de retas.',
+      'Inclinação prepara a interpretação geométrica da derivada.',
     ],
-    closing: 'A inclinação da reta prepara diretamente a interpretação geométrica da derivada.',
+    closing:
+        'Geometria analítica transforma relações algébricas em posição, direção, distância e taxa de variação no plano.',
   ),
   CourseLessonData(
     id: 'funcoes-13-conicas',
@@ -8098,15 +8434,406 @@ const List<CourseLessonData> _englishLessons = [
         'Inverse trigonometric functions convert ratios into angles, but they are single-valued only because principal intervals are carefully chosen.',
   ),
   CourseLessonData(
-    id: 'funcoes-12-geometria-analitica', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Analytic geometry', title: 'Points, distance, and lines', description: 'coordinate plane, slope, and line equations', duration: '≈ 18 min', objective: 'use distance, midpoint, and slope to interpret lines in the plane', symbol: 'm=Δy/Δx',
+    id: 'funcoes-12-geometria-analitica',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Analytic geometry',
+    title: 'Points, distance, and lines',
+    description:
+        'coordinates, distance, midpoint, direction vectors, slope, line forms, parallelism, and perpendicularity',
+    duration: '≈ 36 min',
+    objective:
+        'use coordinates to measure distance and midpoint, interpret slope as rate of change, construct line equations in several forms, and analyze parallel and perpendicular lines',
+    symbol: 'm=Δy/Δx',
     sections: [
-      LessonSectionData(number: '1', title: 'Slope measures change', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'A line has constant rate', content: 'Between (x₁,y₁) and (x₂,y₂), m=(y₂−y₁)/(x₂−x₁). The form y=mx+b displays slope and y-intercept.', emphasis: 'Slope is a constant average rate of change for linear functions.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Line through two points', problem: 'Find the line through (1,2) and (4,8).', steps: ['m=(8−2)/(4−1)=2.', 'Use y−2=2(x−1).', 'Expand to y=2x.'], result: 'y=2x.', interpretation: 'y increases 2 units for each unit of x.')]),
-      LessonSectionData(number: '3', title: 'Distance in the plane', blocks: [ConceptBlockData(visual: LessonVisual.calculate, title: 'Pythagoras in coordinates', content: 'Distance is √[(x₂−x₁)²+(y₂−y₁)²], and midpoint is ((x₁+x₂)/2,(y₁+y₂)/2).', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Points in the Cartesian plane',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'A point is an ordered pair',
+            content:
+                'A point P=(x,y) records a position in the plane. The first coordinate measures horizontal position and the second vertical position.',
+            emphasis:
+                'A point and a vector are not the same object, even though both may use ordered pairs.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Distance between two points',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Pythagoras in coordinates',
+            content:
+                'For P₁=(x₁,y₁) and P₂=(x₂,y₂), [[math:d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}]].',
+            emphasis:
+                'The formula comes directly from the Pythagorean theorem.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distance example',
+            problem: 'Find the distance between (1,2) and (4,6).',
+            steps: [
+              'Δx=3.',
+              'Δy=4.',
+              'd=√(3²+4²).',
+            ],
+            result: 'd=5.',
+            interpretation:
+                'The displacement forms a 3–4–5 right triangle.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Midpoint',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Average the coordinates',
+            content:
+                'The midpoint of P₁P₂ is [[math:M=(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2})]].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Segment center',
+            problem: 'Find the midpoint between (−2,3) and (6,7).',
+            steps: [
+              'M_x=2.',
+              'M_y=5.',
+            ],
+            result: 'M=(2,5).',
+            interpretation:
+                'The midpoint is equally distant from both endpoints.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Direction vectors and changes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Δx and Δy describe direction',
+            content:
+                'Between two points, a direction vector can be represented by (Δx,Δy)=(x₂−x₁,y₂−y₁).',
+            emphasis:
+                'Slope is the ratio of these two changes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Slope of a line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Constant rate of change',
+            content:
+                'If x₂≠x₁, [[math:m=\\frac{y_2-y_1}{x_2-x_1}=\\frac{\\Delta y}{\\Delta x}]].',
+            emphasis:
+                'm>0 means increasing, m<0 decreasing, and m=0 horizontal.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Computing slope',
+            problem: 'Find the slope through (1,2) and (4,8).',
+            steps: [
+              'Δy=6.',
+              'Δx=3.',
+            ],
+            result: 'm=2.',
+            interpretation:
+                'y increases by 2 for each increase of 1 in x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Vertical lines',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Undefined slope',
+            content:
+                'For a vertical line, Δx=0, so Δy/Δx is undefined. Its equation has the form x=a.',
+            emphasis:
+                'A vertical line cannot be written as y=mx+b.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Slope-intercept form',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'y=mx+b',
+            content:
+                'In [[math:y=mx+b]], m is the slope and b is the y-intercept.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reading a line',
+            problem: 'Interpret y=−3x+5.',
+            steps: [
+              'Slope m=−3.',
+              'Y-intercept b=5.',
+            ],
+            result: 'The line decreases and passes through (0,5).',
+            interpretation:
+                'Slope-intercept form makes rate and intercept explicit.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Point-slope form',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'y−y₁=m(x−x₁)',
+            content:
+                'Given a point (x₁,y₁) and slope m, the line is [[math:y-y_1=m(x-x_1)]].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Line from point and slope',
+            problem: 'Find the line with slope 2 through (3,1).',
+            steps: [
+              'Use y−1=2(x−3).',
+              'Expand.',
+            ],
+            result: 'y=2x−5.',
+            interpretation:
+                'One point and one direction determine a unique line.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Line through two points',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Two-point construction',
+            problem: 'Find the line through (−1,4) and (2,−2).',
+            steps: [
+              'm=−6/3=−2.',
+              'Use y−4=−2(x+1).',
+              'Expand.',
+            ],
+            result: 'y=−2x+2.',
+            interpretation:
+                'First find the slope, then apply a line form.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'General line form',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Ax+By+C=0',
+            content:
+                'The form [[math:Ax+By+C=0]] represents a line whenever A and B are not both zero. If B≠0, it can be solved for y.',
+            emphasis:
+                'General form naturally includes vertical lines.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Parallel lines',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Same direction',
+            content:
+                'Two distinct nonvertical lines are parallel when they have the same slope.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Parallel through a point',
+            problem: 'Find the line parallel to y=3x−1 through (2,5).',
+            steps: [
+              'The parallel slope must be 3.',
+              'Use y−5=3(x−2).',
+            ],
+            result: 'y=3x−1.',
+            interpretation:
+                'Here the given point already lies on the original line, so the coincident line results.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Perpendicular lines',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Slope product −1',
+            content:
+                'For nonvertical, nonhorizontal lines, perpendicularity gives [[math:m_1m_2=-1]].',
+            emphasis:
+                'A horizontal line is perpendicular to a vertical line.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Perpendicular slope',
+            problem: 'Find the slope perpendicular to 2/3.',
+            steps: [
+              'Take the reciprocal 3/2.',
+              'Reverse the sign.',
+            ],
+            result: 'm=−3/2.',
+            interpretation:
+                'The product is −1.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Intersection of two lines',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Linear system as geometry',
+            problem: 'Find the intersection of y=2x+1 and y=−x+7.',
+            steps: [
+              'Set 2x+1=−x+7.',
+              'Then x=2.',
+              'Substitute to get y=5.',
+            ],
+            result: '(2,5).',
+            interpretation:
+                'Solving a linear system geometrically means locating an intersection.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Distance from a point to a line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Useful formula',
+            content:
+                'For Ax+By+C=0 and point (x₀,y₀), [[math:d=\\frac{|Ax_0+By_0+C|}{\\sqrt{A^2+B^2}}]].',
+            emphasis:
+                'Distance is measured along the perpendicular direction.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reversing Δx and Δy',
+            content:
+                'Slope is Δy/Δx, not Δx/Δy.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Calling vertical slope infinite',
+            content:
+                'In elementary analytic geometry, vertical-line slope is undefined.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting the negative reciprocal',
+            content:
+                'Perpendicular slopes require both reciprocal and opposite sign.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided example',
+            problem: 'Find the line perpendicular to y=2x+4 through (1,3).',
+            steps: [
+              'Perpendicular slope is −1/2.',
+              'Use y−3=−(1/2)(x−1).',
+            ],
+            result: 'y=−x/2+7/2.',
+            interpretation:
+                'The point and perpendicular slope determine the line.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Practice before the final activity',
+            content:
+                '1. Find the distance from (0,0) to (3,4).\n'
+                '2. Find the midpoint of (2,−1) and (8,5).\n'
+                '3. Find the slope through (−1,2) and (3,10).\n'
+                '4. Interpret y=4x−7.\n'
+                '5. Find the line with slope −2 through (1,5).\n'
+                '6. Find the line through (0,3) and (2,7).\n'
+                '7. Convert 2x−3y+6=0 to slope-intercept form.\n'
+                '8. Find a line parallel to y=−x+4 through (2,0).\n'
+                '9. Find a line perpendicular to y=(1/3)x−2.\n'
+                '10. Find the intersection of y=x+1 and y=−2x+7.\n'
+                '11. Explain why x=4 is vertical.\n'
+                '12. Explain geometrically what m=0 means.\n'
+                '13. Find the distance from (0,0) to 3x+4y−20=0.\n'
+                '14. Relate slope to average rate of change.\n'
+                '15. Create a line through two points of your choice.',
+            emphasis:
+                'Identify first which data are given: two points, a point and slope, or a general equation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Derivative will be a local slope',
+            content:
+                'A secant line uses two points and gives average rate. A tangent line will arise as a limit of secants, and its slope will be the derivative.',
+            emphasis:
+                'Analytic geometry gives the visual interpretation of derivative.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Stewart and Thomas for analytic geometry, lines, and rates of change.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'Slope between (0,1) and (2,5)?', choices: ['1', '2', '4'], correctIndex: 1, explanation: '(5−1)/(2−0)=2.'),
-    takeaways: ['Slope is Δy/Δx.', 'Lines have constant rate.', 'Distance comes from Pythagoras.', 'Analytic geometry connects formulas and graphs.'],
-    closing: 'Slope prepares the geometric meaning of derivative.',
+    check: LessonCheckData(
+      question: 'What is the slope between (0,1) and (2,5)?',
+      choices: ['1', '2', '4'],
+      correctIndex: 1,
+      explanation:
+          'm=(5−1)/(2−0)=4/2=2.',
+    ),
+    takeaways: [
+      'Distance follows from the Pythagorean theorem.',
+      'A midpoint averages coordinates.',
+      'Slope is Δy/Δx.',
+      'A line can be written in several equivalent forms.',
+      'Parallel lines share direction.',
+      'Perpendicular slopes are negative reciprocals.',
+      'Linear systems represent line intersections.',
+      'Slope prepares the geometric interpretation of derivative.',
+    ],
+    closing:
+        'Analytic geometry turns algebraic relationships into position, direction, distance, and rate of change in the plane.',
   ),
   CourseLessonData(
     id: 'funcoes-13-conicas', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Analytic geometry', title: 'Conic sections in 2D', description: 'circle, parabola, ellipse, and hyperbola', duration: '≈ 20 min', objective: 'recognize standard forms of major conics and interpret their geometric parameters', symbol: 'x²+y²',
