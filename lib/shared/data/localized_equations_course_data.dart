@@ -1097,62 +1097,303 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     id: 'equations-05-sistemas-lineares',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
-    eyebrow: 'Two unknowns',
-    title: 'Systems of equations',
-    description: 'substitution and elimination',
-    duration: '≈ 5 min',
+    eyebrow: 'Linear systems',
+    title: 'Systems of two linear equations',
+    description:
+        'solution as intersection, substitution, elimination, classification, and modeling',
+    duration: '≈ 34 min',
     objective:
-        'solve simple linear systems and interpret the solution as an ordered pair',
-    symbol: '{x,y}',
+        'solve systems of two linear equations by substitution and elimination, interpret the solution as an intersection of lines, and classify systems as determined, inconsistent, or dependent',
+    symbol: '{x+y',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Two conditions at the same time',
+        title: 'What is a linear system',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'The solution must satisfy both equations',
+            visual: LessonVisual.notation,
+            title: 'Two conditions must hold at the same time',
             content:
-                'A system combines two or more equations. In a system with x and y, we look for a pair of values that makes every equation true at the same time.',
-            emphasis: 'Solving only one equation does not solve the system.',
+                'A linear system in two variables contains two equations that must be true simultaneously. A solution is an ordered pair (x,y) satisfying both.',
+            emphasis:
+                'Solving the system means finding the intersection of the two solution sets.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Eliminate one unknown',
+        title: 'Graphical interpretation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Each linear equation represents a line',
+            content:
+                'In two variables, ax+by=c represents a line. The solution of the system is the point where the two lines intersect, when such an intersection exists.',
+            emphasis:
+                'One intersection: one solution. Distinct parallel lines: no solution. Coincident lines: infinitely many solutions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Substitution method',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Isolate one variable and substitute',
+            content:
+                'In substitution, solve one equation for one variable and insert that expression into the other equation. The system becomes a one-variable equation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Substitution step by step',
+            problem: 'Solve x+y=7 and x−y=1.',
+            steps: [
+              'From the first equation, x=7−y.',
+              'Substitute into the second: (7−y)−y=1.',
+              'Simplify: 7−2y=1.',
+              'Then y=3.',
+              'Substitute back: x=4.',
+            ],
+            result: '(x,y)=(4,3).',
+            interpretation:
+                'The ordered pair satisfies both equations simultaneously.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Elimination method',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Make one variable disappear',
+            content:
+                'In elimination, combine the equations so one variable has opposite coefficients. Adding the equations then removes that variable.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Direct elimination',
+            problem: 'Solve 2x+y=8 and 3x−y=7.',
+            steps: [
+              'Add the equations: 5x=15.',
+              'Thus x=3.',
+              'Substitute into 2x+y=8.',
+              'Then y=2.',
+            ],
+            result: '(x,y)=(3,2).',
+            interpretation:
+                'The coefficients +1 and −1 of y allowed immediate elimination.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'When an equation must be multiplied',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Addition method',
-            problem: 'x + y = 7\nx − y = 1',
+            title: 'Preparing elimination',
+            problem: 'Solve x+2y=7 and 3x+y=8.',
             steps: [
-              'Add the two equations.',
-              'y and −y cancel: 2x = 8.',
-              'Divide by 2: x = 4.',
-              'Substitute into x + y = 7: y = 3.',
+              'Multiply the second equation by −2: −6x−2y=−16.',
+              'Add the first equation: −5x=−9.',
+              'So x=9/5.',
+              'Substitute into x+2y=7.',
+              'Then y=13/5.',
             ],
-            result: 'The solution is (4, 3).',
+            result: '(x,y)=(9/5,13/5).',
             interpretation:
-                'The pair x = 4 and y = 3 satisfies both equations simultaneously.',
+                'A system does not need to have integer coordinates.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Classifying systems',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'One, none, or infinitely many solutions',
+            content:
+                'A determined system has one solution. An inconsistent system has no solution. A dependent system has infinitely many solutions.',
+            emphasis:
+                'Graphically: intersecting lines, distinct parallel lines, or coincident lines.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Inconsistent system',
+            problem: 'Classify x+y=4 and 2x+2y=10.',
+            steps: [
+              'Double the first equation: 2x+2y=8.',
+              'The second equation says 2x+2y=10.',
+              'The two conditions are incompatible.',
+            ],
+            result: 'No solution.',
+            interpretation:
+                'The lines have the same slope and different intercepts.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Dependent system',
+            problem: 'Classify x−2y=3 and 2x−4y=6.',
+            steps: [
+              'The second equation is exactly twice the first.',
+              'They represent the same line.',
+            ],
+            result: 'Infinitely many solutions.',
+            interpretation:
+                'Every point on the line satisfies both equations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Modeling with systems',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Quantity problem',
+            problem: 'Thirty tickets were sold as full-price or half-price. Full price is R$ 20, half price is R$ 10, and revenue was R$ 450. How many of each were sold?',
+            steps: [
+              'Let x be full-price tickets and y be half-price tickets.',
+              'Total count: x+y=30.',
+              'Revenue: 20x+10y=450.',
+              'Divide the second by 10: 2x+y=45.',
+              'Subtract the first equation: x=15.',
+              'Then y=15.',
+            ],
+            result: '15 full-price tickets and 15 half-price tickets.',
+            interpretation:
+                'The two equations encode two independent conditions from the same situation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Solving only one equation',
+            content:
+                'A value satisfying one equation is not automatically a system solution. The ordered pair must satisfy both.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Adding equations without preparing coefficients',
+            content:
+                'In elimination, the chosen variable must have cancelling coefficients. Arbitrary addition may not simplify the system.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Skipping verification',
+            content:
+                'Substitute the final pair into both original equations to confirm the solution.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — substitution',
+            problem: 'Solve y=2x+1 and x+y=10.',
+            steps: [
+              'Substitute y: x+(2x+1)=10.',
+              '3x+1=10.',
+              'x=3.',
+              'Then y=7.',
+            ],
+            result: '(3,7).',
+            interpretation:
+                'When one variable is already isolated, substitution is often efficient.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — elimination',
+            problem: 'Solve 4x+3y=18 and 2x−3y=0.',
+            steps: [
+              'Add the equations: 6x=18.',
+              'x=3.',
+              'Substitute into 2x−3y=0.',
+              'y=2.',
+            ],
+            result: '(3,2).',
+            interpretation:
+                'The y coefficients were already opposites.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve, classify, and interpret',
+            content:
+                '1. x+y=8 and x−y=2.\n'
+                '2. 2x+y=9 and x−y=0.\n'
+                '3. y=3x−2 and x+y=10.\n'
+                '4. 3x+2y=12 and x−2y=4.\n'
+                '5. x+2y=5 and 2x+4y=10.\n'
+                '6. x+y=3 and 2x+2y=8.\n'
+                '7. Classify two distinct parallel lines.\n'
+                '8. Classify two coincident lines.\n'
+                '9. Create a system with solution (2,1).\n'
+                '10. Check whether (3,2) solves 2x+y=8 and x−y=1.\n'
+                '11. Solve 5x−y=11 and 2x+y=7.\n'
+                '12. Solve 2x+3y=13 and 4x−3y=5.\n'
+                '13. Explain when substitution is more convenient.\n'
+                '14. Explain when elimination is more convenient.\n'
+                '15. Model a simple situation with two unknowns.',
+            emphasis:
+                'Always present the solution as an ordered pair and verify it in both equations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Connection to functions, geometry, and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Systems are intersection problems',
+            content:
+                'Linear systems connect algebra and analytic geometry. Later, intersections of curves, simultaneous conditions, and systems of equations appear in optimization, multivariable calculus, and modeling.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Thomas and Stewart for graphical interpretation and modeling.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'If x + y = 10 and x − y = 2, what is x?',
-      choices: ['4', '6', '8'],
+      question: 'What is the solution of x+y=7 and x−y=1?',
+      choices: ['(3,4)', '(4,3)', '(7,1)'],
       correctIndex: 1,
-      explanation: 'Adding the equations gives 2x = 12. Therefore, x = 6.',
+      explanation:
+          'Adding the equations gives 2x=8, so x=4. Substituting into x+y=7 gives y=3.',
     ),
     takeaways: [
-      'A system imposes several conditions simultaneously.',
-      'Substitution replaces an unknown with an equivalent expression.',
-      'Elimination cancels one unknown.',
-      'The answer can be represented by an ordered pair.',
+      'A system solution satisfies every equation simultaneously.',
+      'Substitution reduces the system using an isolated variable.',
+      'Elimination removes a variable by combining equations.',
+      'Systems may have one, no, or infinitely many solutions.',
+      'Graphically, classification depends on how the lines intersect.',
+      'Systems model situations with simultaneous conditions.',
     ],
     closing:
-        'Systems turn multiple pieces of information into one compatible solution.',
-  ),
+        'Solving a system means finding values that make several conditions true at the same time.',
+  )
   CourseLessonData(
     id: 'equations-06-quadraticas',
     topicId: 'equacoes-inequacoes',
