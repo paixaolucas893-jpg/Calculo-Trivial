@@ -1085,7 +1085,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Casos especiais deixam claro que resolver uma equação também significa decidir quantas soluções existem e por quê.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-05-sistemas-lineares',
     topicId: 'equacoes-inequacoes',
