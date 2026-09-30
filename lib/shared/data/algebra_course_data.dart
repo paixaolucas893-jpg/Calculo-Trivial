@@ -1733,247 +1733,1056 @@ const List<CourseLessonData> algebraCourseLessons = [
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Produtos notáveis',
-    description: 'padrões que aceleram cálculos',
-    duration: '≈ 5 min',
+    description:
+        'padrões de expansão derivados da distributiva e reconhecimento estrutural',
+    duration: '≈ 28 min',
     objective:
-        'reconhecer quadrados, diferença de quadrados e produtos binomiais comuns',
+        'derivar e aplicar produtos notáveis, reconhecer seus padrões em expressões algébricas e evitar memorizações sem justificativa',
     symbol: '(a+b)²',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Produtos notáveis vêm da distributiva',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.idea,
-            title: 'Produto notável é distributiva memorizada com sentido',
+            title: 'Padrões, não fórmulas mágicas',
             content:
-                'Produtos notáveis não são truques soltos. Eles nascem da distributiva e aparecem tantas vezes que vale reconhecer o padrão rapidamente.',
-            emphasis: '(a + b)² = a² + 2ab + b², não apenas a² + b².',
+                'Produtos notáveis são multiplicações que aparecem com frequência e podem ser reconhecidas por padrão. Todas as fórmulas desta aula podem ser reconstruídas pela propriedade distributiva.',
+            emphasis:
+                'Se uma fórmula for esquecida, a distributiva continua sendo um caminho seguro.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Quadrado da soma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a+b)²',
+            content:
+                '(a+b)² = (a+b)(a+b) = a² + 2ab + b².',
+            emphasis:
+                'O termo 2ab surge de dois produtos cruzados: ab + ba.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Aplicando o quadrado da soma',
+            problem: 'Expanda (2x+3)².',
+            steps: [
+              'Quadrado do primeiro termo: (2x)² = 4x².',
+              'Duas vezes o produto: 2·(2x)·3 = 12x.',
+              'Quadrado do segundo termo: 3² = 9.',
+            ],
+            result: '4x²+12x+9.',
+            interpretation:
+                'O termo central registra a interação entre os dois termos do binômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quadrado da diferença',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a−b)²',
+            content:
+                '(a−b)² = a² − 2ab + b². Apenas o termo central muda de sinal em relação ao quadrado da soma.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sinal do termo central',
+            problem: 'Expanda (3x−4)².',
+            steps: [
+              '(3x)² = 9x².',
+              '−2·(3x)·4 = −24x.',
+              '4² = 16.',
+            ],
+            result: '9x²−24x+16.',
+            interpretation:
+                'O último termo é positivo porque resulta de um quadrado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Produto da soma pela diferença',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '(a+b)(a−b)',
+            content:
+                '(a+b)(a−b) = a²−b². Os termos cruzados −ab e +ab se cancelam.',
+            emphasis:
+                'Esse padrão é a expansão associada à diferença de quadrados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Conjugados algébricos',
+            problem: 'Calcule (5x+2)(5x−2).',
+            steps: [
+              'Identifique a=5x e b=2.',
+              'Use a²−b².',
+              '(5x)²−2² = 25x²−4.',
+            ],
+            result: '25x²−4.',
+            interpretation:
+                'A ausência do termo linear é consequência do cancelamento dos produtos cruzados.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Cubo de binômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Padrões cúbicos',
+            content:
+                '(a+b)³ = a³+3a²b+3ab²+b³ e (a−b)³ = a³−3a²b+3ab²−b³.',
+            emphasis:
+                'Os coeficientes 1, 3, 3, 1 correspondem à expansão completa do produto de três binômios iguais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cubo da soma',
+            problem: 'Expanda (x+2)³.',
+            steps: [
+              'x³.',
+              '3·x²·2 = 6x².',
+              '3·x·2² = 12x.',
+              '2³ = 8.',
+            ],
+            result: 'x³+6x²+12x+8.',
+            interpretation:
+                'O padrão cúbico pode sempre ser verificado multiplicando (x+2)² por (x+2).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Reconhecer o padrão ao contrário',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Da expansão para a forma fatorada',
+            content:
+                'Reconhecer x²+6x+9 como (x+3)² ou 25x²−16 como (5x−4)(5x+4) será essencial na fatoração.',
+            emphasis:
+                'Produtos notáveis servem tanto para expandir quanto para reconhecer fatores.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a+b)² ≠ a²+b²',
+            content:
+                'O termo 2ab não pode ser omitido. Com a=1 e b=1, o lado esquerdo vale 4 e a²+b² vale 2.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a−b)² não termina em −b²',
+            content:
+                'O último termo é +b², porque (−b)(−b)=+b².',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Expandindo com padrão',
-            problem: 'Desenvolva (x − 5)².',
+            title: 'Guiado 1',
+            problem: 'Expanda (x−5)².',
             steps: [
-              'Use (a − b)² = a² − 2ab + b².',
-              'Aqui, a = x e b = 5.',
-              'Substitua: x² − 2·x·5 + 25.',
+              'x².',
+              '−2·x·5 = −10x.',
+              '5² = 25.',
             ],
-            result: 'O resultado é x² − 10x + 25.',
+            result: 'x²−10x+25.',
             interpretation:
-                'O termo do meio aparece porque o binômio foi multiplicado por ele mesmo.',
+                'A estrutura é quadrado do primeiro, dobro do produto, quadrado do segundo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Reconheça 4x²−12x+9.',
+            steps: [
+              '4x²=(2x)² e 9=3².',
+              'O termo central é −2·(2x)·3 = −12x.',
+            ],
+            result: '(2x−3)².',
+            interpretation:
+                'O termo central confirma o trinômio quadrado perfeito.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expanda ou reconheça o padrão',
+            content:
+                '1. (x+4)².\n'
+                '2. (x−7)².\n'
+                '3. (2x+5)².\n'
+                '4. (3a−2)².\n'
+                '5. (x+6)(x−6).\n'
+                '6. (4y+1)(4y−1).\n'
+                '7. (x+3)³.\n'
+                '8. (2x−1)³.\n'
+                '9. Reconheça x²+10x+25.\n'
+                '10. Reconheça 9x²−24x+16.\n'
+                '11. Fatore x²−49 usando um produto notável.\n'
+                '12. Explique por que (a+b)² ≠ a²+b².\n'
+                '13. Compare (x−2)² e x²−4.\n'
+                '14. Verifique (2x+3)(2x−3) por distributiva.\n'
+                '15. Expanda (a+b)³ pela distributiva e compare com o padrão.',
+            emphasis:
+                'Quando reconhecer um padrão, identifique explicitamente quem representa a e quem representa b.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Padrões aceleram simplificações',
+            content:
+                'Diferença de quadrados e trinômios quadrados perfeitos aparecem em fatorações de limites, racionalizações e manipulação de quocientes incrementais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas’ Calculus para aplicações algébricas em limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o desenvolvimento de (x + 3)²?',
-      choices: ['x² + 9', 'x² + 6x + 9', 'x² + 3x + 9'],
+      question: 'Qual é a expansão correta de (x−3)²?',
+      choices: ['x²−9', 'x²−6x+9', 'x²+6x+9'],
       correctIndex: 1,
       explanation:
-          'O termo do meio é 2·x·3 = 6x. Por isso, (x + 3)² = x² + 6x + 9.',
+          '(x−3)² = x² − 2·x·3 + 3² = x²−6x+9.',
     ),
     takeaways: [
-      'Produtos notáveis vêm da distributiva.',
-      'Quadrado da soma possui termo do meio.',
-      'Diferença de quadrados fatora como (a − b)(a + b).',
-      'Reconhecer padrões acelera simplificações.',
+      'Produtos notáveis são consequências da distributiva.',
+      '(a+b)² = a²+2ab+b².',
+      '(a−b)² = a²−2ab+b².',
+      '(a+b)(a−b)=a²−b².',
+      'Reconhecer padrões ao contrário prepara fatoração.',
+      'O termo cruzado não pode ser omitido.',
     ],
     closing:
-        'Produtos notáveis são atalhos seguros quando você sabe de onde eles vieram.',
-  ),
+        'Produtos notáveis são atalhos seguros apenas quando o padrão é reconhecido e compreendido.',
+  )
   CourseLessonData(
     id: 'algebra-06-fatoracao',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Fatoração',
-    description: 'colocar expressões em forma de produto',
-    duration: '≈ 5 min',
+    description:
+        'fator comum, agrupamento, diferença de quadrados, trinômios e escolha estratégica',
+    duration: '≈ 35 min',
     objective:
-        'fatorar expressões por fator comum, agrupamento e padrões notáveis',
-    symbol: '(x−a)',
+        'reescrever polinômios como produtos por diferentes técnicas de fatoração, verificar resultados por expansão e selecionar a técnica adequada a partir da estrutura da expressão',
+    symbol: 'ab+ac',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Fatorar é reescrever como produto',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Da soma para o produto',
+            title: 'A distributiva ao contrário',
             content:
-                'Fatorar significa escrever uma expressão como multiplicação de fatores. Isso revela raízes, cancela frações algébricas e resolve limites com indeterminação.',
+                'Fatorar uma expressão significa escrevê-la como produto de fatores. O caso mais básico é ab+ac = a(b+c).',
             emphasis:
-                'Em Cálculo, fatorar muitas vezes transforma um problema travado em uma conta simples.',
+                'Uma fatoração correta pode ser verificada expandindo o produto obtido.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Fator comum em evidência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Procure o maior fator comum',
+            content:
+                'Compare coeficientes e partes literais de todos os termos. O fator comum usa o máximo divisor comum dos coeficientes e, para cada variável comum, o menor expoente presente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fator comum numérico e literal',
+            problem: 'Fatore 12x³y − 18x²y².',
+            steps: [
+              'MDC de 12 e 18: 6.',
+              'Para x, menor expoente comum: x².',
+              'Para y, menor expoente comum: y.',
+              'Divida cada termo por 6x²y.',
+            ],
+            result: '6x²y(2x−3y).',
+            interpretation:
+                'Expandir o resultado recupera a expressão original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Fatoração por agrupamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Crie um fator comum em duas etapas',
+            content:
+                'Em expressões com quatro ou mais termos, agrupar termos pode revelar fatores comuns parciais que depois geram um fator binomial comum.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Agrupamento estratégico',
+            problem: 'Fatore x³+3x²+2x+6.',
+            steps: [
+              'Agrupe: (x³+3x²)+(2x+6).',
+              'Fatore cada grupo: x²(x+3)+2(x+3).',
+              'Agora x+3 é fator comum.',
+            ],
+            result: '(x+3)(x²+2).',
+            interpretation:
+                'O agrupamento foi escolhido para produzir o mesmo binômio em ambos os grupos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Diferença de quadrados',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'a²−b²=(a−b)(a+b)',
+            content:
+                'Uma diferença entre dois quadrados perfeitos fatora como produto de conjugados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Aplicando o padrão',
+            problem: 'Fatore 25x²−49.',
+            steps: [
+              '25x²=(5x)².',
+              '49=7².',
+              'Use a²−b².',
+            ],
+            result: '(5x−7)(5x+7).',
+            interpretation:
+                'Uma soma de quadrados não possui fatoração real análoga.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Trinômio quadrado perfeito',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Reconheça a²±2ab+b²',
+            content:
+                'Se o primeiro e o último termos são quadrados perfeitos e o termo central é ±2ab, o trinômio é um quadrado perfeito.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reconhecimento estrutural',
+            problem: 'Fatore 9x²−24x+16.',
+            steps: [
+              '9x²=(3x)².',
+              '16=4².',
+              '−24x = −2·(3x)·4.',
+            ],
+            result: '(3x−4)².',
+            interpretation:
+                'Os três termos devem confirmar o padrão; dois quadrados nas extremidades não bastam.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Trinômios x²+bx+c',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Procure dois números',
+            content:
+                'Para fatorar x²+bx+c, procure números p e q tais que p+q=b e pq=c. Então x²+bx+c=(x+p)(x+q).',
+          ),
+          WorkedExampleBlockData(
+            title: 'Trinômio monômio',
+            problem: 'Fatore x²−5x+6.',
+            steps: [
+              'Precisamos de p+q=−5.',
+              'Também precisamos de pq=6.',
+              'Os números são −2 e −3.',
+            ],
+            result: '(x−2)(x−3).',
+            interpretation:
+                'As raízes correspondentes serão 2 e 3.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Trinômios ax²+bx+c',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Fator comum em evidência',
-            problem: 'Fatore 8x² − 12x.',
+            title: 'Coeficiente líder diferente de 1',
+            problem: 'Fatore 6x²+11x+3.',
             steps: [
-              'Encontre o maior fator comum: 4x.',
-              'Divida cada termo por 4x: 8x²/(4x) = 2x e −12x/(4x) = −3.',
-              'Escreva o produto: 4x(2x − 3).',
+              'Multiplique a·c: 6·3=18.',
+              'Procure dois números com produto 18 e soma 11: 9 e 2.',
+              'Reescreva 11x como 9x+2x.',
+              'Agrupe: (6x²+9x)+(2x+3).',
+              'Fatore: 3x(2x+3)+1(2x+3).',
             ],
-            result: 'A fatoração é 4x(2x − 3).',
+            result: '(3x+1)(2x+3).',
             interpretation:
-                'Se distribuir 4x de volta, recuperamos a expressão original.',
+                'A decomposição do termo central transforma o problema em agrupamento.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Fatoração completa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Continue até não haver mais fatores possíveis',
+            content:
+                'Uma expressão pode exigir mais de uma técnica. Sempre retire fator comum primeiro e depois examine os fatores restantes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas etapas',
+            problem: 'Fatore completamente 2x³−18x.',
+            steps: [
+              'Retire 2x: 2x(x²−9).',
+              'Reconheça diferença de quadrados: x²−9=(x−3)(x+3).',
+            ],
+            result: '2x(x−3)(x+3).',
+            interpretation:
+                'Parar em 2x(x²−9) produziria uma fatoração correta, mas não completa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Estratégia de escolha',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Uma ordem prática',
+            content:
+                '1) procure fator comum; 2) conte os termos; 3) com dois termos, teste diferença de quadrados ou outros padrões; 4) com três termos, teste quadrado perfeito ou trinômio quadrático; 5) com quatro termos, tente agrupamento; 6) verifique expandindo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar termos em vez de fatores',
+            content:
+                'Fatoração trabalha com produtos. Em uma soma como x²+x, não se “cancela x”; primeiro fatoramos x(x+1).',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o fator comum antes do padrão',
+            content:
+                'Em 3x²−12, primeiro retire 3: 3(x²−4), depois use diferença de quadrados.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Fatore completamente',
+            content:
+                '1. 6x+12.\n'
+                '2. 15x³−10x².\n'
+                '3. x²−16.\n'
+                '4. 9a²−25b².\n'
+                '5. x²+8x+16.\n'
+                '6. 4x²−12x+9.\n'
+                '7. x²+7x+12.\n'
+                '8. x²−x−12.\n'
+                '9. 2x²+7x+3.\n'
+                '10. 6x²+13x+6.\n'
+                '11. x³+2x²+3x+6.\n'
+                '12. 3x³−27x.\n'
+                '13. 4x³+8x²−x−2.\n'
+                '14. Explique como verificar uma fatoração.\n'
+                '15. Escolha a primeira técnica para 10x³−40x e justifique.',
+            emphasis:
+                'Depois de fatorar, expanda mentalmente ou por escrito para verificar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Fatoração revela cancelamentos e zeros',
+            content:
+                'Em limites, fatorar pode remover uma indeterminação aparente após o cancelamento de um fator comum. Em funções, a forma fatorada revela zeros e multiplicidades.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart, Thomas e Guidorizzi para aplicações de fatoração em funções e limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é a fatoração de x² − 16?',
-      choices: ['(x − 4)(x + 4)', '(x − 8)(x + 8)', '(x − 4)²'],
-      correctIndex: 0,
-      explanation: 'É uma diferença de quadrados: x² − 4² = (x − 4)(x + 4).',
+      question: 'Qual é a fatoração completa de x²−9?',
+      choices: ['(x−3)²', '(x−3)(x+3)', 'x(x−9)'],
+      correctIndex: 1,
+      explanation:
+          'x²−9=x²−3² é uma diferença de quadrados, portanto (x−3)(x+3).',
     ),
     takeaways: [
-      'Fatorar reescreve somas como produtos.',
-      'Fator comum é o primeiro padrão a procurar.',
-      'Diferença de quadrados é muito frequente.',
-      'Sempre confira distribuindo de volta.',
+      'Fatorar é reescrever uma soma como produto.',
+      'Fator comum deve ser verificado antes de técnicas mais específicas.',
+      'Agrupamento cria um fator comum em etapas.',
+      'Diferença de quadrados e trinômios quadrados perfeitos são padrões estruturais.',
+      'Trinômios quadráticos podem ser fatorados por relações entre soma e produto.',
+      'Uma fatoração deve ser verificada pela expansão.',
     ],
     closing:
-        'A fatoração é uma ponte direta entre Álgebra, equações, funções e limites.',
-  ),
+        'Fatoração é uma mudança de representação que revela estrutura escondida em uma expressão.',
+  )
   CourseLessonData(
     id: 'algebra-07-fracoes-algebricas',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Frações algébricas',
-    description: 'restrições, simplificação e denominadores',
-    duration: '≈ 5 min',
+    description:
+        'domínio, fatoração, simplificação e operações com expressões racionais',
+    duration: '≈ 32 min',
     objective:
-        'simplificar frações algébricas preservando restrições de domínio',
-    symbol: 'x/y',
+        'determinar restrições de domínio, simplificar frações algébricas por fatores e realizar operações básicas preservando equivalência e valores excluídos',
+    symbol: 'P/Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Uma fração algébrica tem domínio',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Nem todo cancelamento é permitido',
+            title: 'Denominador nunca pode ser zero',
             content:
-                'Só podemos cancelar fatores multiplicativos comuns. Não se cancela termo dentro de soma como se fosse fator. Além disso, denominadores nunca podem ser zero.',
+                'Em P(x)/Q(x), todo valor que zera Q(x) deve ser excluído do domínio, mesmo que um fator venha a ser cancelado depois.',
             emphasis:
-                'Em (x + 2)/x, o x não cancela com parte do numerador, porque x + 2 é uma soma.',
+                'Determine as restrições antes de simplificar.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Restrição simples',
+            problem: 'Determine o domínio de (x+2)/(x−5).',
+            steps: [
+              'O denominador é x−5.',
+              'Exija x−5 ≠ 0.',
+              'Logo, x ≠ 5.',
+            ],
+            result: 'Domínio: ℝ\{5}.',
+            interpretation:
+                'O numerador pode ser zero; o denominador não.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Simplificação por fatores',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Só fatores podem ser cancelados',
+            content:
+                'Cancelar significa dividir numerador e denominador pelo mesmo fator não nulo. Termos separados por soma ou subtração não podem ser cancelados diretamente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fatore antes de cancelar',
+            problem: 'Simplifique (x²−9)/(x²−3x).',
+            steps: [
+              'Restrições originais: x²−3x=x(x−3), então x ≠ 0 e x ≠ 3.',
+              'Fatore o numerador: x²−9=(x−3)(x+3).',
+              'Fatore o denominador: x(x−3).',
+              'Cancele o fator x−3, preservando x ≠ 3.',
+            ],
+            result: '(x+3)/x, com x ≠ 0 e x ≠ 3.',
+            interpretation:
+                'A forma simplificada não devolve o ponto x=3 ao domínio original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplicação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Fatore e simplifique antes de multiplicar',
+            content:
+                'Para multiplicar frações algébricas, multiplique numeradores e denominadores. Fatorar antes pode revelar cancelamentos e reduzir o trabalho.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Multiplicação com cancelamento',
+            problem: 'Simplifique [(x²−4)/(x²−x−2)]·[(x−2)/(x+2)].',
+            steps: [
+              'Fatore: x²−4=(x−2)(x+2).',
+              'Fatore: x²−x−2=(x−2)(x+1).',
+              'Registre restrições originais antes dos cancelamentos.',
+              'Cancele fatores comuns permitidos.',
+            ],
+            result: '(x−2)/(x+1), preservando as restrições originais.',
+            interpretation:
+                'O domínio pertence à expressão inicial, não apenas à forma final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Divisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Multiplique pelo recíproco',
+            content:
+                'Dividir por uma fração algébrica equivale a multiplicar pelo seu recíproco, desde que a fração divisora esteja definida e não seja zero.',
+            emphasis:
+                'Além de denominadores não nulos, o numerador da fração divisora também não pode ser zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Adição e subtração',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Use denominador comum',
+            content:
+                'Frações com denominadores diferentes só podem ser somadas depois de serem reescritas com denominador comum, normalmente obtido pela fatoração dos denominadores.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Somando frações simples',
+            problem: 'Simplifique 2/x + 3/(x+1).',
+            steps: [
+              'Restrições: x ≠ 0 e x ≠ −1.',
+              'Denominador comum: x(x+1).',
+              'Reescreva: 2(x+1)/[x(x+1)] + 3x/[x(x+1)].',
+              'Some os numeradores: 2x+2+3x=5x+2.',
+            ],
+            result: '(5x+2)/[x(x+1)], com x ≠ 0,−1.',
+            interpretation:
+                'Somamos numeradores apenas depois de igualar os denominadores.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Frações complexas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Uma fração pode conter outras frações',
+            content:
+                'Frações complexas podem ser simplificadas multiplicando numerador e denominador por um denominador comum interno, desde que todas as restrições sejam registradas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Eliminando denominadores internos',
+            problem: 'Simplifique (1/x + 1/y)/(1/x), com x,y ≠ 0.',
+            steps: [
+              'No numerador, 1/x+1/y=(x+y)/(xy).',
+              'Divida por 1/x multiplicando por x.',
+              '[(x+y)/(xy)]·x = (x+y)/y.',
+            ],
+            result: '(x+y)/y, com x ≠ 0 e y ≠ 0.',
+            interpretation:
+                'A restrição x ≠ 0 permanece mesmo após x desaparecer da forma final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar termos de uma soma',
+            content:
+                '(x+2)/x não pode virar 2. O x do numerador não é fator de toda a soma x+2.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer valores excluídos',
+            content:
+                '(x²−1)/(x−1) simplifica para x+1, mas a expressão original continua exigindo x ≠ 1.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Cancelamento correto',
-            problem: 'Simplifique (x² − 9)/(x − 3), com x ≠ 3.',
+            title: 'Guiado 1 — simplificação',
+            problem: 'Simplifique (x²−4x)/(x²−16).',
             steps: [
-              'Fatore o numerador: x² − 9 = (x − 3)(x + 3).',
-              'Reescreva a fração: [(x − 3)(x + 3)]/(x − 3).',
-              'Cancele o fator comum x − 3, mantendo a restrição x ≠ 3.',
+              'Fatore numerador: x(x−4).',
+              'Fatore denominador: (x−4)(x+4).',
+              'Restrições: x ≠ 4 e x ≠ −4.',
+              'Cancele x−4.',
             ],
-            result: 'A forma simplificada é x + 3, com x ≠ 3.',
+            result: 'x/(x+4), com x ≠ ±4.',
             interpretation:
-                'A expressão simplificada parece livre, mas a restrição original continua valendo.',
+                'O ponto x=4 permanece excluído.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — soma',
+            problem: 'Simplifique 1/(x−1) + 1/(x+1).',
+            steps: [
+              'Restrições: x ≠ ±1.',
+              'Denominador comum: (x−1)(x+1).',
+              'Numerador: (x+1)+(x−1)=2x.',
+            ],
+            result: '2x/(x²−1), com x ≠ ±1.',
+            interpretation:
+                'A fatoração do denominador comum também ajuda a visualizar as restrições.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Determine domínio e simplifique quando possível',
+            content:
+                '1. (x+1)/(x−2).\n'
+                '2. (x²−4)/(x−2).\n'
+                '3. (x²−9)/(x²−6x+9).\n'
+                '4. (2x²+4x)/(2x).\n'
+                '5. [(x²−1)/(x²+x)]·[x/(x−1)].\n'
+                '6. [(x+2)/(x−3)]÷[(x+2)/(x+1)].\n'
+                '7. 1/x + 2/x.\n'
+                '8. 1/x + 1/(x+2).\n'
+                '9. 3/(x−1) − 2/(x+1).\n'
+                '10. Explique por que (x+3)/x não permite cancelar x.\n'
+                '11. Simplifique (x²−25)/(x²−10x+25).\n'
+                '12. Liste os valores excluídos antes de simplificar (x²−4)/(x²−x−2).\n'
+                '13. Dê um exemplo de ponto removível criado por cancelamento.\n'
+                '14. Simplifique (1/x+1)/(1/x).\n'
+                '15. Explique por que simplificação não altera o domínio original.',
+            emphasis:
+                'Escreva as restrições antes de qualquer cancelamento.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Frações algébricas aparecem diretamente em limites',
+            content:
+                'Muitos limites algébricos exigem fatorar e simplificar uma função racional para analisar seu comportamento perto de um ponto excluído. Preservar o domínio é essencial para distinguir valor da função e limite.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart, Thomas e Guidorizzi para funções racionais e limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Em qual expressão o cancelamento de x é correto?',
-      choices: ['(x + 5)/x', '(3x)/(x)', '(x − 2)/x'],
-      correctIndex: 1,
+      question: 'Ao simplificar (x²−4)/(x−2), qual condição deve ser mantida?',
+      choices: ['x ≠ −2', 'x ≠ 0', 'x ≠ 2'],
+      correctIndex: 2,
       explanation:
-          'Em 3x/x, o x é fator comum no numerador e no denominador. Nas outras, x aparece dentro de soma ou diferença.',
+          'O denominador original x−2 zera em x=2. Mesmo após cancelar o fator x−2, esse valor permanece excluído.',
     ),
     takeaways: [
-      'Denominador zero é proibido.',
-      'Cancele apenas fatores, não parcelas.',
-      'Fatorar antes de cancelar evita erro.',
-      'Restrições originais continuam importantes.',
+      'Denominadores determinam restrições de domínio.',
+      'Somente fatores comuns podem ser cancelados.',
+      'Restrições devem ser registradas antes da simplificação.',
+      'Adição e subtração exigem denominador comum.',
+      'Divisão por fração exige recíproco e novas condições de não nulidade.',
+      'A forma simplificada não restaura pontos excluídos da expressão original.',
     ],
     closing:
-        'Frações algébricas explicam muitos detalhes de domínio, continuidade e limites.',
-  ),
+        'Frações algébricas exigem duas leituras simultâneas: manipular fatores e preservar o domínio.',
+  )
   CourseLessonData(
     id: 'algebra-08-sintese',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Síntese',
     title: 'Síntese algébrica',
-    description: 'escolher a ferramenta certa',
-    duration: '≈ 5 min',
+    description:
+        'seleção de estratégias, integração de técnicas e preparação para equações, funções e limites',
+    duration: '≈ 30 min',
     objective:
-        'decidir quando simplificar, expandir, fatorar ou substituir valores',
-    symbol: '✓',
+        'selecionar e combinar técnicas algébricas de acordo com o objetivo, justificar transformações, preservar domínio e avaliar a forma mais útil de uma expressão',
+    symbol: '⇄',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Não existe uma forma universalmente melhor',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Não existe uma forma sempre melhor',
+            visual: LessonVisual.compare,
+            title: 'A forma útil depende da pergunta',
             content:
-                'Expandir ajuda a combinar termos. Fatorar ajuda a enxergar produtos, raízes e cancelamentos. Substituir valores ajuda a conferir resultados e interpretar expressões.',
-            emphasis:
-                'O bom aluno de Cálculo não decora só contas; ele escolhe a forma que revela a ideia.',
+                'Expandir facilita combinar termos. Fatorar revela zeros e cancelamentos. Uma fração simplificada evidencia comportamento. A melhor forma é a que torna o objetivo matemático mais visível.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Um roteiro de decisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Antes de calcular, pergunte o que precisa enxergar',
+            content:
+                '1) Há parênteses que precisam ser expandidos? 2) Existem termos semelhantes? 3) Existe fator comum? 4) Há um padrão notável? 5) Existem denominadores e restrições? 6) A forma fatorada ajudaria mais do que a expandida?',
+            emphasis:
+                'Estratégia algébrica começa pela leitura da estrutura.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Exemplo integrado: expandir e reduzir',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Do caos à forma útil',
-            problem: 'Simplifique 2(x + 1) + (x − 3)(x + 3).',
+            title: 'Várias técnicas em sequência',
+            problem: 'Simplifique 2(x+3) − (x−1)(x+2).',
             steps: [
-              'Distribua o primeiro termo: 2x + 2.',
-              'Use diferença de quadrados: (x − 3)(x + 3) = x² − 9.',
-              'Combine: x² + 2x − 7.',
+              'Expanda 2(x+3)=2x+6.',
+              'Expanda (x−1)(x+2)=x²+x−2.',
+              'Subtraia o segundo resultado inteiro: 2x+6−x²−x+2.',
+              'Combine termos semelhantes.',
             ],
-            result: 'A expressão simplificada é x² + 2x − 7.',
+            result: '−x²+x+8.',
             interpretation:
-                'Usamos distributiva e produto notável na mesma expressão.',
+                'Distribuição, controle de sinal e redução aparecem no mesmo problema.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplo integrado: fatorar antes de simplificar',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Domínio e cancelamento',
+            problem: 'Simplifique (x²−9)/(x²−x−6).',
+            steps: [
+              'Restrições: x²−x−6=(x−3)(x+2), então x ≠ 3 e x ≠ −2.',
+              'Fatore o numerador: (x−3)(x+3).',
+              'Cancele x−3.',
+            ],
+            result: '(x+3)/(x+2), com x ≠ 3,−2.',
+            interpretation:
+                'A forma fatorada revelou o cancelamento, mas o domínio original permaneceu.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Exemplo integrado: escolher uma forma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A mesma expressão pode contar histórias diferentes',
+            content:
+                'x²−5x+6, (x−2)(x−3) e (x−5/2)²−1/4 são formas equivalentes. A forma expandida mostra coeficientes; a fatorada mostra zeros; a forma de quadrado completado mostra centro da parábola.',
+            emphasis:
+                'Equivalência não significa utilidade idêntica para toda pergunta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Verificação como hábito matemático',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Três formas de conferir',
+            content:
+                'Você pode verificar uma expansão refazendo a distributiva, verificar uma fatoração expandindo o resultado e testar equivalência substituindo valores permitidos. Nenhuma verificação isolada substitui uma justificativa, mas todas ajudam a detectar erros.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros de estratégia',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Expandir quando fatorar seria melhor',
+            content:
+                'Em um limite com x²−9 no numerador e x−3 no denominador, expandir não revela o fator comum. A forma fatorada é estruturalmente mais útil.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Simplificar sem registrar domínio',
+            content:
+                'Uma expressão racional pode perder visualmente uma restrição após cancelamento. O domínio precisa ser determinado antes.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Desafio guiado',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combine as ferramentas',
+            problem: 'Simplifique [(x²−4)/(x²−4x+4)]·[(x−2)/(x+2)].',
+            steps: [
+              'Restrições originais: x ≠ 2 e x ≠ −2.',
+              'Fatore x²−4=(x−2)(x+2).',
+              'Fatore x²−4x+4=(x−2)².',
+              'Substitua os fatores e cancele apenas fatores comuns.',
+            ],
+            result: '1, com x ≠ 2 e x ≠ −2.',
+            interpretation:
+                'A expressão simplifica drasticamente, mas continua diferente da função constante 1 nos pontos excluídos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática integradora',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Escolha a técnica antes de executar',
+            content:
+                '1. Simplifique 3(x−2)+2(x+5).\n'
+                '2. Expanda (2x−3)².\n'
+                '3. Fatore 6x²−24.\n'
+                '4. Fatore x²+9x+20.\n'
+                '5. Simplifique (x²−16)/(x−4), registrando domínio.\n'
+                '6. Some 1/x + 1/(x+1).\n'
+                '7. Determine o grau de 4x⁵−x³+2.\n'
+                '8. Multiplique (x−2)(x²+2x+4).\n'
+                '9. Explique quando a forma fatorada é preferível.\n'
+                '10. Explique quando a forma expandida é preferível.\n'
+                '11. Dê um contraexemplo para (a+b)²=a²+b².\n'
+                '12. Verifique se 3 é raiz de x²−5x+6.\n'
+                '13. Simplifique (x²−1)/(x²+x), registrando restrições.\n'
+                '14. Fatore completamente 2x³−8x.\n'
+                '15. Explique por que cancelar fatores não devolve valores ao domínio.',
+            emphasis:
+                'Antes de cada questão, escreva em uma palavra a estratégia escolhida: expandir, reduzir, fatorar, operar ou analisar domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Ponte para equações e funções',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Álgebra é infraestrutura para o restante do curso',
+            content:
+                'Equações usam equivalência e fatoração; funções usam domínio e avaliação; limites usam fatoração, racionalização e simplificação; derivadas usam todas essas técnicas novamente.',
+            emphasis:
+                'A meta desta unidade não é velocidade mecânica, mas controle consciente das transformações.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica da unidade',
+            content:
+                'Referências consolidadas: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; James Stewart, Thomas’ Calculus e Guidorizzi para a ponte entre manipulação algébrica, funções e Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
       question:
-          'Para simplificar (x² − 25)/(x − 5), qual ferramenta vem primeiro?',
+          'Para simplificar (x²−25)/(x−5), qual ação estrutural deve vir primeiro?',
       choices: [
-        'Fatorar x² − 25',
-        'Substituir x = 5',
+        'Fatorar x²−25',
+        'Substituir x=5',
         'Somar 25 ao denominador',
       ],
       correctIndex: 0,
       explanation:
-          'A diferença de quadrados permite escrever x² − 25 como (x − 5)(x + 5), revelando o fator comum.',
+          'x²−25 é uma diferença de quadrados: (x−5)(x+5). Isso revela o fator comum, mantendo a restrição x ≠ 5.',
     ),
     takeaways: [
-      'Expandir, fatorar e substituir têm objetivos diferentes.',
-      'A forma fatorada revela cancelamentos e raízes.',
-      'A forma expandida facilita combinação de termos.',
-      'Conferir o caminho reduz erros invisíveis.',
+      'A forma mais útil de uma expressão depende do objetivo.',
+      'Expandir, reduzir e fatorar são ferramentas complementares.',
+      'Domínio deve ser preservado durante simplificações racionais.',
+      'Produtos notáveis conectam expansão e fatoração.',
+      'Verificação reduz erros, mas deve acompanhar justificativas algébricas.',
+      'Álgebra bem organizada prepara equações, funções, limites e derivadas.',
     ],
     closing:
-        'Com essa caixa de ferramentas pronta, as próximas aulas deixam de parecer mágica e começam a parecer estratégia.',
-  ),
+        'A maturidade algébrica começa quando você deixa de perguntar apenas “como calcular?” e passa a perguntar “qual forma revela melhor a estrutura?”.',
+  )
 ];
