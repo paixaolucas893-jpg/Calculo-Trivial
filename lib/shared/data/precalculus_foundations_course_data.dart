@@ -1023,6 +1023,42 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
             interpretation:
                 'Expoente negativo altera a posição multiplicativa da potência, não o sinal do resultado.',
           ),
+          WorkedExampleBlockData(
+            title: 'Expoente racional com raiz quarta',
+            problem: 'Calcule 81^(3/4).',
+            steps: [
+              'O denominador 4 indica raiz quarta.',
+              'Calcule √[4]{81} = 3.',
+              'Eleve ao numerador 3: 3³ = 27.',
+            ],
+            result: '81^(3/4) = 27.',
+            interpretation:
+                'O denominador do expoente determina a raiz e o numerador determina a potência.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Raiz cúbica de base negativa',
+            problem: 'Calcule (−27)^(1/3).',
+            steps: [
+              'O denominador 3 indica raiz cúbica.',
+              'Como o índice é ímpar, uma base negativa é permitida nos reais.',
+              '√[3]{−27} = −3.',
+            ],
+            result: '(−27)^(1/3) = −3.',
+            interpretation:
+                'Raízes de índice ímpar preservam o sinal de radicandos negativos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reduza o expoente antes de analisar o domínio',
+            problem: 'Interprete (−8)^(2/6) no conjunto dos reais.',
+            steps: [
+              'Reduza primeiro a fração do expoente: 2/6 = 1/3.',
+              'O denominador relevante é, portanto, 3, que é ímpar.',
+              'Assim, (−8)^(2/6) = (−8)^(1/3) = √[3]{−8} = −2.',
+            ],
+            result: '(−8)^(2/6) = −2.',
+            interpretation:
+                'Analisar o denominador 6 antes de reduzir a fração levaria a uma restrição de domínio incorreta.',
+          ),
         ],
       ),
       LessonSectionData(
@@ -2310,6 +2346,42 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
             result: '81^(−3/4) = 1/27.',
             interpretation:
                 'A negative exponent changes the multiplicative position, not the sign of the result.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Rational exponent with a fourth root',
+            problem: 'Evaluate 81^(3/4).',
+            steps: [
+              'The denominator 4 indicates a fourth root.',
+              'Compute √[4]{81} = 3.',
+              'Raise to the numerator 3: 3³ = 27.',
+            ],
+            result: '81^(3/4) = 27.',
+            interpretation:
+                'The denominator determines the root and the numerator determines the power.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cube root of a negative base',
+            problem: 'Evaluate (−27)^(1/3).',
+            steps: [
+              'The denominator 3 indicates a cube root.',
+              'Because the index is odd, a negative base is allowed over the reals.',
+              '√[3]{−27} = −3.',
+            ],
+            result: '(−27)^(1/3) = −3.',
+            interpretation:
+                'Odd-index roots preserve the sign of negative radicands.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reduce the exponent before analyzing the domain',
+            problem: 'Interpret (−8)^(2/6) over the real numbers.',
+            steps: [
+              'First reduce the exponent fraction: 2/6 = 1/3.',
+              'The relevant denominator is therefore 3, which is odd.',
+              'Thus (−8)^(2/6) = (−8)^(1/3) = √[3]{−8} = −2.',
+            ],
+            result: '(−8)^(2/6) = −2.',
+            interpretation:
+                'Inspecting denominator 6 before reducing the fraction would impose an incorrect domain restriction.',
           ),
         ],
       ),
