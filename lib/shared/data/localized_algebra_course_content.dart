@@ -1681,246 +1681,1029 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Algebra and factoring',
     title: 'Special products',
-    description: 'patterns that speed up calculations',
-    duration: '≈ 5 min',
+    description:
+        'expansion patterns derived from distribution and structural recognition',
+    duration: '≈ 28 min',
     objective:
-        'recognize squares, differences of squares, and common binomial products',
+        'derive and apply special-product identities, recognize their patterns, and avoid using memorized formulas without structural justification',
     symbol: '(a+b)²',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'Special products come from distribution',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.idea,
-            title:
-                'A special product is meaningful distributive work remembered',
+            title: 'Patterns, not magic formulas',
             content:
-                'Special products are not isolated tricks. They come from the distributive property and appear so often that recognizing the pattern quickly is useful.',
-            emphasis: '(a + b)² = a² + 2ab + b², not just a² + b².',
+                'Special products are recurring multiplication patterns. Every identity in this lesson can be reconstructed from the distributive property.',
+            emphasis:
+                'If you forget a pattern, distribution remains a reliable method.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Square of a sum',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a+b)²',
+            content:
+                '(a+b)²=(a+b)(a+b)=a²+2ab+b².',
+            emphasis:
+                'The middle term 2ab comes from the two cross products ab and ba.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Using the square-of-a-sum pattern',
+            problem: 'Expand (2x+3)².',
+            steps: [
+              '(2x)²=4x².',
+              '2·(2x)·3=12x.',
+              '3²=9.',
+            ],
+            result: '4x²+12x+9.',
+            interpretation:
+                'The middle term captures the interaction between the two binomial terms.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Square of a difference',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a−b)²',
+            content:
+                '(a−b)²=a²−2ab+b². Only the middle term changes sign relative to the square of a sum.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sign of the middle term',
+            problem: 'Expand (3x−4)².',
+            steps: [
+              '(3x)²=9x².',
+              '−2·(3x)·4=−24x.',
+              '4²=16.',
+            ],
+            result: '9x²−24x+16.',
+            interpretation:
+                'The final term is positive because it comes from a square.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Product of a sum and a difference',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '(a+b)(a−b)',
+            content:
+                '(a+b)(a−b)=a²−b² because the cross terms cancel.',
+            emphasis:
+                'This identity is the expansion associated with a difference of squares.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Conjugate binomials',
+            problem: 'Compute (5x+2)(5x−2).',
+            steps: [
+              'Identify a=5x and b=2.',
+              'Use a²−b².',
+            ],
+            result: '25x²−4.',
+            interpretation:
+                'The linear term disappears because the cross terms cancel.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Cube of a binomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Cubic patterns',
+            content:
+                '(a+b)³=a³+3a²b+3ab²+b³ and (a−b)³=a³−3a²b+3ab²−b³.',
+            emphasis:
+                'The coefficients 1,3,3,1 arise from expanding three equal binomial factors.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cube of a sum',
+            problem: 'Expand (x+2)³.',
+            steps: [
+              'x³.',
+              '3x²·2=6x².',
+              '3x·2²=12x.',
+              '2³=8.',
+            ],
+            result: 'x³+6x²+12x+8.',
+            interpretation:
+                'The pattern can always be checked by multiplying (x+2)² by (x+2).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Recognizing patterns in reverse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'From expanded form back to factors',
+            content:
+                'Recognizing x²+6x+9 as (x+3)² or 25x²−16 as (5x−4)(5x+4) is the bridge from special products to factoring.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a+b)² is not a²+b²',
+            content:
+                'The cross term 2ab cannot be omitted.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a−b)² does not end in −b²',
+            content:
+                'The final term is +b² because (−b)(−b)=+b².',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Expanding with a pattern',
-            problem: 'Expand (x − 5)².',
+            title: 'Guided 1',
+            problem: 'Expand (x−5)².',
             steps: [
-              'Use (a − b)² = a² − 2ab + b².',
-              'Here, a = x and b = 5.',
-              'Substitute: x² − 2·x·5 + 25.',
+              'x².',
+              '−2·x·5=−10x.',
+              '5²=25.',
             ],
-            result: 'The result is x² − 10x + 25.',
+            result: 'x²−10x+25.',
             interpretation:
-                'The middle term appears because the binomial was multiplied by itself.',
+                'First square, double product, second square.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Recognize 4x²−12x+9.',
+            steps: [
+              '4x²=(2x)² and 9=3².',
+              'The middle term is −2·(2x)·3.',
+            ],
+            result: '(2x−3)².',
+            interpretation:
+                'The middle term confirms the perfect-square trinomial.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expand or recognize the pattern',
+            content:
+                '1. (x+4)².\n'
+                '2. (x−7)².\n'
+                '3. (2x+5)².\n'
+                '4. (3a−2)².\n'
+                '5. (x+6)(x−6).\n'
+                '6. (4y+1)(4y−1).\n'
+                '7. (x+3)³.\n'
+                '8. (2x−1)³.\n'
+                '9. Recognize x²+10x+25.\n'
+                '10. Recognize 9x²−24x+16.\n'
+                '11. Factor x²−49 using a special product.\n'
+                '12. Explain why (a+b)² is not a²+b².\n'
+                '13. Compare (x−2)² and x²−4.\n'
+                '14. Verify (2x+3)(2x−3) by distribution.\n'
+                '15. Expand (a+b)³ by distribution and compare with the pattern.',
+            emphasis:
+                'When using a pattern, explicitly identify what plays the roles of a and b.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Patterns accelerate later simplifications',
+            content:
+                'Differences of squares and perfect-square trinomials appear in limit factorizations, rationalization, and difference-quotient algebra.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas’ Calculus for algebraic applications in limits.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the expansion of (x + 3)²?',
-      choices: ['x² + 9', 'x² + 6x + 9', 'x² + 3x + 9'],
+      question: 'What is the correct expansion of (x−3)²?',
+      choices: ['x²−9', 'x²−6x+9', 'x²+6x+9'],
       correctIndex: 1,
       explanation:
-          'The middle term is 2·x·3 = 6x. Therefore, (x + 3)² = x² + 6x + 9.',
+          '(x−3)²=x²−2·x·3+3²=x²−6x+9.',
     ),
     takeaways: [
-      'Special products come from the distributive property.',
-      'The square of a sum includes a middle term.',
-      'A difference of squares factors as (a − b)(a + b).',
-      'Recognizing patterns speeds up simplification.',
+      'Special products follow from distribution.',
+      '(a+b)²=a²+2ab+b².',
+      '(a−b)²=a²−2ab+b².',
+      '(a+b)(a−b)=a²−b².',
+      'Recognizing patterns in reverse prepares factoring.',
+      'Cross terms cannot be ignored.',
     ],
     closing:
-        'Special products are reliable shortcuts when you understand where they come from.',
-  ),
+        'Special products are safe shortcuts only when the underlying pattern is understood.',
+  )
   CourseLessonData(
     id: 'algebra-06-fatoracao',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Algebra and factoring',
     title: 'Factoring',
-    description: 'rewriting expressions as products',
-    duration: '≈ 5 min',
+    description:
+        'common factors, grouping, difference of squares, trinomials, and strategic selection',
+    duration: '≈ 35 min',
     objective:
-        'factor expressions using a common factor, grouping, and special patterns',
-    symbol: '(x−a)',
+        'rewrite polynomials as products using several factoring techniques, verify results by expansion, and select a suitable technique from expression structure',
+    symbol: 'ab+ac',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'Factoring rewrites a sum as a product',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'From a sum to a product',
+            title: 'Distribution in reverse',
             content:
-                'Factoring means rewriting an expression as a product of factors. This reveals roots, allows algebraic fractions to cancel, and resolves limits with indeterminate forms.',
+                'Factoring means rewriting an expression as a product of factors. The basic pattern is ab+ac=a(b+c).',
             emphasis:
-                'In Calculus, factoring often turns a stuck problem into a simple calculation.',
+                'A factorization can be checked by expanding the product.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Greatest common factor',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Find the largest common numerical and literal factor',
+            content:
+                'Use the greatest common divisor of coefficients and, for every common variable, the smallest exponent present.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Numerical and literal common factor',
+            problem: 'Factor 12x³y−18x²y².',
+            steps: [
+              'GCD of 12 and 18 is 6.',
+              'Smallest x power is x².',
+              'Smallest y power is y.',
+            ],
+            result: '6x²y(2x−3y).',
+            interpretation:
+                'Expanding the result recovers the original expression.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Factoring by grouping',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Create a common factor in two stages',
+            content:
+                'Grouping terms can reveal partial common factors that then produce a common binomial factor.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Strategic grouping',
+            problem: 'Factor x³+3x²+2x+6.',
+            steps: [
+              'Group: (x³+3x²)+(2x+6).',
+              'Factor: x²(x+3)+2(x+3).',
+              'Factor the common binomial.',
+            ],
+            result: '(x+3)(x²+2).',
+            interpretation:
+                'The grouping was chosen to produce the same binomial in both groups.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Difference of squares',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'a²−b²=(a−b)(a+b)',
+            content:
+                'A difference of two perfect squares factors into conjugate binomials.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Applying the pattern',
+            problem: 'Factor 25x²−49.',
+            steps: [
+              '25x²=(5x)².',
+              '49=7².',
+            ],
+            result: '(5x−7)(5x+7).',
+            interpretation:
+                'A sum of squares does not have the same real factorization pattern.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Perfect-square trinomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Recognize a²±2ab+b²',
+            content:
+                'If the first and last terms are perfect squares and the middle term is ±2ab, the trinomial is a perfect square.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Structural recognition',
+            problem: 'Factor 9x²−24x+16.',
+            steps: [
+              '9x²=(3x)².',
+              '16=4².',
+              '−24x=−2·(3x)·4.',
+            ],
+            result: '(3x−4)².',
+            interpretation:
+                'All three terms must confirm the pattern.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Trinomials x²+bx+c',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Find two numbers',
+            content:
+                'For x²+bx+c, find p and q such that p+q=b and pq=c. Then x²+bx+c=(x+p)(x+q).',
+          ),
+          WorkedExampleBlockData(
+            title: 'Monic quadratic trinomial',
+            problem: 'Factor x²−5x+6.',
+            steps: [
+              'Need p+q=−5 and pq=6.',
+              'Choose −2 and −3.',
+            ],
+            result: '(x−2)(x−3).',
+            interpretation:
+                'The corresponding roots are 2 and 3.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Trinomials ax²+bx+c',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Factoring out a common factor',
-            problem: 'Factor 8x² − 12x.',
+            title: 'Leading coefficient different from 1',
+            problem: 'Factor 6x²+11x+3.',
             steps: [
-              'Find the greatest common factor: 4x.',
-              'Divide each term by 4x: 8x²/(4x) = 2x and −12x/(4x) = −3.',
-              'Write the product: 4x(2x − 3).',
+              'Compute ac=18.',
+              'Find two numbers with product 18 and sum 11: 9 and 2.',
+              'Rewrite 11x as 9x+2x.',
+              'Group and factor.',
             ],
-            result: 'The factorization is 4x(2x − 3).',
+            result: '(3x+1)(2x+3).',
             interpretation:
-                'If you distribute 4x again, you recover the original expression.',
+                'Splitting the middle term turns the problem into grouping.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Complete factorization',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Continue until no factor can be reduced further',
+            content:
+                'A polynomial may require more than one technique. Always check for a common factor first, then inspect the remaining factors.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Two stages',
+            problem: 'Factor completely 2x³−18x.',
+            steps: [
+              'Factor 2x: 2x(x²−9).',
+              'Use difference of squares.',
+            ],
+            result: '2x(x−3)(x+3).',
+            interpretation:
+                'Stopping at 2x(x²−9) is correct but not fully factored.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Choosing a strategy',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'A practical decision order',
+            content:
+                '1) common factor; 2) count terms; 3) with two terms, test square patterns; 4) with three terms, test perfect-square or quadratic trinomial patterns; 5) with four terms, try grouping; 6) verify by expansion.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling terms instead of factors',
+            content:
+                'Factoring works with products. In x²+x, first write x(x+1); do not “cancel x” inside a sum.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Skipping the common factor',
+            content:
+                'In 3x²−12, first factor 3 to get 3(x²−4), then use difference of squares.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Factor completely',
+            content:
+                '1. 6x+12.\n'
+                '2. 15x³−10x².\n'
+                '3. x²−16.\n'
+                '4. 9a²−25b².\n'
+                '5. x²+8x+16.\n'
+                '6. 4x²−12x+9.\n'
+                '7. x²+7x+12.\n'
+                '8. x²−x−12.\n'
+                '9. 2x²+7x+3.\n'
+                '10. 6x²+13x+6.\n'
+                '11. x³+2x²+3x+6.\n'
+                '12. 3x³−27x.\n'
+                '13. 4x³+8x²−x−2.\n'
+                '14. Explain how to verify a factorization.\n'
+                '15. Choose the first technique for 10x³−40x and justify it.',
+            emphasis:
+                'After factoring, expand mentally or on paper to verify.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Factoring reveals cancellations and zeros',
+            content:
+                'In limits, factoring can remove an apparent indeterminate form after a common factor is cancelled. In functions, factored form reveals zeros and multiplicities.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart, Thomas, and Guidorizzi for applications of factoring to functions and limits.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the factorization of x² − 16?',
-      choices: ['(x − 4)(x + 4)', '(x − 8)(x + 8)', '(x − 4)²'],
-      correctIndex: 0,
-      explanation: 'It is a difference of squares: x² − 4² = (x − 4)(x + 4).',
+      question: 'What is the complete factorization of x²−9?',
+      choices: ['(x−3)²', '(x−3)(x+3)', 'x(x−9)'],
+      correctIndex: 1,
+      explanation:
+          'x²−9=x²−3² is a difference of squares.',
     ),
     takeaways: [
-      'Factoring rewrites sums as products.',
-      'A common factor is the first pattern to look for.',
-      'Difference of squares appears very often.',
-      'Always check by distributing back.',
+      'Factoring rewrites a sum as a product.',
+      'Check for a common factor before specialized methods.',
+      'Grouping creates common factors in stages.',
+      'Difference of squares and perfect-square trinomials are structural patterns.',
+      'Quadratic trinomials can be factored through sum-and-product relationships.',
+      'Verify a factorization by expansion.',
     ],
     closing:
-        'Factoring is a direct bridge between Algebra, equations, functions, and limits.',
-  ),
+        'Factoring is a change of representation that reveals structure hidden in an expanded expression.',
+  )
   CourseLessonData(
     id: 'algebra-07-fracoes-algebricas',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Algebra and factoring',
     title: 'Algebraic fractions',
-    description: 'restrictions, simplification, and denominators',
-    duration: '≈ 5 min',
+    description:
+        'domain, factoring, simplification, and operations with rational expressions',
+    duration: '≈ 32 min',
     objective:
-        'simplify algebraic fractions while preserving domain restrictions',
-    symbol: 'x/y',
+        'determine domain restrictions, simplify algebraic fractions by factors, and perform basic operations while preserving equivalence and excluded values',
+    symbol: 'P/Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'An algebraic fraction has a domain',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Not every cancellation is allowed',
+            title: 'A denominator can never be zero',
             content:
-                'Only common multiplicative factors can be canceled. A term inside a sum cannot be canceled as if it were a factor. Also, denominators can never be zero.',
+                'In P(x)/Q(x), every value that makes Q(x)=0 must be excluded, even if a factor is later cancelled.',
             emphasis:
-                'In (x + 2)/x, x cannot cancel with part of the numerator because x + 2 is a sum.',
+                'Find restrictions before simplifying.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Simple restriction',
+            problem: 'Find the domain of (x+2)/(x−5).',
+            steps: [
+              'Require x−5 ≠ 0.',
+              'Therefore x ≠ 5.',
+            ],
+            result: 'Domain: ℝ\{5}.',
+            interpretation:
+                'A numerator may be zero; a denominator may not.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Simplifying by factors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Only common factors may be cancelled',
+            content:
+                'Cancelling means dividing numerator and denominator by the same nonzero factor. Terms separated by addition or subtraction cannot be cancelled directly.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Factor before cancelling',
+            problem: 'Simplify (x²−9)/(x²−3x).',
+            steps: [
+              'Original restrictions: x ≠ 0 and x ≠ 3.',
+              'Factor numerator: (x−3)(x+3).',
+              'Factor denominator: x(x−3).',
+              'Cancel x−3 while retaining x ≠ 3.',
+            ],
+            result: '(x+3)/x, with x ≠ 0,3.',
+            interpretation:
+                'The simplified form does not restore x=3 to the original domain.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplication',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Factor and simplify before multiplying',
+            content:
+                'Multiply numerators and denominators, but factoring first can reveal cancellations and reduce the work.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Division',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Multiply by the reciprocal',
+            content:
+                'Dividing by an algebraic fraction means multiplying by its reciprocal, provided the divisor is defined and nonzero.',
+            emphasis:
+                'The divisor numerator also cannot be zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Addition and subtraction',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Use a common denominator',
+            content:
+                'Fractions with different denominators must be rewritten over a common denominator before numerators are combined.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Adding algebraic fractions',
+            problem: 'Simplify 2/x + 3/(x+1).',
+            steps: [
+              'Restrictions: x ≠ 0,−1.',
+              'Common denominator: x(x+1).',
+              'Numerator: 2(x+1)+3x=5x+2.',
+            ],
+            result: '(5x+2)/[x(x+1)], with x ≠ 0,−1.',
+            interpretation:
+                'Numerators are combined only after denominators agree.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Complex fractions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Fractions may contain other fractions',
+            content:
+                'Complex fractions can be simplified by clearing internal denominators while preserving all restrictions.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Clearing inner denominators',
+            problem: 'Simplify (1/x+1/y)/(1/x), with x,y ≠ 0.',
+            steps: [
+              '1/x+1/y=(x+y)/(xy).',
+              'Divide by 1/x by multiplying by x.',
+            ],
+            result: '(x+y)/y, with x,y ≠ 0.',
+            interpretation:
+                'The restriction x ≠ 0 remains even after x disappears from the final form.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling terms in a sum',
+            content:
+                '(x+2)/x does not simplify by cancelling x because x is not a factor of the entire numerator.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting excluded values',
+            content:
+                '(x²−1)/(x−1) simplifies to x+1, but x=1 remains excluded from the original expression.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Correct cancellation',
-            problem: 'Simplify (x² − 9)/(x − 3), with x ≠ 3.',
+            title: 'Guided 1 — simplification',
+            problem: 'Simplify (x²−4x)/(x²−16).',
             steps: [
-              'Factor the numerator: x² − 9 = (x − 3)(x + 3).',
-              'Rewrite the fraction: [(x − 3)(x + 3)]/(x − 3).',
-              'Cancel the common factor x − 3 while keeping the restriction x ≠ 3.',
+              'Factor numerator: x(x−4).',
+              'Factor denominator: (x−4)(x+4).',
+              'Restrictions: x ≠ ±4.',
+              'Cancel x−4.',
             ],
-            result: 'The simplified form is x + 3, with x ≠ 3.',
+            result: 'x/(x+4), with x ≠ ±4.',
             interpretation:
-                'The simplified expression looks unrestricted, but the original restriction still applies.',
+                'x=4 remains excluded.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — addition',
+            problem: 'Simplify 1/(x−1)+1/(x+1).',
+            steps: [
+              'Restrictions: x ≠ ±1.',
+              'Common denominator: (x−1)(x+1).',
+              'Numerator: (x+1)+(x−1)=2x.',
+            ],
+            result: '2x/(x²−1), with x ≠ ±1.',
+            interpretation:
+                'Factoring also makes restrictions visible.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Find the domain and simplify where possible',
+            content:
+                '1. (x+1)/(x−2).\n'
+                '2. (x²−4)/(x−2).\n'
+                '3. (x²−9)/(x²−6x+9).\n'
+                '4. (2x²+4x)/(2x).\n'
+                '5. [(x²−1)/(x²+x)]·[x/(x−1)].\n'
+                '6. [(x+2)/(x−3)]÷[(x+2)/(x+1)].\n'
+                '7. 1/x+2/x.\n'
+                '8. 1/x+1/(x+2).\n'
+                '9. 3/(x−1)−2/(x+1).\n'
+                '10. Explain why (x+3)/x does not allow x to be cancelled.\n'
+                '11. Simplify (x²−25)/(x²−10x+25).\n'
+                '12. List excluded values before simplifying (x²−4)/(x²−x−2).\n'
+                '13. Give an example of a removable hole created by cancellation.\n'
+                '14. Simplify (1/x+1)/(1/x).\n'
+                '15. Explain why simplification does not change the original domain.',
+            emphasis:
+                'Write all restrictions before cancelling anything.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Rational expressions appear directly in limits',
+            content:
+                'Many algebraic limits require factoring and simplifying a rational function near an excluded point. Preserving domain information is essential for distinguishing function value from limit.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart, Thomas, and Guidorizzi for rational functions and limits.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'In which expression is canceling x valid?',
-      choices: ['(x + 5)/x', '(3x)/(x)', '(x − 2)/x'],
-      correctIndex: 1,
+      question: 'When simplifying (x²−4)/(x−2), which condition must remain?',
+      choices: ['x ≠ −2', 'x ≠ 0', 'x ≠ 2'],
+      correctIndex: 2,
       explanation:
-          'In 3x/x, x is a common factor in the numerator and denominator. In the others, x is inside a sum or difference.',
+          'The original denominator x−2 is zero at x=2, so that value remains excluded.',
     ),
     takeaways: [
-      'A zero denominator is not allowed.',
-      'Cancel factors, not terms in a sum.',
-      'Factoring before canceling prevents mistakes.',
-      'Original restrictions remain important.',
+      'Denominators determine domain restrictions.',
+      'Only common factors may be cancelled.',
+      'Restrictions should be recorded before simplification.',
+      'Addition and subtraction require a common denominator.',
+      'Division by a fraction uses the reciprocal and adds nonzero conditions.',
+      'Simplification does not restore excluded points.',
     ],
     closing:
-        'Algebraic fractions explain many details about domain, continuity, and limits.',
-  ),
+        'Algebraic fractions require two simultaneous habits: manipulate factors and preserve the domain.',
+  )
   CourseLessonData(
     id: 'algebra-08-sintese',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
-    eyebrow: 'Foundations',
+    eyebrow: 'Synthesis',
     title: 'Algebra synthesis',
-    description: 'choosing the right tool',
-    duration: '≈ 5 min',
-    objective: 'decide when to simplify, expand, factor, or substitute values',
-    symbol: '✓',
+    description:
+        'strategy selection, integration of techniques, and preparation for equations, functions, and limits',
+    duration: '≈ 30 min',
+    objective:
+        'select and combine algebraic techniques according to the goal, justify transformations, preserve domain restrictions, and choose useful equivalent forms',
+    symbol: '⇄',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'There is no universally best form',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'There is no single best form',
+            visual: LessonVisual.compare,
+            title: 'The useful form depends on the question',
             content:
-                'Expanding helps combine terms. Factoring helps reveal products, roots, and cancellations. Substituting values helps check results and interpret expressions.',
-            emphasis:
-                'A strong Calculus student does not just memorize calculations; they choose the form that reveals the idea.',
+                'Expanded form helps combine terms. Factored form reveals zeros and cancellations. Simplified rational form reveals behavior. The best form is the one that exposes the needed structure.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'A decision routine',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Before calculating, decide what you need to see',
+            content:
+                'Ask: Are there parentheses to expand? Like terms to combine? A common factor? A special-product pattern? Denominators and restrictions? Would factored form be more informative?',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Integrated example: expand and reduce',
         blocks: [
           WorkedExampleBlockData(
-            title: 'From clutter to a useful form',
-            problem: 'Simplify 2(x + 1) + (x − 3)(x + 3).',
+            title: 'Several techniques in sequence',
+            problem: 'Simplify 2(x+3)−(x−1)(x+2).',
             steps: [
-              'Distribute the first term: 2x + 2.',
-              'Use the difference of squares: (x − 3)(x + 3) = x² − 9.',
-              'Combine: x² + 2x − 7.',
+              'Expand 2(x+3)=2x+6.',
+              'Expand (x−1)(x+2)=x²+x−2.',
+              'Subtract the entire second expression.',
+              'Combine like terms.',
             ],
-            result: 'The simplified expression is x² + 2x − 7.',
+            result: '−x²+x+8.',
             interpretation:
-                'We used the distributive property and a special product in the same expression.',
+                'Distribution, sign control, and reduction appear in one problem.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Integrated example: factor before simplifying',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Domain and cancellation',
+            problem: 'Simplify (x²−9)/(x²−x−6).',
+            steps: [
+              'Factor denominator: (x−3)(x+2), so x ≠ 3,−2.',
+              'Factor numerator: (x−3)(x+3).',
+              'Cancel x−3.',
+            ],
+            result: '(x+3)/(x+2), with x ≠ 3,−2.',
+            interpretation:
+                'Factored form revealed the cancellation while the original domain remained.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Integrated example: choose a representation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Equivalent forms reveal different information',
+            content:
+                'x²−5x+6 and (x−2)(x−3) are equivalent. Expanded form shows coefficients; factored form shows zeros. Equivalent does not mean equally useful for every question.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Verification as a mathematical habit',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Three ways to check',
+            content:
+                'Check an expansion by reapplying distribution, check a factorization by expanding it, and test equivalent forms at allowed numerical values. Checking supports, but does not replace, general justification.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Strategic errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Expanding when factoring is more useful',
+            content:
+                'In a limit containing x²−9 over x−3, factoring reveals the common factor while expansion does not.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Simplifying without recording domain restrictions',
+            content:
+                'A rational expression may visually lose a restriction after cancellation. The domain must be determined first.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided challenge',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combine the tools',
+            problem: 'Simplify [(x²−4)/(x²−4x+4)]·[(x−2)/(x+2)].',
+            steps: [
+              'Original restrictions: x ≠ 2,−2.',
+              'Factor x²−4=(x−2)(x+2).',
+              'Factor x²−4x+4=(x−2)².',
+              'Cancel common factors only.',
+            ],
+            result: '1, with x ≠ 2 and x ≠ −2.',
+            interpretation:
+                'The expression becomes simple but is not identical to the constant function 1 at the excluded points.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Integrative practice',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Choose a technique before calculating',
+            content:
+                '1. Simplify 3(x−2)+2(x+5).\n'
+                '2. Expand (2x−3)².\n'
+                '3. Factor 6x²−24.\n'
+                '4. Factor x²+9x+20.\n'
+                '5. Simplify (x²−16)/(x−4), recording domain.\n'
+                '6. Add 1/x+1/(x+1).\n'
+                '7. Find the degree of 4x⁵−x³+2.\n'
+                '8. Multiply (x−2)(x²+2x+4).\n'
+                '9. Explain when factored form is preferable.\n'
+                '10. Explain when expanded form is preferable.\n'
+                '11. Give a counterexample to (a+b)²=a²+b².\n'
+                '12. Check whether 3 is a root of x²−5x+6.\n'
+                '13. Simplify (x²−1)/(x²+x), recording restrictions.\n'
+                '14. Factor completely 2x³−8x.\n'
+                '15. Explain why cancelling factors does not restore domain values.',
+            emphasis:
+                'Before each problem, name your chosen strategy: expand, reduce, factor, operate, or analyze domain.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Bridge to equations and functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Algebra is infrastructure for the rest of the course',
+            content:
+                'Equations use equivalence and factoring; functions use domain and evaluation; limits use factoring and simplification; derivatives depend on all of these skills again.',
+            emphasis:
+                'The goal is not mechanical speed but conscious control of transformations.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for the unit',
+            content:
+                'Consolidated references: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; James Stewart, Thomas’ Calculus, and Guidorizzi for the bridge from algebra to functions and Calculus.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'To simplify (x² − 25)/(x − 5), which tool should come first?',
+      question:
+          'To simplify (x²−25)/(x−5), which structural action should come first?',
       choices: [
-        'Factor x² − 25',
-        'Substitute x = 5',
+        'Factor x²−25',
+        'Substitute x=5',
         'Add 25 to the denominator',
       ],
       correctIndex: 0,
       explanation:
-          'The difference of squares lets us write x² − 25 as (x − 5)(x + 5), revealing the common factor.',
+          'x²−25=(x−5)(x+5), revealing the common factor while x=5 remains excluded.',
     ),
     takeaways: [
-      'Expanding, factoring, and substituting serve different purposes.',
-      'Factored form reveals cancellations and roots.',
-      'Expanded form makes combining terms easier.',
-      'Checking your path reduces hidden mistakes.',
+      'The most useful form depends on the goal.',
+      'Expanding, reducing, and factoring are complementary tools.',
+      'Domain restrictions must survive rational simplification.',
+      'Special products connect expansion and factoring.',
+      'Checking reduces errors but should accompany algebraic justification.',
+      'Organized algebra prepares equations, functions, limits, and derivatives.',
     ],
     closing:
-        'With this toolbox ready, the next lessons stop feeling like magic and start feeling like strategy.',
-  ),
+        'Algebraic maturity begins when the question changes from “How do I calculate this?” to “Which form reveals the structure I need?”.',
+  )
 ];
