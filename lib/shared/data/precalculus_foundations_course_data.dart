@@ -852,81 +852,369 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     trailTitle: 'Pré-Cálculo — Fundamentos',
     eyebrow: 'Unidade 0',
     title: 'Potências, raízes e expoentes',
-    description: 'expoentes inteiros, racionais e restrições reais',
-    duration: '≈ 15 min',
+    description: 'leis de expoentes, radicais, expoentes racionais e domínio real',
+    duration: '≈ 30 min',
     objective:
-        'usar propriedades de expoentes e interpretar raízes e expoentes racionais no conjunto dos números reais',
+        'aplicar leis de expoentes com suas condições de validade, interpretar raízes e expoentes racionais no conjunto dos reais, determinar restrições de domínio e evitar simplificações algébricas inválidas',
     symbol: 'xᵃ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Potências condensam multiplicações',
+        title: 'Potência como estrutura',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.calculate,
-            title: 'As regras dependem da base',
+            title: 'Base e expoente têm papéis distintos',
             content:
-                'Para a ≠ 0, valem a⁰ = 1 e a⁻ⁿ = 1/aⁿ. Em produtos de mesma base, somamos expoentes: aᵐaⁿ = aᵐ⁺ⁿ. Em quocientes, subtraímos: aᵐ/aⁿ = aᵐ⁻ⁿ. Em potência de potência, multiplicamos expoentes.',
+                'Em aⁿ, a é a base e n é o expoente. Para n inteiro positivo, aⁿ representa o produto de n fatores iguais a a. Assim, a³ = a·a·a. Essa definição é o ponto de partida para as leis de expoentes.',
             emphasis:
-                'Essas regras não autorizam distribuir expoente sobre soma: (a + b)² geralmente não é a² + b².',
+                'O expoente não multiplica a base: a³ não significa 3a.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Expoente racional conecta potência e raiz',
+            visual: LessonVisual.compare,
+            title: 'Sinal e agrupamento',
             content:
-                'Quando a expressão é real e está definida, a^(1/n) representa a raiz n-ésima de a e a^(m/n) pode ser interpretado como a raiz n-ésima de a elevada a m. Para índice par, o radicando precisa ser não negativo no conjunto dos reais.',
+                'As expressões −2⁴ e (−2)⁴ não são iguais. Na primeira, a potência atua sobre 2 e o sinal negativo permanece fora: −2⁴ = −16. Na segunda, a base é −2: (−2)⁴ = 16.',
             emphasis:
-                '√x é real apenas para x ≥ 0; já ∛x é real para qualquer x real.',
+                'Sempre identifique a base antes de aplicar uma lei de expoentes.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Leis dos expoentes inteiros',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Expoente negativo e racional',
-            problem: 'Simplifique 16^(3/4) e escreva 2⁻³ como fração.',
-            steps: [
-              '16^(1/4) = 2, pois 2⁴ = 16.',
-              'Então 16^(3/4) = (16^(1/4))³ = 2³ = 8.',
-              'Para o expoente negativo, 2⁻³ = 1/2³ = 1/8.',
-            ],
-            result: '16^(3/4) = 8 e 2⁻³ = 1/8.',
-            interpretation:
-                'O expoente informa tanto a operação de potência quanto, em forma racional, uma operação de raiz.',
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Produto, quociente e potência de potência',
+            content:
+                'Para a mesma base, aᵐ·aⁿ = aᵐ⁺ⁿ. Para a ≠ 0, aᵐ/aⁿ = aᵐ⁻ⁿ. Também vale (aᵐ)ⁿ = aᵐⁿ. Em produtos e quocientes, (ab)ⁿ = aⁿbⁿ e, para b ≠ 0, (a/b)ⁿ = aⁿ/bⁿ.',
+            emphasis:
+                'Cada lei possui uma estrutura específica. Não transfira uma regra de produto para uma soma.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Expoente não se distribui sobre soma',
+            content:
+                'Em geral, (a + b)² ≠ a² + b². Pela distributiva, (a + b)² = a² + 2ab + b².',
+            emphasis:
+                'Com a = 2 e b = 3: (2 + 3)² = 25, enquanto 2² + 3² = 13.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Expoente zero e expoente negativo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Por que a⁰ = 1',
+            content:
+                'Para a ≠ 0, podemos usar a lei do quociente: aᵐ/aᵐ = aᵐ⁻ᵐ = a⁰. Como qualquer número não nulo dividido por ele mesmo vale 1, concluímos que a⁰ = 1.',
+            emphasis:
+                'A condição a ≠ 0 é essencial. No contexto elementar, 0⁰ não é tratado como uma potência real definida.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Expoente negativo indica recíproco',
+            content:
+                'Para a ≠ 0 e n inteiro positivo, a⁻ⁿ = 1/aⁿ. O sinal negativo no expoente não torna a potência negativa; ele inverte a base em relação à multiplicação.',
+            emphasis:
+                '2⁻³ = 1/2³ = 1/8, enquanto −2³ = −8.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Raízes n-ésimas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Raiz principal',
+            content:
+                'Para n inteiro positivo, √[n]{a} representa um número real b tal que bⁿ = a, quando essa raiz real existe. Para índice par, a raiz principal é definida como não negativa. Para índice ímpar, raízes reais existem também para radicandos negativos.',
+            emphasis:
+                '√9 = 3, não ±3. Já a equação x² = 9 possui as soluções x = ±3.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Índice par e índice ímpar',
+            content:
+                '√16 = 4 e √[4]{16} = 2 são reais e não negativos. Em contraste, √[3]{−8} = −2, porque (−2)³ = −8. A expressão √(−8) não representa um número real.',
+            emphasis:
+                'No conjunto dos reais, radicais de índice par exigem radicando não negativo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Expoentes racionais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A fração no expoente codifica raiz e potência',
+            content:
+                'Se m/n está na forma irredutível, com n > 0, então a^(m/n) é interpretado por meio da raiz n-ésima e da potência m, quando a expressão está definida nos reais. Podemos escrever a^(m/n) = (√[n]{a})ᵐ.',
+            emphasis:
+                'O denominador n determina o índice da raiz; o numerador m determina a potência.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'As condições de domínio dependem do denominador',
+            content:
+                'Se n é par, a deve ser não negativo para a^(m/n) ser real. Se m também for negativo, então a deve ser estritamente positivo, porque a expressão envolve um recíproco. Se n é ímpar, bases negativas são permitidas; com expoente negativo, a base ainda não pode ser zero.',
+            emphasis:
+                'Antes de simplificar um expoente racional, reduza a fração do expoente e verifique o domínio real.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Exemplos resolvidos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Expoente racional positivo',
+            problem: 'Calcule 16^(3/2).',
+            steps: [
+              'O denominador 2 indica raiz quadrada.',
+              'Calcule √16 = 4.',
+              'Eleve ao numerador 3: 4³ = 64.',
+            ],
+            result: '16^(3/2) = 64.',
+            interpretation:
+                'A raiz foi calculada antes da potência porque isso simplifica o cálculo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Base negativa com denominador ímpar',
+            problem: 'Calcule (−27)^(2/3).',
+            steps: [
+              'O denominador 3 indica raiz cúbica.',
+              '√[3]{−27} = −3.',
+              'Eleve ao quadrado: (−3)² = 9.',
+            ],
+            result: '(−27)^(2/3) = 9.',
+            interpretation:
+                'A base negativa é permitida porque a raiz envolvida tem índice ímpar.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quando a expressão não é real',
+            problem: 'Analise (−16)^(1/2) no conjunto dos números reais.',
+            steps: [
+              'O denominador 2 indica raiz quadrada.',
+              'Raiz quadrada real exige radicando não negativo.',
+              'Como −16 < 0, não há valor real.',
+            ],
+            result: '(−16)^(1/2) não é real.',
+            interpretation:
+                'O domínio deve ser verificado antes da manipulação algébrica.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Expoente racional negativo',
+            problem: 'Calcule 81^(−3/4).',
+            steps: [
+              'O expoente negativo indica recíproco: 81^(−3/4) = 1/81^(3/4).',
+              '√[4]{81} = 3.',
+              'Então 81^(3/4) = 3³ = 27.',
+              'Tome o recíproco.',
+            ],
+            result: '81^(−3/4) = 1/27.',
+            interpretation:
+                'Expoente negativo altera a posição multiplicativa da potência, não o sinal do resultado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Radicais e simplificação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Extração de fatores perfeitos',
+            content:
+                'Uma raiz pode ser simplificada separando fatores que são potências perfeitas do índice. Por exemplo, √72 = √(36·2) = 6√2.',
+            emphasis:
+                'Simplificar um radical não significa aproximá-lo decimalmente.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '√(x²) = |x|',
+            content:
+                'A raiz quadrada principal é sempre não negativa. Portanto, √(x²) = |x| para todo x real. Escrever simplesmente x seria incorreto quando x < 0.',
+            emphasis:
+                'Se x = −5, então √(x²) = √25 = 5 = |−5|, e não −5.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Domínio de expressões com raízes',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Raiz quadrada de uma expressão',
+            problem: 'Determine o domínio real de f(x) = √(x − 5).',
+            steps: [
+              'A raiz tem índice par.',
+              'O radicando deve satisfazer x − 5 ≥ 0.',
+              'Resolva: x ≥ 5.',
+            ],
+            result: 'Domínio: [5, +∞).',
+            interpretation:
+                'A condição vem da existência da raiz no conjunto dos reais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Raiz no denominador',
+            problem: 'Determine o domínio real de g(x) = 1/√(x + 2).',
+            steps: [
+              'Por ser raiz quadrada, precisamos x + 2 ≥ 0.',
+              'Como a raiz está no denominador, ela também não pode ser zero.',
+              'Portanto, x + 2 > 0.',
+            ],
+            result: 'Domínio: (−2, +∞).',
+            interpretation:
+                'Uma mesma expressão pode reunir restrição de radical e restrição de denominador.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros conceituais frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'A raiz principal é não negativa',
+            title: 'Somar expoentes só vale em produtos de mesma base',
             content:
-                'Embora x² = 9 tenha duas soluções, x = ±3, a expressão √9 representa especificamente a raiz principal 3.',
+                'x²·x³ = x⁵, mas x² + x³ não pode ser reduzido a x⁵. Soma e produto são operações diferentes.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Raiz de soma não se separa',
+            content:
+                'Em geral, √(a + b) ≠ √a + √b. Por exemplo, √(9 + 16) = 5, enquanto √9 + √16 = 7.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Leis de expoentes exigem domínio compatível',
+            content:
+                'Ao trabalhar com expoentes racionais sobre os reais, manipulações formais precisam respeitar a existência das expressões envolvidas. Uma transformação algébrica não pode criar valores reais onde a expressão original não estava definida.',
+            emphasis:
+                'Primeiro determine o domínio; depois simplifique.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — leis de expoentes',
+            problem: 'Simplifique (2x³)²·x⁻¹, com x ≠ 0.',
+            steps: [
+              '(2x³)² = 4x⁶.',
+              'Multiplique por x⁻¹: 4x⁶·x⁻¹.',
+              'Some os expoentes da mesma base: 6 + (−1) = 5.',
+            ],
+            result: '4x⁵.',
+            interpretation:
+                'A condição x ≠ 0 vem da presença original de x⁻¹.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — domínio',
+            problem: 'Determine o domínio de h(x) = (x − 1)^(1/2).',
+            steps: [
+              'O denominador do expoente racional é 2.',
+              'Isso corresponde a uma raiz quadrada.',
+              'Exija x − 1 ≥ 0.',
+            ],
+            result: 'x ≥ 1, isto é, [1, +∞).',
+            interpretation:
+                'Expoentes racionais também carregam restrições de domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva mostrando domínio e justificativa quando necessário',
+            content:
+                '1. Simplifique x⁴·x⁷.\n'
+                '2. Simplifique x⁹/x³, indicando a condição sobre x.\n'
+                '3. Simplifique (a³)⁴.\n'
+                '4. Escreva 5⁻³ sem expoente negativo.\n'
+                '5. Calcule 64^(1/3).\n'
+                '6. Calcule 16^(3/2).\n'
+                '7. Calcule (−8)^(1/3).\n'
+                '8. Decida se (−16)^(1/2) é real.\n'
+                '9. Calcule 81^(−1/2).\n'
+                '10. Simplifique √50.\n'
+                '11. Explique por que √(x²) = |x|.\n'
+                '12. Determine o domínio de √(x + 4).\n'
+                '13. Determine o domínio de 1/√(x − 2).\n'
+                '14. Mostre numericamente que (a + b)² ≠ a² + b² em geral.\n'
+                '15. Explique por que √(a + b) não pode, em geral, ser separado em √a + √b.',
+            emphasis:
+                'Em questões de domínio, uma resposta sem a condição de existência é incompleta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Expoentes controlam funções e derivadas',
+            content:
+                'Funções potência, radicais e expressões com expoentes racionais aparecem continuamente em Cálculo. A regra da potência para derivadas, a análise de domínio, limites com radicais e modelos de crescimento dependem diretamente dessas estruturas algébricas.',
+            emphasis:
+                'Erros em expoentes e domínio costumam reaparecer mais adiante como erros de limite ou derivada.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, seções 1.2, Exponents and Scientific Notation, e 1.3, Radicals and Rational Exponents; OpenStax, College Algebra 2e, seções 1.2 e 1.3; James Stewart, Calculus, revisão de Álgebra e funções potência; Thomas’ Calculus, revisão algébrica e funções; e MIT OpenCourseWare 18.01SC, cujo curso de Cálculo de uma variável exige domínio prévio de Álgebra e Trigonometria.',
+            emphasis:
+                'A organização, os exemplos e os exercícios do Cálculo Trivial são autorais ou adaptados pedagogicamente, sem reprodução literal de listas protegidas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual expressão é equivalente a x^(−2), para x ≠ 0?',
-      choices: ['−x²', '1/x²', '1/(2x)'],
+      question:
+          'Qual é o domínio real de f(x) = (x − 3)^(1/2)?',
+      choices: ['x > 3', 'x ≥ 3', 'todos os números reais'],
       correctIndex: 1,
       explanation:
-          'Expoente negativo indica o inverso da potência correspondente: x^(−2) = 1/x².',
+          'O expoente 1/2 representa uma raiz quadrada. Para que a expressão seja real, x − 3 deve ser não negativo: x − 3 ≥ 0, portanto x ≥ 3.',
     ),
     takeaways: [
-      'Produtos de mesma base somam expoentes.',
-      'Expoente negativo representa inverso multiplicativo.',
-      'Expoente racional relaciona potência e raiz.',
-      'Raízes de índice par impõem restrições no conjunto dos reais.',
+      'Leis de expoentes dependem da estrutura da expressão e de condições de domínio.',
+      'Expoente zero exige base não nula; expoente negativo também exclui base zero.',
+      'Raízes de índice par exigem radicando não negativo nos reais.',
+      'Raízes de índice ímpar admitem radicandos negativos.',
+      'Em a^(m/n), o denominador determina a raiz e o numerador determina a potência.',
+      '√(x²) = |x|, e não x em geral.',
+      'Expoentes não se distribuem sobre soma, e raízes de soma não se separam.',
+      'Domínio deve ser analisado antes da simplificação algébrica.',
     ],
     closing:
-        'Potências e raízes reaparecem em funções, limites, derivadas e modelos exponenciais.',
+        'Potências e raízes deixam de ser um conjunto de regras quando cada manipulação é ligada à estrutura da expressão e ao domínio em que ela faz sentido.',
   ),
   CourseLessonData(
     id: 'precalculo-00-05-modulo',
@@ -1852,81 +2140,369 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     trailTitle: 'Precalculus — Foundations',
     eyebrow: 'Unit 0',
     title: 'Powers, roots, and exponents',
-    description: 'integer and rational exponents and real restrictions',
-    duration: '≈ 15 min',
+    description: 'exponent laws, radicals, rational exponents, and real domains',
+    duration: '≈ 30 min',
     objective:
-        'use exponent laws and interpret roots and rational exponents over the real numbers',
+        'apply exponent laws with their validity conditions, interpret roots and rational exponents over the real numbers, determine domain restrictions, and avoid invalid algebraic simplifications',
     symbol: 'xᵃ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Powers condense multiplication',
+        title: 'Powers as structure',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.calculate,
-            title: 'Rules depend on the base',
+            title: 'Base and exponent play different roles',
             content:
-                'For a ≠ 0, a⁰ = 1 and a⁻ⁿ = 1/aⁿ. For products with the same base, add exponents: aᵐaⁿ = aᵐ⁺ⁿ. For quotients, subtract them. For a power of a power, multiply exponents.',
+                'In aⁿ, a is the base and n is the exponent. For a positive integer n, aⁿ is the product of n factors equal to a. Thus a³ = a·a·a. This definition is the starting point for the exponent laws.',
             emphasis:
-                'These rules do not distribute an exponent over addition: (a + b)² is generally not a² + b².',
+                'The exponent does not multiply the base: a³ does not mean 3a.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Rational exponents connect powers and roots',
+            visual: LessonVisual.compare,
+            title: 'Sign and grouping',
             content:
-                'When defined over the reals, a^(1/n) is the nth root of a, and a^(m/n) combines a root and a power. For even n, the radicand must be nonnegative.',
+                'The expressions −2⁴ and (−2)⁴ are not equal. In the first, the power acts on 2 and the negative sign remains outside: −2⁴ = −16. In the second, the base is −2: (−2)⁴ = 16.',
             emphasis:
-                '√x is real only for x ≥ 0, while ∛x is real for every real x.',
+                'Always identify the base before applying an exponent law.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Integer exponent laws',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Negative and rational exponents',
-            problem: 'Simplify 16^(3/4) and write 2⁻³ as a fraction.',
-            steps: [
-              '16^(1/4) = 2 because 2⁴ = 16.',
-              'Then 16^(3/4) = 2³ = 8.',
-              'For the negative exponent, 2⁻³ = 1/2³ = 1/8.',
-            ],
-            result: '16^(3/4) = 8 and 2⁻³ = 1/8.',
-            interpretation:
-                'A rational exponent encodes both root and power operations.',
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Product, quotient, and power of a power',
+            content:
+                'For the same base, aᵐ·aⁿ = aᵐ⁺ⁿ. For a ≠ 0, aᵐ/aⁿ = aᵐ⁻ⁿ. Also, (aᵐ)ⁿ = aᵐⁿ. For products and quotients, (ab)ⁿ = aⁿbⁿ and, for b ≠ 0, (a/b)ⁿ = aⁿ/bⁿ.',
+            emphasis:
+                'Each law belongs to a specific structure. Do not transfer a product rule to a sum.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Exponents do not distribute over addition',
+            content:
+                'In general, (a + b)² ≠ a² + b². By distribution, (a + b)² = a² + 2ab + b².',
+            emphasis:
+                'With a = 2 and b = 3: (2 + 3)² = 25, whereas 2² + 3² = 13.',
+            tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Common mistake',
+        title: 'Zero and negative exponents',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Why a⁰ = 1',
+            content:
+                'For a ≠ 0, the quotient law gives aᵐ/aᵐ = aᵐ⁻ᵐ = a⁰. Since every nonzero number divided by itself is 1, a⁰ = 1.',
+            emphasis:
+                'The condition a ≠ 0 is essential. In elementary real-number algebra, 0⁰ is not treated as a defined power.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'A negative exponent means reciprocal',
+            content:
+                'For a ≠ 0 and positive integer n, a⁻ⁿ = 1/aⁿ. The negative sign in the exponent does not make the value negative; it changes the multiplicative position.',
+            emphasis:
+                '2⁻³ = 1/8, whereas −2³ = −8.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Nth roots',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Principal root',
+            content:
+                'For positive integer n, √[n]{a} denotes a real number b satisfying bⁿ = a whenever such a real root exists. For even index, the principal root is defined to be nonnegative. For odd index, real roots also exist for negative radicands.',
+            emphasis:
+                '√9 = 3, not ±3. The equation x² = 9, however, has solutions x = ±3.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Even index and odd index',
+            content:
+                '√16 = 4 and √[4]{16} = 2 are real and nonnegative. In contrast, √[3]{−8} = −2 because (−2)³ = −8. The expression √(−8) does not denote a real number.',
+            emphasis:
+                'Over the real numbers, even-index radicals require a nonnegative radicand.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Rational exponents',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A fractional exponent encodes a root and a power',
+            content:
+                'If m/n is in lowest terms with n > 0, then a^(m/n) is interpreted through an nth root and the mth power whenever the real expression is defined. We may write a^(m/n) = (√[n]{a})ᵐ.',
+            emphasis:
+                'The denominator n determines the root; the numerator m determines the power.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Domain conditions depend on the denominator',
+            content:
+                'If n is even, a must be nonnegative for a^(m/n) to be real. If m is also negative, then a must be strictly positive because a reciprocal is involved. If n is odd, negative bases are allowed; with a negative exponent, the base still cannot be zero.',
+            emphasis:
+                'Reduce the exponent fraction first and check the real domain before simplifying.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Worked examples',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Positive rational exponent',
+            problem: 'Evaluate 16^(3/2).',
+            steps: [
+              'The denominator 2 indicates a square root.',
+              'Compute √16 = 4.',
+              'Raise to the numerator 3: 4³ = 64.',
+            ],
+            result: '16^(3/2) = 64.',
+            interpretation:
+                'Taking the root first makes the arithmetic simpler.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Negative base with odd denominator',
+            problem: 'Evaluate (−27)^(2/3).',
+            steps: [
+              'The denominator 3 indicates a cube root.',
+              '√[3]{−27} = −3.',
+              'Square: (−3)² = 9.',
+            ],
+            result: '(−27)^(2/3) = 9.',
+            interpretation:
+                'The negative base is allowed because the root has odd index.',
+          ),
+          WorkedExampleBlockData(
+            title: 'When the expression is not real',
+            problem: 'Analyze (−16)^(1/2) over the real numbers.',
+            steps: [
+              'The denominator 2 indicates a square root.',
+              'A real square root requires a nonnegative radicand.',
+              'Since −16 < 0, no real value exists.',
+            ],
+            result: '(−16)^(1/2) is not real.',
+            interpretation:
+                'The domain must be checked before algebraic manipulation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Negative rational exponent',
+            problem: 'Evaluate 81^(−3/4).',
+            steps: [
+              'The negative exponent means reciprocal: 1/81^(3/4).',
+              '√[4]{81} = 3.',
+              'Thus 81^(3/4) = 3³ = 27.',
+              'Take the reciprocal.',
+            ],
+            result: '81^(−3/4) = 1/27.',
+            interpretation:
+                'A negative exponent changes the multiplicative position, not the sign of the result.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Radicals and simplification',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Extracting perfect-power factors',
+            content:
+                'A radical can be simplified by separating factors that are perfect powers of the index. For example, √72 = √(36·2) = 6√2.',
+            emphasis:
+                'Simplifying a radical is not the same as replacing it with a decimal approximation.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '√(x²) = |x|',
+            content:
+                'The principal square root is always nonnegative. Therefore √(x²) = |x| for every real x. Writing x alone is incorrect when x < 0.',
+            emphasis:
+                'If x = −5, then √(x²) = √25 = 5 = |−5|, not −5.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Domains of expressions with roots',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Square root of an expression',
+            problem: 'Find the real domain of f(x) = √(x − 5).',
+            steps: [
+              'The root has even index.',
+              'Require x − 5 ≥ 0.',
+              'Solve: x ≥ 5.',
+            ],
+            result: 'Domain: [5, +∞).',
+            interpretation:
+                'The restriction comes from the existence of the square root over the reals.',
+          ),
+          WorkedExampleBlockData(
+            title: 'A root in the denominator',
+            problem: 'Find the real domain of g(x) = 1/√(x + 2).',
+            steps: [
+              'Because this is a square root, require x + 2 ≥ 0.',
+              'Because the root is in the denominator, it must also be nonzero.',
+              'Therefore x + 2 > 0.',
+            ],
+            result: 'Domain: (−2, +∞).',
+            interpretation:
+                'A single expression can combine a radical restriction and a denominator restriction.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Frequent conceptual errors',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'The principal square root is nonnegative',
+            title: 'Add exponents only in products with the same base',
             content:
-                'Although x² = 9 has solutions x = ±3, the expression √9 specifically denotes the principal root 3.',
+                'x²·x³ = x⁵, but x² + x³ cannot be reduced to x⁵. Addition and multiplication are different operations.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A root of a sum does not split',
+            content:
+                'In general, √(a + b) ≠ √a + √b. For example, √(9 + 16) = 5, whereas √9 + √16 = 7.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Exponent laws require compatible domains',
+            content:
+                'With rational exponents over the reals, formal manipulations must respect the existence of every expression involved. An algebraic transformation cannot create real values where the original expression was undefined.',
+            emphasis:
+                'Determine the domain first; simplify second.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — exponent laws',
+            problem: 'Simplify (2x³)²·x⁻¹, with x ≠ 0.',
+            steps: [
+              '(2x³)² = 4x⁶.',
+              'Multiply by x⁻¹: 4x⁶·x⁻¹.',
+              'Add exponents of the same base: 6 + (−1) = 5.',
+            ],
+            result: '4x⁵.',
+            interpretation:
+                'The condition x ≠ 0 comes from the original factor x⁻¹.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — domain',
+            problem: 'Find the domain of h(x) = (x − 1)^(1/2).',
+            steps: [
+              'The denominator of the rational exponent is 2.',
+              'This corresponds to a square root.',
+              'Require x − 1 ≥ 0.',
+            ],
+            result: 'x ≥ 1, or [1, +∞).',
+            interpretation:
+                'Rational exponents also carry domain restrictions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Show domain and justification when needed',
+            content:
+                '1. Simplify x⁴·x⁷.\n'
+                '2. Simplify x⁹/x³, stating the condition on x.\n'
+                '3. Simplify (a³)⁴.\n'
+                '4. Rewrite 5⁻³ without a negative exponent.\n'
+                '5. Evaluate 64^(1/3).\n'
+                '6. Evaluate 16^(3/2).\n'
+                '7. Evaluate (−8)^(1/3).\n'
+                '8. Decide whether (−16)^(1/2) is real.\n'
+                '9. Evaluate 81^(−1/2).\n'
+                '10. Simplify √50.\n'
+                '11. Explain why √(x²) = |x|.\n'
+                '12. Find the domain of √(x + 4).\n'
+                '13. Find the domain of 1/√(x − 2).\n'
+                '14. Use numbers to show that (a + b)² ≠ a² + b² in general.\n'
+                '15. Explain why √(a + b) cannot generally be split into √a + √b.',
+            emphasis:
+                'For domain questions, an answer without the existence condition is incomplete.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Exponents govern functions and derivatives',
+            content:
+                'Power functions, radicals, and rational exponents appear throughout Calculus. The power rule for derivatives, domain analysis, limits involving radicals, and growth models all depend directly on these algebraic structures.',
+            emphasis:
+                'Errors with exponents and domains often reappear later as errors in limits or derivatives.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax, Algebra and Trigonometry 2e, Sections 1.2, Exponents and Scientific Notation, and 1.3, Radicals and Rational Exponents; OpenStax, College Algebra 2e, Sections 1.2 and 1.3; James Stewart, Calculus, Algebra review and power functions; Thomas’ Calculus, algebra review and functions; and MIT OpenCourseWare 18.01SC, whose single-variable Calculus course requires prior algebra and trigonometry.',
+            emphasis:
+                'Cálculo Trivial uses original or pedagogically adapted organization, examples, and exercises rather than reproducing protected problem sets verbatim.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which expression equals x^(−2), for x ≠ 0?',
-      choices: ['−x²', '1/x²', '1/(2x)'],
+      question:
+          'What is the real domain of f(x) = (x − 3)^(1/2)?',
+      choices: ['x > 3', 'x ≥ 3', 'all real numbers'],
       correctIndex: 1,
       explanation:
-          'A negative exponent represents the reciprocal of the corresponding positive power.',
+          'The exponent 1/2 represents a square root. For a real value, x − 3 must be nonnegative: x − 3 ≥ 0, so x ≥ 3.',
     ),
     takeaways: [
-      'Products with the same base add exponents.',
-      'Negative exponents represent reciprocals.',
-      'Rational exponents connect powers and roots.',
-      'Even-index roots impose restrictions over the reals.',
+      'Exponent laws depend on expression structure and domain conditions.',
+      'A zero exponent requires a nonzero base; a negative exponent also excludes zero.',
+      'Even-index roots require a nonnegative radicand over the reals.',
+      'Odd-index roots allow negative radicands.',
+      'In a^(m/n), the denominator determines the root and the numerator determines the power.',
+      '√(x²) = |x|, not x in general.',
+      'Exponents do not distribute over sums, and roots of sums do not split.',
+      'Analyze the domain before simplifying.',
     ],
     closing:
-        'Powers and roots return throughout functions, limits, derivatives, and exponential models.',
+        'Powers and roots stop being a list of rules when every manipulation is tied to the structure of the expression and to the domain in which it is valid.',
   ),
   CourseLessonData(
     id: 'precalculo-00-05-modulo',
