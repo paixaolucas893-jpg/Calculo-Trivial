@@ -1393,59 +1393,393 @@ const List<CourseLessonData> equationsCourseLessons = [
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Segundo grau',
     title: 'Equações quadráticas',
-    description: 'raízes, fatoração e produto nulo',
-    duration: '≈ 5 min',
+    description:
+        'forma geral, fatoração, completar quadrados, fórmula quadrática, discriminante e interpretação gráfica',
+    duration: '≈ 40 min',
     objective:
-        'resolver equações quadráticas simples usando fatoração e produto nulo',
-    symbol: 'x²',
+        'resolver equações quadráticas por diferentes métodos, interpretar o discriminante, relacionar raízes e gráfico da parábola, reconhecer multiplicidade e escolher uma estratégia adequada',
+    symbol: 'ax²+bx+c',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Agora podem existir duas raízes',
+        title: 'Definição e forma geral',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.idea,
-            title: 'O grau muda o comportamento',
+            visual: LessonVisual.notation,
+            title: 'Equação quadrática em uma variável',
             content:
-                'Uma equação quadrática possui termo com x². Ela pode possuir '
-                'duas raízes reais, uma raiz repetida ou nenhuma raiz real.',
-            emphasis: 'Se AB = 0, então A = 0 ou B = 0.',
+                'Uma equação quadrática pode ser escrita na forma [[math:ax^2+bx+c=0]], com a, b e c reais e [[math:a\\ne 0]]. O coeficiente a não pode ser zero, pois nesse caso o termo quadrático desaparece e a equação deixa de ser de segundo grau.',
+            emphasis:
+                'O grau é determinado pelo maior expoente da variável depois de a expressão ser reduzida.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Identificando coeficientes',
+            problem: 'Na equação 3x²−7x+2=0, identifique a, b e c.',
+            steps: [
+              'Compare com ax²+bx+c=0.',
+              'O coeficiente de x² é 3.',
+              'O coeficiente de x é −7.',
+              'O termo constante é 2.',
+            ],
+            result: 'a=3, b=−7 e c=2.',
+            interpretation:
+                'O sinal faz parte do coeficiente: b é −7, não 7.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Transforme em produto',
+        title: 'Quantas soluções reais podem existir',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Duas, uma ou nenhuma raiz real',
+            content:
+                'Uma equação quadrática real pode ter duas raízes reais distintas, uma raiz real dupla ou nenhuma raiz real. A quantidade de raízes reais será determinada mais adiante pelo discriminante.',
+            emphasis:
+                'Raiz ou zero é um valor de x que torna a expressão quadrática igual a zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Produto nulo e fatoração',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Se AB=0, então A=0 ou B=0',
+            content:
+                'A propriedade do produto nulo permite transformar uma equação fatorada em equações mais simples. Por isso a fatoração é um dos métodos mais eficientes quando o trinômio admite fatores evidentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fatoração direta',
+            problem: 'Resolva x²−5x+6=0.',
+            steps: [
+              'Procure dois números com soma −5 e produto 6: −2 e −3.',
+              'Fatore: (x−2)(x−3)=0.',
+              'Pelo produto nulo: x−2=0 ou x−3=0.',
+            ],
+            result: 'S={2,3}.',
+            interpretation:
+                'Cada raiz corresponde a um fator linear que se anula.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fator comum antes do produto nulo',
+            problem: 'Resolva 2x²−8x=0.',
+            steps: [
+              'Fatore o fator comum: 2x(x−4)=0.',
+              'Como 2 não é zero, resta x=0 ou x−4=0.',
+            ],
+            result: 'S={0,4}.',
+            interpretation:
+                'Fator comum deve ser procurado antes de técnicas mais complexas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equações do tipo x²=k',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Extração de raiz exige ±',
+            content:
+                'Se x²=k com k>0, então [[math:x=\\pm\\sqrt{k}]]. Se k=0, a única solução é x=0. Se k<0, não existe solução real.',
+            emphasis:
+                'A notação √k representa a raiz principal não negativa; o ± aparece porque estamos resolvendo uma equação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas raízes simétricas',
+            problem: 'Resolva 4x²=36.',
+            steps: [
+              'Divida por 4: x²=9.',
+              'Extraia a raiz considerando os dois sinais: x=±3.',
+            ],
+            result: 'S={−3,3}.',
+            interpretation:
+                'Os dois valores possuem o mesmo quadrado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Completar quadrados',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Transforme em um quadrado perfeito',
+            content:
+                'Completar quadrados reescreve a expressão quadrática em uma forma como [[math:(x-h)^2=k]]. Para x²+bx, adicionamos e subtraímos [[math:(b/2)^2]].',
+            emphasis:
+                'Esse método não é apenas uma técnica de resolução; ele também conduz à forma de vértice da parábola.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Completar quadrados passo a passo',
+            problem: 'Resolva x²+6x+5=0.',
+            steps: [
+              'Passe 5 para o outro membro: x²+6x=−5.',
+              'Metade de 6 é 3; seu quadrado é 9.',
+              'Some 9 aos dois membros: x²+6x+9=4.',
+              'Reescreva: (x+3)²=4.',
+              'Extraia a raiz: x+3=±2.',
+            ],
+            result: 'S={−5,−1}.',
+            interpretation:
+                'Completar quadrados revela a estrutura de quadrado perfeito escondida no trinômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Fórmula quadrática',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Uma fórmula geral',
+            content:
+                'Para [[math:ax^2+bx+c=0]], com [[math:a\\ne0]], as soluções são dadas por [[math:x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}]]. A fórmula pode ser deduzida completando quadrados na equação geral.',
+            emphasis:
+                'A fórmula não substitui a compreensão algébrica: os coeficientes devem ser identificados com seus sinais corretos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Aplicando a fórmula',
+            problem: 'Resolva 2x²−3x−2=0.',
+            steps: [
+              'Identifique a=2, b=−3 e c=−2.',
+              'Calcule o discriminante: Δ=(−3)²−4·2·(−2)=9+16=25.',
+              'Substitua: x=[3±5]/4.',
+              'Primeira raiz: x=8/4=2.',
+              'Segunda raiz: x=−2/4=−1/2.',
+            ],
+            result: 'S={−1/2,2}.',
+            interpretation:
+                'O discriminante positivo produziu duas raízes reais distintas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Discriminante',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Δ=b²−4ac',
+            content:
+                'O número [[math:\\Delta=b^2-4ac]] determina a natureza das raízes reais. Se Δ>0, há duas raízes reais distintas. Se Δ=0, há uma raiz real dupla. Se Δ<0, não há raízes reais.',
+            emphasis:
+                'O discriminante responde quantas raízes reais existem antes mesmo de calculá-las.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Raiz dupla',
+            problem: 'Analise x²−6x+9=0.',
+            steps: [
+              'a=1, b=−6, c=9.',
+              'Δ=(−6)²−4·1·9=36−36=0.',
+              'Logo existe uma raiz real dupla.',
+              'Pela fatoração: (x−3)²=0.',
+            ],
+            result: 'x=3, com multiplicidade 2.',
+            interpretation:
+                'A parábola toca o eixo x em um único ponto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Nenhuma raiz real',
+            problem: 'Analise x²+4x+8=0.',
+            steps: [
+              'a=1, b=4, c=8.',
+              'Δ=16−32=−16.',
+            ],
+            result: 'Não há raízes reais.',
+            interpretation:
+                'A parábola não intercepta o eixo x no conjunto dos reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Raízes e gráfico da parábola',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Resolver f(x)=0 é procurar interceptos com o eixo x',
+            content:
+                'Para f(x)=ax²+bx+c, as raízes da equação f(x)=0 são exatamente as abscissas dos pontos em que o gráfico da parábola encontra o eixo x.',
+            emphasis:
+                'Duas raízes: duas interseções. Raiz dupla: tangência ao eixo x. Nenhuma raiz real: nenhuma interseção.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Relações entre raízes e coeficientes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Soma e produto das raízes',
+            content:
+                'Se x₁ e x₂ são as raízes de ax²+bx+c=0, então [[math:x_1+x_2=-\\frac{b}{a}]] e [[math:x_1x_2=\\frac{c}{a}]]. Essas relações seguem da fatoração [[math:a(x-x_1)(x-x_2)]].',
+            emphasis:
+                'Essas relações são úteis para verificar resultados e reconstruir equações.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Verificação pelas relações',
+            problem: 'Para x²−5x+6=0, verifique as raízes 2 e 3.',
+            steps: [
+              'Soma: 2+3=5=−b/a.',
+              'Produto: 2·3=6=c/a.',
+            ],
+            result: 'As relações confirmam as raízes.',
+            interpretation:
+                'Soma e produto fornecem uma verificação estrutural independente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Escolha do método',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Nem toda quadrática pede a fórmula',
+            content:
+                'Use fatoração quando os fatores forem reconhecíveis; extração de raiz quando a equação puder ser reduzida a (x−h)²=k; completar quadrados quando quiser revelar estrutura; fórmula quadrática quando precisar de um método geral.',
+            emphasis:
+                'Escolher o método adequado faz parte da competência algébrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o ±',
+            content:
+                'De x²=9 não segue apenas x=3. As duas soluções são x=−3 e x=3.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar b sem o sinal',
+            content:
+                'Em 2x²−3x−2=0, b=−3. Substituir b=3 altera o discriminante e a fórmula.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Aplicar produto nulo sem igualar a zero',
+            content:
+                'A propriedade AB=0 só pode ser usada quando um produto está igualado a zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Exercícios guiados',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Fatoração e produto nulo',
-            problem: 'Resolva x² − 5x + 6 = 0.',
+            title: 'Guiado 1 — fatoração',
+            problem: 'Resolva x²+x−12=0.',
             steps: [
-              'Fatore: (x − 2)(x − 3) = 0.',
-              'Então x − 2 = 0 ou x − 3 = 0.',
-              'Resolva cada equação.',
+              'Procure números com soma 1 e produto −12: 4 e −3.',
+              'Fatore: (x+4)(x−3)=0.',
             ],
-            result: 'x = 2 ou x = 3.',
-            interpretation: 'Cada fator pode tornar o produto igual a zero.',
+            result: 'S={−4,3}.',
+            interpretation:
+                'Fatoração é rápida quando o par de números é facilmente reconhecido.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — fórmula geral',
+            problem: 'Resolva 3x²+x−1=0.',
+            steps: [
+              'a=3, b=1, c=−1.',
+              'Δ=1²−4·3·(−1)=13.',
+              'Substitua na fórmula.',
+            ],
+            result: '[[math:x=\\frac{-1\\pm\\sqrt{13}}{6}]].',
+            interpretation:
+                'Quando Δ não é quadrado perfeito, as raízes podem permanecer em forma radical exata.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e justifique o método escolhido',
+            content:
+                '1. x²−9=0.\n'
+                '2. x²−7x+12=0.\n'
+                '3. x²+5x+6=0.\n'
+                '4. 2x²−8x=0.\n'
+                '5. (x−4)²=9.\n'
+                '6. x²+4x+4=0.\n'
+                '7. 2x²+3x−2=0.\n'
+                '8. x²+2x+5=0, no conjunto dos reais.\n'
+                '9. Calcule Δ para 3x²−6x+3=0.\n'
+                '10. Classifique o número de raízes de x²−2x+10=0.\n'
+                '11. Resolva x²+6x+5=0 completando quadrados.\n'
+                '12. Verifique soma e produto das raízes de x²−8x+15=0.\n'
+                '13. Construa uma equação quadrática com raízes 2 e −5.\n'
+                '14. Explique geometricamente o significado de Δ=0.\n'
+                '15. Compare fatoração e fórmula quadrática para x²−5x+6=0.',
+            emphasis:
+                'Mantenha resultados exatos com radicais quando não houver razão para aproximar decimalmente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Quadráticas preparam otimização e análise de gráficos',
+            content:
+                'Parábolas aparecem em modelos de movimento, áreas, otimização e aproximações. No Cálculo, derivadas de funções quadráticas são lineares, e o vértice está ligado ao ponto crítico onde a derivada se anula.',
+            emphasis:
+                'A relação entre raízes, vértice e gráfico será usada novamente em funções e derivadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart, Thomas e Guidorizzi para funções quadráticas, gráficos e aplicações em Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Quais são as soluções de x² − 9 = 0?',
-      choices: ['Somente x = 3', 'x = −3 ou x = 3', 'x = 9'],
+      question: 'Quais são as soluções de x²−9=0?',
+      choices: ['Somente x=3', 'x=−3 ou x=3', 'x=9'],
       correctIndex: 1,
-      explanation: 'x² − 9 = (x − 3)(x + 3), então x = 3 ou x = −3.',
+      explanation:
+          'x²−9=(x−3)(x+3). Pelo produto nulo, x−3=0 ou x+3=0, portanto x=3 ou x=−3.',
     ),
     takeaways: [
-      'Equações quadráticas possuem termo x².',
-      'Fatoração pode revelar as raízes.',
-      'Produto nulo permite separar fatores.',
-      'Uma equação quadrática pode ter mais de uma solução.',
+      'Uma equação quadrática tem forma ax²+bx+c=0 com a≠0.',
+      'Fatoração e produto nulo podem revelar raízes diretamente.',
+      'Completar quadrados expõe a estrutura da parábola.',
+      'A fórmula quadrática fornece um método geral de resolução.',
+      'O discriminante determina a quantidade de raízes reais.',
+      'Raízes são interceptos da parábola com o eixo x.',
+      'Soma e produto das raízes se relacionam aos coeficientes.',
+      'Escolher o método mais adequado é parte da resolução.',
     ],
     closing:
-        'A fatoração conecta diretamente a Álgebra à resolução de equações quadráticas.',
-  ),
+        'Equações quadráticas deixam de ser apenas uma fórmula quando fatoração, discriminante e geometria são compreendidos como partes da mesma estrutura.',
+  )
   CourseLessonData(
     id: 'equations-07-inequacoes',
     topicId: 'equacoes-inequacoes',
