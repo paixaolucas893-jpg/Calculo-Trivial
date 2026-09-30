@@ -2027,54 +2027,355 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     topicId: 'funcoes',
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Funções clássicas',
-    title: 'Logaritmos',
-    description: 'definição, propriedades e função inversa',
-    duration: '≈ 18 min',
+    title: 'Funções logarítmicas',
+    description:
+        'definição, domínio, propriedades, mudança de base, equações, inequações e logaritmo natural',
+    duration: '≈ 38 min',
     objective:
-        'interpretar logaritmos como expoentes, usar propriedades básicas e relacionar logaritmos a funções exponenciais',
+        'interpretar logaritmos como expoentes, relacionar funções logarítmicas e exponenciais como inversas, usar propriedades com condições de validade e resolver equações e inequações logarítmicas com controle de domínio',
     symbol: 'logₐx',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Logaritmo responde qual expoente',
+        title: 'Definição fundamental',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Definição fundamental',
+            title: 'Logaritmo responde “qual expoente?”',
             content:
-                'logₐ(b)=c significa exatamente aᶜ=b, com a>0, a≠1 e b>0. A função logarítmica é a inversa da função exponencial de mesma base.',
-            emphasis: 'Argumento de logaritmo deve ser positivo.',
+                'Para [[math:a>0]], [[math:a\\ne1]] e [[math:b>0]], a afirmação [[math:\\log_a b=c]] é equivalente a [[math:a^c=b]].',
+            emphasis:
+                'A base deve ser positiva e diferente de 1; o argumento deve ser positivo.',
           ),
-          ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Propriedades vêm das potências',
-            content:
-                'logₐ(xy)=logₐx+logₐy e logₐ(x/y)=logₐx−logₐy. Além disso, logₐ(xʳ)=r·logₐx quando as expressões estão definidas.',
+          WorkedExampleBlockData(
+            title: 'Passando de logaritmo para potência',
+            problem: 'Calcule log₂(32).',
+            steps: [
+              'Pergunte: 2 elevado a qual expoente produz 32?',
+              'Como 2⁵=32, o expoente procurado é 5.',
+            ],
+            result: 'log₂(32)=5.',
+            interpretation:
+                'O logaritmo é o expoente necessário para produzir o argumento.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Função logarítmica como inversa',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Equação logarítmica simples',
-            problem: 'Resolva log₂(x)=5.',
-            steps: ['Converta para forma exponencial: 2⁵=x.', 'Calcule 2⁵=32.', 'Verifique que 32>0.'],
-            result: 'x=32.',
-            interpretation: 'Resolver o logaritmo foi equivalente a descobrir o resultado de uma potência.',
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Exponencial e logaritmo desfazem uma à outra',
+            content:
+                'Se [[math:f(x)=a^x]], então sua inversa é [[math:f^{-1}(x)=\\log_a x]]. Assim, [[math:\\log_a(a^x)=x]] e [[math:a^{\\log_a x}=x]] para x no domínio adequado.',
+            emphasis:
+                'Os gráficos são simétricos em relação à reta y=x.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Domínio, imagem e assíntota',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'O argumento precisa ser positivo',
+            content:
+                'Para f(x)=logₐx, o domínio é (0,+∞) e a imagem é ℝ. Como logₐ1=0, o gráfico passa por (1,0). A reta x=0 é assíntota vertical.',
+            emphasis:
+                'Nenhum logaritmo real de zero ou de número negativo está definido.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Crescimento e decaimento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A base controla a monotonicidade',
+            content:
+                'Se a>1, logₐx é crescente. Se 0<a<1, logₐx é decrescente.',
+            emphasis:
+                'A monotonicidade do logaritmo acompanha a monotonicidade de sua exponencial inversa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Propriedade do produto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Produto vira soma',
+            content:
+                'Quando x>0 e y>0, [[math:\\log_a(xy)=\\log_a x+\\log_a y]].',
+            emphasis:
+                'A propriedade exige argumentos positivos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Expandindo um produto',
+            problem: 'Expanda log₂(8x), supondo x>0.',
+            steps: [
+              'Separe o produto.',
+              'log₂(8x)=log₂8+log₂x.',
+              'Como log₂8=3, simplifique.',
+            ],
+            result: 'log₂(8x)=3+log₂x.',
+            interpretation:
+                'A propriedade transforma multiplicação em adição.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Propriedade do quociente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Quociente vira diferença',
+            content:
+                'Para x>0 e y>0, [[math:\\log_a(x/y)=\\log_a x-\\log_a y]].',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Propriedade da potência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Expoente vem para a frente',
+            content:
+                'Quando a expressão está definida, [[math:\\log_a(x^r)=r\\log_a x]]. Em aplicações reais, é preciso verificar que o argumento original e a forma transformada fazem sentido.',
+            emphasis:
+                'Propriedades logarítmicas são consequências das leis de expoentes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'O que não é propriedade',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'Logaritmo não distribui sobre soma',
-            content: 'Em geral, log(x+y) não é igual a log x + log y.',
+            content:
+                'Em geral, [[math:\\log_a(x+y)\\ne\\log_a x+\\log_a y]]. Também não existe regra análoga para diferença.',
+            emphasis:
+                'As propriedades básicas envolvem produto, quociente e potência, não soma.',
             tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Mudança de base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Converta para uma base conveniente',
+            content:
+                'Para bases válidas, [[math:\\log_a x=\\frac{\\log_b x}{\\log_b a}]]. Em calculadoras, b costuma ser 10 ou e.',
+            emphasis:
+                'A fórmula permite calcular logaritmos em bases que a calculadora não oferece diretamente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Mudando para logaritmo natural',
+            problem: 'Escreva log₂7 usando ln.',
+            steps: [
+              'Use a fórmula de mudança de base.',
+            ],
+            result: '[[math:\\log_2 7=\\frac{\\ln7}{\\ln2}]].',
+            interpretation:
+                'Qualquer base válida pode ser convertida para outra.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Logaritmo natural',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'ln x = logₑx',
+            content:
+                'O logaritmo natural é [[math:\\ln x=\\log_e x]]. Como é inverso de eˣ, satisfaz [[math:\\ln(e^x)=x]] e [[math:e^{\\ln x}=x]] para x>0.',
+            emphasis:
+                'ln é a função logarítmica central no Cálculo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Equações logarítmicas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Conversão direta',
+            problem: 'Resolva log₂(x−1)=3.',
+            steps: [
+              'Condição de domínio: x−1>0, então x>1.',
+              'Converta: x−1=2³.',
+              'x−1=8.',
+              'x=9.',
+              'Verifique x>1.',
+            ],
+            result: 'S={9}.',
+            interpretation:
+                'O domínio deve ser controlado antes e depois da resolução.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Usando propriedades',
+            problem: 'Resolva ln x+ln(x−3)=ln4.',
+            steps: [
+              'Domínio: x>3.',
+              'Combine: ln[x(x−3)]=ln4.',
+              'Pela injetividade de ln: x(x−3)=4.',
+              'Resolva x²−3x−4=0.',
+              'Candidatos: x=4 e x=−1.',
+              'O domínio elimina x=−1.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'Manipulações logarítmicas não substituem a verificação do domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Equações exponenciais com logaritmos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Isolando um expoente',
+            problem: 'Resolva 3ˣ=7.',
+            steps: [
+              'Aplique ln aos dois membros.',
+              'ln(3ˣ)=ln7.',
+              'Use a propriedade da potência: x·ln3=ln7.',
+              'Divida por ln3.',
+            ],
+            result: '[[math:x=\\frac{\\ln7}{\\ln3}]].',
+            interpretation:
+                'Logaritmos transformam o expoente desconhecido em fator.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Inequações logarítmicas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Monotonicidade decide o sentido',
+            content:
+                'Se a>1, logₐ preserva a ordem. Se 0<a<1, logₐ inverte a ordem porque a função é decrescente.',
+            emphasis:
+                'Além da ordem, mantenha sempre a condição argumento>0.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Base maior que 1',
+            problem: 'Resolva log₂(x−1)>3.',
+            steps: [
+              'Domínio: x>1.',
+              'Como 2>1, preserve o sentido.',
+              'x−1>2³.',
+            ],
+            result: 'x>9.',
+            interpretation:
+                'A monotonicidade crescente permite comparar argumentos diretamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Aceitar argumento zero ou negativo',
+            content:
+                'No conjunto dos reais, logₐu exige u>0.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inventar propriedade da soma',
+            content:
+                'log(x+y) não pode ser separado em log x+log y.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer que bases menores que 1 são decrescentes',
+            content:
+                'Ao resolver inequações, isso pode inverter o sentido da comparação.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado',
+            problem: 'Resolva log₃(2x−1)=2.',
+            steps: [
+              'Domínio: 2x−1>0.',
+              'Converta: 2x−1=3².',
+              '2x−1=9.',
+            ],
+            result: 'x=5.',
+            interpretation:
+                'A solução respeita o domínio x>1/2.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Calcule log₂8.\n'
+                '2. Calcule log₁₀0,01.\n'
+                '3. Converta log₃81=4 para forma exponencial.\n'
+                '4. Determine domínio e imagem de ln x.\n'
+                '5. Expanda log(xy).\n'
+                '6. Expanda log(x/y).\n'
+                '7. Expanda log(x³).\n'
+                '8. Explique por que log(x+y) não separa.\n'
+                '9. Escreva log₅7 usando ln.\n'
+                '10. Resolva log₂(x+4)=5.\n'
+                '11. Resolva ln x=2.\n'
+                '12. Resolva 5ˣ=11 usando ln.\n'
+                '13. Resolva log₂(x−1)>2.\n'
+                '14. Resolva log_(1/2)(x)>1, considerando domínio e monotonicidade.\n'
+                '15. Explique por que ln aparece naturalmente em derivadas.',
+            emphasis:
+                'Antes de resolver qualquer equação logarítmica, escreva explicitamente as condições de domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'ln transforma multiplicação em adição e expoentes em fatores',
+            content:
+                'No Cálculo, ln simplifica diferenciação de produtos, quocientes e potências por meio da diferenciação logarítmica. Além disso, a derivada de ln x é 1/x para x>0.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para logaritmos, inversas, equações e aplicações em Cálculo.',
           ),
         ],
       ),
@@ -2083,15 +2384,21 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'log₁₀(1000) vale:',
       choices: ['2', '3', '10'],
       correctIndex: 1,
-      explanation: '10³=1000, então log₁₀(1000)=3.',
+      explanation:
+          'Como 10³=1000, o expoente necessário é 3; portanto log₁₀(1000)=3.',
     ),
     takeaways: [
-      'Logaritmo é um expoente.',
-      'Exponencial e logaritmo são funções inversas.',
-      'O argumento do logaritmo deve ser positivo.',
-      'Propriedades logarítmicas refletem propriedades de potências.',
+      'Logaritmo é o expoente necessário para produzir um número.',
+      'A função logarítmica é inversa da exponencial de mesma base.',
+      'O domínio logarítmico exige argumento positivo.',
+      'Produto, quociente e potência geram propriedades específicas.',
+      'Não existe propriedade logarítmica para soma.',
+      'Mudança de base permite calcular qualquer base válida.',
+      'ln é o logaritmo de base e e é central no Cálculo.',
+      'Equações e inequações logarítmicas exigem controle de domínio.',
     ],
-    closing: 'Logaritmos transformam multiplicações em somas e aparecem naturalmente em taxas e escalas.',
+    closing:
+        'Logaritmos transformam relações multiplicativas em relações aditivas e fornecem a linguagem inversa natural das funções exponenciais.',
   ),
   CourseLessonData(
     id: 'funcoes-08-radianos-circulo',
@@ -4578,15 +4885,381 @@ const List<CourseLessonData> _englishLessons = [
         'Exponential functions describe processes in which proportional changes accumulate multiplicatively.',
   ),
   CourseLessonData(
-    id: 'funcoes-07-logaritmos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Classical functions', title: 'Logarithms', description: 'definition, properties, and inverse relationship', duration: '≈ 18 min', objective: 'interpret logarithms as exponents and use basic logarithmic properties', symbol: 'logₐx',
+    id: 'funcoes-07-logaritmos',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Classical functions',
+    title: 'Logarithmic functions',
+    description:
+        'definition, domain, properties, change of base, equations, inequalities, and natural logarithms',
+    duration: '≈ 38 min',
+    objective:
+        'interpret logarithms as exponents, relate logarithmic and exponential functions as inverses, use logarithmic properties with validity conditions, and solve logarithmic equations and inequalities while controlling domain',
+    symbol: 'logₐx',
     sections: [
-      LessonSectionData(number: '1', title: 'A logarithm asks for an exponent', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Core definition', content: 'logₐ(b)=c means aᶜ=b, where a>0, a≠1, and b>0. The logarithm is the inverse of the exponential function.', emphasis: 'A logarithm argument must be positive.'), ConceptBlockData(visual: LessonVisual.calculate, title: 'Properties come from exponents', content: 'logₐ(xy)=logₐx+logₐy, logₐ(x/y)=logₐx−logₐy, and logₐ(xʳ)=r logₐx when defined.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Simple logarithmic equation', problem: 'Solve log₂x=5.', steps: ['Rewrite as 2⁵=x.', '2⁵=32.', 'Check x>0.'], result: 'x=32.', interpretation: 'The logarithm asks which exponent produces the argument.')]),
-      LessonSectionData(number: '3', title: 'Common mistake', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Logs do not distribute over sums', content: 'In general log(x+y) ≠ log x + log y.', tone: LearningCardTone.warning)]),
+      LessonSectionData(
+        number: '1',
+        title: 'Fundamental definition',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A logarithm answers “which exponent?”',
+            content:
+                'For [[math:a>0]], [[math:a\\ne1]], and [[math:b>0]], the statement [[math:\\log_a b=c]] is equivalent to [[math:a^c=b]].',
+            emphasis:
+                'The base must be positive and different from 1, and the argument must be positive.',
+          ),
+          WorkedExampleBlockData(
+            title: 'From logarithm to power',
+            problem: 'Compute log₂(32).',
+            steps: [
+              'Ask which exponent on 2 gives 32.',
+              'Since 2⁵=32, the required exponent is 5.',
+            ],
+            result: 'log₂(32)=5.',
+            interpretation:
+                'A logarithm is the exponent needed to produce the argument.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Logarithmic function as an inverse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Exponentials and logarithms undo each other',
+            content:
+                'If [[math:f(x)=a^x]], then [[math:f^{-1}(x)=\\log_a x]]. Thus [[math:\\log_a(a^x)=x]] and [[math:a^{\\log_a x}=x]] on their valid domains.',
+            emphasis:
+                'Their graphs are reflections across y=x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Domain, range, and asymptote',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'The argument must be positive',
+            content:
+                'For f(x)=logₐx, the domain is (0,+∞), the range is ℝ, and logₐ1=0. The line x=0 is a vertical asymptote.',
+            emphasis:
+                'A real logarithm of zero or a negative number is undefined.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Growth and decay',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'The base controls monotonicity',
+            content:
+                'If a>1, logₐx is increasing. If 0<a<1, logₐx is decreasing.',
+            emphasis:
+                'The logarithm inherits monotonic behavior from its inverse exponential.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Product property',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Products become sums',
+            content:
+                'For x>0 and y>0, [[math:\\log_a(xy)=\\log_a x+\\log_a y]].',
+            emphasis:
+                'The property requires positive arguments.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Expanding a product',
+            problem: 'Expand log₂(8x), assuming x>0.',
+            steps: [
+              'Separate the product.',
+              'log₂(8x)=log₂8+log₂x.',
+              'Since log₂8=3, simplify.',
+            ],
+            result: 'log₂(8x)=3+log₂x.',
+            interpretation:
+                'The property converts multiplication into addition.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Quotient property',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Quotients become differences',
+            content:
+                'For x>0 and y>0, [[math:\\log_a(x/y)=\\log_a x-\\log_a y]].',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Power property',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Bring the exponent forward',
+            content:
+                'Whenever the expressions are defined, [[math:\\log_a(x^r)=r\\log_a x]]. Validity of the original and transformed expressions must be respected.',
+            emphasis:
+                'Logarithm properties come directly from exponent laws.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'What is not a property',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Logarithms do not distribute over addition',
+            content:
+                'In general, [[math:\\log_a(x+y)\\ne\\log_a x+\\log_a y]]. There is no corresponding subtraction rule either.',
+            emphasis:
+                'The standard properties involve products, quotients, and powers.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Change of base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Convert to a convenient base',
+            content:
+                'For valid bases, [[math:\\log_a x=\\frac{\\log_b x}{\\log_b a}]]. Calculators commonly use base 10 or e.',
+            emphasis:
+                'This formula evaluates logarithms in bases not directly available on a calculator.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Changing to natural logarithms',
+            problem: 'Write log₂7 using ln.',
+            steps: [
+              'Apply the change-of-base formula.',
+            ],
+            result: '[[math:\\log_2 7=\\frac{\\ln7}{\\ln2}]].',
+            interpretation:
+                'Any valid base can be converted to another.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Natural logarithm',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'ln x = logₑx',
+            content:
+                'The natural logarithm is [[math:\\ln x=\\log_e x]]. As the inverse of eˣ, it satisfies [[math:\\ln(e^x)=x]] and [[math:e^{\\ln x}=x]] for x>0.',
+            emphasis:
+                'ln is the central logarithmic function in Calculus.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Logarithmic equations',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Direct conversion',
+            problem: 'Solve log₂(x−1)=3.',
+            steps: [
+              'Domain: x−1>0, so x>1.',
+              'Convert: x−1=2³.',
+              'Thus x=9.',
+              'Verify x>1.',
+            ],
+            result: 'S={9}.',
+            interpretation:
+                'Domain must be controlled before and after solving.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Using logarithm properties',
+            problem: 'Solve ln x+ln(x−3)=ln4.',
+            steps: [
+              'Domain: x>3.',
+              'Combine: ln[x(x−3)]=ln4.',
+              'By injectivity: x(x−3)=4.',
+              'Solve x²−3x−4=0.',
+              'Candidates: x=4 and x=−1.',
+              'The domain eliminates x=−1.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'Logarithmic manipulation never replaces domain checking.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Exponential equations with logarithms',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Isolating an exponent',
+            problem: 'Solve 3ˣ=7.',
+            steps: [
+              'Apply ln to both sides.',
+              'ln(3ˣ)=ln7.',
+              'Use the power property: x·ln3=ln7.',
+              'Divide by ln3.',
+            ],
+            result: '[[math:x=\\frac{\\ln7}{\\ln3}]].',
+            interpretation:
+                'Logarithms turn an unknown exponent into a multiplicative factor.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Logarithmic inequalities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Monotonicity determines direction',
+            content:
+                'If a>1, logₐ preserves order. If 0<a<1, logₐ reverses order because the function is decreasing.',
+            emphasis:
+                'Always keep the condition that every logarithm argument is positive.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Base greater than 1',
+            problem: 'Solve log₂(x−1)>3.',
+            steps: [
+              'Domain: x>1.',
+              'Since 2>1, preserve the inequality direction.',
+              'x−1>2³.',
+            ],
+            result: 'x>9.',
+            interpretation:
+                'Increasing monotonicity allows direct comparison of arguments.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Allowing zero or negative arguments',
+            content:
+                'Over the reals, logₐu requires u>0.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inventing an addition property',
+            content:
+                'log(x+y) cannot be split into log x+log y.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting that bases below 1 are decreasing',
+            content:
+                'This changes the inequality direction in comparison problems.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided example',
+            problem: 'Solve log₃(2x−1)=2.',
+            steps: [
+              'Domain: 2x−1>0.',
+              'Convert: 2x−1=3².',
+              'Then 2x−1=9.',
+            ],
+            result: 'x=5.',
+            interpretation:
+                'The answer satisfies x>1/2.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Practice before the final activity',
+            content:
+                '1. Compute log₂8.\n'
+                '2. Compute log₁₀0.01.\n'
+                '3. Convert log₃81=4 to exponential form.\n'
+                '4. Find the domain and range of ln x.\n'
+                '5. Expand log(xy).\n'
+                '6. Expand log(x/y).\n'
+                '7. Expand log(x³).\n'
+                '8. Explain why log(x+y) cannot be separated.\n'
+                '9. Write log₅7 using ln.\n'
+                '10. Solve log₂(x+4)=5.\n'
+                '11. Solve ln x=2.\n'
+                '12. Solve 5ˣ=11 using ln.\n'
+                '13. Solve log₂(x−1)>2.\n'
+                '14. Solve log_(1/2)(x)>1, respecting domain and monotonicity.\n'
+                '15. Explain why ln arises naturally in derivatives.',
+            emphasis:
+                'Before solving a logarithmic equation, explicitly state every domain condition.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'ln converts products to sums and exponents to factors',
+            content:
+                'In Calculus, ln simplifies derivatives of products, quotients, and powers through logarithmic differentiation. Also, the derivative of ln x is 1/x for x>0.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for logarithms, inverse functions, equations, and Calculus applications.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'What is log₁₀(1000)?', choices: ['2', '3', '10'], correctIndex: 1, explanation: '10³=1000.'),
-    takeaways: ['A logarithm is an exponent.', 'Logs and exponentials are inverses.', 'The argument must be positive.', 'Log properties mirror exponent rules.'],
-    closing: 'Logarithms are natural tools for growth, rates, and scales.',
+    check: LessonCheckData(
+      question: 'log₁₀(1000) equals:',
+      choices: ['2', '3', '10'],
+      correctIndex: 1,
+      explanation:
+          'Since 10³=1000, the required exponent is 3, so log₁₀(1000)=3.',
+    ),
+    takeaways: [
+      'A logarithm is the exponent needed to produce a number.',
+      'The logarithmic function is the inverse of the exponential function with the same base.',
+      'A logarithm requires a positive argument.',
+      'Products, quotients, and powers generate specific logarithm properties.',
+      'There is no logarithm property for addition.',
+      'Change of base evaluates any valid base.',
+      'ln is the base-e logarithm and is central in Calculus.',
+      'Logarithmic equations and inequalities require domain control.',
+    ],
+    closing:
+        'Logarithms convert multiplicative relationships into additive ones and provide the natural inverse language of exponential functions.',
   ),
   CourseLessonData(
     id: 'funcoes-08-radianos-circulo', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Radians and the unit circle', description: 'angles, arcs, and unit-circle coordinates', duration: '≈ 20 min', objective: 'convert degrees and radians and interpret sine and cosine on the unit circle', symbol: 'π rad',
