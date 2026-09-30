@@ -2818,65 +2818,387 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Trigonometria',
     title: 'Funções trigonométricas e gráficos',
-    description: 'seno, cosseno, tangente, período e amplitude',
-    duration: '≈ 20 min',
+    description:
+        'seno, cosseno, tangente, domínio, imagem, período, amplitude, fase, simetrias e modelagem periódica',
+    duration: '≈ 40 min',
     objective:
-        'interpretar domínio, imagem, período, amplitude e gráficos de seno, cosseno e tangente',
+        'analisar seno, cosseno e tangente como funções reais, determinar domínio, imagem, período, amplitude e deslocamento de fase, interpretar simetrias e assíntotas e modelar fenômenos periódicos',
     symbol: 'sen x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Periodicidade repete comportamento',
+        title: 'Do círculo para funções reais',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Seno e cosseno oscilam',
+            title: 'x passa a ser uma variável real',
             content:
-                'sen x e cos x têm período 2π e imagem [−1,1]. Em A·sen(Bx), |A| controla a amplitude e 2π/|B| controla o período.',
-            emphasis: 'Tangente tem período π e não está definida onde cos x=0.',
+                'As definições no círculo unitário produzem funções [[math:x\\mapsto\\sin x]] e [[math:x\\mapsto\\cos x]] definidas para todo x real. O valor de x representa um ângulo em radianos.',
+            emphasis:
+                'O círculo unitário é a origem geométrica; o gráfico cartesiano mostra a evolução desses valores ao longo da reta real.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Função seno',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Domínio, imagem e período',
+            content:
+                'Para f(x)=sen x, o domínio é ℝ, a imagem é [−1,1] e o período fundamental é 2π: [[math:\\sin(x+2\\pi)=\\sin x]].',
+            emphasis:
+                'Seno é uma função ímpar: sen(−x)=−sen x.',
+          ),
           WorkedExampleBlockData(
-            title: 'Amplitude e período',
-            problem: 'Analise y=3sen(2x).',
-            steps: ['Amplitude: |3|=3.', 'Período: 2π/2=π.', 'A imagem é [−3,3].'],
-            result: 'Amplitude 3 e período π.',
-            interpretation: 'O gráfico oscila mais alto e completa ciclos duas vezes mais rápido que sen x.',
+            title: 'Pontos de um ciclo',
+            problem: 'Liste os valores de sen x em 0, π/2, π, 3π/2 e 2π.',
+            steps: [
+              'Use o círculo unitário em cada ângulo.',
+            ],
+            result: '0, 1, 0, −1, 0.',
+            interpretation:
+                'Esses cinco pontos estruturam um ciclo completo da senoide.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Domínios diferentes',
+        title: 'Função cosseno',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Mesma amplitude e período, fase diferente',
+            content:
+                'Para f(x)=cos x, domínio ℝ, imagem [−1,1] e período 2π. Cosseno é par: [[math:\\cos(-x)=\\cos x]].',
+            emphasis:
+                'Seno e cosseno têm a mesma forma básica, mas estão deslocados horizontalmente entre si.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Relação entre seno e cosseno',
+            content:
+                'Uma identidade útil é [[math:\\sin x=\\cos(x-\\pi/2)]]. Assim, o seno pode ser visto como um cosseno deslocado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Amplitude',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Amplitude = |A|',
+            content:
+                'Em [[math:y=A\\sin x]] ou [[math:y=A\\cos x]], a amplitude é |A|. Ela mede a distância vertical entre a linha média e os extremos.',
+            emphasis:
+                'Amplitude é definida para seno e cosseno; não é usada da mesma forma para tangente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Escala vertical',
+            problem: 'Analise y=−3cos x.',
+            steps: [
+              'Amplitude: |−3|=3.',
+              'O sinal negativo reflete o gráfico no eixo x.',
+              'A imagem passa a ser [−3,3].',
+            ],
+            result: 'Amplitude 3, período 2π.',
+            interpretation:
+                'O módulo controla a escala; o sinal controla a orientação vertical.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Período de seno e cosseno transformados',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '2π/|B|',
+            content:
+                'Em [[math:y=A\\sin(Bx)]] ou [[math:y=A\\cos(Bx)]], o período é [[math:T=\\frac{2\\pi}{|B|}]].',
+            emphasis:
+                'B atua horizontalmente; por isso aparece no denominador do período.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Frequência angular maior',
+            problem: 'Analise y=3sen(2x).',
+            steps: [
+              'Amplitude=3.',
+              'B=2.',
+              'T=2π/2=π.',
+            ],
+            result: 'Amplitude 3, período π e imagem [−3,3].',
+            interpretation:
+                'O gráfico completa dois ciclos onde sen x completaria apenas um.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Deslocamento de fase e linha média',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Forma A·sen(B(x−h))+D',
+            content:
+                'Na forma [[math:y=A\\sin(B(x-h))+D]], h é o deslocamento horizontal, D é a linha média vertical e |A| é a amplitude.',
+            emphasis:
+                'A imagem passa a ser [D−|A|, D+|A|].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Leitura completa',
+            problem: 'Analise y=2sen(3(x−π/6))+1.',
+            steps: [
+              'Amplitude=2.',
+              'Período=2π/3.',
+              'Deslocamento horizontal=π/6 para a direita.',
+              'Linha média y=1.',
+            ],
+            result: 'Imagem [−1,3].',
+            interpretation:
+                'Os quatro parâmetros descrevem escala, frequência, fase e posição vertical.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Função tangente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'tan x = sen x / cos x',
+            content:
+                'A tangente é [[math:\\tan x=\\frac{\\sin x}{\\cos x}]], portanto não está definida quando cos x=0.',
+            emphasis:
+                'Seu domínio exclui x=π/2+kπ e sua imagem é ℝ.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Período π',
+            content:
+                'Como tan(x+π)=tan x, o período fundamental da tangente é π.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Assíntotas da tangente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Zeros do cosseno viram assíntotas',
+            content:
+                'Nos pontos [[math:x=\\pi/2+k\\pi]], o denominador cos x se aproxima de zero e a tangente cresce sem limite em magnitude.',
+            emphasis:
+                'Esses pontos dividem o gráfico em ramos periódicos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Zeros das funções trigonométricas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Padrões periódicos',
+            content:
+                'sen x=0 em x=kπ. cos x=0 em x=π/2+kπ. tan x=0 em x=kπ, sempre com k inteiro.',
+            emphasis:
+                'Os zeros se repetem de acordo com o período de cada função.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Simetrias',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Paridade ajuda a prever o gráfico',
+            content:
+                'Seno e tangente são ímpares; cosseno é par. Isso produz simetria pela origem para seno e tangente e simetria pelo eixo y para cosseno.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Modelagem periódica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Fenômenos que oscilam',
+            content:
+                'Modelos senoidais descrevem marés, ondas, vibrações, temperatura sazonal, sinais elétricos e movimentos periódicos quando amplitude, período, fase e linha média são identificados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Modelo simples de temperatura',
+            problem: 'Uma temperatura oscila entre 18°C e 30°C com período 24 h. Determine amplitude e linha média.',
+            steps: [
+              'Amplitude=(30−18)/2.',
+              'Linha média=(30+18)/2.',
+            ],
+            result: 'Amplitude 6°C e linha média 24°C.',
+            interpretation:
+                'Esses dois parâmetros já determinam a escala vertical do modelo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Construindo um esboço',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Um ciclo de y=2cos x−1',
+            problem: 'Esboce qualitativamente um ciclo.',
+            steps: [
+              'Linha média y=−1.',
+              'Amplitude 2.',
+              'Período 2π.',
+              'Comece em x=0 com valor máximo 1.',
+              'Em π/2, passe pela linha média.',
+              'Em π, atinja −3.',
+              'Repita simetricamente até 2π.',
+            ],
+            result: 'Imagem [−3,1].',
+            interpretation:
+                'Cinco pontos notáveis bastam para um esboço consistente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Tangente possui assíntotas',
+            title: 'Confundir amplitude com período',
             content:
-                'tan x=sen x/cos x, então pontos onde cos x=0 são excluídos e aparecem como assíntotas verticais.',
+                'Amplitude mede escala vertical; período mede comprimento horizontal de um ciclo.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar 2π/|B| para tangente',
+            content:
+                'Tangente tem período π/|B|, não 2π/|B|.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer a linha média',
+            content:
+                'Em A·sen(B(x−h))+D, os máximos e mínimos são medidos em torno de y=D, não em torno do eixo x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — seno transformado',
+            problem: 'Analise y=−4sen(x/2)+3.',
+            steps: [
+              'Amplitude=4.',
+              'B=1/2, então período=4π.',
+              'Linha média y=3.',
+              'A imagem é [−1,7].',
+            ],
+            result: 'Amplitude 4, período 4π, linha média 3.',
+            interpretation:
+                'O sinal negativo apenas inverte a orientação vertical.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — tangente',
+            problem: 'Analise y=tan(2x).',
+            steps: [
+              'Período=π/2.',
+              'Assíntotas quando 2x=π/2+kπ.',
+              'Logo x=π/4+kπ/2.',
+            ],
+            result: 'Período π/2 e assíntotas periódicas em x=π/4+kπ/2.',
+            interpretation:
+                'A compressão horizontal também aproxima as assíntotas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analise e esboce',
+            content:
+                '1. Determine domínio e imagem de sen x.\n'
+                '2. Determine domínio e imagem de cos x.\n'
+                '3. Determine domínio e imagem de tan x.\n'
+                '4. Encontre o período de sen(3x).\n'
+                '5. Encontre o período de cos(x/4).\n'
+                '6. Encontre o período de tan(5x).\n'
+                '7. Analise y=2sen x+1.\n'
+                '8. Analise y=−3cos(2x).\n'
+                '9. Analise y=sen(x−π/3).\n'
+                '10. Analise y=4cos(2(x+π/4))−2.\n'
+                '11. Liste os zeros de sen x em [0,2π].\n'
+                '12. Liste os zeros de cos x em [0,2π].\n'
+                '13. Explique por que tangente tem assíntotas.\n'
+                '14. Construa um modelo senoidal com amplitude 5 e linha média 12.\n'
+                '15. Compare as simetrias de seno, cosseno e tangente.',
+            emphasis:
+                'Em cada função transformada, identifique amplitude, período, fase e linha média antes de desenhar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Periodicidade e derivadas se conectam',
+            content:
+                'As derivadas de seno e cosseno também são periódicas. A leitura de período, zeros e máximos prepara a análise de taxas instantâneas em movimento harmônico e ondas.',
+            emphasis:
+                'A fórmula das derivadas trigonométricas pressupõe radianos.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para gráficos trigonométricos e modelos periódicos.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o período de cos x?',
-      choices: ['π/2', 'π', '2π'],
-      correctIndex: 2,
-      explanation: 'O cosseno repete seus valores a cada 2π radianos.',
+      question: 'Qual é o período de y=sen(3x)?',
+      choices: ['2π', '2π/3', '3π'],
+      correctIndex: 1,
+      explanation:
+          'Para y=sen(Bx), o período é 2π/|B|. Com B=3, temos 2π/3.',
     ),
     takeaways: [
-      'Seno e cosseno têm período 2π.',
-      'Tangente tem período π.',
-      'Amplitude mede a oscilação vertical de seno e cosseno.',
-      'Tangente não existe onde cosseno é zero.',
+      'Seno e cosseno têm domínio ℝ, imagem [−1,1] e período 2π.',
+      'Tangente tem período π e exclui zeros do cosseno.',
+      'Amplitude é |A| em seno e cosseno.',
+      'O período de seno e cosseno é 2π/|B|.',
+      'Deslocamento de fase e linha média controlam a posição do gráfico.',
+      'Seno e tangente são ímpares; cosseno é par.',
+      'Modelos senoidais descrevem fenômenos periódicos.',
     ],
-    closing: 'Gráficos trigonométricos são essenciais para limites, derivadas e modelos periódicos.',
+    closing:
+        'Gráficos trigonométricos traduzem o movimento circular em oscilações periódicas sobre a reta real.',
   ),
   CourseLessonData(
     id: 'funcoes-10-identidades-equacoes-trig',
@@ -6014,15 +6336,392 @@ const List<CourseLessonData> _englishLessons = [
         'The unit circle turns angles into coordinates and creates the geometric language supporting all trigonometric functions.',
   ),
   CourseLessonData(
-    id: 'funcoes-09-trigonometricas-graficos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Trigonometric functions and graphs', description: 'sine, cosine, tangent, period, and amplitude', duration: '≈ 20 min', objective: 'interpret domains, ranges, periods, amplitudes, and graphs of sine, cosine, and tangent', symbol: 'sin x',
+    id: 'funcoes-09-trigonometricas-graficos',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Trigonometry',
+    title: 'Trigonometric functions and graphs',
+    description:
+        'sine, cosine, tangent, domain, range, period, amplitude, phase shift, symmetry, and periodic modeling',
+    duration: '≈ 40 min',
+    objective:
+        'analyze sine, cosine, and tangent as real functions, determine domain, range, period, amplitude, and phase shift, interpret symmetries and asymptotes, and model periodic phenomena',
+    symbol: 'sin x',
     sections: [
-      LessonSectionData(number: '1', title: 'Periodicity repeats behavior', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Sine and cosine oscillate', content: 'sin x and cos x have period 2π and range [−1,1]. In A sin(Bx), |A| controls amplitude and 2π/|B| controls period.', emphasis: 'Tangent has period π and is undefined where cos x=0.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Amplitude and period', problem: 'Analyze y=3sin(2x).', steps: ['Amplitude is 3.', 'Period is 2π/2=π.', 'Range is [−3,3].'], result: 'Amplitude 3, period π.', interpretation: 'The graph oscillates higher and cycles twice as fast as sin x.')]),
-      LessonSectionData(number: '3', title: 'Different domains', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Tangent has asymptotes', content: 'tan x=sin x/cos x, so zeros of cosine are excluded.', tone: LearningCardTone.warning)]),
+      LessonSectionData(
+        number: '1',
+        title: 'From the circle to real functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'x becomes a real variable',
+            content:
+                'Unit-circle definitions produce the real functions [[math:x\\mapsto\\sin x]] and [[math:x\\mapsto\\cos x]], with x measured in radians.',
+            emphasis:
+                'The unit circle gives the geometry; Cartesian graphs show how the values evolve along the real line.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'The sine function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Domain, range, and period',
+            content:
+                'For f(x)=sin x, the domain is ℝ, the range is [−1,1], and the fundamental period is 2π: [[math:\\sin(x+2\\pi)=\\sin x]].',
+            emphasis:
+                'Sine is odd: sin(−x)=−sin x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Key points in one cycle',
+            problem: 'List sin x at 0, π/2, π, 3π/2, and 2π.',
+            steps: [
+              'Use the unit circle at each angle.',
+            ],
+            result: '0, 1, 0, −1, 0.',
+            interpretation:
+                'These five points structure one complete sine cycle.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'The cosine function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Same amplitude and period, different phase',
+            content:
+                'For f(x)=cos x, the domain is ℝ, the range is [−1,1], and the period is 2π. Cosine is even: [[math:\\cos(-x)=\\cos x]].',
+            emphasis:
+                'Sine and cosine share the same basic shape but are horizontally shifted relative to each other.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Sine-cosine relationship',
+            content:
+                'A useful identity is [[math:\\sin x=\\cos(x-\\pi/2)]]. Sine can therefore be viewed as a shifted cosine.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Amplitude',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Amplitude = |A|',
+            content:
+                'In [[math:y=A\\sin x]] or [[math:y=A\\cos x]], the amplitude is |A|. It measures the vertical distance from the midline to an extreme.',
+            emphasis:
+                'Amplitude is used for sine and cosine, not in the same sense for tangent.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Vertical scaling',
+            problem: 'Analyze y=−3cos x.',
+            steps: [
+              'Amplitude is 3.',
+              'The negative sign reflects the graph across the x-axis.',
+              'The range becomes [−3,3].',
+            ],
+            result: 'Amplitude 3 and period 2π.',
+            interpretation:
+                'Magnitude controls scale; sign controls vertical orientation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Period of transformed sine and cosine',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '2π/|B|',
+            content:
+                'For [[math:y=A\\sin(Bx)]] or [[math:y=A\\cos(Bx)]], the period is [[math:T=\\frac{2\\pi}{|B|}]].',
+            emphasis:
+                'B acts horizontally, so it appears in the denominator of the period.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Higher angular frequency',
+            problem: 'Analyze y=3sin(2x).',
+            steps: [
+              'Amplitude=3.',
+              'B=2.',
+              'T=2π/2=π.',
+            ],
+            result: 'Amplitude 3, period π, range [−3,3].',
+            interpretation:
+                'The graph completes two cycles where sin x would complete one.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Phase shift and midline',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'The form A·sin(B(x−h))+D',
+            content:
+                'In [[math:y=A\\sin(B(x-h))+D]], h is the horizontal shift, D is the vertical midline, and |A| is the amplitude.',
+            emphasis:
+                'The range becomes [D−|A|, D+|A|].',
+          ),
+          WorkedExampleBlockData(
+            title: 'Complete parameter reading',
+            problem: 'Analyze y=2sin(3(x−π/6))+1.',
+            steps: [
+              'Amplitude=2.',
+              'Period=2π/3.',
+              'Shift=π/6 to the right.',
+              'Midline y=1.',
+            ],
+            result: 'Range [−1,3].',
+            interpretation:
+                'The four parameters describe scale, frequency, phase, and vertical position.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'The tangent function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'tan x = sin x / cos x',
+            content:
+                'Tangent is [[math:\\tan x=\\frac{\\sin x}{\\cos x}]], so it is undefined wherever cos x=0.',
+            emphasis:
+                'Its domain excludes x=π/2+kπ and its range is ℝ.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Period π',
+            content:
+                'Since tan(x+π)=tan x, tangent has fundamental period π.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Tangent asymptotes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Cosine zeros become asymptotes',
+            content:
+                'At [[math:x=\\pi/2+k\\pi]], cos x approaches zero and tangent grows without bound in magnitude.',
+            emphasis:
+                'These points split the graph into periodic branches.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Zeros of trigonometric functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Periodic zero patterns',
+            content:
+                'sin x=0 at x=kπ. cos x=0 at x=π/2+kπ. tan x=0 at x=kπ, with k integer.',
+            emphasis:
+                'Zeros repeat according to each function period.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Symmetry',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Parity predicts the graph',
+            content:
+                'Sine and tangent are odd; cosine is even. This gives origin symmetry for sine and tangent and y-axis symmetry for cosine.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Periodic modeling',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Oscillating phenomena',
+            content:
+                'Sinusoidal models describe tides, waves, vibrations, seasonal temperature, electrical signals, and periodic motion once amplitude, period, phase, and midline are identified.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Simple temperature model',
+            problem: 'A temperature oscillates between 18°C and 30°C with a 24-hour period. Find amplitude and midline.',
+            steps: [
+              'Amplitude=(30−18)/2.',
+              'Midline=(30+18)/2.',
+            ],
+            result: 'Amplitude 6°C and midline 24°C.',
+            interpretation:
+                'These two parameters determine the vertical scale of the model.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Building a sketch',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'One cycle of y=2cos x−1',
+            problem: 'Sketch one cycle qualitatively.',
+            steps: [
+              'Midline y=−1.',
+              'Amplitude 2.',
+              'Period 2π.',
+              'At x=0 start at the maximum 1.',
+              'At π/2 cross the midline.',
+              'At π reach −3.',
+              'Complete the symmetric cycle to 2π.',
+            ],
+            result: 'Range [−3,1].',
+            interpretation:
+                'Five key points are enough for a consistent sketch.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing amplitude and period',
+            content:
+                'Amplitude measures vertical scale; period measures horizontal cycle length.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Using 2π/|B| for tangent',
+            content:
+                'Tangent has period π/|B|, not 2π/|B|.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting the midline',
+            content:
+                'In A·sin(B(x−h))+D, maxima and minima are measured around y=D, not around the x-axis.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — transformed sine',
+            problem: 'Analyze y=−4sin(x/2)+3.',
+            steps: [
+              'Amplitude=4.',
+              'B=1/2, so period=4π.',
+              'Midline y=3.',
+              'Range [−1,7].',
+            ],
+            result: 'Amplitude 4, period 4π, midline 3.',
+            interpretation:
+                'The negative sign only reverses vertical orientation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — tangent',
+            problem: 'Analyze y=tan(2x).',
+            steps: [
+              'Period=π/2.',
+              'Asymptotes occur when 2x=π/2+kπ.',
+              'Thus x=π/4+kπ/2.',
+            ],
+            result: 'Period π/2 with asymptotes x=π/4+kπ/2.',
+            interpretation:
+                'Horizontal compression also brings asymptotes closer together.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analyze and sketch',
+            content:
+                '1. Find domain and range of sin x.\n'
+                '2. Find domain and range of cos x.\n'
+                '3. Find domain and range of tan x.\n'
+                '4. Find the period of sin(3x).\n'
+                '5. Find the period of cos(x/4).\n'
+                '6. Find the period of tan(5x).\n'
+                '7. Analyze y=2sin x+1.\n'
+                '8. Analyze y=−3cos(2x).\n'
+                '9. Analyze y=sin(x−π/3).\n'
+                '10. Analyze y=4cos(2(x+π/4))−2.\n'
+                '11. List zeros of sin x in [0,2π].\n'
+                '12. List zeros of cos x in [0,2π].\n'
+                '13. Explain why tangent has asymptotes.\n'
+                '14. Build a sinusoidal model with amplitude 5 and midline 12.\n'
+                '15. Compare the symmetries of sine, cosine, and tangent.',
+            emphasis:
+                'For each transformed function, identify amplitude, period, phase, and midline before sketching.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Periodicity and derivatives are connected',
+            content:
+                'Derivatives of sine and cosine are periodic as well. Reading periods, zeros, and extrema prepares instantaneous-rate analysis in harmonic motion and waves.',
+            emphasis:
+                'Trigonometric derivative formulas assume radians.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for trigonometric graphs and periodic modeling.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'What is the period of cos x?', choices: ['π/2', 'π', '2π'], correctIndex: 2, explanation: 'Cosine repeats every 2π radians.'),
-    takeaways: ['Sine and cosine have period 2π.', 'Tangent has period π.', 'Amplitude controls vertical oscillation.', 'Tangent excludes cosine zeros.'],
-    closing: 'Trigonometric graphs are essential for limits, derivatives, and periodic models.',
+    check: LessonCheckData(
+      question: 'What is the period of y=sin(3x)?',
+      choices: ['2π', '2π/3', '3π'],
+      correctIndex: 1,
+      explanation:
+          'For y=sin(Bx), the period is 2π/|B|. With B=3, it is 2π/3.',
+    ),
+    takeaways: [
+      'Sine and cosine have domain ℝ, range [−1,1], and period 2π.',
+      'Tangent has period π and excludes cosine zeros.',
+      'Amplitude is |A| for sine and cosine.',
+      'The sine/cosine period is 2π/|B|.',
+      'Phase shift and midline control graph position.',
+      'Sine and tangent are odd; cosine is even.',
+      'Sinusoidal models describe periodic phenomena.',
+    ],
+    closing:
+        'Trigonometric graphs translate circular motion into periodic oscillations on the real line.',
   ),
   CourseLessonData(
     id: 'funcoes-10-identidades-equacoes-trig', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Trigonometric identities and equations', description: 'fundamental identities and periodic solutions', duration: '≈ 20 min', objective: 'use basic identities and solve elementary trigonometric equations', symbol: 'sin²+cos²',
