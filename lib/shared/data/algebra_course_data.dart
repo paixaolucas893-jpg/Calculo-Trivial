@@ -8,7 +8,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     eyebrow: 'Fundamentos',
     title: 'Linguagem algébrica',
     description: 'traduzindo palavras, relações e situações para a Álgebra',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'traduzir frases e situações para expressões algébricas e interpretar o significado de expressões escritas com símbolos',
     symbol: 'x',
@@ -361,7 +361,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     eyebrow: 'Fundamentos',
     title: 'Termos semelhantes',
     description: 'coeficientes, parte literal e redução de expressões',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'identificar termos semelhantes e simplificar expressões algébricas combinando corretamente seus coeficientes',
     symbol: '3x',
@@ -642,122 +642,532 @@ const List<CourseLessonData> algebraCourseLessons = [
     id: 'algebra-03-distributiva',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Distributiva e sinais',
-    description: 'parênteses, produtos e sinais negativos',
-    duration: '≈ 5 min',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Propriedade distributiva e sinais',
+    description:
+        'expansão de produtos, remoção de parênteses, sinais negativos e equivalência algébrica',
+    duration: '≈ 25 min',
     objective:
-        'aplicar a propriedade distributiva sem perder sinais dentro dos parênteses',
+        'aplicar a propriedade distributiva em expressões com um ou mais agrupamentos, controlar sinais, reconhecer equivalências e evitar expansões inválidas',
     symbol: 'a(b+c)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'A distributiva conecta produto e soma',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
-            title: 'Distribuir é atravessar o parêntese',
+            visual: LessonVisual.notation,
+            title: 'Definição algébrica',
             content:
-                'Na forma a(b + c), o fator a multiplica cada termo interno. Assim, a(b + c) = ab + ac. Se houver subtração, o sinal do termo também participa da multiplicação.',
+                'Para números reais ou expressões algébricas compatíveis, a(b + c) = ab + ac. De modo análogo, a(b − c) = ab − ac. O fator externo multiplica cada termo do agrupamento.',
             emphasis:
-                'O erro clássico é multiplicar apenas o primeiro termo e esquecer o segundo.',
+                'Distribuir não é “tirar parênteses”: é preservar uma igualdade por meio da multiplicação de todos os termos internos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distribuição simples',
+            problem: 'Expanda 4(2x − 3).',
+            steps: [
+              'Multiplique 4 por 2x: 4·2x = 8x.',
+              'Multiplique 4 por −3: 4·(−3) = −12.',
+              'Reúna os termos obtidos.',
+            ],
+            result: '4(2x − 3) = 8x − 12.',
+            interpretation:
+                'Cada termo dentro do parêntese recebe o mesmo fator externo.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Sinal negativo antes do parêntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'O sinal − equivale a multiplicar por −1',
+            content:
+                'A expressão −(a + b) significa (−1)(a + b). Portanto, −(a + b) = −a − b. Da mesma forma, −(a − b) = −a + b.',
+            emphasis:
+                'Ao remover um parêntese precedido de sinal negativo, todos os sinais internos são afetados.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Controlando sinais',
+            problem: 'Simplifique 5x − (2x − 7).',
+            steps: [
+              'Interprete o sinal externo como −1: 5x + (−1)(2x − 7).',
+              'Distribua: 5x − 2x + 7.',
+              'Combine termos semelhantes: 3x + 7.',
+            ],
+            result: '5x − (2x − 7) = 3x + 7.',
+            interpretation:
+                'O termo −7 tornou-se +7 porque foi multiplicado por −1.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Coeficientes literais também distribuem',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Parêntese com sinal negativo',
-            problem: 'Simplifique −2(x − 5) + 3x.',
+            title: 'Fator algébrico',
+            problem: 'Expanda 3x(2x² − x + 4).',
             steps: [
-              'Distribua −2: −2x + 10.',
-              'Some o termo restante: −2x + 10 + 3x.',
-              'Combine termos semelhantes: x + 10.',
+              '3x·2x² = 6x³.',
+              '3x·(−x) = −3x².',
+              '3x·4 = 12x.',
             ],
-            result: 'A expressão simplificada é x + 10.',
+            result: '6x³ − 3x² + 12x.',
             interpretation:
-                'O termo −5 virou +10 porque negativo vezes negativo é positivo.',
+                'Além da distributiva, usamos a lei xᵐ·xⁿ = xᵐ⁺ⁿ.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Dupla distributiva',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Cada termo de um fator multiplica cada termo do outro',
+            content:
+                'No produto (a + b)(c + d), cada termo do primeiro binômio multiplica cada termo do segundo: ac + ad + bc + bd. Essa estrutura é a base da multiplicação de polinômios e dos produtos notáveis.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Binômio vezes binômio',
+            problem: 'Expanda (x + 3)(x − 5).',
+            steps: [
+              'x·x = x².',
+              'x·(−5) = −5x.',
+              '3·x = 3x.',
+              '3·(−5) = −15.',
+              'Combine −5x + 3x = −2x.',
+            ],
+            result: 'x² − 2x − 15.',
+            interpretation:
+                'A redução de termos semelhantes ocorre depois da expansão.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Distributiva no sentido inverso',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Expandir e fatorar são operações inversas',
+            content:
+                'Se ab + ac = a(b + c), então reconhecer um fator comum permite voltar da soma para o produto. Por exemplo, 6x + 9 = 3(2x + 3).',
+            emphasis:
+                'Essa leitura reversa prepara diretamente o estudo de fatoração.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Equivalência algébrica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Formas diferentes podem representar a mesma expressão',
+            content:
+                'As expressões 2(x + 4) e 2x + 8 têm o mesmo valor para todo x real. Dizemos que são identicamente equivalentes. Uma transformação algébrica válida deve preservar essa equivalência.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Verificando por substituição',
+            problem: 'Compare 3(x − 2) + x e 4x − 6 em x = 5.',
+            steps: [
+              'Primeira expressão: 3(5 − 2) + 5 = 9 + 5 = 14.',
+              'Segunda expressão: 4·5 − 6 = 20 − 6 = 14.',
+              'A igualdade em um valor é uma verificação útil; a distributiva mostra que a equivalência vale para todo x.',
+            ],
+            result: 'Ambas produzem 14 em x = 5.',
+            interpretation:
+                'Testar valores ajuda a detectar erros, mas não substitui uma justificativa algébrica geral.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Distribuir apenas no primeiro termo',
+            content:
+                'A igualdade 3(x + 2) = 3x + 2 é falsa. O fator 3 deve multiplicar também o termo 2: 3x + 6.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir potência de soma com distributiva',
+            content:
+                '(a + b)² não é a² + b². O quadrado representa (a + b)(a + b), cuja expansão contém o termo 2ab.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Simplifique −2(3x − 4) + 5x.',
+            steps: [
+              'Distribua −2: −6x + 8.',
+              'Some o termo 5x.',
+              'Combine −6x + 5x = −x.',
+            ],
+            result: '−x + 8.',
+            interpretation:
+                'O sinal negativo do fator externo participa de cada produto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Expanda (2x − 1)(x + 4).',
+            steps: [
+              '2x·x = 2x².',
+              '2x·4 = 8x.',
+              '−1·x = −x.',
+              '−1·4 = −4.',
+              'Combine 8x − x = 7x.',
+            ],
+            result: '2x² + 7x − 4.',
+            interpretation:
+                'A dupla distributiva gera quatro produtos antes da redução.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expanda ou simplifique, justificando os sinais',
+            content:
+                '1. 5(x + 2).\n'
+                '2. −3(x − 4).\n'
+                '3. 2a(3a + 5).\n'
+                '4. 7 − (2x + 1).\n'
+                '5. 4x − 2(x − 3).\n'
+                '6. 3(2x + 1) − 5x.\n'
+                '7. (x + 2)(x + 5).\n'
+                '8. (x − 4)(x + 3).\n'
+                '9. (2x + 1)(x − 2).\n'
+                '10. −(a − b + c).\n'
+                '11. Verifique se 4(x + 1) e 4x + 1 são equivalentes.\n'
+                '12. Fatore 8x + 12 usando a distributiva ao contrário.\n'
+                '13. Explique por que (x + 2)² não é x² + 4.\n'
+                '14. Simplifique 2(x + 3) − 3(x − 1).\n'
+                '15. Expanda (3x − 2)(2x + 5).',
+            emphasis:
+                'Em produtos de dois polinômios, registre todos os produtos antes de combinar termos semelhantes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Expandir ou fatorar muda o que conseguimos enxergar',
+            content:
+                'Em limites e derivadas, uma expressão pode precisar ser expandida para combinar termos ou fatorada para revelar cancelamentos. A distributiva é a ponte entre essas duas formas.',
+            emphasis:
+                'Manipulação algébrica correta evita que um erro de sinal contamine uma solução inteira de Cálculo.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é a forma de 3(x − 4)?',
-      choices: ['3x − 4', '3x − 12', 'x − 12'],
+      question: 'Qual é a forma expandida de −2(x − 5)?',
+      choices: ['−2x − 10', '−2x + 10', '2x − 10'],
       correctIndex: 1,
-      explanation: 'O 3 multiplica x e também −4, então 3(x − 4) = 3x − 12.',
+      explanation:
+          '−2 multiplica os dois termos: −2·x = −2x e −2·(−5) = +10.',
     ),
     takeaways: [
-      'Distributiva conecta multiplicação e soma.',
-      'Todos os termos internos devem ser multiplicados.',
-      'Sinais negativos precisam ser carregados com atenção.',
-      'Depois da distributiva, reduza termos semelhantes.',
+      'A distributiva multiplica o fator externo por todos os termos internos.',
+      'Um sinal negativo diante de parênteses equivale a multiplicar por −1.',
+      'Dupla distributiva multiplica cada termo de um fator por cada termo do outro.',
+      'Expandir e fatorar são leituras opostas da mesma propriedade.',
+      'Transformações válidas preservam equivalência algébrica.',
+      'Erros de sinal são especialmente perigosos em expressões longas.',
     ],
     closing:
-        'A distributiva é uma das ferramentas mais usadas para preparar expressões antes do Cálculo.',
-  ),
+        'Dominar a distributiva significa controlar a estrutura da expressão, não apenas remover parênteses.',
+  )
   CourseLessonData(
     id: 'algebra-04-potencias',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Potências e expoentes',
-    description: 'regras de multiplicação e divisão',
-    duration: '≈ 5 min',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Potências em expressões algébricas',
+    description:
+        'leis de expoentes aplicadas a monômios, coeficientes e simplificação algébrica',
+    duration: '≈ 25 min',
     objective:
-        'usar propriedades de potências para simplificar monômios e expressões algébricas',
-    symbol: 'x²',
+        'aplicar leis de expoentes a expressões algébricas, distinguir operações válidas e inválidas e simplificar produtos, quocientes e potências de monômios com domínio apropriado',
+    symbol: 'xⁿ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Revisão estrutural',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Mesma base, regra certa',
+            visual: LessonVisual.notation,
+            title: 'Base, expoente e coeficiente',
             content:
-                'Em produtos de potências de mesma base, somamos expoentes: x²·x³ = x⁵. Em quocientes, subtraímos expoentes, desde que a base não seja zero: x⁵/x² = x³.',
-            emphasis: 'Não some bases. O que muda é o expoente.',
+                'Em 3x⁴, o coeficiente é 3 e a parte literal é x⁴. O expoente 4 atua sobre x, não sobre o coeficiente 3. Já em (3x)⁴, toda a base 3x está elevada à quarta potência.',
+            emphasis:
+                'Parênteses determinam exatamente qual objeto recebe o expoente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Compare duas expressões',
+            problem: 'Compare 3x² e (3x)².',
+            steps: [
+              '3x² significa 3·x².',
+              '(3x)² = 3²x² = 9x².',
+            ],
+            result: '3x² e 9x² não são equivalentes.',
+            interpretation:
+                'O agrupamento muda a base da potência.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Produto de potências de mesma base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Some expoentes apenas em produtos',
+            content:
+                'Para a mesma base, xᵐ·xⁿ = xᵐ⁺ⁿ. A regra vale porque estamos concatenando fatores iguais.',
+            emphasis:
+                'x²·x³ = x⁵, mas x² + x³ não é x⁵.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Produto de monômios',
+            problem: 'Simplifique (4x³)(−2x⁵).',
+            steps: [
+              'Multiplique os coeficientes: 4·(−2) = −8.',
+              'Some os expoentes de x: 3 + 5 = 8.',
+            ],
+            result: '−8x⁸.',
+            interpretation:
+                'Coeficientes e partes literais são tratados separadamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quociente de potências',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Subtraia expoentes com base não nula',
+            content:
+                'Para x ≠ 0, xᵐ/xⁿ = xᵐ⁻ⁿ. A condição x ≠ 0 vem do denominador da expressão original.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quociente de monômios',
+            problem: 'Simplifique 12x⁷/(3x²), com x ≠ 0.',
+            steps: [
+              'Divida os coeficientes: 12/3 = 4.',
+              'Subtraia os expoentes: 7 − 2 = 5.',
+            ],
+            result: '4x⁵, com x ≠ 0.',
+            interpretation:
+                'Mesmo que a forma simplificada seja definida em x = 0, a expressão original não era.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Potência de potência e potência de produto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Multiplique expoentes em potência de potência',
+            content:
+                '(xᵐ)ⁿ = xᵐⁿ. Para produtos, (ab)ⁿ = aⁿbⁿ. Essas regras têm justificativas diferentes e não devem ser confundidas com soma de expoentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Potência de monômio',
+            problem: 'Simplifique (−2x³y²)³.',
+            steps: [
+              '(−2)³ = −8.',
+              '(x³)³ = x⁹.',
+              '(y²)³ = y⁶.',
+            ],
+            result: '−8x⁹y⁶.',
+            interpretation:
+                'O expoente externo atua em cada fator da base.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Expoentes zero e negativos em Álgebra',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Zero e negativo carregam condições',
+            content:
+                'Para x ≠ 0, x⁰ = 1 e x⁻ⁿ = 1/xⁿ. Em uma expressão algébrica, essas condições fazem parte do domínio e não desaparecem durante a simplificação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reescrevendo sem expoente negativo',
+            problem: 'Simplifique 6x⁻²y³.',
+            steps: [
+              'x⁻² = 1/x², com x ≠ 0.',
+              'Mantenha os demais fatores no numerador.',
+            ],
+            result: '6y³/x², com x ≠ 0.',
+            interpretation:
+                'Expoente negativo indica posição multiplicativa, não sinal negativo do termo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Mais de uma variável',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Coeficiente e variável',
-            problem: 'Simplifique (−2x³)².',
+            title: 'Produto multivariável',
+            problem: 'Simplifique (3x²y)(−4xy³).',
             steps: [
-              'Eleve o coeficiente: (−2)² = 4.',
-              'Multiplique o expoente da variável: (x³)² = x⁶.',
-              'Junte as partes: 4x⁶.',
+              'Coeficientes: 3·(−4) = −12.',
+              'Potências de x: x²·x = x³.',
+              'Potências de y: y·y³ = y⁴.',
             ],
-            result: 'A forma simplificada é 4x⁶.',
+            result: '−12x³y⁴.',
             interpretation:
-                'O quadrado torna o coeficiente positivo e dobra o expoente da variável.',
+                'Cada base é tratada independentemente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não some expoentes em uma soma',
+            content:
+                'x² + x³ não pode ser reduzido a x⁵ porque a lei de soma de expoentes exige multiplicação.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(x + y)² não é x² + y²',
+            content:
+                'A potência atua sobre o binômio inteiro: (x + y)² = x² + 2xy + y².',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não esqueça as restrições originais',
+            content:
+                'Ao simplificar x³/x, obtemos x², mas a expressão original exigia x ≠ 0. Simplificar não altera retroativamente o domínio original.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Simplifique (2x²)³·x⁻¹.',
+            steps: [
+              '(2x²)³ = 8x⁶.',
+              'Multiplique por x⁻¹: 8x⁶·x⁻¹.',
+              'Some expoentes: 6 + (−1) = 5.',
+            ],
+            result: '8x⁵, com x ≠ 0.',
+            interpretation:
+                'A restrição vem do fator x⁻¹ da expressão original.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Simplifique (6a⁵b²)/(3a²b), com a ≠ 0 e b ≠ 0.',
+            steps: [
+              '6/3 = 2.',
+              'a⁵/a² = a³.',
+              'b²/b = b.',
+            ],
+            result: '2a³b.',
+            interpretation:
+                'Quocientes de bases iguais são simplificados separadamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Simplifique e indique restrições quando existirem',
+            content:
+                '1. x³·x⁵.\n'
+                '2. a⁷/a².\n'
+                '3. (y⁴)³.\n'
+                '4. (2x)⁴.\n'
+                '5. (−3a²)².\n'
+                '6. (4x³)(−2x²).\n'
+                '7. (12m⁶)/(4m²).\n'
+                '8. x⁻⁴.\n'
+                '9. 5a²b·3ab³.\n'
+                '10. (−2x²y³)².\n'
+                '11. Explique por que x² + x⁴ não é x⁶.\n'
+                '12. Compare 2x³ e (2x)³.\n'
+                '13. Simplifique x⁵/x⁷ sem expoentes negativos.\n'
+                '14. Determine a restrição original de (x² − x)/x.\n'
+                '15. Simplifique (3a²b⁻¹)².',
+            emphasis:
+                'Separe sempre o trabalho com coeficientes do trabalho com cada base literal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Potências aparecem em funções, limites e derivadas',
+            content:
+                'Funções potência e polinomiais são construídas com essas estruturas. Simplificar corretamente expoentes será essencial para quocientes incrementais, derivadas e análise de crescimento.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o resultado de x⁴·x²?',
-      choices: ['x⁶', 'x⁸', '2x⁶'],
-      correctIndex: 0,
+      question: 'Qual é a simplificação de (3x²)²?',
+      choices: ['6x⁴', '9x⁴', '9x²'],
+      correctIndex: 1,
       explanation:
-          'As bases são iguais, então somamos os expoentes: 4 + 2 = 6.',
+          'O expoente 2 atua em 3 e em x²: 3² = 9 e (x²)² = x⁴.',
     ),
     takeaways: [
-      'Produto de mesma base soma expoentes.',
-      'Quociente de mesma base subtrai expoentes.',
+      'Produto de mesma base soma expoentes; quociente subtrai expoentes.',
       'Potência de potência multiplica expoentes.',
-      'Coeficientes também seguem as regras de sinais.',
+      'Potência de um produto atua sobre todos os fatores.',
+      'Expoentes zero e negativos exigem atenção ao domínio.',
+      'Coeficientes e bases literais devem ser tratados separadamente.',
+      'Leis de expoentes não se aplicam diretamente a somas.',
     ],
     closing:
-        'Potências bem dominadas simplificam polinômios, funções e limites.',
-  ),
+        'Leis de expoentes são regras de estrutura: funcionam quando reconhecemos exatamente qual operação e qual base estão presentes.',
+  )
   CourseLessonData(
     id: 'algebra-09-monomios-polinomios',
     topicId: 'algebra-fundamental',
