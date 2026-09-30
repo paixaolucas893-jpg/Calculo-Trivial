@@ -1172,184 +1172,325 @@ const List<CourseLessonData> algebraCourseLessons = [
     id: 'algebra-09-monomios-polinomios',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Monômios e polinômios',
-    description: 'termos, coeficientes, grau e classificação',
-    duration: '≈ 10 min',
+    description:
+        'estrutura, termos, coeficientes, grau, forma padrão e reconhecimento de expressões polinomiais',
+    duration: '≈ 28 min',
     objective:
-        'reconhecer monômios e polinômios, identificar seus elementos, classificá-los e determinar seus graus',
+        'reconhecer monômios e polinômios, identificar coeficientes e termos, determinar graus, escrever polinômios em forma padrão e distinguir expressões polinomiais de expressões não polinomiais',
     symbol: 'P(x)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a estrutura',
+        title: 'O que é um monômio',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Um polinômio é formado por termos',
+            title: 'Coeficiente vezes potências de variáveis',
             content:
-                'Expressões como 4x³ − 2x + 7 são formadas por termos separados por adição ou subtração. Cada termo pode conter um coeficiente numérico e uma parte literal formada por variáveis elevadas a expoentes inteiros não negativos.',
+                'Um monômio é uma expressão do tipo ax₁ⁿ¹x₂ⁿ²…xₖⁿᵏ, em que a é um número real e os expoentes das variáveis são inteiros não negativos. Exemplos: 5x³, −2ab² e 7.',
             emphasis:
-                'Antes de operar com polinômios, é preciso saber reconhecer exatamente quais são seus termos e como cada termo é construído.',
+                'Expoentes negativos, variáveis em denominadores e raízes de variáveis retiram a expressão da classe dos monômios polinomiais.',
           ),
-          ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Coeficiente e parte literal',
-            content:
-                'No monômio −5x²y, o coeficiente é −5 e a parte literal é x²y. Se não aparece número escrito antes da parte literal, o coeficiente pode ser 1 ou −1, dependendo do sinal.',
-            emphasis: 'Em x³, o coeficiente é 1. Em −x², o coeficiente é −1.',
+          WorkedExampleBlockData(
+            title: 'Classificando expressões',
+            problem: 'Quais são monômios: 4x², 3/x, −5xy³, √x e 8?',
+            steps: [
+              '4x² tem expoente inteiro não negativo: é monômio.',
+              '3/x = 3x⁻¹: não é monômio polinomial.',
+              '−5xy³ tem expoentes 1 e 3: é monômio.',
+              '√x = x^(1/2): não é monômio polinomial.',
+              '8 é uma constante e também é um monômio de grau 0.',
+            ],
+            result: 'Monômios: 4x², −5xy³ e 8.',
+            interpretation:
+                'A classificação depende da estrutura dos expoentes, não do número de símbolos.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Classifique corretamente',
+        title: 'Grau de um monômio',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Monômio, binômio, trinômio e polinômio',
+            visual: LessonVisual.calculate,
+            title: 'Some os expoentes das variáveis',
             content:
-                'Uma expressão com um único termo é um monômio. Com dois termos, é um binômio. Com três termos, é um trinômio. A palavra polinômio é usada de forma geral para expressões formadas por um ou mais termos polinomiais.',
-            emphasis: '3x² é monômio; x + 4 é binômio; x² − 3x + 2 é trinômio.',
+                'Em uma variável, o grau de axⁿ com a ≠ 0 é n. Em várias variáveis, o grau total de um monômio é a soma dos expoentes. Assim, 3x²y⁴ tem grau total 6.',
+            emphasis:
+                'Uma constante não nula tem grau 0. O grau do monômio zero normalmente não é definido no tratamento elementar.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Determine o grau',
+        title: 'O que é um polinômio',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Grau de um monômio',
+            visual: LessonVisual.idea,
+            title: 'Soma finita de monômios',
             content:
-                'O grau de um monômio é a soma dos expoentes de suas variáveis. Em 4x³y², o grau é 3 + 2 = 5.',
-            emphasis: 'Uma constante não nula, como 7, tem grau 0.',
+                'Um polinômio é uma soma finita de monômios. Em uma variável, escrevemos P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀, com expoentes inteiros não negativos.',
+            emphasis:
+                'Os números a₀, a₁, …, aₙ são coeficientes. Quando aₙ ≠ 0, ele é o coeficiente líder.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Grau de um polinômio',
+            visual: LessonVisual.compare,
+            title: 'Binômio, trinômio e polinômio',
             content:
-                'O grau de um polinômio é o maior grau entre seus termos depois que termos semelhantes já foram combinados.',
-            emphasis:
-                'Em 2x⁴ − 3x² + x − 9, o maior expoente de x é 4; portanto, o polinômio tem grau 4.',
+                'Um polinômio reduzido com um termo é um monômio; com dois termos, binômio; com três, trinômio. Com mais termos, continuamos usando o nome geral polinômio.',
           ),
         ],
       ),
       LessonSectionData(
         number: '4',
-        title: 'Veja funcionando',
+        title: 'Forma reduzida e forma padrão',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Primeiro reduza, depois ordene',
+            content:
+                'Para escrever um polinômio em forma padrão, combine termos semelhantes e organize os termos em ordem decrescente de grau.',
+          ),
           WorkedExampleBlockData(
-            title: 'Analisando um polinômio completo',
-            problem: 'Analise 3x³ − 5x² + 2x − 8.',
+            title: 'Organizando um polinômio',
+            problem: 'Escreva 3x − 2x³ + 5 + 4x³ − x em forma padrão.',
             steps: [
-              'Identifique os termos: 3x³, −5x², 2x e −8.',
-              'Identifique os coeficientes: 3, −5, 2 e −8.',
-              'Conte os termos: existem quatro termos.',
-              'Compare os graus: 3, 2, 1 e 0.',
-              'O maior grau é 3.',
+              'Combine termos cúbicos: −2x³ + 4x³ = 2x³.',
+              'Combine termos lineares: 3x − x = 2x.',
+              'Mantenha a constante 5.',
+              'Ordene por grau decrescente.',
             ],
-            result: 'É um polinômio de grau 3 com quatro termos.',
+            result: '2x³ + 2x + 5.',
             interpretation:
-                'Reconhecer essa estrutura será essencial para somar, multiplicar, fatorar e estudar funções polinomiais.',
+                'O termo x² está ausente, o que equivale a ter coeficiente zero para esse grau.',
           ),
         ],
       ),
       LessonSectionData(
         number: '5',
-        title: 'Forma reduzida e ordenada',
+        title: 'Grau e coeficiente líder',
         blocks: [
-          ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Primeiro reduza, depois organize',
-            content:
-                'Um polinômio está na forma reduzida quando não há termos semelhantes que ainda possam ser combinados. Ele costuma ser escrito em ordem decrescente de grau para facilitar leitura e operações.',
-            emphasis:
-                '2x + 3x² − x + 4 pode ser reduzido e ordenado como 3x² + x + 4.',
+          WorkedExampleBlockData(
+            title: 'Leitura estrutural completa',
+            problem: 'Analise P(x) = −4x⁵ + 2x³ − 7x + 9.',
+            steps: [
+              'O maior expoente presente é 5.',
+              'Portanto, o grau do polinômio é 5.',
+              'O coeficiente do termo de maior grau é −4.',
+              'Logo, o coeficiente líder é −4.',
+              'O termo constante é 9.',
+            ],
+            result: 'Grau 5, coeficiente líder −4 e termo constante 9.',
+            interpretation:
+                'Essas informações ajudam a prever o comportamento global do gráfico de P.',
           ),
         ],
       ),
       LessonSectionData(
         number: '6',
-        title: 'Erro comum',
+        title: 'Polinômios em várias variáveis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Grau total',
+            content:
+                'Em P(x,y) = 3x²y + 5xy³ − 2, os termos têm graus totais 3, 4 e 0. O grau total do polinômio é o maior deles: 4.',
+            emphasis:
+                'Em várias variáveis, é importante distinguir grau em uma variável específica e grau total.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Expressões que não são polinômios',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Nem toda expressão algébrica é um polinômio',
+            title: 'Reconheça as restrições estruturais',
             content:
-                'Expressões com variável no denominador, expoente negativo ou variável dentro de uma raiz não são polinômios na variável considerada.',
-            emphasis: '1/x, x⁻² e √x não são polinômios em x.',
+                '1/x, x⁻², √x, x^(3/2), sen x e 2ˣ não são polinômios em x. O problema não é “ser complicado”; é não obedecer à forma de soma finita de potências inteiras não negativas da variável.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Zeros e avaliação de polinômios',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Substituir um valor produz P(a)',
+            content:
+                'Avaliar um polinômio significa substituir a variável por um número. Um número r é zero ou raiz de P quando P(r) = 0.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Avaliando um polinômio',
+            problem: 'Para P(x)=x³−4x+1, calcule P(2).',
+            steps: [
+              'Substitua x por 2: P(2)=2³−4·2+1.',
+              'Calcule 2³ = 8.',
+              'Obtenha 8−8+1 = 1.',
+            ],
+            result: 'P(2)=1.',
+            interpretation:
+                'Como P(2) ≠ 0, o número 2 não é uma raiz desse polinômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir número de termos com grau',
+            content:
+                'O polinômio x⁷ + 2 tem apenas dois termos, mas grau 7. “Binômio” descreve quantidade de termos; “grau” descreve expoentes.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Determinar o grau antes de reduzir',
+            content:
+                'Em 3x⁴ − 3x⁴ + x², os termos de grau 4 se cancelam. O polinômio reduzido é x² e seu grau é 2.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Classifique, reduza e interprete',
+            content:
+                '1. Classifique 7x³ como monômio e determine seu grau.\n'
+                '2. Determine o grau de −4x²y⁵.\n'
+                '3. Decida se 3/x é monômio polinomial.\n'
+                '4. Decida se √x + 1 é polinômio.\n'
+                '5. Reduza 2x² + 3x − x² + 5x.\n'
+                '6. Coloque 4 − x³ + 2x em forma padrão.\n'
+                '7. Determine o grau de 5x⁶ − x² + 1.\n'
+                '8. Identifique o coeficiente líder de −2x⁴ + 7x − 3.\n'
+                '9. Identifique o termo constante de x⁵ − 9.\n'
+                '10. Determine o grau total de 3x²y⁴.\n'
+                '11. Determine o grau de P(x,y)=x³y + xy² + 1.\n'
+                '12. Calcule P(−1) para P(x)=2x³−x+4.\n'
+                '13. Verifique se x=2 é raiz de x²−5x+6.\n'
+                '14. Explique por que 2ˣ não é polinômio em x.\n'
+                '15. Simplifique 3x⁴−3x⁴+2x² e determine o grau final.',
+            emphasis:
+                'Sempre reduza o polinômio antes de declarar seu grau.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Polinômios são funções centrais no Cálculo',
+            content:
+                'Funções polinomiais são contínuas em todos os números reais, têm derivadas obtidas termo a termo e servem como modelos locais e globais. Grau, coeficiente líder e zeros antecipam informações importantes sobre gráficos e limites no infinito.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, capítulos de polinômios; OpenStax, College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores, Fundamentos de Matemática Elementar; Stewart e Thomas’ Calculus para a conexão entre polinômios, funções e Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o grau do polinômio 5x⁴ − 2x² + 7x − 3?',
-      choices: ['2', '3', '4'],
+      question: 'Qual é o grau de P(x)=4x⁵−2x³+x−7?',
+      choices: ['3', '4', '5'],
       correctIndex: 2,
       explanation:
-          'O grau do polinômio é o maior expoente presente após a expressão estar reduzida. O maior expoente é 4.',
+          'O maior expoente de x com coeficiente não nulo é 5, portanto o grau é 5.',
     ),
     takeaways: [
-      'Monômios possuem um único termo.',
-      'Coeficiente é a parte numérica do termo.',
-      'O grau de um monômio é a soma dos expoentes de suas variáveis.',
-      'O grau de um polinômio é o maior grau entre seus termos.',
-      'Polinômios devem ser reduzidos e podem ser organizados por grau.',
-      'Nem toda expressão algébrica é um polinômio.',
+      'Monômios polinomiais usam expoentes inteiros não negativos.',
+      'Um polinômio é uma soma finita de monômios.',
+      'A forma padrão organiza termos em ordem decrescente de grau.',
+      'O grau deve ser determinado depois da redução de termos semelhantes.',
+      'Coeficiente líder e termo constante são informações estruturais importantes.',
+      'Zeros de um polinômio são valores r para os quais P(r)=0.',
     ],
     closing:
-        'Agora que você reconhece a estrutura dos polinômios, o próximo passo é aprender a operar com eles.',
-  ),
+        'Reconhecer a estrutura de um polinômio é o primeiro passo para operar, fatorar e interpretar sua função.',
+  )
   CourseLessonData(
     id: 'algebra-10-operacoes-polinomios',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Operações com polinômios',
-    description: 'soma, subtração e multiplicação',
-    duration: '≈ 12 min',
+    description:
+        'adição, subtração, multiplicação, divisão por monômio e avaliação estrutural',
+    duration: '≈ 30 min',
     objective:
-        'somar, subtrair e multiplicar polinômios usando termos semelhantes, distributiva e propriedades de potências',
-    symbol: 'P(x)+Q(x)',
+        'somar, subtrair e multiplicar polinômios, dividir polinômios por monômios quando permitido, organizar resultados em forma padrão e justificar cada operação',
+    symbol: 'P±Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Somar e subtrair polinômios',
+        title: 'Adição de polinômios',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
+            visual: LessonVisual.calculate,
             title: 'Combine apenas termos semelhantes',
             content:
-                'Na soma ou subtração de polinômios, agrupamos apenas termos que possuem a mesma parte literal e os mesmos expoentes. Os coeficientes são somados ou subtraídos, enquanto a parte literal permanece.',
-            emphasis:
-                '3x² + 5x² = 8x², mas 3x² + 5x não pode ser reduzido a um único termo.',
+                'Somar polinômios significa reunir termos de mesma parte literal e mesmo expoente. Termos de graus diferentes não podem ser fundidos em um único termo.',
           ),
           WorkedExampleBlockData(
             title: 'Somando dois polinômios',
-            problem: 'Calcule (3x² + 2x − 4) + (x² − 5x + 7).',
+            problem: 'Some P(x)=3x²−2x+5 e Q(x)=−x²+4x−7.',
             steps: [
-              'Agrupe os termos de mesmo grau.',
-              'Some os termos quadráticos: 3x² + x² = 4x².',
-              'Some os termos lineares: 2x − 5x = −3x.',
-              'Some as constantes: −4 + 7 = 3.',
+              'Termos quadráticos: 3x²−x² = 2x².',
+              'Termos lineares: −2x+4x = 2x.',
+              'Constantes: 5−7 = −2.',
             ],
-            result: 'O resultado é 4x² − 3x + 3.',
+            result: 'P(x)+Q(x)=2x²+2x−2.',
             interpretation:
-                'A soma de polinômios depende diretamente do reconhecimento de termos semelhantes.',
+                'Organizar por grau reduz o risco de combinar termos incompatíveis.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Cuidado com a subtração',
+        title: 'Subtração de polinômios',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'O sinal negativo afeta todo o segundo polinômio',
             content:
-                'Ao subtrair um polinômio, o sinal negativo deve ser distribuído para todos os seus termos antes de combinar termos semelhantes.',
-            emphasis: '(2x² + 3x) − (x² − 4x + 1) = 2x² + 3x − x² + 4x − 1.',
+                'P(x) − Q(x) significa P(x) + [−Q(x)]. Antes de combinar termos, distribua o fator −1 por todos os termos de Q.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Subtraindo com segurança',
+            problem: 'Calcule (2x²+3x−1) − (x²−5x+4).',
+            steps: [
+              'Distribua o sinal negativo: 2x²+3x−1−x²+5x−4.',
+              'Quadráticos: 2x²−x² = x².',
+              'Lineares: 3x+5x = 8x.',
+              'Constantes: −1−4 = −5.',
+            ],
+            result: 'x²+8x−5.',
+            interpretation:
+                'A maior fonte de erro é trocar apenas o primeiro sinal do segundo polinômio.',
           ),
         ],
       ),
@@ -1359,22 +1500,21 @@ const List<CourseLessonData> algebraCourseLessons = [
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Distribua e use as propriedades das potências',
+            title: 'Use distributiva e leis de expoentes',
             content:
-                'Quando um monômio multiplica um polinômio, ele deve multiplicar cada termo. Multiplicamos os coeficientes e, para bases iguais, somamos os expoentes.',
-            emphasis: '2x(3x² − 4x + 5) = 6x³ − 8x² + 10x.',
+                'Ao multiplicar um polinômio por um monômio, distribua o monômio para todos os termos e use as leis de expoentes nas partes literais.',
           ),
           WorkedExampleBlockData(
-            title: 'Multiplicando monômios',
-            problem: 'Calcule (−3x²)(2x).',
+            title: 'Monômio vezes polinômio',
+            problem: 'Calcule −3x²(2x³−x+4).',
             steps: [
-              'Multiplique os coeficientes: −3·2 = −6.',
-              'Multiplique as potências de mesma base: x²·x = x³.',
-              'Junte coeficiente e parte literal.',
+              '−3x²·2x³ = −6x⁵.',
+              '−3x²·(−x) = 3x³.',
+              '−3x²·4 = −12x².',
             ],
-            result: 'O produto é −6x³.',
+            result: '−6x⁵+3x³−12x².',
             interpretation:
-                'Essa operação combina regra de sinais com propriedade de potências.',
+                'O fator externo multiplica coeficiente e parte literal de cada termo.',
           ),
         ],
       ),
@@ -1383,73 +1523,212 @@ const List<CourseLessonData> algebraCourseLessons = [
         title: 'Multiplicação de polinômios',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
+            visual: LessonVisual.idea,
             title: 'Cada termo multiplica cada termo',
             content:
-                'Na multiplicação de dois polinômios, aplicamos a propriedade distributiva repetidamente. Depois, reduzimos os termos semelhantes.',
-            emphasis: '(x + 2)(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6.',
+                'Para multiplicar dois polinômios, aplique distributiva repetidamente. Depois, reduza termos semelhantes e ordene o resultado.',
           ),
           WorkedExampleBlockData(
-            title: 'Binômio vezes binômio',
-            problem: 'Multiplique (2x − 1)(x + 4).',
+            title: 'Binômio vezes trinômio',
+            problem: 'Expanda (x−2)(x²+3x+4).',
             steps: [
-              'Multiplique 2x por x: 2x².',
-              'Multiplique 2x por 4: 8x.',
-              'Multiplique −1 por x: −x.',
-              'Multiplique −1 por 4: −4.',
-              'Combine os termos semelhantes: 8x − x = 7x.',
+              'Multiplique x: x³+3x²+4x.',
+              'Multiplique −2: −2x²−6x−8.',
+              'Combine termos semelhantes: 3x²−2x² = x² e 4x−6x = −2x.',
             ],
-            result: 'O produto é 2x² + 7x − 4.',
+            result: 'x³+x²−2x−8.',
             interpretation:
-                'A distributiva organiza a multiplicação antes da redução dos termos semelhantes.',
+                'O grau do produto é a soma dos graus quando os coeficientes líderes não se anulam.',
           ),
         ],
       ),
       LessonSectionData(
         number: '5',
-        title: 'Divisão de monômios',
+        title: 'Grau nas operações',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Divida coeficientes e subtraia expoentes',
+            visual: LessonVisual.compare,
+            title: 'Soma e produto se comportam de modos diferentes',
             content:
-                'Quando dividimos monômios, dividimos os coeficientes e usamos a regra do quociente para bases iguais, sempre respeitando a condição de que o denominador não seja zero.',
-            emphasis: '(12x³y²)/(3xy) = 4x²y, com x ≠ 0 e y ≠ 0.',
+                'Em geral, grau(PQ)=grau(P)+grau(Q) para polinômios não nulos. Já na soma, o grau pode diminuir se os termos líderes se cancelarem.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cancelamento do termo líder',
+            problem: 'Determine o grau de (3x⁴+x) + (−3x⁴+2x²).',
+            steps: [
+              'Os termos 3x⁴ e −3x⁴ se cancelam.',
+              'Resta 2x²+x.',
+            ],
+            result: 'O grau da soma é 2.',
+            interpretation:
+                'Não podemos afirmar que o grau da soma é sempre o maior dos graus originais.',
           ),
         ],
       ),
       LessonSectionData(
         number: '6',
-        title: 'Erro comum',
+        title: 'Divisão por monômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Divida termo a termo',
+            content:
+                'Quando um polinômio é dividido por um monômio não nulo, podemos dividir cada termo separadamente, desde que a divisão esteja definida.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Divisão termo a termo',
+            problem: 'Simplifique (12x⁵−6x³+3x²)/(3x²), com x ≠ 0.',
+            steps: [
+              '12x⁵/(3x²)=4x³.',
+              '−6x³/(3x²)=−2x.',
+              '3x²/(3x²)=1.',
+            ],
+            result: '4x³−2x+1, com x ≠ 0.',
+            interpretation:
+                'A restrição x ≠ 0 pertence à expressão original e deve ser preservada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Avaliação após operações',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Operar antes ou avaliar antes',
+            problem: 'Se P(x)=x²+1 e Q(x)=2x−3, calcule (P+Q)(2).',
+            steps: [
+              'Some as funções polinomiais: (P+Q)(x)=x²+2x−2.',
+              'Substitua x=2: 4+4−2=6.',
+              'Alternativamente, P(2)=5 e Q(2)=1; então 5+1=6.',
+            ],
+            result: '(P+Q)(2)=6.',
+            interpretation:
+                'As duas rotas concordam porque avaliação e adição são compatíveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não combine termos diferentes',
+            title: 'Somar expoentes em uma soma',
             content:
-                'Depois de uma multiplicação, só podemos reduzir termos realmente semelhantes. Expoentes diferentes representam termos diferentes.',
-            emphasis: 'x² + 3x não é 4x² nem 4x³.',
+                'x²+x³ não é x⁵. Expoentes são somados apenas ao multiplicar potências de mesma base.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer produtos cruzados',
+            content:
+                '(x+2)(x+3) não é x²+6. Os produtos cruzados 3x e 2x também aparecem, produzindo x²+5x+6.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — soma e subtração',
+            problem: 'Calcule (4x²−x+2) − (x²+3x−5).',
+            steps: [
+              'Distribua o sinal negativo no segundo polinômio.',
+              'Obtenha 4x²−x+2−x²−3x+5.',
+              'Combine: 3x²−4x+7.',
+            ],
+            result: '3x²−4x+7.',
+            interpretation:
+                'A organização por grau ajuda a conferir cada combinação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — produto',
+            problem: 'Expanda (2x+1)(x²−x+3).',
+            steps: [
+              '2x(x²−x+3)=2x³−2x²+6x.',
+              '1(x²−x+3)=x²−x+3.',
+              'Combine: −2x²+x²=−x² e 6x−x=5x.',
+            ],
+            result: '2x³−x²+5x+3.',
+            interpretation:
+                'O produto final foi reduzido e escrito em forma padrão.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Opere e escreva cada resultado em forma padrão',
+            content:
+                '1. (2x+3)+(5x−1).\n'
+                '2. (3x²−2x+4)+(−x²+x−6).\n'
+                '3. (x²+5x)−(2x²−x+1).\n'
+                '4. 4x(x²−3x+2).\n'
+                '5. −2a²(3a−4).\n'
+                '6. (x+4)(x−1).\n'
+                '7. (2x−3)(x+5).\n'
+                '8. (x−2)(x²+x+1).\n'
+                '9. (3x+1)(2x²−x+4).\n'
+                '10. (15x⁴−10x³+5x²)/(5x²).\n'
+                '11. Determine o grau de (x³+1)(2x²−x).\n'
+                '12. Dê um exemplo em que o grau de P+Q seja menor que os graus de P e Q.\n'
+                '13. Calcule (P+Q)(1) para P(x)=x² e Q(x)=3x−2.\n'
+                '14. Explique por que (x+1)(x+1) não é x²+1.\n'
+                '15. Verifique sua resposta da questão 7 substituindo x=1 antes e depois da expansão.',
+            emphasis:
+                'Use substituição numérica como estratégia de verificação quando possível.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Álgebra polinomial aparece em todo o Cálculo',
+            content:
+                'Quocientes incrementais, limites, derivadas e aproximações polinomiais exigem expansão, redução e fatoração de polinômios. A precisão dessas operações é parte do raciocínio de Cálculo.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e e College Algebra 2e, operações com polinômios; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas’ Calculus para aplicações de manipulação polinomial em limites e derivadas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o resultado de (x + 2)(x + 5)?',
-      choices: ['x² + 7x + 10', 'x² + 10x + 7', 'x² + 7'],
+      question: 'Qual é o produto (x+2)(x−3)?',
+      choices: ['x²−x−6', 'x²−6', 'x²+x−6'],
       correctIndex: 0,
       explanation:
-          'Aplicando a distributiva: x² + 5x + 2x + 10 = x² + 7x + 10.',
+          'Pela distributiva: x²−3x+2x−6 = x²−x−6.',
     ),
     takeaways: [
-      'Soma e subtração exigem termos semelhantes.',
-      'Na subtração, distribua corretamente o sinal negativo.',
-      'Um monômio deve multiplicar todos os termos do polinômio.',
-      'Na multiplicação de polinômios, cada termo multiplica cada termo.',
-      'Depois da multiplicação, reduza os termos semelhantes.',
-      'Na divisão de monômios, divida coeficientes e subtraia expoentes de bases iguais.',
+      'Adição e subtração combinam apenas termos semelhantes.',
+      'Na subtração, o sinal negativo deve atingir todo o segundo polinômio.',
+      'Multiplicação exige distribuir cada termo por todos os termos do outro fator.',
+      'O grau do produto soma os graus dos fatores não nulos.',
+      'O grau da soma pode diminuir por cancelamento.',
+      'Divisão por monômio exige preservar restrições de domínio.',
     ],
     closing:
-        'Com as operações dominadas, produtos notáveis deixam de parecer fórmulas isoladas e passam a ser padrões da própria multiplicação algébrica.',
-  ),
+        'Operar polinômios com segurança é organizar a estrutura antes de executar as contas.',
+  )
   CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
