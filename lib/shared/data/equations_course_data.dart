@@ -792,7 +792,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Equações com parênteses e frações ficam controláveis quando a estrutura é preparada antes de isolar a variável.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-04-casos-especiais',
     topicId: 'equacoes-inequacoes',
