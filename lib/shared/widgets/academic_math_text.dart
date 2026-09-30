@@ -3,19 +3,11 @@ import 'package:flutter_math_fork/flutter_math.dart';
 
 /// Renders lesson prose with academic mathematical typography.
 ///
-/// The content layer may use explicit TeX markers:
+/// Explicit TeX can be embedded with markers such as:
 ///   [[math:\\frac{3}{4}]]
 ///
-/// For legacy lesson data, common calculator-like or plain-text forms are
-/// upgraded automatically, including:
-///   16^(3/2)  -> 16^{3/2}
-///   √[3]{x}   -> indexed radical
-///   √(x + 1)  -> square root
-///   3/8       -> stacked fraction
-///   x²        -> typographic exponent
-///
-/// This lets existing lessons remain readable in source code while every
-/// course shares one consistent mathematical presentation layer.
+/// Legacy lesson notation is also upgraded automatically, including
+/// rational exponents, radicals, ordinary fractions, and Unicode powers.
 class AcademicMathText extends StatelessWidget {
   final String text;
   final TextStyle? style;
@@ -46,7 +38,7 @@ class AcademicMathText extends StatelessWidget {
     r'√([+\-−]?[A-Za-z0-9]+)',
   );
   static final RegExp _simpleFraction = RegExp(
-    r'(?<![A-Za-z0-9_])([+\-−]?[A-Za-z0-9]+)\/([A-Za-z0-9]+)(?![A-Za-z0-9_/])',
+    r'(^|[\s(=,:;])([+\-−]?[A-Za-z0-9]+)\/([A-Za-z0-9]+)(?=$|[\s),.;:<>])',
   );
   static final RegExp _unicodePower = RegExp(
     r'(\([^\n()]+\)|[A-Za-z0-9]+)([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)',
@@ -129,9 +121,10 @@ class AcademicMathText extends StatelessWidget {
     });
 
     normalized = normalized.replaceAllMapped(_simpleFraction, (match) {
-      final numerator = _toTex(match.group(1)!);
-      final denominator = _toTex(match.group(2)!);
-      return '[[math:\\frac{${numerator}}{${denominator}}}]]';
+      final prefix = match.group(1)!;
+      final numerator = _toTex(match.group(2)!);
+      final denominator = _toTex(match.group(3)!);
+      return '${prefix}[[math:\\frac{${numerator}}{${denominator}}}]]';
     });
 
     return normalized;
@@ -158,16 +151,16 @@ class AcademicMathText extends StatelessWidget {
   static String _toTex(String value) {
     return value
         .replaceAll('−', '-')
-        .replaceAll('·', r'\\cdot ')
-        .replaceAll('∞', r'\\infty ')
-        .replaceAll('≤', r'\\le ')
-        .replaceAll('≥', r'\\ge ')
-        .replaceAll('≠', r'\\ne ')
-        .replaceAll('≈', r'\\approx ')
-        .replaceAll('∈', r'\\in ')
-        .replaceAll('ℕ', r'\\mathbb{N}')
-        .replaceAll('ℤ', r'\\mathbb{Z}')
-        .replaceAll('ℚ', r'\\mathbb{Q}')
-        .replaceAll('ℝ', r'\\mathbb{R}');
+        .replaceAll('·', r'\cdot ')
+        .replaceAll('∞', r'\infty ')
+        .replaceAll('≤', r'\le ')
+        .replaceAll('≥', r'\ge ')
+        .replaceAll('≠', r'\ne ')
+        .replaceAll('≈', r'\approx ')
+        .replaceAll('∈', r'\in ')
+        .replaceAll('ℕ', r'\mathbb{N}')
+        .replaceAll('ℤ', r'\mathbb{Z}')
+        .replaceAll('ℚ', r'\mathbb{Q}')
+        .replaceAll('ℝ', r'\mathbb{R}');
   }
 }
