@@ -2406,71 +2406,411 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Trigonometria',
     title: 'Radianos e círculo trigonométrico',
-    description: 'ângulos, arco e coordenadas no círculo unitário',
-    duration: '≈ 20 min',
+    description:
+        'medida angular, comprimento de arco, círculo unitário, quadrantes, ângulos notáveis e periodicidade',
+    duration: '≈ 38 min',
     objective:
-        'converter graus e radianos e interpretar seno e cosseno pelo círculo trigonométrico',
-    symbol: 'π rad',
+        'compreender radianos como razão entre arco e raio, converter medidas angulares, usar o círculo unitário para definir seno e cosseno, determinar sinais por quadrante e obter valores exatos em ângulos notáveis',
+    symbol: 'θ=s/r',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Radiano mede ângulo por arco',
+        title: 'O que é um radiano',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'π rad = 180°',
+            visual: LessonVisual.notation,
+            title: 'Ângulo como razão entre arco e raio',
             content:
-                'Uma volta completa mede 2π radianos ou 360°. Assim, 90°=π/2, 180°=π e 270°=3π/2. Em Cálculo, radianos são a unidade natural para funções trigonométricas.',
-            emphasis: 'As fórmulas de derivadas trigonométricas pressupõem ângulos em radianos.',
+                'Se um arco de comprimento s é subtendido em uma circunferência de raio r, a medida do ângulo central em radianos é [[math:\\theta=\\frac{s}{r}]].',
+            emphasis:
+                'Radiano é uma medida adimensional: comprimento dividido por comprimento.',
           ),
-          ConceptBlockData(
-            visual: LessonVisual.graph,
-            title: 'Círculo unitário transforma ângulo em coordenadas',
-            content:
-                'No círculo de raio 1, o ponto associado ao ângulo θ tem coordenadas (cos θ, sen θ). Isso amplia seno e cosseno para qualquer ângulo real.',
+          WorkedExampleBlockData(
+            title: 'Um radiano',
+            problem: 'Quando um ângulo mede exatamente 1 radiano?',
+            steps: [
+              'Use θ=s/r.',
+              'Se s=r, então θ=r/r=1.',
+            ],
+            result: '1 rad corresponde ao ângulo que subtende um arco de comprimento igual ao raio.',
+            interpretation:
+                'A definição nasce diretamente da geometria da circunferência.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Uma volta completa',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Converter e localizar',
-            problem: 'Converta 150° para radianos.',
-            steps: ['Multiplique por π/180: 150·π/180.', 'Simplifique 150/180=5/6.'],
-            result: '150°=5π/6 rad.',
-            interpretation: 'O ângulo fica no segundo quadrante, onde seno é positivo e cosseno negativo.',
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '2π rad = 360°',
+            content:
+                'Em uma circunferência completa, s=2πr. Portanto [[math:\\theta=\\frac{2\\pi r}{r}=2\\pi]]. Assim, uma volta mede 2π radianos.',
+            emphasis:
+                'Daí seguem π rad=180°, π/2=90° e π/4=45°.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Valores notáveis',
+        title: 'Conversão entre graus e radianos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Use a equivalência π rad = 180°',
+            content:
+                'Para converter graus em radianos, multiplique por π/180. Para converter radianos em graus, multiplique por 180/π.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Graus para radianos',
+            problem: 'Converta 150° para radianos.',
+            steps: [
+              '150·π/180.',
+              'Simplifique 150/180=5/6.',
+            ],
+            result: '150°=5π/6.',
+            interpretation:
+                'A fração de π preserva a medida exata do ângulo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Radianos para graus',
+            problem: 'Converta 7π/4 para graus.',
+            steps: [
+              'Multiplique por 180/π.',
+              '(7π/4)·(180/π)=7·45.',
+            ],
+            result: '7π/4=315°.',
+            interpretation:
+                'O fator π cancela naturalmente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Comprimento de arco',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 's=rθ exige θ em radianos',
+            content:
+                'Da definição θ=s/r obtemos [[math:s=r\\theta]]. Esta forma simples só é válida quando θ está em radianos.',
+            emphasis:
+                'Usar graus diretamente em s=rθ produz resultado incorreto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Arco em uma circunferência',
+            problem: 'Encontre o comprimento do arco de raio 6 e ângulo π/3.',
+            steps: [
+              'Use s=rθ.',
+              's=6·π/3.',
+            ],
+            result: 's=2π.',
+            interpretation:
+                'O resultado tem unidade de comprimento, não de ângulo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Círculo unitário',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Raio igual a 1',
+            content:
+                'O círculo unitário é a circunferência [[math:x^2+y^2=1]]. Um ângulo θ, medido a partir do eixo x positivo, determina um ponto P sobre o círculo.',
+            emphasis:
+                'O círculo unitário transforma ângulos em coordenadas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Seno e cosseno como coordenadas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'P(θ)=(cosθ,senθ)',
+            content:
+                'No círculo unitário, o ponto associado ao ângulo θ possui coordenadas [[math:P(\\theta)=(\\cos\\theta,\\sin\\theta)]].',
+            emphasis:
+                'Cosseno é a coordenada x; seno é a coordenada y.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Ângulo de π/2',
+            problem: 'Determine seno e cosseno de π/2.',
+            steps: [
+              'π/2 corresponde ao topo do círculo unitário.',
+              'O ponto é (0,1).',
+            ],
+            result: 'cos(π/2)=0 e sen(π/2)=1.',
+            interpretation:
+                'As coordenadas geométricas fornecem diretamente os valores trigonométricos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Quadrantes e sinais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Os sinais vêm das coordenadas',
+            content:
+                'No quadrante I, seno e cosseno são positivos. No II, seno positivo e cosseno negativo. No III, ambos negativos. No IV, seno negativo e cosseno positivo.',
+            emphasis:
+                'Não é necessário decorar sinais isoladamente: leia x e y no plano cartesiano.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Ângulos de referência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Reduza a um ângulo agudo conhecido',
+            content:
+                'O ângulo de referência é o menor ângulo positivo entre o lado terminal e o eixo x. Ele permite usar valores conhecidos do primeiro quadrante e depois ajustar apenas os sinais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Segundo quadrante',
+            problem: 'Determine sen(5π/6) e cos(5π/6).',
+            steps: [
+              '5π/6 está no quadrante II.',
+              'O ângulo de referência é π/6.',
+              'No quadrante II, seno é positivo e cosseno negativo.',
+            ],
+            result: 'sen(5π/6)=1/2 e cos(5π/6)=−√3/2.',
+            interpretation:
+                'Os valores absolutos vêm do ângulo de referência; os sinais vêm do quadrante.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Ângulos notáveis',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.table,
-            title: 'Reconheça 0, π/6, π/4, π/3 e π/2',
+            title: '0, π/6, π/4, π/3 e π/2',
             content:
-                'Os ângulos notáveis fornecem valores exatos de seno e cosseno e servem como referências para sinais e simetrias nos outros quadrantes.',
+                'No primeiro quadrante: cos0=1 e sen0=0; cos(π/6)=√3/2 e sen(π/6)=1/2; cos(π/4)=sen(π/4)=√2/2; cos(π/3)=1/2 e sen(π/3)=√3/2; cos(π/2)=0 e sen(π/2)=1.',
+            emphasis:
+                'Esses valores se estendem aos outros quadrantes por simetria e sinais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'De onde vêm os valores exatos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Triângulos 45°–45°–90° e 30°–60°–90°',
+            content:
+                'Os valores √2/2, 1/2 e √3/2 não são arbitrários. Eles vêm das razões geométricas dos triângulos especiais inscritos ou associados ao círculo unitário.',
+            emphasis:
+                'Entender a origem é mais robusto que memorizar uma tabela sem estrutura.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Ângulos coterminais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Mesmo ponto terminal',
+            content:
+                'Ângulos que diferem por múltiplos inteiros de 2π terminam no mesmo ponto do círculo: [[math:\\theta+2k\\pi]], com k inteiro.',
+            emphasis:
+                'Seno e cosseno têm período 2π.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reduzindo uma volta extra',
+            problem: 'Localize 13π/6 no círculo.',
+            steps: [
+              'Subtraia 2π=12π/6.',
+              '13π/6−12π/6=π/6.',
+            ],
+            result: '13π/6 é coterminal com π/6.',
+            interpretation:
+                'Os dois ângulos possuem o mesmo seno e o mesmo cosseno.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Ângulos negativos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Sentido horário',
+            content:
+                'Ângulos positivos são medidos no sentido anti-horário; ângulos negativos, no sentido horário.',
+            emphasis:
+                'O círculo trigonométrico representa naturalmente qualquer ângulo real.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Ângulo negativo',
+            problem: 'Determine um ângulo positivo coterminal com −π/3.',
+            steps: [
+              'Some 2π.',
+              '−π/3+2π=−π/3+6π/3.',
+            ],
+            result: '5π/3.',
+            interpretation:
+                '−π/3 e 5π/3 determinam o mesmo ponto no círculo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Tangente no círculo unitário',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'tanθ=senθ/cosθ',
+            content:
+                'Sempre que cosθ≠0, [[math:\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}]]. Portanto, tangente não está definida nos pontos onde a coordenada x do círculo é zero.',
+            emphasis:
+                'Isso ocorre em π/2+kπ.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Usar graus em fórmulas próprias de radianos',
+            content:
+                's=rθ e os limites trigonométricos fundamentais pressupõem θ em radianos.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar seno e cosseno',
+            content:
+                'No círculo unitário, cosseno corresponde à coordenada x e seno à coordenada y.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o quadrante',
+            content:
+                'O ângulo de referência determina o valor absoluto, mas o quadrante determina o sinal.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — conversão',
+            problem: 'Converta 225° para radianos.',
+            steps: [
+              '225·π/180.',
+              'Simplifique por 45.',
+            ],
+            result: '225°=5π/4.',
+            interpretation:
+                'O ângulo está no quadrante III.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — valores exatos',
+            problem: 'Determine sen(7π/4) e cos(7π/4).',
+            steps: [
+              '7π/4 está no quadrante IV.',
+              'Ângulo de referência: π/4.',
+              'No IV, seno é negativo e cosseno positivo.',
+            ],
+            result: 'sen(7π/4)=−√2/2 e cos(7π/4)=√2/2.',
+            interpretation:
+                'A simetria evita memorizar uma tabela para cada quadrante.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Converta, localize e calcule',
+            content:
+                '1. Converta 30° para radianos.\n'
+                '2. Converta 300° para radianos.\n'
+                '3. Converta 3π/4 para graus.\n'
+                '4. Converta 11π/6 para graus.\n'
+                '5. Calcule o arco para r=4 e θ=π/2.\n'
+                '6. Determine sen0 e cos0.\n'
+                '7. Determine sen(π/3) e cos(π/3).\n'
+                '8. Determine sen(3π/4) e cos(3π/4).\n'
+                '9. Determine sen(4π/3) e cos(4π/3).\n'
+                '10. Encontre um ângulo coterminal com 17π/6 em [0,2π).\n'
+                '11. Encontre um ângulo positivo coterminal com −5π/4.\n'
+                '12. Determine tan(π/4).\n'
+                '13. Explique por que tan(π/2) não existe.\n'
+                '14. Explique geometricamente por que sen²θ+cos²θ=1.\n'
+                '15. Explique por que radianos são mais naturais que graus em Cálculo.',
+            emphasis:
+                'Mantenha valores exatos com π e radicais; evite aproximações decimais desnecessárias.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Radianos fazem os limites trigonométricos assumirem sua forma natural',
+            content:
+                'O limite fundamental [[math:\\lim_{x\\to0}\\frac{\\sin x}{x}=1]] é verdadeiro nessa forma quando x está em radianos. Essa escolha elimina fatores artificiais nas derivadas de seno e cosseno.',
+            emphasis:
+                'Por isso, fórmulas como d(sen x)/dx=cos x pressupõem radianos.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para radianos, círculo unitário e limites trigonométricos.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Quanto vale 90° em radianos?',
+      question: 'Qual é a medida em radianos de 90°?',
       choices: ['π/4', 'π/2', 'π'],
       correctIndex: 1,
-      explanation: '90° corresponde a um quarto de volta, isto é, π/2 radianos.',
+      explanation:
+          '90° é um quarto de uma volta completa. Como uma volta mede 2π, um quarto mede π/2.',
     ),
     takeaways: [
-      '2π rad correspondem a 360°.',
-      'No círculo unitário, cos θ é a coordenada x.',
-      'sen θ é a coordenada y.',
-      'Radianos são a unidade natural da trigonometria no Cálculo.',
+      'Radianos medem ângulos pela razão entre arco e raio.',
+      'Uma volta completa mede 2π radianos.',
+      'No círculo unitário, cosθ é x e senθ é y.',
+      'Quadrantes determinam os sinais de seno e cosseno.',
+      'Ângulos de referência reduzem cálculos a valores notáveis.',
+      'Ângulos coterminais diferem por múltiplos de 2π.',
+      'Tangente é senθ/cosθ quando cosθ≠0.',
+      'Radianos são essenciais para a formulação natural do Cálculo.',
     ],
-    closing: 'O círculo trigonométrico conecta geometria, gráficos e funções periódicas.',
+    closing:
+        'O círculo trigonométrico transforma ângulos em coordenadas e cria a linguagem geométrica que sustentará todas as funções trigonométricas.',
   ),
   CourseLessonData(
     id: 'funcoes-09-trigonometricas-graficos',
@@ -5262,15 +5602,416 @@ const List<CourseLessonData> _englishLessons = [
         'Logarithms convert multiplicative relationships into additive ones and provide the natural inverse language of exponential functions.',
   ),
   CourseLessonData(
-    id: 'funcoes-08-radianos-circulo', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Radians and the unit circle', description: 'angles, arcs, and unit-circle coordinates', duration: '≈ 20 min', objective: 'convert degrees and radians and interpret sine and cosine on the unit circle', symbol: 'π rad',
+    id: 'funcoes-08-radianos-circulo',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Trigonometry',
+    title: 'Radians and the unit circle',
+    description:
+        'angle measure, arc length, the unit circle, quadrants, reference angles, and periodicity',
+    duration: '≈ 38 min',
+    objective:
+        'understand radians as arc-length-to-radius ratio, convert angle measures, use the unit circle to define sine and cosine, determine signs by quadrant, and obtain exact values for reference angles',
+    symbol: 'θ=s/r',
     sections: [
-      LessonSectionData(number: '1', title: 'Radians measure angle through arc length', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'π rad = 180°', content: 'A full turn is 2π radians or 360°. Thus 90°=π/2, 180°=π, and 270°=3π/2.', emphasis: 'Calculus trigonometric formulas assume radians.'), ConceptBlockData(visual: LessonVisual.graph, title: 'The unit circle converts angle to coordinates', content: 'At angle θ, the unit-circle point is (cos θ, sin θ).')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Convert and locate', problem: 'Convert 150° to radians.', steps: ['Multiply by π/180.', '150π/180 simplifies to 5π/6.'], result: '150°=5π/6.', interpretation: 'This angle lies in quadrant II.')]),
-      LessonSectionData(number: '3', title: 'Reference values', blocks: [ConceptBlockData(visual: LessonVisual.table, title: 'Know the main angles', content: '0, π/6, π/4, π/3, and π/2 anchor exact sine and cosine values.', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'What is a radian',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Angle as arc length divided by radius',
+            content:
+                'If an arc of length s is subtended in a circle of radius r, the central angle in radians is [[math:\\theta=\\frac{s}{r}]].',
+            emphasis:
+                'Radian measure is dimensionless: length divided by length.',
+          ),
+          WorkedExampleBlockData(
+            title: 'One radian',
+            problem: 'When does an angle measure exactly 1 radian?',
+            steps: [
+              'Use θ=s/r.',
+              'If s=r, then θ=r/r=1.',
+            ],
+            result: '1 rad is the angle subtending an arc whose length equals the radius.',
+            interpretation:
+                'The definition comes directly from circle geometry.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'One complete revolution',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '2π rad = 360°',
+            content:
+                'For a full circle, s=2πr. Hence [[math:\\theta=\\frac{2\\pi r}{r}=2\\pi]]. One full revolution therefore measures 2π radians.',
+            emphasis:
+                'Thus π rad=180°, π/2=90°, and π/4=45°.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Converting degrees and radians',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Use π rad = 180°',
+            content:
+                'To convert degrees to radians, multiply by π/180. To convert radians to degrees, multiply by 180/π.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Degrees to radians',
+            problem: 'Convert 150° to radians.',
+            steps: [
+              'Compute 150·π/180.',
+              'Simplify 150/180 to 5/6.',
+            ],
+            result: '150°=5π/6.',
+            interpretation:
+                'Keeping π gives an exact angle measure.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Radians to degrees',
+            problem: 'Convert 7π/4 to degrees.',
+            steps: [
+              'Multiply by 180/π.',
+              '(7π/4)(180/π)=7·45.',
+            ],
+            result: '7π/4=315°.',
+            interpretation:
+                'The factor π cancels naturally.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Arc length',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 's=rθ requires radians',
+            content:
+                'From θ=s/r we obtain [[math:s=r\\theta]]. This simple form is valid only when θ is measured in radians.',
+            emphasis:
+                'Substituting degree values directly into s=rθ gives an incorrect result.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Arc in a circle',
+            problem: 'Find the arc length for radius 6 and angle π/3.',
+            steps: [
+              'Use s=rθ.',
+              's=6·π/3.',
+            ],
+            result: 's=2π.',
+            interpretation:
+                'The result has units of length, not angle.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'The unit circle',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Radius equal to 1',
+            content:
+                'The unit circle is [[math:x^2+y^2=1]]. An angle θ measured from the positive x-axis determines a point P on the circle.',
+            emphasis:
+                'The unit circle converts angles into coordinates.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Sine and cosine as coordinates',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'P(θ)=(cosθ,sinθ)',
+            content:
+                'On the unit circle, the point corresponding to θ has coordinates [[math:P(\\theta)=(\\cos\\theta,\\sin\\theta)]].',
+            emphasis:
+                'Cosine is the x-coordinate; sine is the y-coordinate.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Angle π/2',
+            problem: 'Find sine and cosine of π/2.',
+            steps: [
+              'π/2 corresponds to the top of the unit circle.',
+              'The point is (0,1).',
+            ],
+            result: 'cos(π/2)=0 and sin(π/2)=1.',
+            interpretation:
+                'The coordinates directly provide the trigonometric values.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Quadrants and signs',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Signs come from coordinates',
+            content:
+                'In quadrant I, sine and cosine are positive. In II, sine is positive and cosine negative. In III, both are negative. In IV, sine is negative and cosine positive.',
+            emphasis:
+                'There is no need to memorize isolated sign rules if you read x and y coordinates.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Reference angles',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Reduce to a known acute angle',
+            content:
+                'A reference angle is the smallest positive angle between the terminal side and the x-axis. It lets us use first-quadrant exact values and then adjust only the signs.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quadrant II',
+            problem: 'Find sin(5π/6) and cos(5π/6).',
+            steps: [
+              '5π/6 lies in quadrant II.',
+              'Its reference angle is π/6.',
+              'In quadrant II, sine is positive and cosine negative.',
+            ],
+            result: 'sin(5π/6)=1/2 and cos(5π/6)=−√3/2.',
+            interpretation:
+                'Absolute values come from the reference angle; signs come from the quadrant.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Special angles',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.table,
+            title: '0, π/6, π/4, π/3, and π/2',
+            content:
+                'In quadrant I: cos0=1 and sin0=0; cos(π/6)=√3/2 and sin(π/6)=1/2; cos(π/4)=sin(π/4)=√2/2; cos(π/3)=1/2 and sin(π/3)=√3/2; cos(π/2)=0 and sin(π/2)=1.',
+            emphasis:
+                'These exact values extend to other quadrants through symmetry and sign.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Where exact values come from',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '45°–45°–90° and 30°–60°–90° triangles',
+            content:
+                'The values √2/2, 1/2, and √3/2 are not arbitrary. They come from the geometric ratios of special right triangles associated with the unit circle.',
+            emphasis:
+                'Understanding the origin is more reliable than memorizing an unstructured table.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Coterminal angles',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'The same terminal point',
+            content:
+                'Angles differing by integer multiples of 2π terminate at the same point: [[math:\\theta+2k\\pi]], where k is an integer.',
+            emphasis:
+                'Sine and cosine have period 2π.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Removing one extra revolution',
+            problem: 'Locate 13π/6 on the unit circle.',
+            steps: [
+              'Subtract 2π=12π/6.',
+              '13π/6−12π/6=π/6.',
+            ],
+            result: '13π/6 is coterminal with π/6.',
+            interpretation:
+                'The two angles have the same sine and cosine.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Negative angles',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Clockwise direction',
+            content:
+                'Positive angles are measured counterclockwise; negative angles are measured clockwise.',
+            emphasis:
+                'The unit circle naturally represents every real angle.',
+          ),
+          WorkedExampleBlockData(
+            title: 'A negative angle',
+            problem: 'Find a positive angle coterminal with −π/3.',
+            steps: [
+              'Add 2π.',
+              '−π/3+2π=5π/3.',
+            ],
+            result: '5π/3.',
+            interpretation:
+                '−π/3 and 5π/3 determine the same point.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Tangent on the unit circle',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'tanθ=sinθ/cosθ',
+            content:
+                'Whenever cosθ≠0, [[math:\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}]]. Tangent is undefined where the x-coordinate of the unit-circle point is zero.',
+            emphasis:
+                'This occurs at π/2+kπ.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Using degrees in formulas built for radians',
+            content:
+                's=rθ and the fundamental trigonometric limits assume θ is in radians.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Swapping sine and cosine',
+            content:
+                'On the unit circle, cosine is the x-coordinate and sine is the y-coordinate.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the quadrant',
+            content:
+                'The reference angle gives the absolute value, but the quadrant determines the sign.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — conversion',
+            problem: 'Convert 225° to radians.',
+            steps: [
+              'Compute 225·π/180.',
+              'Reduce by 45.',
+            ],
+            result: '225°=5π/4.',
+            interpretation:
+                'The angle lies in quadrant III.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — exact values',
+            problem: 'Find sin(7π/4) and cos(7π/4).',
+            steps: [
+              '7π/4 lies in quadrant IV.',
+              'Reference angle: π/4.',
+              'In quadrant IV, sine is negative and cosine positive.',
+            ],
+            result: 'sin(7π/4)=−√2/2 and cos(7π/4)=√2/2.',
+            interpretation:
+                'Symmetry avoids memorizing a separate table for each quadrant.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Convert, locate, and calculate',
+            content:
+                '1. Convert 30° to radians.\n'
+                '2. Convert 300° to radians.\n'
+                '3. Convert 3π/4 to degrees.\n'
+                '4. Convert 11π/6 to degrees.\n'
+                '5. Find arc length for r=4 and θ=π/2.\n'
+                '6. Find sin0 and cos0.\n'
+                '7. Find sin(π/3) and cos(π/3).\n'
+                '8. Find sin(3π/4) and cos(3π/4).\n'
+                '9. Find sin(4π/3) and cos(4π/3).\n'
+                '10. Find a coterminal angle for 17π/6 in [0,2π).\n'
+                '11. Find a positive coterminal angle for −5π/4.\n'
+                '12. Find tan(π/4).\n'
+                '13. Explain why tan(π/2) is undefined.\n'
+                '14. Explain geometrically why sin²θ+cos²θ=1.\n'
+                '15. Explain why radians are more natural than degrees in Calculus.',
+            emphasis:
+                'Keep exact values involving π and radicals; avoid unnecessary decimal approximations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Radians give trigonometric limits their natural form',
+            content:
+                'The fundamental limit [[math:\\lim_{x\\to0}\\frac{\\sin x}{x}=1]] holds in this form when x is measured in radians. This choice removes artificial scale factors from derivatives of sine and cosine.',
+            emphasis:
+                'That is why formulas such as d(sin x)/dx=cos x assume radians.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for radians, the unit circle, and trigonometric limits.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: '90° equals:', choices: ['π/4', 'π/2', 'π'], correctIndex: 1, explanation: '90° is one quarter turn, equal to π/2 radians.'),
-    takeaways: ['2π rad=360°.', 'cos θ is the x-coordinate.', 'sin θ is the y-coordinate.', 'Radians are natural in Calculus.'],
-    closing: 'The unit circle connects geometry, graphs, and periodic functions.',
+    check: LessonCheckData(
+      question: 'What is 90° in radians?',
+      choices: ['π/4', 'π/2', 'π'],
+      correctIndex: 1,
+      explanation:
+          '90° is one quarter of a complete revolution. Since a full revolution is 2π, one quarter is π/2.',
+    ),
+    takeaways: [
+      'Radians measure angles through arc length divided by radius.',
+      'One complete revolution is 2π radians.',
+      'On the unit circle, cosθ is x and sinθ is y.',
+      'Quadrants determine the signs of sine and cosine.',
+      'Reference angles reduce calculations to special angles.',
+      'Coterminal angles differ by multiples of 2π.',
+      'Tangent is sinθ/cosθ when cosθ≠0.',
+      'Radians are essential to the natural formulation of Calculus.',
+    ],
+    closing:
+        'The unit circle turns angles into coordinates and creates the geometric language supporting all trigonometric functions.',
   ),
   CourseLessonData(
     id: 'funcoes-09-trigonometricas-graficos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Trigonometric functions and graphs', description: 'sine, cosine, tangent, period, and amplitude', duration: '≈ 20 min', objective: 'interpret domains, ranges, periods, amplitudes, and graphs of sine, cosine, and tangent', symbol: 'sin x',
