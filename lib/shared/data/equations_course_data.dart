@@ -1779,7 +1779,7 @@ const List<CourseLessonData> equationsCourseLessons = [
     ],
     closing:
         'Equações quadráticas deixam de ser apenas uma fórmula quando fatoração, discriminante e geometria são compreendidos como partes da mesma estrutura.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-07-inequacoes',
     topicId: 'equacoes-inequacoes',
