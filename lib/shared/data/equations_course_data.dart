@@ -3,134 +3,480 @@ import 'package:calcquest/shared/domain/course_lesson_data.dart';
 const List<CourseLessonData> equationsCourseLessons = [
   CourseLessonData(
     id: 'equations-01-equilibrio',
-    topicId: 'equacoes-inequacoes',
-    trailTitle: 'Equações e Inequações',
-    eyebrow: 'Fundamentos',
-    title: 'Equações e equilíbrio',
-    description: 'igualdade, incógnita e equivalência',
-    duration: '≈ 5 min',
+    topicId: 'equacoes',
+    trailTitle: 'Equações e inequações',
+    eyebrow: 'Equações',
+    title: 'Equações, igualdade e equivalência',
+    description:
+        'sentido de igualdade, conjunto solução, transformações equivalentes e verificação',
+    duration: '≈ 25 min',
     objective:
-        'compreender uma equação como uma igualdade e preservar seu equilíbrio durante as transformações',
+        'interpretar uma equação como uma afirmação de igualdade, distinguir expressão de equação, compreender conjunto solução e aplicar transformações equivalentes preservando as soluções',
     symbol: '=',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Equação é uma afirmação, não apenas uma conta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Dois membros ligados por igualdade',
+            content:
+                'Uma equação afirma que duas expressões possuem o mesmo valor para determinados valores das variáveis. Em 2x+3=11, 2x+3 é o primeiro membro e 11 é o segundo.',
+            emphasis:
+                'Resolver a equação significa determinar todos os valores que tornam a igualdade verdadeira.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Expressão, identidade e equação',
+            content:
+                '2x+3 é uma expressão. 2(x+1)=2x+2 é uma identidade, pois vale para todo x real. 2x+3=11 é uma equação, pois vale apenas para valores específicos de x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Conjunto solução',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.idea,
-            title: 'Pense em uma balança',
+            title: 'A solução pertence a um universo',
             content:
-                'Uma equação afirma que duas expressões possuem o mesmo valor. '
-                'Resolver a equação significa descobrir quais valores da incógnita '
-                'fazem essa igualdade ser verdadeira.',
+                'O conjunto solução reúne todos os valores do domínio considerado que tornam a equação verdadeira. O universo pode ser ℝ, ℤ ou outro conjunto especificado.',
             emphasis:
-                'Tudo o que você fizer de um lado da equação deve preservar a igualdade.',
+                'Uma resposta completa depende do conjunto numérico em que estamos trabalhando.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Testando uma solução',
+            problem: 'Verifique se x=4 resolve 3x−5=7.',
+            steps: [
+              'Substitua x por 4 no primeiro membro: 3·4−5=12−5=7.',
+              'O segundo membro também vale 7.',
+            ],
+            result: 'x=4 é solução.',
+            interpretation:
+                'Verificar significa voltar à equação original, não apenas confiar nas manipulações feitas.',
           ),
         ],
       ),
       LessonSectionData(
-        number: '2',
-        title: 'Veja funcionando',
+        number: '3',
+        title: 'Equações equivalentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Preservar o mesmo conjunto solução',
+            content:
+                'Duas equações são equivalentes quando possuem o mesmo conjunto solução no universo considerado. Somar ou subtrair a mesma expressão nos dois membros preserva equivalência. Multiplicar ou dividir ambos os membros pelo mesmo número não nulo também preserva equivalência.',
+            emphasis:
+                'Dividir por uma expressão que pode ser zero exige cuidado, porque pode eliminar soluções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Princípio do equilíbrio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Faça a mesma operação nos dois lados',
+            content:
+                'A metáfora da balança é útil: se dois membros são iguais, aplicar a mesma transformação válida aos dois mantém a igualdade.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Isolando a variável',
+            problem: 'Resolva 2x+5=17.',
+            steps: [
+              'Subtraia 5 dos dois membros: 2x=12.',
+              'Divida os dois membros por 2: x=6.',
+              'Verifique: 2·6+5=17.',
+            ],
+            result: 'S={6}.',
+            interpretation:
+                'Cada passo gerou uma equação equivalente à anterior.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Operações reversíveis e não reversíveis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Nem toda transformação preserva equivalência nos dois sentidos',
+            content:
+                'Elevar ambos os membros ao quadrado pode introduzir soluções. Por exemplo, x=−2 implica x²=4, mas x²=4 também admite x=2. Por isso algumas transformações produzem apenas implicações e exigem verificação final.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Modelagem com equações',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Uma operação de cada vez',
-            problem: 'Resolva x + 7 = 12.',
+            title: 'Traduzindo uma situação',
+            problem: 'Um número aumentado de 7 é igual a 19. Determine o número.',
             steps: [
-              'Queremos deixar x sozinho.',
-              'Subtraia 7 dos dois lados: x + 7 − 7 = 12 − 7.',
-              'Simplifique: x = 5.',
-              'Verifique: 5 + 7 = 12.',
+              'Defina x como o número desconhecido.',
+              'Traduza: x+7=19.',
+              'Subtraia 7: x=12.',
+              'Verifique: 12+7=19.',
             ],
-            result: 'A solução é x = 5.',
+            result: 'O número é 12.',
             interpretation:
-                'Subtrair 7 dos dois lados produziu uma equação equivalente.',
+                'Uma equação liga linguagem verbal a uma relação matemática verificável.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros conceituais frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Trocar termos de lado não é uma regra fundamental',
+            content:
+                'A frase “passa para o outro lado trocando o sinal” é um atalho. O fundamento real é somar ou subtrair a mesma quantidade nos dois membros.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não divida por zero',
+            content:
+                'Divisão por zero não está definida. Ao dividir por uma expressão variável, verifique antes se ela pode ser zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Justifique cada transformação',
+            content:
+                '1. Diga se 3x+1 é expressão ou equação.\n'
+                '2. Verifique se x=2 resolve 4x−1=7.\n'
+                '3. Resolva x+9=14.\n'
+                '4. Resolva 5x=30.\n'
+                '5. Resolva 3x−4=11.\n'
+                '6. Explique por que somar 6 aos dois membros preserva soluções.\n'
+                '7. Explique por que dividir por zero é proibido.\n'
+                '8. Determine o conjunto solução de 2x+3=2x+3.\n'
+                '9. Determine o conjunto solução de 2x+3=2x+5.\n'
+                '10. Dê um exemplo de identidade.\n'
+                '11. Dê um exemplo de equação com uma solução real.\n'
+                '12. Verifique a solução de 7−2x=1.\n'
+                '13. Explique por que elevar ao quadrado pode criar soluções.\n'
+                '14. Modele: “o dobro de um número menos 3 é 9”.\n'
+                '15. Diferencie solução obtida e solução verificada.',
+            emphasis:
+                'Nas questões conceituais, responda com uma frase matemática completa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Resolver equações é encontrar interseções e zeros',
+            content:
+                'A equação f(x)=g(x) procura pontos em que duas funções têm o mesmo valor. A equação f(x)=0 procura zeros. Essas ideias reaparecem em gráficos, limites, derivadas e otimização.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para interpretação de zeros e interseções.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Se x − 4 = 9, qual operação isola x?',
+      question: 'Qual operação sempre preserva equivalência em uma equação?',
       choices: [
-        'Subtrair 4 dos dois lados',
-        'Somar 4 aos dois lados',
-        'Multiplicar os dois lados por 4',
+        'Somar o mesmo número aos dois membros',
+        'Dividir ambos os membros por zero',
+        'Elevar ao quadrado sem verificar',
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
-          'Somando 4 aos dois membros, obtemos x = 13 sem alterar a igualdade.',
+          'Somar a mesma quantidade aos dois membros preserva a igualdade e o conjunto solução.',
     ),
     takeaways: [
-      'Equação representa uma igualdade.',
-      'A incógnita é o valor que queremos determinar.',
-      'Operações equivalentes preservam a igualdade.',
-      'A solução deve tornar a equação original verdadeira.',
+      'Uma equação é uma afirmação de igualdade.',
+      'Soluções tornam a equação verdadeira no universo considerado.',
+      'Equações equivalentes possuem o mesmo conjunto solução.',
+      'Operações feitas nos dois membros devem preservar equivalência.',
+      'Algumas transformações exigem verificação final.',
+      'Resolver equações conecta álgebra, funções e zeros.',
     ],
     closing:
-        'Resolver uma equação é preservar o equilíbrio até que a incógnita fique isolada.',
-  ),
+        'Resolver uma equação é preservar logicamente uma igualdade até que suas soluções fiquem explícitas.',
+  )
   CourseLessonData(
     id: 'equations-02-primeiro-grau',
-    topicId: 'equacoes-inequacoes',
-    trailTitle: 'Equações e Inequações',
+    topicId: 'equacoes',
+    trailTitle: 'Equações e inequações',
     eyebrow: 'Equações lineares',
     title: 'Equações do primeiro grau',
-    description: 'operações inversas e isolamento',
-    duration: '≈ 5 min',
+    description:
+        'forma ax+b=c, isolamento da incógnita, coeficientes e interpretação',
+    duration: '≈ 28 min',
     objective:
-        'resolver equações lineares usando operações inversas de forma organizada',
-    symbol: 'ax+b',
+        'resolver equações lineares em uma variável, interpretar coeficientes, organizar termos, verificar soluções e modelar problemas simples',
+    symbol: 'ax+b=0',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Construa uma estratégia',
+        title: 'Forma linear',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Desfaça as operações na ordem certa',
+            visual: LessonVisual.notation,
+            title: 'A variável aparece com expoente 1',
             content:
-                'Em uma equação como 3x + 4 = 19, a incógnita foi primeiro '
-                'multiplicada por 3 e depois recebeu 4. Para isolá-la, fazemos '
-                'o caminho inverso: retiramos 4 e depois dividimos por 3.',
+                'Uma equação linear em x pode ser organizada na forma ax+b=0, com a e b reais e a ≠ 0. Nessa situação existe exatamente uma solução real: x=−b/a.',
             emphasis:
-                'Não existe “passar para o outro lado”. Existem operações inversas aplicadas aos dois membros.',
+                'O caso a=0 precisa ser analisado separadamente, pois deixa de ser uma equação linear genuína.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Resolva passo a passo',
+        title: 'Isolamento passo a passo',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Duas operações',
-            problem: 'Resolva 5x − 7 = 18.',
+            title: 'Coeficiente positivo',
+            problem: 'Resolva 4x−7=13.',
             steps: [
-              'Some 7 aos dois lados: 5x = 25.',
-              'Divida os dois lados por 5: x = 5.',
-              'Substitua na equação original: 5·5 − 7 = 18.',
+              'Some 7 aos dois membros: 4x=20.',
+              'Divida ambos os membros por 4: x=5.',
+              'Verifique: 4·5−7=13.',
             ],
-            result: 'x = 5.',
+            result: 'S={5}.',
             interpretation:
-                'A verificação confirma que o valor encontrado satisfaz a equação.',
+                'A solução é o único valor que torna a igualdade verdadeira.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Coeficiente negativo',
+            problem: 'Resolva −3x+8=20.',
+            steps: [
+              'Subtraia 8: −3x=12.',
+              'Divida por −3: x=−4.',
+              'Verifique: −3(−4)+8=20.',
+            ],
+            result: 'S={−4}.',
+            interpretation:
+                'Dividir por número negativo não altera uma igualdade, ao contrário do que acontece com inequações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Variável nos dois membros',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Agrupe variáveis e constantes',
+            content:
+                'Quando x aparece nos dois membros, use operações equivalentes para reunir os termos com x em um lado e as constantes no outro.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Variável dos dois lados',
+            problem: 'Resolva 5x−2=2x+10.',
+            steps: [
+              'Subtraia 2x dos dois membros: 3x−2=10.',
+              'Some 2: 3x=12.',
+              'Divida por 3: x=4.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'Não é necessário “mover” termos; usamos operações iguais nos dois lados.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equações com decimais',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Eliminando decimais',
+            problem: 'Resolva 0,2x+1,5=2,3.',
+            steps: [
+              'Subtraia 1,5: 0,2x=0,8.',
+              'Divida por 0,2: x=4.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'Também seria possível multiplicar toda a equação por 10 antes de começar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Modelagem linear',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Preço fixo mais custo variável',
+            problem: 'Uma corrida custa R$ 6 de taxa fixa mais R$ 2,50 por quilômetro. Se o total foi R$ 26, quantos quilômetros foram percorridos?',
+            steps: [
+              'Defina x como a distância em quilômetros.',
+              'Modele: 6+2,5x=26.',
+              'Subtraia 6: 2,5x=20.',
+              'Divida por 2,5: x=8.',
+            ],
+            result: 'Foram percorridos 8 km.',
+            interpretation:
+                'O coeficiente de x representa a taxa de variação do preço por quilômetro.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Interpretação gráfica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Uma equação linear pode representar uma interseção',
+            content:
+                'Resolver ax+b=c equivale a encontrar o x em que a reta y=ax+b encontra a reta horizontal y=c.',
+            emphasis:
+                'A solução algébrica corresponde a uma coordenada de interseção no gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Alterar apenas um membro',
+            content:
+                'Somar, subtrair, multiplicar ou dividir apenas um lado da equação geralmente destrói a equivalência.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Perder o sinal do coeficiente',
+            content:
+                'Em −4x=12, a solução é x=−3. O sinal negativo pertence ao coeficiente e deve acompanhar a divisão.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Resolva 7x+5=3x+21.',
+            steps: [
+              'Subtraia 3x: 4x+5=21.',
+              'Subtraia 5: 4x=16.',
+              'Divida por 4.',
+            ],
+            result: 'x=4.',
+            interpretation:
+                'Cada etapa reduz a complexidade mantendo equivalência.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Resolva 2,4x−1,2=6.',
+            steps: [
+              'Some 1,2: 2,4x=7,2.',
+              'Divida por 2,4.',
+            ],
+            result: 'x=3.',
+            interpretation:
+                'Decimais não mudam a lógica da resolução.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e verifique',
+            content:
+                '1. x+8=15.\n'
+                '2. 3x=27.\n'
+                '3. 4x−5=19.\n'
+                '4. −2x+7=15.\n'
+                '5. 5x+1=2x+16.\n'
+                '6. 9−3x=18.\n'
+                '7. 0,5x+2=7.\n'
+                '8. 1,2x−0,6=3.\n'
+                '9. 7x−4=7x+1.\n'
+                '10. 6x+3=6x+3.\n'
+                '11. Modele: o triplo de um número mais 2 é 20.\n'
+                '12. Modele um custo fixo de 10 mais 4 por unidade totalizando 42.\n'
+                '13. Explique o significado gráfico de ax+b=c.\n'
+                '14. Verifique x=−3 em −4x=12.\n'
+                '15. Explique por que a ≠ 0 na forma ax+b=0.',
+            emphasis:
+                'Nas questões 9 e 10, observe se a equação possui uma, nenhuma ou infinitas soluções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Linearidade é o primeiro modelo de taxa constante',
+            content:
+                'A função y=ax+b descreve taxa constante. No Cálculo, a derivada mede taxas locais e a reta tangente fornece uma aproximação linear. Equações lineares são a linguagem básica dessas ideias.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para funções lineares e aproximação.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é a solução de 4x + 3 = 19?',
-      choices: ['x = 4', 'x = 5', 'x = 16'],
-      correctIndex: 0,
-      explanation: 'Subtraindo 3, temos 4x = 16. Dividindo por 4, x = 4.',
+      question: 'Qual é a solução de 3x−4=11?',
+      choices: ['3', '5', '7'],
+      correctIndex: 1,
+      explanation:
+          'Somando 4 aos dois membros, 3x=15. Dividindo por 3, x=5.',
     ),
     takeaways: [
-      'Use operações inversas.',
-      'Elimine primeiro soma ou subtração.',
-      'Depois elimine multiplicação ou divisão.',
-      'Sempre que possível, verifique a resposta.',
+      'Equações lineares genuínas têm a forma ax+b=0 com a ≠ 0.',
+      'Isolar a variável exige operações equivalentes.',
+      'Termos com variável podem aparecer nos dois membros.',
+      'Decimais não alteram a lógica algébrica.',
+      'Modelos lineares representam taxas constantes.',
+      'A solução pode ser interpretada como interseção de retas.',
     ],
     closing:
-        'Organização é mais importante que velocidade ao resolver equações.',
-  ),
+        'Resolver uma equação linear é transformar uma relação até tornar explícito o único valor compatível com ela.',
+  )
   CourseLessonData(
     id: 'equations-03-parenteses-fracoes',
     topicId: 'equacoes-inequacoes',
