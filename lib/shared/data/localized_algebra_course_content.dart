@@ -1122,6 +1122,562 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         'Exponent laws are structural rules: they work only when the operation and the base are identified correctly.',
   )
   CourseLessonData(
+    id: 'algebra-09-monomios-polinomios',
+    topicId: 'algebra-fundamental',
+    trailTitle: 'Fundamental Algebra',
+    eyebrow: 'Algebra and factoring',
+    title: 'Monomials and polynomials',
+    description:
+        'structure, terms, coefficients, degree, standard form, and recognizing polynomial expressions',
+    duration: '≈ 28 min',
+    objective:
+        'recognize monomials and polynomials, identify coefficients and terms, determine degree, write polynomials in standard form, and distinguish polynomial from non-polynomial expressions',
+    symbol: 'P(x)',
+    sections: [
+      LessonSectionData(
+        number: '1',
+        title: 'What is a monomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A coefficient times powers of variables',
+            content:
+                'A monomial has the form ax₁ⁿ¹x₂ⁿ²…xₖⁿᵏ, where a is real and the variable exponents are nonnegative integers. Examples include 5x³, −2ab², and 7.',
+            emphasis:
+                'Negative exponents, variables in denominators, and roots of variables fall outside polynomial monomials.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Classifying expressions',
+            problem: 'Which are monomials: 4x², 3/x, −5xy³, √x, and 8?',
+            steps: [
+              '4x² has a nonnegative integer exponent: monomial.',
+              '3/x=3x⁻¹: not a polynomial monomial.',
+              '−5xy³ has exponents 1 and 3: monomial.',
+              '√x=x^(1/2): not a polynomial monomial.',
+              '8 is a constant and a degree-zero monomial.',
+            ],
+            result: 'Monomials: 4x², −5xy³, and 8.',
+            interpretation:
+                'Classification depends on exponent structure rather than visual complexity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Degree of a monomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Add variable exponents',
+            content:
+                'In one variable, the degree of axⁿ with a ≠ 0 is n. In several variables, total degree is the sum of exponents. Thus 3x²y⁴ has total degree 6.',
+            emphasis:
+                'A nonzero constant has degree 0. The zero monomial is usually left without a degree in elementary treatment.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'What is a polynomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A finite sum of monomials',
+            content:
+                'A polynomial is a finite sum of monomials. In one variable, P(x)=aₙxⁿ+aₙ₋₁xⁿ⁻¹+…+a₁x+a₀ with nonnegative integer exponents.',
+            emphasis:
+                'The numbers a₀,a₁,…,aₙ are coefficients. If aₙ ≠ 0, it is the leading coefficient.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Monomial, binomial, trinomial',
+            content:
+                'A reduced polynomial with one term is a monomial, with two terms a binomial, and with three a trinomial. “Polynomial” remains the general name.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Reduced form and standard form',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Reduce first, then order',
+            content:
+                'To write a polynomial in standard form, combine like terms and order them from highest to lowest degree.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Organizing a polynomial',
+            problem: 'Write 3x−2x³+5+4x³−x in standard form.',
+            steps: [
+              'Cubic terms: −2x³+4x³=2x³.',
+              'Linear terms: 3x−x=2x.',
+              'Keep the constant 5.',
+            ],
+            result: '2x³+2x+5.',
+            interpretation:
+                'The missing x² term has coefficient zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Degree and leading coefficient',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Reading the structure',
+            problem: 'Analyze P(x)=−4x⁵+2x³−7x+9.',
+            steps: [
+              'The largest exponent is 5.',
+              'The degree is 5.',
+              'The leading coefficient is −4.',
+              'The constant term is 9.',
+            ],
+            result: 'Degree 5, leading coefficient −4, constant term 9.',
+            interpretation:
+                'These features help predict global graph behavior.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Polynomials in several variables',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Total degree',
+            content:
+                'In P(x,y)=3x²y+5xy³−2, the terms have total degrees 3, 4, and 0. Therefore the polynomial has total degree 4.',
+            emphasis:
+                'For multivariable polynomials, distinguish degree in one variable from total degree.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Expressions that are not polynomials',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Recognize the structural restrictions',
+            content:
+                '1/x, x⁻², √x, x^(3/2), sin x, and 2ˣ are not polynomials in x because they are not finite sums of nonnegative integer powers of x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Zeros and polynomial evaluation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Substitution produces P(a)',
+            content:
+                'Evaluating a polynomial means substituting a value for its variable. A number r is a zero or root when P(r)=0.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Evaluating a polynomial',
+            problem: 'For P(x)=x³−4x+1, find P(2).',
+            steps: [
+              'P(2)=2³−4·2+1.',
+              '2³=8.',
+              '8−8+1=1.',
+            ],
+            result: 'P(2)=1.',
+            interpretation:
+                'Since P(2) ≠ 0, 2 is not a root.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing number of terms with degree',
+            content:
+                'x⁷+2 has two terms but degree 7. “Binomial” counts terms; degree concerns exponents.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Determining degree before reduction',
+            content:
+                'In 3x⁴−3x⁴+x², the degree-four terms cancel. The reduced polynomial is x² and has degree 2.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Classify, reduce, and interpret',
+            content:
+                '1. Classify 7x³ and state its degree.\n'
+                '2. Find the total degree of −4x²y⁵.\n'
+                '3. Decide whether 3/x is a polynomial monomial.\n'
+                '4. Decide whether √x+1 is a polynomial.\n'
+                '5. Reduce 2x²+3x−x²+5x.\n'
+                '6. Put 4−x³+2x in standard form.\n'
+                '7. Find the degree of 5x⁶−x²+1.\n'
+                '8. Identify the leading coefficient of −2x⁴+7x−3.\n'
+                '9. Identify the constant term of x⁵−9.\n'
+                '10. Find the total degree of 3x²y⁴.\n'
+                '11. Find the total degree of P(x,y)=x³y+xy²+1.\n'
+                '12. Evaluate P(−1) for P(x)=2x³−x+4.\n'
+                '13. Check whether x=2 is a root of x²−5x+6.\n'
+                '14. Explain why 2ˣ is not a polynomial in x.\n'
+                '15. Reduce 3x⁴−3x⁴+2x² and state the final degree.',
+            emphasis:
+                'Always reduce a polynomial before declaring its degree.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Polynomials are central functions in Calculus',
+            content:
+                'Polynomial functions are continuous for every real input, differentiate term by term, and serve as fundamental models. Degree, leading coefficient, and zeros anticipate graph and end-behavior information.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas’ Calculus for connections between polynomials, functions, and Calculus.',
+          ),
+        ],
+      ),
+    ],
+    check: LessonCheckData(
+      question: 'What is the degree of P(x)=4x⁵−2x³+x−7?',
+      choices: ['3', '4', '5'],
+      correctIndex: 2,
+      explanation:
+          'The largest exponent of x with nonzero coefficient is 5.',
+    ),
+    takeaways: [
+      'Polynomial monomials use nonnegative integer exponents.',
+      'A polynomial is a finite sum of monomials.',
+      'Standard form orders terms by descending degree.',
+      'Degree is determined after combining like terms.',
+      'Leading coefficient and constant term are key structural features.',
+      'Zeros are values r for which P(r)=0.',
+    ],
+    closing:
+        'Recognizing polynomial structure is the first step toward operating on, factoring, and interpreting polynomial functions.',
+  )
+  CourseLessonData(
+    id: 'algebra-10-operacoes-polinomios',
+    topicId: 'algebra-fundamental',
+    trailTitle: 'Fundamental Algebra',
+    eyebrow: 'Algebra and factoring',
+    title: 'Polynomial operations',
+    description:
+        'addition, subtraction, multiplication, division by a monomial, and structural evaluation',
+    duration: '≈ 30 min',
+    objective:
+        'add, subtract, and multiply polynomials, divide by monomials when valid, write results in standard form, and justify each operation',
+    symbol: 'P±Q',
+    sections: [
+      LessonSectionData(
+        number: '1',
+        title: 'Polynomial addition',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Combine only like terms',
+            content:
+                'Adding polynomials means collecting terms with the same literal part and exponent. Terms of different degrees cannot be merged into one term.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Adding two polynomials',
+            problem: 'Add P(x)=3x²−2x+5 and Q(x)=−x²+4x−7.',
+            steps: [
+              'Quadratic terms: 3x²−x²=2x².',
+              'Linear terms: −2x+4x=2x.',
+              'Constants: 5−7=−2.',
+            ],
+            result: 'P(x)+Q(x)=2x²+2x−2.',
+            interpretation:
+                'Organizing terms by degree reduces incompatible combinations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Polynomial subtraction',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'The minus sign affects the entire second polynomial',
+            content:
+                'P(x)−Q(x)=P(x)+[−Q(x)]. Distribute −1 through every term of Q before combining like terms.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Subtracting safely',
+            problem: 'Compute (2x²+3x−1)−(x²−5x+4).',
+            steps: [
+              'Distribute the minus: 2x²+3x−1−x²+5x−4.',
+              'Combine quadratic, linear, and constant terms.',
+            ],
+            result: 'x²+8x−5.',
+            interpretation:
+                'Changing only the first sign of the second polynomial is a common error.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplication by a monomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Use distribution and exponent laws',
+            content:
+                'A monomial multiplying a polynomial must distribute to every term. Coefficients and literal powers are then simplified.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Monomial times polynomial',
+            problem: 'Compute −3x²(2x³−x+4).',
+            steps: [
+              '−3x²·2x³=−6x⁵.',
+              '−3x²·(−x)=3x³.',
+              '−3x²·4=−12x².',
+            ],
+            result: '−6x⁵+3x³−12x².',
+            interpretation:
+                'The outside factor acts on coefficient and literal part of each term.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Polynomial multiplication',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Every term multiplies every term',
+            content:
+                'Multiply polynomials by repeated distribution, then combine like terms and order the result.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Binomial times trinomial',
+            problem: 'Expand (x−2)(x²+3x+4).',
+            steps: [
+              'x(x²+3x+4)=x³+3x²+4x.',
+              '−2(x²+3x+4)=−2x²−6x−8.',
+              'Combine like terms.',
+            ],
+            result: 'x³+x²−2x−8.',
+            interpretation:
+                'The product degree is the sum of degrees when leading coefficients do not cancel.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Degree under operations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Sums and products behave differently',
+            content:
+                'For nonzero polynomials, degree(PQ)=degree(P)+degree(Q). In a sum, the degree can drop if leading terms cancel.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Leading-term cancellation',
+            problem: 'Find the degree of (3x⁴+x)+(−3x⁴+2x²).',
+            steps: [
+              'The degree-four terms cancel.',
+              'The result is 2x²+x.',
+            ],
+            result: 'The sum has degree 2.',
+            interpretation:
+                'The degree of a sum is not always the larger original degree.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Division by a monomial',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Divide term by term',
+            content:
+                'When a polynomial is divided by a nonzero monomial, each term may be divided separately where the expression is defined.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Term-by-term division',
+            problem: 'Simplify (12x⁵−6x³+3x²)/(3x²), with x ≠ 0.',
+            steps: [
+              '12x⁵/(3x²)=4x³.',
+              '−6x³/(3x²)=−2x.',
+              '3x²/(3x²)=1.',
+            ],
+            result: '4x³−2x+1, with x ≠ 0.',
+            interpretation:
+                'The original domain restriction must be retained.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Evaluation after operations',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Operate first or evaluate first',
+            problem: 'If P(x)=x²+1 and Q(x)=2x−3, find (P+Q)(2).',
+            steps: [
+              '(P+Q)(x)=x²+2x−2.',
+              'At x=2: 4+4−2=6.',
+              'Alternatively, P(2)=5 and Q(2)=1.',
+            ],
+            result: '(P+Q)(2)=6.',
+            interpretation:
+                'Both routes agree because evaluation is compatible with polynomial addition.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Adding exponents in a sum',
+            content:
+                'x²+x³ is not x⁵. Exponents are added only in products of equal bases.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting cross products',
+            content:
+                '(x+2)(x+3) is not x²+6. The cross terms produce 5x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — addition and subtraction',
+            problem: 'Compute (4x²−x+2)−(x²+3x−5).',
+            steps: [
+              'Distribute the negative sign.',
+              'Combine like terms.',
+            ],
+            result: '3x²−4x+7.',
+            interpretation:
+                'Organizing by degree makes each combination visible.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — product',
+            problem: 'Expand (2x+1)(x²−x+3).',
+            steps: [
+              '2x(x²−x+3)=2x³−2x²+6x.',
+              '1(x²−x+3)=x²−x+3.',
+              'Combine.',
+            ],
+            result: '2x³−x²+5x+3.',
+            interpretation:
+                'The final result is reduced and written in standard form.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Operate and write every result in standard form',
+            content:
+                '1. (2x+3)+(5x−1).\n'
+                '2. (3x²−2x+4)+(−x²+x−6).\n'
+                '3. (x²+5x)−(2x²−x+1).\n'
+                '4. 4x(x²−3x+2).\n'
+                '5. −2a²(3a−4).\n'
+                '6. (x+4)(x−1).\n'
+                '7. (2x−3)(x+5).\n'
+                '8. (x−2)(x²+x+1).\n'
+                '9. (3x+1)(2x²−x+4).\n'
+                '10. (15x⁴−10x³+5x²)/(5x²).\n'
+                '11. Find the degree of (x³+1)(2x²−x).\n'
+                '12. Give an example where degree(P+Q) is lower than both original degrees.\n'
+                '13. Find (P+Q)(1) for P(x)=x² and Q(x)=3x−2.\n'
+                '14. Explain why (x+1)(x+1) is not x²+1.\n'
+                '15. Verify question 7 by substituting x=1 before and after expansion.',
+            emphasis:
+                'Use numerical substitution as a checking strategy when appropriate.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Polynomial algebra appears throughout Calculus',
+            content:
+                'Difference quotients, limits, derivatives, and polynomial approximations rely on expansion, reduction, and factoring. These operations are part of Calculus reasoning, not separate from it.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e and College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas’ Calculus for polynomial manipulation in limits and derivatives.',
+          ),
+        ],
+      ),
+    ],
+    check: LessonCheckData(
+      question: 'What is (x+2)(x−3)?',
+      choices: ['x²−x−6', 'x²−6', 'x²+x−6'],
+      correctIndex: 0,
+      explanation:
+          'By distribution: x²−3x+2x−6=x²−x−6.',
+    ),
+    takeaways: [
+      'Addition and subtraction combine only like terms.',
+      'In subtraction, the minus sign affects the entire second polynomial.',
+      'Multiplication distributes every term across every term.',
+      'The degree of a product adds the degrees of nonzero factors.',
+      'The degree of a sum can drop through cancellation.',
+      'Division by a monomial requires preserving domain restrictions.',
+    ],
+    closing:
+        'Reliable polynomial operations begin with organizing structure before carrying out arithmetic.',
+  )
+  CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
     trailTitle: 'Fundamental Algebra',
