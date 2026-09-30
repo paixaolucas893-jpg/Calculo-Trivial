@@ -1393,7 +1393,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Solving a system means finding values that make several conditions true at the same time.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-06-quadraticas',
     topicId: 'equacoes-inequacoes',
