@@ -482,63 +482,317 @@ const List<CourseLessonData> equationsCourseLessons = [
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e Inequações',
     eyebrow: 'Equações lineares',
-    title: 'Parênteses e frações',
-    description: 'distributiva e denominadores',
-    duration: '≈ 5 min',
+    title: 'Equações com parênteses e frações',
+    description:
+        'distributiva, denominadores, mínimo múltiplo comum e preservação do domínio',
+    duration: '≈ 32 min',
     objective:
-        'resolver equações com parênteses e frações preparando a expressão antes de isolar a incógnita',
+        'resolver equações lineares com parênteses e frações, eliminar denominadores com segurança, preservar restrições e organizar a expressão antes de isolar a incógnita',
     symbol: 'x/3',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Prepare antes de isolar',
+        title: 'Prepare a estrutura antes de isolar x',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Simplifique a estrutura',
+            title: 'Simplificar primeiro reduz erros',
             content:
-                'Quando aparecem parênteses ou frações, simplifique a expressão '
-                'antes de tentar deixar x sozinho. Use distributiva, reduza termos '
-                'semelhantes ou elimine denominadores.',
+                'Quando uma equação contém parênteses, frações ou vários termos, a estratégia mais segura é organizar a estrutura antes de tentar isolar a variável. Isso pode exigir distributiva, redução de termos semelhantes ou eliminação de denominadores.',
             emphasis:
-                'Uma equação complicada pode se transformar em uma equação linear simples.',
+                'Uma equação visualmente complexa pode se reduzir a uma equação linear comum.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Parênteses e distributiva',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Distribua para todos os termos',
+            content:
+                'Em a(b+c)=ab+ac, o fator externo multiplica cada termo interno. Um sinal negativo antes do parêntese equivale a multiplicar todo o agrupamento por −1.',
+            emphasis:
+                'Remover parênteses sem distribuir corretamente altera a equação.',
+          ),
           WorkedExampleBlockData(
             title: 'Parênteses nos dois membros',
-            problem: 'Resolva 3(x + 1) = 2x + 7.',
+            problem: 'Resolva 3(x+1)=2x+7.',
             steps: [
-              'Aplique a distributiva: 3x + 3 = 2x + 7.',
-              'Subtraia 2x dos dois lados: x + 3 = 7.',
-              'Subtraia 3 dos dois lados: x = 4.',
+              'Aplique a distributiva: 3x+3=2x+7.',
+              'Subtraia 2x dos dois membros: x+3=7.',
+              'Subtraia 3: x=4.',
+              'Verifique na equação original: 3(5)=15 e 2·4+7=15.',
             ],
-            result: 'x = 4.',
-            interpretation: 'A distributiva revelou uma equação linear comum.',
+            result: 'S={4}.',
+            interpretation:
+                'A distributiva revelou uma equação linear simples.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sinal negativo antes do parêntese',
+            problem: 'Resolva 5−2(x−3)=9.',
+            steps: [
+              'Distribua −2: 5−2x+6=9.',
+              'Combine constantes: 11−2x=9.',
+              'Subtraia 11: −2x=−2.',
+              'Divida por −2: x=1.',
+            ],
+            result: 'S={1}.',
+            interpretation:
+                'O termo −3 mudou de efeito porque foi multiplicado por −2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Frações simples',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Multiplicar por um denominador pode simplificar a equação',
+            content:
+                'Se uma equação contém uma fração como x/5, multiplicar todos os membros por 5 elimina esse denominador sem alterar o conjunto solução.',
+            emphasis:
+                'A multiplicação deve atingir todos os termos dos dois membros.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Uma fração',
+            problem: 'Resolva x/5+2=6.',
+            steps: [
+              'Subtraia 2: x/5=4.',
+              'Multiplique ambos os membros por 5.',
+            ],
+            result: 'x=20.',
+            interpretation:
+                'A fração pode ser eliminada por uma operação equivalente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Múltiplos denominadores e MMC',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Use o mínimo múltiplo comum',
+            content:
+                'Quando aparecem denominadores numéricos diferentes, multiplicar toda a equação pelo MMC dos denominadores elimina todas as frações em uma única etapa.',
+            emphasis:
+                'O MMC reduz o número de operações e ajuda a evitar erros aritméticos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Eliminando dois denominadores',
+            problem: 'Resolva x/3+x/4=7.',
+            steps: [
+              'MMC(3,4)=12.',
+              'Multiplique toda a equação por 12.',
+              '12·x/3 + 12·x/4 = 12·7.',
+              'Obtenha 4x+3x=84.',
+              'Então 7x=84 e x=12.',
+            ],
+            result: 'S={12}.',
+            interpretation:
+                'A equação fracionária foi convertida em uma equação inteira equivalente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Frações com expressões no numerador',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Agrupamento no numerador',
+            problem: 'Resolva (x+2)/3=(2x−1)/5.',
+            steps: [
+              'MMC(3,5)=15.',
+              'Multiplique ambos os membros por 15.',
+              'Obtenha 5(x+2)=3(2x−1).',
+              'Distribua: 5x+10=6x−3.',
+              'Subtraia 5x: 10=x−3.',
+              'Some 3: x=13.',
+            ],
+            result: 'S={13}.',
+            interpretation:
+                'Eliminar denominadores pode produzir parênteses que precisam ser distribuídos em seguida.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Denominadores com variável',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Determine o domínio antes de multiplicar',
+            content:
+                'Se a variável aparece no denominador, valores que zeram o denominador são proibidos. Essas restrições devem ser registradas antes de qualquer simplificação.',
+            emphasis:
+                'Multiplicar pela expressão denominadora não restaura valores excluídos do domínio.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Restrição de domínio',
+            problem: 'Resolva 2/(x−1)=1, com x ≠ 1.',
+            steps: [
+              'Registre a restrição x ≠ 1.',
+              'Multiplique ambos os membros por x−1.',
+              'Obtenha 2=x−1.',
+              'Some 1: x=3.',
+              'Verifique que 3 respeita a restrição.',
+            ],
+            result: 'S={3}.',
+            interpretation:
+                'A condição x ≠ 1 pertence à equação original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Uma estratégia geral',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Ordem recomendada',
+            content:
+                '1) determine restrições de domínio; 2) aplique distributiva quando necessário; 3) elimine denominadores; 4) reduza termos semelhantes; 5) reúna termos com variável; 6) isole a variável; 7) verifique a solução na equação original.',
+            emphasis:
+                'A ordem pode variar, mas domínio e verificação nunca devem ser ignorados.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Multiplicar apenas parte da equação pelo MMC',
+            content:
+                'Ao eliminar denominadores, o fator escolhido deve multiplicar todos os termos dos dois membros, não apenas as frações.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar termos dentro de uma soma',
+            content:
+                'Em (x+2)/x, não podemos cancelar x com apenas um termo do numerador. Cancelamento exige fatores comuns.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer restrições de domínio',
+            content:
+                'Se x=1 zera um denominador original, esse valor continua proibido mesmo que o denominador desapareça após uma transformação.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — parênteses',
+            problem: 'Resolva 2(3x−1)+4=x+15.',
+            steps: [
+              'Distribua: 6x−2+4=x+15.',
+              'Reduza: 6x+2=x+15.',
+              'Subtraia x: 5x+2=15.',
+              'Subtraia 2: 5x=13.',
+            ],
+            result: 'x=13/5.',
+            interpretation:
+                'Nem toda equação linear produz solução inteira.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — frações',
+            problem: 'Resolva (x−1)/2+(x+3)/4=5.',
+            steps: [
+              'MMC(2,4)=4.',
+              'Multiplique tudo por 4: 2(x−1)+(x+3)=20.',
+              'Distribua e reduza: 2x−2+x+3=20.',
+              '3x+1=20.',
+              '3x=19.',
+            ],
+            result: 'x=19/3.',
+            interpretation:
+                'O MMC elimina as frações sem exigir cálculo decimal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva e verifique',
+            content:
+                '1. 2(x+4)=18.\n'
+                '2. 3(x−2)+5=14.\n'
+                '3. 5−(x+1)=2.\n'
+                '4. 4−2(3x−1)=10.\n'
+                '5. x/3+2=7.\n'
+                '6. x/4+x/2=9.\n'
+                '7. (x+1)/2=5.\n'
+                '8. (2x−3)/5=(x+1)/2.\n'
+                '9. x/6−x/4=1.\n'
+                '10. 2/(x−3)=1, com domínio adequado.\n'
+                '11. Determine a restrição de 1/(x+2)=3.\n'
+                '12. Explique por que o MMC deve multiplicar todos os termos.\n'
+                '13. Resolva 2(x−1)/3 + x/2 = 5.\n'
+                '14. Verifique a solução de (x+2)/3=(2x−1)/5.\n'
+                '15. Explique por que domínio deve ser analisado antes da simplificação.',
+            emphasis:
+                'Nas equações com variável no denominador, escreva primeiro os valores proibidos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Frações e restrições aparecem continuamente no Cálculo',
+            content:
+                'Funções racionais, limites e quocientes incrementais exigem manipulação segura de denominadores. A prática de registrar domínio antes de simplificar prepara diretamente esses tópicos.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas para funções racionais, domínio e limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Se x/5 + 2 = 6, qual é o valor de x?',
+      question: 'Qual é a solução de x/5+2=6?',
       choices: ['4', '8', '20'],
       correctIndex: 2,
       explanation:
-          'Subtraindo 2, x/5 = 4. Multiplicando por 5, obtemos x = 20.',
+          'Subtraindo 2, obtemos x/5=4. Multiplicando os dois membros por 5, x=20.',
     ),
     takeaways: [
-      'Resolva parênteses com distributiva.',
-      'Reduza termos semelhantes.',
-      'Elimine denominadores quando isso facilitar.',
-      'Preserve a equivalência em cada transformação.',
+      'Parênteses exigem distributiva correta antes da redução.',
+      'Frações podem ser eliminadas multiplicando toda a equação por um denominador comum.',
+      'O MMC é útil quando existem vários denominadores numéricos.',
+      'Variáveis no denominador criam restrições de domínio.',
+      'Cancelamentos exigem fatores, não termos de uma soma.',
+      'A solução deve ser verificada na equação original.',
     ],
     closing:
-        'Antes de atacar a incógnita, deixe a equação trabalhar a seu favor.',
-  ),
+        'Equações com parênteses e frações ficam controláveis quando a estrutura é preparada antes de isolar a variável.',
+  )
   CourseLessonData(
     id: 'equations-04-casos-especiais',
     topicId: 'equacoes-inequacoes',
