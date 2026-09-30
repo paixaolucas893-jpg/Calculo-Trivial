@@ -1154,146 +1154,553 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Precalculus',
     title: 'Quadratic inequalities',
-    description: 'critical roots, signs, and intervals',
-    duration: '≈ 15 min',
+    description:
+        'critical roots, factoring, sign analysis, multiplicity, and graph interpretation',
+    duration: '≈ 32 min',
     objective:
-        'solve quadratic inequalities by factoring and analyzing signs across intervals',
-    symbol: 'x²≥0',
+        'solve quadratic inequalities by factoring and sign analysis, interpret the role of roots and multiplicity, and connect the solution set to the graph of a parabola',
+    symbol: 'ax²+bx+c',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Roots split the real line',
+        title: 'A quadratic inequality asks about sign',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Critical points organize signs',
+            visual: LessonVisual.idea,
+            title: 'Positive, negative, or zero',
             content:
-                'Move all terms to one side and factor when possible. The zeros split the real line into intervals, and the sign remains constant inside each interval until a root is crossed.',
-            emphasis: 'An inequality asks for intervals, not only roots.',
+                'Solving f(x)>0, f(x)<0, f(x)≥0, or f(x)≤0 for a quadratic means identifying where the expression is positive, negative, or zero.',
+            emphasis:
+                'The roots of f(x)=0 are natural boundaries for sign analysis.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Move everything to one side',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Positive product',
-            problem: 'Solve x² − 5x + 6 > 0.',
-            steps: [
-              'Factor: (x − 2)(x − 3).',
-              'Critical points are 2 and 3.',
-              'The product is positive for x < 2, negative for 2 < x < 3, and positive for x > 3.',
-              'Because the inequality is strict, exclude both roots.',
-            ],
-            result: 'The solution is (−∞, 2) ∪ (3, +∞).',
-            interpretation:
-                'These are the intervals where the quadratic graph lies above the x-axis.',
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Compare one expression with zero',
+            content:
+                'Before studying the sign, rewrite the inequality so a single quadratic expression is compared with zero. Then factor it or determine its roots.',
+            emphasis:
+                'Sign structure is clearest when one side is zero.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Graph connection',
+        title: 'Roots divide the real line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Critical points organize intervals',
+            content:
+                'If a quadratic has real roots r₁ and r₂, they split the real line into intervals. The sign remains constant within each interval until a root is crossed.',
+            emphasis:
+                'The inequality asks for intervals, not merely the roots.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Sign analysis by factors',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Positive product',
+            problem: 'Solve x²−5x+6>0.',
+            steps: [
+              'Factor: (x−2)(x−3)>0.',
+              'Critical points: 2 and 3.',
+              'For x<2, both factors are negative: product positive.',
+              'For 2<x<3, the factors have opposite signs: product negative.',
+              'For x>3, both factors are positive.',
+            ],
+            result: 'S=(−∞,2)∪(3,+∞).',
+            interpretation:
+                'The solution is where the parabola lies above the x-axis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Non-strict inequalities',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Including roots',
+            problem: 'Solve x²−5x+6≤0.',
+            steps: [
+              'Factor: (x−2)(x−3)≤0.',
+              'Between the roots, the product is negative.',
+              'At the roots, the product is zero.',
+            ],
+            result: 'S=[2,3].',
+            interpretation:
+                'The symbol ≤ includes the zeros of the quadratic.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'The role of the leading coefficient',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Sign is vertical position',
+            title: 'Parabola orientation predicts the sign pattern',
             content:
-                'f(x) > 0 means the graph is above the x-axis; f(x) < 0 means it is below. Sign analysis prepares later function analysis in Calculus.',
+                'If a>0, the parabola opens upward. With two distinct real roots, it is typically positive outside the roots and negative between them. If a<0, the pattern reverses.',
+            emphasis:
+                'This graphical reading is a strong check on the sign table.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Repeated roots and multiplicity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'The sign may not change across a root',
+            content:
+                'For a factor such as (x−r)², the root r has even multiplicity. The factor is nonnegative on both sides, so the sign does not change when crossing r.',
+            emphasis:
+                'Odd multiplicity changes sign; even multiplicity preserves it.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Perfect square',
+            problem: 'Solve (x−2)²≥0.',
+            steps: [
+              'Every real square is nonnegative.',
+              'At x=2, the expression equals zero.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'A repeated root does not create a negative interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'When there are no real roots',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Constant sign',
+            problem: 'Solve x²+4x+5>0.',
+            steps: [
+              'Compute Δ=16−20=−4<0.',
+              'Since a=1>0 and there are no real roots, the parabola remains above the x-axis.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'Without real roots, a quadratic cannot switch sign.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Graphical and algebraic methods',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Two readings of the same problem',
+            content:
+                'Algebraically, use factors and signs. Graphically, identify where the parabola is above or below the x-axis. Both approaches must agree.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Giving only the roots',
+            content:
+                'The roots are boundaries for sign analysis, but the solution to the inequality consists of intervals.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring whether equality is included',
+            content:
+                'With > and <, roots are excluded. With ≥ and ≤, roots are included when they belong to the domain.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Assuming sign alternation at a repeated root',
+            content:
+                'A root of even multiplicity does not change the sign.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Solve x²−x−6≥0.',
+            steps: [
+              'Factor: (x−3)(x+2)≥0.',
+              'Critical points: −2 and 3.',
+              'The product is nonnegative outside the interval between the roots.',
+            ],
+            result: 'S=(−∞,−2]∪[3,+∞).',
+            interpretation:
+                'The roots are included because of ≥.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Solve −x²+4x−3>0.',
+            steps: [
+              'Factor: −(x−1)(x−3)>0.',
+              'The parabola opens downward.',
+              'The expression is positive between the roots.',
+            ],
+            result: 'S=(1,3).',
+            interpretation:
+                'A negative leading coefficient reverses the outside/inside pattern.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve by sign analysis',
+            content:
+                '1. x²−9>0.\n'
+                '2. x²−9≤0.\n'
+                '3. x²−5x+6≥0.\n'
+                '4. x²+x−6<0.\n'
+                '5. −x²+5x−6>0.\n'
+                '6. (x−4)²≤0.\n'
+                '7. (x+1)²>0.\n'
+                '8. x²+4x+5>0.\n'
+                '9. x²+4x+5<0.\n'
+                '10. 2x²−8x+6≤0.\n'
+                '11. Explain the effect of a repeated root on sign.\n'
+                '12. Determine where f(x)=x²−2x−3 is positive.\n'
+                '13. Determine where f(x)=−x²+4 is nonnegative.\n'
+                '14. Compare the graphical method with factor sign analysis.\n'
+                '15. Create a quadratic inequality whose solution is [−1,2].',
+            emphasis:
+                'Record critical points, interval signs, and the final interval notation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Sign analysis prepares increasing/decreasing and concavity tests',
+            content:
+                'In Calculus, sign charts determine where derivatives are positive or negative and therefore where functions increase, decrease, or change concavity.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for sign analysis and function behavior.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'If (x − 1)(x + 4) ≤ 0, which interval is the solution?',
-      choices: ['[−4, 1]', '(−∞, −4] ∪ [1, +∞)', '(−4, 1)'],
+      question: 'If (x−1)(x+4)≤0, which interval solves the inequality?',
+      choices: ['[−4,1]', '(−∞,−4]∪[1,+∞)', '(−4,1)'],
       correctIndex: 0,
       explanation:
-          'The product is nonpositive between the roots, and ≤ includes both roots.',
+          'The product is nonpositive between the roots. Because ≤ includes zero, −4 and 1 are included.',
     ),
     takeaways: [
-      'Compare a single expression with zero.',
-      'Roots are critical points.',
-      'Analyze the sign in every interval.',
-      'Include roots when equality is allowed.',
+      'Rewrite the inequality as one expression compared with zero.',
+      'Roots are critical points in sign analysis.',
+      'Multiplicity determines whether the sign changes at a root.',
+      'The leading coefficient helps predict the sign pattern.',
+      'The solution consists of intervals.',
+      'The graph confirms the algebraic sign analysis.',
     ],
     closing:
-        'A quadratic inequality identifies where a function is positive or negative.',
-  ),
+        'Solving a quadratic inequality means locating where the parabola has the requested sign.',
+  )
   CourseLessonData(
     id: 'equations-11-inequacoes-racionais',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Precalculus',
     title: 'Rational inequalities',
-    description: 'zeros, forbidden points, and sign charts',
-    duration: '≈ 18 min',
+    description:
+        'domain, zeros, excluded points, multiplicity, and sign charts',
+    duration: '≈ 34 min',
     objective:
-        'solve rational inequalities while distinguishing numerator zeros from forbidden denominator values',
+        'solve rational inequalities by sign analysis, distinguish numerator zeros from forbidden denominator values, preserve the domain, and analyze multiplicities',
     symbol: 'P/Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Not every critical point can be included',
+        title: 'Domain comes before sign',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'A zero denominator is always forbidden',
             content:
-                'Numerator zeros may belong to the solution when equality is allowed. Denominator zeros never belong to the domain and must always remain excluded.',
-            emphasis: 'Mark zeros and forbidden points separately before building a sign chart.',
+                'In P(x)/Q(x), every zero of Q(x) must be excluded before sign analysis. It can never belong to the solution, even in a non-strict inequality.',
+            emphasis:
+                'Zeros of the numerator and zeros of the denominator play different roles.',
             tone: LearningCardTone.warning,
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Zeros of the numerator',
         blocks: [
-          WorkedExampleBlockData(
-            title: 'Allowed zero, forbidden denominator',
-            problem: 'Solve (x − 2)/(x + 1) ≥ 0.',
-            steps: [
-              'The numerator is zero at x = 2.',
-              'The denominator is zero at x = −1, which is forbidden.',
-              'These points split the line into three intervals.',
-              'The quotient is positive on (−∞, −1), negative on (−1, 2), and positive on (2, +∞).',
-              'Include x = 2 because ≥ allows zero; never include x = −1.',
-            ],
-            result: 'The solution is (−∞, −1) ∪ [2, +∞).',
-            interpretation: 'The exclusion of −1 comes from the domain, not from the inequality sign.',
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'They may be included when equality is allowed',
+            content:
+                'If P(r)=0 and Q(r)≠0, then the rational expression equals zero at r. Thus r may belong to ≥0 or ≤0 solutions, but not to >0 or <0 solutions.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
+        title: 'Critical points divide the real line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Combine zeros and excluded points',
+            content:
+                'Zeros of the numerator and denominator divide the real line into intervals. Within each interval, the sign of every factor and of the quotient is constant.',
+            emphasis:
+                'Build the sign chart only after factoring and marking all critical points.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Core example',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Allowed zero, forbidden denominator',
+            problem: 'Solve (x−2)/(x+1)≥0.',
+            steps: [
+              'Numerator zero: x=2.',
+              'Denominator zero: x=−1, which is forbidden.',
+              'Intervals: (−∞,−1), (−1,2), and (2,+∞).',
+              'The quotient is positive on the first interval.',
+              'Negative on the second.',
+              'Positive on the third.',
+              'Because ≥ allows zero, x=2 is included; x=−1 never is.',
+            ],
+            result: 'S=(−∞,−1)∪[2,+∞).',
+            interpretation:
+                'The exclusion of −1 comes from domain, not merely from the inequality sign.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Factor before building the sign chart',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Quadratic numerator',
+            problem: 'Solve (x²−9)/(x−1)<0.',
+            steps: [
+              'Factor x²−9=(x−3)(x+3).',
+              'Critical points: −3, 1, and 3.',
+              'x=1 is forbidden; ±3 are numerator zeros.',
+              'Analyze the sign of each factor on each interval.',
+            ],
+            result: 'S=(−∞,−3)∪(1,3).',
+            interpretation:
+                'Factoring makes each contribution to the sign visible.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Multiplicity matters here too',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'An even-power factor does not change sign',
+            content:
+                'If a factor appears with even multiplicity, such as (x−2)², its sign does not change when x crosses 2. The same multiplicity principle applies in numerators and denominators.',
+            emphasis:
+                'Odd multiplicity changes sign; even multiplicity preserves it.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Cancellation and the original domain',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A cancelled factor can leave a hole',
+            content:
+                'In (x−2)(x+1)/(x−2), the factor x−2 may be cancelled for sign analysis, but x=2 remains excluded from the original domain.',
+            emphasis:
+                'Simplification never restores forbidden values.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Products of rational factors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Reduce the problem to factors',
+            content:
+                'Products and quotients of rational expressions can be handled in one sign chart once every numerator and denominator factor is identified and the domain is preserved.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Including a denominator zero',
+            content:
+                'No equality symbol can include a point where the expression does not exist.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Multiplying by a variable expression of unknown sign',
+            content:
+                'Multiplying a rational inequality by a variable denominator can require reversing the sign depending on x. A sign chart avoids this ambiguity.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling and forgetting the domain',
+            content:
+                'Cancelled factors still determine excluded points of the original expression.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Solve (x+3)/(x−5)<0.',
+            steps: [
+              'Numerator zero: −3.',
+              'Forbidden point: 5.',
+              'The quotient is negative when numerator and denominator have opposite signs.',
+            ],
+            result: 'S=(−3,5).',
+            interpretation:
+                'Neither endpoint is included: −3 gives zero and 5 is outside the domain.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Solve (x−1)(x+2)/(x−4)≥0.',
+            steps: [
+              'Critical points: −2, 1, and 4.',
+              '−2 and 1 are numerator zeros; 4 is forbidden.',
+              'Analyze the four intervals.',
+            ],
+            result: 'S=[−2,1]∪(4,+∞).',
+            interpretation:
+                'Zeros are included because of ≥; x=4 remains excluded.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Factor, mark critical points, and analyze signs',
+            content:
+                '1. (x−1)/(x+2)>0.\n'
+                '2. (x+4)/(x−3)≤0.\n'
+                '3. (x²−4)/(x−1)>0.\n'
+                '4. (x−2)/(x²−9)≥0.\n'
+                '5. (x−1)(x+3)/(x−5)<0.\n'
+                '6. (x−2)²/(x+1)>0.\n'
+                '7. (x+1)/(x−4)²≤0.\n'
+                '8. Find the domain of (x²−1)/(x²−4).\n'
+                '9. Explain the difference between a numerator zero and a denominator zero.\n'
+                '10. Explain why multiplying directly by x−3 can be unsafe without knowing its sign.\n'
+                '11. Simplify (x−2)(x+1)/(x−2) while preserving domain.\n'
+                '12. Solve (x²−9)/(x²−1)≥0.\n'
+                '13. Analyze the effect of even multiplicity in the denominator.\n'
+                '14. Relate excluded points to discontinuities.\n'
+                '15. Create a rational inequality whose solution has two intervals.',
+            emphasis:
+                'Clearly separate allowed zeros, forbidden points, and sign intervals.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
         title: 'Connection to Calculus',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.infinity,
-            title: 'Forbidden points anticipate asymptotes',
+            title: 'Domain, discontinuities, and signs',
             content:
-                'In rational functions, denominator zeros are candidates for discontinuities and vertical asymptotes. Recognizing them now prepares limit analysis.',
+                'Denominator zeros are candidates for discontinuities and vertical asymptotes. Sign charts of rational expressions reappear in derivative analysis, monotonicity, and function behavior.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for rational functions, domain, sign analysis, and asymptotes.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'In (x + 3)/(x − 5) < 0, which value can never belong to the solution?',
+      question: 'In (x+3)/(x−5)<0, which value can never belong to the solution?',
       choices: ['−3', '0', '5'],
       correctIndex: 2,
-      explanation: 'x = 5 makes the denominator zero, so the expression is undefined there.',
+      explanation:
+          'x=5 makes the denominator zero. The expression is undefined there regardless of the inequality symbol.',
     ),
     takeaways: [
-      'Numerator and denominator zeros play different roles.',
-      'A zero denominator is always excluded.',
-      'Critical points split the line for sign analysis.',
-      'Rational inequalities prepare domains and asymptotes.',
+      'Determine the domain before sign analysis.',
+      'Numerator zeros may be included in non-strict inequalities.',
+      'Denominator zeros are never included.',
+      'Factoring reveals critical points and multiplicities.',
+      'Cancellation does not restore excluded points.',
+      'Sign charts avoid unsafe multiplication by expressions of unknown sign.',
     ],
     closing:
-        'Sign analysis of quotients connects algebra, domain, and function behavior.',
-  ),
+        'Rational inequalities combine domain and sign: correct solutions require control of both.',
+  )
 ];
