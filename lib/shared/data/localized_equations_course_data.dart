@@ -13,7 +13,7 @@ List<CourseLessonData> localizedEquationsCourseLessons(Locale locale) {
 const List<CourseLessonData> _englishEquationsCourseLessons = [
   CourseLessonData(
     id: 'equations-01-equilibrio',
-    topicId: 'equacoes',
+    topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and inequalities',
     eyebrow: 'Equations',
     title: 'Equations, equality, and equivalence',
@@ -234,10 +234,10 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Solving an equation means preserving equality logically until its solutions become explicit.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-02-primeiro-grau',
-    topicId: 'equacoes',
+    topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and inequalities',
     eyebrow: 'Linear equations',
     title: 'First-degree equations',
@@ -486,7 +486,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Solving a linear equation means transforming a relation until its unique compatible value is explicit.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-03-parenteses-fracoes',
     topicId: 'equacoes-inequacoes',
