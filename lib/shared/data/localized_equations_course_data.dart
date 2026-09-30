@@ -2109,7 +2109,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Solving inequalities means reasoning about order and sets, not simply repeating equation-solving steps.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
