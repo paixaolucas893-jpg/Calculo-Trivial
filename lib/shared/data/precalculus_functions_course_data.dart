@@ -345,62 +345,312 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     topicId: 'funcoes',
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Estrutura',
-    title: 'Composição e função inversa',
-    description: 'processos sucessivos, injetividade e inversão',
-    duration: '≈ 18 min',
+    title: 'Composição, injetividade e função inversa',
+    description:
+        'encadeamento de funções, domínio da composta, injetividade, bijetividade, inversa e restrição de domínio',
+    duration: '≈ 38 min',
     objective:
-        'compor funções, interpretar a ordem da composição e reconhecer quando uma função admite inversa',
+        'compor funções com controle de domínio, distinguir composição de produto, analisar injetividade e bijetividade, determinar funções inversas e verificar resultados por composição',
     symbol: 'f∘g',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Uma função pode alimentar outra',
+        title: 'Composição é aplicação sucessiva',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Composição respeita ordem',
+            title: 'Primeiro g, depois f',
             content:
-                '(f∘g)(x) = f(g(x)): primeiro calculamos g(x), depois usamos esse resultado como entrada de f. Em geral, f∘g e g∘f não são iguais.',
-            emphasis: 'O domínio da composta precisa respeitar a entrada de g e a entrada permitida de f.',
+                'A composição [[math:(f\\circ g)(x)=f(g(x))]] aplica primeiro g à entrada x e depois usa g(x) como entrada de f.',
+            emphasis:
+                'A ordem é parte da definição: em geral, f∘g≠g∘f.',
           ),
-          ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'A inversa desfaz a função',
-            content:
-                'Se f é um-para-um, sua inversa f⁻¹ troca entradas e saídas. Graficamente, os gráficos de f e f⁻¹ são simétricos em relação à reta y = x.',
+          WorkedExampleBlockData(
+            title: 'Composição algébrica',
+            problem: 'Se f(x)=2x+1 e g(x)=x²−3, determine (f∘g)(x).',
+            steps: [
+              'Comece pela função interna: g(x)=x²−3.',
+              'Substitua g(x) no lugar de x em f.',
+              'f(g(x))=2(x²−3)+1.',
+              'Simplifique.',
+            ],
+            result: '(f∘g)(x)=2x²−5.',
+            interpretation:
+                'Compor é substituir uma saída dentro da regra da outra função.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Composição não é comutativa',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Compor e inverter',
-            problem: 'Se f(x)=2x+3 e g(x)=x², calcule (f∘g)(2) e encontre f⁻¹(x).',
+            title: 'Compare as duas ordens',
+            problem: 'Para f(x)=2x+1 e g(x)=x², compare f∘g e g∘f.',
             steps: [
-              'g(2)=4.',
-              'f(g(2))=f(4)=11.',
-              'Para inverter f, escreva y=2x+3.',
-              'Troque x e y: x=2y+3.',
-              'Isole y: y=(x−3)/2.',
+              '(f∘g)(x)=f(x²)=2x²+1.',
+              '(g∘f)(x)=g(2x+1)=(2x+1)².',
+              'Expanda: (g∘f)(x)=4x²+4x+1.',
             ],
-            result: '(f∘g)(2)=11 e f⁻¹(x)=(x−3)/2.',
+            result: 'f∘g≠g∘f.',
             interpretation:
-                'A composição encadeia processos; a inversa recupera a entrada a partir da saída.',
+                'Trocar a ordem muda o processo e, normalmente, muda a função resultante.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Teste gráfico',
+        title: 'Domínio da função composta',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Duas condições simultâneas',
+            content:
+                'Para x pertencer ao domínio de f∘g, primeiro x deve pertencer ao domínio de g e, além disso, g(x) deve pertencer ao domínio de f.',
+            emphasis:
+                'Não basta verificar apenas o domínio da função interna.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Composição com raiz',
+            problem: 'Se f(u)=√u e g(x)=x−3, determine o domínio de f∘g.',
+            steps: [
+              'g está definida para todo x real.',
+              'A entrada de f deve ser não negativa.',
+              'Portanto g(x)=x−3≥0.',
+            ],
+            result: 'D_{f∘g}=[3,+∞).',
+            interpretation:
+                'A restrição surge quando a saída de g entra na raiz de f.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Injetividade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Saídas iguais exigem entradas iguais',
+            content:
+                'Uma função f é injetiva quando [[math:f(x_1)=f(x_2)\\Rightarrow x_1=x_2]]. Equivalentemente, entradas diferentes produzem saídas diferentes.',
+            emphasis:
+                'Injetividade é a condição essencial para que a função possa ser desfeita sem ambiguidade.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Função afim injetiva',
+            problem: 'Mostre que f(x)=3x−2 é injetiva em ℝ.',
+            steps: [
+              'Suponha f(x₁)=f(x₂).',
+              'Então 3x₁−2=3x₂−2.',
+              'Some 2 aos dois membros e divida por 3.',
+            ],
+            result: 'x₁=x₂; portanto f é injetiva.',
+            interpretation:
+                'A demonstração usa diretamente a definição de injetividade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Teste da reta horizontal',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Reta horizontal e injetividade',
+            title: 'Injetividade vista no gráfico',
             content:
-                'Se alguma reta horizontal corta o gráfico de f em mais de um ponto, então duas entradas produzem a mesma saída e f não possui inversa global naquele domínio.',
+                'Uma função real é injetiva em seu domínio se nenhuma reta horizontal intersecta seu gráfico em mais de um ponto.',
+            emphasis:
+                'Esse teste é diferente do teste da reta vertical, que verifica se uma relação é função.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Sobrejetividade e bijetividade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A inversa completa exige correspondência entre domínio e contradomínio',
+            content:
+                'Uma função f:A→B é sobrejetiva quando sua imagem é todo B. Ela é bijetiva quando é simultaneamente injetiva e sobrejetiva.',
+            emphasis:
+                'Uma bijeção possui inversa f⁻¹:B→A.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Definição de função inversa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A inversa desfaz a função',
+            content:
+                'Se f é bijetiva, sua inversa satisfaz [[math:f^{-1}(f(x))=x]] para todo x do domínio de f e [[math:f(f^{-1}(y))=y]] para todo y no domínio da inversa.',
+            emphasis:
+                'f⁻¹(x) não significa 1/f(x).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Encontrando uma inversa',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Inversa de uma função afim',
+            problem: 'Encontre a inversa de f(x)=2x+3.',
+            steps: [
+              'Escreva y=2x+3.',
+              'Isole x: x=(y−3)/2.',
+              'Troque os nomes das variáveis.',
+            ],
+            result: 'f⁻¹(x)=(x−3)/2.',
+            interpretation:
+                'A inversa recupera a entrada original a partir da saída.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Verificação por composição',
+            problem: 'Verifique a inversa anterior.',
+            steps: [
+              'Calcule f(f⁻¹(x))=2[(x−3)/2]+3.',
+              'Simplifique para x.',
+              'Calcule também f⁻¹(f(x))=[(2x+3)−3]/2.',
+            ],
+            result: 'Ambas as composições resultam em x.',
+            interpretation:
+                'A identidade confirma que as funções se desfazem mutuamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Restrição de domínio para obter inversa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'x² não é injetiva em ℝ',
+            content:
+                'A função f(x)=x² satisfaz f(2)=f(−2)=4, portanto não possui inversa global em ℝ. Podemos restringir o domínio a [0,+∞) ou a (−∞,0] para torná-la injetiva.',
+            emphasis:
+                'A escolha do domínio faz parte da definição da função.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Inversa após restrição',
+            problem: 'Considere f(x)=x² com domínio [0,+∞). Encontre f⁻¹.',
+            steps: [
+              'Escreva y=x² com x≥0.',
+              'Resolva para x: x=√y.',
+              'Troque as variáveis.',
+            ],
+            result: 'f⁻¹(x)=√x, com domínio [0,+∞).',
+            interpretation:
+                'A restrição escolhe a raiz não negativa e remove a ambiguidade ±.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Gráficos de funções inversas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Simetria em relação a y=x',
+            content:
+                'Os pares (a,b) do gráfico de f tornam-se (b,a) no gráfico de f⁻¹. Por isso os dois gráficos são reflexos em relação à reta y=x.',
+            emphasis:
+                'Domínio e imagem trocam de papéis entre uma função e sua inversa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir f⁻¹ com recíproco',
+            content:
+                'f⁻¹(x) representa função inversa. O recíproco é 1/f(x); são objetos diferentes.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar o domínio da composta',
+            content:
+                'Uma expressão algébrica obtida por substituição pode existir apenas em parte do domínio da função interna.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Tentar inverter função não injetiva sem restringir domínio',
+            content:
+                'Se duas entradas compartilham a mesma saída, a relação inversa atribuiria duas saídas à mesma entrada e deixaria de ser função.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Exercícios guiados e prática',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado — composição com domínio',
+            problem: 'Se f(x)=1/x e g(x)=x−2, determine f∘g e seu domínio.',
+            steps: [
+              '(f∘g)(x)=1/(x−2).',
+              'O denominador exige x−2≠0.',
+            ],
+            result: '(f∘g)(x)=1/(x−2), com x≠2.',
+            interpretation:
+                'A restrição aparece na entrada que chega a f.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Prática antes da atividade final',
+            content:
+                '1. Calcule (f∘g)(x) para f(x)=x+1 e g(x)=2x.\n'
+                '2. Calcule (g∘f)(x) para as mesmas funções.\n'
+                '3. Compare os resultados das questões 1 e 2.\n'
+                '4. Determine o domínio de √(x−4) como composição.\n'
+                '5. Determine o domínio de 1/(x²−1).\n'
+                '6. Teste se f(x)=5x+2 é injetiva.\n'
+                '7. Explique por que x² não é injetiva em ℝ.\n'
+                '8. Aplique o teste da reta horizontal à parábola y=x².\n'
+                '9. Encontre a inversa de f(x)=3x−6.\n'
+                '10. Verifique a resposta por composição.\n'
+                '11. Encontre a inversa de f(x)=(x+4)/2.\n'
+                '12. Diferencie f⁻¹(x) de 1/f(x).\n'
+                '13. Explique como domínio e imagem trocam de papel na inversa.\n'
+                '14. Restrinja x² para obter uma inversa e encontre-a.\n'
+                '15. Crie duas funções para as quais f∘g≠g∘f.',
+            emphasis:
+                'Nas inversas, faça pelo menos uma verificação por composição.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Composição e inversa reaparecem diretamente em derivadas',
+            content:
+                'A regra da cadeia deriva composições. Derivadas de funções inversas relacionam f e f⁻¹. Exponenciais, logaritmos e funções trigonométricas inversas dependem dessa estrutura.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para composição, funções inversas e regra da cadeia.',
           ),
         ],
       ),
@@ -409,16 +659,21 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Em (f∘g)(x), qual função é aplicada primeiro?',
       choices: ['f', 'g', 'As duas ao mesmo tempo'],
       correctIndex: 1,
-      explanation: '(f∘g)(x)=f(g(x)); portanto g atua primeiro.',
+      explanation:
+          '(f∘g)(x)=f(g(x)); portanto g recebe a entrada primeiro e sua saída é enviada para f.',
     ),
     takeaways: [
-      'Composição significa aplicar uma regra após outra.',
-      'A ordem da composição importa.',
-      'Função inversa troca entrada e saída.',
-      'Injetividade é necessária para uma inversa global.',
+      'Composição aplica funções em sequência e depende da ordem.',
+      'O domínio da composta exige x∈D_g e g(x)∈D_f.',
+      'Injetividade impede duas entradas distintas de terem a mesma saída.',
+      'Bijetividade garante uma inversa entre os conjuntos declarados.',
+      'f⁻¹ não significa 1/f.',
+      'Domínio e imagem trocam de papéis na função inversa.',
+      'Restringir domínio pode tornar uma função invertível.',
     ],
-    closing: 'Composição e inversão aparecem diretamente na regra da cadeia e em funções elementares.',
-  ),
+    closing:
+        'Composição descreve processos encadeados; inversão descreve quando e como esses processos podem ser desfeitos sem ambiguidade.',
+  )
   CourseLessonData(
     id: 'funcoes-03-transformacoes-graficos',
     topicId: 'funcoes',
@@ -1587,27 +1842,335 @@ const List<CourseLessonData> _englishLessons = [
     topicId: 'funcoes',
     trailTitle: 'Functions — Precalculus',
     eyebrow: 'Structure',
-    title: 'Composition and inverse functions',
-    description: 'successive processes, one-to-one behavior, and inversion',
-    duration: '≈ 18 min',
-    objective: 'compose functions and determine when a function has an inverse',
+    title: 'Composition, injectivity, and inverse functions',
+    description:
+        'function chaining, composite domains, injectivity, bijectivity, inverses, and domain restriction',
+    duration: '≈ 38 min',
+    objective:
+        'compose functions while controlling domain, distinguish composition from multiplication, analyze injectivity and bijectivity, determine inverse functions, and verify them by composition',
     symbol: 'f∘g',
     sections: [
-      LessonSectionData(number: '1', title: 'One function can feed another', blocks: [
-        ConceptBlockData(visual: LessonVisual.transform, title: 'Composition has an order', content: '(f∘g)(x)=f(g(x)): apply g first, then feed its output into f. In general f∘g and g∘f are different.', emphasis: 'The composite domain must satisfy both stages.'),
-        ConceptBlockData(visual: LessonVisual.compare, title: 'The inverse undoes a function', content: 'For a one-to-one function, f⁻¹ exchanges inputs and outputs. Its graph is the reflection of f across y=x.'),
-      ]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [
-        WorkedExampleBlockData(title: 'Compose and invert', problem: 'If f(x)=2x+3 and g(x)=x², find (f∘g)(2) and f⁻¹(x).', steps: ['g(2)=4.', 'f(4)=11.', 'Write y=2x+3, swap x and y, then solve for y.'], result: '(f∘g)(2)=11 and f⁻¹(x)=(x−3)/2.', interpretation: 'Composition chains rules; an inverse recovers the input.'),
-      ]),
-      LessonSectionData(number: '3', title: 'Graph test', blocks: [
-        ConceptBlockData(visual: LessonVisual.graph, title: 'Horizontal-line test', content: 'If a horizontal line meets the graph more than once, the function is not globally one-to-one on that domain.', tone: LearningCardTone.information),
-      ]),
+      LessonSectionData(
+        number: '1',
+        title: 'Composition is successive application',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'First g, then f',
+            content:
+                'The composition [[math:(f\\circ g)(x)=f(g(x))]] applies g to x first and then uses g(x) as the input of f.',
+            emphasis:
+                'Order is part of the definition: in general, f∘g≠g∘f.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Algebraic composition',
+            problem: 'If f(x)=2x+1 and g(x)=x²−3, find (f∘g)(x).',
+            steps: [
+              'Start with the inside function g(x)=x²−3.',
+              'Substitute g(x) for x in f.',
+              'f(g(x))=2(x²−3)+1.',
+              'Simplify.',
+            ],
+            result: '(f∘g)(x)=2x²−5.',
+            interpretation:
+                'Composition substitutes one output into another function rule.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Composition is not commutative',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Compare both orders',
+            problem: 'For f(x)=2x+1 and g(x)=x², compare f∘g and g∘f.',
+            steps: [
+              '(f∘g)(x)=2x²+1.',
+              '(g∘f)(x)=(2x+1)².',
+              'Expand: 4x²+4x+1.',
+            ],
+            result: 'f∘g≠g∘f.',
+            interpretation:
+                'Changing order changes the process and usually changes the resulting function.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Domain of a composite function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Two simultaneous requirements',
+            content:
+                'For x to belong to the domain of f∘g, x must belong to the domain of g and g(x) must belong to the domain of f.',
+            emphasis:
+                'Checking only the inner function domain is not enough.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Composition with a square root',
+            problem: 'If f(u)=√u and g(x)=x−3, find the domain of f∘g.',
+            steps: [
+              'g accepts every real x.',
+              'The input of f must be nonnegative.',
+              'Thus x−3≥0.',
+            ],
+            result: 'D_{f∘g}=[3,+∞).',
+            interpretation:
+                'The restriction appears when g(x) becomes the radicand for f.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Injectivity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Equal outputs require equal inputs',
+            content:
+                'A function f is injective when [[math:f(x_1)=f(x_2)\\Rightarrow x_1=x_2]]. Equivalently, different inputs produce different outputs.',
+            emphasis:
+                'Injectivity is the essential condition for reversing a function without ambiguity.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An injective affine function',
+            problem: 'Show that f(x)=3x−2 is injective on ℝ.',
+            steps: [
+              'Assume f(x₁)=f(x₂).',
+              'Then 3x₁−2=3x₂−2.',
+              'Add 2 and divide by 3.',
+            ],
+            result: 'x₁=x₂, so f is injective.',
+            interpretation:
+                'The proof uses the definition directly.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Horizontal line test',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Injectivity visible on the graph',
+            content:
+                'A real-valued function is injective on its domain if no horizontal line intersects its graph more than once.',
+            emphasis:
+                'This differs from the vertical line test, which checks whether a relation is a function.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Surjectivity and bijectivity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A full inverse requires correspondence between domain and codomain',
+            content:
+                'A function f:A→B is surjective when its range is all of B. It is bijective when it is both injective and surjective.',
+            emphasis:
+                'A bijection has an inverse f⁻¹:B→A.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Definition of an inverse function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'The inverse undoes the function',
+            content:
+                'If f is bijective, then [[math:f^{-1}(f(x))=x]] for every x in the domain of f and [[math:f(f^{-1}(y))=y]] for every y in the inverse domain.',
+            emphasis:
+                'f⁻¹(x) does not mean 1/f(x).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Finding an inverse',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Inverse of an affine function',
+            problem: 'Find the inverse of f(x)=2x+3.',
+            steps: [
+              'Write y=2x+3.',
+              'Solve for x: x=(y−3)/2.',
+              'Rename the variables.',
+            ],
+            result: 'f⁻¹(x)=(x−3)/2.',
+            interpretation:
+                'The inverse recovers the original input from the output.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Verification by composition',
+            problem: 'Verify the inverse above.',
+            steps: [
+              'Compute f(f⁻¹(x))=2[(x−3)/2]+3.',
+              'Simplify to x.',
+              'Compute f⁻¹(f(x))=[(2x+3)−3]/2.',
+            ],
+            result: 'Both compositions equal x.',
+            interpretation:
+                'The identity confirms that the functions undo each other.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Restricting domain to obtain an inverse',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'x² is not injective on ℝ',
+            content:
+                'For f(x)=x², f(2)=f(−2)=4, so there is no global inverse on ℝ. Restricting the domain to [0,+∞) or (−∞,0] makes it injective.',
+            emphasis:
+                'The domain is part of the function definition.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Inverse after restriction',
+            problem: 'Let f(x)=x² on [0,+∞). Find f⁻¹.',
+            steps: [
+              'Write y=x² with x≥0.',
+              'Solve for x: x=√y.',
+              'Rename the variables.',
+            ],
+            result: 'f⁻¹(x)=√x, with domain [0,+∞).',
+            interpretation:
+                'The restriction selects the nonnegative square root and removes ± ambiguity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Graphs of inverse functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Symmetry across y=x',
+            content:
+                'Every point (a,b) on the graph of f becomes (b,a) on the graph of f⁻¹. Therefore the two graphs are reflections across y=x.',
+            emphasis:
+                'Domain and range exchange roles between a function and its inverse.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing inverse and reciprocal',
+            content:
+                'f⁻¹(x) denotes an inverse function. The reciprocal is 1/f(x); they are different objects.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the composite domain',
+            content:
+                'An algebraic expression obtained by substitution may be valid only on part of the inner function domain.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Inverting a non-injective function without restricting domain',
+            content:
+                'If two inputs share one output, the inverse relation would give one input two outputs and would fail to be a function.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Guided exercises and practice',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided — composition with domain',
+            problem: 'If f(x)=1/x and g(x)=x−2, find f∘g and its domain.',
+            steps: [
+              '(f∘g)(x)=1/(x−2).',
+              'The denominator requires x≠2.',
+            ],
+            result: '(f∘g)(x)=1/(x−2), x≠2.',
+            interpretation:
+                'The restriction appears at the value passed into f.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Practice before the final activity',
+            content:
+                '1. Compute (f∘g)(x) for f(x)=x+1 and g(x)=2x.\n'
+                '2. Compute (g∘f)(x) for the same functions.\n'
+                '3. Compare the answers to 1 and 2.\n'
+                '4. Find the domain of √(x−4) as a composition.\n'
+                '5. Find the domain of 1/(x²−1).\n'
+                '6. Test whether f(x)=5x+2 is injective.\n'
+                '7. Explain why x² is not injective on ℝ.\n'
+                '8. Apply the horizontal line test to y=x².\n'
+                '9. Find the inverse of f(x)=3x−6.\n'
+                '10. Verify your answer by composition.\n'
+                '11. Find the inverse of f(x)=(x+4)/2.\n'
+                '12. Distinguish f⁻¹(x) from 1/f(x).\n'
+                '13. Explain how domain and range exchange roles under inversion.\n'
+                '14. Restrict x² to make it invertible and find the inverse.\n'
+                '15. Create functions for which f∘g≠g∘f.',
+            emphasis:
+                'For inverse functions, perform at least one composition check.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Composition and inverses return directly in derivatives',
+            content:
+                'The chain rule differentiates compositions. Derivatives of inverse functions relate f and f⁻¹. Exponentials, logarithms, and inverse trigonometric functions all depend on this structure.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for composition, inverse functions, and the chain rule.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'In (f∘g)(x), which function acts first?', choices: ['f', 'g', 'Both at once'], correctIndex: 1, explanation: '(f∘g)(x)=f(g(x)), so g acts first.'),
-    takeaways: ['Composition chains functions.', 'Order matters.', 'An inverse swaps input and output.', 'One-to-one behavior is required for a global inverse.'],
-    closing: 'Composition and inversion return directly in the chain rule and elementary functions.',
-  ),
+    check: LessonCheckData(
+      question: 'In (f∘g)(x), which function is applied first?',
+      choices: ['f', 'g', 'Both at the same time'],
+      correctIndex: 1,
+      explanation:
+          '(f∘g)(x)=f(g(x)); therefore g receives the input first and its output is passed to f.',
+    ),
+    takeaways: [
+      'Composition applies functions in sequence and depends on order.',
+      'The composite domain requires x∈D_g and g(x)∈D_f.',
+      'Injectivity prevents distinct inputs from sharing an output.',
+      'Bijectivity guarantees an inverse between the declared sets.',
+      'f⁻¹ does not mean 1/f.',
+      'Domain and range exchange roles under inversion.',
+      'Restricting the domain can make a function invertible.',
+    ],
+    closing:
+        'Composition describes chained processes; inversion describes when and how those processes can be undone without ambiguity.',
+  )
   CourseLessonData(
     id: 'funcoes-03-transformacoes-graficos', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Graphs', title: 'Graph transformations', description: 'translations, reflections, and scaling', duration: '≈ 16 min', objective: 'predict graph changes from algebraic transformations', symbol: 'f(x−h)',
     sections: [
