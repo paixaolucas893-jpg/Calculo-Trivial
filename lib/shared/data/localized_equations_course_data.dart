@@ -1400,58 +1400,391 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Quadratics',
     title: 'Quadratic equations',
-    description: 'roots, factoring, and the zero-product property',
-    duration: '≈ 5 min',
+    description:
+        'general form, factoring, completing the square, quadratic formula, discriminant, and graph interpretation',
+    duration: '≈ 40 min',
     objective:
-        'solve simple quadratic equations using factoring and the zero-product property',
-    symbol: 'x²',
+        'solve quadratic equations by multiple methods, interpret the discriminant, relate roots to the parabola graph, recognize multiplicity, and select an appropriate strategy',
+    symbol: 'ax²+bx+c',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Now there may be two roots',
+        title: 'Definition and general form',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.idea,
-            title: 'The degree changes the behavior',
+            visual: LessonVisual.notation,
+            title: 'A quadratic equation in one variable',
             content:
-                'A quadratic equation contains an x² term. It may have two real roots, one repeated root, or no real roots.',
-            emphasis: 'If AB = 0, then A = 0 or B = 0.',
+                'A quadratic equation can be written as [[math:ax^2+bx+c=0]], with real a, b, and c and [[math:a\\ne0]]. If a=0, the quadratic term disappears and the equation is no longer second degree.',
+            emphasis:
+                'The degree is determined by the highest exponent after the expression is reduced.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Identifying coefficients',
+            problem: 'In 3x²−7x+2=0, identify a, b, and c.',
+            steps: [
+              'Compare with ax²+bx+c=0.',
+              'The coefficient of x² is 3.',
+              'The coefficient of x is −7.',
+              'The constant term is 2.',
+            ],
+            result: 'a=3, b=−7, c=2.',
+            interpretation:
+                'The sign belongs to the coefficient: b is −7, not 7.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Turn it into a product',
+        title: 'How many real solutions may exist',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Two, one, or no real roots',
+            content:
+                'A real quadratic equation may have two distinct real roots, one repeated real root, or no real roots. The discriminant determines which case occurs.',
+            emphasis:
+                'A root or zero is a value of x that makes the quadratic expression equal to zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Zero-product property and factoring',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'If AB=0, then A=0 or B=0',
+            content:
+                'The zero-product property turns a factored quadratic equation into simpler equations. This makes factoring efficient when the factors are recognizable.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Direct factoring',
+            problem: 'Solve x²−5x+6=0.',
+            steps: [
+              'Find two numbers whose sum is −5 and product is 6: −2 and −3.',
+              'Factor: (x−2)(x−3)=0.',
+              'Apply the zero-product property.',
+            ],
+            result: 'S={2,3}.',
+            interpretation:
+                'Each root corresponds to a linear factor that becomes zero.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Common factor first',
+            problem: 'Solve 2x²−8x=0.',
+            steps: [
+              'Factor the common factor: 2x(x−4)=0.',
+              'Since 2 is nonzero, x=0 or x−4=0.',
+            ],
+            result: 'S={0,4}.',
+            interpretation:
+                'Check for a common factor before using more elaborate methods.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equations of the form x²=k',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Taking square roots requires ±',
+            content:
+                'If x²=k with k>0, then [[math:x=\\pm\\sqrt{k}]]. If k=0, the only solution is x=0. If k<0, there is no real solution.',
+            emphasis:
+                '√k denotes the principal nonnegative root; ± appears because we are solving an equation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Two symmetric roots',
+            problem: 'Solve 4x²=36.',
+            steps: [
+              'Divide by 4: x²=9.',
+              'Take square roots with both signs: x=±3.',
+            ],
+            result: 'S={−3,3}.',
+            interpretation:
+                'Both numbers have the same square.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Completing the square',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Create a perfect square',
+            content:
+                'Completing the square rewrites a quadratic into a form such as [[math:(x-h)^2=k]]. For x²+bx, add and subtract [[math:(b/2)^2]].',
+            emphasis:
+                'This method also leads directly to the vertex form of a parabola.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Completing the square step by step',
+            problem: 'Solve x²+6x+5=0.',
+            steps: [
+              'Move 5: x²+6x=−5.',
+              'Half of 6 is 3; its square is 9.',
+              'Add 9 to both sides: x²+6x+9=4.',
+              'Rewrite: (x+3)²=4.',
+              'Take square roots: x+3=±2.',
+            ],
+            result: 'S={−5,−1}.',
+            interpretation:
+                'Completing the square reveals the hidden perfect-square structure.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Quadratic formula',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A general formula',
+            content:
+                'For [[math:ax^2+bx+c=0]], with [[math:a\\ne0]], the solutions are [[math:x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}]]. This formula is derived by completing the square in the general equation.',
+            emphasis:
+                'The formula does not replace algebraic understanding: coefficients must be identified with their correct signs.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Applying the formula',
+            problem: 'Solve 2x²−3x−2=0.',
+            steps: [
+              'Identify a=2, b=−3, c=−2.',
+              'Compute Δ=(−3)²−4·2·(−2)=25.',
+              'Substitute: x=[3±5]/4.',
+              'The two values are 2 and −1/2.',
+            ],
+            result: 'S={−1/2,2}.',
+            interpretation:
+                'A positive discriminant produced two distinct real roots.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Discriminant',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Δ=b²−4ac',
+            content:
+                'The quantity [[math:\\Delta=b^2-4ac]] determines the nature of the real roots. If Δ>0, there are two distinct real roots. If Δ=0, there is one repeated real root. If Δ<0, there are no real roots.',
+            emphasis:
+                'The discriminant tells us how many real roots exist before we calculate them.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Repeated root',
+            problem: 'Analyze x²−6x+9=0.',
+            steps: [
+              'a=1, b=−6, c=9.',
+              'Δ=36−36=0.',
+              'Factor: (x−3)²=0.',
+            ],
+            result: 'x=3 with multiplicity 2.',
+            interpretation:
+                'The parabola touches the x-axis at one point.',
+          ),
+          WorkedExampleBlockData(
+            title: 'No real roots',
+            problem: 'Analyze x²+4x+8=0.',
+            steps: [
+              'a=1, b=4, c=8.',
+              'Δ=16−32=−16.',
+            ],
+            result: 'There are no real roots.',
+            interpretation:
+                'The parabola does not intersect the x-axis over the reals.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Roots and the parabola graph',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Solving f(x)=0 means finding x-intercepts',
+            content:
+                'For f(x)=ax²+bx+c, the roots of f(x)=0 are exactly the x-coordinates where the parabola intersects the x-axis.',
+            emphasis:
+                'Two roots mean two intersections; a repeated root means tangency; no real root means no x-axis intersection.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Relations between roots and coefficients',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Sum and product of the roots',
+            content:
+                'If x₁ and x₂ are the roots of ax²+bx+c=0, then [[math:x_1+x_2=-\\frac{b}{a}]] and [[math:x_1x_2=\\frac{c}{a}]]. These relations follow from [[math:a(x-x_1)(x-x_2)]].',
+            emphasis:
+                'They are useful for checking solutions and reconstructing equations.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Checking with sum and product',
+            problem: 'For x²−5x+6=0, verify the roots 2 and 3.',
+            steps: [
+              'Sum: 2+3=5=−b/a.',
+              'Product: 2·3=6=c/a.',
+            ],
+            result: 'The relations confirm the roots.',
+            interpretation:
+                'This gives an independent structural check.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Choosing a method',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Not every quadratic needs the formula',
+            content:
+                'Use factoring when factors are clear, square-root extraction for forms like (x−h)²=k, completing the square to expose structure, and the quadratic formula when a general method is needed.',
+            emphasis:
+                'Method selection is part of algebraic competence.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting ±',
+            content:
+                'From x²=9 we get x=−3 and x=3, not only x=3.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Dropping the sign of b',
+            content:
+                'In 2x²−3x−2=0, b=−3. Using b=3 changes the discriminant and the formula.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Using zero product before setting the equation equal to zero',
+            content:
+                'The zero-product property applies only when a product equals zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Guided exercises',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Factoring and zero product',
-            problem: 'Solve x² − 5x + 6 = 0.',
+            title: 'Guided 1 — factoring',
+            problem: 'Solve x²+x−12=0.',
             steps: [
-              'Factor: (x − 2)(x − 3) = 0.',
-              'Then x − 2 = 0 or x − 3 = 0.',
-              'Solve each equation.',
+              'Find numbers with sum 1 and product −12: 4 and −3.',
+              'Factor: (x+4)(x−3)=0.',
             ],
-            result: 'x = 2 or x = 3.',
-            interpretation: 'Either factor can make the product equal to zero.',
+            result: 'S={−4,3}.',
+            interpretation:
+                'Factoring is efficient when the integer pair is easy to recognize.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — quadratic formula',
+            problem: 'Solve 3x²+x−1=0.',
+            steps: [
+              'a=3, b=1, c=−1.',
+              'Δ=1−4·3·(−1)=13.',
+              'Substitute into the formula.',
+            ],
+            result: '[[math:x=\\frac{-1\\pm\\sqrt{13}}{6}]].',
+            interpretation:
+                'When Δ is not a perfect square, exact radical form is usually preferable to decimals.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and justify the chosen method',
+            content:
+                '1. x²−9=0.\n'
+                '2. x²−7x+12=0.\n'
+                '3. x²+5x+6=0.\n'
+                '4. 2x²−8x=0.\n'
+                '5. (x−4)²=9.\n'
+                '6. x²+4x+4=0.\n'
+                '7. 2x²+3x−2=0.\n'
+                '8. x²+2x+5=0 over the reals.\n'
+                '9. Compute Δ for 3x²−6x+3=0.\n'
+                '10. Classify the number of real roots of x²−2x+10=0.\n'
+                '11. Solve x²+6x+5=0 by completing the square.\n'
+                '12. Verify sum and product of the roots of x²−8x+15=0.\n'
+                '13. Construct a quadratic equation with roots 2 and −5.\n'
+                '14. Explain geometrically what Δ=0 means.\n'
+                '15. Compare factoring and the quadratic formula for x²−5x+6=0.',
+            emphasis:
+                'Keep exact radical answers when there is no reason to approximate them.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Quadratics prepare optimization and graph analysis',
+            content:
+                'Parabolas appear in motion models, area problems, optimization, and approximation. In Calculus, derivatives of quadratic functions are linear, and the vertex is tied to the critical point where the derivative is zero.',
+            emphasis:
+                'The relationship among roots, vertex, and graph will return in functions and derivatives.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart, Thomas, and Guidorizzi for quadratic functions, graphs, and Calculus applications.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What are the solutions of x² − 9 = 0?',
-      choices: ['Only x = 3', 'x = −3 or x = 3', 'x = 9'],
+      question: 'What are the solutions of x²−9=0?',
+      choices: ['Only x=3', 'x=−3 or x=3', 'x=9'],
       correctIndex: 1,
-      explanation: 'x² − 9 = (x − 3)(x + 3), so x = 3 or x = −3.',
+      explanation:
+          'x²−9=(x−3)(x+3). By the zero-product property, x−3=0 or x+3=0.',
     ),
     takeaways: [
-      'Quadratic equations contain an x² term.',
-      'Factoring can reveal the roots.',
-      'The zero-product property separates factors.',
-      'A quadratic equation can have more than one solution.',
+      'A quadratic equation has the form ax²+bx+c=0 with a≠0.',
+      'Factoring and the zero-product property can reveal roots directly.',
+      'Completing the square exposes the structure of the parabola.',
+      'The quadratic formula provides a general solution method.',
+      'The discriminant determines the number of real roots.',
+      'Roots are x-intercepts of the parabola.',
+      'Sum and product of roots are related to coefficients.',
+      'Choosing the most appropriate method is part of solving the equation.',
     ],
     closing:
-        'Factoring directly connects Algebra to solving quadratic equations.',
-  ),
+        'Quadratic equations stop being a single formula when factoring, the discriminant, and geometry are understood as parts of one structure.',
+  )
   CourseLessonData(
     id: 'equations-07-inequacoes',
     topicId: 'equacoes-inequacoes',
