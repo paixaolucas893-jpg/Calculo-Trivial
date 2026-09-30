@@ -13,130 +13,480 @@ List<CourseLessonData> localizedEquationsCourseLessons(Locale locale) {
 const List<CourseLessonData> _englishEquationsCourseLessons = [
   CourseLessonData(
     id: 'equations-01-equilibrio',
-    topicId: 'equacoes-inequacoes',
-    trailTitle: 'Equations and Inequalities',
-    eyebrow: 'Foundations',
-    title: 'Equations and balance',
-    description: 'equality, unknowns, and equivalence',
-    duration: '≈ 5 min',
+    topicId: 'equacoes',
+    trailTitle: 'Equations and inequalities',
+    eyebrow: 'Equations',
+    title: 'Equations, equality, and equivalence',
+    description:
+        'meaning of equality, solution sets, equivalent transformations, and verification',
+    duration: '≈ 25 min',
     objective:
-        'understand an equation as an equality and preserve its balance during transformations',
+        'interpret an equation as a statement of equality, distinguish expressions from equations, understand solution sets, and apply equivalent transformations while preserving solutions',
     symbol: '=',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Understand the idea',
+        title: 'An equation is a statement, not merely a calculation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Two members connected by equality',
+            content:
+                'An equation states that two expressions have the same value for particular values of the variables. In 2x+3=11, 2x+3 is the left-hand side and 11 is the right-hand side.',
+            emphasis:
+                'Solving means determining every value that makes the equality true.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Expression, identity, and equation',
+            content:
+                '2x+3 is an expression. 2(x+1)=2x+2 is an identity because it holds for every real x. 2x+3=11 is an equation because it holds only for particular x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Solution set',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.idea,
-            title: 'Think of a balance scale',
+            title: 'Solutions belong to a specified universe',
             content:
-                'An equation states that two expressions have the same value. Solving the equation means finding which values of the unknown make that equality true.',
+                'The solution set contains all values in the chosen domain that make the equation true. The universe may be ℝ, ℤ, or another specified set.',
             emphasis:
-                'Everything you do to one side of the equation must preserve the equality.',
+                'A complete answer depends on the number system being used.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Checking a solution',
+            problem: 'Check whether x=4 solves 3x−5=7.',
+            steps: [
+              'Substitute x=4: 3·4−5=12−5=7.',
+              'The right-hand side is also 7.',
+            ],
+            result: 'x=4 is a solution.',
+            interpretation:
+                'Verification returns to the original equation rather than relying only on intermediate algebra.',
           ),
         ],
       ),
       LessonSectionData(
-        number: '2',
-        title: 'See it in action',
+        number: '3',
+        title: 'Equivalent equations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Preserving the same solution set',
+            content:
+                'Two equations are equivalent when they have the same solution set in the chosen universe. Adding or subtracting the same expression from both sides preserves equivalence. Multiplying or dividing both sides by the same nonzero number also preserves equivalence.',
+            emphasis:
+                'Dividing by an expression that may be zero requires care because valid solutions can be lost.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'The balance principle',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Perform the same valid operation on both sides',
+            content:
+                'The balance metaphor is useful: when two sides are equal, applying the same valid transformation to both preserves equality.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Isolating the variable',
+            problem: 'Solve 2x+5=17.',
+            steps: [
+              'Subtract 5 from both sides: 2x=12.',
+              'Divide both sides by 2: x=6.',
+              'Check: 2·6+5=17.',
+            ],
+            result: 'S={6}.',
+            interpretation:
+                'Every step produced an equation equivalent to the previous one.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Reversible and nonreversible operations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Not every transformation preserves equivalence in both directions',
+            content:
+                'Squaring both sides can introduce solutions. For example, x=−2 implies x²=4, but x²=4 also allows x=2. Such transformations require a final check.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Modeling with equations',
         blocks: [
           WorkedExampleBlockData(
-            title: 'One operation at a time',
-            problem: 'Solve x + 7 = 12.',
+            title: 'Translating a situation',
+            problem: 'A number increased by 7 equals 19. Find the number.',
             steps: [
-              'We want to leave x by itself.',
-              'Subtract 7 from both sides: x + 7 − 7 = 12 − 7.',
-              'Simplify: x = 5.',
-              'Check: 5 + 7 = 12.',
+              'Let x represent the unknown number.',
+              'Translate: x+7=19.',
+              'Subtract 7: x=12.',
+              'Check: 12+7=19.',
             ],
-            result: 'The solution is x = 5.',
+            result: 'The number is 12.',
             interpretation:
-                'Subtracting 7 from both sides produced an equivalent equation.',
+                'An equation connects verbal language to a verifiable mathematical relation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent conceptual errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '“Move it across and change the sign” is only a shortcut',
+            content:
+                'The underlying rule is to add or subtract the same quantity on both sides. Understanding the operation prevents sign mistakes.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Never divide by zero',
+            content:
+                'Division by zero is undefined. Before dividing by a variable expression, check whether it can equal zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Justify each transformation',
+            content:
+                '1. Decide whether 3x+1 is an expression or an equation.\n'
+                '2. Check whether x=2 solves 4x−1=7.\n'
+                '3. Solve x+9=14.\n'
+                '4. Solve 5x=30.\n'
+                '5. Solve 3x−4=11.\n'
+                '6. Explain why adding 6 to both sides preserves solutions.\n'
+                '7. Explain why division by zero is forbidden.\n'
+                '8. Find the solution set of 2x+3=2x+3.\n'
+                '9. Find the solution set of 2x+3=2x+5.\n'
+                '10. Give an example of an identity.\n'
+                '11. Give an example of an equation with one real solution.\n'
+                '12. Check the solution of 7−2x=1.\n'
+                '13. Explain why squaring can introduce solutions.\n'
+                '14. Model: “twice a number minus 3 is 9.”\n'
+                '15. Distinguish an obtained solution from a verified solution.',
+            emphasis:
+                'For conceptual questions, answer with a complete mathematical statement.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Solving equations means finding intersections and zeros',
+            content:
+                'The equation f(x)=g(x) asks where two functions have equal values. The equation f(x)=0 asks for zeros. These ideas reappear in graphs, limits, derivatives, and optimization.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for zeros and intersections.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'If x − 4 = 9, which operation isolates x?',
+      question: 'Which operation always preserves equivalence in an equation?',
       choices: [
-        'Subtract 4 from both sides',
-        'Add 4 to both sides',
-        'Multiply both sides by 4',
+        'Add the same number to both sides',
+        'Divide both sides by zero',
+        'Square both sides without checking',
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
-          'Adding 4 to both sides gives x = 13 without changing the equality.',
+          'Adding the same quantity to both sides preserves equality and the solution set.',
     ),
     takeaways: [
-      'An equation represents an equality.',
-      'The unknown is the value we want to determine.',
-      'Equivalent operations preserve equality.',
-      'A solution must make the original equation true.',
+      'An equation is a statement of equality.',
+      'Solutions make the equation true in the chosen universe.',
+      'Equivalent equations have the same solution set.',
+      'Operations on both sides must preserve equivalence.',
+      'Some transformations require final verification.',
+      'Solving equations connects algebra to functions and zeros.',
     ],
     closing:
-        'Solving an equation means preserving balance until the unknown is isolated.',
-  ),
+        'Solving an equation means preserving equality logically until its solutions become explicit.',
+  )
   CourseLessonData(
     id: 'equations-02-primeiro-grau',
-    topicId: 'equacoes-inequacoes',
-    trailTitle: 'Equations and Inequalities',
+    topicId: 'equacoes',
+    trailTitle: 'Equations and inequalities',
     eyebrow: 'Linear equations',
     title: 'First-degree equations',
-    description: 'inverse operations and isolation',
-    duration: '≈ 5 min',
+    description:
+        'the form ax+b=c, isolating the unknown, coefficients, and interpretation',
+    duration: '≈ 28 min',
     objective:
-        'solve linear equations using inverse operations in an organized way',
-    symbol: 'ax+b',
+        'solve linear equations in one variable, interpret coefficients, organize terms, verify solutions, and model simple problems',
+    symbol: 'ax+b=0',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Build a strategy',
+        title: 'Linear form',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Undo operations in the right order',
+            visual: LessonVisual.notation,
+            title: 'The variable appears to the first power',
             content:
-                'In an equation such as 3x + 4 = 19, the unknown was first multiplied by 3 and then increased by 4. To isolate it, follow the reverse path: remove 4 and then divide by 3.',
+                'A linear equation in x can be written as ax+b=0 with real a and b and a ≠ 0. It then has exactly one real solution: x=−b/a.',
             emphasis:
-                'There is no magic “move it to the other side.” There are inverse operations applied to both sides.',
+                'The case a=0 must be handled separately because it is no longer a genuine linear equation.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Solve step by step',
+        title: 'Isolation step by step',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Two operations',
-            problem: 'Solve 5x − 7 = 18.',
+            title: 'Positive coefficient',
+            problem: 'Solve 4x−7=13.',
             steps: [
-              'Add 7 to both sides: 5x = 25.',
-              'Divide both sides by 5: x = 5.',
-              'Substitute into the original equation: 5·5 − 7 = 18.',
+              'Add 7 to both sides: 4x=20.',
+              'Divide both sides by 4: x=5.',
+              'Check: 4·5−7=13.',
             ],
-            result: 'x = 5.',
+            result: 'S={5}.',
             interpretation:
-                'The check confirms that the value found satisfies the equation.',
+                'The solution is the unique value that makes the equality true.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Negative coefficient',
+            problem: 'Solve −3x+8=20.',
+            steps: [
+              'Subtract 8: −3x=12.',
+              'Divide by −3: x=−4.',
+              'Check: −3(−4)+8=20.',
+            ],
+            result: 'S={−4}.',
+            interpretation:
+                'Dividing an equation by a negative number preserves equality, unlike the inequality case.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Variable on both sides',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Collect variable terms and constants',
+            content:
+                'When x appears on both sides, use equivalent operations to collect variable terms on one side and constants on the other.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Variable on both sides',
+            problem: 'Solve 5x−2=2x+10.',
+            steps: [
+              'Subtract 2x: 3x−2=10.',
+              'Add 2: 3x=12.',
+              'Divide by 3: x=4.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'There is no need to “move” terms; equal operations are applied to both sides.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equations with decimals',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Working with decimal coefficients',
+            problem: 'Solve 0.2x+1.5=2.3.',
+            steps: [
+              'Subtract 1.5: 0.2x=0.8.',
+              'Divide by 0.2: x=4.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'Multiplying the entire equation by 10 first would also remove the decimals.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Linear modeling',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Fixed cost plus variable cost',
+            problem: 'A ride costs R$ 6 plus R$ 2.50 per kilometer. If the total is R$ 26, how many kilometers were traveled?',
+            steps: [
+              'Let x be the distance in kilometers.',
+              'Model: 6+2.5x=26.',
+              'Subtract 6: 2.5x=20.',
+              'Divide by 2.5: x=8.',
+            ],
+            result: 'The ride covered 8 km.',
+            interpretation:
+                'The coefficient of x represents the price rate per kilometer.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Graphical interpretation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'A linear equation can represent an intersection',
+            content:
+                'Solving ax+b=c is equivalent to finding the x-coordinate where the line y=ax+b meets the horizontal line y=c.',
+            emphasis:
+                'The algebraic solution corresponds to an intersection coordinate on the graph.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Changing only one side',
+            content:
+                'Adding, subtracting, multiplying, or dividing only one side usually destroys equivalence.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Losing the sign of the coefficient',
+            content:
+                'In −4x=12, the solution is x=−3. The negative sign belongs to the coefficient and must remain in the division.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1',
+            problem: 'Solve 7x+5=3x+21.',
+            steps: [
+              'Subtract 3x: 4x+5=21.',
+              'Subtract 5: 4x=16.',
+              'Divide by 4.',
+            ],
+            result: 'x=4.',
+            interpretation:
+                'Each step reduces complexity while preserving equivalence.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2',
+            problem: 'Solve 2.4x−1.2=6.',
+            steps: [
+              'Add 1.2: 2.4x=7.2.',
+              'Divide by 2.4.',
+            ],
+            result: 'x=3.',
+            interpretation:
+                'Decimal coefficients do not change the algebraic logic.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and verify',
+            content:
+                '1. x+8=15.\n'
+                '2. 3x=27.\n'
+                '3. 4x−5=19.\n'
+                '4. −2x+7=15.\n'
+                '5. 5x+1=2x+16.\n'
+                '6. 9−3x=18.\n'
+                '7. 0.5x+2=7.\n'
+                '8. 1.2x−0.6=3.\n'
+                '9. 7x−4=7x+1.\n'
+                '10. 6x+3=6x+3.\n'
+                '11. Model: three times a number plus 2 equals 20.\n'
+                '12. Model a fixed cost of 10 plus 4 per unit totaling 42.\n'
+                '13. Explain the graphical meaning of ax+b=c.\n'
+                '14. Check x=−3 in −4x=12.\n'
+                '15. Explain why a ≠ 0 in ax+b=0.',
+            emphasis:
+                'In questions 9 and 10, determine whether there is one solution, no solution, or infinitely many solutions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Linearity is the first constant-rate model',
+            content:
+                'The function y=ax+b describes a constant rate. In Calculus, derivatives measure local rates and tangent lines provide linear approximations. Linear equations are basic language for those ideas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for linear functions and approximation.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What is the solution of 4x + 3 = 19?',
-      choices: ['x = 4', 'x = 5', 'x = 16'],
-      correctIndex: 0,
-      explanation: 'Subtracting 3 gives 4x = 16. Dividing by 4 gives x = 4.',
+      question: 'What is the solution of 3x−4=11?',
+      choices: ['3', '5', '7'],
+      correctIndex: 1,
+      explanation:
+          'Add 4 to both sides to get 3x=15, then divide by 3 to obtain x=5.',
     ),
     takeaways: [
-      'Use inverse operations.',
-      'Remove addition or subtraction first.',
-      'Then remove multiplication or division.',
-      'Whenever possible, check the answer.',
+      'A genuine linear equation has the form ax+b=0 with a ≠ 0.',
+      'Isolating the variable requires equivalent operations.',
+      'Variable terms may appear on both sides.',
+      'Decimals do not change the algebraic logic.',
+      'Linear models represent constant rates.',
+      'The solution can be interpreted as a line intersection.',
     ],
     closing:
-        'Organization matters more than speed when solving equations.',
-  ),
+        'Solving a linear equation means transforming a relation until its unique compatible value is explicit.',
+  )
   CourseLessonData(
     id: 'equations-03-parenteses-fracoes',
     topicId: 'equacoes-inequacoes',
