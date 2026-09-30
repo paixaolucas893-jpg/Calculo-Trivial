@@ -1784,7 +1784,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     ],
     closing:
         'Quadratic equations stop being a single formula when factoring, the discriminant, and geometry are understood as parts of one structure.',
-  )
+  ),
   CourseLessonData(
     id: 'equations-07-inequacoes',
     topicId: 'equacoes-inequacoes',
