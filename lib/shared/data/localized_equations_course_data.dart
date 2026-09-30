@@ -492,61 +492,314 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
     eyebrow: 'Linear equations',
-    title: 'Parentheses and fractions',
-    description: 'distribution and denominators',
-    duration: '≈ 5 min',
+    title: 'Equations with parentheses and fractions',
+    description:
+        'distribution, denominators, least common multiples, and domain preservation',
+    duration: '≈ 32 min',
     objective:
-        'solve equations with parentheses and fractions by preparing the expression before isolating the unknown',
+        'solve linear equations with parentheses and fractions, clear denominators safely, preserve restrictions, and organize the expression before isolating the unknown',
     symbol: 'x/3',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Prepare before isolating',
+        title: 'Prepare the structure before isolating x',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Simplify the structure',
+            title: 'Simplify first to reduce errors',
             content:
-                'When parentheses or fractions appear, simplify the expression before trying to leave x alone. Use distribution, combine like terms, or clear denominators.',
+                'When an equation contains parentheses, fractions, or several terms, organize the structure before isolating the variable. This may require distribution, combining like terms, or clearing denominators.',
             emphasis:
-                'A complicated equation can become a simple linear equation.',
+                'A visually complicated equation can often become an ordinary linear equation.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Parentheses and distribution',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Distribute to every term',
+            content:
+                'In a(b+c)=ab+ac, the outside factor multiplies every inside term. A negative sign before parentheses means multiplication of the entire group by −1.',
+            emphasis:
+                'Removing parentheses incorrectly changes the equation.',
+          ),
           WorkedExampleBlockData(
             title: 'Parentheses on both sides',
-            problem: 'Solve 3(x + 1) = 2x + 7.',
+            problem: 'Solve 3(x+1)=2x+7.',
             steps: [
-              'Distribute: 3x + 3 = 2x + 7.',
-              'Subtract 2x from both sides: x + 3 = 7.',
-              'Subtract 3 from both sides: x = 4.',
+              'Distribute: 3x+3=2x+7.',
+              'Subtract 2x from both sides: x+3=7.',
+              'Subtract 3: x=4.',
+              'Check in the original equation.',
             ],
-            result: 'x = 4.',
-            interpretation: 'Distribution revealed an ordinary linear equation.',
+            result: 'S={4}.',
+            interpretation:
+                'Distribution revealed a simple linear equation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Negative sign before parentheses',
+            problem: 'Solve 5−2(x−3)=9.',
+            steps: [
+              'Distribute −2: 5−2x+6=9.',
+              'Combine constants: 11−2x=9.',
+              'Subtract 11: −2x=−2.',
+              'Divide by −2: x=1.',
+            ],
+            result: 'S={1}.',
+            interpretation:
+                'The sign inside the parentheses changes because of the negative outside factor.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Simple fractions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Multiplying by a denominator can simplify the equation',
+            content:
+                'If an equation contains a fraction such as x/5, multiplying every term on both sides by 5 removes that denominator without changing the solution set.',
+            emphasis:
+                'The multiplication must apply to every term on both sides.',
+          ),
+          WorkedExampleBlockData(
+            title: 'One fraction',
+            problem: 'Solve x/5+2=6.',
+            steps: [
+              'Subtract 2: x/5=4.',
+              'Multiply both sides by 5.',
+            ],
+            result: 'x=20.',
+            interpretation:
+                'The fraction is removed through an equivalent operation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Several denominators and the LCM',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Use the least common multiple',
+            content:
+                'When several numerical denominators appear, multiplying the entire equation by their least common multiple clears all fractions at once.',
+            emphasis:
+                'The LCM reduces arithmetic clutter and helps prevent mistakes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Clearing two denominators',
+            problem: 'Solve x/3+x/4=7.',
+            steps: [
+              'LCM(3,4)=12.',
+              'Multiply the entire equation by 12.',
+              'Obtain 4x+3x=84.',
+              'Thus 7x=84 and x=12.',
+            ],
+            result: 'S={12}.',
+            interpretation:
+                'The fractional equation was converted into an equivalent integer-coefficient equation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Fractions with expressions in the numerator',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Grouped numerator',
+            problem: 'Solve (x+2)/3=(2x−1)/5.',
+            steps: [
+              'LCM(3,5)=15.',
+              'Multiply both sides by 15.',
+              'Obtain 5(x+2)=3(2x−1).',
+              'Distribute: 5x+10=6x−3.',
+              'Solve to get x=13.',
+            ],
+            result: 'S={13}.',
+            interpretation:
+                'Clearing denominators can create parentheses that must then be distributed.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Variable denominators',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Determine the domain before multiplying',
+            content:
+                'When the variable appears in a denominator, values that make the denominator zero are forbidden and must be recorded before any simplification.',
+            emphasis:
+                'Multiplying by the denominator does not restore excluded values.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Domain restriction',
+            problem: 'Solve 2/(x−1)=1, with x ≠ 1.',
+            steps: [
+              'Record x ≠ 1.',
+              'Multiply both sides by x−1.',
+              'Obtain 2=x−1.',
+              'Add 1: x=3.',
+              'Check the restriction.',
+            ],
+            result: 'S={3}.',
+            interpretation:
+                'The restriction belongs to the original equation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'A general strategy',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Recommended order',
+            content:
+                '1) determine domain restrictions; 2) distribute when needed; 3) clear denominators; 4) combine like terms; 5) collect variable terms; 6) isolate the variable; 7) verify in the original equation.',
+            emphasis:
+                'The order may vary, but domain analysis and final verification should not be skipped.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Multiplying only part of the equation by the LCM',
+            content:
+                'When clearing denominators, the chosen factor must multiply every term on both sides, not only the fractions.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelling terms inside a sum',
+            content:
+                'In (x+2)/x, x cannot be cancelled with only one term of the numerator. Cancellation requires common factors.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting domain restrictions',
+            content:
+                'If x=1 makes an original denominator zero, it remains forbidden even if the denominator disappears later.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — parentheses',
+            problem: 'Solve 2(3x−1)+4=x+15.',
+            steps: [
+              'Distribute: 6x−2+4=x+15.',
+              'Reduce: 6x+2=x+15.',
+              'Subtract x: 5x+2=15.',
+              'Subtract 2: 5x=13.',
+            ],
+            result: 'x=13/5.',
+            interpretation:
+                'A linear equation does not need to have an integer solution.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — fractions',
+            problem: 'Solve (x−1)/2+(x+3)/4=5.',
+            steps: [
+              'LCM(2,4)=4.',
+              'Multiply by 4: 2(x−1)+(x+3)=20.',
+              'Distribute and combine: 3x+1=20.',
+              'Thus 3x=19.',
+            ],
+            result: 'x=19/3.',
+            interpretation:
+                'Using the LCM keeps the calculation exact.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve and verify',
+            content:
+                '1. 2(x+4)=18.\n'
+                '2. 3(x−2)+5=14.\n'
+                '3. 5−(x+1)=2.\n'
+                '4. 4−2(3x−1)=10.\n'
+                '5. x/3+2=7.\n'
+                '6. x/4+x/2=9.\n'
+                '7. (x+1)/2=5.\n'
+                '8. (2x−3)/5=(x+1)/2.\n'
+                '9. x/6−x/4=1.\n'
+                '10. 2/(x−3)=1, with the proper domain.\n'
+                '11. State the restriction for 1/(x+2)=3.\n'
+                '12. Explain why the LCM must multiply every term.\n'
+                '13. Solve 2(x−1)/3+x/2=5.\n'
+                '14. Check the solution of (x+2)/3=(2x−1)/5.\n'
+                '15. Explain why domain analysis comes before simplification.',
+            emphasis:
+                'For variable denominators, write the forbidden values first.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Fractions and restrictions appear throughout Calculus',
+            content:
+                'Rational functions, limits, and difference quotients require safe denominator manipulation. Recording the domain before simplifying directly prepares those topics.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for rational functions, domains, and limits.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'If x/5 + 2 = 6, what is x?',
+      question: 'What is the solution of x/5+2=6?',
       choices: ['4', '8', '20'],
       correctIndex: 2,
       explanation:
-          'Subtracting 2 gives x/5 = 4. Multiplying by 5 gives x = 20.',
+          'Subtract 2 to obtain x/5=4. Multiply both sides by 5 to get x=20.',
     ),
     takeaways: [
-      'Use distribution to remove parentheses.',
-      'Combine like terms.',
-      'Clear denominators when that simplifies the equation.',
-      'Preserve equivalence at every transformation.',
+      'Parentheses require correct distribution before reduction.',
+      'Fractions can be removed by multiplying the entire equation by a common denominator.',
+      'The LCM is useful with several numerical denominators.',
+      'Variable denominators create domain restrictions.',
+      'Cancellation requires factors rather than terms in a sum.',
+      'Solutions should be checked in the original equation.',
     ],
     closing:
-        'Before attacking the unknown, make the equation work in your favor.',
-  ),
+        'Equations with parentheses and fractions become manageable when their structure is prepared before isolating the variable.',
+  )
   CourseLessonData(
     id: 'equations-04-casos-especiais',
     topicId: 'equacoes-inequacoes',
