@@ -1,12 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calcquest/shared/data/algebra_course_data.dart';
+import 'package:calcquest/shared/data/localized_algebra_course_content.dart';
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
 
 void main() {
   group('Integridade do curso de Álgebra Fundamental', () {
-    test('possui oito aulas autorais e progressivas', () {
-      expect(algebraCourseLessons, hasLength(8));
+    test('possui dez aulas autorais e progressivas', () {
+      expect(algebraCourseLessons, hasLength(10));
 
       final ids = algebraCourseLessons.map((lesson) => lesson.id).toList();
 
@@ -18,6 +20,8 @@ void main() {
           'algebra-02-termos-semelhantes',
           'algebra-03-distributiva',
           'algebra-04-potencias',
+          'algebra-09-monomios-polinomios',
+          'algebra-10-operacoes-polinomios',
           'algebra-05-produtos-notaveis',
           'algebra-06-fatoracao',
           'algebra-07-fracoes-algebricas',
@@ -26,15 +30,39 @@ void main() {
       );
     });
 
-    test('todas as aulas possuem estrutura pedagógica completa', () {
+    test('português e inglês mantêm os mesmos IDs e a mesma ordem', () {
+      final portugueseIds = algebraCourseLessons
+          .map((lesson) => lesson.id)
+          .toList();
+      final englishIds = localizedAlgebraCourseLessons(
+        const Locale('en'),
+      ).map((lesson) => lesson.id).toList();
+
+      expect(englishIds, equals(portugueseIds));
+    });
+
+    test('todas as aulas seguem estrutura universitária completa', () {
       for (final lesson in algebraCourseLessons) {
         expect(lesson.topicId, 'algebra-fundamental');
         expect(lesson.title.trim(), isNotEmpty);
         expect(lesson.description.trim(), isNotEmpty);
         expect(lesson.objective.trim(), isNotEmpty);
-        expect(lesson.sections.length, greaterThanOrEqualTo(2));
-        expect(lesson.takeaways.length, greaterThanOrEqualTo(3));
+        expect(
+          lesson.sections.length,
+          greaterThanOrEqualTo(8),
+          reason: '${lesson.id} ainda está curta demais.',
+        );
+        expect(
+          lesson.takeaways.length,
+          greaterThanOrEqualTo(5),
+          reason: '${lesson.id} precisa de síntese conceitual mais robusta.',
+        );
         expect(lesson.closing.trim(), isNotEmpty);
+        expect(
+          lesson.duration,
+          isNot(contains('5 min')),
+          reason: '${lesson.id} ainda usa duração do formato resumido antigo.',
+        );
 
         for (final section in lesson.sections) {
           expect(section.title.trim(), isNotEmpty);
@@ -52,11 +80,11 @@ void main() {
       }
     });
 
-    test('as vinte atividades cobrem todas as aulas', () {
+    test('as vinte e quatro atividades cobrem todas as aulas', () {
       final lessonIds = algebraCourseLessons.map((lesson) => lesson.id).toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockExercises, hasLength(20));
+      expect(mockExercises, hasLength(24));
 
       for (final exercise in mockExercises) {
         expect(
