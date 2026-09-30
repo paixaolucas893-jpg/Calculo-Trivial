@@ -2114,68 +2114,345 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     id: 'equations-08-modulo-revisao',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
-    eyebrow: 'Consolidation',
-    title: 'Absolute value and final strategy',
-    description: 'distance, two possibilities, and review',
-    duration: '≈ 5 min',
+    eyebrow: 'Absolute value',
+    title: 'Absolute-value equations and inequalities',
+    description:
+        'distance, piecewise definition, equations, inequalities, domain, and strategy selection',
+    duration: '≈ 34 min',
     objective:
-        'interpret simple absolute-value equations and choose appropriate strategies for different problems',
+        'solve absolute-value equations and inequalities by geometric interpretation and case analysis, recognize existence conditions, and integrate the strategies studied in the unit',
     symbol: '|x|',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Absolute value represents distance',
+        title: 'Absolute value as distance',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.graph,
-            title: 'Distance is never negative',
+            title: 'Geometric interpretation comes first',
             content:
-                'The absolute value |x| represents the distance between x and zero. That is why |x| = 5 has two solutions: 5 and −5.',
+                'For real numbers, |x−a| is the distance between x and a. This lets us read absolute-value equations and inequalities as distance conditions on the real line.',
             emphasis:
-                '|x| = a, with a > 0, usually gives x = a or x = −a.',
+                'Distance is never negative.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Choose the tool',
+        title: 'Piecewise definition',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Absolute value is a piecewise function',
+            content:
+                'Formally, [[math:|u|=\\begin{cases}u,&u\\ge0\\\\-u,&u<0\\end{cases}]]. Solving absolute-value problems ultimately means controlling these two behaviors.',
+            emphasis:
+                'The sign of the inside expression determines which branch is valid.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Equations of the form |u|=a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'The sign of a determines the case',
+            content:
+                'If a>0, then |u|=a is equivalent to u=a or u=−a. If a=0, then u=0. If a<0, there is no real solution.',
+            emphasis:
+                'Inspect the right-hand side before splitting into cases.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Two solutions',
+            problem: 'Solve |2x−5|=7.',
+            steps: [
+              'First case: 2x−5=7, so x=6.',
+              'Second case: 2x−5=−7, so x=−1.',
+              'Check both values in the original equation.',
+            ],
+            result: 'S={−1,6}.',
+            interpretation:
+                'The expression 2x−5 can lie 7 units from zero on either side.',
+          ),
+          WorkedExampleBlockData(
+            title: 'No solution',
+            problem: 'Solve |3x+1|=−2.',
+            steps: [
+              'Every real absolute value is ≥0.',
+              'The right-hand side is negative.',
+            ],
+            result: 'S=∅.',
+            interpretation:
+                'Existence analysis avoids unnecessary algebra.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Inequalities of the form |u|<a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Inside region',
+            content:
+                'For a>0, [[math:|u|<a]] is equivalent to [[math:-a<u<a]], and [[math:|u|\\le a]] is equivalent to [[math:-a\\le u\\le a]].',
+            emphasis:
+                '“Less than” describes values inside a distance band.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Central interval',
+            problem: 'Solve |x−3|≤2.',
+            steps: [
+              'Write −2≤x−3≤2.',
+              'Add 3 throughout.',
+            ],
+            result: '1≤x≤5, that is, [1,5].',
+            interpretation:
+                'The solution contains every point at most 2 units from 3.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequalities of the form |u|>a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Outside regions',
+            content:
+                'For a>0, [[math:|u|>a]] is equivalent to [[math:u<-a]] or [[math:u>a]]. With ≥, the boundary points are included.',
+            emphasis:
+                '“Greater than” describes two regions outside a central band.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Two outside regions',
+            problem: 'Solve |2x+1|>5.',
+            steps: [
+              'First case: 2x+1<−5, so x<−3.',
+              'Second case: 2x+1>5, so x>2.',
+            ],
+            result: 'S=(−∞,−3)∪(2,+∞).',
+            interpretation:
+                'The solution lies outside the central interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Special cases in absolute-value inequalities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'The sign of a changes everything',
+            content:
+                'If a<0, then |u|<a and |u|≤a have no real solutions. In contrast, |u|>a may be true for every real value when a<0 because |u|≥0.',
+            emphasis:
+                'Do not apply interval formulas mechanically without inspecting the sign of a.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Solving through the piecewise definition',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'When absolute value is part of a larger expression',
+            problem: 'Solve |x−1|+2=5.',
+            steps: [
+              'Isolate the absolute value: |x−1|=3.',
+              'Split into x−1=3 or x−1=−3.',
+              'Solve: x=4 or x=−2.',
+            ],
+            result: 'S={−2,4}.',
+            interpretation:
+                'Whenever possible, isolate the absolute-value expression before opening cases.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Absolute values on both sides',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '|u|=|v|',
+            content:
+                'For real numbers, |u|=|v| is equivalent to u=v or u=−v. Equal absolute values mean equal distances from zero.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Equal distances',
+            problem: 'Solve |x−2|=|x+4|.',
+            steps: [
+              'Case 1: x−2=x+4, which is impossible.',
+              'Case 2: x−2=−(x+4).',
+              'Then x−2=−x−4, so 2x=−2 and x=−1.',
+            ],
+            result: 'S={−1}.',
+            interpretation:
+                '−1 is the midpoint between 2 and −4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Connection to distance between points',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Absolute-value equations can be geometric problems',
+            content:
+                '|x−a|=r describes two points at distance r from a when r>0. Likewise, |x−a|≤r describes a closed interval centered at a with radius r.',
+            emphasis:
+                'The geometric interpretation is often faster than symbolic manipulation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Forgetting one branch',
+            content:
+                '|u|=a with a>0 produces two cases. Solving only u=a loses a valid solution.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Treating |u| as if it were always u',
+            content:
+                '|u|=u only when u≥0. When u<0, |u|=−u.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confusing < with >',
+            content:
+                '|u|<a gives an inside interval, while |u|>a gives two outside regions.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — equation',
+            problem: 'Solve |3x−6|=9.',
+            steps: [
+              '3x−6=9 or 3x−6=−9.',
+              'First case: x=5.',
+              'Second case: x=−1.',
+            ],
+            result: 'S={−1,5}.',
+            interpretation:
+                'The two solutions produce the same distance.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — inequality',
+            problem: 'Solve |x+2|<5.',
+            steps: [
+              'Write −5<x+2<5.',
+              'Subtract 2 throughout.',
+            ],
+            result: 'S=(−7,3).',
+            interpretation:
+                'The interval has center −2 and radius 5.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Practice before the final activity',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Classify before calculating',
+            title: 'Solve and interpret geometrically when possible',
             content:
-                'Look for parentheses, fractions, x², two unknowns, an inequality, or an absolute value. The structure tells you which strategy to use.',
+                '1. |x|=6.\n'
+                '2. |x|=0.\n'
+                '3. |x|=−3.\n'
+                '4. |2x−1|=5.\n'
+                '5. |x+4|≤3.\n'
+                '6. |x−2|<7.\n'
+                '7. |3x+1|>4.\n'
+                '8. |x|≥5.\n'
+                '9. |x−1|+2=6.\n'
+                '10. |2x+3|−1=4.\n'
+                '11. |x−2|=|x+6|.\n'
+                '12. Explain the geometric meaning of |x−5|≤2.\n'
+                '13. Classify |x+1|<−2.\n'
+                '14. Classify |x−3|>−1.\n'
+                '15. Compare the solution sets of |x|<4 and |x|>4.',
             emphasis:
-                'Recognizing the problem type reduces errors and avoids unnecessary formulas.',
+                'Use interval notation whenever the solution set is not discrete.',
           ),
-          WorkedExampleBlockData(
-            title: 'Absolute-value equation',
-            problem: 'Solve |x| = 7.',
-            steps: [
-              'Interpret |x| as distance from zero.',
-              'There are two points seven units from zero.',
-              'Those points are 7 and −7.',
-            ],
-            result: 'x = −7 or x = 7.',
-            interpretation: 'Both solutions have the same absolute value.',
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Strategic synthesis of the unit',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Recognize structure before choosing a technique',
+            content:
+                'Linear equation: isolate the variable. Fractions: preserve domain and clear denominators. System: substitution or elimination. Quadratic: factoring, square roots, completing the square, or formula. Inequality: monitor order. Absolute value: interpret distance and cases.',
+            emphasis:
+                'Correctly classifying the problem is part of the solution.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Absolute value returns in limits, continuity, and error',
+            content:
+                'The language [[math:|x-a|<\\delta]] and [[math:|f(x)-L|<\\varepsilon]] is central to the formal definition of limit. Absolute-value inequalities also express tolerances, error margins, and neighborhoods.',
+            emphasis:
+                'Understanding absolute value as distance directly prepares ε–δ reasoning.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for absolute value, distance, and the formal definition of limit.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which values solve |x| = 3?',
-      choices: ['Only x = 3', 'x = −3 or x = 3', 'x = 0 or x = 3'],
+      question: 'Which values solve |x|=3?',
+      choices: ['Only x=3', 'x=−3 or x=3', 'x=0 or x=3'],
       correctIndex: 1,
       explanation:
           'Both −3 and 3 are three units away from zero.',
     ),
     takeaways: [
       'Absolute value represents distance.',
-      'Absolute-value equations can produce two solutions.',
-      'The structure indicates the appropriate strategy.',
-      'Checking the solution remains essential.',
+      'Equations |u|=a require checking the sign of a.',
+      'Inequalities |u|<a describe inside regions.',
+      'Inequalities |u|>a describe outside regions.',
+      'The piecewise definition justifies the operational rules.',
+      'Equal absolute values represent equal distances.',
+      'Recognizing structure determines the appropriate strategy.',
+      'Absolute value prepares the formal language of limits.',
     ],
     closing:
-        'You now have a solid foundation for handling different equations and inequalities.',
-  ),
+        'The unit comes together when equations, inequalities, and absolute value are seen as different ways of describing relations among values and sets.',
+  )
 ];
