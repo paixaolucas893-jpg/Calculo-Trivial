@@ -1090,63 +1090,303 @@ const List<CourseLessonData> equationsCourseLessons = [
     id: 'equations-05-sistemas-lineares',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equações e Inequações',
-    eyebrow: 'Duas incógnitas',
-    title: 'Sistemas de equações',
-    description: 'substituição e eliminação',
-    duration: '≈ 5 min',
+    eyebrow: 'Sistemas lineares',
+    title: 'Sistemas lineares de duas equações',
+    description:
+        'solução como interseção, substituição, eliminação, classificação e modelagem',
+    duration: '≈ 34 min',
     objective:
-        'resolver sistemas lineares simples e interpretar a solução como um par ordenado',
-    symbol: '{x,y}',
+        'resolver sistemas lineares de duas equações por substituição e eliminação, interpretar a solução como interseção de retas e classificar sistemas como determinados, impossíveis ou indeterminados',
+    symbol: '{x+y',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Duas condições ao mesmo tempo',
+        title: 'O que é um sistema linear',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'A solução precisa satisfazer as duas equações',
+            visual: LessonVisual.notation,
+            title: 'Duas condições devem ser satisfeitas ao mesmo tempo',
             content:
-                'Um sistema reúne duas ou mais equações. Em um sistema com x e y, '
-                'buscamos um par de valores que torne todas as equações verdadeiras simultaneamente.',
-            emphasis: 'Resolver apenas uma das equações não resolve o sistema.',
+                'Um sistema linear em duas variáveis reúne duas equações que devem ser verdadeiras simultaneamente. Uma solução é um par ordenado (x,y) que satisfaz ambas.',
+            emphasis:
+                'Resolver o sistema significa encontrar a interseção dos conjuntos solução das duas equações.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Elimine uma incógnita',
+        title: 'Interpretação gráfica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Cada equação linear representa uma reta',
+            content:
+                'Em duas variáveis, ax+by=c representa uma reta. A solução do sistema é o ponto em que as duas retas se intersectam, quando essa interseção existe.',
+            emphasis:
+                'Uma interseção: solução única. Retas paralelas distintas: nenhuma solução. Retas coincidentes: infinitas soluções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Método da substituição',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Isole uma variável e substitua',
+            content:
+                'Na substituição, resolvemos uma das equações para uma variável e inserimos essa expressão na outra equação. O sistema então se reduz a uma equação em uma variável.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Substituição passo a passo',
+            problem: 'Resolva x+y=7 e x−y=1.',
+            steps: [
+              'Da primeira equação, isole x: x=7−y.',
+              'Substitua na segunda: (7−y)−y=1.',
+              'Simplifique: 7−2y=1.',
+              'Então −2y=−6 e y=3.',
+              'Substitua em x=7−y: x=4.',
+            ],
+            result: '(x,y)=(4,3).',
+            interpretation:
+                'O par encontrado satisfaz simultaneamente as duas equações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Método da eliminação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Faça uma variável desaparecer',
+            content:
+                'Na eliminação, combinamos as equações de modo que os coeficientes de uma variável sejam opostos. Ao somar as equações, essa variável é eliminada.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Eliminação direta',
+            problem: 'Resolva 2x+y=8 e 3x−y=7.',
+            steps: [
+              'Some as equações: 5x=15.',
+              'Logo, x=3.',
+              'Substitua em 2x+y=8: 6+y=8.',
+              'Então y=2.',
+            ],
+            result: '(x,y)=(3,2).',
+            interpretation:
+                'Os coeficientes +1 e −1 de y permitiram eliminação imediata.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Quando é preciso multiplicar uma equação',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Método da adição',
-            problem: 'x + y = 7\nx − y = 1',
+            title: 'Preparando a eliminação',
+            problem: 'Resolva x+2y=7 e 3x+y=8.',
             steps: [
-              'Some as duas equações.',
-              'y e −y se cancelam: 2x = 8.',
-              'Divida por 2: x = 4.',
-              'Substitua em x + y = 7: y = 3.',
+              'Multiplique a segunda equação por −2: −6x−2y=−16.',
+              'Some com a primeira: −5x=−9.',
+              'Então x=9/5.',
+              'Substitua em x+2y=7.',
+              'Obtenha 9/5+2y=7, então 2y=26/5 e y=13/5.',
             ],
-            result: 'A solução é (4, 3).',
+            result: '(x,y)=(9/5,13/5).',
             interpretation:
-                'O par x = 4 e y = 3 satisfaz simultaneamente as duas equações.',
+                'Nem todo sistema possui solução inteira; o método continua válido.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Classificação dos sistemas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Determinado, impossível e indeterminado',
+            content:
+                'Um sistema possível e determinado possui uma única solução. Um sistema impossível não possui solução. Um sistema possível e indeterminado possui infinitas soluções.',
+            emphasis:
+                'Graficamente: retas concorrentes, paralelas distintas ou coincidentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sistema impossível',
+            problem: 'Classifique x+y=4 e 2x+2y=10.',
+            steps: [
+              'Multiplique a primeira equação por 2: 2x+2y=8.',
+              'A segunda afirma 2x+2y=10.',
+              'As duas condições são incompatíveis.',
+            ],
+            result: 'Sistema impossível: S=∅.',
+            interpretation:
+                'As retas têm a mesma inclinação e interceptos diferentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sistema indeterminado',
+            problem: 'Classifique x−2y=3 e 2x−4y=6.',
+            steps: [
+              'A segunda equação é exatamente o dobro da primeira.',
+              'As duas representam a mesma reta.',
+            ],
+            result: 'Infinitas soluções.',
+            interpretation:
+                'Todo ponto da reta satisfaz as duas equações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Modelagem com sistemas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Problema de quantidades',
+            problem: 'Foram vendidos 30 ingressos entre inteiros e meia-entrada. Inteira custa R$ 20, meia R$ 10, e a arrecadação foi R$ 450. Quantos de cada foram vendidos?',
+            steps: [
+              'Defina x = número de inteiras e y = número de meias.',
+              'Quantidade total: x+y=30.',
+              'Arrecadação: 20x+10y=450.',
+              'Divida a segunda por 10: 2x+y=45.',
+              'Subtraia a primeira: x=15.',
+              'Então y=15.',
+            ],
+            result: '15 ingressos inteiros e 15 meias.',
+            interpretation:
+                'As duas equações representam duas informações independentes do mesmo problema.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Resolver apenas uma equação',
+            content:
+                'Uma solução de uma equação isolada não é necessariamente solução do sistema. O par deve satisfazer ambas.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Somar equações sem preparar coeficientes',
+            content:
+                'Na eliminação, os coeficientes da variável escolhida precisam cancelar. Somar equações arbitrariamente pode não simplificar o sistema.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não verificar o par final',
+            content:
+                'Substitua o par encontrado nas duas equações originais para confirmar a solução.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — substituição',
+            problem: 'Resolva y=2x+1 e x+y=10.',
+            steps: [
+              'Substitua y na segunda: x+(2x+1)=10.',
+              '3x+1=10.',
+              '3x=9 e x=3.',
+              'Então y=7.',
+            ],
+            result: '(3,7).',
+            interpretation:
+                'Quando uma variável já está isolada, substituição tende a ser eficiente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — eliminação',
+            problem: 'Resolva 4x+3y=18 e 2x−3y=0.',
+            steps: [
+              'Some as equações: 6x=18.',
+              'x=3.',
+              'Substitua em 2x−3y=0: 6−3y=0.',
+              'y=2.',
+            ],
+            result: '(3,2).',
+            interpretation:
+                'Os coeficientes de y já eram opostos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Resolva, classifique e interprete',
+            content:
+                '1. x+y=8 e x−y=2.\n'
+                '2. 2x+y=9 e x−y=0.\n'
+                '3. y=3x−2 e x+y=10.\n'
+                '4. 3x+2y=12 e x−2y=4.\n'
+                '5. x+2y=5 e 2x+4y=10.\n'
+                '6. x+y=3 e 2x+2y=8.\n'
+                '7. Classifique graficamente duas retas paralelas distintas.\n'
+                '8. Classifique graficamente duas retas coincidentes.\n'
+                '9. Crie um sistema com solução (2,1).\n'
+                '10. Verifique se (3,2) resolve 2x+y=8 e x−y=1.\n'
+                '11. Resolva 5x−y=11 e 2x+y=7.\n'
+                '12. Resolva 2x+3y=13 e 4x−3y=5.\n'
+                '13. Explique quando substituição é mais conveniente.\n'
+                '14. Explique quando eliminação é mais conveniente.\n'
+                '15. Modele um problema simples usando duas incógnitas.',
+            emphasis:
+                'Sempre apresente a solução como par ordenado e verifique nas duas equações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com funções, geometria e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Sistemas são problemas de interseção',
+            content:
+                'Sistemas lineares conectam álgebra e geometria analítica. Mais adiante, interseções de curvas, condições simultâneas e sistemas de equações aparecem em otimização, derivadas parciais e modelagem.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Thomas e Stewart para interpretação geométrica e modelagem.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Se x + y = 10 e x − y = 2, quanto vale x?',
-      choices: ['4', '6', '8'],
+      question: 'Qual é a solução do sistema x+y=7 e x−y=1?',
+      choices: ['(3,4)', '(4,3)', '(7,1)'],
       correctIndex: 1,
-      explanation: 'Somando as equações, obtemos 2x = 12. Portanto, x = 6.',
+      explanation:
+          'Somando as equações, 2x=8, então x=4. Substituindo em x+y=7, y=3.',
     ),
     takeaways: [
-      'Um sistema impõe várias condições simultâneas.',
-      'Substituição troca uma incógnita por expressão equivalente.',
-      'Eliminação cancela uma incógnita.',
-      'A resposta pode ser representada por um par ordenado.',
+      'Uma solução de sistema satisfaz todas as equações simultaneamente.',
+      'Substituição reduz o sistema usando uma variável isolada.',
+      'Eliminação cancela uma variável pela combinação das equações.',
+      'Sistemas podem ter uma, nenhuma ou infinitas soluções.',
+      'Graficamente, a classificação depende das interseções das retas.',
+      'Sistemas modelam situações com duas condições simultâneas.',
     ],
     closing:
-        'Sistemas transformam várias informações em uma solução compatível.',
-  ),
+        'Resolver um sistema é encontrar os valores que tornam várias condições verdadeiras ao mesmo tempo.',
+  )
   CourseLessonData(
     id: 'equations-06-quadraticas',
     topicId: 'equacoes-inequacoes',
