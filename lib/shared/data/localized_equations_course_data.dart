@@ -804,63 +804,295 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
     id: 'equations-04-casos-especiais',
     topicId: 'equacoes-inequacoes',
     trailTitle: 'Equations and Inequalities',
-    eyebrow: 'Interpretation',
-    title: 'One, none, or infinitely many solutions',
-    description: 'identities and contradictions',
-    duration: '≈ 5 min',
+    eyebrow: 'Linear equations',
+    title: 'Special cases in linear equations',
+    description:
+        'one solution, no solution, infinitely many solutions, and algebraic and graphical interpretation',
+    duration: '≈ 26 min',
     objective:
-        'distinguish equations with one solution, no solution, or infinitely many solutions',
-    symbol: '∅',
+        'classify linear equations as having one solution, no solution, or infinitely many solutions, recognize identities and contradictions, and interpret each case graphically',
+    symbol: '0=0',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Not every equation ends with x = number',
+        title: 'Not every linear equation ends with x = number',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Look at what remains',
+            visual: LessonVisual.idea,
+            title: 'Three possible outcomes',
             content:
-                'During simplification, the unknown may disappear. A false statement represents a contradiction; a statement that is always true represents an identity.',
+                'After simplifying a linear equation, we may obtain a statement that determines x, a statement true for every allowed x, or an impossible statement.',
             emphasis:
-                '2 = 5 means no solution. 2 = 2 means infinitely many solutions.',
+                'The final simplified statement reveals the solution set.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Interpret the result',
+        title: 'Exactly one solution',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'The variable coefficient remains nonzero',
+            content:
+                'When simplification leads to ax=b with a ≠ 0, there is exactly one solution: x=b/a.',
+          ),
+          WorkedExampleBlockData(
+            title: 'The usual case',
+            problem: 'Solve 3x+5=17.',
+            steps: [
+              'Subtract 5: 3x=12.',
+              'Divide by 3: x=4.',
+            ],
+            result: 'S={4}.',
+            interpretation:
+                'The variable retained a nonzero coefficient, so the solution is unique.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Infinitely many solutions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'The equation becomes an identity',
+            content:
+                'If all variable terms cancel and the remaining statement is always true, such as 0=0 or 5=5, then every allowed input satisfies the equation.',
+            emphasis:
+                'The two sides represent equivalent expressions.',
+          ),
+          WorkedExampleBlockData(
+            title: 'A hidden identity',
+            problem: 'Solve 2(x+3)=2x+6.',
+            steps: [
+              'Distribute: 2x+6=2x+6.',
+              'Subtract 2x: 6=6.',
+              'The statement is true regardless of x.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'The two expressions are equivalent for every real number.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'No solution',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'The equation becomes a contradiction',
+            content:
+                'If the variable disappears and a false statement remains, such as 0=4 or 3=−2, then no value can satisfy the equation.',
+            emphasis:
+                'The disappearance of x does not automatically mean infinitely many solutions; the remaining statement must be checked.',
+            tone: LearningCardTone.warning,
+          ),
           WorkedExampleBlockData(
             title: 'Contradiction',
-            problem: 'Solve 2(x + 1) = 2x + 5.',
+            problem: 'Solve 4x+1=4x+7.',
             steps: [
-              'Distribute: 2x + 2 = 2x + 5.',
-              'Subtract 2x from both sides: 2 = 5.',
-              'The resulting statement is false.',
+              'Subtract 4x from both sides.',
+              'Obtain 1=7.',
+              'This statement is false.',
             ],
-            result: 'The equation has no solution.',
+            result: 'S=∅.',
             interpretation:
-                'No value of x can make 2 = 5 true.',
+                'No real number can make a contradiction true.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'General form ax+b=cx+d',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Compare coefficients',
+            content:
+                'From ax+b=cx+d we obtain (a−c)x=d−b. If a−c ≠ 0, there is one solution. If a−c=0, compare d−b with zero.',
+            emphasis:
+                'If a=c and b=d, there are infinitely many solutions. If a=c and b≠d, there is no solution.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Classify without fully solving',
+            problem: 'Classify 7x−2=7x−2 and 7x−2=7x+4.',
+            steps: [
+              'In the first, both variable coefficients and constants match.',
+              'In the second, variable coefficients match but constants do not.',
+            ],
+            result: 'First: infinitely many solutions. Second: no solution.',
+            interpretation:
+                'Structural comparison can predict the result before finishing the algebra.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Graphical interpretation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Intersections of lines',
+            content:
+                'Solving ax+b=cx+d means finding intersections of y=ax+b and y=cx+d. One intersection gives one solution; coincident lines give infinitely many solutions; distinct parallel lines give no solution.',
+            emphasis:
+                'Algebra and geometry describe the same three cases.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Domain still matters',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Identity on the domain, not necessarily on all reals',
+            content:
+                'If the original equation contains denominators or other restrictions, an identity obtained after simplification holds only on the original domain.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Identity with an excluded point',
+            problem: 'Consider (x−1)/(x−1)=1.',
+            steps: [
+              'The original expression requires x ≠ 1.',
+              'For every x ≠ 1, the left side simplifies to 1.',
+            ],
+            result: 'S=ℝ\{1}.',
+            interpretation:
+                'The identity holds throughout the original domain, but the excluded point does not return.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reading 0=0 as x=0',
+            content:
+                '0=0 does not determine x. It means the equation is true for every allowed value.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reading 0=5 as x=5',
+            content:
+                '0=5 is a contradiction, so the solution set is empty.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring the domain in an identity',
+            content:
+                'Simplifying to 1=1 does not authorize values that were already forbidden by the original equation.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — identity',
+            problem: 'Solve 3(x+2)=3x+6.',
+            steps: [
+              'Distribute: 3x+6=3x+6.',
+              'Subtract 3x: 6=6.',
+            ],
+            result: 'S=ℝ.',
+            interpretation:
+                'The equality is true for every real x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — contradiction',
+            problem: 'Solve 5(x−1)=5x+2.',
+            steps: [
+              'Distribute: 5x−5=5x+2.',
+              'Subtract 5x: −5=2.',
+            ],
+            result: 'S=∅.',
+            interpretation:
+                'The final statement is impossible.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Solve or classify',
+            content:
+                '1. 2x+3=11.\n'
+                '2. 4x−7=4x−7.\n'
+                '3. 5x+2=5x−1.\n'
+                '4. 3(x+4)=3x+12.\n'
+                '5. 2(x−1)=2x+5.\n'
+                '6. 7x−3=4x+9.\n'
+                '7. 6x+1=6x+1.\n'
+                '8. 8x−2=8x+10.\n'
+                '9. Classify ax+b=ax+b.\n'
+                '10. Classify ax+b=ax+d with b≠d.\n'
+                '11. Interpret graphically an equation with no solution.\n'
+                '12. Interpret graphically an equation with infinitely many solutions.\n'
+                '13. Explain why 0=0 does not mean x=0.\n'
+                '14. Solve (x−2)/(x−2)=1 while respecting the domain.\n'
+                '15. Create one linear equation with one solution, one with no solution, and one with infinitely many solutions.',
+            emphasis:
+                'Always state the solution set explicitly.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Connection to functions and Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Number of solutions means number of intersections',
+            content:
+                'Classifying equations prepares systems, function zeros, and graph intersections. In Calculus, the same logic appears when interpreting tangent equations, extrema, and critical points.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi and collaborators; Stewart and Thomas for graphical interpretation of equations and functions.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'What does it mean if an equation ends with 7 = 7?',
-      choices: ['No solution', 'Only x = 7', 'Infinitely many solutions'],
+      question: 'What is the solution set of 2(x+3)=2x+6?',
+      choices: ['{0}', '∅', 'ℝ'],
       correctIndex: 2,
       explanation:
-          'Because the equality is always true, every allowed value satisfies the equation.',
+          'Distributing gives 2x+6=2x+6, an identity true for every real x.',
     ),
     takeaways: [
-      'One solution produces x = number.',
-      'A contradiction means no solution.',
-      'An identity means infinitely many solutions.',
-      'The solution set must be interpreted.',
+      'Linear equations may have one solution, no solution, or infinitely many solutions.',
+      'A true statement after cancellation indicates an identity.',
+      'A false statement after cancellation indicates a contradiction.',
+      'The form ax+b=cx+d can be classified by comparing coefficients.',
+      'Graphically, solutions correspond to intersections of lines.',
+      'Original domain restrictions remain valid even for identities.',
     ],
     closing:
-        'Solving also means recognizing when there is not a single answer.',
-  ),
+        'Special cases show that solving an equation also means deciding how many solutions exist and why.',
+  )
   CourseLessonData(
     id: 'equations-05-sistemas-lineares',
     topicId: 'equacoes-inequacoes',
