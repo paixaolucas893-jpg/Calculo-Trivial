@@ -13,63 +13,310 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     topicId: 'funcoes',
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Fundamentos',
-    title: 'Função, domínio e imagem',
-    description: 'entrada, saída, notação e restrições',
-    duration: '≈ 18 min',
+    title: 'Função, domínio, contradomínio e imagem',
+    description:
+        'definição formal, notação, avaliação, domínio, contradomínio, imagem, zeros e leitura gráfica',
+    duration: '≈ 38 min',
     objective:
-        'interpretar função como regra entre grandezas, distinguir domínio de imagem e reconhecer restrições algébricas básicas',
-    symbol: 'f(x)',
+        'compreender função como relação unívoca entre conjuntos, distinguir domínio, contradomínio e imagem, avaliar funções, determinar restrições algébricas e interpretar zeros e gráficos',
+    symbol: 'f:A→B',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Uma entrada, uma única saída',
+        title: 'Definição formal de função',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'Função é uma correspondência',
+            visual: LessonVisual.notation,
+            title: 'Cada entrada possui exatamente uma saída',
             content:
-                'Uma função associa cada entrada permitida x a exatamente uma saída f(x). Entradas diferentes podem produzir a mesma saída, mas uma mesma entrada não pode produzir duas saídas diferentes na mesma função.',
+                'Uma função [[math:f:A\\to B]] associa a cada elemento [[math:x\\in A]] exatamente um elemento [[math:f(x)\\in B]]. O conjunto A é o domínio e B é o contradomínio.',
             emphasis:
-                'f(3) significa o valor produzido quando a entrada é 3; não significa f multiplicado por 3.',
+                'Entradas diferentes podem produzir a mesma saída; uma mesma entrada não pode produzir duas saídas diferentes na mesma função.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Domínio é o conjunto de entradas permitidas',
+            visual: LessonVisual.compare,
+            title: 'Relação versus função',
             content:
-                'Em expressões reais, denominadores não podem ser zero e radicandos de raízes pares não podem ser negativos. A imagem reúne os valores que a função realmente produz.',
-            emphasis:
-                'Antes de calcular, pergunte se a entrada pertence ao domínio.',
+                'Toda função é uma relação, mas nem toda relação é função. O critério decisivo é a unicidade da saída para cada entrada do domínio.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Domínio, contradomínio e imagem',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Três conjuntos diferentes',
+            content:
+                'Domínio é o conjunto de entradas permitidas. Contradomínio é o conjunto de chegada declarado. Imagem é o subconjunto do contradomínio formado pelas saídas que realmente ocorrem.',
+            emphasis:
+                'Sempre vale Im(f)⊆B, mas a imagem não precisa ser igual ao contradomínio.',
+          ),
           WorkedExampleBlockData(
-            title: 'Domínio com duas restrições',
-            problem: 'Determine o domínio de f(x) = √(x − 1)/(x − 4).',
+            title: 'Contradomínio maior que a imagem',
+            problem: 'Considere f:ℝ→ℝ dada por f(x)=x². Qual é a imagem?',
             steps: [
-              'A raiz exige x − 1 ≥ 0, então x ≥ 1.',
-              'O denominador exige x − 4 ≠ 0, então x ≠ 4.',
-              'Combine as condições.',
+              'Todo real pode ser usado como entrada.',
+              'Para todo x real, x²≥0.',
+              'Todo y≥0 pode ser produzido escolhendo x=√y ou x=−√y.',
             ],
-            result: 'Domínio: [1, 4) ∪ (4, +∞).',
+            result: 'Domínio=ℝ, contradomínio=ℝ e imagem=[0,+∞).',
             interpretation:
-                'O domínio é a interseção de todas as condições necessárias para a fórmula produzir um número real.',
+                'A imagem é apenas parte do contradomínio declarado.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Erro comum',
+        title: 'Notação f(x)',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'f(x) é o valor da função',
+            content:
+                'A expressão f(x) indica a saída associada à entrada x. Não significa f multiplicado por x.',
+            emphasis:
+                'A letra x é uma variável de entrada; podemos avaliar f em números, expressões ou outras funções.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Avaliação direta',
+            problem: 'Se f(x)=2x²−3x+1, calcule f(−2).',
+            steps: [
+              'Substitua x por −2 em toda a expressão.',
+              'f(−2)=2(−2)²−3(−2)+1.',
+              'Calcule: 8+6+1=15.',
+            ],
+            result: 'f(−2)=15.',
+            interpretation:
+                'Parênteses ajudam a preservar corretamente o sinal da entrada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Domínio natural de uma fórmula',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Procure operações que impõem restrições',
+            content:
+                'Em funções reais definidas por fórmula, o domínio natural contém todos os reais para os quais a expressão está definida. Denominadores não podem ser zero; radicandos de raízes pares devem ser não negativos; argumentos de logaritmos devem ser positivos.',
+            emphasis:
+                'Quando várias restrições aparecem, o domínio é a interseção de todas elas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas restrições simultâneas',
+            problem: 'Determine o domínio de f(x)=√(x−1)/(x−4).',
+            steps: [
+              'A raiz exige x−1≥0, então x≥1.',
+              'O denominador exige x−4≠0, então x≠4.',
+              'Interseccione as condições.',
+            ],
+            result: 'D_f=[1,4)∪(4,+∞).',
+            interpretation:
+                'O valor 4 satisfaz a raiz, mas é excluído pelo denominador.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Imagem a partir da expressão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'A imagem depende dos valores que realmente saem',
+            content:
+                'Determinar imagem pode exigir desigualdades, completar quadrados, análise de monotonicidade ou leitura gráfica. Não existe uma única técnica universal.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Imagem de uma quadrática',
+            problem: 'Determine a imagem de f(x)=x²−4x+3.',
+            steps: [
+              'Complete o quadrado: f(x)=(x−2)²−1.',
+              'Como (x−2)²≥0, temos f(x)≥−1.',
+              'O valor −1 ocorre em x=2.',
+            ],
+            result: 'Im(f)=[−1,+∞).',
+            interpretation:
+                'A forma de quadrado completado revela imediatamente o valor mínimo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Zeros de uma função',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Resolver f(x)=0',
+            content:
+                'Um zero ou raiz da função é um valor a do domínio tal que f(a)=0. Graficamente, os zeros correspondem às abscissas dos pontos onde o gráfico intercepta o eixo x.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Zeros de um polinômio',
+            problem: 'Encontre os zeros de f(x)=x²−5x+6.',
+            steps: [
+              'Resolva x²−5x+6=0.',
+              'Fatore: (x−2)(x−3)=0.',
+            ],
+            result: 'Zeros: x=2 e x=3.',
+            interpretation:
+                'Resolver uma equação f(x)=0 é localizar interceptos horizontais do gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Gráfico de uma função',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'O gráfico é um conjunto de pares ordenados',
+            content:
+                'O gráfico de f é o conjunto [[math:\\{(x,f(x)):x\\in D_f\\}]]. Cada ponto registra uma entrada e sua saída correspondente.',
+            emphasis:
+                'O gráfico não é a função inteira por si só, mas uma representação geométrica da relação entrada–saída.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Teste da reta vertical',
+            content:
+                'Um gráfico no plano representa y como função de x se nenhuma reta vertical intersecta o gráfico em mais de um ponto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Funções definidas por partes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Uma função pode usar regras diferentes',
+            content:
+                'Uma função por partes escolhe fórmulas distintas em regiões diferentes do domínio, mas ainda deve fornecer uma única saída para cada entrada.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Avaliação por partes',
+            problem: 'Se f(x)=x² para x<0 e f(x)=2x+1 para x≥0, calcule f(−2) e f(3).',
+            steps: [
+              'Como −2<0, use x²: f(−2)=4.',
+              'Como 3≥0, use 2x+1: f(3)=7.',
+            ],
+            result: 'f(−2)=4 e f(3)=7.',
+            interpretation:
+                'A condição decide qual regra deve ser aplicada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Domínio não é a mesma coisa que imagem',
+            title: 'Confundir imagem com contradomínio',
             content:
-                'Domínio descreve entradas permitidas; imagem descreve saídas efetivamente produzidas.',
+                'O contradomínio é declarado na definição; a imagem é produzida efetivamente pela função.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignorar restrições algébricas',
+            content:
+                'Uma fórmula não define automaticamente uma função em todos os reais. Divisões, raízes e logaritmos podem restringir o domínio.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir f(x) com produto',
+            content:
+                'f(x) é uma notação funcional. Não significa f·x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — domínio',
+            problem: 'Determine o domínio de g(x)=1/√(x−2).',
+            steps: [
+              'A raiz exige x−2≥0.',
+              'Como está no denominador, √(x−2) também não pode ser zero.',
+              'Portanto x−2>0.',
+            ],
+            result: 'D_g=(2,+∞).',
+            interpretation:
+                'Raiz no denominador transforma ≥ em >.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — imagem',
+            problem: 'Determine a imagem de h(x)=−(x−1)²+4.',
+            steps: [
+              '(x−1)²≥0.',
+              'Logo −(x−1)²≤0.',
+              'Somando 4: h(x)≤4.',
+              'O valor 4 ocorre em x=1.',
+            ],
+            result: 'Im(h)=(−∞,4].',
+            interpretation:
+                'A função possui máximo igual a 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analise estrutura, domínio e imagem',
+            content:
+                '1. Calcule f(3) para f(x)=2x−5.\n'
+                '2. Calcule f(−2) para f(x)=x²+x.\n'
+                '3. Determine o domínio de 1/(x−7).\n'
+                '4. Determine o domínio de √(2x+6).\n'
+                '5. Determine o domínio de √(x+1)/(x−2).\n'
+                '6. Determine a imagem de x².\n'
+                '7. Determine a imagem de (x−3)²+2.\n'
+                '8. Encontre os zeros de x²−4.\n'
+                '9. Explique a diferença entre contradomínio e imagem.\n'
+                '10. Dê um exemplo de relação que não é função.\n'
+                '11. Aplique o teste da reta vertical a um círculo.\n'
+                '12. Avalie uma função por partes em dois pontos distintos.\n'
+                '13. Explique por que f(x) não significa f·x.\n'
+                '14. Determine o domínio de ln(x−1).\n'
+                '15. Crie uma função com domínio ℝ e imagem [2,+∞).',
+            emphasis:
+                'Em domínio, justifique cada restrição em vez de apenas escrever o intervalo final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Toda análise posterior começa pelo domínio',
+            content:
+                'Limites, continuidade, derivadas e integrais sempre dependem de onde a função está definida. Zeros, imagem e comportamento gráfico também reaparecem em otimização e estudo de sinais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas e Guidorizzi para funções, domínio, imagem e interpretação gráfica.',
           ),
         ],
       ),
@@ -78,17 +325,21 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
       question: 'Qual valor deve ser excluído do domínio de g(x)=1/(x+2)?',
       choices: ['−2', '0', '2'],
       correctIndex: 0,
-      explanation: 'x = −2 zera o denominador, então a função não está definida nesse ponto.',
+      explanation:
+          'x=−2 zera o denominador. Como divisão por zero não está definida, esse valor deve ser excluído.',
     ),
     takeaways: [
-      'Cada entrada do domínio possui uma única saída.',
-      'Domínio reúne entradas permitidas.',
-      'Imagem reúne saídas produzidas.',
-      'Restrições de denominador e raiz devem ser combinadas.',
+      'Uma função associa cada entrada do domínio a exatamente uma saída.',
+      'Domínio, contradomínio e imagem são conjuntos distintos.',
+      'f(x) representa a saída correspondente à entrada x.',
+      'O domínio natural depende das operações presentes na fórmula.',
+      'Zeros satisfazem f(x)=0.',
+      'O gráfico reúne os pares (x,f(x)).',
+      'O teste da reta vertical verifica unicidade da saída.',
     ],
     closing:
-        'Domínio e imagem serão usados continuamente em limites, continuidade e derivadas.',
-  ),
+        'Compreender domínio, imagem e notação funcional é pré-requisito para toda a análise de funções que vem depois.',
+  )
   CourseLessonData(
     id: 'funcoes-02-composicao-inversa',
     topicId: 'funcoes',
@@ -1005,67 +1256,332 @@ const List<CourseLessonData> _englishLessons = [
     topicId: 'funcoes',
     trailTitle: 'Functions — Precalculus',
     eyebrow: 'Foundations',
-    title: 'Functions, domain, and range',
-    description: 'inputs, outputs, notation, and restrictions',
-    duration: '≈ 18 min',
+    title: 'Function, domain, codomain, and range',
+    description:
+        'formal definition, notation, evaluation, domain, codomain, range, zeros, and graph reading',
+    duration: '≈ 38 min',
     objective:
-        'interpret a function as a rule between quantities, distinguish domain from range, and recognize basic algebraic restrictions',
-    symbol: 'f(x)',
+        'understand a function as a single-valued mapping between sets, distinguish domain, codomain, and range, evaluate functions, determine algebraic restrictions, and interpret zeros and graphs',
+    symbol: 'f:A→B',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'One input, exactly one output',
+        title: 'Formal definition of a function',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.route,
-            title: 'A function is a correspondence',
+            visual: LessonVisual.notation,
+            title: 'Each input has exactly one output',
             content:
-                'A function assigns each allowed input x exactly one output f(x). Different inputs may share an output, but one input cannot have two different outputs in the same function.',
-            emphasis: 'f(3) is a function value, not f multiplied by 3.',
+                'A function [[math:f:A\\to B]] assigns to every [[math:x\\in A]] exactly one element [[math:f(x)\\in B]]. A is the domain and B is the codomain.',
+            emphasis:
+                'Different inputs may share an output, but one input cannot have two outputs in the same function.',
           ),
           ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'The domain contains allowed inputs',
+            visual: LessonVisual.compare,
+            title: 'Relation versus function',
             content:
-                'Over the real numbers, denominators cannot be zero and even roots require nonnegative radicands. The range contains the outputs the function actually produces.',
+                'Every function is a relation, but not every relation is a function. The decisive condition is uniqueness of the output for each input.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'See it in action',
+        title: 'Domain, codomain, and range',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Three different sets',
+            content:
+                'The domain is the set of allowed inputs. The codomain is the declared target set. The range is the subset of the codomain consisting of outputs actually produced.',
+            emphasis:
+                'The range is always contained in the codomain but need not equal it.',
+          ),
           WorkedExampleBlockData(
-            title: 'Domain with two restrictions',
-            problem: 'Find the domain of f(x)=√(x−1)/(x−4).',
-            steps: ['Require x−1≥0, so x≥1.', 'Require x−4≠0, so x≠4.', 'Combine both conditions.'],
-            result: 'Domain: [1,4) ∪ (4,+∞).',
-            interpretation: 'The domain is the intersection of all conditions required by the formula.',
+            title: 'Codomain larger than the range',
+            problem: 'Let f:ℝ→ℝ be defined by f(x)=x². What is the range?',
+            steps: [
+              'Every real number is an allowed input.',
+              'For every real x, x²≥0.',
+              'Every y≥0 is produced by x=√y or x=−√y.',
+            ],
+            result: 'Domain=ℝ, codomain=ℝ, range=[0,+∞).',
+            interpretation:
+                'The actual range occupies only part of the declared codomain.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Common mistake',
+        title: 'Function notation f(x)',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'f(x) is the value of the function',
+            content:
+                'The expression f(x) denotes the output associated with input x. It does not mean f multiplied by x.',
+            emphasis:
+                'The input may be a number, an expression, or even another function.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Direct evaluation',
+            problem: 'If f(x)=2x²−3x+1, compute f(−2).',
+            steps: [
+              'Substitute −2 everywhere x appears.',
+              'f(−2)=2(−2)²−3(−2)+1.',
+              'Compute: 8+6+1=15.',
+            ],
+            result: 'f(−2)=15.',
+            interpretation:
+                'Parentheses help preserve the sign of the input correctly.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Natural domain of a formula',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Look for operations that impose restrictions',
+            content:
+                'For real-valued formulas, denominators cannot be zero, even-index radicands must be nonnegative, and logarithm arguments must be positive.',
+            emphasis:
+                'With several restrictions, the domain is their intersection.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Two simultaneous restrictions',
+            problem: 'Find the domain of f(x)=√(x−1)/(x−4).',
+            steps: [
+              'The square root requires x≥1.',
+              'The denominator requires x≠4.',
+              'Intersect the conditions.',
+            ],
+            result: 'D_f=[1,4)∪(4,+∞).',
+            interpretation:
+                'x=4 satisfies the square-root condition but fails the denominator condition.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Finding the range',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'The range depends on outputs actually produced',
+            content:
+                'Finding the range may require inequalities, completing the square, monotonicity, or graph analysis. There is no single universal technique.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Range of a quadratic',
+            problem: 'Find the range of f(x)=x²−4x+3.',
+            steps: [
+              'Complete the square: f(x)=(x−2)²−1.',
+              'Since (x−2)²≥0, f(x)≥−1.',
+              'The value −1 occurs at x=2.',
+            ],
+            result: 'Range=[−1,+∞).',
+            interpretation:
+                'Completed-square form reveals the minimum immediately.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Zeros of a function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Solve f(x)=0',
+            content:
+                'A zero or root is a value a in the domain such that f(a)=0. Graphically, zeros are the x-coordinates where the graph meets the x-axis.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Zeros of a polynomial',
+            problem: 'Find the zeros of f(x)=x²−5x+6.',
+            steps: [
+              'Solve x²−5x+6=0.',
+              'Factor: (x−2)(x−3)=0.',
+            ],
+            result: 'Zeros: x=2 and x=3.',
+            interpretation:
+                'Solving f(x)=0 locates x-intercepts.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'The graph of a function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'A graph is a set of ordered pairs',
+            content:
+                'The graph of f is [[math:\\{(x,f(x)):x\\in D_f\\}]]. Each point records an input and its corresponding output.',
+            emphasis:
+                'The graph is a geometric representation of the input-output relation.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Vertical line test',
+            content:
+                'A plane graph represents y as a function of x if no vertical line intersects the graph at more than one point.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Piecewise-defined functions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'A function may use different rules',
+            content:
+                'A piecewise function uses different formulas on different parts of the domain while still assigning exactly one output to each input.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Piecewise evaluation',
+            problem: 'If f(x)=x² for x<0 and f(x)=2x+1 for x≥0, compute f(−2) and f(3).',
+            steps: [
+              'Since −2<0, use x²: f(−2)=4.',
+              'Since 3≥0, use 2x+1: f(3)=7.',
+            ],
+            result: 'f(−2)=4 and f(3)=7.',
+            interpretation:
+                'The condition determines which rule applies.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Frequent errors',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Domain and range are different',
-            content: 'Domain describes allowed inputs; range describes produced outputs.',
+            title: 'Confusing range and codomain',
+            content:
+                'The codomain is declared; the range is actually produced by the function.',
             tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Ignoring algebraic restrictions',
+            content:
+                'A formula does not automatically define a real function for every real input.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reading f(x) as multiplication',
+            content:
+                'f(x) is function notation, not a product f·x.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — domain',
+            problem: 'Find the domain of g(x)=1/√(x−2).',
+            steps: [
+              'The square root requires x−2≥0.',
+              'Because it is in the denominator, it cannot equal zero.',
+              'Therefore x−2>0.',
+            ],
+            result: 'D_g=(2,+∞).',
+            interpretation:
+                'A square root in a denominator changes ≥ into >.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — range',
+            problem: 'Find the range of h(x)=−(x−1)²+4.',
+            steps: [
+              '(x−1)²≥0.',
+              'So −(x−1)²≤0.',
+              'Adding 4 gives h(x)≤4.',
+            ],
+            result: 'Range=(−∞,4].',
+            interpretation:
+                'The function has maximum value 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analyze structure, domain, and range',
+            content:
+                '1. Compute f(3) for f(x)=2x−5.\n'
+                '2. Compute f(−2) for f(x)=x²+x.\n'
+                '3. Find the domain of 1/(x−7).\n'
+                '4. Find the domain of √(2x+6).\n'
+                '5. Find the domain of √(x+1)/(x−2).\n'
+                '6. Find the range of x².\n'
+                '7. Find the range of (x−3)²+2.\n'
+                '8. Find the zeros of x²−4.\n'
+                '9. Explain the difference between codomain and range.\n'
+                '10. Give an example of a relation that is not a function.\n'
+                '11. Apply the vertical line test to a circle.\n'
+                '12. Evaluate a piecewise function at two points.\n'
+                '13. Explain why f(x) does not mean f·x.\n'
+                '14. Find the domain of ln(x−1).\n'
+                '15. Create a function with domain ℝ and range [2,+∞).',
+            emphasis:
+                'For domain questions, justify every restriction before stating the final interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Every later analysis starts with domain',
+            content:
+                'Limits, continuity, derivatives, and integrals all depend on where a function is defined. Zeros, range, and graph behavior also return in optimization and sign analysis.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart, Thomas, and Guidorizzi for functions, domain, range, and graph interpretation.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Which value is excluded from g(x)=1/(x+2)?',
+      question: 'Which value must be excluded from the domain of g(x)=1/(x+2)?',
       choices: ['−2', '0', '2'],
       correctIndex: 0,
-      explanation: 'x=−2 makes the denominator zero.',
+      explanation:
+          'x=−2 makes the denominator zero, so the function is undefined there.',
     ),
-    takeaways: ['Each domain input has one output.', 'Domain contains allowed inputs.', 'Range contains produced outputs.', 'Restrictions must be combined.'],
-    closing: 'Domain and range remain central in limits, continuity, and derivatives.',
-  ),
+    takeaways: [
+      'A function assigns exactly one output to each domain input.',
+      'Domain, codomain, and range are different sets.',
+      'f(x) denotes the output associated with input x.',
+      'Natural domain depends on the operations in the formula.',
+      'Zeros satisfy f(x)=0.',
+      'The graph consists of ordered pairs (x,f(x)).',
+      'The vertical line test checks uniqueness of output.',
+    ],
+    closing:
+        'Understanding domain, range, and function notation is prerequisite to every later function-analysis topic.',
+  )
   CourseLessonData(
     id: 'funcoes-02-composicao-inversa',
     topicId: 'funcoes',
