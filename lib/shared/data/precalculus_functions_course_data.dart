@@ -3206,65 +3206,391 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     trailTitle: 'Funções — Pré-Cálculo',
     eyebrow: 'Trigonometria',
     title: 'Identidades e equações trigonométricas',
-    description: 'relações fundamentais e resolução por ciclos',
-    duration: '≈ 20 min',
+    description:
+        'identidades pitagóricas, quocientes, recíprocas, soma e diferença, ângulo duplo e resolução periódica',
+    duration: '≈ 42 min',
     objective:
-        'usar identidades trigonométricas fundamentais e resolver equações trigonométricas básicas',
-    symbol: 'sen²+cos²',
+        'distinguir identidades de equações, usar identidades trigonométricas com domínio correto, simplificar expressões e resolver equações trigonométricas em intervalos e no conjunto dos reais',
+    symbol: 'sen²x+cos²x',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Identidades são igualdades sempre válidas',
+        title: 'Identidade não é equação com soluções isoladas',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Identidade fundamental',
+            title: 'Validade em todo o domínio comum',
             content:
-                'sen²x + cos²x = 1 é a identidade pitagórica básica. Também tan x = sen x/cos x quando cos x≠0. Fórmulas de soma, diferença e ângulo duplo permitem reescrever expressões.',
-            emphasis: 'Uma identidade não é uma equação para descobrir x; ela vale em todo ponto onde ambos os lados estão definidos.',
+                'Uma identidade trigonométrica é uma igualdade verdadeira para todo valor em que ambos os lados estão definidos. Uma equação trigonométrica, por outro lado, é verdadeira apenas para certos valores da variável.',
+            emphasis:
+                'Verificar alguns valores não prova uma identidade; é preciso transformar um lado no outro usando relações válidas.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Identidade pitagórica fundamental',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'sen²x+cos²x=1',
+            content:
+                'Do círculo unitário, [[math:(\\cos x)^2+(\\sin x)^2=1]]. Portanto, [[math:\\sin^2x+\\cos^2x=1]].',
+            emphasis:
+                'A identidade nasce diretamente da equação x²+y²=1 do círculo unitário.',
+          ),
           WorkedExampleBlockData(
-            title: 'Resolver em um intervalo',
-            problem: 'Resolva sen x = 1/2 em 0 ≤ x < 2π.',
-            steps: ['O ângulo de referência é π/6.', 'Seno é positivo nos quadrantes I e II.', 'As soluções são π/6 e 5π/6.'],
-            result: 'x=π/6 ou x=5π/6.',
-            interpretation: 'Periodicidade e quadrantes determinam todas as soluções do ciclo.',
+            title: 'Encontrando uma razão a partir da outra',
+            problem: 'Se sen x=3/5 e x está no quadrante I, determine cos x.',
+            steps: [
+              'Use sen²x+cos²x=1.',
+              '9/25+cos²x=1.',
+              'cos²x=16/25.',
+              'Como x está no quadrante I, cos x>0.',
+            ],
+            result: 'cos x=4/5.',
+            interpretation:
+                'O quadrante resolve a ambiguidade do sinal.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Estratégia',
+        title: 'Identidades de quociente',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Tangente e cotangente',
+            content:
+                'Sempre que os denominadores forem não nulos, [[math:\\tan x=\\frac{\\sin x}{\\cos x}]] e [[math:\\cot x=\\frac{\\cos x}{\\sin x}]].',
+            emphasis:
+                'As condições cos x≠0 e sen x≠0 fazem parte da validade das fórmulas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Identidades recíprocas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'sec, cossec e cot',
+            content:
+                'Quando definidas, [[math:\\sec x=1/\\cos x]], [[math:\\csc x=1/\\sin x]] e [[math:\\cot x=1/\\tan x]].',
+            emphasis:
+                'Recíproco não é função inversa: sec x não é arccos x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Identidades pitagóricas derivadas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Dividindo a identidade fundamental',
+            content:
+                'Dividindo sen²x+cos²x=1 por cos²x obtemos [[math:1+\\tan^2x=\\sec^2x]]. Dividindo por sen²x obtemos [[math:1+\\cot^2x=\\csc^2x]].',
+            emphasis:
+                'As divisões só são válidas onde os denominadores usados são diferentes de zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Soma e diferença de ângulos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Fórmulas fundamentais',
+            content:
+                'Temos [[math:\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta]] e [[math:\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta]].',
+            emphasis:
+                'No cosseno, o sinal do termo cruzado é o oposto do sinal dentro do argumento.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Valor exato de 75°',
+            problem: 'Calcule sen75° usando 45°+30°.',
+            steps: [
+              'sen(45°+30°)=sen45°cos30°+cos45°sen30°.',
+              'Substitua √2/2, √3/2 e 1/2.',
+            ],
+            result: 'sen75°=(√6+√2)/4.',
+            interpretation:
+                'As fórmulas permitem construir novos valores exatos a partir de ângulos notáveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Ângulo duplo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Casos α=β',
+            content:
+                'Das fórmulas de soma, [[math:\\sin(2x)=2\\sin x\\cos x]] e [[math:\\cos(2x)=\\cos^2x-\\sin^2x]].',
+            emphasis:
+                'Usando a identidade pitagórica, cos2x também pode ser escrito como 2cos²x−1 ou 1−2sen²x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Estratégias para provar identidades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Trabalhe um lado de cada vez',
+            content:
+                'Uma estratégia segura é escolher o lado mais complexo, reescrever tangente/secante em seno e cosseno quando útil, fatorar, obter denominador comum e usar identidades pitagóricas.',
+            emphasis:
+                'Evite manipular os dois lados simultaneamente como se a igualdade já estivesse provada.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Prova curta',
+            problem: 'Mostre que (1−cos²x)/sen x=sen x, onde a expressão está definida.',
+            steps: [
+              'Use 1−cos²x=sen²x.',
+              'Então sen²x/sen x=sen x.',
+              'A simplificação exige sen x≠0, exatamente a condição do lado original.',
+            ],
+            result: 'A identidade vale em todo o domínio comum.',
+            interpretation:
+                'Domínio e simplificação precisam ser tratados juntos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Equações do tipo sen x=a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Use círculo, quadrantes e periodicidade',
+            content:
+                'Depois de encontrar soluções em um ciclo, some múltiplos inteiros de 2π para obter todas as soluções reais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Um ciclo e solução geral',
+            problem: 'Resolva sen x=1/2.',
+            steps: [
+              'Em [0,2π), as soluções são π/6 e 5π/6.',
+              'Use o período 2π.',
+            ],
+            result: 'x=π/6+2kπ ou x=5π/6+2kπ, k∈ℤ.',
+            interpretation:
+                'A periodicidade transforma duas soluções do ciclo em infinitas soluções reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Equações do tipo cos x=a e tan x=a',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Cosseno',
+            problem: 'Resolva cos x=−√2/2 em [0,2π).',
+            steps: [
+              'Ângulo de referência π/4.',
+              'Cosseno é negativo nos quadrantes II e III.',
+            ],
+            result: 'x=3π/4 ou x=5π/4.',
+            interpretation:
+                'O intervalo pedido limita o número de respostas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Tangente',
+            problem: 'Resolva tan x=1 no conjunto dos reais.',
+            steps: [
+              'Uma solução principal é π/4.',
+              'Tangente tem período π.',
+            ],
+            result: 'x=π/4+kπ, k∈ℤ.',
+            interpretation:
+                'A solução geral reflete o período menor da tangente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Equações que exigem identidade',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Redução algébrica',
+            problem: 'Resolva 2sen²x−1=0 em [0,2π).',
+            steps: [
+              '2sen²x=1.',
+              'sen²x=1/2.',
+              'sen x=±√2/2.',
+              'Liste os quatro ângulos correspondentes no ciclo.',
+            ],
+            result: 'x=π/4, 3π/4, 5π/4 ou 7π/4.',
+            interpretation:
+                'A etapa algébrica vem antes da leitura trigonométrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Fatoração em equações trigonométricas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Produto nulo',
+            problem: 'Resolva sen x(2cos x−1)=0 em [0,2π).',
+            steps: [
+              'Primeiro fator: sen x=0.',
+              'Segundo fator: cos x=1/2.',
+              'Resolva cada conjunto separadamente e una as soluções.',
+            ],
+            result: 'x=0, π/3, π ou 5π/3.',
+            interpretation:
+                'O produto nulo funciona exatamente como em equações algébricas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Soluções em intervalos e soluções gerais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Leia com cuidado o que a questão pede',
+            content:
+                'Uma questão pode pedir soluções em [0,2π), em outro intervalo finito ou em ℝ. A forma da resposta muda conforme o domínio solicitado.',
+            emphasis:
+                'Não acrescente +2kπ quando o problema pede apenas um intervalo finito.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Tratar identidade como equação',
+            content:
+                'sen²x+cos²x=1 não é uma equação para resolver; ela já é verdadeira em todo x real.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Perder soluções ao extrair raiz',
+            content:
+                'De sen²x=1/2 segue sen x=±√2/2, não apenas a raiz positiva.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Dividir por uma função que pode ser zero',
+            content:
+                'Dividir uma equação por sen x ou cos x pode eliminar soluções. Prefira fatorar ou tratar separadamente o caso em que o divisor é zero.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — identidade',
+            problem: 'Simplifique (sec²x−1)/tan x.',
+            steps: [
+              'Use sec²x−1=tan²x.',
+              'Obtenha tan²x/tan x.',
+            ],
+            result: 'tan x, no domínio comum.',
+            interpretation:
+                'A simplificação preserva as restrições da expressão original.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — equação',
+            problem: 'Resolva cos2x=0 em [0,2π).',
+            steps: [
+              '2x=π/2+kπ.',
+              'x=π/4+kπ/2.',
+              'Selecione os valores no intervalo.',
+            ],
+            result: 'x=π/4, 3π/4, 5π/4, 7π/4.',
+            interpretation:
+                'O argumento 2x comprime o padrão de soluções.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Prática antes da atividade final',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.checklist,
-            title: 'Simplifique antes de resolver',
+            title: 'Simplifique, prove e resolva',
             content:
-                'Quando uma equação contém várias funções trigonométricas, procure reescrever tudo em seno e cosseno ou aplicar uma identidade adequada antes de isolar a variável.',
+                '1. Use sen²x+cos²x=1 para obter 1−sen²x.\n'
+                '2. Reescreva tan x em seno e cosseno.\n'
+                '3. Demonstre 1+tan²x=sec²x.\n'
+                '4. Simplifique (1−cos²x)/sen x.\n'
+                '5. Calcule sen75°.\n'
+                '6. Calcule cos15°.\n'
+                '7. Escreva sen2x em termos de sen x e cos x.\n'
+                '8. Resolva sen x=−1/2 em [0,2π).\n'
+                '9. Resolva cos x=1/2 no conjunto dos reais.\n'
+                '10. Resolva tan x=−1 em [0,2π).\n'
+                '11. Resolva 2cos²x−1=0 em [0,2π).\n'
+                '12. Resolva sen x cos x=0 em [0,2π).\n'
+                '13. Explique por que dividir por sen x pode perder soluções.\n'
+                '14. Diferencie identidade de equação trigonométrica.\n'
+                '15. Resolva sen2x=√3/2 em [0,2π).',
+            emphasis:
+                'Ao resolver equações, registre primeiro o intervalo ou indique explicitamente k∈ℤ na solução geral.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Identidades são ferramentas de simplificação analítica',
+            content:
+                'Em limites, derivadas e integrais, identidades trigonométricas permitem reescrever expressões em formas tratáveis. Fórmulas de ângulo duplo e identidades pitagóricas aparecem repetidamente em integração e análise de limites.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'Referências e síntese',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica',
+            content:
+                'Referências: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart e Thomas para identidades, equações trigonométricas e aplicações em Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual identidade é sempre verdadeira?',
-      choices: ['sen x + cos x = 1', 'sen²x + cos²x = 1', 'tan x = cos x/sen x'],
-      correctIndex: 1,
-      explanation: 'sen²x + cos²x = 1 é a identidade pitagórica fundamental.',
+      question: 'Qual identidade é válida onde tan e sec estão definidas?',
+      choices: ['1+tan²x=sec²x', '1+sen²x=cos²x', 'tan x=cos x/sen x'],
+      correctIndex: 0,
+      explanation:
+          'Dividindo sen²x+cos²x=1 por cos²x, obtemos tan²x+1=sec²x.',
     ),
     takeaways: [
-      'Identidades valem para todos os valores do domínio.',
-      'sen²x+cos²x=1 é a relação fundamental.',
-      'Equações trigonométricas usam quadrantes e periodicidade.',
-      'Simplificação estratégica reduz a dificuldade.',
+      'Identidades valem em todo o domínio comum das expressões.',
+      'sen²x+cos²x=1 é a identidade pitagórica fundamental.',
+      'Tangente, secante e outras razões têm restrições de domínio.',
+      'Fórmulas de soma, diferença e ângulo duplo geram novas relações exatas.',
+      'Equações trigonométricas combinam álgebra, círculo e periodicidade.',
+      'Soluções gerais usam múltiplos inteiros do período adequado.',
+      'Divisões por funções trigonométricas podem eliminar soluções.',
     ],
-    closing: 'Identidades permitem transformar expressões sem alterar seu valor.',
+    closing:
+        'Identidades trigonométricas fornecem a linguagem algébrica que permite transformar, simplificar e resolver relações periódicas.',
   ),
   CourseLessonData(
     id: 'funcoes-11-inversas-trig',
@@ -6724,15 +7050,396 @@ const List<CourseLessonData> _englishLessons = [
         'Trigonometric graphs translate circular motion into periodic oscillations on the real line.',
   ),
   CourseLessonData(
-    id: 'funcoes-10-identidades-equacoes-trig', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Trigonometric identities and equations', description: 'fundamental identities and periodic solutions', duration: '≈ 20 min', objective: 'use basic identities and solve elementary trigonometric equations', symbol: 'sin²+cos²',
+    id: 'funcoes-10-identidades-equacoes-trig',
+    topicId: 'funcoes',
+    trailTitle: 'Functions — Precalculus',
+    eyebrow: 'Trigonometry',
+    title: 'Trigonometric identities and equations',
+    description:
+        'Pythagorean, quotient, reciprocal, sum-difference, double-angle identities, and periodic equations',
+    duration: '≈ 42 min',
+    objective:
+        'distinguish identities from equations, use trigonometric identities with correct domain restrictions, simplify expressions, and solve trigonometric equations on intervals and over the real numbers',
+    symbol: 'sin²x+cos²x',
     sections: [
-      LessonSectionData(number: '1', title: 'Identities are always-valid equations', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Fundamental identity', content: 'sin²x+cos²x=1 and tan x=sin x/cos x when cos x≠0. Sum, difference, and double-angle formulas provide further rewrites.', emphasis: 'An identity is not an equation with isolated solution values.')]),
-      LessonSectionData(number: '2', title: 'See it in action', blocks: [WorkedExampleBlockData(title: 'Solve on one cycle', problem: 'Solve sin x=1/2 for 0≤x<2π.', steps: ['Reference angle is π/6.', 'Sine is positive in quadrants I and II.', 'Solutions are π/6 and 5π/6.'], result: 'x=π/6 or 5π/6.', interpretation: 'Quadrants and periodicity determine solutions.')]),
-      LessonSectionData(number: '3', title: 'Strategy', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Simplify before solving', content: 'Rewrite in common functions or use an identity before isolating the variable.', tone: LearningCardTone.information)]),
+      LessonSectionData(
+        number: '1',
+        title: 'An identity is not an equation with isolated solutions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Validity on the common domain',
+            content:
+                'A trigonometric identity is true for every value where both sides are defined. A trigonometric equation is true only for selected values of the variable.',
+            emphasis:
+                'Checking a few values does not prove an identity; one side must be transformed into the other using valid relations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Fundamental Pythagorean identity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'sin²x+cos²x=1',
+            content:
+                'From the unit circle, [[math:(\\cos x)^2+(\\sin x)^2=1]]. Therefore [[math:\\sin^2x+\\cos^2x=1]].',
+            emphasis:
+                'The identity comes directly from x²+y²=1 on the unit circle.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Finding one ratio from another',
+            problem: 'If sin x=3/5 and x is in quadrant I, find cos x.',
+            steps: [
+              'Use sin²x+cos²x=1.',
+              '9/25+cos²x=1.',
+              'cos²x=16/25.',
+              'Quadrant I makes cosine positive.',
+            ],
+            result: 'cos x=4/5.',
+            interpretation:
+                'The quadrant resolves the sign ambiguity.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quotient identities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Tangent and cotangent',
+            content:
+                'Where denominators are nonzero, [[math:\\tan x=\\frac{\\sin x}{\\cos x}]] and [[math:\\cot x=\\frac{\\cos x}{\\sin x}]].',
+            emphasis:
+                'The conditions cos x≠0 and sin x≠0 are part of the formulas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Reciprocal identities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'sec, csc, and cot',
+            content:
+                'Where defined, [[math:\\sec x=1/\\cos x]], [[math:\\csc x=1/\\sin x]], and [[math:\\cot x=1/\\tan x]].',
+            emphasis:
+                'Reciprocal does not mean inverse function: sec x is not arccos x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Derived Pythagorean identities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Divide the fundamental identity',
+            content:
+                'Dividing sin²x+cos²x=1 by cos²x gives [[math:1+\\tan^2x=\\sec^2x]]. Dividing by sin²x gives [[math:1+\\cot^2x=\\csc^2x]].',
+            emphasis:
+                'These divisions are valid only where the divisors are nonzero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Sum and difference formulas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Fundamental formulas',
+            content:
+                'We have [[math:\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta]] and [[math:\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta]].',
+            emphasis:
+                'For cosine, the sign of the cross term is opposite the sign inside the argument.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Exact value of 75°',
+            problem: 'Compute sin75° using 45°+30°.',
+            steps: [
+              'sin(45°+30°)=sin45°cos30°+cos45°sin30°.',
+              'Substitute √2/2, √3/2, and 1/2.',
+            ],
+            result: 'sin75°=(√6+√2)/4.',
+            interpretation:
+                'The formulas build new exact values from special angles.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Double-angle formulas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Set α=β',
+            content:
+                'From the sum formulas, [[math:\\sin(2x)=2\\sin x\\cos x]] and [[math:\\cos(2x)=\\cos^2x-\\sin^2x]].',
+            emphasis:
+                'Using the Pythagorean identity, cos2x can also be written as 2cos²x−1 or 1−2sin²x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Strategies for proving identities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Work on one side at a time',
+            content:
+                'A safe strategy is to choose the more complicated side, rewrite tangent and secant in sine and cosine when useful, factor, combine fractions, and use Pythagorean identities.',
+            emphasis:
+                'Avoid manipulating both sides simultaneously as though the identity were already proved.',
+          ),
+          WorkedExampleBlockData(
+            title: 'A short proof',
+            problem: 'Show that (1−cos²x)/sin x=sin x wherever defined.',
+            steps: [
+              'Use 1−cos²x=sin²x.',
+              'Then sin²x/sin x=sin x.',
+              'The simplification requires sin x≠0, exactly the restriction of the original left side.',
+            ],
+            result: 'The identity holds on the common domain.',
+            interpretation:
+                'Domain and simplification must be handled together.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Equations of the form sin x=a',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Use circle, quadrants, and periodicity',
+            content:
+                'After finding solutions in one cycle, add integer multiples of 2π to obtain all real solutions.',
+          ),
+          WorkedExampleBlockData(
+            title: 'One cycle and general solution',
+            problem: 'Solve sin x=1/2.',
+            steps: [
+              'On [0,2π), the solutions are π/6 and 5π/6.',
+              'Use the 2π period.',
+            ],
+            result: 'x=π/6+2kπ or x=5π/6+2kπ, k∈ℤ.',
+            interpretation:
+                'Periodicity turns two cycle solutions into infinitely many real solutions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Equations of the form cos x=a and tan x=a',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Cosine',
+            problem: 'Solve cos x=−√2/2 on [0,2π).',
+            steps: [
+              'Reference angle π/4.',
+              'Cosine is negative in quadrants II and III.',
+            ],
+            result: 'x=3π/4 or x=5π/4.',
+            interpretation:
+                'The requested interval limits the number of answers.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Tangent',
+            problem: 'Solve tan x=1 over the real numbers.',
+            steps: [
+              'A principal solution is π/4.',
+              'Tangent has period π.',
+            ],
+            result: 'x=π/4+kπ, k∈ℤ.',
+            interpretation:
+                'The general solution reflects the shorter tangent period.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Equations requiring identities',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Algebraic reduction',
+            problem: 'Solve 2sin²x−1=0 on [0,2π).',
+            steps: [
+              '2sin²x=1.',
+              'sin²x=1/2.',
+              'sin x=±√2/2.',
+              'List the four corresponding angles.',
+            ],
+            result: 'x=π/4, 3π/4, 5π/4, or 7π/4.',
+            interpretation:
+                'Algebraic reduction comes before trigonometric interpretation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Factoring trigonometric equations',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Zero-product property',
+            problem: 'Solve sin x(2cos x−1)=0 on [0,2π).',
+            steps: [
+              'First factor: sin x=0.',
+              'Second factor: cos x=1/2.',
+              'Solve each set and take their union.',
+            ],
+            result: 'x=0, π/3, π, or 5π/3.',
+            interpretation:
+                'The zero-product property works exactly as in algebraic equations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Interval solutions and general solutions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Read the requested domain carefully',
+            content:
+                'A problem may ask for solutions on [0,2π), another finite interval, or all real numbers. The answer format changes accordingly.',
+            emphasis:
+                'Do not append +2kπ when the problem asks only for a finite interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '14',
+        title: 'Frequent errors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Treating an identity as an equation',
+            content:
+                'sin²x+cos²x=1 is not something to solve; it is already true for every real x.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Losing solutions when taking square roots',
+            content:
+                'From sin²x=1/2 we get sin x=±√2/2, not only the positive root.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Dividing by a function that may be zero',
+            content:
+                'Dividing by sin x or cos x may remove valid solutions. Factoring or handling the zero case separately is safer.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '15',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guided 1 — identity',
+            problem: 'Simplify (sec²x−1)/tan x.',
+            steps: [
+              'Use sec²x−1=tan²x.',
+              'Then tan²x/tan x.',
+            ],
+            result: 'tan x on the common domain.',
+            interpretation:
+                'The simplification preserves the original restrictions.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guided 2 — equation',
+            problem: 'Solve cos2x=0 on [0,2π).',
+            steps: [
+              '2x=π/2+kπ.',
+              'x=π/4+kπ/2.',
+              'Select values in the interval.',
+            ],
+            result: 'x=π/4, 3π/4, 5π/4, 7π/4.',
+            interpretation:
+                'The argument 2x compresses the solution pattern.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '16',
+        title: 'Practice before the final activity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Simplify, prove, and solve',
+            content:
+                '1. Use sin²x+cos²x=1 to rewrite 1−sin²x.\n'
+                '2. Rewrite tan x using sine and cosine.\n'
+                '3. Prove 1+tan²x=sec²x.\n'
+                '4. Simplify (1−cos²x)/sin x.\n'
+                '5. Compute sin75°.\n'
+                '6. Compute cos15°.\n'
+                '7. Write sin2x in terms of sin x and cos x.\n'
+                '8. Solve sin x=−1/2 on [0,2π).\n'
+                '9. Solve cos x=1/2 over the reals.\n'
+                '10. Solve tan x=−1 on [0,2π).\n'
+                '11. Solve 2cos²x−1=0 on [0,2π).\n'
+                '12. Solve sin x cos x=0 on [0,2π).\n'
+                '13. Explain why dividing by sin x can lose solutions.\n'
+                '14. Distinguish an identity from a trigonometric equation.\n'
+                '15. Solve sin2x=√3/2 on [0,2π).',
+            emphasis:
+                'For equations, state the interval first or explicitly include k∈ℤ in a general solution.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '17',
+        title: 'Connection to Calculus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Identities are analytical simplification tools',
+            content:
+                'In limits, derivatives, and integrals, trigonometric identities rewrite expressions into manageable forms. Double-angle and Pythagorean identities appear repeatedly in integration and limit analysis.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '18',
+        title: 'References and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis',
+            content:
+                'References: OpenStax Precalculus 2e; OpenStax Algebra and Trigonometry 2e; Sullivan, Precalculus; Blitzer, Precalculus; Stewart and Thomas for identities, trigonometric equations, and Calculus applications.',
+          ),
+        ],
+      ),
     ],
-    check: LessonCheckData(question: 'Which identity is always true?', choices: ['sin x+cos x=1', 'sin²x+cos²x=1', 'tan x=cos x/sin x'], correctIndex: 1, explanation: 'sin²x+cos²x=1 is the fundamental identity.'),
-    takeaways: ['Identities hold throughout their domain.', 'sin²+cos²=1 is fundamental.', 'Equations use quadrants and periodicity.', 'Strategic rewriting simplifies problems.'],
-    closing: 'Identities transform expressions without changing their value.',
+    check: LessonCheckData(
+      question: 'Which identity is valid where tangent and secant are defined?',
+      choices: ['1+tan²x=sec²x', '1+sin²x=cos²x', 'tan x=cos x/sin x'],
+      correctIndex: 0,
+      explanation:
+          'Dividing sin²x+cos²x=1 by cos²x gives tan²x+1=sec²x.',
+    ),
+    takeaways: [
+      'Identities hold throughout the common domain of the expressions.',
+      'sin²x+cos²x=1 is the fundamental Pythagorean identity.',
+      'Tangent, secant, and related ratios carry domain restrictions.',
+      'Sum, difference, and double-angle formulas generate exact relationships.',
+      'Trigonometric equations combine algebra, the unit circle, and periodicity.',
+      'General solutions use integer multiples of the appropriate period.',
+      'Dividing by trigonometric functions can remove solutions.',
+    ],
+    closing:
+        'Trigonometric identities provide the algebraic language for transforming, simplifying, and solving periodic relationships.',
   ),
   CourseLessonData(
     id: 'funcoes-11-inversas-trig', topicId: 'funcoes', trailTitle: 'Functions — Precalculus', eyebrow: 'Trigonometry', title: 'Inverse trigonometric functions', description: 'arcsine, arccosine, and arctangent', duration: '≈ 18 min', objective: 'interpret inverse trig functions with restricted domains and ranges', symbol: 'arctan',
