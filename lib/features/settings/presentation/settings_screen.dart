@@ -488,6 +488,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       }
 
       await PlayStoreFeedbackService.clearForUser(user.uid);
+      await AppProgress.clearLocalUserData(user.uid);
 
       await FirebaseAuth.instance.signOut();
       AppProgress.clearSession();
