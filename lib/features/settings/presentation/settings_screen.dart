@@ -8,6 +8,7 @@ import 'package:calcquest/l10n/app_localizations.dart';
 import 'package:calcquest/shared/services/google_sign_in_service.dart';
 import 'package:calcquest/shared/services/play_store_feedback_service.dart';
 import 'package:calcquest/shared/services/revenuecat_service.dart';
+import 'package:calcquest/shared/services/update_notification_service.dart';
 import 'package:calcquest/shared/state/app_locale_controller.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
@@ -39,9 +40,67 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _processingSubscriptionAction = false;
   bool _isSigningOut = false;
   bool _isDeletingAccount = false;
+  bool _updatesEnabled = true;
+  bool _updatingNotifications = false;
 
   bool get _isBusy =>
-      _processingSubscriptionAction || _isSigningOut || _isDeletingAccount;
+      _processingSubscriptionAction ||
+      _isSigningOut ||
+      _isDeletingAccount ||
+      _updatingNotifications;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadNotificationPreference();
+  }
+
+  Future<void> _loadNotificationPreference() async {
+    final enabled = await UpdateNotificationService.areUpdatesEnabled();
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _updatesEnabled = enabled;
+    });
+  }
+
+  Future<void> _setNotificationPreference(bool enabled) async {
+    if (_updatingNotifications) {
+      return;
+    }
+
+    setState(() {
+      _updatingNotifications = true;
+    });
+
+    try {
+      await UpdateNotificationService.setUpdatesEnabled(enabled);
+
+      final effectiveValue =
+          await UpdateNotificationService.areUpdatesEnabled();
+
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _updatesEnabled = effectiveValue;
+      });
+    } catch (error) {
+      debugPrint(
+        'Configurações: erro ao atualizar notificações: $error',
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _updatingNotifications = false;
+        });
+      }
+    }
+  }
 
   void _onMenuTap(BuildContext context, int index) {
     if (_isBusy) {
@@ -738,6 +797,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 icon: Icons.notifications_none_rounded,
                 title: l10n.settingsNotifications,
                 subtitle: l10n.settingsNotificationsSubtitle,
+                trailing: Switch.adaptive(
+                  value: _updatesEnabled,
+                  onChanged: _isBusy ? null : _setNotificationPreference,
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               _SettingsCard(
