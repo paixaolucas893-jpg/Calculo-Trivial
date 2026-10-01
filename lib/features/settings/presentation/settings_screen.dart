@@ -23,6 +23,7 @@ import '../../auth/presentation/login_screen.dart';
 import '../../dashboard/presentation/dashboard_screen.dart';
 import '../../learning_path/presentation/learning_path_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
+import '../../privacy/presentation/privacy_center_screen.dart';
 import '../../statistics/presentation/statistics_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -164,6 +165,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
       _showMessage(l10n.settingsPrivacyOpenError);
     }
+  }
+
+  void _openPrivacyCenter() {
+    if (_isBusy) {
+      return;
+    }
+
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => const PrivacyCenterScreen(),
+      ),
+    );
   }
 
   Future<void> _restorePurchases() async {
@@ -790,7 +803,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 icon: Icons.privacy_tip_outlined,
                 title: l10n.settingsPrivacyAndData,
                 subtitle: l10n.settingsPrivacySubtitle,
-                onTap: _openPrivacyPolicy,
+                onTap: _openPrivacyCenter,
               ),
               const SizedBox(height: AppSpacing.md),
               _SettingsCard(
