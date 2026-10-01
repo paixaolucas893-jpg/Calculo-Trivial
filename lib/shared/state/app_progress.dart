@@ -822,6 +822,54 @@ class AppProgress {
     });
   }
 
+  static Future<void> clearLocalUserData(String userId) async {
+    final normalizedUserId = userId.trim();
+
+    if (normalizedUserId.isEmpty) {
+      throw ArgumentError('O identificador do usuário não pode estar vazio.');
+    }
+
+    await _saveQueue;
+
+    final preferences = await SharedPreferences.getInstance();
+
+    final scopedKeys = <String>[
+      _completedLessonsKey,
+      _completedContentLessonsKey,
+      _totalAnswersKey,
+      _correctAnswersKey,
+      _studyStreakKey,
+      _lastStudyDateKey,
+      _dailyAnsweredQuestionsKey,
+      _dailyActivityDateKey,
+    ];
+
+    for (final key in scopedKeys) {
+      await preferences.remove(_scopedKey(key, normalizedUserId));
+    }
+
+    for (final lessonId in _lessonIds) {
+      await preferences.remove(
+        _scopedKey('${_lastQuestionSessionKey}_$lessonId', normalizedUserId),
+      );
+      await preferences.remove(
+        _scopedKey('${_lastFinalTestSessionKey}_$lessonId', normalizedUserId),
+      );
+    }
+
+    await preferences.remove(_algebraFundamentalLegacyKey);
+    await preferences.remove(_equationsAndInequationsLegacyKey);
+    await preferences.remove(_functionsLegacyKey);
+    await preferences.remove(_limitsLegacyKey);
+
+    if (_activeUserId == normalizedUserId) {
+      _activeUserId = null;
+      _saveQueue = Future<void>.value();
+      _resetInMemory();
+      revision.value++;
+    }
+  }
+
   static Future<void> deleteCurrentUserData() async {
     final user = FirebaseAuth.instance.currentUser;
     final userId = user?.uid ?? _activeUserId;
@@ -839,42 +887,7 @@ class AppProgress {
     await userDocument.collection('progress').doc('current').delete();
     await userDocument.delete();
 
-    final preferences = await SharedPreferences.getInstance();
-
-    final scopedKeys = <String>[
-      _completedLessonsKey,
-      _completedContentLessonsKey,
-      _totalAnswersKey,
-      _correctAnswersKey,
-      _studyStreakKey,
-      _lastStudyDateKey,
-      _dailyAnsweredQuestionsKey,
-      _dailyActivityDateKey,
-    ];
-
-    for (final key in scopedKeys) {
-      await preferences.remove(_scopedKey(key, userId));
-    }
-
-    for (final lessonId in _lessonIds) {
-      await preferences.remove(
-        _scopedKey('${_lastQuestionSessionKey}_$lessonId', userId),
-      );
-      await preferences.remove(
-        _scopedKey('${_lastFinalTestSessionKey}_$lessonId', userId),
-      );
-    }
-
-    await preferences.remove(_algebraFundamentalLegacyKey);
-    await preferences.remove(_equationsAndInequationsLegacyKey);
-    await preferences.remove(_functionsLegacyKey);
-    await preferences.remove(_limitsLegacyKey);
-
-    _activeUserId = null;
-    _saveQueue = Future<void>.value();
-    _resetInMemory();
-
-    revision.value++;
+    await clearLocalUserData(userId);
   }
 
   static void clearSession() {
