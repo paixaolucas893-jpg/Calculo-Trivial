@@ -65,7 +65,7 @@ class UpdateNotificationService {
 
   static Future<bool> areUpdatesEnabled() async {
     final preferences = await SharedPreferences.getInstance();
-    return preferences.getBool(_updatesEnabledKey) ?? true;
+    return preferences.getBool(_updatesEnabledKey) ?? false;
   }
 
   static Future<void> setUpdatesEnabled(bool enabled) async {
