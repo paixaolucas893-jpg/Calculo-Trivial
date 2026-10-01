@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_update_service.dart';
 
@@ -12,6 +13,8 @@ class UpdateNotificationService {
   static const String _channelName = 'Atualizações do aplicativo';
   static const String _channelDescription =
       'Avisos sobre novas versões do Cálculo Trivial.';
+  static const String _updatesEnabledKey =
+      'app_update_notifications_enabled';
 
   static final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
@@ -24,6 +27,12 @@ class UpdateNotificationService {
     await _initializeLocalNotifications();
 
     final messaging = FirebaseMessaging.instance;
+    final enabled = await areUpdatesEnabled();
+
+    if (!enabled) {
+      await messaging.unsubscribeFromTopic(updatesTopic);
+      return;
+    }
 
     final settings = await messaging.requestPermission(
       alert: true,
@@ -52,6 +61,40 @@ class UpdateNotificationService {
           ? 'FCM inicializado, mas sem token disponível.'
           : 'FCM inicializado e inscrito no tópico $updatesTopic.',
     );
+  }
+
+  static Future<bool> areUpdatesEnabled() async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(_updatesEnabledKey) ?? true;
+  }
+
+  static Future<void> setUpdatesEnabled(bool enabled) async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setBool(_updatesEnabledKey, enabled);
+
+    if (kIsWeb) {
+      return;
+    }
+
+    final messaging = FirebaseMessaging.instance;
+
+    if (!enabled) {
+      await messaging.unsubscribeFromTopic(updatesTopic);
+      return;
+    }
+
+    final settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.denied) {
+      await preferences.setBool(_updatesEnabledKey, false);
+      return;
+    }
+
+    await messaging.subscribeToTopic(updatesTopic);
   }
 
   static Future<void> _initializeLocalNotifications() async {
