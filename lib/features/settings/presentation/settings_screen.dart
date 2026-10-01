@@ -2,7 +2,6 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:calcquest/l10n/app_localizations.dart';
 import 'package:calcquest/shared/services/google_sign_in_service.dart';
@@ -34,10 +33,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  static final Uri _privacyPolicyUri = Uri.parse(
-    'https://calculo-trivial-app-646bb.web.app',
-  );
-
   bool _processingSubscriptionAction = false;
   bool _isSigningOut = false;
   bool _isDeletingAccount = false;
@@ -144,27 +139,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  Future<void> _openPrivacyPolicy() async {
-    final l10n = AppLocalizations.of(context)!;
-
-    try {
-      final opened = await launchUrl(
-        _privacyPolicyUri,
-        mode: LaunchMode.externalApplication,
-      );
-
-      if (!opened) {
-        _showMessage(l10n.settingsPrivacyOpenError);
-      }
-    } catch (error) {
-      debugPrint(
-        'Configurações: erro ao abrir política de privacidade: $error',
-      );
-
-      _showMessage(l10n.settingsPrivacyOpenError);
-    }
   }
 
   void _openPrivacyCenter() {
