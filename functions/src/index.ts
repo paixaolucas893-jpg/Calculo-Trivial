@@ -18,6 +18,10 @@ import {
   handleDeleteAccount,
 } from "./account/accountDeletion";
 import {
+  FirebasePersonalDataExportService,
+  handleExportMyData,
+} from "./privacy/personalDataExport";
+import {
   TUTOR_RUNTIME_CONFIG,
 } from "./config/tutorRuntimeConfig";
 import {
@@ -74,6 +78,12 @@ const firestore =
 
 const accountDeletion =
   new FirebaseAccountDeletionService(
+    firestore,
+    getAuth(),
+  );
+
+const personalDataExport =
+  new FirebasePersonalDataExportService(
     firestore,
     getAuth(),
   );
@@ -222,6 +232,27 @@ export const tutor =
           data: request.data,
         },
         tutorExecutor,
+      ),
+  );
+
+export const exportMyData =
+  onCall(
+    {
+      enforceAppCheck: true,
+      minInstances: 0,
+      maxInstances: 2,
+      concurrency: 10,
+      timeoutSeconds: 30,
+    },
+    async (request) =>
+      handleExportMyData(
+        {
+          authUid:
+            request.auth?.uid ??
+            null,
+          data: request.data,
+        },
+        personalDataExport,
       ),
   );
 
