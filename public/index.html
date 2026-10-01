@@ -255,7 +255,7 @@
           Esta página explica como o aplicativo trata seus dados e apresenta
           caminhos simples para excluir sua conta e as informações associadas.
         </p>
-        <p class="meta">Última atualização: 19 de agosto de 2026.</p>
+        <p class="meta">Última atualização: 1º de outubro de 2026.</p>
       </section>
 
       <section id="exclusao" class="card deletion-card" aria-labelledby="titulo-exclusao">
@@ -353,6 +353,18 @@
             App Check e pelo Google Play Integrity para reduzir abuso, fraude e
             acesso não autorizado.
           </li>
+          <li>
+            <strong>Dados de notificações:</strong> token técnico do Firebase
+            Cloud Messaging e informações necessárias para enviar avisos sobre
+            atualizações do aplicativo quando o usuário autoriza notificações.
+          </li>
+          <li>
+            <strong>Dados do Tutor Trivial:</strong> quando o recurso estiver
+            disponível e for utilizado, poderemos tratar a questão atual, a aula,
+            a tentativa do estudante, pedidos de pista, sessões do tutor e outros
+            dados pedagógicos necessários para gerar ajuda contextualizada.
+            Senhas e dados de pagamento não são enviados ao Tutor.
+          </li>
         </ul>
 
         <h3>3. Como usamos os dados</h3>
@@ -362,7 +374,12 @@
           <li>calcular desempenho, recompensas e desbloqueio de conteúdos;</li>
           <li>verificar e restaurar o acesso Premium;</li>
           <li>proteger o aplicativo e seus serviços contra abuso e fraude;</li>
-          <li>prestar suporte e cumprir solicitações relacionadas à conta.</li>
+          <li>prestar suporte e cumprir solicitações relacionadas à conta;</li>
+          <li>enviar notificações de atualização quando autorizadas;</li>
+          <li>
+            fornecer explicações, pistas e recursos adaptativos do Tutor Trivial
+            quando o usuário utilizar essa funcionalidade.
+          </li>
         </ul>
 
         <h3>4. Fundamentos e princípios</h3>
@@ -378,8 +395,11 @@
         <p>O Cálculo Trivial utiliza prestadores especializados:</p>
         <ul>
           <li>
-            <strong>Google Firebase:</strong> autenticação, banco de dados e
-            proteção App Check;
+            <strong>Google Firebase:</strong> autenticação, Cloud Firestore,
+            Cloud Functions, App Check e Firebase Cloud Messaging;
+          </li>
+          <li>
+            <strong>Google Sign-In:</strong> autenticação federada opcional;
           </li>
           <li>
             <strong>Google Play:</strong> distribuição, pagamentos e Play
@@ -387,7 +407,11 @@
           </li>
           <li>
             <strong>RevenueCat:</strong> gerenciamento e validação de
-            assinaturas e compras.
+            assinaturas e compras;
+          </li>
+          <li>
+            <strong>Google Gemini:</strong> processamento de solicitações do
+            Tutor Trivial quando esse recurso for utilizado.
           </li>
         </ul>
         <p>
@@ -415,22 +439,59 @@
 
         <h3>8. Retenção</h3>
         <p>
-          Mantemos os dados da conta e do progresso enquanto a conta estiver
-          ativa ou enquanto forem necessários para prestar o serviço. Após uma
-          exclusão válida, removemos os dados associados sob nosso controle,
-          ressalvadas as informações que precisem ser mantidas por obrigação
-          legal, segurança ou prevenção a fraude.
+          Dados de conta e progresso são mantidos enquanto a conta estiver ativa
+          ou enquanto forem necessários para prestar as funcionalidades
+          solicitadas. Dados técnicos de segurança, rate limit, idempotência e
+          registros operacionais podem ter prazos menores e compatíveis com sua
+          finalidade. Informações relacionadas a compras podem permanecer com a
+          Google Play e a RevenueCat pelos prazos legais, contratuais ou de
+          prevenção a fraude aplicáveis.
+        </p>
+        <p>
+          Após uma exclusão válida, removemos os dados associados sob nosso
+          controle que não precisem ser conservados para cumprimento de
+          obrigação legal, exercício regular de direitos, segurança ou prevenção
+          a fraude. Os prazos são revisados conforme a evolução do serviço e a
+          necessidade de cada categoria de dado.
         </p>
 
         <h3>9. Direitos do titular</h3>
         <p>
           O usuário pode solicitar confirmação do tratamento, acesso, correção,
-          informação sobre compartilhamento, portabilidade quando aplicável,
-          revogação de consentimento e exclusão de dados, conforme a LGPD. Para
-          exercer esses direitos, utilize o contato informado nesta página.
+          anonimização, bloqueio ou eliminação quando cabíveis, informação sobre
+          compartilhamento, portabilidade quando aplicável, informação sobre as
+          consequências de não fornecer consentimento, revogação de
+          consentimento e revisão de decisões tomadas unicamente com base em
+          tratamento automatizado, nos termos da LGPD.
+        </p>
+        <p>
+          Para exercer esses direitos, utilize o contato informado nesta página.
+          Podemos solicitar informações estritamente necessárias para confirmar
+          a identidade do solicitante e proteger a conta contra pedidos
+          fraudulentos.
         </p>
 
-        <h3>10. Público e idade</h3>
+        <h3>10. Transferências internacionais</h3>
+        <p>
+          Alguns prestadores utilizados pelo Cálculo Trivial operam
+          infraestrutura internacional. Quando houver tratamento ou
+          armazenamento fora do Brasil, buscamos utilizar mecanismos jurídicos,
+          contratuais e técnicos compatíveis com a LGPD e com a regulamentação
+          da Autoridade Nacional de Proteção de Dados.
+        </p>
+
+        <h3>11. Tutor Trivial e decisões automatizadas</h3>
+        <p>
+          O Tutor Trivial pode utilizar dados pedagógicos para escolher pistas,
+          explicações, exercícios ou recomendações de revisão. A inteligência
+          artificial não concede aprovação acadêmica, não altera uma resposta
+          já registrada e não desbloqueia conteúdo Premium por decisão própria.
+          Quando decisões automatizadas relevantes forem utilizadas, o usuário
+          poderá solicitar informações sobre os critérios empregados e revisão
+          nos casos previstos pela LGPD.
+        </p>
+
+        <h3>12. Público e idade</h3>
         <p>
           O Cálculo Trivial é destinado a pessoas com 13 anos ou mais. Usuários
           menores de idade devem utilizar o serviço com ciência e autorização
@@ -440,7 +501,7 @@
           associados.
         </p>
 
-        <h3>11. Alterações desta política</h3>
+        <h3>13. Alterações desta política</h3>
         <p>
           Esta política poderá ser atualizada para refletir mudanças no
           aplicativo, nos serviços utilizados ou na legislação. A data da
