@@ -95,36 +95,36 @@ class AcademicMathText extends StatelessWidget {
       final base = _toTex(match.group(1)!);
       final numerator = _toTex(match.group(2)!);
       final denominator = _toTex(match.group(3)!);
-      return '[[math:${base}^{\\frac{${numerator}}{${denominator}}}]]';
+      return '[[math:$base^{\\frac{$numerator}{$denominator}}]]';
     });
 
     normalized = normalized.replaceAllMapped(_indexedRoot, (match) {
       final index = _toTex(match.group(1)!);
       final radicand = _toTex(match.group(2)!);
-      return '[[math:\\sqrt[${index}]{${radicand}}]]';
+      return '[[math:\\sqrt[$index]{$radicand}]]';
     });
 
     normalized = normalized.replaceAllMapped(_parenthesizedRoot, (match) {
       final radicand = _toTex(match.group(1)!);
-      return '[[math:\\sqrt{${radicand}}]]';
+      return '[[math:\\sqrt{$radicand}]]';
     });
 
     normalized = normalized.replaceAllMapped(_simpleRoot, (match) {
       final radicand = _toTex(match.group(1)!);
-      return '[[math:\\sqrt{${radicand}}]]';
+      return '[[math:\\sqrt{$radicand}]]';
     });
 
     normalized = normalized.replaceAllMapped(_unicodePower, (match) {
       final base = _toTex(match.group(1)!);
       final exponent = _superscriptToTex(match.group(2)!);
-      return '[[math:${base}^{${exponent}}]]';
+      return '[[math:$base^{$exponent}]]';
     });
 
     normalized = normalized.replaceAllMapped(_simpleFraction, (match) {
       final prefix = match.group(1)!;
       final numerator = _toTex(match.group(2)!);
       final denominator = _toTex(match.group(3)!);
-      return '${prefix}[[math:\\frac{${numerator}}{${denominator}}}]]';
+      return '$prefix[[math:\\frac{$numerator}{$denominator}]]';
     });
 
     return normalized;
