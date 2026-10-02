@@ -1,6 +1,6 @@
 # Registro de Operações de Tratamento de Dados — Cálculo Trivial
 
-Última revisão: 2026-10-01
+Última revisão: 2026-10-02
 
 Este documento é um registro interno das principais operações de tratamento de dados pessoais do Cálculo Trivial. Deve ser revisado sempre que um novo SDK, fornecedor, finalidade, categoria de dado ou recurso relevante for adicionado.
 
@@ -41,8 +41,9 @@ Este documento é um registro interno das principais operações de tratamento d
 - [x] Definir descarte automático para idempotência e rate limits.
 - [ ] Definir prazo específico para Cloud Logs e demais registros operacionais.
 - [ ] Documentar mecanismos de transferência internacional dos fornecedores.
-- [ ] Implementar exportação estruturada dos dados do titular.
-- [ ] Definir estratégia definitiva de idade e tratamento de menores.
+- [x] Implementar exportação estruturada dos dados do titular.
+- [ ] Definir estratégia definitiva de idade e tratamento de menores antes da produção ampla do Tutor.
+- [x] Elaborar RIPD interno do Tutor Trivial (`docs/ripd_tutor_trivial.md`).
 - [ ] Atualizar este registro quando notificações de estudo, analytics ou novos SDKs forem adicionados.
 
 ## Referências normativas
