@@ -609,7 +609,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Recognizing like terms is recognizing algebraic structure before doing arithmetic.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-03-distributiva',
     topicId: 'algebra-fundamental',
@@ -852,7 +852,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Mastering distribution means controlling expression structure rather than merely removing parentheses.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-04-potencias',
     topicId: 'algebra-fundamental',
@@ -1120,7 +1120,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Exponent laws are structural rules: they work only when the operation and the base are identified correctly.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-09-monomios-polinomios',
     topicId: 'algebra-fundamental',
@@ -1381,7 +1381,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Recognizing polynomial structure is the first step toward operating on, factoring, and interpreting polynomial functions.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-10-operacoes-polinomios',
     topicId: 'algebra-fundamental',
@@ -1676,7 +1676,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Reliable polynomial operations begin with organizing structure before carrying out arithmetic.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
@@ -1938,7 +1938,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Special products are safe shortcuts only when the underlying pattern is understood.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-06-fatoracao',
     topicId: 'algebra-fundamental',
@@ -2229,7 +2229,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Factoring is a change of representation that reveals structure hidden in an expanded expression.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-07-fracoes-algebricas',
     topicId: 'algebra-fundamental',
@@ -2263,7 +2263,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
               'Require x−5 ≠ 0.',
               'Therefore x ≠ 5.',
             ],
-            result: 'Domain: ℝ\{5}.',
+            result: 'Domain: ℝ\\{5}.',
             interpretation:
                 'A numerator may be zero; a denominator may not.',
           ),
@@ -2489,7 +2489,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     ],
     closing:
         'Algebraic fractions require two simultaneous habits: manipulate factors and preserve the domain.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-08-sintese',
     topicId: 'algebra-fundamental',
