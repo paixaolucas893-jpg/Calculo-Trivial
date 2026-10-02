@@ -18,8 +18,8 @@ Este documento é um registro interno das principais operações de tratamento d
 | Cadastro e autenticação | nome, e-mail, UID, provedor de login | criar e autenticar conta | execução do serviço/contrato; outras bases conforme o caso | Firebase Authentication, Google Sign-In | enquanto a conta estiver ativa e conforme obrigações aplicáveis |
 | Progresso educacional | aulas concluídas, respostas agregadas, acertos, erros, streak, XP, moedas, IDs de sessões | sincronizar progresso, personalizar experiência e calcular estatísticas | execução do serviço/contrato; legítimo interesse quando cabível e documentado | Cloud Firestore, armazenamento local | enquanto a conta estiver ativa; cópia local até exclusão/limpeza |
 | Assinatura Premium | App User ID, entitlement, produto adquirido, status da compra | validar e restaurar acesso Premium | execução do contrato; obrigação legal quando aplicável | RevenueCat, Google Play | conforme necessidade operacional, obrigações legais e políticas dos fornecedores |
-| Tutor Trivial | aula, questão, tentativa, pedidos de pista, sessão do tutor, contexto pedagógico necessário | fornecer ajuda, explicações e recomendações pedagógicas | execução do serviço; outras bases devem ser avaliadas conforme o recurso | Cloud Functions, Firestore, Google Gemini | definir prazo específico antes da ativação ampla do histórico do Tutor |
-| Segurança e antifraude | token App Check, sinais de integridade, UID/hash, rate limit, idempotência, logs técnicos | prevenir abuso, fraude e acesso não autorizado | legítimo interesse e/ou proteção do serviço, sujeito a avaliação/documentação | Firebase App Check, Play Integrity, Cloud Functions/Logs | prazo mínimo compatível com segurança e investigação |
+| Tutor Trivial | aula, questão, tentativa, pedidos de pista, sessão do tutor, contexto pedagógico necessário | fornecer ajuda, explicações e recomendações pedagógicas | execução do serviço; outras bases devem ser avaliadas conforme o recurso | Cloud Functions, Firestore, Google Gemini | sessões expiram após 30 minutos de inatividade e ficam elegíveis para exclusão automática por TTL; a remoção física pode ocorrer depois da expiração conforme o processamento gerenciado do Firestore |
+| Segurança e antifraude | token App Check, sinais de integridade, UID/hash, rate limit, idempotência, logs técnicos | prevenir abuso, fraude e acesso não autorizado | legítimo interesse e/ou proteção do serviço, sujeito a avaliação/documentação | Firebase App Check, Play Integrity, Cloud Functions/Logs | idempotência: 24 horas; rate limits: conforme o campo expiresAt; ambos elegíveis para exclusão automática por TTL |
 | Notificações | token FCM, inscrição em tópico, status de permissão | enviar avisos de atualização e futuros lembretes autorizados | consentimento/permissão e interesse do usuário conforme o tipo de mensagem | Firebase Cloud Messaging | enquanto a permissão/inscrição estiver ativa e tecnicamente necessária |
 | Suporte e direitos LGPD | e-mail, conteúdo da solicitação, evidências mínimas de identidade | responder suporte e solicitações de titulares | cumprimento de obrigação legal/regulatória e exercício regular de direitos | e-mail e registros internos | prazo necessário para atendimento, auditoria e defesa de direitos |
 | Exclusão de conta | UID e dados vinculados | apagar conta e dados associados sob controle do produto | cumprimento de solicitação do titular/obrigação legal | Firebase Auth, Firestore, armazenamento local | processamento imediato/operacional, ressalvadas retenções legalmente justificadas |
@@ -37,8 +37,9 @@ Este documento é um registro interno das principais operações de tratamento d
 ## Pendências
 
 - [ ] Validar formalmente a hipótese legal de cada linha com assessoria jurídica quando o produto entrar em operação comercial ampla.
-- [ ] Definir prazo específico de retenção para sessões do Tutor.
-- [ ] Definir prazo específico para logs, idempotência e rate limit.
+- [x] Definir prazo operacional e descarte automático para sessões do Tutor.
+- [x] Definir descarte automático para idempotência e rate limits.
+- [ ] Definir prazo específico para Cloud Logs e demais registros operacionais.
 - [ ] Documentar mecanismos de transferência internacional dos fornecedores.
 - [ ] Implementar exportação estruturada dos dados do titular.
 - [ ] Definir estratégia definitiva de idade e tratamento de menores.
