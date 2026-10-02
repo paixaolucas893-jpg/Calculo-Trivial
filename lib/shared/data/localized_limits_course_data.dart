@@ -14,7 +14,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 1 of 8 • Core idea',
       title: 'Approach before calculating',
       description: 'Build intuition for limits and learn how to read each part of the notation.',
-      duration: '≈ 5 min',
+      duration: '≈ 28 min',
       objective: 'explain in your own words what a limit describes',
       symbol: 'lim',
       sections: [
@@ -60,6 +60,16 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'The limit and the function value are different ideas', blocks: [
+          ConceptBlockData(visual: LessonVisual.compare, title: 'Behavior near a point can survive a hole', content: 'A function may be undefined at x=a and still have a limit as x approaches a. It may also have f(a) defined at a value different from the nearby trend.', emphasis: 'A limit describes a neighborhood; f(a) describes the point itself.'),
+          WorkedExampleBlockData(title: 'A removable hole', problem: 'Let f(x)=(x²−1)/(x−1), for x≠1. What happens as x→1?', steps: ['Factor x²−1=(x−1)(x+1).','For x≠1, the expression equals x+1.','Values near 1 therefore produce outputs near 2.'], result: 'lim x→1 f(x)=2.', interpretation: 'This anticipates removable discontinuities.'),
+        ]),
+        LessonSectionData(number: '4', title: 'Three representations, one idea', blocks: [ConceptBlockData(visual: LessonVisual.table, title: 'Table, graph, and formula', content: 'Tables suggest numerical trends, graphs show geometry, and algebra provides justification and generalization. Strong limit reasoning moves among all three.', emphasis: 'Numerical evidence is useful but is not the same as an algebraic proof.')]),
+        LessonSectionData(number: '5', title: 'How approach can fail', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Jump, blow-up, or oscillation', content: 'A finite limit may fail because the two sides approach different values, because outputs grow without bound, or because they oscillate without settling.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '6', title: 'Precision of approximation', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Closer inputs control closer outputs', content: 'The rigorous definition of limit makes precise the idea that f(x) can be forced close to L by taking x sufficiently close to a. Here the goal is to understand that relationship before a formal ε–δ treatment.', emphasis: 'Good intuition prepares for rigor.')]),
+        LessonSectionData(number: '7', title: 'Conceptual reading', blocks: [WorkedExampleBlockData(title: 'Interpret before calculating', problem: 'If lim x→4 g(x)=10, what does that say?', steps: ['Take inputs increasingly close to 4 without requiring x=4.','Observe the corresponding outputs.','They can be made as close to 10 as desired by choosing inputs sufficiently close to 4.'], result: 'The limit describes a local trend, not necessarily g(4).', interpretation: 'This avoids a common Calculus I misconception.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The organization emphasizes numerical, graphical, and algebraic interpretations before formal ε–δ rigor.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'To study lim x→4 f(x), which information matters most?',
@@ -75,6 +85,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'A limit describes a trend in the outputs of a function.',
         'The value at the point and the limit are related but different concepts.',
         'The notation identifies the observed function, the point of approach, and the predicted value.',
+
+        'A limit may exist even when the function is undefined at the point.',
+        'Tables, graphs, and algebra provide complementary evidence.',
+        'Approach can fail through jumps, unbounded behavior, or oscillation.',
+        'The rigorous definition formalizes control of input and output closeness.',
       ],
       closing: 'In the next lesson, you will compare approaches from the left and from the right.',
     ),
@@ -85,7 +100,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 2 of 8 • Two directions',
       title: 'One-sided limits, tables, and graphs',
       description: 'Investigate a point from both sides and recognize when a limit does not exist.',
-      duration: '≈ 5 min',
+      duration: '≈ 30 min',
       objective: 'calculate one-sided limits and compare their results',
       symbol: '→',
       sections: [
@@ -131,6 +146,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'Piecewise functions', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Use the correct rule on each side', content: 'For a piecewise function, the left-hand limit uses the expression valid for x<a and the right-hand limit uses the expression valid for x>a. The value at a does not determine either side.'), WorkedExampleBlockData(title: 'Two sides, two rules', problem: 'f(x)=x+2 for x<1 and f(x)=x²+1 for x≥1. Analyze x→1.', steps: ['From the left, x+2→3.','From the right, x²+1→2.','Since 3≠2, the one-sided limits disagree.'], result: 'The two-sided limit does not exist.', interpretation: 'Even though f(1)=2, the mismatch between the sides prevents the limit.')]),
+        LessonSectionData(number: '4', title: 'Infinite one-sided limits', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'One side can grow without bound', content: 'For 1/x near zero, x→0⁺ gives positive unbounded growth while x→0⁻ gives negative unbounded growth.', emphasis: '+∞ and −∞ describe unbounded behavior; they are not real numbers.')]),
+        LessonSectionData(number: '5', title: 'A graph-reading protocol', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Follow the curve, not an isolated point', content: 'For each side, trace the graph toward x=a and record the height being approached. Only then compare that trend with the filled point representing f(a).')]),
+        LessonSectionData(number: '6', title: 'Reliable two-sided tables', blocks: [ConceptBlockData(visual: LessonVisual.table, title: 'Approach on progressively smaller scales', content: 'Use values such as a−0.1, a−0.01, a−0.001 and a+0.1, a+0.01, a+0.001. Progressive scaling helps distinguish a genuine trend from a numerical coincidence.')]),
+        LessonSectionData(number: '7', title: 'Existence criterion', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Necessary and sufficient condition', content: 'A finite two-sided limit lim x→a f(x)=L exists exactly when both one-sided limits exist and equal L.', emphasis: 'This equivalence is central in continuity and piecewise functions.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The treatment follows the standard progression through graphs, tables, and piecewise functions.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'If lim x→2⁻ f(x)=5 and lim x→2⁺ f(x)=5, what can we conclude?',
@@ -147,6 +169,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'A two-sided limit requires the two sides to agree.',
         'A filled point represents f(a); the nearby curve shows the approach.',
         'A jump creates different one-sided limits.',
+
+        'Piecewise functions require the rule valid on each side.',
+        'One-sided limits may be infinite.',
+        'A two-sided limit exists only when both sides agree.',
+        'The value f(a) is independent of the limit-existence criterion.',
       ],
       closing: 'Now that you can test whether a limit exists, we will use properties that make calculations faster.',
     ),
@@ -157,7 +184,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 3 of 8 • Rules',
       title: 'Limit properties and direct substitution',
       description: 'Learn when direct substitution works and how to combine known limits safely.',
-      duration: '≈ 5 min',
+      duration: '≈ 30 min',
       objective: 'use algebraic limit properties and recognize continuous functions',
       symbol: 'L',
       sections: [
@@ -203,6 +230,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'Limit laws', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Sum, difference, product, and quotient', content: 'If lim f(x)=L and lim g(x)=M, then limits distribute across sums, differences, and products. For a quotient, the result is L/M provided M≠0.', emphasis: 'The quotient law requires a nonzero limiting denominator.')]),
+        LessonSectionData(number: '4', title: 'Powers, roots, and composition', blocks: [ConceptBlockData(visual: LessonVisual.calculate, title: 'Pass limits through continuous operations', content: 'Integer powers and domain-compatible roots preserve limits. If an outer function is continuous at the limiting value, the limit can pass through the composition.')]),
+        LessonSectionData(number: '5', title: 'Polynomials and rational functions', blocks: [WorkedExampleBlockData(title: 'Justified direct substitution', problem: 'Compute lim x→2 (3x²−x+4).', steps: ['Polynomials are continuous for every real x.','Substitute x=2.','3·4−2+4=14.'], result: 'The limit is 14.', interpretation: 'Direct substitution works because the limit laws establish polynomial continuity.')]),
+        LessonSectionData(number: '6', title: 'When quotients need care', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Denominator approaching zero', content: 'If the denominator tends to zero, the quotient law cannot be applied directly. Inspect the resulting form and choose another technique.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '7', title: 'Squeeze theorem', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Trap a function between two others', content: 'If g(x)≤f(x)≤h(x) near a and both g and h tend to L, then f also tends to L. This theorem will justify the fundamental trigonometric limit.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. Limit laws are treated as the operational foundation for continuity and derivatives.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'Which limit can be solved immediately by direct substitution?',
@@ -219,6 +253,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'Rational functions allow direct substitution where the denominator is nonzero.',
         'Sum, product, and power preserve existing limits.',
         '0/0 is a signal to transform the expression.',
+
+        'Limit laws combine limits that are already known.',
+        'The quotient law requires a nonzero limiting denominator.',
+        'Polynomials allow direct substitution at every real point.',
+        'The squeeze theorem determines limits by comparison.',
       ],
       closing: 'The next lesson focuses on 0/0 cases resolved through factoring.',
     ),
@@ -229,7 +268,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 4 of 8 • Indeterminate form',
       title: 'Factoring reveals the hidden limit',
       description: 'Rewrite equivalent expressions to remove factors responsible for the 0/0 form.',
-      duration: '≈ 5 min',
+      duration: '≈ 32 min',
       objective: 'solve indeterminate limits using common factors and special products',
       symbol: '0/0',
       sections: [
@@ -293,6 +332,12 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '4', title: '0/0 is an indeterminate form', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'It is not an answer', content: 'Getting 0/0 after substitution does not mean the limit is zero, infinite, or nonexistent. It only says the original expression has not yet revealed its behavior.', emphasis: 'An indeterminate form is a diagnosis, not a result.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '5', title: 'Equivalence on a punctured neighborhood', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Why cancellation is legitimate', content: 'When x→a, we care about values arbitrarily near a. If two expressions agree for x≠a near the point, they have the same limiting behavior there.', emphasis: 'This justifies canceling a common factor after factoring.')]),
+        LessonSectionData(number: '6', title: 'Useful factoring patterns', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Recognize structure', content: 'Difference of squares, trinomials, common factors, and sums or differences of cubes occur frequently. The goal is to expose the factor causing numerator and denominator to vanish.'), WorkedExampleBlockData(title: 'Difference of cubes', problem: 'Compute lim x→2 (x³−8)/(x−2).', steps: ['Factor x³−8=(x−2)(x²+2x+4).','Cancel x−2 for x≠2.','Substitute x=2 in the remaining expression.'], result: 'The limit is 12.', interpretation: 'Factoring reveals the nearby behavior hidden by the original form.')]),
+        LessonSectionData(number: '7', title: 'A hole and a redefined value', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Geometry of simplification', content: 'After a common factor is canceled, the original graph often matches the simplified graph except for a possible hole at the troublesome point. The limit is the height of that hole.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. Factoring is presented as an algebraic technique justified by punctured-neighborhood reasoning.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'After factoring (x²−9)/(x−3), which expression describes the behavior for x≠3?',
@@ -305,6 +350,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'Difference of squares: a²−b²=(a−b)(a+b).',
         'Trinomials may reveal the factor that makes the denominator zero.',
         'Cancellation happens only between factors.',
+
+        '0/0 is an indeterminate form requiring further analysis.',
+        'Equivalent expressions for x≠a share the same limit when they agree near a.',
+        'Differences of squares and cubes are common limit patterns.',
+        'Factoring often reveals a removable discontinuity geometrically.',
       ],
       closing: 'Not every indeterminate form is polynomial. Next, we will use conjugates with radicals.',
     ),
@@ -315,7 +365,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 5 of 8 • Radicals',
       title: 'Rationalization with conjugates',
       description: 'Remove indeterminate forms involving radicals without changing the expression’s value.',
-      duration: '≈ 5 min',
+      duration: '≈ 30 min',
       objective: 'identify conjugates and rationalize numerators or denominators',
       symbol: '√',
       sections: [
@@ -355,6 +405,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'Why the conjugate works', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: '(A−B)(A+B)=A²−B²', content: 'Multiplying by a conjugate converts a difference involving square roots into an algebraic difference. The fraction is preserved because numerator and denominator are multiplied by the same factor.')]),
+        LessonSectionData(number: '4', title: 'Rationalize numerator or denominator', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'The location of the radical determines the move', content: 'Apply the conjugate to the part producing the indeterminate form. Sometimes that is the numerator, sometimes the denominator.', emphasis: 'There is no “always rationalize the denominator” rule for limits.')]),
+        LessonSectionData(number: '5', title: 'Radical in the numerator', blocks: [WorkedExampleBlockData(title: 'The conjugate exposes the hidden factor', problem: 'Compute lim x→0 (√(1+x)−1)/x.', steps: ['Substitution gives 0/0.','Multiply by √(1+x)+1 over itself.','The numerator becomes x.','Cancel x for x≠0.'], result: 'The limit is 1/2.', interpretation: 'The conjugate produces a form where direct substitution works.')]),
+        LessonSectionData(number: '6', title: 'Domain and approach', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Radicals restrict the domain', content: 'For real square roots, determine from which sides the point can be approached while remaining in the domain. At boundary points, only one one-sided limit may be meaningful.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '7', title: 'Factoring or conjugate?', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Structural diagnosis', content: 'If the indeterminacy comes from polynomial factors, try factoring. If it comes from a difference of square roots, the conjugate is usually natural. Some problems require both.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. Rationalization is treated as an algebraic tool for removing indeterminate forms involving radicals.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'What is the conjugate of √(x+1) − 3?',
@@ -367,6 +424,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'Multiply the fraction by a ratio equal to 1.',
         'Simplify only after expanding the product.',
         'At the end, return to direct substitution.',
+
+        'The conjugate uses the difference-of-squares identity.',
+        'Rationalize the part responsible for the indeterminate form.',
+        'Radical domains can make an approach one-sided.',
+        'Factoring and rationalization may occur in the same problem.',
       ],
       closing: 'The final major technique examines behavior as x grows without bound.',
     ),
@@ -377,7 +439,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 6 of 8 • Long-term behavior',
       title: 'Limits at infinity and asymptotes',
       description: 'Compare dominant terms to predict the behavior of rational functions.',
-      duration: '≈ 5 min',
+      duration: '≈ 34 min',
       objective: 'calculate limits at infinity and interpret horizontal asymptotes',
       symbol: '∞',
       sections: [
@@ -423,6 +485,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'A limit at infinity is not an infinite limit', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Two different questions', content: 'In lim x→∞ f(x), the input grows without bound. In lim x→a f(x)=∞, the input approaches a finite number while the output grows without bound. These behaviors must not be confused.')]),
+        LessonSectionData(number: '4', title: 'Rational functions and degree', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Compare leading terms', content: 'For P(x)/Q(x): if deg P<deg Q, the limit is 0; if the degrees are equal, the limit is the ratio of leading coefficients; if deg P>deg Q, there is no finite horizontal asymptote determined by degree comparison alone.'), WorkedExampleBlockData(title: 'Equal degrees', problem: 'Compute lim x→∞ (3x²−1)/(2x²+5x).', steps: ['Divide numerator and denominator by x².','Terms containing 1/x and 1/x² go to zero.','The leading coefficients 3 and 2 remain.'], result: 'The limit is 3/2.', interpretation: 'Thus y=3/2 is a horizontal asymptote as x→∞.')]),
+        LessonSectionData(number: '5', title: 'Horizontal asymptotes', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Far-field behavior', content: 'If f(x)→L as x→∞ or x→−∞, then y=L is a horizontal asymptote in that direction. A graph may cross a horizontal asymptote and still approach it in the long run.')]),
+        LessonSectionData(number: '6', title: 'Vertical asymptotes', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'Unbounded growth near a finite point', content: 'If at least one one-sided limit grows to +∞ or −∞ as x→a, then x=a is a vertical asymptote in the corresponding direction.')]),
+        LessonSectionData(number: '7', title: 'Signs at infinity', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Track parity and sign', content: 'When dividing by powers of x or comparing dominant terms, keep track of signs as x→−∞. Even and odd powers behave differently.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The focus is asymptotic behavior, degree comparison, and geometric interpretation.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'What is lim x→∞ (5x+1)/(x²+2)?',
@@ -435,6 +504,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'A lower degree in the numerator gives limit zero.',
         'Equal degrees give the ratio of leading coefficients.',
         'Finite limits at infinity indicate horizontal asymptotes.',
+
+        'Limits at infinity and infinite limits describe different phenomena.',
+        'For rational functions, leading terms control far-field behavior.',
+        'Finite limits at infinity identify horizontal asymptotes.',
+        'Unbounded behavior near a finite point is tied to vertical asymptotes.',
       ],
       closing: 'In the next lesson, you will study the fundamental trigonometric limits.',
     ),
@@ -445,7 +519,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 7 of 8 • Trigonometry',
       title: 'Fundamental trigonometric limits',
       description: 'Understand why sin(x)/x approaches 1 and learn how to adapt this pattern.',
-      duration: '≈ 5 min',
+      duration: '≈ 36 min',
       objective: 'recognize and apply trigonometric limits in radians',
       symbol: 'sin',
       sections: [
@@ -498,6 +572,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'Why radians are essential', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Degrees would change the constant', content: 'The limit lim x→0 sin(x)/x=1 assumes x is measured in radians. Radians connect arc length and angle without an artificial conversion factor.', emphasis: 'Calculus formulas for trigonometric limits and derivatives are naturally expressed in radians.')]),
+        LessonSectionData(number: '4', title: 'Geometric idea of the fundamental limit', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Squeeze theorem', content: 'In the unit circle, comparisons among triangle and sector areas produce inequalities that trap sin(x)/x between expressions approaching 1. The squeeze theorem then gives the limit.')]),
+        LessonSectionData(number: '5', title: 'Scaled versions', blocks: [WorkedExampleBlockData(title: 'Change of scale', problem: 'Compute lim x→0 sin(5x)/x.', steps: ['Write sin(5x)/x = 5·sin(5x)/(5x).','As x→0, 5x→0.','Use sin(u)/u→1.'], result: 'The limit is 5.', interpretation: 'The scale factor appears outside the fundamental limit.')]),
+        LessonSectionData(number: '6', title: 'A cosine limit', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: '(1−cos x)/x', content: 'A conjugate-style manipulation shows lim x→0 (1−cos x)/x=0. This result appears in derivative proofs and local approximations.')]),
+        LessonSectionData(number: '7', title: 'Simple substitutions', blocks: [ConceptBlockData(visual: LessonVisual.calculate, title: 'Transform to a known form', content: 'When sin(g(x))/g(x) appears and g(x)→0, set u=g(x) conceptually and apply the fundamental limit. Constant factors can be reorganized in the same way.')]),
+        LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The sin(x)/x limit is motivated geometrically, justified with the squeeze theorem, and connected to later derivative formulas.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'What is lim x→0 sin(5x)/x?',
@@ -510,6 +591,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'Try to build a ratio of the form sin(u)/u.',
         'Any denominator adjustment must be compensated outside the ratio.',
         'Identities and conjugates help with cosine expressions.',
+
+        'The fundamental trigonometric limit assumes radians.',
+        'The squeeze theorem provides a geometric justification for sin(x)/x→1.',
+        'Scale factors can be reorganized to recover the fundamental form.',
+        'Trigonometric limits are used directly in derivatives of sine and cosine.',
       ],
       closing: 'The final lesson combines algebraic techniques, one-sided limits, infinity, and trigonometry.',
     ),
@@ -520,7 +606,7 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
       eyebrow: 'Lesson 8 of 8 • Synthesis',
       title: 'How to choose the right technique',
       description: 'Organize the module ideas into a reliable analysis method.',
-      duration: '≈ 5 min',
+      duration: '≈ 38 min',
       objective: 'diagnose a limit and justify the chosen technique',
       symbol: '?',
       sections: [
@@ -567,6 +653,13 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
             ),
           ],
         ),
+
+        LessonSectionData(number: '3', title: 'Decision tree', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'From substitution to technique', content: 'Identify the kind of approach, then try direct substitution. If it produces a defined value, stop. If it gives 0/0, inspect factoring, conjugates, or a trigonometric limit. At infinity, analyze dominant terms and signs.', emphasis: 'Diagnosis reduces trial and error.')]),
+        LessonSectionData(number: '4', title: 'Distinguish a form from a result', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: '0/0, ∞/∞, and zero denominators', content: 'Indeterminate forms are not answers. They signal that functions with the same initial form may have different limits, so the structure must be transformed or analyzed.', tone: LearningCardTone.warning)]),
+        LessonSectionData(number: '5', title: 'Check multiple representations', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Validate the result', content: 'After the algebra, compare the answer with a graph, a table, or expected growth. In physical applications, also verify sign and units.')]),
+        LessonSectionData(number: '6', title: 'Cumulative problem', blocks: [WorkedExampleBlockData(title: 'Technique selection without a hint', problem: 'Analyze lim x→0 (√(1+x)−1)/sin x.', steps: ['Direct substitution gives 0/0.','Rationalize the numerator to obtain x/(√(1+x)+1).','Rewrite x/sin x as the reciprocal of sin x/x.','Use √(1+x)+1→2 and sin x/x→1.'], result: 'The limit is 1/2.', interpretation: 'The problem combines rationalization and the fundamental trigonometric limit.')]),
+        LessonSectionData(number: '7', title: 'Bridge to continuity and derivatives', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'Limits begin to organize Calculus', content: 'Continuity compares lim x→a f(x) with f(a). A derivative is born from the limit of a difference quotient. Limits are therefore not an isolated chapter but the language supporting the next concepts.', emphasis: 'Next step: turn limiting behavior into continuity.', tone: LearningCardTone.success)]),
+        LessonSectionData(number: '8', title: 'Academic basis and final synthesis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The sequence follows the common international progression: interpretation → laws → algebraic techniques → infinity → trigonometry → continuity and derivative.', tone: LearningCardTone.information)]),
       ],
       check: LessonCheckData(
         question: 'A substitution gives 0/0 and the numerator is x²−a². Which first transformation is most promising?',
@@ -583,6 +676,11 @@ List<CourseLessonData> localizedLimitsCourseLessons(Locale locale) {
         'Use factoring for polynomial structures and conjugates for radicals.',
         'At infinity, compare dominant terms.',
         'Interpret the result algebraically, graphically, or physically.',
+
+        'The right technique follows from diagnosing the form of the limit.',
+        'Indeterminate forms signal a need for transformation, not a final answer.',
+        'Results should be checked algebraically, graphically, or numerically.',
+        'Limits provide the foundation for continuity and derivatives.',
       ],
       closing: 'You completed the essential theory of Limits. Practice will now consolidate the decision process.',
     ),
