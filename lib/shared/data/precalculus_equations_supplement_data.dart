@@ -858,6 +858,9 @@ const List<CourseLessonData> precalculusEquationsSupplementLessons = [
     closing:
         'Inequações racionais unem domínio e sinal: resolver corretamente exige controlar ambos ao mesmo tempo.',
   ),
+];
+
+const List<CourseLessonData> _englishLessons = [
   CourseLessonData(
     id: 'equations-09-radicais',
     topicId: 'equacoes-inequacoes',
