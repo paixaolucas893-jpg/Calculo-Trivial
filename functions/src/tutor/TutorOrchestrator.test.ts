@@ -657,7 +657,7 @@ test("existing hint session advances instead of creating", async () => {
 test("view_steps refreshes existing session without hint advance", async () => {
   const environment =
     createTestEnvironment({
-      geminiResult: {
+      modelResult: {
         ok: true,
         rawResponse:
           validStepsRaw,
@@ -753,7 +753,7 @@ test("question lookup failure releases idempotency claim", async () => {
 test("unauthorized model reference becomes unavailable", async () => {
   const environment =
     createTestEnvironment({
-      geminiResult: {
+      modelResult: {
         ok: true,
         rawResponse:
           JSON.stringify({
@@ -908,7 +908,7 @@ test("recommend_review stays blocked without trusted progress", async () => {
 test("create_similar can use a trusted lesson anchor", async () => {
   const environment =
     createTestEnvironment({
-      geminiResult: {
+      modelResult: {
         ok: true,
         rawResponse:
           validSimilarRaw,
