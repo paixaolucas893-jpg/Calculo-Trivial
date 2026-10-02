@@ -695,7 +695,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
             visual: LessonVisual.graph,
             title: 'Transformar é reaproveitar um gráfico conhecido',
             content:
-                'Partimos de uma função base y=f(x) e produzimos novas funções alterando entradas e saídas. A forma geral [[math:y=a\,f(b(x-h))+k]] concentra translações, reflexões e escalas.',
+                'Partimos de uma função base y=f(x) e produzimos novas funções alterando entradas e saídas. A forma geral [[math:y=a\\,f(b(x-h))+k]] concentra translações, reflexões e escalas.',
             emphasis:
                 'Transformações permitem prever geometria sem reconstruir o gráfico ponto a ponto.',
           ),
@@ -979,7 +979,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
             visual: LessonVisual.notation,
             title: 'Soma finita de potências inteiras não negativas',
             content:
-                'Uma função polinomial tem a forma [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0]], com n inteiro não negativo, coeficientes reais e [[math:a_n\ne0]].',
+                'Uma função polinomial tem a forma [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\\cdots+a_1x+a_0]], com n inteiro não negativo, coeficientes reais e [[math:a_n\\ne0]].',
             emphasis:
                 'O domínio natural de todo polinômio real é ℝ.',
           ),
@@ -5037,6 +5037,9 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
     closing:
         'A unidade termina quando variação média deixa de ser apenas uma fórmula e passa a revelar a necessidade matemática do conceito de limite.',
   ),
+];
+
+const List<CourseLessonData> _englishLessons = [
   CourseLessonData(
     id: 'funcoes-01-conceito-dominio-imagem',
     topicId: 'funcoes',
@@ -5723,7 +5726,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
             visual: LessonVisual.graph,
             title: 'Transforming reuses a known graph',
             content:
-                'Start with y=f(x) and create new functions by changing inputs and outputs. The general form [[math:y=a\,f(b(x-h))+k]] combines translations, reflections, and scaling.',
+                'Start with y=f(x) and create new functions by changing inputs and outputs. The general form [[math:y=a\\,f(b(x-h))+k]] combines translations, reflections, and scaling.',
             emphasis:
                 'Transformations let you predict geometry without reconstructing every point from scratch.',
           ),
@@ -6007,7 +6010,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
             visual: LessonVisual.notation,
             title: 'Finite sum of nonnegative integer powers',
             content:
-                'A polynomial function has the form [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0]], where n is a nonnegative integer, the coefficients are real, and [[math:a_n\ne0]].',
+                'A polynomial function has the form [[math:P(x)=a_nx^n+a_{n-1}x^{n-1}+\\cdots+a_1x+a_0]], where n is a nonnegative integer, the coefficients are real, and [[math:a_n\\ne0]].',
             emphasis:
                 'The natural domain of every real polynomial is ℝ.',
           ),
