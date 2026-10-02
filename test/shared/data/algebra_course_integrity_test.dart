@@ -59,8 +59,8 @@ void main() {
         );
         expect(lesson.closing.trim(), isNotEmpty);
         expect(
-          lesson.duration,
-          isNot(contains('5 min')),
+          lesson.duration.trim(),
+          isNot(equals('≈ 5 min')),
           reason: '${lesson.id} ainda usa duração do formato resumido antigo.',
         );
 
