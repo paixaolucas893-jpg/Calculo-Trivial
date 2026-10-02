@@ -141,7 +141,7 @@ export async function handleExportMyData(
  * Converts Firebase Authentication metadata to the public export format.
  *
  * @param {UserRecord} user Firebase user record.
- * @return {PersonalDataExport["account"]} Serializable account metadata.
+ * @return {object} Serializable account metadata.
  */
 function serializeAccount(
   user: UserRecord,
