@@ -8,6 +8,11 @@ class LessonUiText {
   final String correctPrefix;
   final String almostPrefix;
   final String answerAgain;
+  final String practiceTitle;
+  final String reviewTitle;
+  final String continuePractice;
+  final String practiceComplete;
+  final String completePracticeFirst;
   final String takeawaysTitle;
   final String completeLesson;
   final String completeAndContinue;
@@ -20,6 +25,11 @@ class LessonUiText {
     required this.correctPrefix,
     required this.almostPrefix,
     required this.answerAgain,
+    required this.practiceTitle,
+    required this.reviewTitle,
+    required this.continuePractice,
+    required this.practiceComplete,
+    required this.completePracticeFirst,
     required this.takeawaysTitle,
     required this.completeLesson,
     required this.completeAndContinue,
@@ -39,6 +49,11 @@ class LessonUiText {
         correctPrefix: 'Well done!',
         almostPrefix: 'Almost there!',
         answerAgain: 'Try again',
+        practiceTitle: 'Lesson practice',
+        reviewTitle: 'Review before continuing',
+        continuePractice: 'Continue practice',
+        practiceComplete: 'Practice completed',
+        completePracticeFirst: 'Complete the lesson practice to continue.',
         takeawaysTitle: 'Before practicing, keep this in mind:',
         completeLesson: 'Complete lesson',
         completeAndContinue: 'Complete and continue',
@@ -53,6 +68,11 @@ class LessonUiText {
       correctPrefix: 'Muito bem!',
       almostPrefix: 'Quase!',
       answerAgain: 'Responder novamente',
+      practiceTitle: 'Prática da aula',
+      reviewTitle: 'Revise antes de continuar',
+      continuePractice: 'Continuar prática',
+      practiceComplete: 'Prática concluída',
+      completePracticeFirst: 'Conclua a prática da aula para continuar.',
       takeawaysTitle: 'Antes de praticar, leve isto com você:',
       completeLesson: 'Concluir aula',
       completeAndContinue: 'Concluir e continuar',
@@ -63,10 +83,7 @@ class LessonUiText {
 
   String objective(String objective) => '$objectivePrefix $objective.';
 
-  String feedback({
-    required bool isCorrect,
-    required String explanation,
-  }) {
+  String feedback({required bool isCorrect, required String explanation}) {
     return '${isCorrect ? correctPrefix : almostPrefix} $explanation';
   }
 }

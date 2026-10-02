@@ -27,6 +27,7 @@ class CourseLessonData {
   final String symbol;
   final List<LessonSectionData> sections;
   final LessonCheckData check;
+  final LessonPracticeData? practice;
   final List<String> takeaways;
   final String closing;
 
@@ -42,6 +43,7 @@ class CourseLessonData {
     required this.symbol,
     required this.sections,
     required this.check,
+    this.practice,
     required this.takeaways,
     required this.closing,
   });
@@ -108,5 +110,37 @@ class LessonCheckData {
     required this.choices,
     required this.correctIndex,
     required this.explanation,
+  });
+}
+
+class LessonPracticeData {
+  final List<LessonPracticeQuestionData> questions;
+  final int requiredQuestions;
+
+  const LessonPracticeData({
+    required this.questions,
+    required this.requiredQuestions,
+  });
+}
+
+class LessonPracticeQuestionData {
+  final String id;
+  final String skillId;
+  final String question;
+  final List<String> choices;
+  final int correctIndex;
+  final String explanation;
+  final String review;
+  final List<String> recoveryQuestionIds;
+
+  const LessonPracticeQuestionData({
+    required this.id,
+    required this.skillId,
+    required this.question,
+    required this.choices,
+    required this.correctIndex,
+    required this.explanation,
+    required this.review,
+    this.recoveryQuestionIds = const <String>[],
   });
 }
