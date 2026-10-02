@@ -10,10 +10,19 @@ import {
   handleExportMyData,
 } from "./personalDataExport";
 
+/**
+ * Captures export calls without touching Firebase.
+ */
 class FakeExportExecutor {
   exportedUids: string[] = [];
   shouldFail = false;
 
+  /**
+   * Returns a deterministic fake export.
+   *
+   * @param {string} uid Authenticated uid.
+   * @return {Promise<PersonalDataExport>} Fake export.
+   */
   async export(
     uid: string,
   ): Promise<PersonalDataExport> {
