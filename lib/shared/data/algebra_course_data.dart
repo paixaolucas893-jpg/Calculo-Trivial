@@ -8,7 +8,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     eyebrow: 'Fundamentos',
     title: 'Linguagem algébrica',
     description: 'traduzindo palavras, relações e situações para a Álgebra',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'traduzir frases e situações para expressões algébricas e interpretar o significado de expressões escritas com símbolos',
     symbol: 'x',
@@ -361,7 +361,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     eyebrow: 'Fundamentos',
     title: 'Termos semelhantes',
     description: 'coeficientes, parte literal e redução de expressões',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'identificar termos semelhantes e simplificar expressões algébricas combinando corretamente seus coeficientes',
     symbol: '3x',
@@ -642,304 +642,855 @@ const List<CourseLessonData> algebraCourseLessons = [
     id: 'algebra-03-distributiva',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Distributiva e sinais',
-    description: 'parênteses, produtos e sinais negativos',
-    duration: '≈ 5 min',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Propriedade distributiva e sinais',
+    description:
+        'expansão de produtos, remoção de parênteses, sinais negativos e equivalência algébrica',
+    duration: '≈ 25 min',
     objective:
-        'aplicar a propriedade distributiva sem perder sinais dentro dos parênteses',
+        'aplicar a propriedade distributiva em expressões com um ou mais agrupamentos, controlar sinais, reconhecer equivalências e evitar expansões inválidas',
     symbol: 'a(b+c)',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
-        blocks: [
-          ConceptBlockData(
-            visual: LessonVisual.transform,
-            title: 'Distribuir é atravessar o parêntese',
-            content:
-                'Na forma a(b + c), o fator a multiplica cada termo interno. Assim, a(b + c) = ab + ac. Se houver subtração, o sinal do termo também participa da multiplicação.',
-            emphasis:
-                'O erro clássico é multiplicar apenas o primeiro termo e esquecer o segundo.',
-          ),
-        ],
-      ),
-      LessonSectionData(
-        number: '2',
-        title: 'Veja funcionando',
-        blocks: [
-          WorkedExampleBlockData(
-            title: 'Parêntese com sinal negativo',
-            problem: 'Simplifique −2(x − 5) + 3x.',
-            steps: [
-              'Distribua −2: −2x + 10.',
-              'Some o termo restante: −2x + 10 + 3x.',
-              'Combine termos semelhantes: x + 10.',
-            ],
-            result: 'A expressão simplificada é x + 10.',
-            interpretation:
-                'O termo −5 virou +10 porque negativo vezes negativo é positivo.',
-          ),
-        ],
-      ),
-    ],
-    check: LessonCheckData(
-      question: 'Qual é a forma de 3(x − 4)?',
-      choices: ['3x − 4', '3x − 12', 'x − 12'],
-      correctIndex: 1,
-      explanation: 'O 3 multiplica x e também −4, então 3(x − 4) = 3x − 12.',
-    ),
-    takeaways: [
-      'Distributiva conecta multiplicação e soma.',
-      'Todos os termos internos devem ser multiplicados.',
-      'Sinais negativos precisam ser carregados com atenção.',
-      'Depois da distributiva, reduza termos semelhantes.',
-    ],
-    closing:
-        'A distributiva é uma das ferramentas mais usadas para preparar expressões antes do Cálculo.',
-  ),
-  CourseLessonData(
-    id: 'algebra-04-potencias',
-    topicId: 'algebra-fundamental',
-    trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Potências e expoentes',
-    description: 'regras de multiplicação e divisão',
-    duration: '≈ 5 min',
-    objective:
-        'usar propriedades de potências para simplificar monômios e expressões algébricas',
-    symbol: 'x²',
-    sections: [
-      LessonSectionData(
-        number: '1',
-        title: 'Entenda a ideia',
-        blocks: [
-          ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Mesma base, regra certa',
-            content:
-                'Em produtos de potências de mesma base, somamos expoentes: x²·x³ = x⁵. Em quocientes, subtraímos expoentes, desde que a base não seja zero: x⁵/x² = x³.',
-            emphasis: 'Não some bases. O que muda é o expoente.',
-          ),
-        ],
-      ),
-      LessonSectionData(
-        number: '2',
-        title: 'Veja funcionando',
-        blocks: [
-          WorkedExampleBlockData(
-            title: 'Coeficiente e variável',
-            problem: 'Simplifique (−2x³)².',
-            steps: [
-              'Eleve o coeficiente: (−2)² = 4.',
-              'Multiplique o expoente da variável: (x³)² = x⁶.',
-              'Junte as partes: 4x⁶.',
-            ],
-            result: 'A forma simplificada é 4x⁶.',
-            interpretation:
-                'O quadrado torna o coeficiente positivo e dobra o expoente da variável.',
-          ),
-        ],
-      ),
-    ],
-    check: LessonCheckData(
-      question: 'Qual é o resultado de x⁴·x²?',
-      choices: ['x⁶', 'x⁸', '2x⁶'],
-      correctIndex: 0,
-      explanation:
-          'As bases são iguais, então somamos os expoentes: 4 + 2 = 6.',
-    ),
-    takeaways: [
-      'Produto de mesma base soma expoentes.',
-      'Quociente de mesma base subtrai expoentes.',
-      'Potência de potência multiplica expoentes.',
-      'Coeficientes também seguem as regras de sinais.',
-    ],
-    closing:
-        'Potências bem dominadas simplificam polinômios, funções e limites.',
-  ),
-  CourseLessonData(
-    id: 'algebra-09-monomios-polinomios',
-    topicId: 'algebra-fundamental',
-    trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Monômios e polinômios',
-    description: 'termos, coeficientes, grau e classificação',
-    duration: '≈ 10 min',
-    objective:
-        'reconhecer monômios e polinômios, identificar seus elementos, classificá-los e determinar seus graus',
-    symbol: 'P(x)',
-    sections: [
-      LessonSectionData(
-        number: '1',
-        title: 'Entenda a estrutura',
+        title: 'A distributiva conecta produto e soma',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.notation,
-            title: 'Um polinômio é formado por termos',
+            title: 'Definição algébrica',
             content:
-                'Expressões como 4x³ − 2x + 7 são formadas por termos separados por adição ou subtração. Cada termo pode conter um coeficiente numérico e uma parte literal formada por variáveis elevadas a expoentes inteiros não negativos.',
+                'Para números reais ou expressões algébricas compatíveis, a(b + c) = ab + ac. De modo análogo, a(b − c) = ab − ac. O fator externo multiplica cada termo do agrupamento.',
             emphasis:
-                'Antes de operar com polinômios, é preciso saber reconhecer exatamente quais são seus termos e como cada termo é construído.',
+                'Distribuir não é “tirar parênteses”: é preservar uma igualdade por meio da multiplicação de todos os termos internos.',
           ),
-          ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Coeficiente e parte literal',
-            content:
-                'No monômio −5x²y, o coeficiente é −5 e a parte literal é x²y. Se não aparece número escrito antes da parte literal, o coeficiente pode ser 1 ou −1, dependendo do sinal.',
-            emphasis: 'Em x³, o coeficiente é 1. Em −x², o coeficiente é −1.',
+          WorkedExampleBlockData(
+            title: 'Distribuição simples',
+            problem: 'Expanda 4(2x − 3).',
+            steps: [
+              'Multiplique 4 por 2x: 4·2x = 8x.',
+              'Multiplique 4 por −3: 4·(−3) = −12.',
+              'Reúna os termos obtidos.',
+            ],
+            result: '4(2x − 3) = 8x − 12.',
+            interpretation:
+                'Cada termo dentro do parêntese recebe o mesmo fator externo.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Classifique corretamente',
+        title: 'Sinal negativo antes do parêntese',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Monômio, binômio, trinômio e polinômio',
+            visual: LessonVisual.warning,
+            title: 'O sinal − equivale a multiplicar por −1',
             content:
-                'Uma expressão com um único termo é um monômio. Com dois termos, é um binômio. Com três termos, é um trinômio. A palavra polinômio é usada de forma geral para expressões formadas por um ou mais termos polinomiais.',
-            emphasis: '3x² é monômio; x + 4 é binômio; x² − 3x + 2 é trinômio.',
+                'A expressão −(a + b) significa (−1)(a + b). Portanto, −(a + b) = −a − b. Da mesma forma, −(a − b) = −a + b.',
+            emphasis:
+                'Ao remover um parêntese precedido de sinal negativo, todos os sinais internos são afetados.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Controlando sinais',
+            problem: 'Simplifique 5x − (2x − 7).',
+            steps: [
+              'Interprete o sinal externo como −1: 5x + (−1)(2x − 7).',
+              'Distribua: 5x − 2x + 7.',
+              'Combine termos semelhantes: 3x + 7.',
+            ],
+            result: '5x − (2x − 7) = 3x + 7.',
+            interpretation:
+                'O termo −7 tornou-se +7 porque foi multiplicado por −1.',
           ),
         ],
       ),
       LessonSectionData(
         number: '3',
-        title: 'Determine o grau',
+        title: 'Coeficientes literais também distribuem',
         blocks: [
-          ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Grau de um monômio',
-            content:
-                'O grau de um monômio é a soma dos expoentes de suas variáveis. Em 4x³y², o grau é 3 + 2 = 5.',
-            emphasis: 'Uma constante não nula, como 7, tem grau 0.',
-          ),
-          ConceptBlockData(
-            visual: LessonVisual.notation,
-            title: 'Grau de um polinômio',
-            content:
-                'O grau de um polinômio é o maior grau entre seus termos depois que termos semelhantes já foram combinados.',
-            emphasis:
-                'Em 2x⁴ − 3x² + x − 9, o maior expoente de x é 4; portanto, o polinômio tem grau 4.',
+          WorkedExampleBlockData(
+            title: 'Fator algébrico',
+            problem: 'Expanda 3x(2x² − x + 4).',
+            steps: [
+              '3x·2x² = 6x³.',
+              '3x·(−x) = −3x².',
+              '3x·4 = 12x.',
+            ],
+            result: '6x³ − 3x² + 12x.',
+            interpretation:
+                'Além da distributiva, usamos a lei xᵐ·xⁿ = xᵐ⁺ⁿ.',
           ),
         ],
       ),
       LessonSectionData(
         number: '4',
-        title: 'Veja funcionando',
+        title: 'Dupla distributiva',
         blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Cada termo de um fator multiplica cada termo do outro',
+            content:
+                'No produto (a + b)(c + d), cada termo do primeiro binômio multiplica cada termo do segundo: ac + ad + bc + bd. Essa estrutura é a base da multiplicação de polinômios e dos produtos notáveis.',
+          ),
           WorkedExampleBlockData(
-            title: 'Analisando um polinômio completo',
-            problem: 'Analise 3x³ − 5x² + 2x − 8.',
+            title: 'Binômio vezes binômio',
+            problem: 'Expanda (x + 3)(x − 5).',
             steps: [
-              'Identifique os termos: 3x³, −5x², 2x e −8.',
-              'Identifique os coeficientes: 3, −5, 2 e −8.',
-              'Conte os termos: existem quatro termos.',
-              'Compare os graus: 3, 2, 1 e 0.',
-              'O maior grau é 3.',
+              'x·x = x².',
+              'x·(−5) = −5x.',
+              '3·x = 3x.',
+              '3·(−5) = −15.',
+              'Combine −5x + 3x = −2x.',
             ],
-            result: 'É um polinômio de grau 3 com quatro termos.',
+            result: 'x² − 2x − 15.',
             interpretation:
-                'Reconhecer essa estrutura será essencial para somar, multiplicar, fatorar e estudar funções polinomiais.',
+                'A redução de termos semelhantes ocorre depois da expansão.',
           ),
         ],
       ),
       LessonSectionData(
         number: '5',
-        title: 'Forma reduzida e ordenada',
+        title: 'Distributiva no sentido inverso',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Primeiro reduza, depois organize',
+            visual: LessonVisual.compare,
+            title: 'Expandir e fatorar são operações inversas',
             content:
-                'Um polinômio está na forma reduzida quando não há termos semelhantes que ainda possam ser combinados. Ele costuma ser escrito em ordem decrescente de grau para facilitar leitura e operações.',
+                'Se ab + ac = a(b + c), então reconhecer um fator comum permite voltar da soma para o produto. Por exemplo, 6x + 9 = 3(2x + 3).',
             emphasis:
-                '2x + 3x² − x + 4 pode ser reduzido e ordenado como 3x² + x + 4.',
+                'Essa leitura reversa prepara diretamente o estudo de fatoração.',
           ),
         ],
       ),
       LessonSectionData(
         number: '6',
-        title: 'Erro comum',
+        title: 'Equivalência algébrica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Formas diferentes podem representar a mesma expressão',
+            content:
+                'As expressões 2(x + 4) e 2x + 8 têm o mesmo valor para todo x real. Dizemos que são identicamente equivalentes. Uma transformação algébrica válida deve preservar essa equivalência.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Verificando por substituição',
+            problem: 'Compare 3(x − 2) + x e 4x − 6 em x = 5.',
+            steps: [
+              'Primeira expressão: 3(5 − 2) + 5 = 9 + 5 = 14.',
+              'Segunda expressão: 4·5 − 6 = 20 − 6 = 14.',
+              'A igualdade em um valor é uma verificação útil; a distributiva mostra que a equivalência vale para todo x.',
+            ],
+            result: 'Ambas produzem 14 em x = 5.',
+            interpretation:
+                'Testar valores ajuda a detectar erros, mas não substitui uma justificativa algébrica geral.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Nem toda expressão algébrica é um polinômio',
+            title: 'Distribuir apenas no primeiro termo',
             content:
-                'Expressões com variável no denominador, expoente negativo ou variável dentro de uma raiz não são polinômios na variável considerada.',
-            emphasis: '1/x, x⁻² e √x não são polinômios em x.',
+                'A igualdade 3(x + 2) = 3x + 2 é falsa. O fator 3 deve multiplicar também o termo 2: 3x + 6.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir potência de soma com distributiva',
+            content:
+                '(a + b)² não é a² + b². O quadrado representa (a + b)(a + b), cuja expansão contém o termo 2ab.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Simplifique −2(3x − 4) + 5x.',
+            steps: [
+              'Distribua −2: −6x + 8.',
+              'Some o termo 5x.',
+              'Combine −6x + 5x = −x.',
+            ],
+            result: '−x + 8.',
+            interpretation:
+                'O sinal negativo do fator externo participa de cada produto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Expanda (2x − 1)(x + 4).',
+            steps: [
+              '2x·x = 2x².',
+              '2x·4 = 8x.',
+              '−1·x = −x.',
+              '−1·4 = −4.',
+              'Combine 8x − x = 7x.',
+            ],
+            result: '2x² + 7x − 4.',
+            interpretation:
+                'A dupla distributiva gera quatro produtos antes da redução.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expanda ou simplifique, justificando os sinais',
+            content:
+                '1. 5(x + 2).\n'
+                '2. −3(x − 4).\n'
+                '3. 2a(3a + 5).\n'
+                '4. 7 − (2x + 1).\n'
+                '5. 4x − 2(x − 3).\n'
+                '6. 3(2x + 1) − 5x.\n'
+                '7. (x + 2)(x + 5).\n'
+                '8. (x − 4)(x + 3).\n'
+                '9. (2x + 1)(x − 2).\n'
+                '10. −(a − b + c).\n'
+                '11. Verifique se 4(x + 1) e 4x + 1 são equivalentes.\n'
+                '12. Fatore 8x + 12 usando a distributiva ao contrário.\n'
+                '13. Explique por que (x + 2)² não é x² + 4.\n'
+                '14. Simplifique 2(x + 3) − 3(x − 1).\n'
+                '15. Expanda (3x − 2)(2x + 5).',
+            emphasis:
+                'Em produtos de dois polinômios, registre todos os produtos antes de combinar termos semelhantes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Expandir ou fatorar muda o que conseguimos enxergar',
+            content:
+                'Em limites e derivadas, uma expressão pode precisar ser expandida para combinar termos ou fatorada para revelar cancelamentos. A distributiva é a ponte entre essas duas formas.',
+            emphasis:
+                'Manipulação algébrica correta evita que um erro de sinal contamine uma solução inteira de Cálculo.',
+            tone: LearningCardTone.information,
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o grau do polinômio 5x⁴ − 2x² + 7x − 3?',
-      choices: ['2', '3', '4'],
-      correctIndex: 2,
+      question: 'Qual é a forma expandida de −2(x − 5)?',
+      choices: ['−2x − 10', '−2x + 10', '2x − 10'],
+      correctIndex: 1,
       explanation:
-          'O grau do polinômio é o maior expoente presente após a expressão estar reduzida. O maior expoente é 4.',
+          '−2 multiplica os dois termos: −2·x = −2x e −2·(−5) = +10.',
     ),
     takeaways: [
-      'Monômios possuem um único termo.',
-      'Coeficiente é a parte numérica do termo.',
-      'O grau de um monômio é a soma dos expoentes de suas variáveis.',
-      'O grau de um polinômio é o maior grau entre seus termos.',
-      'Polinômios devem ser reduzidos e podem ser organizados por grau.',
-      'Nem toda expressão algébrica é um polinômio.',
+      'A distributiva multiplica o fator externo por todos os termos internos.',
+      'Um sinal negativo diante de parênteses equivale a multiplicar por −1.',
+      'Dupla distributiva multiplica cada termo de um fator por cada termo do outro.',
+      'Expandir e fatorar são leituras opostas da mesma propriedade.',
+      'Transformações válidas preservam equivalência algébrica.',
+      'Erros de sinal são especialmente perigosos em expressões longas.',
     ],
     closing:
-        'Agora que você reconhece a estrutura dos polinômios, o próximo passo é aprender a operar com eles.',
+        'Dominar a distributiva significa controlar a estrutura da expressão, não apenas remover parênteses.',
   ),
   CourseLessonData(
-    id: 'algebra-10-operacoes-polinomios',
+    id: 'algebra-04-potencias',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
-    title: 'Operações com polinômios',
-    description: 'soma, subtração e multiplicação',
-    duration: '≈ 12 min',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Potências em expressões algébricas',
+    description:
+        'leis de expoentes aplicadas a monômios, coeficientes e simplificação algébrica',
+    duration: '≈ 25 min',
     objective:
-        'somar, subtrair e multiplicar polinômios usando termos semelhantes, distributiva e propriedades de potências',
-    symbol: 'P(x)+Q(x)',
+        'aplicar leis de expoentes a expressões algébricas, distinguir operações válidas e inválidas e simplificar produtos, quocientes e potências de monômios com domínio apropriado',
+    symbol: 'xⁿ',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Somar e subtrair polinômios',
+        title: 'Revisão estrutural',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.compare,
-            title: 'Combine apenas termos semelhantes',
+            visual: LessonVisual.notation,
+            title: 'Base, expoente e coeficiente',
             content:
-                'Na soma ou subtração de polinômios, agrupamos apenas termos que possuem a mesma parte literal e os mesmos expoentes. Os coeficientes são somados ou subtraídos, enquanto a parte literal permanece.',
+                'Em 3x⁴, o coeficiente é 3 e a parte literal é x⁴. O expoente 4 atua sobre x, não sobre o coeficiente 3. Já em (3x)⁴, toda a base 3x está elevada à quarta potência.',
             emphasis:
-                '3x² + 5x² = 8x², mas 3x² + 5x não pode ser reduzido a um único termo.',
+                'Parênteses determinam exatamente qual objeto recebe o expoente.',
           ),
           WorkedExampleBlockData(
-            title: 'Somando dois polinômios',
-            problem: 'Calcule (3x² + 2x − 4) + (x² − 5x + 7).',
+            title: 'Compare duas expressões',
+            problem: 'Compare 3x² e (3x)².',
             steps: [
-              'Agrupe os termos de mesmo grau.',
-              'Some os termos quadráticos: 3x² + x² = 4x².',
-              'Some os termos lineares: 2x − 5x = −3x.',
-              'Some as constantes: −4 + 7 = 3.',
+              '3x² significa 3·x².',
+              '(3x)² = 3²x² = 9x².',
             ],
-            result: 'O resultado é 4x² − 3x + 3.',
+            result: '3x² e 9x² não são equivalentes.',
             interpretation:
-                'A soma de polinômios depende diretamente do reconhecimento de termos semelhantes.',
+                'O agrupamento muda a base da potência.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Cuidado com a subtração',
+        title: 'Produto de potências de mesma base',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Some expoentes apenas em produtos',
+            content:
+                'Para a mesma base, xᵐ·xⁿ = xᵐ⁺ⁿ. A regra vale porque estamos concatenando fatores iguais.',
+            emphasis:
+                'x²·x³ = x⁵, mas x² + x³ não é x⁵.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Produto de monômios',
+            problem: 'Simplifique (4x³)(−2x⁵).',
+            steps: [
+              'Multiplique os coeficientes: 4·(−2) = −8.',
+              'Some os expoentes de x: 3 + 5 = 8.',
+            ],
+            result: '−8x⁸.',
+            interpretation:
+                'Coeficientes e partes literais são tratados separadamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quociente de potências',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Subtraia expoentes com base não nula',
+            content:
+                'Para x ≠ 0, xᵐ/xⁿ = xᵐ⁻ⁿ. A condição x ≠ 0 vem do denominador da expressão original.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quociente de monômios',
+            problem: 'Simplifique 12x⁷/(3x²), com x ≠ 0.',
+            steps: [
+              'Divida os coeficientes: 12/3 = 4.',
+              'Subtraia os expoentes: 7 − 2 = 5.',
+            ],
+            result: '4x⁵, com x ≠ 0.',
+            interpretation:
+                'Mesmo que a forma simplificada seja definida em x = 0, a expressão original não era.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Potência de potência e potência de produto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Multiplique expoentes em potência de potência',
+            content:
+                '(xᵐ)ⁿ = xᵐⁿ. Para produtos, (ab)ⁿ = aⁿbⁿ. Essas regras têm justificativas diferentes e não devem ser confundidas com soma de expoentes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Potência de monômio',
+            problem: 'Simplifique (−2x³y²)³.',
+            steps: [
+              '(−2)³ = −8.',
+              '(x³)³ = x⁹.',
+              '(y²)³ = y⁶.',
+            ],
+            result: '−8x⁹y⁶.',
+            interpretation:
+                'O expoente externo atua em cada fator da base.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Expoentes zero e negativos em Álgebra',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Zero e negativo carregam condições',
+            content:
+                'Para x ≠ 0, x⁰ = 1 e x⁻ⁿ = 1/xⁿ. Em uma expressão algébrica, essas condições fazem parte do domínio e não desaparecem durante a simplificação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reescrevendo sem expoente negativo',
+            problem: 'Simplifique 6x⁻²y³.',
+            steps: [
+              'x⁻² = 1/x², com x ≠ 0.',
+              'Mantenha os demais fatores no numerador.',
+            ],
+            result: '6y³/x², com x ≠ 0.',
+            interpretation:
+                'Expoente negativo indica posição multiplicativa, não sinal negativo do termo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Mais de uma variável',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Produto multivariável',
+            problem: 'Simplifique (3x²y)(−4xy³).',
+            steps: [
+              'Coeficientes: 3·(−4) = −12.',
+              'Potências de x: x²·x = x³.',
+              'Potências de y: y·y³ = y⁴.',
+            ],
+            result: '−12x³y⁴.',
+            interpretation:
+                'Cada base é tratada independentemente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não some expoentes em uma soma',
+            content:
+                'x² + x³ não pode ser reduzido a x⁵ porque a lei de soma de expoentes exige multiplicação.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(x + y)² não é x² + y²',
+            content:
+                'A potência atua sobre o binômio inteiro: (x + y)² = x² + 2xy + y².',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não esqueça as restrições originais',
+            content:
+                'Ao simplificar x³/x, obtemos x², mas a expressão original exigia x ≠ 0. Simplificar não altera retroativamente o domínio original.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1',
+            problem: 'Simplifique (2x²)³·x⁻¹.',
+            steps: [
+              '(2x²)³ = 8x⁶.',
+              'Multiplique por x⁻¹: 8x⁶·x⁻¹.',
+              'Some expoentes: 6 + (−1) = 5.',
+            ],
+            result: '8x⁵, com x ≠ 0.',
+            interpretation:
+                'A restrição vem do fator x⁻¹ da expressão original.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Simplifique (6a⁵b²)/(3a²b), com a ≠ 0 e b ≠ 0.',
+            steps: [
+              '6/3 = 2.',
+              'a⁵/a² = a³.',
+              'b²/b = b.',
+            ],
+            result: '2a³b.',
+            interpretation:
+                'Quocientes de bases iguais são simplificados separadamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Simplifique e indique restrições quando existirem',
+            content:
+                '1. x³·x⁵.\n'
+                '2. a⁷/a².\n'
+                '3. (y⁴)³.\n'
+                '4. (2x)⁴.\n'
+                '5. (−3a²)².\n'
+                '6. (4x³)(−2x²).\n'
+                '7. (12m⁶)/(4m²).\n'
+                '8. x⁻⁴.\n'
+                '9. 5a²b·3ab³.\n'
+                '10. (−2x²y³)².\n'
+                '11. Explique por que x² + x⁴ não é x⁶.\n'
+                '12. Compare 2x³ e (2x)³.\n'
+                '13. Simplifique x⁵/x⁷ sem expoentes negativos.\n'
+                '14. Determine a restrição original de (x² − x)/x.\n'
+                '15. Simplifique (3a²b⁻¹)².',
+            emphasis:
+                'Separe sempre o trabalho com coeficientes do trabalho com cada base literal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Potências aparecem em funções, limites e derivadas',
+            content:
+                'Funções potência e polinomiais são construídas com essas estruturas. Simplificar corretamente expoentes será essencial para quocientes incrementais, derivadas e análise de crescimento.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+    ],
+    check: LessonCheckData(
+      question: 'Qual é a simplificação de (3x²)²?',
+      choices: ['6x⁴', '9x⁴', '9x²'],
+      correctIndex: 1,
+      explanation:
+          'O expoente 2 atua em 3 e em x²: 3² = 9 e (x²)² = x⁴.',
+    ),
+    takeaways: [
+      'Produto de mesma base soma expoentes; quociente subtrai expoentes.',
+      'Potência de potência multiplica expoentes.',
+      'Potência de um produto atua sobre todos os fatores.',
+      'Expoentes zero e negativos exigem atenção ao domínio.',
+      'Coeficientes e bases literais devem ser tratados separadamente.',
+      'Leis de expoentes não se aplicam diretamente a somas.',
+    ],
+    closing:
+        'Leis de expoentes são regras de estrutura: funcionam quando reconhecemos exatamente qual operação e qual base estão presentes.',
+  ),
+  CourseLessonData(
+    id: 'algebra-09-monomios-polinomios',
+    topicId: 'algebra-fundamental',
+    trailTitle: 'Álgebra Fundamental',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Monômios e polinômios',
+    description:
+        'estrutura, termos, coeficientes, grau, forma padrão e reconhecimento de expressões polinomiais',
+    duration: '≈ 28 min',
+    objective:
+        'reconhecer monômios e polinômios, identificar coeficientes e termos, determinar graus, escrever polinômios em forma padrão e distinguir expressões polinomiais de expressões não polinomiais',
+    symbol: 'P(x)',
+    sections: [
+      LessonSectionData(
+        number: '1',
+        title: 'O que é um monômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Coeficiente vezes potências de variáveis',
+            content:
+                'Um monômio é uma expressão do tipo ax₁ⁿ¹x₂ⁿ²…xₖⁿᵏ, em que a é um número real e os expoentes das variáveis são inteiros não negativos. Exemplos: 5x³, −2ab² e 7.',
+            emphasis:
+                'Expoentes negativos, variáveis em denominadores e raízes de variáveis retiram a expressão da classe dos monômios polinomiais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Classificando expressões',
+            problem: 'Quais são monômios: 4x², 3/x, −5xy³, √x e 8?',
+            steps: [
+              '4x² tem expoente inteiro não negativo: é monômio.',
+              '3/x = 3x⁻¹: não é monômio polinomial.',
+              '−5xy³ tem expoentes 1 e 3: é monômio.',
+              '√x = x^(1/2): não é monômio polinomial.',
+              '8 é uma constante e também é um monômio de grau 0.',
+            ],
+            result: 'Monômios: 4x², −5xy³ e 8.',
+            interpretation:
+                'A classificação depende da estrutura dos expoentes, não do número de símbolos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Grau de um monômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Some os expoentes das variáveis',
+            content:
+                'Em uma variável, o grau de axⁿ com a ≠ 0 é n. Em várias variáveis, o grau total de um monômio é a soma dos expoentes. Assim, 3x²y⁴ tem grau total 6.',
+            emphasis:
+                'Uma constante não nula tem grau 0. O grau do monômio zero normalmente não é definido no tratamento elementar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'O que é um polinômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Soma finita de monômios',
+            content:
+                'Um polinômio é uma soma finita de monômios. Em uma variável, escrevemos P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + … + a₁x + a₀, com expoentes inteiros não negativos.',
+            emphasis:
+                'Os números a₀, a₁, …, aₙ são coeficientes. Quando aₙ ≠ 0, ele é o coeficiente líder.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Binômio, trinômio e polinômio',
+            content:
+                'Um polinômio reduzido com um termo é um monômio; com dois termos, binômio; com três, trinômio. Com mais termos, continuamos usando o nome geral polinômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Forma reduzida e forma padrão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Primeiro reduza, depois ordene',
+            content:
+                'Para escrever um polinômio em forma padrão, combine termos semelhantes e organize os termos em ordem decrescente de grau.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Organizando um polinômio',
+            problem: 'Escreva 3x − 2x³ + 5 + 4x³ − x em forma padrão.',
+            steps: [
+              'Combine termos cúbicos: −2x³ + 4x³ = 2x³.',
+              'Combine termos lineares: 3x − x = 2x.',
+              'Mantenha a constante 5.',
+              'Ordene por grau decrescente.',
+            ],
+            result: '2x³ + 2x + 5.',
+            interpretation:
+                'O termo x² está ausente, o que equivale a ter coeficiente zero para esse grau.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Grau e coeficiente líder',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Leitura estrutural completa',
+            problem: 'Analise P(x) = −4x⁵ + 2x³ − 7x + 9.',
+            steps: [
+              'O maior expoente presente é 5.',
+              'Portanto, o grau do polinômio é 5.',
+              'O coeficiente do termo de maior grau é −4.',
+              'Logo, o coeficiente líder é −4.',
+              'O termo constante é 9.',
+            ],
+            result: 'Grau 5, coeficiente líder −4 e termo constante 9.',
+            interpretation:
+                'Essas informações ajudam a prever o comportamento global do gráfico de P.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Polinômios em várias variáveis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Grau total',
+            content:
+                'Em P(x,y) = 3x²y + 5xy³ − 2, os termos têm graus totais 3, 4 e 0. O grau total do polinômio é o maior deles: 4.',
+            emphasis:
+                'Em várias variáveis, é importante distinguir grau em uma variável específica e grau total.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Expressões que não são polinômios',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Reconheça as restrições estruturais',
+            content:
+                '1/x, x⁻², √x, x^(3/2), sen x e 2ˣ não são polinômios em x. O problema não é “ser complicado”; é não obedecer à forma de soma finita de potências inteiras não negativas da variável.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Zeros e avaliação de polinômios',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Substituir um valor produz P(a)',
+            content:
+                'Avaliar um polinômio significa substituir a variável por um número. Um número r é zero ou raiz de P quando P(r) = 0.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Avaliando um polinômio',
+            problem: 'Para P(x)=x³−4x+1, calcule P(2).',
+            steps: [
+              'Substitua x por 2: P(2)=2³−4·2+1.',
+              'Calcule 2³ = 8.',
+              'Obtenha 8−8+1 = 1.',
+            ],
+            result: 'P(2)=1.',
+            interpretation:
+                'Como P(2) ≠ 0, o número 2 não é uma raiz desse polinômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Confundir número de termos com grau',
+            content:
+                'O polinômio x⁷ + 2 tem apenas dois termos, mas grau 7. “Binômio” descreve quantidade de termos; “grau” descreve expoentes.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Determinar o grau antes de reduzir',
+            content:
+                'Em 3x⁴ − 3x⁴ + x², os termos de grau 4 se cancelam. O polinômio reduzido é x² e seu grau é 2.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Classifique, reduza e interprete',
+            content:
+                '1. Classifique 7x³ como monômio e determine seu grau.\n'
+                '2. Determine o grau de −4x²y⁵.\n'
+                '3. Decida se 3/x é monômio polinomial.\n'
+                '4. Decida se √x + 1 é polinômio.\n'
+                '5. Reduza 2x² + 3x − x² + 5x.\n'
+                '6. Coloque 4 − x³ + 2x em forma padrão.\n'
+                '7. Determine o grau de 5x⁶ − x² + 1.\n'
+                '8. Identifique o coeficiente líder de −2x⁴ + 7x − 3.\n'
+                '9. Identifique o termo constante de x⁵ − 9.\n'
+                '10. Determine o grau total de 3x²y⁴.\n'
+                '11. Determine o grau de P(x,y)=x³y + xy² + 1.\n'
+                '12. Calcule P(−1) para P(x)=2x³−x+4.\n'
+                '13. Verifique se x=2 é raiz de x²−5x+6.\n'
+                '14. Explique por que 2ˣ não é polinômio em x.\n'
+                '15. Simplifique 3x⁴−3x⁴+2x² e determine o grau final.',
+            emphasis:
+                'Sempre reduza o polinômio antes de declarar seu grau.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com funções e Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Polinômios são funções centrais no Cálculo',
+            content:
+                'Funções polinomiais são contínuas em todos os números reais, têm derivadas obtidas termo a termo e servem como modelos locais e globais. Grau, coeficiente líder e zeros antecipam informações importantes sobre gráficos e limites no infinito.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e, capítulos de polinômios; OpenStax, College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores, Fundamentos de Matemática Elementar; Stewart e Thomas’ Calculus para a conexão entre polinômios, funções e Cálculo.',
+          ),
+        ],
+      ),
+    ],
+    check: LessonCheckData(
+      question: 'Qual é o grau de P(x)=4x⁵−2x³+x−7?',
+      choices: ['3', '4', '5'],
+      correctIndex: 2,
+      explanation:
+          'O maior expoente de x com coeficiente não nulo é 5, portanto o grau é 5.',
+    ),
+    takeaways: [
+      'Monômios polinomiais usam expoentes inteiros não negativos.',
+      'Um polinômio é uma soma finita de monômios.',
+      'A forma padrão organiza termos em ordem decrescente de grau.',
+      'O grau deve ser determinado depois da redução de termos semelhantes.',
+      'Coeficiente líder e termo constante são informações estruturais importantes.',
+      'Zeros de um polinômio são valores r para os quais P(r)=0.',
+    ],
+    closing:
+        'Reconhecer a estrutura de um polinômio é o primeiro passo para operar, fatorar e interpretar sua função.',
+  ),
+  CourseLessonData(
+    id: 'algebra-10-operacoes-polinomios',
+    topicId: 'algebra-fundamental',
+    trailTitle: 'Álgebra Fundamental',
+    eyebrow: 'Álgebra e fatoração',
+    title: 'Operações com polinômios',
+    description:
+        'adição, subtração, multiplicação, divisão por monômio e avaliação estrutural',
+    duration: '≈ 30 min',
+    objective:
+        'somar, subtrair e multiplicar polinômios, dividir polinômios por monômios quando permitido, organizar resultados em forma padrão e justificar cada operação',
+    symbol: 'P±Q',
+    sections: [
+      LessonSectionData(
+        number: '1',
+        title: 'Adição de polinômios',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Combine apenas termos semelhantes',
+            content:
+                'Somar polinômios significa reunir termos de mesma parte literal e mesmo expoente. Termos de graus diferentes não podem ser fundidos em um único termo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Somando dois polinômios',
+            problem: 'Some P(x)=3x²−2x+5 e Q(x)=−x²+4x−7.',
+            steps: [
+              'Termos quadráticos: 3x²−x² = 2x².',
+              'Termos lineares: −2x+4x = 2x.',
+              'Constantes: 5−7 = −2.',
+            ],
+            result: 'P(x)+Q(x)=2x²+2x−2.',
+            interpretation:
+                'Organizar por grau reduz o risco de combinar termos incompatíveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
+        title: 'Subtração de polinômios',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
             title: 'O sinal negativo afeta todo o segundo polinômio',
             content:
-                'Ao subtrair um polinômio, o sinal negativo deve ser distribuído para todos os seus termos antes de combinar termos semelhantes.',
-            emphasis: '(2x² + 3x) − (x² − 4x + 1) = 2x² + 3x − x² + 4x − 1.',
+                'P(x) − Q(x) significa P(x) + [−Q(x)]. Antes de combinar termos, distribua o fator −1 por todos os termos de Q.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Subtraindo com segurança',
+            problem: 'Calcule (2x²+3x−1) − (x²−5x+4).',
+            steps: [
+              'Distribua o sinal negativo: 2x²+3x−1−x²+5x−4.',
+              'Quadráticos: 2x²−x² = x².',
+              'Lineares: 3x+5x = 8x.',
+              'Constantes: −1−4 = −5.',
+            ],
+            result: 'x²+8x−5.',
+            interpretation:
+                'A maior fonte de erro é trocar apenas o primeiro sinal do segundo polinômio.',
           ),
         ],
       ),
@@ -949,22 +1500,21 @@ const List<CourseLessonData> algebraCourseLessons = [
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Distribua e use as propriedades das potências',
+            title: 'Use distributiva e leis de expoentes',
             content:
-                'Quando um monômio multiplica um polinômio, ele deve multiplicar cada termo. Multiplicamos os coeficientes e, para bases iguais, somamos os expoentes.',
-            emphasis: '2x(3x² − 4x + 5) = 6x³ − 8x² + 10x.',
+                'Ao multiplicar um polinômio por um monômio, distribua o monômio para todos os termos e use as leis de expoentes nas partes literais.',
           ),
           WorkedExampleBlockData(
-            title: 'Multiplicando monômios',
-            problem: 'Calcule (−3x²)(2x).',
+            title: 'Monômio vezes polinômio',
+            problem: 'Calcule −3x²(2x³−x+4).',
             steps: [
-              'Multiplique os coeficientes: −3·2 = −6.',
-              'Multiplique as potências de mesma base: x²·x = x³.',
-              'Junte coeficiente e parte literal.',
+              '−3x²·2x³ = −6x⁵.',
+              '−3x²·(−x) = 3x³.',
+              '−3x²·4 = −12x².',
             ],
-            result: 'O produto é −6x³.',
+            result: '−6x⁵+3x³−12x².',
             interpretation:
-                'Essa operação combina regra de sinais com propriedade de potências.',
+                'O fator externo multiplica coeficiente e parte literal de cada termo.',
           ),
         ],
       ),
@@ -973,318 +1523,1266 @@ const List<CourseLessonData> algebraCourseLessons = [
         title: 'Multiplicação de polinômios',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.transform,
+            visual: LessonVisual.idea,
             title: 'Cada termo multiplica cada termo',
             content:
-                'Na multiplicação de dois polinômios, aplicamos a propriedade distributiva repetidamente. Depois, reduzimos os termos semelhantes.',
-            emphasis: '(x + 2)(x + 3) = x² + 3x + 2x + 6 = x² + 5x + 6.',
+                'Para multiplicar dois polinômios, aplique distributiva repetidamente. Depois, reduza termos semelhantes e ordene o resultado.',
           ),
           WorkedExampleBlockData(
-            title: 'Binômio vezes binômio',
-            problem: 'Multiplique (2x − 1)(x + 4).',
+            title: 'Binômio vezes trinômio',
+            problem: 'Expanda (x−2)(x²+3x+4).',
             steps: [
-              'Multiplique 2x por x: 2x².',
-              'Multiplique 2x por 4: 8x.',
-              'Multiplique −1 por x: −x.',
-              'Multiplique −1 por 4: −4.',
-              'Combine os termos semelhantes: 8x − x = 7x.',
+              'Multiplique x: x³+3x²+4x.',
+              'Multiplique −2: −2x²−6x−8.',
+              'Combine termos semelhantes: 3x²−2x² = x² e 4x−6x = −2x.',
             ],
-            result: 'O produto é 2x² + 7x − 4.',
+            result: 'x³+x²−2x−8.',
             interpretation:
-                'A distributiva organiza a multiplicação antes da redução dos termos semelhantes.',
+                'O grau do produto é a soma dos graus quando os coeficientes líderes não se anulam.',
           ),
         ],
       ),
       LessonSectionData(
         number: '5',
-        title: 'Divisão de monômios',
+        title: 'Grau nas operações',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.calculate,
-            title: 'Divida coeficientes e subtraia expoentes',
+            visual: LessonVisual.compare,
+            title: 'Soma e produto se comportam de modos diferentes',
             content:
-                'Quando dividimos monômios, dividimos os coeficientes e usamos a regra do quociente para bases iguais, sempre respeitando a condição de que o denominador não seja zero.',
-            emphasis: '(12x³y²)/(3xy) = 4x²y, com x ≠ 0 e y ≠ 0.',
+                'Em geral, grau(PQ)=grau(P)+grau(Q) para polinômios não nulos. Já na soma, o grau pode diminuir se os termos líderes se cancelarem.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cancelamento do termo líder',
+            problem: 'Determine o grau de (3x⁴+x) + (−3x⁴+2x²).',
+            steps: [
+              'Os termos 3x⁴ e −3x⁴ se cancelam.',
+              'Resta 2x²+x.',
+            ],
+            result: 'O grau da soma é 2.',
+            interpretation:
+                'Não podemos afirmar que o grau da soma é sempre o maior dos graus originais.',
           ),
         ],
       ),
       LessonSectionData(
         number: '6',
-        title: 'Erro comum',
+        title: 'Divisão por monômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Divida termo a termo',
+            content:
+                'Quando um polinômio é dividido por um monômio não nulo, podemos dividir cada termo separadamente, desde que a divisão esteja definida.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Divisão termo a termo',
+            problem: 'Simplifique (12x⁵−6x³+3x²)/(3x²), com x ≠ 0.',
+            steps: [
+              '12x⁵/(3x²)=4x³.',
+              '−6x³/(3x²)=−2x.',
+              '3x²/(3x²)=1.',
+            ],
+            result: '4x³−2x+1, com x ≠ 0.',
+            interpretation:
+                'A restrição x ≠ 0 pertence à expressão original e deve ser preservada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Avaliação após operações',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Operar antes ou avaliar antes',
+            problem: 'Se P(x)=x²+1 e Q(x)=2x−3, calcule (P+Q)(2).',
+            steps: [
+              'Some as funções polinomiais: (P+Q)(x)=x²+2x−2.',
+              'Substitua x=2: 4+4−2=6.',
+              'Alternativamente, P(2)=5 e Q(2)=1; então 5+1=6.',
+            ],
+            result: '(P+Q)(2)=6.',
+            interpretation:
+                'As duas rotas concordam porque avaliação e adição são compatíveis.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Erros frequentes',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Não combine termos diferentes',
+            title: 'Somar expoentes em uma soma',
             content:
-                'Depois de uma multiplicação, só podemos reduzir termos realmente semelhantes. Expoentes diferentes representam termos diferentes.',
-            emphasis: 'x² + 3x não é 4x² nem 4x³.',
+                'x²+x³ não é x⁵. Expoentes são somados apenas ao multiplicar potências de mesma base.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer produtos cruzados',
+            content:
+                '(x+2)(x+3) não é x²+6. Os produtos cruzados 3x e 2x também aparecem, produzindo x²+5x+6.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Guiado 1 — soma e subtração',
+            problem: 'Calcule (4x²−x+2) − (x²+3x−5).',
+            steps: [
+              'Distribua o sinal negativo no segundo polinômio.',
+              'Obtenha 4x²−x+2−x²−3x+5.',
+              'Combine: 3x²−4x+7.',
+            ],
+            result: '3x²−4x+7.',
+            interpretation:
+                'A organização por grau ajuda a conferir cada combinação.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — produto',
+            problem: 'Expanda (2x+1)(x²−x+3).',
+            steps: [
+              '2x(x²−x+3)=2x³−2x²+6x.',
+              '1(x²−x+3)=x²−x+3.',
+              'Combine: −2x²+x²=−x² e 6x−x=5x.',
+            ],
+            result: '2x³−x²+5x+3.',
+            interpretation:
+                'O produto final foi reduzido e escrito em forma padrão.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Opere e escreva cada resultado em forma padrão',
+            content:
+                '1. (2x+3)+(5x−1).\n'
+                '2. (3x²−2x+4)+(−x²+x−6).\n'
+                '3. (x²+5x)−(2x²−x+1).\n'
+                '4. 4x(x²−3x+2).\n'
+                '5. −2a²(3a−4).\n'
+                '6. (x+4)(x−1).\n'
+                '7. (2x−3)(x+5).\n'
+                '8. (x−2)(x²+x+1).\n'
+                '9. (3x+1)(2x²−x+4).\n'
+                '10. (15x⁴−10x³+5x²)/(5x²).\n'
+                '11. Determine o grau de (x³+1)(2x²−x).\n'
+                '12. Dê um exemplo em que o grau de P+Q seja menor que os graus de P e Q.\n'
+                '13. Calcule (P+Q)(1) para P(x)=x² e Q(x)=3x−2.\n'
+                '14. Explique por que (x+1)(x+1) não é x²+1.\n'
+                '15. Verifique sua resposta da questão 7 substituindo x=1 antes e depois da expansão.',
+            emphasis:
+                'Use substituição numérica como estratégia de verificação quando possível.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Álgebra polinomial aparece em todo o Cálculo',
+            content:
+                'Quocientes incrementais, limites, derivadas e aproximações polinomiais exigem expansão, redução e fatoração de polinômios. A precisão dessas operações é parte do raciocínio de Cálculo.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax, Algebra and Trigonometry 2e e College Algebra 2e, operações com polinômios; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas’ Calculus para aplicações de manipulação polinomial em limites e derivadas.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o resultado de (x + 2)(x + 5)?',
-      choices: ['x² + 7x + 10', 'x² + 10x + 7', 'x² + 7'],
+      question: 'Qual é o produto (x+2)(x−3)?',
+      choices: ['x²−x−6', 'x²−6', 'x²+x−6'],
       correctIndex: 0,
       explanation:
-          'Aplicando a distributiva: x² + 5x + 2x + 10 = x² + 7x + 10.',
+          'Pela distributiva: x²−3x+2x−6 = x²−x−6.',
     ),
     takeaways: [
-      'Soma e subtração exigem termos semelhantes.',
-      'Na subtração, distribua corretamente o sinal negativo.',
-      'Um monômio deve multiplicar todos os termos do polinômio.',
-      'Na multiplicação de polinômios, cada termo multiplica cada termo.',
-      'Depois da multiplicação, reduza os termos semelhantes.',
-      'Na divisão de monômios, divida coeficientes e subtraia expoentes de bases iguais.',
+      'Adição e subtração combinam apenas termos semelhantes.',
+      'Na subtração, o sinal negativo deve atingir todo o segundo polinômio.',
+      'Multiplicação exige distribuir cada termo por todos os termos do outro fator.',
+      'O grau do produto soma os graus dos fatores não nulos.',
+      'O grau da soma pode diminuir por cancelamento.',
+      'Divisão por monômio exige preservar restrições de domínio.',
     ],
     closing:
-        'Com as operações dominadas, produtos notáveis deixam de parecer fórmulas isoladas e passam a ser padrões da própria multiplicação algébrica.',
+        'Operar polinômios com segurança é organizar a estrutura antes de executar as contas.',
   ),
   CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Produtos notáveis',
-    description: 'padrões que aceleram cálculos',
-    duration: '≈ 5 min',
+    description:
+        'padrões de expansão derivados da distributiva e reconhecimento estrutural',
+    duration: '≈ 28 min',
     objective:
-        'reconhecer quadrados, diferença de quadrados e produtos binomiais comuns',
+        'derivar e aplicar produtos notáveis, reconhecer seus padrões em expressões algébricas e evitar memorizações sem justificativa',
     symbol: '(a+b)²',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Produtos notáveis vêm da distributiva',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.idea,
-            title: 'Produto notável é distributiva memorizada com sentido',
+            title: 'Padrões, não fórmulas mágicas',
             content:
-                'Produtos notáveis não são truques soltos. Eles nascem da distributiva e aparecem tantas vezes que vale reconhecer o padrão rapidamente.',
-            emphasis: '(a + b)² = a² + 2ab + b², não apenas a² + b².',
+                'Produtos notáveis são multiplicações que aparecem com frequência e podem ser reconhecidas por padrão. Todas as fórmulas desta aula podem ser reconstruídas pela propriedade distributiva.',
+            emphasis:
+                'Se uma fórmula for esquecida, a distributiva continua sendo um caminho seguro.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Quadrado da soma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a+b)²',
+            content:
+                '(a+b)² = (a+b)(a+b) = a² + 2ab + b².',
+            emphasis:
+                'O termo 2ab surge de dois produtos cruzados: ab + ba.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Aplicando o quadrado da soma',
+            problem: 'Expanda (2x+3)².',
+            steps: [
+              'Quadrado do primeiro termo: (2x)² = 4x².',
+              'Duas vezes o produto: 2·(2x)·3 = 12x.',
+              'Quadrado do segundo termo: 3² = 9.',
+            ],
+            result: '4x²+12x+9.',
+            interpretation:
+                'O termo central registra a interação entre os dois termos do binômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Quadrado da diferença',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(a−b)²',
+            content:
+                '(a−b)² = a² − 2ab + b². Apenas o termo central muda de sinal em relação ao quadrado da soma.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Sinal do termo central',
+            problem: 'Expanda (3x−4)².',
+            steps: [
+              '(3x)² = 9x².',
+              '−2·(3x)·4 = −24x.',
+              '4² = 16.',
+            ],
+            result: '9x²−24x+16.',
+            interpretation:
+                'O último termo é positivo porque resulta de um quadrado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Produto da soma pela diferença',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '(a+b)(a−b)',
+            content:
+                '(a+b)(a−b) = a²−b². Os termos cruzados −ab e +ab se cancelam.',
+            emphasis:
+                'Esse padrão é a expansão associada à diferença de quadrados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Conjugados algébricos',
+            problem: 'Calcule (5x+2)(5x−2).',
+            steps: [
+              'Identifique a=5x e b=2.',
+              'Use a²−b².',
+              '(5x)²−2² = 25x²−4.',
+            ],
+            result: '25x²−4.',
+            interpretation:
+                'A ausência do termo linear é consequência do cancelamento dos produtos cruzados.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Cubo de binômio',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Padrões cúbicos',
+            content:
+                '(a+b)³ = a³+3a²b+3ab²+b³ e (a−b)³ = a³−3a²b+3ab²−b³.',
+            emphasis:
+                'Os coeficientes 1, 3, 3, 1 correspondem à expansão completa do produto de três binômios iguais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Cubo da soma',
+            problem: 'Expanda (x+2)³.',
+            steps: [
+              'x³.',
+              '3·x²·2 = 6x².',
+              '3·x·2² = 12x.',
+              '2³ = 8.',
+            ],
+            result: 'x³+6x²+12x+8.',
+            interpretation:
+                'O padrão cúbico pode sempre ser verificado multiplicando (x+2)² por (x+2).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Reconhecer o padrão ao contrário',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Da expansão para a forma fatorada',
+            content:
+                'Reconhecer x²+6x+9 como (x+3)² ou 25x²−16 como (5x−4)(5x+4) será essencial na fatoração.',
+            emphasis:
+                'Produtos notáveis servem tanto para expandir quanto para reconhecer fatores.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a+b)² ≠ a²+b²',
+            content:
+                'O termo 2ab não pode ser omitido. Com a=1 e b=1, o lado esquerdo vale 4 e a²+b² vale 2.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '(a−b)² não termina em −b²',
+            content:
+                'O último termo é +b², porque (−b)(−b)=+b².',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Expandindo com padrão',
-            problem: 'Desenvolva (x − 5)².',
+            title: 'Guiado 1',
+            problem: 'Expanda (x−5)².',
             steps: [
-              'Use (a − b)² = a² − 2ab + b².',
-              'Aqui, a = x e b = 5.',
-              'Substitua: x² − 2·x·5 + 25.',
+              'x².',
+              '−2·x·5 = −10x.',
+              '5² = 25.',
             ],
-            result: 'O resultado é x² − 10x + 25.',
+            result: 'x²−10x+25.',
             interpretation:
-                'O termo do meio aparece porque o binômio foi multiplicado por ele mesmo.',
+                'A estrutura é quadrado do primeiro, dobro do produto, quadrado do segundo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2',
+            problem: 'Reconheça 4x²−12x+9.',
+            steps: [
+              '4x²=(2x)² e 9=3².',
+              'O termo central é −2·(2x)·3 = −12x.',
+            ],
+            result: '(2x−3)².',
+            interpretation:
+                'O termo central confirma o trinômio quadrado perfeito.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Expanda ou reconheça o padrão',
+            content:
+                '1. (x+4)².\n'
+                '2. (x−7)².\n'
+                '3. (2x+5)².\n'
+                '4. (3a−2)².\n'
+                '5. (x+6)(x−6).\n'
+                '6. (4y+1)(4y−1).\n'
+                '7. (x+3)³.\n'
+                '8. (2x−1)³.\n'
+                '9. Reconheça x²+10x+25.\n'
+                '10. Reconheça 9x²−24x+16.\n'
+                '11. Fatore x²−49 usando um produto notável.\n'
+                '12. Explique por que (a+b)² ≠ a²+b².\n'
+                '13. Compare (x−2)² e x²−4.\n'
+                '14. Verifique (2x+3)(2x−3) por distributiva.\n'
+                '15. Expanda (a+b)³ pela distributiva e compare com o padrão.',
+            emphasis:
+                'Quando reconhecer um padrão, identifique explicitamente quem representa a e quem representa b.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Padrões aceleram simplificações',
+            content:
+                'Diferença de quadrados e trinômios quadrados perfeitos aparecem em fatorações de limites, racionalizações e manipulação de quocientes incrementais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart e Thomas’ Calculus para aplicações algébricas em limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é o desenvolvimento de (x + 3)²?',
-      choices: ['x² + 9', 'x² + 6x + 9', 'x² + 3x + 9'],
+      question: 'Qual é a expansão correta de (x−3)²?',
+      choices: ['x²−9', 'x²−6x+9', 'x²+6x+9'],
       correctIndex: 1,
       explanation:
-          'O termo do meio é 2·x·3 = 6x. Por isso, (x + 3)² = x² + 6x + 9.',
+          '(x−3)² = x² − 2·x·3 + 3² = x²−6x+9.',
     ),
     takeaways: [
-      'Produtos notáveis vêm da distributiva.',
-      'Quadrado da soma possui termo do meio.',
-      'Diferença de quadrados fatora como (a − b)(a + b).',
-      'Reconhecer padrões acelera simplificações.',
+      'Produtos notáveis são consequências da distributiva.',
+      '(a+b)² = a²+2ab+b².',
+      '(a−b)² = a²−2ab+b².',
+      '(a+b)(a−b)=a²−b².',
+      'Reconhecer padrões ao contrário prepara fatoração.',
+      'O termo cruzado não pode ser omitido.',
     ],
     closing:
-        'Produtos notáveis são atalhos seguros quando você sabe de onde eles vieram.',
+        'Produtos notáveis são atalhos seguros apenas quando o padrão é reconhecido e compreendido.',
   ),
   CourseLessonData(
     id: 'algebra-06-fatoracao',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Fatoração',
-    description: 'colocar expressões em forma de produto',
-    duration: '≈ 5 min',
+    description:
+        'fator comum, agrupamento, diferença de quadrados, trinômios e escolha estratégica',
+    duration: '≈ 35 min',
     objective:
-        'fatorar expressões por fator comum, agrupamento e padrões notáveis',
-    symbol: '(x−a)',
+        'reescrever polinômios como produtos por diferentes técnicas de fatoração, verificar resultados por expansão e selecionar a técnica adequada a partir da estrutura da expressão',
+    symbol: 'ab+ac',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Fatorar é reescrever como produto',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.transform,
-            title: 'Da soma para o produto',
+            title: 'A distributiva ao contrário',
             content:
-                'Fatorar significa escrever uma expressão como multiplicação de fatores. Isso revela raízes, cancela frações algébricas e resolve limites com indeterminação.',
+                'Fatorar uma expressão significa escrevê-la como produto de fatores. O caso mais básico é ab+ac = a(b+c).',
             emphasis:
-                'Em Cálculo, fatorar muitas vezes transforma um problema travado em uma conta simples.',
+                'Uma fatoração correta pode ser verificada expandindo o produto obtido.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Fator comum em evidência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Procure o maior fator comum',
+            content:
+                'Compare coeficientes e partes literais de todos os termos. O fator comum usa o máximo divisor comum dos coeficientes e, para cada variável comum, o menor expoente presente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fator comum numérico e literal',
+            problem: 'Fatore 12x³y − 18x²y².',
+            steps: [
+              'MDC de 12 e 18: 6.',
+              'Para x, menor expoente comum: x².',
+              'Para y, menor expoente comum: y.',
+              'Divida cada termo por 6x²y.',
+            ],
+            result: '6x²y(2x−3y).',
+            interpretation:
+                'Expandir o resultado recupera a expressão original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Fatoração por agrupamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Crie um fator comum em duas etapas',
+            content:
+                'Em expressões com quatro ou mais termos, agrupar termos pode revelar fatores comuns parciais que depois geram um fator binomial comum.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Agrupamento estratégico',
+            problem: 'Fatore x³+3x²+2x+6.',
+            steps: [
+              'Agrupe: (x³+3x²)+(2x+6).',
+              'Fatore cada grupo: x²(x+3)+2(x+3).',
+              'Agora x+3 é fator comum.',
+            ],
+            result: '(x+3)(x²+2).',
+            interpretation:
+                'O agrupamento foi escolhido para produzir o mesmo binômio em ambos os grupos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Diferença de quadrados',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'a²−b²=(a−b)(a+b)',
+            content:
+                'Uma diferença entre dois quadrados perfeitos fatora como produto de conjugados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Aplicando o padrão',
+            problem: 'Fatore 25x²−49.',
+            steps: [
+              '25x²=(5x)².',
+              '49=7².',
+              'Use a²−b².',
+            ],
+            result: '(5x−7)(5x+7).',
+            interpretation:
+                'Uma soma de quadrados não possui fatoração real análoga.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Trinômio quadrado perfeito',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Reconheça a²±2ab+b²',
+            content:
+                'Se o primeiro e o último termos são quadrados perfeitos e o termo central é ±2ab, o trinômio é um quadrado perfeito.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Reconhecimento estrutural',
+            problem: 'Fatore 9x²−24x+16.',
+            steps: [
+              '9x²=(3x)².',
+              '16=4².',
+              '−24x = −2·(3x)·4.',
+            ],
+            result: '(3x−4)².',
+            interpretation:
+                'Os três termos devem confirmar o padrão; dois quadrados nas extremidades não bastam.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Trinômios x²+bx+c',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Procure dois números',
+            content:
+                'Para fatorar x²+bx+c, procure números p e q tais que p+q=b e pq=c. Então x²+bx+c=(x+p)(x+q).',
+          ),
+          WorkedExampleBlockData(
+            title: 'Trinômio monômio',
+            problem: 'Fatore x²−5x+6.',
+            steps: [
+              'Precisamos de p+q=−5.',
+              'Também precisamos de pq=6.',
+              'Os números são −2 e −3.',
+            ],
+            result: '(x−2)(x−3).',
+            interpretation:
+                'As raízes correspondentes serão 2 e 3.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Trinômios ax²+bx+c',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Fator comum em evidência',
-            problem: 'Fatore 8x² − 12x.',
+            title: 'Coeficiente líder diferente de 1',
+            problem: 'Fatore 6x²+11x+3.',
             steps: [
-              'Encontre o maior fator comum: 4x.',
-              'Divida cada termo por 4x: 8x²/(4x) = 2x e −12x/(4x) = −3.',
-              'Escreva o produto: 4x(2x − 3).',
+              'Multiplique a·c: 6·3=18.',
+              'Procure dois números com produto 18 e soma 11: 9 e 2.',
+              'Reescreva 11x como 9x+2x.',
+              'Agrupe: (6x²+9x)+(2x+3).',
+              'Fatore: 3x(2x+3)+1(2x+3).',
             ],
-            result: 'A fatoração é 4x(2x − 3).',
+            result: '(3x+1)(2x+3).',
             interpretation:
-                'Se distribuir 4x de volta, recuperamos a expressão original.',
+                'A decomposição do termo central transforma o problema em agrupamento.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Fatoração completa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Continue até não haver mais fatores possíveis',
+            content:
+                'Uma expressão pode exigir mais de uma técnica. Sempre retire fator comum primeiro e depois examine os fatores restantes.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Duas etapas',
+            problem: 'Fatore completamente 2x³−18x.',
+            steps: [
+              'Retire 2x: 2x(x²−9).',
+              'Reconheça diferença de quadrados: x²−9=(x−3)(x+3).',
+            ],
+            result: '2x(x−3)(x+3).',
+            interpretation:
+                'Parar em 2x(x²−9) produziria uma fatoração correta, mas não completa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Estratégia de escolha',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Uma ordem prática',
+            content:
+                '1) procure fator comum; 2) conte os termos; 3) com dois termos, teste diferença de quadrados ou outros padrões; 4) com três termos, teste quadrado perfeito ou trinômio quadrático; 5) com quatro termos, tente agrupamento; 6) verifique expandindo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar termos em vez de fatores',
+            content:
+                'Fatoração trabalha com produtos. Em uma soma como x²+x, não se “cancela x”; primeiro fatoramos x(x+1).',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer o fator comum antes do padrão',
+            content:
+                'Em 3x²−12, primeiro retire 3: 3(x²−4), depois use diferença de quadrados.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Fatore completamente',
+            content:
+                '1. 6x+12.\n'
+                '2. 15x³−10x².\n'
+                '3. x²−16.\n'
+                '4. 9a²−25b².\n'
+                '5. x²+8x+16.\n'
+                '6. 4x²−12x+9.\n'
+                '7. x²+7x+12.\n'
+                '8. x²−x−12.\n'
+                '9. 2x²+7x+3.\n'
+                '10. 6x²+13x+6.\n'
+                '11. x³+2x²+3x+6.\n'
+                '12. 3x³−27x.\n'
+                '13. 4x³+8x²−x−2.\n'
+                '14. Explique como verificar uma fatoração.\n'
+                '15. Escolha a primeira técnica para 10x³−40x e justifique.',
+            emphasis:
+                'Depois de fatorar, expanda mentalmente ou por escrito para verificar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '12',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Fatoração revela cancelamentos e zeros',
+            content:
+                'Em limites, fatorar pode remover uma indeterminação aparente após o cancelamento de um fator comum. Em funções, a forma fatorada revela zeros e multiplicidades.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '13',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart, Thomas e Guidorizzi para aplicações de fatoração em funções e limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Qual é a fatoração de x² − 16?',
-      choices: ['(x − 4)(x + 4)', '(x − 8)(x + 8)', '(x − 4)²'],
-      correctIndex: 0,
-      explanation: 'É uma diferença de quadrados: x² − 4² = (x − 4)(x + 4).',
+      question: 'Qual é a fatoração completa de x²−9?',
+      choices: ['(x−3)²', '(x−3)(x+3)', 'x(x−9)'],
+      correctIndex: 1,
+      explanation:
+          'x²−9=x²−3² é uma diferença de quadrados, portanto (x−3)(x+3).',
     ),
     takeaways: [
-      'Fatorar reescreve somas como produtos.',
-      'Fator comum é o primeiro padrão a procurar.',
-      'Diferença de quadrados é muito frequente.',
-      'Sempre confira distribuindo de volta.',
+      'Fatorar é reescrever uma soma como produto.',
+      'Fator comum deve ser verificado antes de técnicas mais específicas.',
+      'Agrupamento cria um fator comum em etapas.',
+      'Diferença de quadrados e trinômios quadrados perfeitos são padrões estruturais.',
+      'Trinômios quadráticos podem ser fatorados por relações entre soma e produto.',
+      'Uma fatoração deve ser verificada pela expansão.',
     ],
     closing:
-        'A fatoração é uma ponte direta entre Álgebra, equações, funções e limites.',
+        'Fatoração é uma mudança de representação que revela estrutura escondida em uma expressão.',
   ),
   CourseLessonData(
     id: 'algebra-07-fracoes-algebricas',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Álgebra e fatoração',
     title: 'Frações algébricas',
-    description: 'restrições, simplificação e denominadores',
-    duration: '≈ 5 min',
+    description:
+        'domínio, fatoração, simplificação e operações com expressões racionais',
+    duration: '≈ 32 min',
     objective:
-        'simplificar frações algébricas preservando restrições de domínio',
-    symbol: 'x/y',
+        'determinar restrições de domínio, simplificar frações algébricas por fatores e realizar operações básicas preservando equivalência e valores excluídos',
+    symbol: 'P/Q',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Uma fração algébrica tem domínio',
         blocks: [
           ConceptBlockData(
             visual: LessonVisual.warning,
-            title: 'Nem todo cancelamento é permitido',
+            title: 'Denominador nunca pode ser zero',
             content:
-                'Só podemos cancelar fatores multiplicativos comuns. Não se cancela termo dentro de soma como se fosse fator. Além disso, denominadores nunca podem ser zero.',
+                'Em P(x)/Q(x), todo valor que zera Q(x) deve ser excluído do domínio, mesmo que um fator venha a ser cancelado depois.',
             emphasis:
-                'Em (x + 2)/x, o x não cancela com parte do numerador, porque x + 2 é uma soma.',
+                'Determine as restrições antes de simplificar.',
+            tone: LearningCardTone.warning,
+          ),
+          WorkedExampleBlockData(
+            title: 'Restrição simples',
+            problem: 'Determine o domínio de (x+2)/(x−5).',
+            steps: [
+              'O denominador é x−5.',
+              'Exija x−5 ≠ 0.',
+              'Logo, x ≠ 5.',
+            ],
+            result: 'Domínio: ℝ\\{5}.',
+            interpretation:
+                'O numerador pode ser zero; o denominador não.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Simplificação por fatores',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.transform,
+            title: 'Só fatores podem ser cancelados',
+            content:
+                'Cancelar significa dividir numerador e denominador pelo mesmo fator não nulo. Termos separados por soma ou subtração não podem ser cancelados diretamente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Fatore antes de cancelar',
+            problem: 'Simplifique (x²−9)/(x²−3x).',
+            steps: [
+              'Restrições originais: x²−3x=x(x−3), então x ≠ 0 e x ≠ 3.',
+              'Fatore o numerador: x²−9=(x−3)(x+3).',
+              'Fatore o denominador: x(x−3).',
+              'Cancele o fator x−3, preservando x ≠ 3.',
+            ],
+            result: '(x+3)/x, com x ≠ 0 e x ≠ 3.',
+            interpretation:
+                'A forma simplificada não devolve o ponto x=3 ao domínio original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Multiplicação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Fatore e simplifique antes de multiplicar',
+            content:
+                'Para multiplicar frações algébricas, multiplique numeradores e denominadores. Fatorar antes pode revelar cancelamentos e reduzir o trabalho.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Multiplicação com cancelamento',
+            problem: 'Simplifique [(x²−4)/(x²−x−2)]·[(x−2)/(x+2)].',
+            steps: [
+              'Fatore: x²−4=(x−2)(x+2).',
+              'Fatore: x²−x−2=(x−2)(x+1).',
+              'Registre restrições originais antes dos cancelamentos.',
+              'Cancele fatores comuns permitidos.',
+            ],
+            result: '(x−2)/(x+1), preservando as restrições originais.',
+            interpretation:
+                'O domínio pertence à expressão inicial, não apenas à forma final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Divisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Multiplique pelo recíproco',
+            content:
+                'Dividir por uma fração algébrica equivale a multiplicar pelo seu recíproco, desde que a fração divisora esteja definida e não seja zero.',
+            emphasis:
+                'Além de denominadores não nulos, o numerador da fração divisora também não pode ser zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Adição e subtração',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Use denominador comum',
+            content:
+                'Frações com denominadores diferentes só podem ser somadas depois de serem reescritas com denominador comum, normalmente obtido pela fatoração dos denominadores.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Somando frações simples',
+            problem: 'Simplifique 2/x + 3/(x+1).',
+            steps: [
+              'Restrições: x ≠ 0 e x ≠ −1.',
+              'Denominador comum: x(x+1).',
+              'Reescreva: 2(x+1)/[x(x+1)] + 3x/[x(x+1)].',
+              'Some os numeradores: 2x+2+3x=5x+2.',
+            ],
+            result: '(5x+2)/[x(x+1)], com x ≠ 0,−1.',
+            interpretation:
+                'Somamos numeradores apenas depois de igualar os denominadores.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Frações complexas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Uma fração pode conter outras frações',
+            content:
+                'Frações complexas podem ser simplificadas multiplicando numerador e denominador por um denominador comum interno, desde que todas as restrições sejam registradas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Eliminando denominadores internos',
+            problem: 'Simplifique (1/x + 1/y)/(1/x), com x,y ≠ 0.',
+            steps: [
+              'No numerador, 1/x+1/y=(x+y)/(xy).',
+              'Divida por 1/x multiplicando por x.',
+              '[(x+y)/(xy)]·x = (x+y)/y.',
+            ],
+            result: '(x+y)/y, com x ≠ 0 e y ≠ 0.',
+            interpretation:
+                'A restrição x ≠ 0 permanece mesmo após x desaparecer da forma final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros frequentes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Cancelar termos de uma soma',
+            content:
+                '(x+2)/x não pode virar 2. O x do numerador não é fator de toda a soma x+2.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Esquecer valores excluídos',
+            content:
+                '(x²−1)/(x−1) simplifica para x+1, mas a expressão original continua exigindo x ≠ 1.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Exercícios guiados',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Cancelamento correto',
-            problem: 'Simplifique (x² − 9)/(x − 3), com x ≠ 3.',
+            title: 'Guiado 1 — simplificação',
+            problem: 'Simplifique (x²−4x)/(x²−16).',
             steps: [
-              'Fatore o numerador: x² − 9 = (x − 3)(x + 3).',
-              'Reescreva a fração: [(x − 3)(x + 3)]/(x − 3).',
-              'Cancele o fator comum x − 3, mantendo a restrição x ≠ 3.',
+              'Fatore numerador: x(x−4).',
+              'Fatore denominador: (x−4)(x+4).',
+              'Restrições: x ≠ 4 e x ≠ −4.',
+              'Cancele x−4.',
             ],
-            result: 'A forma simplificada é x + 3, com x ≠ 3.',
+            result: 'x/(x+4), com x ≠ ±4.',
             interpretation:
-                'A expressão simplificada parece livre, mas a restrição original continua valendo.',
+                'O ponto x=4 permanece excluído.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Guiado 2 — soma',
+            problem: 'Simplifique 1/(x−1) + 1/(x+1).',
+            steps: [
+              'Restrições: x ≠ ±1.',
+              'Denominador comum: (x−1)(x+1).',
+              'Numerador: (x+1)+(x−1)=2x.',
+            ],
+            result: '2x/(x²−1), com x ≠ ±1.',
+            interpretation:
+                'A fatoração do denominador comum também ajuda a visualizar as restrições.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática antes da atividade final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Determine domínio e simplifique quando possível',
+            content:
+                '1. (x+1)/(x−2).\n'
+                '2. (x²−4)/(x−2).\n'
+                '3. (x²−9)/(x²−6x+9).\n'
+                '4. (2x²+4x)/(2x).\n'
+                '5. [(x²−1)/(x²+x)]·[x/(x−1)].\n'
+                '6. [(x+2)/(x−3)]÷[(x+2)/(x+1)].\n'
+                '7. 1/x + 2/x.\n'
+                '8. 1/x + 1/(x+2).\n'
+                '9. 3/(x−1) − 2/(x+1).\n'
+                '10. Explique por que (x+3)/x não permite cancelar x.\n'
+                '11. Simplifique (x²−25)/(x²−10x+25).\n'
+                '12. Liste os valores excluídos antes de simplificar (x²−4)/(x²−x−2).\n'
+                '13. Dê um exemplo de ponto removível criado por cancelamento.\n'
+                '14. Simplifique (1/x+1)/(1/x).\n'
+                '15. Explique por que simplificação não altera o domínio original.',
+            emphasis:
+                'Escreva as restrições antes de qualquer cancelamento.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Conexão com o Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Frações algébricas aparecem diretamente em limites',
+            content:
+                'Muitos limites algébricos exigem fatorar e simplificar uma função racional para analisar seu comportamento perto de um ponto excluído. Preservar o domínio é essencial para distinguir valor da função e limite.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'Referências: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; Stewart, Thomas e Guidorizzi para funções racionais e limites.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
-      question: 'Em qual expressão o cancelamento de x é correto?',
-      choices: ['(x + 5)/x', '(3x)/(x)', '(x − 2)/x'],
-      correctIndex: 1,
+      question: 'Ao simplificar (x²−4)/(x−2), qual condição deve ser mantida?',
+      choices: ['x ≠ −2', 'x ≠ 0', 'x ≠ 2'],
+      correctIndex: 2,
       explanation:
-          'Em 3x/x, o x é fator comum no numerador e no denominador. Nas outras, x aparece dentro de soma ou diferença.',
+          'O denominador original x−2 zera em x=2. Mesmo após cancelar o fator x−2, esse valor permanece excluído.',
     ),
     takeaways: [
-      'Denominador zero é proibido.',
-      'Cancele apenas fatores, não parcelas.',
-      'Fatorar antes de cancelar evita erro.',
-      'Restrições originais continuam importantes.',
+      'Denominadores determinam restrições de domínio.',
+      'Somente fatores comuns podem ser cancelados.',
+      'Restrições devem ser registradas antes da simplificação.',
+      'Adição e subtração exigem denominador comum.',
+      'Divisão por fração exige recíproco e novas condições de não nulidade.',
+      'A forma simplificada não restaura pontos excluídos da expressão original.',
     ],
     closing:
-        'Frações algébricas explicam muitos detalhes de domínio, continuidade e limites.',
+        'Frações algébricas exigem duas leituras simultâneas: manipular fatores e preservar o domínio.',
   ),
   CourseLessonData(
     id: 'algebra-08-sintese',
     topicId: 'algebra-fundamental',
     trailTitle: 'Álgebra Fundamental',
-    eyebrow: 'Fundamentos',
+    eyebrow: 'Síntese',
     title: 'Síntese algébrica',
-    description: 'escolher a ferramenta certa',
-    duration: '≈ 5 min',
+    description:
+        'seleção de estratégias, integração de técnicas e preparação para equações, funções e limites',
+    duration: '≈ 30 min',
     objective:
-        'decidir quando simplificar, expandir, fatorar ou substituir valores',
-    symbol: '✓',
+        'selecionar e combinar técnicas algébricas de acordo com o objetivo, justificar transformações, preservar domínio e avaliar a forma mais útil de uma expressão',
+    symbol: '⇄',
     sections: [
       LessonSectionData(
         number: '1',
-        title: 'Entenda a ideia',
+        title: 'Não existe uma forma universalmente melhor',
         blocks: [
           ConceptBlockData(
-            visual: LessonVisual.checklist,
-            title: 'Não existe uma forma sempre melhor',
+            visual: LessonVisual.compare,
+            title: 'A forma útil depende da pergunta',
             content:
-                'Expandir ajuda a combinar termos. Fatorar ajuda a enxergar produtos, raízes e cancelamentos. Substituir valores ajuda a conferir resultados e interpretar expressões.',
-            emphasis:
-                'O bom aluno de Cálculo não decora só contas; ele escolhe a forma que revela a ideia.',
+                'Expandir facilita combinar termos. Fatorar revela zeros e cancelamentos. Uma fração simplificada evidencia comportamento. A melhor forma é a que torna o objetivo matemático mais visível.',
           ),
         ],
       ),
       LessonSectionData(
         number: '2',
-        title: 'Veja funcionando',
+        title: 'Um roteiro de decisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Antes de calcular, pergunte o que precisa enxergar',
+            content:
+                '1) Há parênteses que precisam ser expandidos? 2) Existem termos semelhantes? 3) Existe fator comum? 4) Há um padrão notável? 5) Existem denominadores e restrições? 6) A forma fatorada ajudaria mais do que a expandida?',
+            emphasis:
+                'Estratégia algébrica começa pela leitura da estrutura.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Exemplo integrado: expandir e reduzir',
         blocks: [
           WorkedExampleBlockData(
-            title: 'Do caos à forma útil',
-            problem: 'Simplifique 2(x + 1) + (x − 3)(x + 3).',
+            title: 'Várias técnicas em sequência',
+            problem: 'Simplifique 2(x+3) − (x−1)(x+2).',
             steps: [
-              'Distribua o primeiro termo: 2x + 2.',
-              'Use diferença de quadrados: (x − 3)(x + 3) = x² − 9.',
-              'Combine: x² + 2x − 7.',
+              'Expanda 2(x+3)=2x+6.',
+              'Expanda (x−1)(x+2)=x²+x−2.',
+              'Subtraia o segundo resultado inteiro: 2x+6−x²−x+2.',
+              'Combine termos semelhantes.',
             ],
-            result: 'A expressão simplificada é x² + 2x − 7.',
+            result: '−x²+x+8.',
             interpretation:
-                'Usamos distributiva e produto notável na mesma expressão.',
+                'Distribuição, controle de sinal e redução aparecem no mesmo problema.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exemplo integrado: fatorar antes de simplificar',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Domínio e cancelamento',
+            problem: 'Simplifique (x²−9)/(x²−x−6).',
+            steps: [
+              'Restrições: x²−x−6=(x−3)(x+2), então x ≠ 3 e x ≠ −2.',
+              'Fatore o numerador: (x−3)(x+3).',
+              'Cancele x−3.',
+            ],
+            result: '(x+3)/(x+2), com x ≠ 3,−2.',
+            interpretation:
+                'A forma fatorada revelou o cancelamento, mas o domínio original permaneceu.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Exemplo integrado: escolher uma forma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A mesma expressão pode contar histórias diferentes',
+            content:
+                'x²−5x+6, (x−2)(x−3) e (x−5/2)²−1/4 são formas equivalentes. A forma expandida mostra coeficientes; a fatorada mostra zeros; a forma de quadrado completado mostra centro da parábola.',
+            emphasis:
+                'Equivalência não significa utilidade idêntica para toda pergunta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Verificação como hábito matemático',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Três formas de conferir',
+            content:
+                'Você pode verificar uma expansão refazendo a distributiva, verificar uma fatoração expandindo o resultado e testar equivalência substituindo valores permitidos. Nenhuma verificação isolada substitui uma justificativa, mas todas ajudam a detectar erros.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Erros de estratégia',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Expandir quando fatorar seria melhor',
+            content:
+                'Em um limite com x²−9 no numerador e x−3 no denominador, expandir não revela o fator comum. A forma fatorada é estruturalmente mais útil.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Simplificar sem registrar domínio',
+            content:
+                'Uma expressão racional pode perder visualmente uma restrição após cancelamento. O domínio precisa ser determinado antes.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Desafio guiado',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combine as ferramentas',
+            problem: 'Simplifique [(x²−4)/(x²−4x+4)]·[(x−2)/(x+2)].',
+            steps: [
+              'Restrições originais: x ≠ 2 e x ≠ −2.',
+              'Fatore x²−4=(x−2)(x+2).',
+              'Fatore x²−4x+4=(x−2)².',
+              'Substitua os fatores e cancele apenas fatores comuns.',
+            ],
+            result: '1, com x ≠ 2 e x ≠ −2.',
+            interpretation:
+                'A expressão simplifica drasticamente, mas continua diferente da função constante 1 nos pontos excluídos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Prática integradora',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Escolha a técnica antes de executar',
+            content:
+                '1. Simplifique 3(x−2)+2(x+5).\n'
+                '2. Expanda (2x−3)².\n'
+                '3. Fatore 6x²−24.\n'
+                '4. Fatore x²+9x+20.\n'
+                '5. Simplifique (x²−16)/(x−4), registrando domínio.\n'
+                '6. Some 1/x + 1/(x+1).\n'
+                '7. Determine o grau de 4x⁵−x³+2.\n'
+                '8. Multiplique (x−2)(x²+2x+4).\n'
+                '9. Explique quando a forma fatorada é preferível.\n'
+                '10. Explique quando a forma expandida é preferível.\n'
+                '11. Dê um contraexemplo para (a+b)²=a²+b².\n'
+                '12. Verifique se 3 é raiz de x²−5x+6.\n'
+                '13. Simplifique (x²−1)/(x²+x), registrando restrições.\n'
+                '14. Fatore completamente 2x³−8x.\n'
+                '15. Explique por que cancelar fatores não devolve valores ao domínio.',
+            emphasis:
+                'Antes de cada questão, escreva em uma palavra a estratégia escolhida: expandir, reduzir, fatorar, operar ou analisar domínio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '10',
+        title: 'Ponte para equações e funções',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Álgebra é infraestrutura para o restante do curso',
+            content:
+                'Equações usam equivalência e fatoração; funções usam domínio e avaliação; limites usam fatoração, racionalização e simplificação; derivadas usam todas essas técnicas novamente.',
+            emphasis:
+                'A meta desta unidade não é velocidade mecânica, mas controle consciente das transformações.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica da unidade',
+            content:
+                'Referências consolidadas: OpenStax Algebra and Trigonometry 2e; OpenStax College Algebra 2e; Sullivan, Precalculus; Blitzer, Precalculus; Iezzi e colaboradores; James Stewart, Thomas’ Calculus e Guidorizzi para a ponte entre manipulação algébrica, funções e Cálculo.',
           ),
         ],
       ),
     ],
     check: LessonCheckData(
       question:
-          'Para simplificar (x² − 25)/(x − 5), qual ferramenta vem primeiro?',
+          'Para simplificar (x²−25)/(x−5), qual ação estrutural deve vir primeiro?',
       choices: [
-        'Fatorar x² − 25',
-        'Substituir x = 5',
+        'Fatorar x²−25',
+        'Substituir x=5',
         'Somar 25 ao denominador',
       ],
       correctIndex: 0,
       explanation:
-          'A diferença de quadrados permite escrever x² − 25 como (x − 5)(x + 5), revelando o fator comum.',
+          'x²−25 é uma diferença de quadrados: (x−5)(x+5). Isso revela o fator comum, mantendo a restrição x ≠ 5.',
     ),
     takeaways: [
-      'Expandir, fatorar e substituir têm objetivos diferentes.',
-      'A forma fatorada revela cancelamentos e raízes.',
-      'A forma expandida facilita combinação de termos.',
-      'Conferir o caminho reduz erros invisíveis.',
+      'A forma mais útil de uma expressão depende do objetivo.',
+      'Expandir, reduzir e fatorar são ferramentas complementares.',
+      'Domínio deve ser preservado durante simplificações racionais.',
+      'Produtos notáveis conectam expansão e fatoração.',
+      'Verificação reduz erros, mas deve acompanhar justificativas algébricas.',
+      'Álgebra bem organizada prepara equações, funções, limites e derivadas.',
     ],
     closing:
-        'Com essa caixa de ferramentas pronta, as próximas aulas deixam de parecer mágica e começam a parecer estratégia.',
-  ),
+        'A maturidade algébrica começa quando você deixa de perguntar apenas “como calcular?” e passa a perguntar “qual forma revela melhor a estrutura?”.',
+  )
 ];
