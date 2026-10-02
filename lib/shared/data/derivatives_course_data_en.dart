@@ -8,7 +8,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 1 of 8 • Core idea',
     title: 'Rate of change and tangent line',
     description: 'Understand the derivative as instantaneous velocity and local slope.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective: 'interpret the derivative geometrically and in real situations',
     symbol: "f'",
     sections: [
@@ -53,6 +53,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Two interpretations of the derivative',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Slope and instantaneous rate',
+            content: 'Geometrically, f′(a) is the tangent slope. In applications, it is the instantaneous rate of output change with respect to input.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'From secant to tangent',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A limit of slopes',
+            content: 'A secant uses two points. As the second point approaches the first, its slope may converge to the tangent slope.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Derivative notation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'f′(x), y′, and dy/dx',
+            content: 'Lagrange and Leibniz notation express the same derivative while emphasizing different viewpoints.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'The derivative as a function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Local slope at every point',
+            content: 'For f(x)=x², the limit definition gives f′(x)=2x, assigning a slope to each x.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Units and physical meaning',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Output units per input unit',
+            content: 'If position is measured in meters and time in seconds, the derivative has units m/s.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; and Guidorizzi. The derivative is developed from the difference quotient and its geometric and applied meanings.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Geometrically, what does f′(a) represent?',
@@ -74,7 +140,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 2 of 8 • Basic rules',
     title: 'Constants, powers, and polynomials',
     description: 'Differentiate term by term and work with integer and fractional exponents.',
-    duration: '≈ 5 min',
+    duration: '≈ 30 min',
     objective: 'apply linearity and the power rule safely',
     symbol: 'xⁿ',
     sections: [
@@ -116,6 +182,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Linearity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Differentiate sums term by term',
+            content: 'Differentiation is linear: constants factor out and derivatives distribute over sums and differences.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Power rule beyond positive integers',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Negative and fractional exponents',
+            content: 'After rewriting roots and reciprocals as powers, the power rule applies wherever the expressions are defined.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Domain of the derivative',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'The derivative can have a smaller domain',
+            content: 'For f(x)=√x, f′(x)=1/(2√x), so the derivative is defined only for x>0.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Higher-order derivatives',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Differentiate again',
+            content: 'If f′ is differentiable, f″ describes the rate of change of the first derivative; in motion it is acceleration.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent mistakes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Track coefficients and exponents',
+            content: 'Common errors include retaining additive constants or forgetting the multiplier from the exponent.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi organize the basic rules as efficient consequences of the limit definition.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'What is the derivative of 3x⁴−5?',
@@ -137,7 +269,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 3 of 8 • Combinations',
     title: 'Product and quotient rules',
     description: 'Combine functions while preserving every required term.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective: 'apply and check the product and quotient rules',
     symbol: 'u·v',
     sections: [
@@ -179,6 +311,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Why a product needs two terms',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Both factors vary',
+            content: 'Because both factors change, (fg)′=f′g+fg′ rather than f′g′.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Quotient rule',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Order matters',
+            content: 'For f/g, the derivative is (f′g−fg′)/g² where g is nonzero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Simplify first or use the rule',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Choose the efficient route',
+            content: 'Algebraic simplification before differentiation can reduce work while preserving the original domain restrictions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Products with several factors',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Extend the pattern',
+            content: 'For several factors, each term differentiates one factor while preserving the others.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent mistakes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Sign and denominator',
+            content: 'Reversing the quotient-rule numerator changes the sign, and forgetting g² changes the formula.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi motivate product and quotient rules structurally.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Which structure starts the derivative of u(x)v(x)?',
@@ -196,7 +394,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 4 of 8 • Composition',
     title: 'The chain rule in layers',
     description: 'Differentiate composite functions from the outer layer to the inner one.',
-    duration: '≈ 5 min',
+    duration: '≈ 36 min',
     objective: 'identify outer and inner functions and apply the chain rule',
     symbol: 'f∘g',
     sections: [
@@ -231,6 +429,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Formal composition rule',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: '(f∘g)′=f′(g(x))g′(x)',
+            content: 'Differentiate the outer function at the inner expression, then multiply by the inner derivative.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Identify the inner function',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Work by layers',
+            content: 'For (3x²+1)^5, the chain rule gives 30x(3x²+1)^4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Three-layer chains',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Repeat the process',
+            content: 'Expressions such as sin((x²+1)^3) require one derivative factor from every nested layer.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Leibniz notation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'dy/dx=(dy/du)(du/dx)',
+            content: 'Leibniz notation makes variable dependence visible and helps organize the chain rule.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Frequent mistake',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Do not forget the inner derivative',
+            content: 'Differentiating only the outer layer gives an incomplete result.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi treat the chain rule as central for composite functions.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'What is the derivative of (3x−2)⁴?',
@@ -248,7 +512,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 5 of 8 • Elementary functions',
     title: 'Sine, cosine, exponential, and logarithm',
     description: 'Learn the most common elementary derivatives with meaning.',
-    duration: '≈ 5 min',
+    duration: '≈ 38 min',
     objective: 'differentiate trigonometric, exponential, and logarithmic functions',
     symbol: 'eˣ',
     sections: [
@@ -290,6 +554,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Basic trigonometric derivatives',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Radians matter',
+            content: 'd/dx(sin x)=cos x, d/dx(cos x)=−sin x, and d/dx(tan x)=sec²x, with angles in radians.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exponentials',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'The special role of e',
+            content: 'd/dx(e^x)=e^x, while d/dx(a^x)=a^x ln(a).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Logarithms',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Natural logarithm',
+            content: 'd/dx(ln x)=1/x for x>0; compositions require the chain rule.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Combine formulas with chain rule',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Composite elementary functions',
+            content: 'For f(x)=e^(x²), f′(x)=2x e^(x²).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Domain and hypotheses',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Formulas have conditions',
+            content: 'Logarithms, trigonometric quotients, and other elementary functions retain domain restrictions after differentiation.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi organize elementary derivatives for combination with the main rules.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'What is d/dx[cos(x)]?',
@@ -307,7 +637,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 6 of 8 • Local geometry',
     title: 'Slope and tangent-line equation',
     description: 'Use f′(a) to build the line that best approximates the graph locally.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective: 'calculate the slope and equation of a tangent line',
     symbol: 'y=mx+b',
     sections: [
@@ -342,6 +672,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Point-slope equation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'y−f(a)=f′(a)(x−a)',
+            content: 'Once the point and derivative are known, the tangent line follows from point-slope form.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Normal line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Perpendicular slope',
+            content: 'When f′(a) is nonzero, the normal slope is −1/f′(a).',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Horizontal tangents',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'When f′(a)=0',
+            content: 'A zero derivative gives a horizontal tangent but does not by itself prove a maximum or minimum.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Linear approximation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'The tangent as a local model',
+            content: 'Near a, L(x)=f(a)+f′(a)(x−a) approximates a differentiable function.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Complete example',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Tangent to x² at x=2',
+            content: 'Since f(2)=4 and f′(2)=4, the tangent is y=4x−4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi connect tangent lines with local linearization.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'For f(x)=x², what is the slope at x=3?',
@@ -359,7 +755,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 7 of 8 • Existence and analysis',
     title: 'Differentiability and critical points',
     description: 'Recognize corners, one-sided derivatives, and candidates for extrema.',
-    duration: '≈ 5 min',
+    duration: '≈ 36 min',
     objective: 'analyze existence of the derivative and locate critical points',
     symbol: 'f′=0',
     sections: [
@@ -400,6 +796,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '3',
+        title: 'Differentiability implies continuity',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'One-way implication',
+            content: 'Differentiable implies continuous, but a continuous function need not be differentiable.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Corners and cusps',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'One-sided slopes may disagree',
+            content: 'For |x| at zero, the one-sided derivatives are −1 and 1, so the function is continuous but not differentiable.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Vertical tangents and discontinuities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Other failures',
+            content: 'Derivatives may fail at vertical tangents, cusps, corners, and discontinuities.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Critical points',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'f′(c)=0 or undefined',
+            content: 'Critical points are candidates for extrema but are not automatically maxima or minima.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Sign of the derivative',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Increasing and decreasing',
+            content: 'Positive derivative indicates increasing behavior and negative derivative indicates decreasing behavior on an interval.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi connect differentiability, continuity, and sign analysis.',
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Is a continuous function always differentiable?',
@@ -417,7 +879,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 8 of 8 • Applications',
     title: 'Motion, units, and modeling',
     description: 'Interpret derivatives in physical problems and organize the complete method.',
-    duration: '≈ 5 min',
+    duration: '≈ 40 min',
     objective: 'model instantaneous rates and interpret their results',
     symbol: 'v(t)',
     sections: [
@@ -455,6 +917,72 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             title: 'Derivative beyond motion',
             content: 'In Engineering, derivatives describe current as rate of charge, flow as rate of volume, deformation along a component, and sensitivity of an output to input changes.',
             tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '3',
+        title: 'Rectilinear motion',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Position, velocity, acceleration',
+            content: 'If s(t) is position, then v(t)=s′(t) and a(t)=s″(t). Units and signs carry physical meaning.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Related rates',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Variables change together',
+            content: 'Differentiate relationships with respect to time and use the chain rule to connect changing quantities.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Optimization',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Use critical points in a model',
+            content: 'Optimization translates a situation into an objective function, identifies its domain, and evaluates critical candidates.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Marginal interpretation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Economics and production',
+            content: 'A derivative can approximate the effect of one additional unit in cost, revenue, or production models.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Cumulative motion example',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Successive derivatives',
+            content: 'For s(t)=t³−6t²+9t, velocity is 3t²−12t+9 and acceleration is 6t−12.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and synthesis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'References',
+            content: 'Stewart; Thomas’ Calculus; OpenStax; Larson & Edwards; and Guidorizzi support motion, related rates, optimization, and marginal applications.',
           ),
         ],
       ),
