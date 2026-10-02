@@ -5,8 +5,8 @@ import 'package:calcquest/shared/data/mock_exercise_data.dart';
 
 void main() {
   group('Integridade do curso de Álgebra Fundamental', () {
-    test('possui oito aulas autorais e progressivas', () {
-      expect(algebraCourseLessons, hasLength(8));
+    test('possui dez aulas autorais e progressivas', () {
+      expect(algebraCourseLessons, hasLength(10));
 
       final ids = algebraCourseLessons.map((lesson) => lesson.id).toList();
 
@@ -18,6 +18,8 @@ void main() {
           'algebra-02-termos-semelhantes',
           'algebra-03-distributiva',
           'algebra-04-potencias',
+          'algebra-09-monomios-polinomios',
+          'algebra-10-operacoes-polinomios',
           'algebra-05-produtos-notaveis',
           'algebra-06-fatoracao',
           'algebra-07-fracoes-algebricas',
@@ -52,11 +54,11 @@ void main() {
       }
     });
 
-    test('as vinte atividades cobrem todas as aulas', () {
+    test('as vinte e quatro atividades cobrem todas as aulas', () {
       final lessonIds = algebraCourseLessons.map((lesson) => lesson.id).toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockExercises, hasLength(20));
+      expect(mockExercises, hasLength(24));
 
       for (final exercise in mockExercises) {
         expect(
