@@ -1,6 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calcquest/shared/data/limits_course_data.dart';
+import 'package:calcquest/shared/data/localized_limits_course_data.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
 
 void main() {
@@ -32,8 +34,21 @@ void main() {
         expect(lesson.title.trim(), isNotEmpty);
         expect(lesson.description.trim(), isNotEmpty);
         expect(lesson.objective.trim(), isNotEmpty);
-        expect(lesson.sections.length, greaterThanOrEqualTo(2));
-        expect(lesson.takeaways.length, greaterThanOrEqualTo(3));
+        expect(
+          lesson.sections.length,
+          greaterThanOrEqualTo(8),
+          reason: '${lesson.id} ainda está curta demais para o padrão universitário.',
+        );
+        expect(
+          lesson.takeaways.length,
+          greaterThanOrEqualTo(7),
+          reason: '${lesson.id} precisa de uma síntese conceitual mais robusta.',
+        );
+        expect(
+          lesson.duration,
+          isNot(contains('5 min')),
+          reason: '${lesson.id} ainda usa a duração do formato resumido.',
+        );
         expect(lesson.closing.trim(), isNotEmpty);
 
         for (final section in lesson.sections) {
@@ -49,6 +64,27 @@ void main() {
           lessThan(lesson.check.choices.length),
         );
         expect(lesson.check.explanation.trim(), isNotEmpty);
+      }
+    });
+
+    test('português e inglês mantêm IDs, ordem e duração', () {
+      final portuguese = limitsCourseLessons;
+      final english = localizedLimitsCourseLessons(const Locale('en'));
+
+      expect(
+        english.map((lesson) => lesson.id).toList(),
+        equals(portuguese.map((lesson) => lesson.id).toList()),
+      );
+      expect(
+        english.map((lesson) => lesson.duration).toList(),
+        equals(portuguese.map((lesson) => lesson.duration).toList()),
+      );
+      for (var index = 0; index < portuguese.length; index++) {
+        expect(
+          english[index].sections.length,
+          equals(portuguese[index].sections.length),
+          reason: '${portuguese[index].id} deve manter paridade estrutural PT/EN.',
+        );
       }
     });
 
