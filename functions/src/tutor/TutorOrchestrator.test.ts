@@ -13,9 +13,10 @@ import {
   TutorBackendResponse,
 } from "../contracts/types";
 import {
-  GeminiTutorResult,
+  TutorModelGateway,
   TutorModelRequest,
-} from "../gemini/geminiTypes";
+  TutorModelResult,
+} from "../model/tutorModelTypes";
 import {
   IdempotencyClaim,
   IdempotencyClaimResult,
@@ -29,7 +30,6 @@ import {
   TutorSession,
 } from "../sessions/sessionTypes";
 import {
-  GeminiGateway,
   IdempotencyGateway,
   RateLimitGateway,
   SessionGateway,
@@ -165,7 +165,7 @@ TutorBackendResponse = {
 
 interface TestState {
   rateCalls: number;
-  geminiCalls: number;
+  modelCalls: number;
   completed: number;
   abandoned: number;
   createdFirstHint: number;
@@ -185,8 +185,8 @@ interface TestDependencies {
     RateLimitGateway;
   sessions:
     SessionGateway;
-  gemini:
-    GeminiGateway;
+  model:
+    TutorModelGateway;
 }
 
 /**
@@ -201,8 +201,8 @@ function createTestEnvironment(
       IdempotencyClaimResult;
     rateResult?:
       RateLimitResult;
-    geminiResult?:
-      GeminiTutorResult;
+    modelResult?:
+      TutorModelResult;
     questionExists?:
       boolean;
   } = {},
@@ -214,7 +214,7 @@ function createTestEnvironment(
   const state:
   TestState = {
     rateCalls: 0,
-    geminiCalls: 0,
+    modelCalls: 0,
     completed: 0,
     abandoned: 0,
     createdFirstHint: 0,
@@ -399,18 +399,18 @@ function createTestEnvironment(
       },
     },
 
-    gemini: {
+    model: {
       async generate(
         modelRequest:
           TutorModelRequest,
-      ): Promise<GeminiTutorResult> {
-        state.geminiCalls += 1;
+      ): Promise<TutorModelResult> {
+        state.modelCalls += 1;
 
         state.lastModelRequest =
           modelRequest;
 
         return (
-          options.geminiResult ??
+          options.modelResult ??
           {
             ok: true,
             rawResponse:
@@ -489,7 +489,7 @@ RequestHintInput {
   };
 }
 
-test("cached idempotent response bypasses rate limit and Gemini", async () => {
+test("cached idempotent response bypasses rate limit and model", async () => {
   const environment =
     createTestEnvironment({
       idempotencyResult: {
@@ -522,7 +522,7 @@ test("cached idempotent response bypasses rate limit and Gemini", async () => {
   );
 
   assert.equal(
-    environment.state.geminiCalls,
+    environment.state.modelCalls,
     0,
   );
 });
@@ -852,7 +852,7 @@ test("explain_error remains blocked until secure attempts exist", async () => {
   );
 
   assert.equal(
-    environment.state.geminiCalls,
+    environment.state.modelCalls,
     0,
   );
 
@@ -900,7 +900,7 @@ test("recommend_review stays blocked without trusted progress", async () => {
   );
 
   assert.equal(
-    environment.state.geminiCalls,
+    environment.state.modelCalls,
     0,
   );
 });
