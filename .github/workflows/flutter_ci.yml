@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - content/university-algebra-v1
   pull_request:
     branches:
       - main
@@ -74,5 +75,9 @@ jobs:
       - name: Lint Functions
         run: npm run lint
 
-      - name: Build and test Functions
-        run: npm test
+      - name: Build Functions
+        run: npm run build
+
+      - name: Run Functions tests with Firestore Emulator
+        working-directory: .
+        run: npx --yes firebase-tools emulators:exec --project demo-calculo-trivial --only firestore "npm --prefix functions test"
