@@ -9,7 +9,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Aproximar antes de calcular',
     description:
         'Construa a intuição de limite e aprenda a ler cada parte da notação.',
-    duration: '≈ 5 min',
+    duration: '≈ 28 min',
     objective:
         'explicar com suas palavras o que um limite descreve',
     symbol: 'lim',
@@ -62,6 +62,105 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Limite e valor da função não são a mesma coisa',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'O comportamento ao redor pode sobreviver a um furo',
+            content:
+                'Uma função pode não estar definida em x=a e ainda assim possuir limite quando x→a. Também pode acontecer de f(a) existir, mas ser diferente do valor para o qual a função se aproxima.',
+            emphasis:
+                'Limite descreve vizinhança; f(a) descreve o ponto.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Um furo removível',
+            problem: 'Considere f(x)=(x²−1)/(x−1), para x≠1. O que ocorre quando x→1?',
+            steps: [
+              'Para x≠1, fatore x²−1=(x−1)(x+1).',
+              'A expressão coincide com x+1 em todos os pontos próximos de 1, exceto no próprio 1.',
+              'Valores próximos de 1 produzem saídas próximas de 2.',
+            ],
+            result: 'lim x→1 f(x)=2, mesmo sem usar f(1).',
+            interpretation:
+                'Esse exemplo antecipa a ideia de descontinuidade removível.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Três representações, uma mesma ideia',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.table,
+            title: 'Tabela, gráfico e expressão',
+            content:
+                'Uma tabela sugere tendências numéricas; o gráfico mostra o comportamento geométrico; a expressão algébrica permite justificar e generalizar. Em bons problemas de Cálculo, as três representações se complementam.',
+            emphasis:
+                'Não confunda evidência numérica com demonstração algébrica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Quando a aproximação falha',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Salto, explosão ou oscilação',
+            content:
+                'Um limite finito pode falhar quando os lados se aproximam de valores diferentes, quando a função cresce sem limite ou quando oscila sem se estabilizar. Essas situações serão tratadas separadamente nas próximas aulas.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Precisão da aproximação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Quanto mais perto na entrada, mais perto na saída',
+            content:
+                'A formulação rigorosa de limite torna precisa a ideia de controlar a distância entre f(x) e L escolhendo x suficientemente próximo de a. Neste nível, o foco é compreender essa relação antes de estudar a definição ε–δ formal.',
+            emphasis:
+                'A intuição correta prepara o terreno para a definição rigorosa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Leitura conceitual',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Interprete antes de calcular',
+            problem: 'Se lim x→4 g(x)=10, o que isso realmente informa?',
+            steps: [
+              'Escolha entradas cada vez mais próximas de 4, sem exigir x=4.',
+              'Observe as saídas correspondentes.',
+              'Elas podem ser tornadas tão próximas de 10 quanto desejado, desde que a aproximação seja suficientemente boa.',
+            ],
+            result: 'O limite descreve tendência local, não necessariamente o valor g(4).',
+            interpretation:
+                'Essa leitura evita um dos erros conceituais mais comuns em Cálculo I.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Base conceitual: Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; Guidorizzi, Um Curso de Cálculo. A organização privilegia interpretação numérica, gráfica e algébrica antes do formalismo ε–δ.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -79,6 +178,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Limite descreve uma tendência das saídas da função.',
       'O valor no ponto e o limite são conceitos relacionados, mas diferentes.',
       'A notação informa função observada, ponto de aproximação e valor previsto.',
+
+      'O limite pode existir mesmo quando a função não está definida no ponto.',
+      'Tabelas, gráficos e álgebra oferecem evidências complementares.',
+      'A aproximação pode falhar por salto, crescimento sem limite ou oscilação.',
+      'A definição rigorosa formaliza a ideia de controlar a proximidade entre entrada e saída.',
     ],
     closing:
         'Na próxima aula, você aprenderá a comparar aproximações pela esquerda e pela direita.',
@@ -91,7 +195,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites laterais, tabelas e gráficos',
     description:
         'Aprenda a investigar um ponto pelos dois lados e a reconhecer quando o limite não existe.',
-    duration: '≈ 5 min',
+    duration: '≈ 30 min',
     objective:
         'calcular limites laterais e comparar seus resultados',
     symbol: '→',
@@ -144,6 +248,98 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Funções definidas por partes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Escolha a expressão correta em cada lado',
+            content:
+                'Em uma função por partes, o limite pela esquerda deve usar a fórmula válida para x<a e o limite pela direita deve usar a fórmula válida para x>a. O valor definido exatamente em a não decide os limites laterais.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Dois lados, duas fórmulas',
+            problem: 'f(x)=x+2 se x<1 e f(x)=x²+1 se x≥1. Analise x→1.',
+            steps: [
+              'Pela esquerda: x+2 tende a 3.',
+              'Pela direita: x²+1 tende a 2.',
+              'Como 3≠2, os limites laterais discordam.',
+            ],
+            result: 'O limite bilateral em x=1 não existe.',
+            interpretation:
+                'Mesmo que f(1)=2, o desacordo entre os lados impede o limite bilateral.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Limites laterais infinitos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Um lado pode crescer sem limite',
+            content:
+                'Em expressões como 1/x perto de zero, o comportamento depende do lado: quando x→0⁺, 1/x cresce positivamente; quando x→0⁻, cresce negativamente em módulo.',
+            emphasis:
+                'Os símbolos +∞ e −∞ descrevem comportamento não limitado; não são números reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Protocolo de leitura de gráfico',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Siga a curva, não o ponto isolado',
+            content:
+                'Para cada lado, percorra visualmente o gráfico em direção a x=a e registre a altura aproximada. Só depois compare com o ponto fechado que representa f(a).',
+            emphasis:
+                'Limite lateral é uma pergunta de movimento ao longo do gráfico.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Tabelas bilaterais confiáveis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.table,
+            title: 'Aproxime com escala progressiva',
+            content:
+                'Use sequências como a−0,1; a−0,01; a−0,001 e a+0,1; a+0,01; a+0,001. A regularidade da aproximação ajuda a distinguir tendência real de coincidência numérica.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Critério de existência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Condição necessária e suficiente',
+            content:
+                'Para um limite bilateral finito, lim x→a f(x)=L exatamente quando os dois limites laterais existem e ambos valem L.',
+            emphasis:
+                'Esta equivalência será usada continuamente em continuidade e funções definidas por partes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Referências principais: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. O tratamento segue a abordagem padrão de limites laterais por gráficos, tabelas e funções definidas por partes.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -162,6 +358,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'O limite bilateral exige igualdade entre os dois lados.',
       'Ponto fechado representa f(a); aproximação é lida pela curva próxima.',
       'Um salto produz limites laterais diferentes.',
+
+      'Em funções por partes, cada limite lateral usa a expressão válida naquele lado.',
+      'Limites laterais podem ser infinitos.',
+      'O limite bilateral existe somente quando os dois lados concordam.',
+      'O valor f(a) é independente do critério de existência do limite.',
     ],
     closing:
         'Agora que você sabe verificar a existência do limite, vamos aprender as propriedades que tornam o cálculo mais rápido.',
@@ -174,7 +375,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Propriedades e substituição direta',
     description:
         'Descubra quando basta substituir e como combinar limites conhecidos com segurança.',
-    duration: '≈ 5 min',
+    duration: '≈ 30 min',
     objective:
         'usar as propriedades algébricas e reconhecer funções contínuas',
     symbol: 'L',
@@ -227,6 +428,89 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Leis dos limites',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Soma, diferença, produto e quociente',
+            content:
+                'Se lim f(x)=L e lim g(x)=M, então os limites de f±g e fg são L±M e LM. Para f/g, o resultado é L/M desde que M≠0.',
+            emphasis:
+                'As leis dependem da existência dos limites envolvidos e, no quociente, de denominador limite não nulo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Potências, raízes e composição',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Propague limites por operações contínuas',
+            content:
+                'Potências inteiras e raízes compatíveis com o domínio preservam o limite. Quando uma função externa é contínua no valor limite, é possível passar o limite para dentro da composição.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Polinômios e funções racionais',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Substituição direta justificada',
+            problem: 'Calcule lim x→2 (3x²−x+4).',
+            steps: [
+              'Polinômios são contínuos em todos os números reais.',
+              'Substitua x=2.',
+              '3·4−2+4=14.',
+            ],
+            result: 'O limite vale 14.',
+            interpretation:
+                'A substituição direta funciona porque as leis dos limites sustentam a continuidade do polinômio.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Quando o quociente exige cuidado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Denominador tendendo a zero',
+            content:
+                'Se o denominador tende a zero, a lei do quociente não pode ser aplicada diretamente. É preciso investigar a forma obtida e escolher outra técnica.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Teorema do confronto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Aprisionar uma função entre duas outras',
+            content:
+                'Se g(x)≤f(x)≤h(x) perto de a e g e h têm o mesmo limite L, então f também tende a L. Esse princípio será essencial para compreender o limite trigonométrico fundamental.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Base: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. As leis dos limites são tratadas como fundamento operacional para continuidade e derivadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual limite pode ser resolvido imediatamente por substituição?',
@@ -244,6 +528,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Funções racionais permitem substituição onde o denominador não zera.',
       'Soma, produto e potência preservam limites existentes.',
       '0/0 é um sinal para transformar a expressão.',
+
+      'As leis dos limites permitem combinar limites já conhecidos.',
+      'A lei do quociente exige limite não nulo no denominador.',
+      'Polinômios admitem substituição direta em todo ponto real.',
+      'O teorema do confronto permite determinar limites por comparação.',
     ],
     closing:
         'A próxima aula é dedicada justamente ao caso 0/0 resolvido por fatoração.',
@@ -256,7 +545,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Fatoração revela o limite escondido',
     description:
         'Transforme expressões equivalentes para remover fatores responsáveis pela forma 0/0.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective:
         'resolver limites indeterminados usando fator comum e produtos notáveis',
     symbol: '0/0',
@@ -328,6 +617,85 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '4',
+        title: '0/0 é uma forma indeterminada',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Não é resposta',
+            content:
+                'Obter 0/0 por substituição não significa que o limite seja zero, infinito ou inexistente. Significa apenas que a expressão original não revelou o comportamento e precisa ser transformada.',
+            emphasis:
+                'Forma indeterminada é um diagnóstico, não um resultado.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Equivalência em uma vizinhança perfurada',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Podemos simplificar porque x não precisa ser igual a a',
+            content:
+                'Ao estudar x→a, interessam valores arbitrariamente próximos de a. Se duas expressões coincidem para x≠a numa vizinhança do ponto, elas possuem o mesmo comportamento limite.',
+            emphasis:
+                'Essa é a justificativa conceitual para cancelar um fator comum após fatorar.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Padrões de fatoração úteis',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Reconheça a estrutura',
+            content:
+                'Diferença de quadrados, trinômios, fator comum e diferença ou soma de cubos aparecem com frequência. O objetivo é revelar o fator que zera numerador e denominador.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Diferença de cubos',
+            problem: 'Calcule lim x→2 (x³−8)/(x−2).',
+            steps: [
+              'Fatore x³−8=(x−2)(x²+2x+4).',
+              'Simplifique o fator x−2 para x≠2.',
+              'Substitua x=2 na expressão restante.',
+            ],
+            result: '4+4+4=12.',
+            interpretation:
+                'O limite recupera o comportamento da expressão simplificada perto do ponto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Furo e valor redefinido',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Geometria da simplificação',
+            content:
+                'Quando um fator comum é cancelado, o gráfico original costuma coincidir com o gráfico simplificado, exceto por um possível furo no ponto problemático. O limite é a altura desse furo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Referências: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. A fatoração é apresentada como técnica algébrica sustentada pela ideia de vizinhança perfurada.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -342,6 +710,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Diferença de quadrados: a²−b²=(a−b)(a+b).',
       'Trinômios podem revelar o fator que zera o denominador.',
       'Cancelamento só ocorre entre fatores.',
+
+      '0/0 é uma forma indeterminada e exige análise adicional.',
+      'Expressões equivalentes para x≠a têm o mesmo limite em a quando coincidem perto do ponto.',
+      'Diferenças de quadrados e cubos são padrões frequentes em limites.',
+      'A fatoração frequentemente revela geometricamente uma descontinuidade removível.',
     ],
     closing:
         'Nem toda indeterminação é polinomial. Na próxima aula, usaremos conjugados para trabalhar com raízes.',
@@ -354,7 +727,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Racionalização com expressões conjugadas',
     description:
         'Elimine indeterminações envolvendo raízes sem alterar o valor da expressão.',
-    duration: '≈ 5 min',
+    duration: '≈ 30 min',
     objective:
         'identificar conjugados e racionalizar numeradores ou denominadores',
     symbol: '√',
@@ -399,6 +772,90 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Por que o conjugado funciona',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(A−B)(A+B)=A²−B²',
+            content:
+                'Multiplicar pelo conjugado transforma uma diferença envolvendo raízes em uma diferença algébrica sem radical naquela parte da expressão. O valor da fração é preservado porque multiplicamos numerador e denominador pelo mesmo fator.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Racionalizar numerador ou denominador',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'A posição da raiz decide a estratégia',
+            content:
+                'O conjugado deve ser aplicado à parte que produz a indeterminação. Em alguns exercícios a raiz está no numerador; em outros, no denominador.',
+            emphasis:
+                'Não existe regra de “racionalizar sempre o denominador” em limites.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Exemplo com raiz no numerador',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Conjugado revela o fator oculto',
+            problem: 'Calcule lim x→0 (√(1+x)−1)/x.',
+            steps: [
+              'A substituição produz 0/0.',
+              'Multiplique pelo conjugado √(1+x)+1.',
+              'O numerador vira x.',
+              'Simplifique x para x≠0.',
+            ],
+            result: 'O limite é 1/2.',
+            interpretation:
+                'O conjugado transforma a expressão numa forma adequada para substituição direta.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Domínio e aproximação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Raízes impõem restrições',
+            content:
+                'Ao trabalhar com raízes reais, confirme de quais lados o ponto pode ser aproximado dentro do domínio. Em pontos de fronteira, pode existir apenas um limite lateral relevante.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Escolha entre fatoração e conjugado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Diagnóstico estrutural',
+            content:
+                'Se a indeterminação vem de fatores polinomiais, tente fatoração. Se envolve diferença de raízes quadradas, o conjugado costuma ser a ferramenta natural. Alguns problemas exigem ambas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Base: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. A racionalização é tratada como manipulação algébrica para remover formas indeterminadas com radicais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual é o conjugado de √(x+1) − 3?',
@@ -412,6 +869,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Multiplique a fração por uma razão igual a 1.',
       'Simplifique somente depois de desenvolver o produto.',
       'Ao final, volte à substituição direta.',
+
+      'O conjugado usa a identidade da diferença de quadrados.',
+      'A parte racionalizada deve ser aquela responsável pela indeterminação.',
+      'O domínio de radicais pode tornar a aproximação unilateral.',
+      'Fatoração e racionalização podem aparecer no mesmo problema.',
     ],
     closing:
         'A última técnica principal examina o comportamento quando x cresce sem limite.',
@@ -424,7 +886,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites no infinito e assíntotas',
     description:
         'Compare termos dominantes para prever o comportamento de funções racionais.',
-    duration: '≈ 5 min',
+    duration: '≈ 34 min',
     objective:
         'calcular limites no infinito e interpretar assíntotas horizontais',
     symbol: '∞',
@@ -476,6 +938,93 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Limite no infinito não é limite infinito',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Duas perguntas diferentes',
+            content:
+                'Em lim x→∞ f(x), a entrada cresce sem limite. Em lim x→a f(x)=∞, a entrada se aproxima de um número finito enquanto a saída cresce sem limite. Não confunda esses dois comportamentos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Funções racionais e graus',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Compare os termos dominantes',
+            content:
+                'Para P(x)/Q(x): se grau(P)<grau(Q), o limite tende a 0; se os graus são iguais, tende à razão dos coeficientes líderes; se grau(P)>grau(Q), o comportamento não possui assíntota horizontal finita.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Mesmos graus',
+            problem: 'Calcule lim x→∞ (3x²−1)/(2x²+5x).',
+            steps: [
+              'Divida numerador e denominador por x².',
+              'Termos com 1/x e 1/x² tendem a zero.',
+              'Restam os coeficientes líderes 3 e 2.',
+            ],
+            result: 'O limite é 3/2.',
+            interpretation:
+                'Logo y=3/2 é uma assíntota horizontal no sentido x→∞.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Assíntotas horizontais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Comportamento distante',
+            content:
+                'Se f(x)→L quando x→∞ ou x→−∞, então y=L é uma assíntota horizontal naquele sentido. Uma função pode cruzar sua assíntota horizontal e ainda assim aproximar-se dela a longo prazo.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Assíntotas verticais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Crescimento sem limite perto de um ponto',
+            content:
+                'Se ao menos um limite lateral de f(x) cresce para +∞ ou −∞ quando x→a, a reta x=a funciona como assíntota vertical no sentido correspondente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Sinais e infinito',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Observe paridade e sinais',
+            content:
+                'Ao dividir por potências de x ou comparar termos dominantes, acompanhe o sinal quando x→−∞. Potências pares e ímpares têm comportamentos diferentes.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Referências: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. O foco está em comportamento assintótico, comparação de graus e interpretação geométrica.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual é lim x→∞ (5x+1)/(x²+2)?',
@@ -489,6 +1038,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Grau menor no numerador produz limite zero.',
       'Graus iguais produzem a razão dos coeficientes líderes.',
       'Limites finitos no infinito indicam assíntotas horizontais.',
+
+      'Limite no infinito e limite infinito descrevem fenômenos diferentes.',
+      'Em funções racionais, os termos dominantes controlam o comportamento distante.',
+      'Limites finitos no infinito identificam assíntotas horizontais.',
+      'Crescimento ilimitado perto de um ponto está ligado a assíntotas verticais.',
     ],
     closing:
         'Na próxima aula, você conhecerá os limites trigonométricos fundamentais.',
@@ -501,7 +1055,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites trigonométricos fundamentais',
     description:
         'Entenda por que sen(x)/x tende a 1 e aprenda a adaptar esse padrão.',
-    duration: '≈ 5 min',
+    duration: '≈ 36 min',
     objective: 'reconhecer e aplicar limites trigonométricos em radianos',
     symbol: 'sen',
     sections: [
@@ -559,6 +1113,88 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Por que radianos são essenciais',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'A constante seria diferente em graus',
+            content:
+                'O limite lim x→0 sin(x)/x=1 depende de x estar em radianos. Radianos conectam comprimento de arco e ângulo sem um fator artificial de conversão.',
+            emphasis:
+                'Em Cálculo, fórmulas de limites e derivadas trigonométricas são naturalmente expressas em radianos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Ideia geométrica do limite fundamental',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Teorema do confronto',
+            content:
+                'No círculo unitário, comparações entre áreas de triângulos e setores fornecem desigualdades que aprisionam sin(x)/x entre expressões que tendem a 1. Pelo teorema do confronto, o limite também vale 1.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Variações do limite fundamental',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Mudança de escala',
+            problem: 'Calcule lim x→0 sin(5x)/x.',
+            steps: [
+              'Escreva sin(5x)/x = 5·sin(5x)/(5x).',
+              'Quando x→0, também 5x→0.',
+              'Use sin(u)/u→1.',
+            ],
+            result: 'O limite vale 5.',
+            interpretation:
+                'O fator de escala aparece fora do limite fundamental.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'O limite envolvendo cosseno',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: '(1−cos x)/x',
+            content:
+                'A racionalização trigonométrica mostra que lim x→0 (1−cos x)/x=0. Esse resultado aparece em demonstrações de derivadas e em aproximações locais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Substituições trigonométricas simples',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.calculate,
+            title: 'Transforme para a forma conhecida',
+            content:
+                'Quando surge sin(g(x))/g(x), identifique u=g(x). Se u→0, a estrutura fundamental pode ser aplicada. O mesmo raciocínio permite reorganizar fatores constantes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Base: Stewart; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards; Guidorizzi. O limite sin(x)/x é apresentado com motivação geométrica, teorema do confronto e aplicações posteriores em derivadas.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual é lim x→0 sen(5x)/x?',
@@ -572,6 +1208,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Procure construir uma razão do tipo sen(u)/u.',
       'O ajuste feito no denominador deve ser compensado fora da razão.',
       'Identidades e conjugados ajudam em expressões com cosseno.',
+
+      'O limite trigonométrico fundamental pressupõe ângulos em radianos.',
+      'O teorema do confronto fornece uma justificativa geométrica para sin(x)/x→1.',
+      'Fatores de escala podem ser reorganizados para produzir a forma fundamental.',
+      'Limites trigonométricos serão usados diretamente nas derivadas de seno e cosseno.',
     ],
     closing:
         'A aula final reunirá técnicas algébricas, laterais, infinito e trigonometria.',
@@ -584,7 +1225,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Como escolher a técnica certa',
     description:
         'Organize as ideias do módulo em um método de análise confiável.',
-    duration: '≈ 5 min',
+    duration: '≈ 38 min',
     objective:
         'diagnosticar um limite e justificar a técnica escolhida',
     symbol: '?',
@@ -637,6 +1278,93 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(
+        number: '3',
+        title: 'Árvore de decisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Da substituição à técnica',
+            content:
+                'Comece por identificar o tipo de aproximação. Teste substituição direta. Se surgir valor definido, finalize. Se surgir 0/0, procure fatoração, conjugado ou limite trigonométrico. Se houver infinito, analise termos dominantes e sinais.',
+            emphasis:
+                'O diagnóstico reduz tentativa e erro.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Distinguir resultado de forma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: '0/0, ∞/∞ e denominador zero',
+            content:
+                'Formas indeterminadas não são respostas. Elas indicam que diferentes funções com a mesma aparência inicial podem ter limites distintos. A estrutura da expressão precisa ser analisada.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Análise em múltiplas representações',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Confirme o resultado',
+            content:
+                'Depois da álgebra, confronte a resposta com o gráfico, uma tabela ou o comportamento esperado. Em aplicações físicas, verifique também sinal e unidade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Problema cumulativo',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Escolha de técnica sem pista',
+            problem: 'Analise lim x→0 (√(1+x)−1)/sin x.',
+            steps: [
+              'A substituição produz 0/0.',
+              'Racionalize o numerador: (√(1+x)−1)=x/(√(1+x)+1).',
+              'Reescreva x/sin x como o inverso de sin x/x.',
+              'Use √(1+x)+1→2 e sin x/x→1.',
+            ],
+            result: 'O limite vale 1/2.',
+            interpretation:
+                'O exercício combina racionalização e limite trigonométrico fundamental.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Ponte para Continuidade e Derivadas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'O limite passa a organizar o Cálculo',
+            content:
+                'Continuidade compara lim x→a f(x) com f(a). A derivada nasce do limite de um quociente incremental. Assim, Limites não é um capítulo isolado: é a linguagem que sustenta os próximos conceitos.',
+            emphasis:
+                'Próxima etapa: transformar comportamento limite em continuidade.',
+            tone: LearningCardTone.success,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e síntese final',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências',
+            content:
+                'Síntese baseada em Stewart, Thomas’ Calculus, OpenStax Calculus Volume 1, Larson & Edwards e Guidorizzi. A sequência segue a progressão internacional típica: interpretação → leis → técnicas algébricas → infinito → trigonometria → continuidade e derivada.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -655,6 +1383,11 @@ const List<CourseLessonData> limitsCourseLessons = [
       'Use fatoração para estruturas polinomiais e conjugados para radicais.',
       'No infinito, compare os termos dominantes.',
       'Interprete o resultado no contexto algébrico, gráfico ou físico.',
+
+      'A técnica correta nasce do diagnóstico da forma do limite.',
+      'Formas indeterminadas indicam necessidade de transformação, não um resultado.',
+      'Resultados devem ser verificados algébrica, gráfica ou numericamente.',
+      'Limites fornecem a base formal para continuidade e derivadas.',
     ],
     closing:
         'Você concluiu a teoria essencial de Limites. Agora a prática consolidará o roteiro de decisão.',
