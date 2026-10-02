@@ -19,10 +19,10 @@ import {
   ViewStepsInput,
 } from "../contracts/types";
 import {
-  GeminiTutorResult,
+  TutorModelGateway,
   TutorModelQuestionContext,
   TutorModelRequest,
-} from "../gemini/geminiTypes";
+} from "../model/tutorModelTypes";
 import {
   IdempotencyClaim,
   IdempotencyClaimResult,
@@ -107,18 +107,12 @@ export interface SessionGateway {
   ): Promise<SessionMutationResult>;
 }
 
-export interface GeminiGateway {
-  generate(
-    request: TutorModelRequest,
-  ): Promise<GeminiTutorResult>;
-}
-
 export interface TutorOrchestratorDependencies {
   contentRepository: ContentRepository;
   idempotency: IdempotencyGateway;
   rateLimit: RateLimitGateway;
   sessions: SessionGateway;
-  gemini: GeminiGateway;
+  model: TutorModelGateway;
 }
 
 interface PreparedSession {
@@ -332,7 +326,7 @@ export class TutorOrchestrator {
 
     const result =
       await this.dependencies
-        .gemini
+        .model
         .generate(modelRequest);
 
     if (!result.ok) {
