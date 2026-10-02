@@ -12,6 +12,9 @@ import {
   HttpsError,
 } from "firebase-functions/v2/https";
 
+/**
+ * Serializable personal-data export returned to the authenticated user.
+ */
 export interface PersonalDataExport {
   exportedAt: string;
   account: {
@@ -34,12 +37,27 @@ interface ExportMyDataRequest {
   data: unknown;
 }
 
+/**
+ * Reads the authenticated user's exportable Firebase data.
+ */
 export class FirebasePersonalDataExportService {
+  /**
+   * Creates the export service.
+   *
+   * @param {Firestore} firestore Firestore Admin instance.
+   * @param {Auth} auth Firebase Authentication Admin instance.
+   */
   constructor(
     private readonly firestore: Firestore,
     private readonly auth: Auth,
   ) {}
 
+  /**
+   * Exports data owned by one authenticated uid.
+   *
+   * @param {string} uid Authenticated Firebase uid.
+   * @return {Promise<PersonalDataExport>} Serializable export.
+   */
   async export(
     uid: string,
   ): Promise<PersonalDataExport> {
@@ -82,6 +100,13 @@ export class FirebasePersonalDataExportService {
   }
 }
 
+/**
+ * Validates and serves one authenticated personal-data export request.
+ *
+ * @param {ExportMyDataRequest} request Callable request.
+ * @param {object} executor Export executor.
+ * @return {Promise<PersonalDataExport>} User-owned export.
+ */
 export async function handleExportMyData(
   request: ExportMyDataRequest,
   executor: {
@@ -112,6 +137,12 @@ export async function handleExportMyData(
   }
 }
 
+/**
+ * Converts Firebase Authentication metadata to the public export format.
+ *
+ * @param {UserRecord} user Firebase user record.
+ * @return {PersonalDataExport["account"]} Serializable account metadata.
+ */
 function serializeAccount(
   user: UserRecord,
 ): PersonalDataExport["account"] {
@@ -130,6 +161,12 @@ function serializeAccount(
   };
 }
 
+/**
+ * Serializes one Tutor session document.
+ *
+ * @param {QueryDocumentSnapshot<DocumentData>} snapshot Session snapshot.
+ * @return {Record<string, unknown>} Serializable session.
+ */
 function serializeTutorSession(
   snapshot: QueryDocumentSnapshot<DocumentData>,
 ): Record<string, unknown> {
@@ -139,6 +176,12 @@ function serializeTutorSession(
   };
 }
 
+/**
+ * Serializes a Firestore object into a plain JSON-compatible record.
+ *
+ * @param {unknown} value Firestore value.
+ * @return {Record<string, unknown>} Serializable record.
+ */
 function serializeRecord(
   value: unknown,
 ): Record<string, unknown> {
@@ -155,6 +198,12 @@ function serializeRecord(
   return serialized as Record<string, unknown>;
 }
 
+/**
+ * Recursively converts Firestore timestamps and nested values.
+ *
+ * @param {unknown} value Value to serialize.
+ * @return {unknown} JSON-compatible value.
+ */
 function serializeValue(
   value: unknown,
 ): unknown {
@@ -183,6 +232,12 @@ function serializeValue(
   return value;
 }
 
+/**
+ * Rejects client-controlled fields for the export callable.
+ *
+ * @param {unknown} data Callable payload.
+ * @return {boolean} True when unexpected fields are present.
+ */
 function hasUnexpectedData(
   data: unknown,
 ): boolean {
