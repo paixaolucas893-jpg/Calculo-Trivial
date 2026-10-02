@@ -1317,7 +1317,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
               'Fatore o denominador: x²−9=(x−3)(x+3).',
               'O denominador zera em x=3 e x=−3.',
             ],
-            result: 'D_f=ℝ\{−3,3}.',
+            result: 'D_f=ℝ\\{−3,3}.',
             interpretation:
                 'Os dois pontos são removidos antes de qualquer análise gráfica.',
           ),
@@ -4793,7 +4793,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
             visual: LessonVisual.idea,
             title: 'Unidade da saída por unidade da entrada',
             content:
-                'Se posição é medida em metros e tempo em segundos, a taxa média tem unidade m/s. Se custo é em reais e quantidade em unidades, a taxa pode ser R$/unidade.',
+                'Se posição é medida em metros e tempo em segundos, a taxa média tem unidade m/s. Se custo é em reais e quantidade em unidades, a taxa pode ser R\$/unidade.',
             emphasis:
                 'Unidades ajudam a interpretar fisicamente o resultado.',
           ),
@@ -6345,7 +6345,7 @@ const List<CourseLessonData> precalculusFunctionsCourseLessons = [
               'Factor x²−9=(x−3)(x+3).',
               'The denominator is zero at x=3 and x=−3.',
             ],
-            result: 'D_f=ℝ\{−3,3}.',
+            result: 'D_f=ℝ\\{−3,3}.',
             interpretation:
                 'Both points are excluded before any graph analysis.',
           ),
