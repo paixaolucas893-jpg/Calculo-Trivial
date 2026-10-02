@@ -68,10 +68,9 @@ Map<string, string> {
     new Map<string, string>();
 
   for (
-    const path of
-      listTypeScriptFiles(
-        sourceRoot,
-      )
+    const path of listTypeScriptFiles(
+      sourceRoot,
+    )
   ) {
     result.set(
       path,
@@ -128,8 +127,7 @@ test(
       }
 
       for (
-        const call of
-          forbiddenLoggingCalls
+        const call of forbiddenLoggingCalls
       ) {
         assert.equal(
           content.includes(call),
@@ -146,8 +144,7 @@ test(
 
       if (hasLoggingReference) {
         for (
-          const term of
-            sensitiveTerms
+          const term of sensitiveTerms
         ) {
           assert.equal(
             content.includes(term),
