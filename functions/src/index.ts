@@ -145,8 +145,8 @@ TutorOrchestrator | null = null;
 /**
  * Returns the process-local Tutor Trivial orchestrator.
  *
- * Keeping one Gemini client per Functions instance also preserves the
- * configured process-local concurrency guard.
+ * Keeping one model client per Functions instance also preserves the
+ * configured process-local concurrency guard. Gemini is the current adapter.
  *
  * @return {TutorOrchestrator} Tutor orchestrator.
  */
@@ -171,7 +171,7 @@ TutorOrchestrator {
       idempotency,
       rateLimit,
       sessions,
-      gemini:
+      model:
         createGeminiTutorClient(
           apiKey,
         ),
