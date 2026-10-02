@@ -9,7 +9,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'When is a function continuous?',
     description:
         'Connect the function value, the limit, and the graph behavior at a point.',
-    duration: '≈ 5 min',
+    duration: '≈ 28 min',
     objective: 'check the three conditions for continuity at a point',
     symbol: 'C',
     sections: [
@@ -52,6 +52,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Continuity and one-sided limits', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Both sides must agree', content: 'For f to be continuous at a, the left-hand and right-hand limits must exist, agree with each other, and equal f(a).', emphasis: 'Continuity combines left behavior, right behavior, and the function value.')]),
+      LessonSectionData(number: '4', title: 'A hole can be repaired', blocks: [WorkedExampleBlockData(title: 'Removable discontinuity', problem: 'f(x)=(x²−1)/(x−1), x≠1. How can f be made continuous at x=1?', steps: ['Factor x²−1=(x−1)(x+1).','For x≠1, f(x)=x+1.','Therefore lim x→1 f(x)=2.','Define f(1)=2.'], result: 'With f(1)=2, continuity is restored.', interpretation: 'The limit tells us exactly which value fills the hole.')]),
+      LessonSectionData(number: '5', title: 'One-sided continuity', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'Endpoints of intervals', content: 'At an endpoint of the domain, continuity is checked from the side that belongs to the domain. On [a,b], continuity at a is right-sided and at b is left-sided.')]),
+      LessonSectionData(number: '6', title: 'Rigorous graph reading', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'No local break', content: 'Graphically, continuity at a means the curve approaches the same height from both sides and the actual function point lies at that height.', emphasis: '“Draw without lifting the pencil” is a metaphor; limit=value is the mathematical criterion.')]),
+      LessonSectionData(number: '7', title: 'Frequent mistakes', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Having f(a) is not enough', content: 'A function may be defined at a and still be discontinuous there. It may also have a limit at a while being undefined at the point.', tone: LearningCardTone.warning)]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The three-condition definition is treated as a direct consequence of limit theory.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -65,6 +72,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'Continuity is a property analyzed at a point or on an interval.',
       'The function value and the limit must both exist.',
       'The equality lim x→a f(x)=f(a) completes the check.',
+
+      'Continuity at a requires f(a), the limit, and equality between them.',
+      'The one-sided limits must agree.',
+      'A removable discontinuity can be repaired by redefining the point value.',
+      'At interval endpoints, continuity is one-sided.',
     ],
     closing:
         'In the next lesson, you will recognize continuous families without repeating the full definition.',
@@ -77,7 +89,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'Continuity on the domain',
     description:
         'Use properties of polynomials, rational functions, roots, and trigonometric functions.',
-    duration: '≈ 5 min',
+    duration: '≈ 30 min',
     objective: 'determine intervals of continuity from the domain',
     symbol: 'D',
     sections: [
@@ -120,6 +132,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Composition of continuous functions', blocks: [ConceptBlockData(visual: LessonVisual.transform, title: 'Continuity passes through composition', content: 'If g is continuous at a and f is continuous at g(a), then f∘g is continuous at a. This lets us analyze complicated expressions layer by layer.')]),
+      LessonSectionData(number: '4', title: 'Exponentials and logarithms', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Fundamental families', content: 'Exponential functions are continuous on ℝ. Logarithms are continuous where their arguments are positive. Domain comes first.')]),
+      LessonSectionData(number: '5', title: 'Trigonometric functions', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Sine, cosine, and quotients', content: 'Sine and cosine are continuous on ℝ. Tangent and other quotient-based trigonometric functions are continuous where their denominators are nonzero.')]),
+      LessonSectionData(number: '6', title: 'Roots and domain boundaries', blocks: [WorkedExampleBlockData(title: 'Composite radical', problem: 'Determine where f(x)=√(5−x) is continuous.', steps: ['Require 5−x≥0.','Thus x≤5.','The square-root function is continuous on its domain.'], result: 'f is continuous on (−∞,5].', interpretation: 'At x=5, continuity is checked from the left.')]),
+      LessonSectionData(number: '7', title: 'Maximal intervals of continuity', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Break the domain at problematic points', content: 'Denominator zeros, radical boundaries, and invalid logarithm arguments divide the domain into maximal intervals on which the expression remains continuous.')]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The approach follows the standard classification of continuous families and continuity-preserving operations.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question: 'Where is √(x−3) continuous over the real numbers?',
@@ -132,6 +151,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'Start by finding the domain of the expression.',
       'Rational functions exclude zeros of the denominator.',
       'Operations and compositions preserve continuity where defined.',
+
+      'Compositions preserve continuity under the appropriate hypotheses.',
+      'Exponentials are continuous on ℝ and logarithms on their positive domains.',
+      'Quotient-based trigonometric functions require attention to denominator zeros.',
+      'Maximal continuity intervals follow from domain restrictions.',
     ],
     closing:
         'Now you will classify what happens at points where continuity fails.',
@@ -144,7 +168,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'Holes, jumps, and asymptotes',
     description:
         'Distinguish removable, jump, and infinite discontinuities.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective: 'classify a discontinuity from the behavior of its limits',
     symbol: '!',
     sections: [
@@ -186,6 +210,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Removable discontinuity', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'The limit exists but the point fails', content: 'If lim x→a f(x)=L exists but f(a) is missing or f(a)≠L, the discontinuity is removable. Defining f(a)=L repairs the function.')]),
+      LessonSectionData(number: '4', title: 'Jump discontinuity', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'The sides approach different heights', content: 'When the one-sided limits are finite but unequal, the two-sided limit does not exist. Changing only f(a) cannot repair this break.')]),
+      LessonSectionData(number: '5', title: 'Infinite discontinuity', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'Vertical asymptote', content: 'If at least one one-sided limit grows without bound in magnitude, the point has an infinite discontinuity and vertical asymptotic behavior.')]),
+      LessonSectionData(number: '6', title: 'Oscillation', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Not every failure is a jump or infinity', content: 'A function may oscillate indefinitely near a point without approaching one value. Then the limit does not exist.', tone: LearningCardTone.warning)]),
+      LessonSectionData(number: '7', title: 'Evidence-based diagnosis', blocks: [WorkedExampleBlockData(title: 'Classify the break', problem: 'If lim x→2⁻ f(x)=3, lim x→2⁺ f(x)=3, and f(2)=7, what type is it?', steps: ['The one-sided limits agree.','The two-sided limit is 3.','The function value is 7.'], result: 'Removable discontinuity.', interpretation: 'Redefining f(2)=3 restores continuity.')]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The classification distinguishes removable breaks, jumps, infinite behavior, and oscillation.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -199,6 +230,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'Holes correspond to removable discontinuities.',
       'Different one-sided limits characterize jumps.',
       'Unbounded growth near the point indicates an infinite discontinuity.',
+
+      'Removable discontinuities preserve an existing finite limit.',
+      'Jumps occur when finite one-sided limits differ.',
+      'Infinite discontinuities are associated with unbounded behavior.',
+      'Oscillation can prevent limit existence without a jump or asymptote.',
     ],
     closing:
         'In the next lesson, one-sided limits will be used with piecewise-defined functions.',
@@ -211,7 +247,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'Where two rules meet',
     description:
         'Check continuity at switching points and at interval endpoints.',
-    duration: '≈ 5 min',
+    duration: '≈ 32 min',
     objective: 'compare one-sided limits in piecewise-defined functions',
     symbol: '{',
     sections: [
@@ -254,6 +290,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'The junction is where the analysis concentrates', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'Away from the junction each rule is usually simple', content: 'In piecewise functions, each individual expression is often continuous on its own domain. The main work is at points where the rule changes.')]),
+      LessonSectionData(number: '4', title: 'Complete procedure', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Left, right, and value', content: 'At a switching point a, compute lim x→a⁻ f(x), lim x→a⁺ f(x), and f(a). Continuity requires all three to agree.')]),
+      LessonSectionData(number: '5', title: 'Example with two formulas', blocks: [WorkedExampleBlockData(title: 'The rules must meet', problem: 'f(x)=2x+1 for x<2 and x²−1 for x≥2. Is it continuous at 2?', steps: ['From the left: 2·2+1=5.','From the right: 2²−1=3.','f(2)=3.'], result: 'It is not continuous at 2.', interpretation: 'The one-sided mismatch blocks continuity.')]),
+      LessonSectionData(number: '6', title: 'More than one switching point', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Analyze each junction separately', content: 'A function with three or more pieces can have several continuity checkpoints. Each switching point needs its own one-sided comparison.')]),
+      LessonSectionData(number: '7', title: 'Piecewise modeling', blocks: [ConceptBlockData(visual: LessonVisual.engineering, title: 'Rates, control, and physical regimes', content: 'Piecewise models appear when a rule changes after a threshold. Continuity tells us whether the transition between regimes occurs without a jump in the modeled quantity.', tone: LearningCardTone.information)]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. Piecewise functions consolidate one-sided limits and local continuity conditions.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -267,6 +310,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'Use the rule corresponding to each side of the switching point.',
       'Check the value defined at the point separately.',
       'At domain endpoints, use one-sided continuity.',
+
+      'For piecewise functions, focus on the points where the rule changes.',
+      'Continuity at a junction requires equality of left limit, right limit, and function value.',
+      'Each switching point must be checked separately.',
+      'Piecewise models represent regime changes in applications.',
     ],
     closing:
         'The next lesson turns continuity into an equation for finding parameters.',
@@ -279,7 +327,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'Choose values that remove breaks',
     description:
         'Determine parameters and redefine points to make functions continuous.',
-    duration: '≈ 5 min',
+    duration: '≈ 34 min',
     objective: 'set up and solve continuity conditions involving parameters',
     symbol: 'k',
     sections: [
@@ -328,6 +376,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Parameters as compatibility conditions', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Continuity chooses the parameter', content: 'When a piecewise function contains an unknown constant, continuity turns the problem into an equation forcing the pieces to agree at the junction.')]),
+      LessonSectionData(number: '4', title: 'Parameter in the function value', blocks: [WorkedExampleBlockData(title: 'Fill the correct point', problem: 'f(x)=(x²−4)/(x−2) for x≠2 and f(2)=k. Find k.', steps: ['Simplify to x+2.','Compute lim x→2 f(x)=4.','Require k=4.'], result: 'k=4.', interpretation: 'The parameter fills the removable discontinuity.')]),
+      LessonSectionData(number: '5', title: 'Parameter in one branch', blocks: [WorkedExampleBlockData(title: 'Make the pieces agree', problem: 'f(x)=kx+1 for x<2 and x² for x≥2. Find k.', steps: ['Left limit: 2k+1.','Right limit and f(2): 4.','Solve 2k+1=4.'], result: 'k=3/2.', interpretation: 'One-sided equality determines the parameter.')]),
+      LessonSectionData(number: '6', title: 'More than one parameter', blocks: [ConceptBlockData(visual: LessonVisual.calculate, title: 'A system may appear', content: 'With two unknown constants and two independent junction conditions, continuity can produce a system of equations. Later, continuity and differentiability together may provide additional conditions.')]),
+      LessonSectionData(number: '7', title: 'Verify after solving', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Substitute back', content: 'After finding the parameter, recompute the one-sided limits and the function value. This catches algebraic errors before the final conclusion.')]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. Parametric problems turn the definition of continuity into explicit algebraic conditions.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -341,6 +396,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'First calculate the value required by the approaching behavior.',
       'Set one-sided limits equal to adjust piecewise functions.',
       'Redefining one point repairs only removable discontinuities.',
+
+      'Continuity can determine unknown parameters.',
+      'The parameter value comes from matching behavior at a junction.',
+      'Multiple parameters may lead to systems of equations.',
+      'Always verify the result in the original definition.',
     ],
     closing:
         'In the next lesson, continuity will guarantee the existence of values between two measurements.',
@@ -353,7 +413,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'Intermediate Value Theorem',
     description:
         'Use continuity to guarantee values and locate roots on intervals.',
-    duration: '≈ 5 min',
+    duration: '≈ 36 min',
     objective: 'apply the Intermediate Value Theorem correctly',
     symbol: '∃',
     sections: [
@@ -396,6 +456,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Mathematical statement', blocks: [ConceptBlockData(visual: LessonVisual.notation, title: 'Values between f(a) and f(b)', content: 'If f is continuous on [a,b] and N lies between f(a) and f(b), then at least one c in [a,b] exists such that f(c)=N.', emphasis: 'The theorem guarantees existence, not uniqueness or the exact value of c.')]),
+      LessonSectionData(number: '4', title: 'Bolzano as a special case', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'A sign change forces a root', content: 'If f is continuous on [a,b] and f(a) and f(b) have opposite signs, then at least one c in (a,b) satisfies f(c)=0.')]),
+      LessonSectionData(number: '5', title: 'Existence of a root', blocks: [WorkedExampleBlockData(title: 'Without solving the equation', problem: 'Show that x³+x−1=0 has a root in (0,1).', steps: ['The polynomial is continuous.','f(0)=−1.','f(1)=1.','There is a sign change.'], result: 'At least one root exists in (0,1).', interpretation: 'The theorem proves existence without giving a closed formula for the root.')]),
+      LessonSectionData(number: '6', title: 'What the theorem does not say', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Existence is not uniqueness', content: 'The IVT does not say there is only one c and does not locate c exactly. It also cannot be used without verifying continuity on the interval.', tone: LearningCardTone.warning)]),
+      LessonSectionData(number: '7', title: 'Connection to numerical methods', blocks: [ConceptBlockData(visual: LessonVisual.engineering, title: 'Foundation for root finding', content: 'A sign change in a continuous function supports methods such as bisection, which repeatedly narrows an interval while preserving a root guaranteed by the theorem.', tone: LearningCardTone.information)]),
+      LessonSectionData(number: '8', title: 'Academic basis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The Intermediate Value Theorem is presented as a central consequence of continuity and a foundation for existence arguments.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -410,6 +477,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'Every value between f(a) and f(b) is attained.',
       'A sign change guarantees at least one root.',
       'The theorem does not provide an exact location or uniqueness.',
+
+      'The IVT guarantees that continuous functions attain every intermediate value.',
+      'A sign change on a continuous interval guarantees at least one root.',
+      'The theorem proves existence, not uniqueness.',
+      'Numerical methods such as bisection exploit this guarantee.',
     ],
     closing:
         'The final lesson will combine the definition, domain, classification, and applications.',
@@ -422,7 +494,7 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
     title: 'A roadmap for analyzing continuity',
     description:
         'Choose a reliable strategy for points, intervals, and piecewise functions.',
-    duration: '≈ 5 min',
+    duration: '≈ 38 min',
     objective: 'diagnose and justify continuity problems',
     symbol: '✓',
     sections: [
@@ -465,6 +537,13 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
           ),
         ],
       ),
+
+      LessonSectionData(number: '3', title: 'Decision tree for continuity', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Ask in the right order', content: '1) Is the point in the domain? 2) Do the one-sided limits exist? 3) Do they agree? 4) Does the limit equal f(a)? 5) Is there a parameter or junction to adjust?')]),
+      LessonSectionData(number: '4', title: 'Classify the failure', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Removable, jump, infinite, or oscillatory', content: 'After detecting a discontinuity, classify it. The classification indicates whether a simple redefinition can repair the function or whether the break is structural.')]),
+      LessonSectionData(number: '5', title: 'Cumulative problem', blocks: [WorkedExampleBlockData(title: 'From definition to parameter', problem: 'f(x)=(x²−1)/(x−1) for x<1 and kx+1 for x≥1. Find k for continuity at 1.', steps: ['From the left, simplify to x+1 and get 2.','From the right and at the point, get k+1.','Require k+1=2.'], result: 'k=1.', interpretation: 'This combines a removable limit, a piecewise function, and a parameter.')]),
+      LessonSectionData(number: '6', title: 'Continuity does not imply differentiability', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'A corner may still be continuous', content: 'The function |x| is continuous at x=0 but not differentiable there because the one-sided slopes disagree. Continuity is necessary for differentiability, but not sufficient.', tone: LearningCardTone.warning)]),
+      LessonSectionData(number: '7', title: 'Bridge to derivatives', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'From stable values to instantaneous rate', content: 'A derivative is defined through a limit of difference quotients. Before studying instantaneous rates, it is essential to recognize stable and continuous behavior near the point.', emphasis: 'Next unit: differentiability and instantaneous rate.', tone: LearningCardTone.success)]),
+      LessonSectionData(number: '8', title: 'Academic basis and final synthesis', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'References', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; and Guidorizzi, Um Curso de Cálculo. The unit closes the progression limits → continuity → differentiability used in standard Calculus I courses.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -479,6 +558,11 @@ const List<CourseLessonData> englishContinuityCourseLessons = [
       'At special points, apply the three conditions.',
       'One-sided limits classify jumps and infinite breaks.',
       'Continuity allows us to guarantee intermediate values.',
+
+      'Continuity analysis starts with the domain and ends by comparing the limit with the function value.',
+      'Classifying a discontinuity helps determine whether it can be repaired.',
+      'The IVT turns continuity into an existence guarantee.',
+      'Every differentiable function is continuous, but a continuous function need not be differentiable.',
     ],
     closing:
         'You completed the essential theory of Continuity. Now consolidate each decision through practice.',
