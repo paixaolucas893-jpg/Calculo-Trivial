@@ -329,7 +329,7 @@ const List<CourseLessonData> equationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Preço fixo mais custo variável',
-            problem: 'Uma corrida custa R$ 6 de taxa fixa mais R$ 2,50 por quilômetro. Se o total foi R$ 26, quantos quilômetros foram percorridos?',
+            problem: 'Uma corrida custa R\$ 6 de taxa fixa mais R\$ 2,50 por quilômetro. Se o total foi R\$ 26, quantos quilômetros foram percorridos?',
             steps: [
               'Defina x como a distância em quilômetros.',
               'Modele: 6+2,5x=26.',
@@ -953,7 +953,7 @@ const List<CourseLessonData> equationsCourseLessons = [
               'A expressão original exige x ≠ 1.',
               'Para todo x ≠ 1, o lado esquerdo simplifica para 1.',
             ],
-            result: 'S=ℝ\{1}.',
+            result: 'S=ℝ\\{1}.',
             interpretation:
                 'A identidade vale em todo o domínio original, mas o ponto proibido não retorna.',
           ),
@@ -1241,7 +1241,7 @@ const List<CourseLessonData> equationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Problema de quantidades',
-            problem: 'Foram vendidos 30 ingressos entre inteiros e meia-entrada. Inteira custa R$ 20, meia R$ 10, e a arrecadação foi R$ 450. Quantos de cada foram vendidos?',
+            problem: 'Foram vendidos 30 ingressos entre inteiros e meia-entrada. Inteira custa R\$ 20, meia R\$ 10, e a arrecadação foi R\$ 450. Quantos de cada foram vendidos?',
             steps: [
               'Defina x = número de inteiras e y = número de meias.',
               'Quantidade total: x+y=30.',
@@ -1962,7 +1962,7 @@ const List<CourseLessonData> equationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Restrição de orçamento',
-            problem: 'Você tem no máximo R$ 80 para pagar uma taxa fixa de R$ 20 e ingressos de R$ 12 cada. Quantos ingressos x podem ser comprados?',
+            problem: 'Você tem no máximo R\$ 80 para pagar uma taxa fixa de R\$ 20 e ingressos de R\$ 12 cada. Quantos ingressos x podem ser comprados?',
             steps: [
               'Modele: 20+12x≤80.',
               'Subtraia 20: 12x≤60.',
