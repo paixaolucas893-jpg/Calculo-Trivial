@@ -339,7 +339,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Fixed cost plus variable cost',
-            problem: 'A ride costs R$ 6 plus R$ 2.50 per kilometer. If the total is R$ 26, how many kilometers were traveled?',
+            problem: 'A ride costs R\$ 6 plus R\$ 2.50 per kilometer. If the total is R\$ 26, how many kilometers were traveled?',
             steps: [
               'Let x be the distance in kilometers.',
               'Model: 6+2.5x=26.',
@@ -960,7 +960,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
               'The original expression requires x ≠ 1.',
               'For every x ≠ 1, the left side simplifies to 1.',
             ],
-            result: 'S=ℝ\{1}.',
+            result: 'S=ℝ\\{1}.',
             interpretation:
                 'The identity holds throughout the original domain, but the excluded point does not return.',
           ),
@@ -1248,7 +1248,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Quantity problem',
-            problem: 'Thirty tickets were sold as full-price or half-price. Full price is R$ 20, half price is R$ 10, and revenue was R$ 450. How many of each were sold?',
+            problem: 'Thirty tickets were sold as full-price or half-price. Full price is R\$ 20, half price is R\$ 10, and revenue was R\$ 450. How many of each were sold?',
             steps: [
               'Let x be full-price tickets and y be half-price tickets.',
               'Total count: x+y=30.',
@@ -1967,7 +1967,7 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
         blocks: [
           WorkedExampleBlockData(
             title: 'Budget restriction',
-            problem: 'You have at most R$ 80 to pay a fixed R$ 20 fee plus tickets costing R$ 12 each. How many tickets x can you buy?',
+            problem: 'You have at most R\$ 80 to pay a fixed R\$ 20 fee plus tickets costing R\$ 12 each. How many tickets x can you buy?',
             steps: [
               'Model: 20+12x≤80.',
               'Subtract 20: 12x≤60.',
