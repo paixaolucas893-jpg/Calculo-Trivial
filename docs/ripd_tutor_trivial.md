@@ -143,6 +143,7 @@ Escala usada neste documento:
 - Exportação de dados pessoais.
 - Exclusão de conta.
 - Plano de resposta a incidentes.
+- Teste automatizado que proíbe logging nos pontos críticos do Tutor/Gemini.
 - Registro de operações de tratamento.
 
 ## 10. Pendências obrigatórias antes de produção ampla do Tutor
@@ -152,7 +153,7 @@ Escala usada neste documento:
 - [ ] Revisar termos/DPA e mecanismos de transferência internacional do Google/Firebase/Gemini e RevenueCat.
 - [ ] Definir retenção dos Cloud Logs e confirmar ausência de conteúdo desnecessário do prompt nos logs.
 - [ ] Verificar se o provedor/modelo usa os dados enviados para treinamento na configuração contratada e documentar a configuração efetiva.
-- [ ] Criar teste/inspeção para impedir logging acidental de mensagens completas do Tutor.
+- [x] Criar teste/inspeção para impedir logging acidental de mensagens completas do Tutor.
 - [ ] Revisar linguagem de privacidade em formato adequado ao público mais jovem.
 - [ ] Revisar este RIPD após qualquer mudança em memória de longo prazo, analytics, recomendação adaptativa ou novos provedores.
 
