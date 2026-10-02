@@ -899,7 +899,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Dominar a distributiva significa controlar a estrutura da expressão, não apenas remover parênteses.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-04-potencias',
     topicId: 'algebra-fundamental',
@@ -1167,7 +1167,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Leis de expoentes são regras de estrutura: funcionam quando reconhecemos exatamente qual operação e qual base estão presentes.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-09-monomios-polinomios',
     topicId: 'algebra-fundamental',
@@ -1430,7 +1430,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Reconhecer a estrutura de um polinômio é o primeiro passo para operar, fatorar e interpretar sua função.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-10-operacoes-polinomios',
     topicId: 'algebra-fundamental',
@@ -1728,7 +1728,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Operar polinômios com segurança é organizar a estrutura antes de executar as contas.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-05-produtos-notaveis',
     topicId: 'algebra-fundamental',
@@ -1993,7 +1993,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Produtos notáveis são atalhos seguros apenas quando o padrão é reconhecido e compreendido.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-06-fatoracao',
     topicId: 'algebra-fundamental',
@@ -2288,7 +2288,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Fatoração é uma mudança de representação que revela estrutura escondida em uma expressão.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-07-fracoes-algebricas',
     topicId: 'algebra-fundamental',
@@ -2323,7 +2323,7 @@ const List<CourseLessonData> algebraCourseLessons = [
               'Exija x−5 ≠ 0.',
               'Logo, x ≠ 5.',
             ],
-            result: 'Domínio: ℝ\{5}.',
+            result: 'Domínio: ℝ\\{5}.',
             interpretation:
                 'O numerador pode ser zero; o denominador não.',
           ),
@@ -2564,7 +2564,7 @@ const List<CourseLessonData> algebraCourseLessons = [
     ],
     closing:
         'Frações algébricas exigem duas leituras simultâneas: manipular fatores e preservar o domínio.',
-  )
+  ),
   CourseLessonData(
     id: 'algebra-08-sintese',
     topicId: 'algebra-fundamental',
