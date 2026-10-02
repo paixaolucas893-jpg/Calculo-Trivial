@@ -51,4 +51,37 @@ void main() {
       'Simplify the expression:\n(12x³y²) / (3xy)',
     );
   });
+  test('todas as vinte e quatro atividades possuem versão completa em inglês', () {
+    expect(mockExercises, hasLength(24));
+
+    for (var index = 0; index < mockExercises.length; index++) {
+      final exercise = mockExercises[index];
+      final localized = localizeAlgebraExerciseContent(
+        exercise,
+        const Locale('en'),
+      );
+
+      expect(
+        localized.title,
+        'Question ${index + 1} of 24',
+        reason: '${exercise.id} não possui título inglês sincronizado.',
+      );
+      expect(
+        localized.title.contains('Questão'),
+        isFalse,
+        reason: '${exercise.id} caiu no fallback em português.',
+      );
+      expect(
+        localized.skill?.trim(),
+        isNotEmpty,
+        reason: '${exercise.id} precisa de habilidade localizada em inglês.',
+      );
+      expect(
+        localized.explanation.trim().length,
+        greaterThanOrEqualTo(60),
+        reason: '${exercise.id} precisa de explicação inglesa completa.',
+      );
+    }
+  });
+
 }

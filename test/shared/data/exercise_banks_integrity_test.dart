@@ -8,22 +8,31 @@ import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
 
 const exerciseBanks = [
-  (name: 'Álgebra Fundamental', questions: mockExercises),
-  (name: 'Equações e Inequações', questions: mockEquationsExercises),
-  (name: 'Funções', questions: mockFunctionsExercises),
-  (name: 'Limites', questions: mockLimitsExercises),
-  (name: 'Continuidade', questions: mockContinuityExercises),
-  (name: 'Derivadas', questions: mockDerivativesExercises),
+  (name: 'Álgebra Fundamental', questions: mockExercises, expectedCount: 24),
+  (
+    name: 'Equações e Inequações',
+    questions: mockEquationsExercises,
+    expectedCount: 20,
+  ),
+  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 20),
+  (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
+  (
+    name: 'Continuidade',
+    questions: mockContinuityExercises,
+    expectedCount: 20,
+  ),
+  (name: 'Derivadas', questions: mockDerivativesExercises, expectedCount: 20),
 ];
 
 void main() {
   group('Integridade dos bancos de exercícios', () {
     for (final bank in exerciseBanks) {
-      test('${bank.name} contém exatamente 20 questões', () {
+      test('${bank.name} possui a quantidade canônica de questões', () {
         expect(
           bank.questions,
-          hasLength(20),
-          reason: '${bank.name} deve possuir exatamente 20 questões.',
+          hasLength(bank.expectedCount),
+          reason:
+              '${bank.name} deve possuir exatamente ${bank.expectedCount} questões.',
         );
       });
 

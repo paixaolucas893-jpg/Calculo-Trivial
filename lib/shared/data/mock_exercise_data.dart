@@ -34,7 +34,7 @@ class ExerciseData {
 const List<ExerciseData> mockExercises = [
   ExerciseData(
     id: 'simplificacao-1',
-    title: 'Questão 1 de 20',
+    title: 'Questão 1 de 24',
     statement: 'Simplifique a expressão:\\n3x + 5x − 2x',
     correctOptionId: 'a',
     explanation: 'Somamos apenas os coeficientes dos termos semelhantes: 3 + 5 − 2 = 6. A parte literal x permanece, então a expressão simplificada é 6x.',
@@ -50,7 +50,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-2',
-    title: 'Questão 2 de 20',
+    title: 'Questão 2 de 24',
     statement: 'Simplifique a expressão:\\n7a − 2a + 4a',
     correctOptionId: 'c',
     explanation: 'Todos os termos possuem a mesma parte literal a. Somamos os coeficientes 7 − 2 + 4 = 9 e mantemos a variável, chegando a 9a.',
@@ -66,7 +66,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-3',
-    title: 'Questão 3 de 20',
+    title: 'Questão 3 de 24',
     statement: 'Calcule o valor de 2x² − 3x para x = −2.',
     correctOptionId: 'd',
     explanation: 'Substituímos x por −2: 2(−2)² − 3(−2). A potência vem primeiro: 2·4 + 6 = 14, portanto o valor numérico é 14.',
@@ -82,7 +82,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-4',
-    title: 'Questão 4 de 20',
+    title: 'Questão 4 de 24',
     statement: 'Qual é o coeficiente de −8x³?',
     correctOptionId: 'b',
     explanation: 'O coeficiente é o número que multiplica a parte literal. Em −8x³, a parte literal é x³ e o número que a acompanha é −8.',
@@ -98,7 +98,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-5',
-    title: 'Questão 5 de 20',
+    title: 'Questão 5 de 24',
     statement: 'Simplifique a expressão:\\n12x − 5x + 2x',
     correctOptionId: 'c',
     explanation: 'Como os três termos possuem x, somamos os coeficientes: 12 − 5 + 2 = 9. Assim, a expressão equivalente é 9x.',
@@ -114,7 +114,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-1',
-    title: 'Questão 6 de 20',
+    title: 'Questão 6 de 24',
     statement: 'Simplifique a expressão:\\n2(3x − 4) + x',
     correctOptionId: 'b',
     explanation: 'Aplicamos a distributiva em todos os termos do parêntese: 2(3x − 4) = 6x − 8. Depois somamos x e obtemos 7x − 8.',
@@ -130,7 +130,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-2',
-    title: 'Questão 7 de 20',
+    title: 'Questão 7 de 24',
     statement: 'Simplifique a expressão:\\n5a − 2(a + 3)',
     correctOptionId: 'c',
     explanation: 'O fator −2 multiplica a e também 3, produzindo −2a − 6. Então 5a − 2a − 6 = 3a − 6.',
@@ -146,7 +146,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencias-1',
-    title: 'Questão 8 de 20',
+    title: 'Questão 8 de 24',
     statement: 'Efetue a multiplicação:\\n(−3x²)(2x)',
     correctOptionId: 'd',
     explanation: 'Multiplicamos os coeficientes: −3·2 = −6. Para a mesma base x, somamos os expoentes: x²·x = x³. O produto é −6x³.',
@@ -162,7 +162,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-1',
-    title: 'Questão 9 de 20',
+    title: 'Questão 9 de 24',
     statement: 'Desenvolva o produto:\\n(x + 3)(x − 2)',
     correctOptionId: 'a',
     explanation: 'Distribuímos cada termo: x² − 2x + 3x − 6. Ao combinar −2x + 3x, obtemos x² + x − 6.',
@@ -178,7 +178,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'divisao-monomios-1',
-    title: 'Questão 10 de 20',
+    title: 'Questão 10 de 24',
     statement: 'Simplifique a expressão:\\n(12x³y²) / (3xy)',
     correctOptionId: 'b',
     explanation: 'Dividimos os coeficientes e subtraímos expoentes de bases iguais: 12/3 = 4, x³/x = x² e y²/y = y. Resultado: 4x²y.',
@@ -194,7 +194,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fator-comum-1',
-    title: 'Questão 11 de 20',
+    title: 'Questão 11 de 24',
     statement: 'Fatore a expressão:\\n6x + 9',
     correctOptionId: 'a',
     explanation: 'O maior fator comum entre 6x e 9 é 3. Colocando 3 em evidência, 6x vira 3·2x e 9 vira 3·3, então temos 3(2x + 3).',
@@ -210,7 +210,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quociente-potencias-1',
-    title: 'Questão 12 de 20',
+    title: 'Questão 12 de 24',
     statement: 'Simplifique, considerando x ≠ 0:\\nx⁵ / x²',
     correctOptionId: 'c',
     explanation: 'Na divisão de potências com mesma base, subtraímos os expoentes: x⁵/x² = x⁵⁻² = x³. A restrição x ≠ 0 evita divisão por zero.',
@@ -226,7 +226,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencia-potencia-1',
-    title: 'Questão 13 de 20',
+    title: 'Questão 13 de 24',
     statement: 'Simplifique a expressão:\\n(2x²)³',
     correctOptionId: 'd',
     explanation: 'Elevamos cada fator ao cubo: 2³ = 8 e (x²)³ = x⁶, pois multiplicamos os expoentes. Logo, a expressão vira 8x⁶.',
@@ -242,7 +242,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-3',
-    title: 'Questão 14 de 20',
+    title: 'Questão 14 de 24',
     statement: 'Simplifique a expressão:\\n3(x + 2) − 2(x − 1)',
     correctOptionId: 'b',
     explanation: 'Distribuindo, temos 3x + 6 − 2x + 2. Repare que −2 vezes −1 gera +2. Reduzindo os termos, obtemos x + 8.',
@@ -258,7 +258,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'valor-numerico-1',
-    title: 'Questão 15 de 20',
+    title: 'Questão 15 de 24',
     statement: 'Calcule 2a² − 3a para a = −2.',
     correctOptionId: 'c',
     explanation: 'Substituindo a por −2, fica 2(−2)² − 3(−2). Primeiro a potência: 2·4 + 6. Portanto, o valor é 14.',
@@ -274,7 +274,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quadrado-soma-1',
-    title: 'Questão 16 de 20',
+    title: 'Questão 16 de 24',
     statement: 'Desenvolva o produto notável:\\n(x + 4)²',
     correctOptionId: 'a',
     explanation: 'Usamos (a + b)² = a² + 2ab + b². Aqui, a = x e b = 4, então o resultado é x² + 8x + 16.',
@@ -290,7 +290,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'diferenca-quadrados-1',
-    title: 'Questão 17 de 20',
+    title: 'Questão 17 de 24',
     statement: 'Fatore a expressão:\\nx² − 9',
     correctOptionId: 'd',
     explanation: 'A expressão é uma diferença de quadrados: x² − 3². O padrão a² − b² = (a − b)(a + b) dá (x − 3)(x + 3).',
@@ -306,7 +306,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'soma-fracoes-algebricas-1',
-    title: 'Questão 18 de 20',
+    title: 'Questão 18 de 24',
     statement: 'Simplifique a expressão:\\nx/2 + x/3',
     correctOptionId: 'b',
     explanation: 'O mínimo múltiplo comum entre 2 e 3 é 6. Reescrevemos x/2 como 3x/6 e x/3 como 2x/6, somando para obter 5x/6.',
@@ -322,7 +322,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'termos-semelhantes-1',
-    title: 'Questão 19 de 20',
+    title: 'Questão 19 de 24',
     statement: 'Simplifique:\\n4x²y − 7x²y + 2x²y',
     correctOptionId: 'c',
     explanation: 'Todos os termos têm a mesma parte literal x²y. Somamos os coeficientes 4 − 7 + 2 = −1, então o resultado é −x²y.',
@@ -338,10 +338,11 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-1',
-    title: 'Questão 20 de 20',
+    title: 'Questão 20 de 24',
     statement: 'Simplifique:\\n2(x + 1) + (x − 3)(x + 3)',
     correctOptionId: 'a',
-    explanation: 'Use duas ferramentas: 2(x + 1) = 2x + 2 e (x − 3)(x + 3) = x² − 9. Somando, obtemos x² + 2x − 7.',
+    explanation:
+        'Use duas ferramentas: 2(x + 1) = 2x + 2 e (x − 3)(x + 3) = x² − 9. Somando, obtemos x² + 2x − 7.',
     contentLessonId: 'algebra-08-sintese',
     skill: 'Escolher ferramentas algébricas',
     difficulty: ExerciseDifficulty.challenge,
@@ -351,5 +352,74 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'c', text: '2x² − 7'),
       ExerciseOptionData(id: 'd', text: 'x² − 2x − 7'),
     ],
-  )
+  ),
+  ExerciseData(
+    id: 'polinomios-estrutura-1',
+    title: 'Questão 21 de 24',
+    statement:
+        'Considere P(x)=−3x⁵+2x²−7. Qual é o grau e o coeficiente líder?',
+    correctOptionId: 'b',
+    explanation:
+        'O maior expoente presente é 5, portanto o grau de P é 5. O coeficiente do termo de maior grau −3x⁵ é −3, então esse é o coeficiente líder.',
+    contentLessonId: 'algebra-09-monomios-polinomios',
+    skill: 'Identificar grau e coeficiente líder',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Grau 2 e coeficiente líder 2'),
+      ExerciseOptionData(id: 'b', text: 'Grau 5 e coeficiente líder −3'),
+      ExerciseOptionData(id: 'c', text: 'Grau 5 e coeficiente líder 5'),
+      ExerciseOptionData(id: 'd', text: 'Grau 7 e coeficiente líder −3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'polinomios-classificacao-1',
+    title: 'Questão 22 de 24',
+    statement: 'Qual expressão NÃO é um polinômio em x?',
+    correctOptionId: 'c',
+    explanation:
+        'Um polinômio em x usa apenas expoentes inteiros não negativos. A expressão 3/x é 3x⁻¹, portanto contém expoente negativo e não é polinômio.',
+    contentLessonId: 'algebra-09-monomios-polinomios',
+    skill: 'Reconhecer expressões polinomiais',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4x³ − 2x + 1'),
+      ExerciseOptionData(id: 'b', text: '7'),
+      ExerciseOptionData(id: 'c', text: '3/x + 2'),
+      ExerciseOptionData(id: 'd', text: 'x⁵ − x²'),
+    ],
+  ),
+  ExerciseData(
+    id: 'operacoes-polinomios-1',
+    title: 'Questão 23 de 24',
+    statement: 'Calcule (2x²+3x−1) − (x²−5x+4).',
+    correctOptionId: 'a',
+    explanation:
+        'Distribuímos o sinal negativo por todo o segundo polinômio: 2x²+3x−1−x²+5x−4. Combinando termos semelhantes, obtemos x²+8x−5.',
+    contentLessonId: 'algebra-10-operacoes-polinomios',
+    skill: 'Subtrair polinômios com controle de sinais',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x² + 8x − 5'),
+      ExerciseOptionData(id: 'b', text: 'x² − 2x + 3'),
+      ExerciseOptionData(id: 'c', text: '3x² − 2x − 5'),
+      ExerciseOptionData(id: 'd', text: 'x² + 8x + 3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'operacoes-polinomios-2',
+    title: 'Questão 24 de 24',
+    statement: 'Expanda (x−2)(x²+3x+4).',
+    correctOptionId: 'd',
+    explanation:
+        'Distribuímos x e depois −2: x³+3x²+4x−2x²−6x−8. Reduzindo termos semelhantes, resulta x³+x²−2x−8.',
+    contentLessonId: 'algebra-10-operacoes-polinomios',
+    skill: 'Multiplicar polinômios',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x³ + 5x² + 10x − 8'),
+      ExerciseOptionData(id: 'b', text: 'x³ + x² + 2x − 8'),
+      ExerciseOptionData(id: 'c', text: 'x³ − x² − 2x + 8'),
+      ExerciseOptionData(id: 'd', text: 'x³ + x² − 2x − 8'),
+    ],
+  ),
 ];
