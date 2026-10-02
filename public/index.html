@@ -441,11 +441,14 @@
         <p>
           Dados de conta e progresso são mantidos enquanto a conta estiver ativa
           ou enquanto forem necessários para prestar as funcionalidades
-          solicitadas. Dados técnicos de segurança, rate limit, idempotência e
-          registros operacionais podem ter prazos menores e compatíveis com sua
-          finalidade. Informações relacionadas a compras podem permanecer com a
-          Google Play e a RevenueCat pelos prazos legais, contratuais ou de
-          prevenção a fraude aplicáveis.
+          solicitadas. Sessões operacionais do Tutor expiram após 30 minutos de
+          inatividade. Registros de idempotência têm validade operacional de 24
+          horas, e registros de rate limit usam prazos técnicos definidos pelo
+          backend. Esses registros efêmeros ficam elegíveis para exclusão
+          automática por políticas de retenção do Firestore após a expiração.
+          Informações relacionadas a compras podem permanecer com a Google Play
+          e a RevenueCat pelos prazos legais, contratuais ou de prevenção a
+          fraude aplicáveis.
         </p>
         <p>
           Após uma exclusão válida, removemos os dados associados sob nosso
