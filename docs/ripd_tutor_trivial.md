@@ -144,6 +144,8 @@ Escala usada neste documento:
 - Exclusão de conta.
 - Plano de resposta a incidentes.
 - Teste automatizado que proíbe logging nos pontos críticos do Tutor/Gemini.
+- Política operacional de não registrar prompts/respostas completos em Cloud Logging.
+- Diretriz de manter o logging opcional da Gemini API desativado em produção e de não compartilhar datasets com conversas reais de alunos.
 - Registro de operações de tratamento.
 
 ## 10. Pendências obrigatórias antes de produção ampla do Tutor
@@ -151,19 +153,37 @@ Escala usada neste documento:
 - [ ] Definir e implementar estratégia de idade.
 - [ ] Revisar a hipótese legal aplicável a cada tratamento do Tutor, inclusive para menores, com apoio jurídico.
 - [ ] Revisar termos/DPA e mecanismos de transferência internacional do Google/Firebase/Gemini e RevenueCat.
-- [ ] Definir retenção dos Cloud Logs e confirmar ausência de conteúdo desnecessário do prompt nos logs.
-- [ ] Verificar se o provedor/modelo usa os dados enviados para treinamento na configuração contratada e documentar a configuração efetiva.
+- [x] Definir política operacional de Cloud Logs: `_Default` em 30 dias ou menos quando configurável; `_Required` permanece sujeito à retenção imutável de 400 dias do Google Cloud; prompts/respostas completos não devem ser registrados pela aplicação.
+- [ ] Verificar no console do projeto a retenção efetiva do `_Default`, sinks e buckets adicionais antes do deploy.
+- [x] Documentar que, em serviços pagos da Gemini API, prompts e respostas não são usados pelo Google para melhorar produtos/modelos, conforme os termos/documentação atuais do provedor.
+- [ ] Confirmar no projeto de produção que o logging opcional da Gemini API está desativado e que nenhum dataset com conversas reais de alunos é compartilhado com o Google.
 - [x] Criar teste/inspeção para impedir logging acidental de mensagens completas do Tutor.
 - [ ] Revisar linguagem de privacidade em formato adequado ao público mais jovem.
 - [ ] Revisar este RIPD após qualquer mudança em memória de longo prazo, analytics, recomendação adaptativa ou novos provedores.
 
-## 11. Decisão provisória
+## 11. Política operacional de logs e provedor
+
+### Cloud Logging
+
+- O backend não deve registrar mensagens completas do aluno, prompts, respostas brutas do modelo, UID bruto ou payloads integrais.
+- O bucket `_Default` deve permanecer em 30 dias ou menos quando tecnicamente configurável e compatível com a necessidade operacional.
+- O bucket `_Required` possui retenção gerenciada pelo Google Cloud e não pode ser reduzido pelo projeto.
+- Qualquer novo sink, bucket, exportação para BigQuery/Storage ou observabilidade externa exige nova revisão de retenção e minimização.
+
+### Gemini API
+
+- O Tutor deve operar em serviço pago antes de produção ampla.
+- O logging opcional de prompts/respostas da Gemini API deve permanecer desativado em produção.
+- Não devem ser criados ou compartilhados com o Google datasets contendo conversas reais de alunos.
+- A configuração efetiva do projeto deve ser verificada no console antes de cada lançamento que altere provedor, projeto Google Cloud ou política de logging.
+
+## 12. Decisão provisória
 
 A arquitetura atual apresenta controles técnicos fortes para autenticação, autorização, integridade pedagógica e minimização. O risco residual relacionado a menores permanece alto enquanto a estratégia de idade não estiver definida e implementada.
 
 Portanto, a liberação ampla do Tutor para produção deve permanecer condicionada à resolução da estratégia de idade e das pendências jurídicas/contratuais acima.
 
-## 12. Referências normativas e orientativas
+## 13. Referências normativas e orientativas
 
 - Lei nº 13.709/2018 — LGPD, especialmente arts. 5º, XVII; 6º; 7º; 10; 14; 18; 20; 38 e 50.
 - ANPD — Perguntas e Respostas sobre Relatório de Impacto à Proteção de Dados Pessoais (RIPD).
