@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calcquest/shared/data/derivatives_course_data.dart';
+import 'package:calcquest/shared/data/derivatives_course_data_en.dart';
 import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
 
 void main() {
@@ -32,8 +33,21 @@ void main() {
         expect(lesson.title.trim(), isNotEmpty);
         expect(lesson.description.trim(), isNotEmpty);
         expect(lesson.objective.trim(), isNotEmpty);
-        expect(lesson.sections.length, greaterThanOrEqualTo(2));
-        expect(lesson.takeaways.length, greaterThanOrEqualTo(3));
+        expect(
+          lesson.sections.length,
+          greaterThanOrEqualTo(8),
+          reason: '${lesson.id} ainda está curta demais para o padrão universitário.',
+        );
+        expect(
+          lesson.takeaways.length,
+          greaterThanOrEqualTo(7),
+          reason: '${lesson.id} precisa de síntese conceitual mais robusta.',
+        );
+        expect(
+          lesson.duration,
+          isNot(contains('5 min')),
+          reason: '${lesson.id} ainda usa duração do formato resumido.',
+        );
         expect(lesson.closing.trim(), isNotEmpty);
 
         for (final section in lesson.sections) {
@@ -86,5 +100,26 @@ void main() {
         reason: 'Cada aula precisa ter ao menos uma atividade relacionada.',
       );
     });
+    test('português e inglês mantêm IDs, ordem, duração e estrutura', () {
+      final portuguese = derivativesCourseLessons;
+      final english = derivativesCourseLessonsEn;
+
+      expect(
+        english.map((lesson) => lesson.id).toList(),
+        equals(portuguese.map((lesson) => lesson.id).toList()),
+      );
+      expect(
+        english.map((lesson) => lesson.duration).toList(),
+        equals(portuguese.map((lesson) => lesson.duration).toList()),
+      );
+      for (var index = 0; index < portuguese.length; index++) {
+        expect(
+          english[index].sections.length,
+          equals(portuguese[index].sections.length),
+          reason: '${portuguese[index].id} deve manter paridade estrutural PT/EN.',
+        );
+      }
+    });
+
   });
 }
