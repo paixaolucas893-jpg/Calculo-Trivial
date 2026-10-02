@@ -51,85 +51,85 @@ ExerciseData localizeEquationsExerciseContent(
 
 const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
   'equacao-1': _EquationExerciseTranslation(
-    title: 'Question 1 of 10',
+    title: 'Question 1 of 24',
     statement: 'Solve the equation:\nx + 3 = 8',
     explanation:
         'To isolate x, subtract 3 from both sides: x = 8 - 3. Therefore, x = 5.',
   ),
   'equacao-2': _EquationExerciseTranslation(
-    title: 'Question 2 of 10',
+    title: 'Question 2 of 24',
     statement: 'Solve the equation:\n2x = 10',
     explanation:
         'To isolate x, divide both sides by 2: x = 10 ÷ 2. Therefore, x = 5.',
   ),
   'equacao-3': _EquationExerciseTranslation(
-    title: 'Question 3 of 10',
+    title: 'Question 3 of 24',
     statement: 'Solve the equation:\nx - 4 = 9',
     explanation:
         'To isolate x, add 4 to both sides: x = 9 + 4. Therefore, x = 13.',
   ),
   'equacao-4': _EquationExerciseTranslation(
-    title: 'Question 4 of 10',
+    title: 'Question 4 of 24',
     statement: 'Solve the equation:\n3x + 2 = 11',
     explanation:
         'First subtract 2 from both sides: 3x = 9. Then divide by 3: x = 3.',
   ),
   'inequacao-1': _EquationExerciseTranslation(
-    title: 'Question 5 of 10',
+    title: 'Question 5 of 24',
     statement: 'Solve the inequality:\nx + 2 > 7',
     explanation:
         'To isolate x, subtract 2 from both sides: x > 7 - 2. Therefore, x > 5.',
   ),
   'equacao-5': _EquationExerciseTranslation(
-    title: 'Question 6 of 10',
+    title: 'Question 6 of 24',
     statement: 'Solve the equation:\n5x - 7 = 18',
     explanation:
         'Add 7 to both sides: 5x = 25. Then divide by 5 to obtain x = 5.',
   ),
   'equacao-distributiva': _EquationExerciseTranslation(
-    title: 'Question 7 of 10',
+    title: 'Question 7 of 24',
     statement: 'Solve the equation:\n4(x - 2) = 12',
     explanation:
         'Divide both sides by 4: x - 2 = 3. Adding 2 to both sides gives x = 5.',
   ),
   'equacao-fracao': _EquationExerciseTranslation(
-    title: 'Question 8 of 10',
+    title: 'Question 8 of 24',
     statement: 'Solve the equation:\nx/3 + 2 = 6',
     explanation:
         'Subtract 2 from both sides: x/3 = 4. Multiplying both sides by 3 gives x = 12.',
   ),
   'inequacao-2': _EquationExerciseTranslation(
-    title: 'Question 9 of 10',
+    title: 'Question 9 of 24',
     statement: 'Solve the inequality:\n2x - 3 ≤ 7',
     explanation:
         'Add 3 to both sides: 2x ≤ 10. Dividing by 2, which is positive, keeps the inequality sign unchanged: x ≤ 5.',
   ),
   'inequacao-negativa': _EquationExerciseTranslation(
-    title: 'Question 10 of 10',
+    title: 'Question 10 of 24',
     statement: 'Solve the inequality:\n-3x > 12',
     explanation:
         'When dividing an inequality by a negative number, reverse the inequality sign. Dividing by -3 gives x < -4.',
   ),
   'equacao-termos-dois-lados': _EquationExerciseTranslation(
-    title: 'Question 11 of 20',
+    title: 'Question 11 of 24',
     statement: 'Solve the equation:\n2x + 5 = x - 3',
     explanation:
         'Subtract x from both sides and then subtract 5: x = -3 - 5. Therefore, x = -8.',
   ),
   'equacao-distributiva-dois-lados': _EquationExerciseTranslation(
-    title: 'Question 12 of 20',
+    title: 'Question 12 of 24',
     statement: 'Solve the equation:\n3(x + 1) = 2x + 7',
     explanation:
         'Distribute first: 3x + 3 = 2x + 7. Subtracting 2x and 3 from both sides gives x = 4.',
   ),
   'equacao-fracionaria-2': _EquationExerciseTranslation(
-    title: 'Question 13 of 20',
+    title: 'Question 13 of 24',
     statement: 'Solve the equation:\n(x - 2) / 4 = 3',
     explanation:
         'Multiply both sides by 4: x - 2 = 12. Adding 2 gives x = 14.',
   ),
   'sistema-linear-1': _EquationExerciseTranslation(
-    title: 'Question 14 of 20',
+    title: 'Question 14 of 24',
     statement: 'Solve the system:\nx + y = 7\nx - y = 1',
     explanation:
         'Add the equations to get 2x = 8, so x = 4. Substitute into x + y = 7 to obtain y = 3.',
@@ -141,7 +141,7 @@ const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
     },
   ),
   'equacao-quadratica-1': _EquationExerciseTranslation(
-    title: 'Question 15 of 20',
+    title: 'Question 15 of 24',
     statement: 'Solve the equation:\nx² - 9 = 0',
     explanation: 'We have x² = 9. Therefore, x can be 3 or -3.',
     options: {
@@ -149,7 +149,7 @@ const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
     },
   ),
   'equacao-quadratica-2': _EquationExerciseTranslation(
-    title: 'Question 16 of 20',
+    title: 'Question 16 of 24',
     statement: 'Solve the equation:\nx² - 5x + 6 = 0',
     explanation:
         'Factor the expression: (x - 2)(x - 3) = 0. Therefore, x = 2 or x = 3.',
@@ -161,19 +161,19 @@ const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
     },
   ),
   'inequacao-3': _EquationExerciseTranslation(
-    title: 'Question 17 of 20',
+    title: 'Question 17 of 24',
     statement: 'Solve the inequality:\n5 - 2x < 9',
     explanation:
         'Subtract 5: -2x < 4. When dividing by -2, reverse the inequality sign to obtain x > -2.',
   ),
   'inequacao-distributiva': _EquationExerciseTranslation(
-    title: 'Question 18 of 20',
+    title: 'Question 18 of 24',
     statement: 'Solve the inequality:\n3(x - 1) ≥ 2x + 4',
     explanation:
         'Distribute first: 3x - 3 ≥ 2x + 4. Subtract 2x and add 3 to obtain x ≥ 7.',
   ),
   'equacao-modular-1': _EquationExerciseTranslation(
-    title: 'Question 19 of 20',
+    title: 'Question 19 of 24',
     statement: 'Solve the equation:\n|x| = 5',
     explanation:
         'The distance from x to zero is 5. Therefore, x can be 5 or -5.',
@@ -182,7 +182,7 @@ const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
     },
   ),
   'equacao-sem-solucao': _EquationExerciseTranslation(
-    title: 'Question 20 of 20',
+    title: 'Question 20 of 24',
     statement: 'Solve the equation:\n2(x + 1) = 2x + 5',
     explanation:
         'Distributing gives 2x + 2 = 2x + 5. Subtracting 2x leaves 2 = 5, which is a contradiction. There is no solution.',
@@ -191,4 +191,42 @@ const Map<String, _EquationExerciseTranslation> _englishEquationExercises = {
       'c': 'All real numbers',
     },
   ),
+  'equacao-identidade-1': _EquationExerciseTranslation(
+    title: 'Question 21 of 24',
+    statement: 'Solve the equation:\n3(x + 2) = 3x + 6',
+    explanation:
+        'Distributing the left side gives 3x + 6 = 3x + 6. The identity is true for every real number, so the equation has infinitely many solutions.',
+    options: {
+      'c': 'No solution',
+      'd': 'All real numbers',
+    },
+  ),
+  'equacao-radical-1': _EquationExerciseTranslation(
+    title: 'Question 22 of 24',
+    statement: 'Solve the equation:\n√(x + 5) = 4',
+    explanation:
+        'Squaring both sides gives x + 5 = 16, so x = 11. Checking confirms √16 = 4.',
+  ),
+  'inequacao-quadratica-1': _EquationExerciseTranslation(
+    title: 'Question 23 of 24',
+    statement: 'Solve the inequality:\nx² - 5x + 6 < 0',
+    explanation:
+        'Factor x² - 5x + 6 = (x - 2)(x - 3). Since the parabola opens upward, the expression is negative between the roots. Therefore, 2 < x < 3.',
+    options: {
+      'd': 'x ≤ 2 or x ≥ 3',
+    },
+  ),
+  'inequacao-racional-1': _EquationExerciseTranslation(
+    title: 'Question 24 of 24',
+    statement: 'Solve the inequality:\n(x - 1) / (x + 2) > 0',
+    explanation:
+        'The critical points are x = 1, where the numerator is zero, and x = -2, which is excluded from the domain. The quotient is positive on (-∞,-2) and (1,∞).',
+    options: {
+      'a': 'x < -2 or x > 1',
+      'b': '-2 < x < 1',
+      'c': 'x ≤ -2 or x ≥ 1',
+      'd': 'x > -2',
+    },
+  ),
+
 };

@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:calcquest/shared/data/equations_course_data.dart';
+import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart';
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
@@ -12,7 +14,7 @@ const exerciseBanks = [
   (
     name: 'Equações e Inequações',
     questions: mockEquationsExercises,
-    expectedCount: 20,
+    expectedCount: 24,
   ),
   (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 20),
   (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
@@ -115,6 +117,39 @@ void main() {
         }
       });
     }
+
+    test('Equações cobre todas as onze aulas com metadados pedagógicos', () {
+      final lessonIds = <String>{
+        ...equationsCourseLessons.map((lesson) => lesson.id),
+        ...precalculusEquationsSupplementLessons.map((lesson) => lesson.id),
+      };
+      final covered = <String>{};
+
+      for (final question in mockEquationsExercises) {
+        expect(
+          question.contentLessonId?.trim(),
+          isNotEmpty,
+          reason: '${question.id} precisa informar contentLessonId.',
+        );
+        expect(
+          question.skill?.trim(),
+          isNotEmpty,
+          reason: '${question.id} precisa informar a habilidade avaliada.',
+        );
+        expect(
+          lessonIds,
+          contains(question.contentLessonId),
+          reason: '${question.id} aponta para uma aula inexistente.',
+        );
+        covered.add(question.contentLessonId!);
+      }
+
+      expect(
+        covered,
+        equals(lessonIds),
+        reason: 'Cada uma das 11 aulas de Equações precisa ter ao menos uma atividade.',
+      );
+    });
 
     test('todos os IDs de questões são globalmente únicos', () {
       final allQuestionIds = exerciseBanks
