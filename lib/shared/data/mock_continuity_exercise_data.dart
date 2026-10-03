@@ -11,6 +11,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'c',
     explanation:
         'Verifique na ordem: f(a) precisa estar definida; o limite bilateral lim x→a f(x) precisa existir; por fim, a tendência deve coincidir com o valor real, isto é, lim x→a f(x)=f(a). A falha de qualquer condição torna f descontínua em a.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Somente f(a) deve existir'),
       ExerciseOptionData(id: 'b', text: 'Somente o limite deve existir'),
@@ -30,6 +31,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'a',
     explanation:
         'Polinômios são formados por somas e produtos de potências inteiras não negativas de x, operações que preservam continuidade. Como não há denominadores ou raízes que restrinjam o domínio, f é contínua em todo ℝ.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Em todos os números reais'),
       ExerciseOptionData(id: 'b', text: 'Somente para x > 0'),
@@ -46,6 +48,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'b',
     explanation:
         'Uma função racional é contínua em todos os pontos de seu domínio. Resolva x−2=0 e obtenha x=2; nesse ponto, a divisão não está definida. Portanto, os intervalos de continuidade são (−∞,2) e (2,+∞).',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'x = -1'),
       ExerciseOptionData(id: 'b', text: 'x = 2'),
@@ -126,6 +129,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'c',
     explanation:
         'Ao aproximar-se de zero pela esquerda, a função permanece em −1. Pela direita, permanece em 1. Como os limites laterais são finitos, mas diferentes, o limite bilateral não existe e a ruptura é classificada como salto.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'A função é contínua'),
       ExerciseOptionData(id: 'b', text: 'Há uma descontinuidade removível'),
@@ -142,6 +146,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'a',
     explanation:
         'Próximo de x = 2, os valores da função crescem sem limite em módulo. Existe uma assíntota vertical e a descontinuidade é infinita.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Infinita'),
       ExerciseOptionData(id: 'b', text: 'Removível'),
@@ -158,6 +163,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'd',
     explanation:
         'Uma ponta no gráfico não significa descontinuidade. Pela esquerda, |x|=−x e o limite é 0; pela direita, |x|=x e o limite também é 0. Como f(0)=0, as três condições são satisfeitas.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(
         id: 'a',
@@ -178,6 +184,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'b',
     explanation:
         'Ao atravessar um inteiro n, os valores pela esquerda permanecem em n−1, enquanto pela direita e no ponto valem n. Os limites laterais são finitos, porém diferentes, caracterizando uma descontinuidade de salto.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'É contínua em todos eles'),
       ExerciseOptionData(id: 'b', text: 'Possui descontinuidades de salto'),
@@ -194,6 +201,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'c',
     explanation:
         'A função seno está definida e é contínua para todo número real. Restringi-la a [0,2π] confundiria um período de repetição com seu domínio, que é ℝ.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Somente em [0, 2π]'),
       ExerciseOptionData(id: 'b', text: 'Somente para x ≠ 0'),
@@ -210,6 +218,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'a',
     explanation:
         'No conjunto real, √x exige x≥0. A função é contínua em todo esse domínio; no extremo x=0, a continuidade é verificada pela direita, pois valores negativos não pertencem ao domínio.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '[0, +∞)'),
       ExerciseOptionData(id: 'b', text: '(-∞, 0]'),
@@ -263,6 +272,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'c',
     explanation:
         'O limite de x² quando x tende a 2 é 4. Para haver continuidade, f(2) também precisa valer 4.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '0'),
       ExerciseOptionData(id: 'b', text: '2'),
@@ -298,6 +308,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'c',
     explanation:
         'Não. A primeira condição de continuidade exige que f(a) esteja definida. Nesse caso, normalmente há uma descontinuidade removível.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Sim, pois basta o limite existir'),
       ExerciseOptionData(id: 'b', text: 'Sim, se a for positivo'),
@@ -318,6 +329,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'd',
     explanation:
         'No extremo esquerdo a, não existem pontos do domínio [a,b] menores que a. Portanto, a aproximação relevante usa valores maiores que a, isto é, o limite pela direita, que deve coincidir com f(a).',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Somente o limite pela esquerda'),
       ExerciseOptionData(id: 'b', text: 'Nenhum limite'),
@@ -334,6 +346,7 @@ const List<ExerciseData> mockContinuityExercises = [
     correctOptionId: 'a',
     explanation:
         'Ela é removível quando o limite no ponto existe e é finito, permitindo corrigir a função apenas redefinindo seu valor naquele ponto.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(
         id: 'a',
