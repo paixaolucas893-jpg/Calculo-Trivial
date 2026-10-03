@@ -9,10 +9,13 @@ class RevenueCatService {
   static const String _apiKey = String.fromEnvironment('REVENUECAT_API_KEY');
 
   static bool _isConfigured = false;
+  static Future<void>? _initialization;
+  static Object? _lastInitializationError;
 
   static final ValueNotifier<bool> premiumAccess = ValueNotifier<bool>(false);
 
   static bool get isConfigured => _isConfigured;
+  static Object? get lastInitializationError => _lastInitializationError;
 
   static bool get isPremium => premiumAccess.value;
 
@@ -21,39 +24,80 @@ class RevenueCatService {
       return;
     }
 
+    final inFlight = _initialization;
+    if (inFlight != null) {
+      return inFlight;
+    }
+
+    final future = _initializeInternal(appUserId: appUserId);
+    _initialization = future;
+
+    try {
+      await future;
+    } finally {
+      if (!_isConfigured) {
+        _initialization = null;
+      }
+    }
+  }
+
+  static Future<void> _initializeInternal({String? appUserId}) async {
+    _lastInitializationError = null;
+
     if (_apiKey.isEmpty) {
-      debugPrint(
-        'RevenueCat não configurado: '
-        'REVENUECAT_API_KEY não foi informada.',
+      final error = StateError(
+        'REVENUECAT_API_KEY não foi informada na build.',
       );
+      _lastInitializationError = error;
+      debugPrint('RevenueCat não configurado: $error');
       return;
     }
 
-    if (kDebugMode) {
-      await Purchases.setLogLevel(LogLevel.debug);
+    try {
+      if (kDebugMode) {
+        await Purchases.setLogLevel(LogLevel.debug);
+      }
+
+      final configuration = PurchasesConfiguration(_apiKey);
+      final normalizedAppUserId = appUserId?.trim();
+
+      if (normalizedAppUserId != null && normalizedAppUserId.isNotEmpty) {
+        configuration.appUserID = normalizedAppUserId;
+      }
+
+      await Purchases.configure(configuration);
+
+      _isConfigured = true;
+      _lastInitializationError = null;
+
+      Purchases.addCustomerInfoUpdateListener(_handleCustomerInfoUpdate);
+
+      debugPrint(
+        normalizedAppUserId != null && normalizedAppUserId.isNotEmpty
+            ? 'RevenueCat SDK inicializado com usuário autenticado.'
+            : 'RevenueCat SDK inicializado com usuário anônimo.',
+      );
+
+      await refreshPremiumStatus();
+    } catch (error) {
+      _lastInitializationError = error;
+      debugPrint('RevenueCat: falha ao configurar SDK: $error');
+      rethrow;
+    }
+  }
+
+  static Future<bool> ensureConfigured({String? appUserId}) async {
+    if (_isConfigured) {
+      return true;
     }
 
-    final configuration = PurchasesConfiguration(_apiKey);
-
-    final normalizedAppUserId = appUserId?.trim();
-
-    if (normalizedAppUserId != null && normalizedAppUserId.isNotEmpty) {
-      configuration.appUserID = normalizedAppUserId;
+    try {
+      await initialize(appUserId: appUserId);
+    } catch (_) {
+      return false;
     }
 
-    await Purchases.configure(configuration);
-
-    _isConfigured = true;
-
-    Purchases.addCustomerInfoUpdateListener(_handleCustomerInfoUpdate);
-
-    debugPrint(
-      normalizedAppUserId != null && normalizedAppUserId.isNotEmpty
-          ? 'RevenueCat SDK inicializado com usuário autenticado.'
-          : 'RevenueCat SDK inicializado com usuário anônimo.',
-    );
-
-    await refreshPremiumStatus();
+    return _isConfigured;
   }
 
   static Future<CustomerInfo?> identifyUser(String appUserId) async {
