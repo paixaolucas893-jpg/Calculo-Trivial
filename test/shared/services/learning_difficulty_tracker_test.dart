@@ -44,7 +44,7 @@ void main() {
     );
 
     expect(restored, hasLength(3));
-    expect(restored.first.contentLessonId, AppProgress.functionsId);
+    expect(restored.first.contentLessonId, exercise.contentLessonId);
     expect(restored.first.skill, 'Domínio de funções');
     expect(diagnosis.analyzedAttempts, 3);
     expect(diagnosis.reviewRecommendations, hasLength(1));
