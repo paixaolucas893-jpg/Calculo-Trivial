@@ -55,6 +55,19 @@ jobs:
               missing=1
             fi
           done
+          if [ -n "${REVENUECAT_API_KEY:-}" ]; then
+            case "$REVENUECAT_API_KEY" in
+              goog_*) ;;
+              sk_*)
+                echo "::error::REVENUECAT_API_KEY is a secret RevenueCat key. Use the public Google Play SDK key (goog_...)."
+                missing=1
+                ;;
+              *)
+                echo "::error::REVENUECAT_API_KEY is not the expected public Google Play SDK key (goog_...)."
+                missing=1
+                ;;
+            esac
+          fi
           exit "$missing"
 
       - name: Restore Android signing files
