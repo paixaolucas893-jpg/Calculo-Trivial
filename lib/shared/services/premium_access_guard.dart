@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
@@ -12,9 +13,20 @@ class PremiumAccessGuard {
     }
 
     if (!RevenueCatService.isConfigured) {
-      _showMessage(context, 'O sistema Premium está indisponível no momento.');
+      final configured = await RevenueCatService.ensureConfigured(
+        appUserId: FirebaseAuth.instance.currentUser?.uid,
+      );
 
-      return false;
+      if (!configured) {
+        if (context.mounted) {
+          _showMessage(
+            context,
+            'O sistema Premium não conseguiu inicializar. Verifique a conexão e tente novamente.',
+          );
+        }
+
+        return false;
+      }
     }
 
     try {
