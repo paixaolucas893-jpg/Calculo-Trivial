@@ -21,7 +21,6 @@ import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_bottom_navigation_bar.dart';
 
 import '../../dashboard/presentation/dashboard_screen.dart';
-import '../../exercise_review/presentation/exercise_review_screen.dart';
 import '../../exercises/presentation/algebra_practice_screen.dart';
 import '../../exercises/presentation/continuity_exercises_screen.dart';
 import '../../exercises/presentation/derivatives_exercises_screen.dart';
@@ -76,7 +75,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
               (lesson) => lesson.id != 'algebra-04-potencias',
             ),
           ],
-          isCompleted: AppProgress.algebraFundamentalCompleted,
         );
       case AppProgress.equationsAndInequationsId:
         return _ModuleConfig(
@@ -92,7 +90,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
             ...localizedEquationsCourseLessons(locale),
             ...localizedPrecalculusEquationsSupplementLessons(locale),
           ],
-          isCompleted: AppProgress.equationsAndInequationsCompleted,
         );
       case AppProgress.functionsId:
         return _ModuleConfig(
@@ -105,7 +102,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           ),
           symbol: 'f',
           lessons: localizedPrecalculusFunctionsCourseLessons(locale),
-          isCompleted: AppProgress.functionsCompleted,
         );
       case AppProgress.limitsId:
         return _ModuleConfig(
@@ -118,7 +114,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           ),
           symbol: 'lim',
           lessons: localizedLimitsCourseLessons(locale),
-          isCompleted: AppProgress.limitsCompleted,
         );
       case AppProgress.continuityId:
         return _ModuleConfig(
@@ -133,7 +128,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           lessons: _isEnglish
               ? englishContinuityCourseLessons
               : continuityCourseLessons,
-          isCompleted: AppProgress.continuityCompleted,
         );
       case AppProgress.derivativesId:
       default:
@@ -148,7 +142,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           symbol: "f′",
           lessons:
               _isEnglish ? derivativesCourseLessonsEn : derivativesCourseLessons,
-          isCompleted: AppProgress.derivativesCompleted,
         );
     }
   }
@@ -275,23 +268,15 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
   }
 
   void _openPractice(_ModuleConfig module) {
-    final Widget destination;
-
-    switch (module.id) {
-      case AppProgress.algebraFundamentalId:
-        destination = const AlgebraPracticeScreen();
-      case AppProgress.equationsAndInequationsId:
-        destination = const EquationsExercisesScreen();
-      case AppProgress.functionsId:
-        destination = const FunctionsExercisesScreen();
-      case AppProgress.limitsId:
-        destination = const LimitsExercisesScreen();
-      case AppProgress.continuityId:
-        destination = const ContinuityExercisesScreen();
-      case AppProgress.derivativesId:
-      default:
-        destination = const DerivativesExercisesScreen();
-    }
+    final Widget destination = switch (module.id) {
+      AppProgress.algebraFundamentalId => const AlgebraPracticeScreen(),
+      AppProgress.equationsAndInequationsId =>
+        const EquationsExercisesScreen(),
+      AppProgress.functionsId => const FunctionsExercisesScreen(),
+      AppProgress.limitsId => const LimitsExercisesScreen(),
+      AppProgress.continuityId => const ContinuityExercisesScreen(),
+      _ => const DerivativesExercisesScreen(),
+    };
 
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => destination),
@@ -771,7 +756,6 @@ class _ModuleConfig {
   final String description;
   final String symbol;
   final List<CourseLessonData> lessons;
-  final bool isCompleted;
 
   const _ModuleConfig({
     required this.id,
@@ -780,6 +764,5 @@ class _ModuleConfig {
     required this.description,
     required this.symbol,
     required this.lessons,
-    required this.isCompleted,
   });
 }
