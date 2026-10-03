@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calcquest/shared/data/equations_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart';
+import 'package:calcquest/shared/data/precalculus_functions_course_data.dart';
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
@@ -16,7 +17,7 @@ const exerciseBanks = [
     questions: mockEquationsExercises,
     expectedCount: 24,
   ),
-  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 20),
+  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 28),
   (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
   (
     name: 'Continuidade',
@@ -148,6 +149,39 @@ void main() {
         covered,
         equals(lessonIds),
         reason: 'Cada uma das 11 aulas de Equações precisa ter ao menos uma atividade.',
+      );
+    });
+
+    test('Funções cobre todas as quatorze aulas com metadados pedagógicos', () {
+      final lessonIds = precalculusFunctionsCourseLessons
+          .map((lesson) => lesson.id)
+          .toSet();
+      final covered = <String>{};
+
+      for (final question in mockFunctionsExercises) {
+        expect(
+          question.contentLessonId?.trim(),
+          isNotEmpty,
+          reason: '${question.id} precisa informar contentLessonId.',
+        );
+        expect(
+          question.skill?.trim(),
+          isNotEmpty,
+          reason: '${question.id} precisa informar a habilidade avaliada.',
+        );
+        expect(
+          lessonIds,
+          contains(question.contentLessonId),
+          reason: '${question.id} aponta para uma aula inexistente.',
+        );
+
+        covered.add(question.contentLessonId!);
+      }
+
+      expect(
+        covered,
+        equals(lessonIds),
+        reason: 'Cada uma das 14 aulas de Funções precisa ter ao menos uma atividade.',
       );
     });
 
