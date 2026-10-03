@@ -417,10 +417,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             TextButton(
               onPressed: () {
-                final password = passwordController.text;
-
-                if (password.isNotEmpty) {
-                  Navigator.of(dialogContext).pop(password);
+                if (passwordInput.isNotEmpty) {
+                  Navigator.of(dialogContext).pop(passwordInput);
                 }
               },
               style: TextButton.styleFrom(foregroundColor: AppColors.error),
