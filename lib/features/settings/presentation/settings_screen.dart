@@ -519,6 +519,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return;
       }
 
+      await WidgetsBinding.instance.endOfFrame;
+
+      if (!mounted) {
+        return;
+      }
+
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute<void>(builder: (_) => const LoginScreen()),
         (route) => false,
