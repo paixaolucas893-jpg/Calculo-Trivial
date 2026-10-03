@@ -16,7 +16,6 @@ import 'package:calcquest/shared/theme/app_spacing.dart';
 import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_bottom_navigation_bar.dart';
 
-import '../../calculus_one/presentation/calculus_one_detail_screen.dart';
 import '../../dashboard/presentation/dashboard_screen.dart';
 import '../../module_detail/presentation/module_detail_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
@@ -62,21 +61,14 @@ class LearningPathScreen extends StatelessWidget {
     }
   }
 
-  void _goToFoundations(BuildContext context) {
+  void _goToModule(
+    BuildContext context,
+    String moduleId,
+  ) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const ModuleDetailScreen()),
-    );
-  }
-
-  Future<void> _goToCalculus(BuildContext context) async {
-    final hasAccess = await PremiumAccessGuard.ensureAccess(context);
-
-    if (!context.mounted || !hasAccess) {
-      return;
-    }
-
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const CalculusOneDetailScreen()),
+      MaterialPageRoute(
+        builder: (_) => ModuleDetailScreen(moduleId: moduleId),
+      ),
     );
   }
 
@@ -84,6 +76,7 @@ class LearningPathScreen extends StatelessWidget {
     return [
       _PathModule(
         number: 1,
+        id: AppProgress.algebraFundamentalId,
         title: _copy(context, pt: 'Álgebra', en: 'Algebra'),
         subtitle: _copy(
           context,
@@ -98,6 +91,7 @@ class LearningPathScreen extends StatelessWidget {
       ),
       _PathModule(
         number: 2,
+        id: AppProgress.equationsAndInequationsId,
         title: _copy(context, pt: 'Equações', en: 'Equations'),
         subtitle: _copy(
           context,
@@ -115,6 +109,7 @@ class LearningPathScreen extends StatelessWidget {
       ),
       _PathModule(
         number: 3,
+        id: AppProgress.functionsId,
         title: _copy(context, pt: 'Funções', en: 'Functions'),
         subtitle: _copy(
           context,
@@ -129,6 +124,7 @@ class LearningPathScreen extends StatelessWidget {
       ),
       _PathModule(
         number: 4,
+        id: AppProgress.limitsId,
         title: _copy(context, pt: 'Limites', en: 'Limits'),
         subtitle: _copy(
           context,
@@ -143,6 +139,7 @@ class LearningPathScreen extends StatelessWidget {
       ),
       _PathModule(
         number: 5,
+        id: AppProgress.continuityId,
         title: _copy(context, pt: 'Continuidade', en: 'Continuity'),
         subtitle: _copy(
           context,
@@ -157,6 +154,7 @@ class LearningPathScreen extends StatelessWidget {
       ),
       _PathModule(
         number: 6,
+        id: AppProgress.derivativesId,
         title: _copy(context, pt: 'Derivadas', en: 'Derivatives'),
         subtitle: _copy(
           context,
@@ -214,12 +212,19 @@ class LearningPathScreen extends StatelessWidget {
       return;
     }
 
-    if (module.number <= 3) {
-      _goToFoundations(context);
+    if (module.requiresPremium) {
+      final hasAccess = await PremiumAccessGuard.ensureAccess(context);
+
+      if (!context.mounted || !hasAccess) {
+        return;
+      }
+    }
+
+    if (!context.mounted) {
       return;
     }
 
-    await _goToCalculus(context);
+    _goToModule(context, module.id);
   }
 
   Widget _buildHeader(BuildContext context) {
@@ -734,6 +739,7 @@ class LearningPathScreen extends StatelessWidget {
 
 class _PathModule {
   final int number;
+  final String id;
   final String title;
   final String subtitle;
   final String symbol;
@@ -744,6 +750,7 @@ class _PathModule {
 
   const _PathModule({
     required this.number,
+    required this.id,
     required this.title,
     required this.subtitle,
     required this.symbol,
