@@ -107,6 +107,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
+  Future<bool> _ensureRevenueCatConfigured() async {
+    if (RevenueCatService.isConfigured) {
+      return true;
+    }
+
+    final configured = await RevenueCatService.ensureConfigured(
+      appUserId: FirebaseAuth.instance.currentUser?.uid,
+    );
+
+    if (!configured) {
+      final l10n = AppLocalizations.of(context)!;
+      debugPrint(
+        'Configurações: RevenueCat indisponível: '
+        '${RevenueCatService.lastInitializationError}',
+      );
+      _showMessage(l10n.settingsPremiumUnavailable);
+    }
+
+    return configured;
+  }
+
   Future<void> _restorePurchases() async {
     if (_isBusy) {
       return;
@@ -114,8 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     final l10n = AppLocalizations.of(context)!;
 
-    if (!RevenueCatService.isConfigured) {
-      _showMessage(l10n.settingsPremiumUnavailable);
+    if (!await _ensureRevenueCatConfigured()) {
       return;
     }
 
@@ -154,8 +174,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     final l10n = AppLocalizations.of(context)!;
 
-    if (!RevenueCatService.isConfigured) {
-      _showMessage(l10n.settingsPremiumUnavailable);
+    if (!await _ensureRevenueCatConfigured()) {
       return;
     }
 
@@ -477,6 +496,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
         await user.reauthenticateWithCredential(credential);
       }
 
+      final refreshedUser = FirebaseAuth.instance.currentUser;
+
+      if (refreshedUser == null) {
+        throw FirebaseAuthException(
+          code: 'no-current-user',
+          message: 'A sessão foi perdida durante a reautenticação.',
+        );
+      }
+
+      await refreshedUser.getIdToken(true);
+
       final callable = FirebaseFunctions.instanceFor(
         region: 'us-central1',
       ).httpsCallable(
@@ -529,10 +559,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
       );
     } on FirebaseFunctionsException catch (error) {
       debugPrint(
-        'Configurações: falha pública na exclusão: ${error.code}',
+        'Configurações: falha pública na exclusão: '
+        '${error.code} - ${error.message} - ${error.details}',
       );
 
-      _showMessage(l10n.settingsDeleteFunctionError);
+      final isPortuguese = Localizations.localeOf(context).languageCode == 'pt';
+
+      final message = switch (error.code) {
+        'failed-precondition' =>
+          l10n.settingsDeleteRequiresRecentLogin,
+        'unauthenticated' =>
+          isPortuguese
+              ? 'Não foi possível validar sua autenticação. Entre novamente na conta e tente excluir outra vez.'
+              : 'Your authentication could not be validated. Sign in again and try deleting the account once more.',
+        'permission-denied' =>
+          isPortuguese
+              ? 'A validação de segurança do aplicativo falhou. Atualize o app pela Google Play e tente novamente.'
+              : 'The app security validation failed. Update the app from Google Play and try again.',
+        'not-found' =>
+          isPortuguese
+              ? 'O serviço de exclusão de conta ainda não está disponível no servidor.'
+              : 'The account deletion service is not yet available on the server.',
+        _ => l10n.settingsDeleteFunctionError,
+      };
+
+      _showMessage(message);
     } on FirebaseAuthException catch (error) {
       debugPrint(
         'Configurações: erro do Firebase ao excluir conta: '
