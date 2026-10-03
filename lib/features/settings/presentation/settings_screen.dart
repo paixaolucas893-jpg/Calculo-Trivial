@@ -112,12 +112,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return true;
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     final configured = await RevenueCatService.ensureConfigured(
       appUserId: FirebaseAuth.instance.currentUser?.uid,
     );
 
     if (!configured) {
-      final l10n = AppLocalizations.of(context)!;
       debugPrint(
         'Configurações: RevenueCat indisponível: '
         '${RevenueCatService.lastInitializationError}',
