@@ -73,7 +73,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
         WorkedExampleBlockData(title: 'De um ponto para todos os pontos', problem: 'Se f(x)=x², determine f′(x).', steps: ['Use [f(x+h)−f(x)]/h.','Expanda (x+h)²−x².','Simplifique para 2x+h.','Faça h→0.'], result: 'f′(x)=2x.', interpretation: 'A derivada associa a cada x a inclinação local da parábola nesse ponto.'),
       ]),
       LessonSectionData(number: '7', title: 'Unidades e significado físico', blocks: [
-        ConceptBlockData(visual: LessonVisual.engineering, title: 'Unidade da saída por unidade da entrada', content: 'Se s(t) está em metros e t em segundos, s′(t) está em m/s. Se C(q) está em reais e q em unidades produzidas, C′(q) tem unidade R$/unidade.', tone: LearningCardTone.information),
+        ConceptBlockData(visual: LessonVisual.engineering, title: 'Unidade da saída por unidade da entrada', content: 'Se s(t) está em metros e t em segundos, s′(t) está em m/s. Se C(q) está em reais e q em unidades produzidas, C′(q) tem unidade R\$/unidade.', tone: LearningCardTone.information),
       ]),
       LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A derivada é apresentada como limite de quocientes incrementais, com leitura geométrica e aplicada.', tone: LearningCardTone.information),
