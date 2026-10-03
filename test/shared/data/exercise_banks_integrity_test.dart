@@ -185,6 +185,23 @@ void main() {
       );
     });
 
+    test('todos os bancos possuem metadados pedagógicos completos', () {
+      for (final bank in exerciseBanks) {
+        for (final question in bank.questions) {
+          expect(
+            question.contentLessonId?.trim(),
+            isNotEmpty,
+            reason: '${bank.name}: ${question.id} precisa informar contentLessonId.',
+          );
+          expect(
+            question.skill?.trim(),
+            isNotEmpty,
+            reason: '${bank.name}: ${question.id} precisa informar a habilidade avaliada.',
+          );
+        }
+      }
+    });
+
     test('todos os IDs de questões são globalmente únicos', () {
       final allQuestionIds = exerciseBanks
           .expand((bank) => bank.questions)
