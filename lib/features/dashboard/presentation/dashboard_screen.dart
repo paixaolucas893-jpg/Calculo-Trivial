@@ -278,7 +278,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           en: 'Expressions and algebraic manipulation',
         ),
         lessons: algebraCourseLessons,
-        icon: 'Σ',
       );
     }
 
@@ -293,7 +292,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           ...equationsCourseLessons,
           ...precalculusEquationsSupplementLessons,
         ],
-        icon: 'x',
       );
     }
 
@@ -305,7 +303,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           en: 'Concepts, graphs, and transformations',
         ),
         lessons: precalculusFunctionsCourseLessons,
-        icon: 'f',
       );
     }
 
@@ -317,7 +314,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           en: 'Behavior and approximation',
         ),
         lessons: limitsCourseLessons,
-        icon: 'lim',
       );
     }
 
@@ -329,7 +325,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           en: 'Continuous functions and discontinuities',
         ),
         lessons: continuityCourseLessons,
-        icon: '∿',
       );
     }
 
@@ -340,7 +335,6 @@ class _DashboardScreenState extends State<DashboardScreen>
         en: 'Rates, tangents, and applications',
       ),
       lessons: derivativesCourseLessons,
-      icon: "f′",
     );
   }
 
@@ -985,12 +979,10 @@ class _DashboardModuleState {
   final String title;
   final String subtitle;
   final List<CourseLessonData> lessons;
-  final String icon;
 
   const _DashboardModuleState({
     required this.title,
     required this.subtitle,
     required this.lessons,
-    required this.icon,
   });
 }
