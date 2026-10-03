@@ -2,6 +2,11 @@ name: Build signed Play AAB
 run-name: Build signed Play AAB • ${{ github.ref_name }}
 
 on:
+  push:
+    branches:
+      - release/p1-precalculus-v1
+    paths:
+      - pubspec.yaml
   workflow_dispatch:
 
 permissions:
