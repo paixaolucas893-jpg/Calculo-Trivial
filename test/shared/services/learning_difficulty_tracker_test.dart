@@ -45,10 +45,10 @@ void main() {
 
     expect(restored, hasLength(3));
     expect(restored.first.contentLessonId, exercise.contentLessonId);
-    expect(restored.first.skill, 'Domínio de funções');
+    expect(restored.first.skill, exercise.skill);
     expect(diagnosis.analyzedAttempts, 3);
     expect(diagnosis.reviewRecommendations, hasLength(1));
-    expect(diagnosis.reviewRecommendations.single.skill, 'Domínio de funções');
+    expect(diagnosis.reviewRecommendations.single.skill, exercise.skill);
     expect(diagnosis.reviewRecommendations.single.finalTestErrors, 1);
   });
 
