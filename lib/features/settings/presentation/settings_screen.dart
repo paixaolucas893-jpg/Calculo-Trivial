@@ -271,6 +271,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return;
       }
 
+      await WidgetsBinding.instance.endOfFrame;
+
+      if (!mounted) {
+        return;
+      }
+
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute<void>(builder: (_) => const LoginScreen()),
         (route) => false,
@@ -356,12 +362,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
       );
 
       if (confirmed == true && mounted) {
+        await _waitForDialogRouteToSettle();
+
+        if (!mounted) {
+          return;
+        }
+
         await _deleteAccount(useGoogle: true);
       }
       return;
     }
 
-    final passwordController = TextEditingController();
+    var passwordInput = '';
 
     final password = await showDialog<String>(
       context: context,
@@ -378,7 +390,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(l10n.settingsDeleteSubscriptionWarning),
               const SizedBox(height: AppSpacing.md),
               TextField(
-                controller: passwordController,
                 obscureText: true,
                 autofocus: true,
                 textInputAction: TextInputAction.done,
@@ -386,6 +397,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   labelText: l10n.settingsDeletePasswordLabel,
                   border: const OutlineInputBorder(),
                 ),
+                onChanged: (value) {
+                  passwordInput = value;
+                },
                 onSubmitted: (value) {
                   if (value.isNotEmpty) {
                     Navigator.of(dialogContext).pop(value);
@@ -417,13 +431,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
       },
     );
 
-    passwordController.dispose();
-
     if (password == null || password.isEmpty || !mounted) {
       return;
     }
 
+    await _waitForDialogRouteToSettle();
+
+    if (!mounted) {
+      return;
+    }
+
     await _deleteAccount(password: password);
+  }
+
+  Future<void> _waitForDialogRouteToSettle() async {
+    await WidgetsBinding.instance.endOfFrame;
+    await Future<void>.delayed(AppMotion.standard);
   }
 
   Future<void> _deleteAccount({String? password, bool useGoogle = false}) async {
