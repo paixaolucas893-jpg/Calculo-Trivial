@@ -11,6 +11,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'b',
     explanation:
         'A derivada f′(a) é o limite das inclinações das retas secantes quando o segundo ponto se aproxima de a. Geometricamente, esse limite fornece a inclinação da reta tangente ao gráfico em (a,f(a)); em aplicações, representa uma taxa instantânea.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'A área sob o gráfico'),
       ExerciseOptionData(id: 'b', text: 'A inclinação da reta tangente'),
@@ -27,6 +28,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'c',
     explanation:
         'Pela regra da potência, a derivada de xⁿ é n·xⁿ⁻¹. Portanto, (x³)\' = 3x².',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'x²'),
       ExerciseOptionData(id: 'b', text: '3x'),
@@ -43,6 +45,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'a',
     explanation:
         'Use a linearidade e derive cada termo: (5x²)′=5·2x=10x; (−3x)′=−3; e a constante 4 tem derivada zero porque não varia. Somando as taxas, obtemos f′(x)=10x−3.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '10x - 3'),
       ExerciseOptionData(id: 'b', text: '5x - 3'),
@@ -59,6 +62,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'd',
     explanation:
         'Uma função constante não varia. Por isso, sua taxa de variação e sua derivada são iguais a zero.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '12'),
       ExerciseOptionData(id: 'b', text: '1'),
@@ -75,6 +79,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'b',
     explanation:
         'Na função f(x)=x, cada aumento Δx na entrada produz o mesmo aumento Δx na saída. A razão Δf/Δx é sempre 1; portanto, a reta possui inclinação constante e f′(x)=1 em todo ponto.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '0'),
       ExerciseOptionData(id: 'b', text: '1'),
@@ -176,6 +181,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'a',
     explanation:
         'A taxa instantânea de sen(x) segue cos(x): quando o seno cresce mais rapidamente, o cosseno é positivo; nos máximos e mínimos do seno, o cosseno vale zero. Assim, d/dx[sen(x)]=cos(x).',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'cos(x)'),
       ExerciseOptionData(id: 'b', text: '-cos(x)'),
@@ -192,6 +198,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'd',
     explanation:
         'A derivada do cosseno é −sen(x). O sinal negativo registra que, partindo de x=0, o cosseno começa a diminuir enquanto o seno é positivo. Portanto, d/dx[cos(x)]=−sen(x).',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'sen(x)'),
       ExerciseOptionData(id: 'b', text: 'cos(x)'),
@@ -208,6 +215,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'b',
     explanation:
         'A base e é definida de forma que a taxa instantânea de crescimento de eˣ seja igual ao próprio valor da função. Por isso, d/dx[eˣ]=eˣ, uma propriedade central em modelos de crescimento e decaimento.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'x·eˣ⁻¹'),
       ExerciseOptionData(id: 'b', text: 'eˣ'),
@@ -224,6 +232,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'c',
     explanation:
         'Para x>0, o logaritmo natural possui derivada 1/x. A taxa é positiva, mas diminui conforme x cresce, coerente com um gráfico que continua aumentando e fica progressivamente menos inclinado.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'ln(x)/x'),
       ExerciseOptionData(id: 'b', text: 'x'),
@@ -241,6 +250,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'a',
     explanation:
         'Primeiro derive a função: f\'(x)=2x. A inclinação da tangente no ponto pedido é o valor da derivada em x=2. Portanto, f\'(2)=2·2=4; a parábola sobe quatro unidades verticalmente por unidade horizontal naquele instante.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '4'),
       ExerciseOptionData(id: 'b', text: '2'),
@@ -293,6 +303,7 @@ const List<ExerciseData> mockDerivativesExercises = [
     correctOptionId: 'b',
     explanation:
         'Se a derivada existe em a, a função necessariamente é contínua nesse ponto. A recíproca é falsa: continuidade não garante uma inclinação única, como mostra |x| em zero. Portanto, derivabilidade é uma condição mais forte.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: 'Ela possui máximo em a'),
       ExerciseOptionData(id: 'b', text: 'Ela é contínua em a'),

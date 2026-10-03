@@ -10,6 +10,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'd',
     explanation:
         'Como a função polinomial é contínua, podemos substituir x por 3 diretamente: 2(3²) - 3 + 1 = 18 - 3 + 1 = 16.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '10'),
       ExerciseOptionData(id: 'b', text: '12'),
@@ -60,6 +61,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'a',
     explanation:
         'A substituição gera 0/0, mas isso é uma indeterminação, não a resposta. Em radianos, sen(x) e x ficam equivalentes perto de zero. Portanto, a razão sen(x)/x tende a 1. Esse resultado é o padrão fundamental usado para transformar limites trigonométricos mais complexos.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '1'),
       ExerciseOptionData(id: 'b', text: '0'),
@@ -94,6 +96,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'b',
     explanation:
         'Pelos dois lados de 2, as saídas se aproximam de 5: 4,98 pela esquerda e 5,02 pela direita. O limite descreve essa tendência, portanto vale 5. Não precisamos conhecer o valor exato de f(2) para fazer essa previsão.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '2'),
       ExerciseOptionData(id: 'b', text: '5'),
@@ -110,6 +113,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'c',
     explanation:
         'Fatoramos x² - 1 = (x - 1)(x + 1). Cancelando x - 1, resta x + 1. Quando x tende a 1, o limite é 2.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '0'),
       ExerciseOptionData(id: 'b', text: '1'),
@@ -126,6 +130,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'a',
     explanation:
         'Dividindo tudo por x², obtemos (2/x + 1/x²)/(1 + 3/x²). Todos os termos com x no denominador tendem a zero, enquanto o denominador tende a 1. Assim, o quociente tende a 0. Isso confirma que o denominador cresce mais rapidamente.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '0'),
       ExerciseOptionData(id: 'b', text: '1'),
@@ -142,6 +147,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'd',
     explanation:
         'Quando x se aproxima de zero pela direita, x é positivo e |x| = x. Portanto, |x|/x = 1.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '-1'),
       ExerciseOptionData(id: 'b', text: '0'),
@@ -175,6 +181,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'b',
     explanation:
         'A função é polinomial e contínua. Substituindo x = -1: (-1)³ + 2(-1) = -1 - 2 = -3.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '3'),
       ExerciseOptionData(id: 'b', text: '-3'),
@@ -295,6 +302,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'a',
     explanation:
         'Pela direita, x assume valores positivos cada vez menores. Assim, 1/x cresce sem limite e tende a +∞.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '+∞'),
       ExerciseOptionData(id: 'b', text: '-∞'),
@@ -311,6 +319,7 @@ const List<ExerciseData> mockLimitsExercises = [
     correctOptionId: 'b',
     explanation:
         'Pela esquerda, x assume valores negativos cada vez mais próximos de zero. Assim, 1/x tende a -∞.',
+    difficulty: ExerciseDifficulty.foundation,
     options: [
       ExerciseOptionData(id: 'a', text: '+∞'),
       ExerciseOptionData(id: 'b', text: '-∞'),
