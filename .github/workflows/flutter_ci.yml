@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - main
+      - release/p1-precalculus-v1
   workflow_dispatch:
 
 permissions:
