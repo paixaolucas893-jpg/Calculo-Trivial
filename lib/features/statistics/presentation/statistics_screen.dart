@@ -83,28 +83,25 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     }
   }
 
-  int _availableContentLessonCount(Locale locale) {
-    final algebraCount = localizedPrecalculusFoundationsCourseLessons(locale).length +
-        localizedAlgebraCourseLessons(locale)
-            .where((lesson) => lesson.id != 'algebra-04-potencias')
-            .length;
-    final equationsCount = localizedEquationsCourseLessons(locale).length +
-        localizedPrecalculusEquationsSupplementLessons(locale).length;
-    final functionsCount = localizedPrecalculusFunctionsCourseLessons(locale).length;
-    final limitsCount = localizedLimitsCourseLessons(locale).length;
-    final continuityCount = _isEnglish
-        ? englishContinuityCourseLessons.length
-        : continuityCourseLessons.length;
-    final derivativesCount = _isEnglish
-        ? derivativesCourseLessonsEn.length
-        : derivativesCourseLessons.length;
+  Set<String> _availableContentLessonIds(Locale locale) {
+    final lessons = [
+      ...localizedPrecalculusFoundationsCourseLessons(locale),
+      ...localizedAlgebraCourseLessons(locale).where(
+        (lesson) => lesson.id != 'algebra-04-potencias',
+      ),
+      ...localizedEquationsCourseLessons(locale),
+      ...localizedPrecalculusEquationsSupplementLessons(locale),
+      ...localizedPrecalculusFunctionsCourseLessons(locale),
+      ...localizedLimitsCourseLessons(locale),
+      ...(_isEnglish
+          ? englishContinuityCourseLessons
+          : continuityCourseLessons),
+      ...(_isEnglish
+          ? derivativesCourseLessonsEn
+          : derivativesCourseLessons),
+    ];
 
-    return algebraCount +
-        equationsCount +
-        functionsCount +
-        limitsCount +
-        continuityCount +
-        derivativesCount;
+    return lessons.map((lesson) => lesson.id).toSet();
   }
 
   int _completedModuleCount() {
@@ -504,8 +501,11 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       valueListenable: AppProgress.revision,
       builder: (context, revision, child) {
         final locale = Localizations.localeOf(context);
-        final completedLessons = AppProgress.completedContentLessonIds.length;
-        final totalLessons = _availableContentLessonCount(locale);
+        final availableLessonIds = _availableContentLessonIds(locale);
+        final completedLessons = AppProgress.completedContentLessonIds
+            .where(availableLessonIds.contains)
+            .length;
+        final totalLessons = availableLessonIds.length;
         final completedModules = _completedModuleCount();
         final studyStreak = AppProgress.studyStreak;
         final totalAnswers = AppProgress.totalAnswerAttempts;
