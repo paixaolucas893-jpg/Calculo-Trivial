@@ -59,7 +59,9 @@ class _ContinuityFinalTestScreenState extends State<ContinuityFinalTestScreen> {
     });
 
     try {
-      final session = await _finalTestService.startContinuityFinalTest();
+      final session = await _finalTestService.startContinuityFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -162,7 +164,7 @@ class _ContinuityFinalTestScreenState extends State<ContinuityFinalTestScreen> {
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
