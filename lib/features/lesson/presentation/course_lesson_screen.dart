@@ -183,7 +183,7 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
     return widgets;
   }
 
-  Widget _buildReadingProgress() {
+  Widget _buildReadingProgress({required bool isEnglish}) {
     final percentage = (_readingProgress * 100).round();
 
     return Padding(
@@ -191,37 +191,165 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
         AppSpacing.screenHorizontal,
         AppSpacing.xs,
         AppSpacing.screenHorizontal,
-        AppSpacing.xs,
+        AppSpacing.sm,
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(999),
-              child: LinearProgressIndicator(
-                value: _readingProgress,
-                minHeight: 5,
-                backgroundColor: AppColors.border,
-                valueColor: const AlwaysStoppedAnimation<Color>(
-                  AppColors.primary,
+          Row(
+            children: [
+              Text(
+                isEnglish ? 'Reading progress' : 'Progresso da leitura',
+                style: AppTypography.labelSmall.copyWith(
+                  color: AppColors.textMuted,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
+              const Spacer(),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 180),
+                child: Text(
+                  '$percentage%',
+                  key: ValueKey<int>(percentage),
+                  style: AppTypography.labelMedium.copyWith(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: AppSpacing.sm),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 180),
-            child: Text(
-              '$percentage%',
-              key: ValueKey<int>(percentage),
-              style: AppTypography.labelMedium.copyWith(
-                color: AppColors.primary,
-                fontWeight: FontWeight.w700,
+          const SizedBox(height: AppSpacing.xs),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: LinearProgressIndicator(
+              value: _readingProgress,
+              minHeight: 6,
+              backgroundColor: AppColors.progressTrack,
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.primary,
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildLessonRoadmap({required bool isEnglish}) {
+    final lesson = widget.lesson;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXLarge),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppColors.selectedBackground,
+                  borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+                ),
+                child: const Icon(
+                  Icons.route_outlined,
+                  color: AppColors.primary,
+                  size: AppSpacing.iconMedium,
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      isEnglish ? 'Lesson roadmap' : 'Roteiro da aula',
+                      style: AppTypography.titleMedium,
+                    ),
+                    const SizedBox(height: AppSpacing.xxs),
+                    Text(
+                      isEnglish
+                          ? '${lesson.sections.length} sections • ${lesson.duration}'
+                          : '${lesson.sections.length} seções • ${lesson.duration}',
+                      style: AppTypography.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          for (var index = 0; index < lesson.sections.length; index++) ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 26,
+                  height: 26,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: index == 0
+                        ? AppColors.primary
+                        : AppColors.surfaceSecondary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    lesson.sections[index].number,
+                    style: AppTypography.labelSmall.copyWith(
+                      color: index == 0
+                          ? AppColors.white
+                          : AppColors.textSecondary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Text(
+                      lesson.sections[index].title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.bodyMedium.copyWith(
+                        color: AppColors.textPrimary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            if (index < lesson.sections.length - 1)
+              const SizedBox(height: AppSpacing.sm),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContentHeading({required bool isEnglish}) {
+    return Row(
+      children: [
+        const Icon(
+          Icons.menu_book_rounded,
+          color: AppColors.primary,
+          size: AppSpacing.iconMedium,
+        ),
+        const SizedBox(width: AppSpacing.sm),
+        Text(
+          isEnglish ? 'Theory and examples' : 'Teoria e exemplos',
+          style: AppTypography.headingSmall,
+        ),
+      ],
     );
   }
 
@@ -277,7 +405,7 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                 ],
               ),
             ),
-            _buildReadingProgress(),
+            _buildReadingProgress(isEnglish: isEnglish),
             Expanded(
               child: ListView(
                 controller: _scrollController,
@@ -314,7 +442,11 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                     const SizedBox(height: AppSpacing.xl),
                     visualization,
                   ],
+                  const SizedBox(height: AppSpacing.lg),
+                  _buildLessonRoadmap(isEnglish: isEnglish),
                   const SizedBox(height: AppSpacing.xl),
+                  _buildContentHeading(isEnglish: isEnglish),
+                  const SizedBox(height: AppSpacing.lg),
                   ..._buildSections(),
                   if (showGuidedFactoringPractice) ...[
                     GuidedFactoringPracticeCard(isEnglish: isEnglish),
@@ -352,12 +484,42 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                     LimitsMultipleRepresentationsCard(isEnglish: isEnglish),
                     const SizedBox(height: AppSpacing.xl),
                   ],
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.task_alt_rounded,
+                        color: AppColors.primary,
+                        size: AppSpacing.iconMedium,
+                      ),
+                      const SizedBox(width: AppSpacing.sm),
+                      Text(
+                        isEnglish ? 'Knowledge check' : 'Cheque de aprendizagem',
+                        style: AppTypography.headingSmall,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: AppSpacing.md),
                   LessonCheckCard(
                     question: lesson.check.question,
                     choices: lesson.check.choices,
                     correctIndex: lesson.check.correctIndex,
                     explanation: lesson.check.explanation,
                     onAnswered: _markLessonCheckAnswered,
+                  ),
+                  const SizedBox(height: AppSpacing.xl),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.summarize_outlined,
+                        color: AppColors.primary,
+                        size: AppSpacing.iconMedium,
+                      ),
+                      const SizedBox(width: AppSpacing.sm),
+                      Text(
+                        isEnglish ? 'Lesson summary' : 'Resumo da aula',
+                        style: AppTypography.headingSmall,
+                      ),
+                    ],
                   ),
                   const SizedBox(height: AppSpacing.md),
                   LessonTakeawaysCard(items: lesson.takeaways),
@@ -383,13 +545,39 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                 AppSpacing.screenHorizontal,
                 AppSpacing.screenBottom,
               ),
-              child: PrimaryButton(
-                text: widget.actionLabel,
-                icon: Icons.arrow_forward_rounded,
-                onPressed: _isCompleting || !_lessonCheckAnswered
-                    ? null
-                    : _completeLesson,
-                isLoading: _isCompleting,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (!_lessonCheckAnswered) ...[
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.info_outline_rounded,
+                          size: AppSpacing.iconSmall,
+                          color: AppColors.textMuted,
+                        ),
+                        const SizedBox(width: AppSpacing.xs),
+                        Expanded(
+                          child: Text(
+                            isEnglish
+                                ? 'Answer the knowledge check to complete this lesson.'
+                                : 'Responda ao cheque de aprendizagem para concluir esta aula.',
+                            style: AppTypography.caption,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                  ],
+                  PrimaryButton(
+                    text: widget.actionLabel,
+                    icon: Icons.arrow_forward_rounded,
+                    onPressed: _isCompleting || !_lessonCheckAnswered
+                        ? null
+                        : _completeLesson,
+                    isLoading: _isCompleting,
+                  ),
+                ],
               ),
             ),
           ],
