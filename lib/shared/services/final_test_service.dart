@@ -1,6 +1,14 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:calcquest/shared/data/localized_algebra_exercise_content.dart';
+import 'package:calcquest/shared/data/localized_continuity_exercise_content.dart';
+import 'package:calcquest/shared/data/localized_derivatives_exercise_content.dart';
+import 'package:calcquest/shared/data/localized_equations_exercise_content.dart';
+import 'package:calcquest/shared/data/localized_functions_exercise_content.dart';
+import 'package:calcquest/shared/data/localized_limits_exercise_content.dart';
+import 'package:calcquest/shared/state/app_locale_controller.dart';
+import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
@@ -382,7 +390,7 @@ class FinalTestService {
     required String moduleId,
     required Iterable<String> practiceQuestionIds,
   }) {
-    final exercises = _exerciseBankForModule(moduleId);
+    final exercises = _localizedExerciseBankForModule(moduleId);
 
     final selected = FinalTestSessionBuilder.build(
       lessonId: moduleId,
@@ -582,6 +590,10 @@ class FinalTestService {
       totalQuestions: _finalTestQuestionCount,
     );
 
+    if (approved) {
+      await _completeModuleLocally(session.moduleId);
+    }
+
     _localSessions.remove(sessionId);
 
     final reward = _rewardForModule(session.moduleId);
@@ -593,8 +605,44 @@ class FinalTestService {
       approved: approved,
       awardedXp: approved ? reward.$1 : 0,
       awardedGold: approved ? reward.$2 : 0,
-      rewardAlreadyAppliedByBackend: false,
+      rewardAlreadyAppliedByBackend: approved,
     );
+  }
+
+  List<ExerciseData> _localizedExerciseBankForModule(String moduleId) {
+    final locale = appLocaleController.locale;
+
+    return _exerciseBankForModule(moduleId)
+        .map(
+          (exercise) => switch (moduleId) {
+            algebraModuleId => localizeAlgebraExerciseContent(exercise, locale),
+            equationsModuleId =>
+              localizeEquationsExerciseContent(exercise, locale),
+            functionsModuleId =>
+              localizeFunctionsExerciseContent(exercise, locale),
+            limitsModuleId => localizeLimitsExerciseContent(exercise, locale),
+            continuityModuleId =>
+              localizeContinuityExerciseContent(exercise, locale),
+            derivativesModuleId =>
+              localizeDerivativesExerciseContent(exercise, locale),
+            _ => exercise,
+          },
+        )
+        .toList(growable: false);
+  }
+
+  Future<void> _completeModuleLocally(String moduleId) {
+    return switch (moduleId) {
+      algebraModuleId => AppProgress.completeAlgebraFundamental(),
+      equationsModuleId => AppProgress.completeEquationsAndInequations(),
+      functionsModuleId => AppProgress.completeFunctions(),
+      limitsModuleId => AppProgress.completeLimits(),
+      continuityModuleId => AppProgress.completeContinuity(),
+      derivativesModuleId => AppProgress.completeDerivatives(),
+      _ => Future<void>.error(
+          ArgumentError.value(moduleId, 'moduleId', 'Unknown module.'),
+        ),
+    };
   }
 
   List<ExerciseData> _exerciseBankForModule(String moduleId) {
