@@ -55,7 +55,9 @@ class _AlgebraFinalTestScreenState extends State<AlgebraFinalTestScreen> {
     });
 
     try {
-      final session = await _finalTestService.startAlgebraFinalTest();
+      final session = await _finalTestService.startAlgebraFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -158,7 +160,7 @@ class _AlgebraFinalTestScreenState extends State<AlgebraFinalTestScreen> {
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
