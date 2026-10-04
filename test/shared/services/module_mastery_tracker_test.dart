@@ -11,6 +11,20 @@ void main() {
     await ModuleMasteryTracker.clearCurrentScopeForTesting(moduleId);
   });
 
+  test('mantém prática aprovada após recarregar a evidência', () async {
+    await ModuleMasteryTracker.recordPracticeResult(
+      moduleId: moduleId,
+      correctAnswers: 7,
+      totalQuestions: 10,
+    );
+
+    final reloaded = await ModuleMasteryTracker.loadEvidence(
+      moduleId: moduleId,
+    );
+
+    expect(reloaded.bestPracticeAccuracy, 0.7);
+  });
+
   test('mantém o melhor resultado de prática', () async {
     await ModuleMasteryTracker.recordPracticeResult(
       moduleId: moduleId,

@@ -11,6 +11,8 @@ import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart
 import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_functions_course_data.dart';
 import 'package:calcquest/shared/domain/course_lesson_data.dart';
+import 'package:calcquest/shared/domain/module_mastery_policy.dart';
+import 'package:calcquest/shared/services/module_mastery_tracker.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -18,12 +20,18 @@ import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_bottom_navigation_bar.dart';
 
 import '../../dashboard/presentation/dashboard_screen.dart';
+import '../../exercises/presentation/algebra_final_test_screen.dart';
 import '../../exercises/presentation/algebra_practice_screen.dart';
 import '../../exercises/presentation/continuity_exercises_screen.dart';
+import '../../exercises/presentation/continuity_final_test_screen.dart';
 import '../../exercises/presentation/derivatives_exercises_screen.dart';
+import '../../exercises/presentation/derivatives_final_test_screen.dart';
 import '../../exercises/presentation/equations_exercises_screen.dart';
+import '../../exercises/presentation/equations_final_test_screen.dart';
 import '../../exercises/presentation/functions_exercises_screen.dart';
+import '../../exercises/presentation/functions_final_test_screen.dart';
 import '../../exercises/presentation/limits_exercises_screen.dart';
+import '../../exercises/presentation/limits_final_test_screen.dart';
 import '../../learning_path/presentation/learning_path_screen.dart';
 import '../../lesson/presentation/course_lesson_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
@@ -42,6 +50,42 @@ class ModuleDetailScreen extends StatefulWidget {
 }
 
 class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
+  ModuleMasteryDecision? _masteryDecision;
+  bool _loadingMastery = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshMastery();
+  }
+
+  bool _legacyCompletedFor(String moduleId) {
+    return switch (moduleId) {
+      AppProgress.algebraFundamentalId =>
+        AppProgress.algebraFundamentalCompleted,
+      AppProgress.equationsAndInequationsId =>
+        AppProgress.equationsAndInequationsCompleted,
+      AppProgress.functionsId => AppProgress.functionsCompleted,
+      AppProgress.limitsId => AppProgress.limitsCompleted,
+      AppProgress.continuityId => AppProgress.continuityCompleted,
+      _ => AppProgress.derivativesCompleted,
+    };
+  }
+
+  Future<void> _refreshMastery() async {
+    final evidence = await ModuleMasteryTracker.loadEvidence(
+      moduleId: widget.moduleId,
+      legacyCompleted: _legacyCompletedFor(widget.moduleId),
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _masteryDecision = ModuleMasteryPolicy.evaluate(evidence);
+      _loadingMastery = false;
+    });
+  }
+
   bool get _isEnglish =>
       Localizations.localeOf(context).languageCode == 'en';
 
@@ -264,7 +308,7 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
     );
   }
 
-  void _openPractice(_ModuleConfig module) {
+  Future<void> _openPractice(_ModuleConfig module) async {
     final Widget destination = switch (module.id) {
       AppProgress.algebraFundamentalId => const AlgebraPracticeScreen(),
       AppProgress.equationsAndInequationsId =>
@@ -275,9 +319,37 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
       _ => const DerivativesExercisesScreen(),
     };
 
-    Navigator.of(context).push(
+    await Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => destination),
     );
+
+    if (!mounted) return;
+    await _refreshMastery();
+  }
+
+  Future<void> _openFinalTest(_ModuleConfig module) async {
+    final Widget destination = switch (module.id) {
+      AppProgress.algebraFundamentalId =>
+        const AlgebraFinalTestScreen(practiceQuestionIds: <String>{}),
+      AppProgress.equationsAndInequationsId =>
+        const EquationsFinalTestScreen(practiceQuestionIds: <String>{}),
+      AppProgress.functionsId =>
+        const FunctionsFinalTestScreen(practiceQuestionIds: <String>{}),
+      AppProgress.limitsId =>
+        const LimitsFinalTestScreen(practiceQuestionIds: <String>{}),
+      AppProgress.continuityId =>
+        const ContinuityFinalTestScreen(practiceQuestionIds: <String>{}),
+      _ => const DerivativesFinalTestScreen(
+          practiceQuestionIds: <String>{},
+        ),
+    };
+
+    await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => destination),
+    );
+
+    if (!mounted) return;
+    await _refreshMastery();
   }
 
   Widget _buildHeader(_ModuleConfig module) {
@@ -571,23 +643,37 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
     _ModuleConfig module,
     bool allLessonsCompleted,
   ) {
-    final accent = allLessonsCompleted
+    final practiceCompleted =
+        _masteryDecision?.canTakeFinalTest ?? false;
+    final moduleMastered =
+        _masteryDecision?.canUnlockNextModule ?? false;
+
+    final unlocked = allLessonsCompleted;
+    final completed = unlocked && practiceCompleted;
+    final accent = completed
         ? AppColors.success
-        : AppColors.locked;
+        : unlocked
+            ? AppColors.primary
+            : AppColors.locked;
+
+    final background = completed
+        ? AppColors.successLight
+        : unlocked
+            ? AppColors.selectedBackground
+            : AppColors.surfaceSecondary;
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
       decoration: BoxDecoration(
-        color: allLessonsCompleted
-            ? AppColors.successLight
-            : AppColors.surfaceSecondary,
-        borderRadius:
-            BorderRadius.circular(AppSpacing.radiusLarge),
+        color: background,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
         border: Border.all(
-          color: allLessonsCompleted
+          color: completed
               ? AppColors.success.withValues(alpha: 0.55)
-              : AppColors.border,
+              : unlocked
+                  ? AppColors.primaryLight
+                  : AppColors.border,
         ),
       ),
       child: Column(
@@ -596,45 +682,79 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           Row(
             children: [
               Icon(
-                allLessonsCompleted
-                    ? Icons.task_alt_rounded
-                    : Icons.lock_outline_rounded,
+                completed
+                    ? Icons.check_circle_rounded
+                    : unlocked
+                        ? Icons.fact_check_outlined
+                        : Icons.lock_outline_rounded,
                 color: accent,
               ),
               const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Text(
-                  _copy(
-                    pt: 'Prática guiada e teste final',
-                    en: 'Guided practice and final test',
-                  ),
+                  completed
+                      ? _copy(
+                          pt: moduleMastered
+                              ? 'Prática e teste final concluídos'
+                              : 'Prática guiada • Concluída',
+                          en: moduleMastered
+                              ? 'Practice and final test completed'
+                              : 'Guided practice • Completed',
+                        )
+                      : _copy(
+                          pt: 'Prática guiada e teste final',
+                          en: 'Guided practice and final test',
+                        ),
                   style: AppTypography.titleMedium.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
+              if (_loadingMastery && unlocked)
+                const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
             ],
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            allLessonsCompleted
+            !unlocked
                 ? _copy(
-                    pt: 'As aulas estão concluídas. Faça a prática guiada, revise os erros e avance para o teste final do módulo.',
-                    en: 'All lessons are complete. Take guided practice, review mistakes, and continue to the module final test.',
-                  )
-                : _copy(
                     pt: 'Conclua todas as aulas para liberar a prática guiada e, em seguida, o teste final.',
                     en: 'Complete every lesson to unlock guided practice and then the final test.',
-                  ),
+                  )
+                : _loadingMastery
+                    ? _copy(
+                        pt: 'Verificando seu resultado salvo da prática.',
+                        en: 'Checking your saved practice result.',
+                      )
+                    : moduleMastered
+                        ? _copy(
+                            pt: 'Você já concluiu a prática e atingiu o domínio do módulo.',
+                            en: 'You have completed the practice and mastered this module.',
+                          )
+                        : practiceCompleted
+                            ? _copy(
+                                pt: 'Você atingiu o mínimo de 70% na prática. O teste final está liberado.',
+                                en: 'You reached the 70% practice target. The final test is unlocked.',
+                              )
+                            : _copy(
+                                pt: 'Faça a prática guiada e alcance pelo menos 70% de acertos para liberar o teste final.',
+                                en: 'Complete guided practice with at least 70% accuracy to unlock the final test.',
+                              ),
             style: AppTypography.bodyMedium,
           ),
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             width: double.infinity,
             child: FilledButton.icon(
-              onPressed: allLessonsCompleted
-                  ? () => _openPractice(module)
-                  : null,
+              onPressed: !unlocked || _loadingMastery
+                  ? null
+                  : practiceCompleted
+                      ? () => _openFinalTest(module)
+                      : () => _openPractice(module),
               style: FilledButton.styleFrom(
                 backgroundColor: AppColors.navy,
                 foregroundColor: AppColors.white,
@@ -644,19 +764,49 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
                       BorderRadius.circular(AppSpacing.radiusLarge),
                 ),
               ),
-              icon: const Icon(Icons.play_arrow_rounded),
+              icon: Icon(
+                practiceCompleted
+                    ? Icons.flag_rounded
+                    : Icons.play_arrow_rounded,
+              ),
               label: Text(
-                _copy(
-                  pt: 'Iniciar prática guiada',
-                  en: 'Start guided practice',
-                ),
+                practiceCompleted
+                    ? _copy(
+                        pt: moduleMastered
+                            ? 'Refazer teste final'
+                            : 'Iniciar teste final',
+                        en: moduleMastered
+                            ? 'Retake final test'
+                            : 'Start final test',
+                      )
+                    : _copy(
+                        pt: 'Iniciar prática guiada',
+                        en: 'Start guided practice',
+                      ),
               ),
             ),
           ),
+          if (completed) ...[
+            const SizedBox(height: AppSpacing.xs),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton.icon(
+                onPressed: () => _openPractice(module),
+                icon: const Icon(Icons.refresh_rounded),
+                label: Text(
+                  _copy(
+                    pt: 'Refazer prática',
+                    en: 'Redo practice',
+                  ),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
