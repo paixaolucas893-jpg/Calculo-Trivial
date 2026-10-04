@@ -53,12 +53,17 @@ void main() {
     expect(completions, 0);
 
     final wrongAnswer = find.text('Resposta incorreta');
+    final lessonScroll = find.byType(Scrollable).first;
     await tester.scrollUntilVisible(
       wrongAnswer,
       240,
-      scrollable: find.byType(Scrollable).first,
+      scrollable: lessonScroll,
     );
-    await tester.tap(wrongAnswer);
+    await tester.drag(lessonScroll, const Offset(0, -180));
+    await tester.pump();
+    await tester.tap(
+      find.widgetWithText(OutlinedButton, 'Resposta incorreta'),
+    );
     await tester.pump();
 
     await tester.tap(find.text('Próxima aula'));
