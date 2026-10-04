@@ -5,6 +5,7 @@ import 'package:calcquest/shared/data/continuity_course_data.dart';
 import 'package:calcquest/shared/data/derivatives_course_data.dart';
 import 'package:calcquest/shared/data/derivatives_course_data_en.dart';
 import 'package:calcquest/shared/data/localized_algebra_course_content.dart';
+import 'package:calcquest/shared/data/localized_continuity_course_data.dart';
 import 'package:calcquest/shared/data/localized_equations_course_data.dart';
 import 'package:calcquest/shared/data/localized_limits_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart';
