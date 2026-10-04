@@ -59,7 +59,9 @@ class _DerivativesFinalTestScreenState extends State<DerivativesFinalTestScreen>
     });
 
     try {
-      final session = await _finalTestService.startDerivativesFinalTest();
+      final session = await _finalTestService.startDerivativesFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -162,7 +164,7 @@ class _DerivativesFinalTestScreenState extends State<DerivativesFinalTestScreen>
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
