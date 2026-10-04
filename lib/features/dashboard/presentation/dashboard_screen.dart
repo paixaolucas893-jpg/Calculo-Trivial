@@ -856,7 +856,10 @@ class _DashboardScreenState extends State<DashboardScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Tutor Trivial',
+                  _copy(
+                    pt: 'Tutor Trivial • Em desenvolvimento',
+                    en: 'Tutor Trivial • In development',
+                  ),
                   style: AppTypography.titleMedium.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
@@ -864,8 +867,8 @@ class _DashboardScreenState extends State<DashboardScreen>
                 const SizedBox(height: AppSpacing.xxs),
                 Text(
                   _copy(
-                    pt: 'Peça pistas e explicações diretamente nas aulas e exercícios.',
-                    en: 'Ask for hints and explanations directly inside lessons and exercises.',
+                    pt: 'O tutor com IA será integrado às aulas e exercícios em uma versão futura.',
+                    en: 'The AI tutor will be integrated into lessons and exercises in a future version.',
                   ),
                   style: AppTypography.bodySmall,
                 ),
