@@ -11,6 +11,7 @@ import 'package:calcquest/shared/theme/app_spacing.dart';
 import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_progress_bar.dart';
 import 'package:calcquest/shared/widgets/exercise_answer_feedback.dart';
+import 'package:calcquest/shared/widgets/exercise_practice_ui.dart';
 import 'package:calcquest/shared/widgets/primary_button.dart';
 
 import 'continuity_final_test_screen.dart';
@@ -172,60 +173,12 @@ class _ContinuityExercisesScreenState extends State<ContinuityExercisesScreen> {
     final isSelected = selectedOptionId == option.id;
     const letters = <String>['A', 'B', 'C', 'D'];
 
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
-      child: InkWell(
-        onTap: isShowingFeedback
-            ? null
-            : () => setState(() => selectedOptionId = option.id),
-        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          width: double.infinity,
-          padding: const EdgeInsets.all(AppSpacing.cardPadding),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? AppColors.selectedBackground
-                : AppColors.surface,
-            borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
-            border: Border.all(
-              color: isSelected ? AppColors.primary : AppColors.border,
-              width: isSelected ? 2 : 1,
-            ),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? AppColors.primary
-                      : AppColors.surfaceSecondary,
-                  borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
-                ),
-                child: Text(
-                  letters[index],
-                  style: AppTypography.labelMedium.copyWith(
-                    color: isSelected
-                        ? AppColors.white
-                        : AppColors.textSecondary,
-                  ),
-                ),
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              Expanded(child: Text(option.text, style: AppTypography.bodyLarge)),
-              if (isSelected)
-                const Icon(
-                  Icons.check_circle_rounded,
-                  color: AppColors.primary,
-                ),
-            ],
-          ),
-        ),
-      ),
+    return ExerciseOptionTile(
+      letter: letters[index],
+      text: option.text,
+      selected: isSelected,
+      enabled: !isShowingFeedback,
+      onTap: () => setState(() => selectedOptionId = option.id),
     );
   }
 
@@ -252,69 +205,21 @@ class _ContinuityExercisesScreenState extends State<ContinuityExercisesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      _isEnglish
-                          ? 'Question ${currentExerciseIndex + 1} of ${sessionExercises.length}'
-                          : 'Questão ${currentExerciseIndex + 1} de ${sessionExercises.length}',
-                      style: AppTypography.headingSmall,
-                    ),
-                  ),
-                  Text(
-                    '${(progress * 100).round()}%',
-                    style: AppTypography.labelMedium.copyWith(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                _isEnglish
-                    ? 'Use the feedback to correct your reasoning before the final test.'
-                    : 'Use o feedback para corrigir seu raciocínio antes do teste final.',
-                style: AppTypography.bodyMedium,
-              ),
-              const SizedBox(height: AppSpacing.md),
-              TweenAnimationBuilder<double>(
-                tween: Tween(begin: 0, end: progress),
-                duration: const Duration(milliseconds: 300),
-                builder: (context, value, child) => AppProgressBar(value: value),
+              ExercisePracticeHeader(
+                isEnglish: _isEnglish,
+                currentQuestion: currentExerciseIndex + 1,
+                totalQuestions: sessionExercises.length,
+                progress: progress,
               ),
               const SizedBox(height: AppSpacing.lg),
-              Wrap(
-                spacing: AppSpacing.xs,
-                runSpacing: AppSpacing.xs,
-                children: [
-                  if (exercise.skill != null)
-                    Chip(
-                      avatar: const Icon(Icons.school_outlined, size: 18),
-                      label: Text(exercise.skill!),
-                    ),
-                  Chip(
-                    avatar: const Icon(Icons.signal_cellular_alt_rounded, size: 18),
-                    label: Text(_difficultyLabel(exercise.difficulty, l10n)),
-                  ),
-                ],
+              ExerciseMetadataChips(
+                skill: exercise.skill,
+                difficulty: _difficultyLabel(exercise.difficulty, l10n),
               ),
               const SizedBox(height: AppSpacing.md),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
-                decoration: BoxDecoration(
-                  color: AppColors.surface,
-                  borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Text(
-                  exercise.statement,
-                  style: AppTypography.headingSmall.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+              ExerciseQuestionCard(
+                isEnglish: _isEnglish,
+                statement: exercise.statement,
               ),
               const SizedBox(height: AppSpacing.lg),
               Expanded(
