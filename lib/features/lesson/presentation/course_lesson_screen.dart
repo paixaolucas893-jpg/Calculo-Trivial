@@ -529,6 +529,7 @@ class _CourseLessonScreenState extends State<CourseLessonScreen> {
                     textAlign: TextAlign.center,
                     style: AppTypography.bodyMedium,
                   ),
+                  const SizedBox(height: AppSpacing.xxxl),
                 ],
               ),
             ),
