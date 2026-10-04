@@ -59,7 +59,9 @@ class _FunctionsFinalTestScreenState extends State<FunctionsFinalTestScreen> {
     });
 
     try {
-      final session = await _finalTestService.startFunctionsFinalTest();
+      final session = await _finalTestService.startFunctionsFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -162,7 +164,7 @@ class _FunctionsFinalTestScreenState extends State<FunctionsFinalTestScreen> {
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
