@@ -53,7 +53,11 @@ void main() {
     expect(completions, 0);
 
     final wrongAnswer = find.text('Resposta incorreta');
-    await tester.ensureVisible(wrongAnswer);
+    await tester.scrollUntilVisible(
+      wrongAnswer,
+      240,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(wrongAnswer);
     await tester.pump();
 
