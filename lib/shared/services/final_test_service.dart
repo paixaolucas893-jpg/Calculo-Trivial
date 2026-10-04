@@ -1,6 +1,16 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
+import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
+import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
+import 'package:calcquest/shared/data/mock_exercise_data.dart';
+import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
+import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
+import 'package:calcquest/shared/domain/final_test_session_builder.dart';
+import 'package:calcquest/shared/services/module_mastery_tracker.dart';
+import 'package:calcquest/shared/state/app_progress.dart';
+
 class TrustedFinalTestOption {
   final String id;
   final String text;
@@ -118,6 +128,7 @@ class TrustedFinalTestSubmission {
   final bool approved;
   final int awardedXp;
   final int awardedGold;
+  final bool rewardAlreadyAppliedByBackend;
 
   const TrustedFinalTestSubmission({
     required this.totalQuestions,
@@ -126,6 +137,7 @@ class TrustedFinalTestSubmission {
     required this.approved,
     required this.awardedXp,
     required this.awardedGold,
+    this.rewardAlreadyAppliedByBackend = true,
   });
 
   factory TrustedFinalTestSubmission.fromMap(Map<String, dynamic> map) {
@@ -146,6 +158,7 @@ class TrustedFinalTestSubmission {
       approved: _requiredBool(submission, 'approved'),
       awardedXp: _optionalInt(reward, 'xpAwarded'),
       awardedGold: _optionalInt(reward, 'goldAwarded'),
+      rewardAlreadyAppliedByBackend: true,
     );
   }
 }
@@ -219,6 +232,25 @@ FinalTestLoadFailure describeFinalTestLoadFailure(
   );
 }
 
+class _LocalFinalTestSession {
+  final String moduleId;
+  final List<ExerciseData> exercises;
+  final DateTime expiresAt;
+
+  const _LocalFinalTestSession({
+    required this.moduleId,
+    required this.exercises,
+    required this.expiresAt,
+  });
+}
+
+class _ModuleReward {
+  final int xp;
+  final int gold;
+
+  const _ModuleReward(this.xp, this.gold);
+}
+
 class FinalTestService {
   static const String algebraModuleId = 'algebra-fundamental';
   static const String equationsModuleId = 'equacoes-inequacoes';
@@ -228,208 +260,240 @@ class FinalTestService {
   static const String derivativesModuleId = 'derivadas';
 
   final FirebaseFunctions _functions;
+  final Map<String, _LocalFinalTestSession> _localSessions =
+      <String, _LocalFinalTestSession>{};
 
   FinalTestService({FirebaseFunctions? functions})
     : _functions =
           functions ?? FirebaseFunctions.instanceFor(region: 'us-central1');
 
-  Future<TrustedFinalTestSession> startAlgebraFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': algebraModuleId,
-    });
-
-    return TrustedFinalTestSession.fromMap(
-      _stringMap(result.data, 'Invalid startFinalTest response.'),
+  Future<TrustedFinalTestSession> startAlgebraFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: algebraModuleId,
+      exercises: mockExercises,
+      practiceQuestionIds: practiceQuestionIds,
     );
   }
 
-  Future<TrustedFinalTestSession> startEquationsFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': equationsModuleId,
-    });
-
-    return TrustedFinalTestSession.fromMap(
-      _stringMap(result.data, 'Invalid startFinalTest response.'),
+  Future<TrustedFinalTestSession> startEquationsFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: equationsModuleId,
+      exercises: mockEquationsExercises,
+      practiceQuestionIds: practiceQuestionIds,
     );
   }
 
-  Future<TrustedFinalTestSession> startFunctionsFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': functionsModuleId,
-    });
-
-    return TrustedFinalTestSession.fromMap(
-      _stringMap(result.data, 'Invalid startFinalTest response.'),
+  Future<TrustedFinalTestSession> startFunctionsFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: functionsModuleId,
+      exercises: mockFunctionsExercises,
+      practiceQuestionIds: practiceQuestionIds,
     );
   }
 
-  Future<TrustedFinalTestSession> startLimitsFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': limitsModuleId,
-    });
-
-    return TrustedFinalTestSession.fromMap(
-      Map<String, dynamic>.from(result.data as Map),
+  Future<TrustedFinalTestSession> startLimitsFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: limitsModuleId,
+      exercises: mockLimitsExercises,
+      practiceQuestionIds: practiceQuestionIds,
     );
   }
 
-  Future<TrustedFinalTestSession> startContinuityFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': continuityModuleId,
-    });
-
-    return TrustedFinalTestSession.fromMap(
-      _stringMap(result.data, 'Invalid startFinalTest response.'),
+  Future<TrustedFinalTestSession> startContinuityFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: continuityModuleId,
+      exercises: mockContinuityExercises,
+      practiceQuestionIds: practiceQuestionIds,
     );
   }
-  Future<TrustedFinalTestSession> startDerivativesFinalTest() async {
-    final callable = _functions.httpsCallable(
-      'startFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
+
+  Future<TrustedFinalTestSession> startDerivativesFinalTest({
+    Iterable<String> practiceQuestionIds = const <String>[],
+  }) {
+    return _startFinalTest(
+      moduleId: derivativesModuleId,
+      exercises: mockDerivativesExercises,
+      practiceQuestionIds: practiceQuestionIds,
+    );
+  }
+
+  Future<TrustedFinalTestSession> _startFinalTest({
+    required String moduleId,
+    required List<ExerciseData> exercises,
+    required Iterable<String> practiceQuestionIds,
+  }) async {
+    try {
+      final callable = _functions.httpsCallable(
+        'startFinalTest',
+        options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
+      );
+
+      final result = await callable.call<dynamic>(<String, dynamic>{
+        'moduleId': moduleId,
+      });
+
+      return TrustedFinalTestSession.fromMap(
+        _stringMap(result.data, 'Invalid startFinalTest response.'),
+      );
+    } on FirebaseFunctionsException catch (error) {
+      if (!_shouldUseLocalFallback(error.code)) {
+        rethrow;
+      }
+
+      debugPrint(
+        'FinalTestService: using local fallback for $moduleId '
+        'because startFinalTest returned ${error.code}.',
+      );
+
+      return _startLocalFinalTest(
+        moduleId: moduleId,
+        exercises: exercises,
+        practiceQuestionIds: practiceQuestionIds,
+      );
+    }
+  }
+
+  TrustedFinalTestSession _startLocalFinalTest({
+    required String moduleId,
+    required List<ExerciseData> exercises,
+    required Iterable<String> practiceQuestionIds,
+  }) {
+    final selectedExercises = FinalTestSessionBuilder.build(
+      lessonId: moduleId,
+      exercises: exercises,
+      practiceQuestionIds: practiceQuestionIds,
+      questionCount: 10,
     );
 
-    final result = await callable.call<dynamic>(const <String, dynamic>{
-      'moduleId': derivativesModuleId,
-    });
+    if (selectedExercises.length != 10) {
+      throw const FormatException(
+        'Local final test requires exactly ten questions.',
+      );
+    }
 
-    return TrustedFinalTestSession.fromMap(
-      _stringMap(result.data, 'Invalid startFinalTest response.'),
+    final now = DateTime.now();
+    final sessionId =
+        'local:$moduleId:${now.microsecondsSinceEpoch.toString()}';
+    final expiresAt = now.add(const Duration(hours: 1));
+
+    _localSessions[sessionId] = _LocalFinalTestSession(
+      moduleId: moduleId,
+      exercises: selectedExercises,
+      expiresAt: expiresAt,
+    );
+
+    return TrustedFinalTestSession(
+      sessionId: sessionId,
+      moduleId: moduleId,
+      expiresAt: expiresAt,
+      questions: selectedExercises
+          .map(
+            (exercise) => TrustedFinalTestQuestion(
+              id: exercise.id,
+              statement: exercise.statement,
+              options: exercise.options
+                  .map(
+                    (option) => TrustedFinalTestOption(
+                      id: option.id,
+                      text: option.text,
+                    ),
+                  )
+                  .toList(growable: false),
+            ),
+          )
+          .toList(growable: false),
     );
   }
 
   Future<TrustedFinalTestSubmission> submitAlgebraFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
-  }) async {
-    final callable = _functions.httpsCallable(
-      'submitFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(<String, dynamic>{
-      'sessionId': sessionId,
-      'answers': answers
-          .map((answer) => answer.toMap())
-          .toList(growable: false),
-    });
-
-    return TrustedFinalTestSubmission.fromMap(
-      _stringMap(result.data, 'Invalid submitFinalTest response.'),
+  }) {
+    return _submitFinalTest(
+      moduleId: algebraModuleId,
+      sessionId: sessionId,
+      answers: answers,
     );
   }
 
   Future<TrustedFinalTestSubmission> submitEquationsFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
-  }) async {
-    final callable = _functions.httpsCallable(
-      'submitFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(<String, dynamic>{
-      'sessionId': sessionId,
-      'answers': answers
-          .map((answer) => answer.toMap())
-          .toList(growable: false),
-    });
-
-    return TrustedFinalTestSubmission.fromMap(
-      _stringMap(result.data, 'Invalid submitFinalTest response.'),
+  }) {
+    return _submitFinalTest(
+      moduleId: equationsModuleId,
+      sessionId: sessionId,
+      answers: answers,
     );
   }
 
   Future<TrustedFinalTestSubmission> submitFunctionsFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
-  }) async {
-    final callable = _functions.httpsCallable(
-      'submitFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(<String, dynamic>{
-      'sessionId': sessionId,
-      'answers': answers
-          .map((answer) => answer.toMap())
-          .toList(growable: false),
-    });
-
-    return TrustedFinalTestSubmission.fromMap(
-      _stringMap(result.data, 'Invalid submitFinalTest response.'),
+  }) {
+    return _submitFinalTest(
+      moduleId: functionsModuleId,
+      sessionId: sessionId,
+      answers: answers,
     );
   }
 
   Future<TrustedFinalTestSubmission> submitLimitsFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
-  }) async {
-    final callable = _functions.httpsCallable(
-      'submitFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(<String, dynamic>{
-      'sessionId': sessionId,
-      'answers': answers
-          .map((answer) => answer.toMap())
-          .toList(growable: false),
-    });
-
-    return TrustedFinalTestSubmission.fromMap(
-      _stringMap(result.data, 'Invalid submitFinalTest response.'),
+  }) {
+    return _submitFinalTest(
+      moduleId: limitsModuleId,
+      sessionId: sessionId,
+      answers: answers,
     );
   }
+
   Future<TrustedFinalTestSubmission> submitContinuityFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
-  }) async {
-    final callable = _functions.httpsCallable(
-      'submitFinalTest',
-      options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
-    );
-
-    final result = await callable.call<dynamic>(<String, dynamic>{
-      'sessionId': sessionId,
-      'answers': answers
-          .map((answer) => answer.toMap())
-          .toList(growable: false),
-    });
-
-    return TrustedFinalTestSubmission.fromMap(
-      _stringMap(result.data, 'Invalid submitFinalTest response.'),
+  }) {
+    return _submitFinalTest(
+      moduleId: continuityModuleId,
+      sessionId: sessionId,
+      answers: answers,
     );
   }
 
   Future<TrustedFinalTestSubmission> submitDerivativesFinalTest({
     required String sessionId,
     required List<TrustedFinalTestAnswer> answers,
+  }) {
+    return _submitFinalTest(
+      moduleId: derivativesModuleId,
+      sessionId: sessionId,
+      answers: answers,
+    );
+  }
+
+  Future<TrustedFinalTestSubmission> _submitFinalTest({
+    required String moduleId,
+    required String sessionId,
+    required List<TrustedFinalTestAnswer> answers,
   }) async {
+    if (sessionId.startsWith('local:')) {
+      return _submitLocalFinalTest(
+        moduleId: moduleId,
+        sessionId: sessionId,
+        answers: answers,
+      );
+    }
+
     final callable = _functions.httpsCallable(
       'submitFinalTest',
       options: HttpsCallableOptions(timeout: const Duration(seconds: 30)),
@@ -445,6 +509,113 @@ class FinalTestService {
     return TrustedFinalTestSubmission.fromMap(
       _stringMap(result.data, 'Invalid submitFinalTest response.'),
     );
+  }
+
+  Future<TrustedFinalTestSubmission> _submitLocalFinalTest({
+    required String moduleId,
+    required String sessionId,
+    required List<TrustedFinalTestAnswer> answers,
+  }) async {
+    final localSession = _localSessions[sessionId];
+    if (localSession == null || localSession.moduleId != moduleId) {
+      throw StateError('Local final test session is unavailable.');
+    }
+
+    if (DateTime.now().isAfter(localSession.expiresAt)) {
+      _localSessions.remove(sessionId);
+      throw StateError('Local final test session has expired.');
+    }
+
+    if (answers.length != localSession.exercises.length) {
+      throw const FormatException('Final test must contain ten answers.');
+    }
+
+    final answersByQuestionId = <String, String>{};
+    for (final answer in answers) {
+      if (answersByQuestionId.containsKey(answer.questionId)) {
+        throw const FormatException('Duplicate final test answer.');
+      }
+      answersByQuestionId[answer.questionId] = answer.optionId;
+    }
+
+    var correctAnswers = 0;
+    for (final exercise in localSession.exercises) {
+      final selectedOptionId = answersByQuestionId[exercise.id];
+      if (selectedOptionId == null) {
+        throw const FormatException('Missing final test answer.');
+      }
+
+      final optionExists = exercise.options.any(
+        (option) => option.id == selectedOptionId,
+      );
+      if (!optionExists) {
+        throw const FormatException('Invalid final test option.');
+      }
+
+      final isCorrect = selectedOptionId == exercise.correctOptionId;
+      if (isCorrect) {
+        correctAnswers++;
+      }
+      AppProgress.recordExerciseAnswer(isCorrect: isCorrect);
+    }
+
+    final totalQuestions = localSession.exercises.length;
+    final accuracy = correctAnswers / totalQuestions;
+    final approved = accuracy >= 0.80;
+    final reward = _rewardFor(moduleId);
+
+    await ModuleMasteryTracker.recordFinalTestResult(
+      moduleId: moduleId,
+      correctAnswers: correctAnswers,
+      totalQuestions: totalQuestions,
+      legacyCompleted: _legacyCompletedFor(moduleId),
+    );
+
+    _localSessions.remove(sessionId);
+
+    return TrustedFinalTestSubmission(
+      totalQuestions: totalQuestions,
+      correctAnswers: correctAnswers,
+      accuracy: accuracy,
+      approved: approved,
+      awardedXp: reward.xp,
+      awardedGold: reward.gold,
+      rewardAlreadyAppliedByBackend: false,
+    );
+  }
+
+  static bool _shouldUseLocalFallback(String code) {
+    return switch (code) {
+      'not-found' ||
+      'unavailable' ||
+      'deadline-exceeded' ||
+      'internal' => true,
+      _ => false,
+    };
+  }
+
+  static _ModuleReward _rewardFor(String moduleId) {
+    return switch (moduleId) {
+      algebraModuleId => const _ModuleReward(60, 25),
+      equationsModuleId => const _ModuleReward(70, 30),
+      functionsModuleId => const _ModuleReward(80, 35),
+      limitsModuleId => const _ModuleReward(90, 40),
+      continuityModuleId => const _ModuleReward(100, 45),
+      derivativesModuleId => const _ModuleReward(110, 50),
+      _ => const _ModuleReward(0, 0),
+    };
+  }
+
+  static bool _legacyCompletedFor(String moduleId) {
+    return switch (moduleId) {
+      algebraModuleId => AppProgress.algebraFundamentalCompleted,
+      equationsModuleId => AppProgress.equationsAndInequationsCompleted,
+      functionsModuleId => AppProgress.functionsCompleted,
+      limitsModuleId => AppProgress.limitsCompleted,
+      continuityModuleId => AppProgress.continuityCompleted,
+      derivativesModuleId => AppProgress.derivativesCompleted,
+      _ => false,
+    };
   }
 }
 
