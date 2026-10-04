@@ -72,14 +72,19 @@ class _EquationsFinalTestScreenState extends State<EquationsFinalTestScreen> {
         _answers.clear();
         _isLoading = false;
       });
-    } catch (_) {
+    } catch (error) {
       if (!mounted) {
         return;
       }
 
+      final failure = describeFinalTestLoadFailure(
+        error,
+        isEnglish: _isEnglish,
+      );
+
       setState(() {
         _isLoading = false;
-        _errorMessage = 'start';
+        _errorMessage = failure.message;
       });
     }
   }
@@ -293,9 +298,10 @@ class _EquationsFinalTestScreenState extends State<EquationsFinalTestScreen> {
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  _isEnglish
-                      ? 'Check your connection and try again.'
-                      : 'Verifique sua conexão e tente novamente.',
+                  _errorMessage ??
+                      (_isEnglish
+                          ? 'The final test could not be loaded.'
+                          : 'Não foi possível carregar o teste final.'),
                   textAlign: TextAlign.center,
                   style: AppTypography.bodyMedium,
                 ),
