@@ -764,11 +764,193 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  bool get _isEnglish =>
+      Localizations.localeOf(context).languageCode.toLowerCase() == 'en';
+
+  String _copy({
+    required String pt,
+    required String en,
+  }) {
+    return _isEnglish ? en : pt;
+  }
+
+  Widget _sectionHeader({
+    required String title,
+    required String subtitle,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: AppTypography.titleLarge.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        const SizedBox(height: AppSpacing.xxs),
+        Text(subtitle, style: AppTypography.bodySmall),
+      ],
+    );
+  }
+
+  Widget _buildAccountSummary(
+    User? user,
+    AppLocalizations l10n,
+  ) {
+    final email = user?.email ?? l10n.unidentifiedAccount;
+    final verified = user?.emailVerified ?? false;
+    final usesGoogle = user?.providerData.any(
+          (provider) => provider.providerId == GoogleAuthProvider.PROVIDER_ID,
+        ) ??
+        false;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [AppColors.navy, Color(0xFF0B4F73)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXXLarge),
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 18,
+            offset: Offset(0, 9),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _copy(pt: 'CONTA', en: 'ACCOUNT'),
+            style: AppTypography.labelSmall.copyWith(
+              color: AppColors.secondaryLight,
+              letterSpacing: 1.1,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            email,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTypography.titleLarge.copyWith(
+              color: AppColors.white,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Wrap(
+            spacing: AppSpacing.xs,
+            runSpacing: AppSpacing.xs,
+            children: [
+              _AccountStatusPill(
+                icon: verified
+                    ? Icons.verified_user_outlined
+                    : Icons.info_outline_rounded,
+                label: verified
+                    ? _copy(pt: 'E-mail verificado', en: 'Verified email')
+                    : _copy(
+                        pt: 'E-mail não verificado',
+                        en: 'Email not verified',
+                      ),
+              ),
+              if (usesGoogle)
+                _AccountStatusPill(
+                  icon: Icons.login_rounded,
+                  label: _copy(
+                    pt: 'Login com Google',
+                    en: 'Google sign-in',
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSecurityCard() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.selectedBackground,
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+            ),
+            child: const Icon(
+              Icons.shield_outlined,
+              color: AppColors.primary,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _copy(
+                    pt: 'Autenticação em duas etapas',
+                    en: 'Two-step authentication',
+                  ),
+                  style: AppTypography.titleMedium.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xxs),
+                Text(
+                  _copy(
+                    pt: 'Preparado para uma camada extra de segurança. A ativação será adicionada após validarmos o fluxo MFA do Firebase.',
+                    en: 'Prepared for an extra security layer. Activation will be added after validating the Firebase MFA flow.',
+                  ),
+                  style: AppTypography.bodySmall,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.xs,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceSecondary,
+                    borderRadius: BorderRadius.circular(AppSpacing.radiusXLarge),
+                  ),
+                  child: Text(
+                    _copy(pt: 'Em preparação', en: 'Coming next'),
+                    style: AppTypography.labelSmall.copyWith(
+                      color: AppColors.textSecondary,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final currentUser = FirebaseAuth.instance.currentUser;
-    final userEmail = currentUser?.email ?? l10n.unidentifiedAccount;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -776,7 +958,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(
             AppSpacing.screenHorizontal,
-            AppSpacing.screenTop,
+            AppSpacing.md,
             AppSpacing.screenHorizontal,
             AppSpacing.screenBottom,
           ),
@@ -784,47 +966,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.settings,
-                style: AppTypography.labelMedium.copyWith(
-                  color: AppColors.primary,
+                _copy(pt: 'Configurações', en: 'Settings'),
+                style: AppTypography.headingMedium.copyWith(
+                  fontWeight: FontWeight.w800,
                 ),
               ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(l10n.accountSettings, style: AppTypography.headingMedium),
-              const SizedBox(height: AppSpacing.xs),
+              const SizedBox(height: AppSpacing.xxs),
               Text(
-                l10n.accountSettingsSubtitle,
+                _copy(
+                  pt: 'Gerencie sua conta, preferências, assinatura e privacidade.',
+                  en: 'Manage your account, preferences, subscription, and privacy.',
+                ),
                 style: AppTypography.bodyMedium,
               ),
               const SizedBox(height: AppSpacing.lg),
-              _SettingsCard(
-                icon: Icons.person_outline_rounded,
-                title: l10n.account,
-                subtitle: userEmail,
+              _buildAccountSummary(currentUser, l10n),
+              const SizedBox(height: AppSpacing.lg),
+              _sectionHeader(
+                title: _copy(pt: 'Preferências', en: 'Preferences'),
+                subtitle: _copy(
+                  pt: 'Ajuste como o Cálculo Trivial aparece para você.',
+                  en: 'Adjust how Cálculo Trivial appears for you.',
+                ),
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _buildLanguageSelector(l10n),
-              const SizedBox(height: AppSpacing.md),
-              _SettingsCard(
-                icon: Icons.privacy_tip_outlined,
-                title: l10n.settingsPrivacyAndData,
-                subtitle: l10n.settingsPrivacySubtitle,
-                onTap: _openPrivacyPolicy,
-              ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _SettingsCard(
                 icon: Icons.notifications_none_rounded,
                 title: l10n.settingsNotifications,
                 subtitle: l10n.settingsNotificationsSubtitle,
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _SettingsCard(
                 icon: Icons.light_mode_outlined,
                 title: l10n.settingsTheme,
                 subtitle: l10n.settingsThemeSubtitle,
               ),
               const SizedBox(height: AppSpacing.lg),
-              Text(l10n.settingsSubscription, style: AppTypography.titleLarge),
+              _sectionHeader(
+                title: _copy(pt: 'Premium', en: 'Premium'),
+                subtitle: _copy(
+                  pt: 'Acompanhe e gerencie seu acesso ao plano.',
+                  en: 'Review and manage your plan access.',
+                ),
+              ),
               const SizedBox(height: AppSpacing.sm),
               ValueListenableBuilder<bool>(
                 valueListenable: RevenueCatService.premiumAccess,
@@ -832,7 +1018,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   return _buildSubscriptionStatus(isPremium, l10n);
                 },
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _SettingsCard(
                 icon: Icons.restore_rounded,
                 title: l10n.settingsRestorePurchases,
@@ -846,7 +1032,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       )
                     : null,
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _SettingsCard(
                 icon: Icons.manage_accounts_outlined,
                 title: l10n.settingsManageSubscription,
@@ -854,6 +1040,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: _isBusy ? null : _openCustomerCenter,
               ),
               const SizedBox(height: AppSpacing.lg),
+              _sectionHeader(
+                title: _copy(pt: 'Segurança e privacidade', en: 'Security and privacy'),
+                subtitle: _copy(
+                  pt: 'Proteja a conta e consulte como seus dados são tratados.',
+                  en: 'Protect your account and review how your data is handled.',
+                ),
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              _buildSecurityCard(),
+              const SizedBox(height: AppSpacing.sm),
+              _SettingsCard(
+                icon: Icons.privacy_tip_outlined,
+                title: l10n.settingsPrivacyAndData,
+                subtitle: l10n.settingsPrivacySubtitle,
+                onTap: _openPrivacyPolicy,
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              _sectionHeader(
+                title: _copy(pt: 'Sessão e conta', en: 'Session and account'),
+                subtitle: _copy(
+                  pt: 'Ações que afetam seu acesso e seus dados.',
+                  en: 'Actions that affect your access and data.',
+                ),
+              ),
+              const SizedBox(height: AppSpacing.sm),
               PrimaryButton(
                 text: l10n.settingsSignOut,
                 icon: Icons.logout_rounded,
@@ -861,7 +1072,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: _isBusy ? null : _confirmSignOut,
                 isLoading: _isSigningOut,
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
               _SettingsCard(
                 icon: Icons.delete_forever_outlined,
                 title: l10n.settingsDeleteAccount,
@@ -881,12 +1092,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       bottomNavigationBar: AppBottomNavigationBar(
         currentIndex: 3,
-        onTap: (index) {
-          _onMenuTap(context, index);
-        },
+        onTap: (index) => _onMenuTap(context, index),
       ),
     );
   }
+
 }
 
 class _LanguageOption extends StatelessWidget {
@@ -1030,6 +1240,48 @@ class _SettingsCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AccountStatusPill extends StatelessWidget {
+  final IconData icon;
+  final String label;
+
+  const _AccountStatusPill({
+    required this.icon,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xs,
+      ),
+      decoration: BoxDecoration(
+        color: AppColors.white.withValues(alpha: 0.10),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusXLarge),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: AppSpacing.iconSmall,
+            color: AppColors.secondaryLight,
+          ),
+          const SizedBox(width: AppSpacing.xs),
+          Text(
+            label,
+            style: AppTypography.labelSmall.copyWith(
+              color: AppColors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
