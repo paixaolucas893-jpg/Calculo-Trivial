@@ -1,4 +1,5 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:flutter/foundation.dart';
 
 class TrustedFinalTestOption {
   final String id;
@@ -147,6 +148,75 @@ class TrustedFinalTestSubmission {
       awardedGold: _optionalInt(reward, 'goldAwarded'),
     );
   }
+}
+
+class FinalTestLoadFailure {
+  final String code;
+  final String message;
+
+  const FinalTestLoadFailure({
+    required this.code,
+    required this.message,
+  });
+}
+
+FinalTestLoadFailure describeFinalTestLoadFailure(
+  Object error, {
+  required bool isEnglish,
+}) {
+  if (error is FirebaseFunctionsException) {
+    debugPrint(
+      'FinalTestService: FirebaseFunctionsException '
+      '${error.code} - ${error.message} - ${error.details}',
+    );
+
+    final message = switch (error.code) {
+      'not-found' => isEnglish
+          ? 'The final-test service is not available on the server.'
+          : 'O serviço do teste final não está disponível no servidor.',
+      'permission-denied' => isEnglish
+          ? 'The app security validation failed. Update the app from Google Play and try again.'
+          : 'A validação de segurança do aplicativo falhou. Atualize o app pela Google Play e tente novamente.',
+      'unauthenticated' => isEnglish
+          ? 'Your session could not be authenticated. Sign in again and try once more.'
+          : 'Sua sessão não pôde ser autenticada. Entre novamente na conta e tente outra vez.',
+      'resource-exhausted' => isEnglish
+          ? 'Too many final-test requests were made. Wait a moment and try again.'
+          : 'Foram feitas muitas tentativas de iniciar o teste final. Aguarde um pouco e tente novamente.',
+      'deadline-exceeded' => isEnglish
+          ? 'The final-test service took too long to respond. Try again.'
+          : 'O serviço do teste final demorou demais para responder. Tente novamente.',
+      'unavailable' => isEnglish
+          ? 'The final-test service is temporarily unavailable.'
+          : 'O serviço do teste final está temporariamente indisponível.',
+      'internal' => isEnglish
+          ? 'The server could not start the final test.'
+          : 'O servidor não conseguiu iniciar o teste final.',
+      _ => isEnglish
+          ? 'The final test could not be loaded. Error: ${error.code}.'
+          : 'Não foi possível carregar o teste final. Erro: ${error.code}.',
+    };
+
+    return FinalTestLoadFailure(code: error.code, message: message);
+  }
+
+  if (error is FormatException) {
+    debugPrint('FinalTestService: invalid server response: $error');
+    return FinalTestLoadFailure(
+      code: 'invalid-response',
+      message: isEnglish
+          ? 'The final-test service returned an invalid response.'
+          : 'O serviço do teste final retornou uma resposta inválida.',
+    );
+  }
+
+  debugPrint('FinalTestService: unexpected start failure: $error');
+  return FinalTestLoadFailure(
+    code: 'unexpected',
+    message: isEnglish
+        ? 'The final test could not be loaded. Try again.'
+        : 'Não foi possível carregar o teste final. Tente novamente.',
+  );
 }
 
 class FinalTestService {
