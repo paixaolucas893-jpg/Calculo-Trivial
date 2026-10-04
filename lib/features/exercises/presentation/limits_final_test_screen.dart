@@ -59,7 +59,9 @@ class _LimitsFinalTestScreenState extends State<LimitsFinalTestScreen> {
     });
 
     try {
-      final session = await _finalTestService.startLimitsFinalTest();
+      final session = await _finalTestService.startLimitsFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -162,7 +164,7 @@ class _LimitsFinalTestScreenState extends State<LimitsFinalTestScreen> {
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
