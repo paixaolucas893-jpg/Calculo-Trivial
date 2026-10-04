@@ -59,7 +59,9 @@ class _EquationsFinalTestScreenState extends State<EquationsFinalTestScreen> {
     });
 
     try {
-      final session = await _finalTestService.startEquationsFinalTest();
+      final session = await _finalTestService.startEquationsFinalTest(
+        practiceQuestionIds: widget.practiceQuestionIds,
+      );
 
       if (!mounted) {
         return;
@@ -162,7 +164,7 @@ class _EquationsFinalTestScreenState extends State<EquationsFinalTestScreen> {
             xpEarned: result.awardedXp,
             goldEarned: result.awardedGold,
             enableLearningRecommendation: false,
-            rewardAlreadyAppliedByBackend: true,
+            rewardAlreadyAppliedByBackend: result.rewardAlreadyAppliedByBackend,
           ),
         ),
       );
