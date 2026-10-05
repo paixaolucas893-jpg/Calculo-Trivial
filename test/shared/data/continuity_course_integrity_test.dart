@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calcquest/shared/data/continuity_course_data.dart';
 import 'package:calcquest/shared/data/localized_continuity_course_data.dart';
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
+import 'package:calcquest/shared/domain/course_lesson_data.dart';
 
 void main() {
   group('Integridade do curso de Continuidade', () {
@@ -34,7 +35,7 @@ void main() {
         expect(lesson.objective.trim(), isNotEmpty);
         expect(
           lesson.sections.length,
-          greaterThanOrEqualTo(8),
+          greaterThanOrEqualTo(10),
           reason: '${lesson.id} ainda está curta demais para o padrão universitário.',
         );
         expect(
@@ -44,7 +45,7 @@ void main() {
         );
         expect(
           lesson.duration,
-          isNot(contains('5 min')),
+          isNot(equals('≈ 5 min')),
           reason: '${lesson.id} ainda usa duração do formato resumido.',
         );
         expect(lesson.closing.trim(), isNotEmpty);
@@ -62,6 +63,29 @@ void main() {
           lessThan(lesson.check.choices.length),
         );
         expect(lesson.check.explanation.trim(), isNotEmpty);
+      }
+    });
+
+
+    test('todas as aulas mantêm ao menos quatro exemplos resolvidos em PT e EN', () {
+      final catalogs = <List<CourseLessonData>>[
+        continuityCourseLessons,
+        englishContinuityCourseLessons,
+      ];
+
+      for (final lessons in catalogs) {
+        for (final lesson in lessons) {
+          final workedExamples = lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<WorkedExampleBlockData>()
+              .length;
+
+          expect(
+            workedExamples,
+            greaterThanOrEqualTo(4),
+            reason: '${lesson.id} precisa manter ao menos quatro exemplos resolvidos.',
+          );
+        }
       }
     });
 
