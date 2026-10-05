@@ -37,7 +37,7 @@ void main() {
         expect(lesson.description.trim(), isNotEmpty);
         expect(lesson.duration.trim(), isNotEmpty);
         expect(lesson.objective.trim(), isNotEmpty);
-        expect(lesson.sections.length, greaterThanOrEqualTo(3));
+        expect(lesson.sections.length, greaterThanOrEqualTo(8));
         expect(lesson.takeaways.length, greaterThanOrEqualTo(4));
         expect(lesson.closing.trim(), isNotEmpty);
 
@@ -54,6 +54,52 @@ void main() {
           lessThan(lesson.check.choices.length),
         );
         expect(lesson.check.explanation.trim(), isNotEmpty);
+      }
+    });
+
+
+    test('mantém profundidade universitária em PT e EN', () {
+      final catalogs = <List<dynamic>>[
+        precalculusFoundationsCourseLessons,
+        localizedPrecalculusFoundationsCourseLessons(const Locale('en')),
+      ];
+
+      for (final lessons in catalogs) {
+        for (final lesson in lessons) {
+          expect(
+            lesson.sections.length,
+            greaterThanOrEqualTo(8),
+            reason: '${lesson.id} não pode voltar ao formato resumido.',
+          );
+
+          final workedExamples = lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<WorkedExampleBlockData>()
+              .length;
+
+          expect(
+            workedExamples,
+            greaterThanOrEqualTo(4),
+            reason: '${lesson.id} precisa manter exemplos resolvidos suficientes.',
+          );
+
+          final academicReferences = lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<ConceptBlockData>()
+              .where(
+                (block) =>
+                    block.content.contains('OpenStax') &&
+                    (block.content.contains('Sullivan') ||
+                        block.content.contains('Blitzer')),
+              )
+              .length;
+
+          expect(
+            academicReferences,
+            greaterThanOrEqualTo(1),
+            reason: '${lesson.id} precisa manter base acadêmica explícita.',
+          );
+        }
       }
     });
 
