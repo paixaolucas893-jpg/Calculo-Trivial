@@ -110,6 +110,29 @@ void main() {
       }
     });
 
+
+    test('todas as aulas de Álgebra mantêm ao menos quatro exemplos resolvidos em PT e EN', () {
+      final catalogs = <List<CourseLessonData>>[
+        algebraCourseLessons,
+        localizedAlgebraCourseLessons(const Locale('en')),
+      ];
+
+      for (final lessons in catalogs) {
+        for (final lesson in lessons) {
+          final workedExamples = lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<WorkedExampleBlockData>()
+              .length;
+
+          expect(
+            workedExamples,
+            greaterThanOrEqualTo(4),
+            reason: '${lesson.id} precisa manter ao menos quatro exemplos resolvidos.',
+          );
+        }
+      }
+    });
+
     test('cada aula de Álgebra possui ao menos quatro questões', () {
       final countsByLesson = <String, int>{};
 
