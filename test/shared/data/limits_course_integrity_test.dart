@@ -88,11 +88,11 @@ void main() {
       }
     });
 
-    test('as vinte atividades estão ligadas às aulas ensinadas', () {
+    test('as trinta atividades estão ligadas às aulas ensinadas', () {
       final lessonIds = limitsCourseLessons.map((lesson) => lesson.id).toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockLimitsExercises, hasLength(20));
+      expect(mockLimitsExercises, hasLength(30));
 
       for (final exercise in mockLimitsExercises) {
         expect(
