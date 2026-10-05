@@ -796,14 +796,14 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'a', text: 'x ≠ 0'),
       ExerciseOptionData(id: 'b', text: 'x ≠ 3'),
       ExerciseOptionData(id: 'c', text: 'x ≠ −3'),
-      ExerciseOptionData(id: 'd', text: 'Nenhuma restrição'),
+      ExerciseOptionData(id: 'd', text: 'x ∈ ℝ'),
     ],
   ),
   ExerciseData(
     id: 'polinomios-estrutura-2',
     title: 'Questão 47 de 50',
     statement:
-        'Considere P(x) = 7 − 2x⁴ + x². Qual é o grau e qual é o coeficiente líder de P?',
+        'Considere P(x) = 7 − 2x⁴ + x². Qual par representa (grau, coeficiente líder)?',
     correctOptionId: 'a',
     explanation:
         'Escrevendo em ordem decrescente, P(x) = −2x⁴ + x² + 7. O maior expoente é 4, então o grau é 4, e o coeficiente do termo líder é −2.',
@@ -811,10 +811,10 @@ const List<ExerciseData> mockExercises = [
     skill: 'Identificar grau e coeficiente líder em forma não ordenada',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
-      ExerciseOptionData(id: 'a', text: 'grau 4 e coeficiente líder −2'),
-      ExerciseOptionData(id: 'b', text: 'grau 4 e coeficiente líder 7'),
-      ExerciseOptionData(id: 'c', text: 'grau 2 e coeficiente líder 1'),
-      ExerciseOptionData(id: 'd', text: 'grau 7 e coeficiente líder −2'),
+      ExerciseOptionData(id: 'a', text: '(4, −2)'),
+      ExerciseOptionData(id: 'b', text: '(4, 7)'),
+      ExerciseOptionData(id: 'c', text: '(2, 1)'),
+      ExerciseOptionData(id: 'd', text: '(7, −2)'),
     ],
   ),
   ExerciseData(
