@@ -56,6 +56,11 @@ function validProgress(overrides = {}) {
     questionPerformance: {},
     lastPersonalizedReviewSessionIds: [],
 
+    dailyChallengeDate: null,
+    dailyChallengeCompletedDate: null,
+    dailyChallengeQuestionIds: [],
+    dailyChallengeBestCorrect: 0,
+
     updatedAt: serverTimestamp(),
 
     ...overrides,
@@ -458,6 +463,72 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
           { length: 11 },
           (_, index) => `q-${index}`,
         ),
+      }),
+    ),
+  );
+});
+
+test('cliente consegue criar e concluir o desafio diário sem alterar progresso canônico', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const progressRef = doc(
+    db,
+    'users',
+    'user-a',
+    'progress',
+    'current',
+  );
+
+  await assertSucceeds(
+    setDoc(
+      progressRef,
+      {
+        dailyChallengeDate: '2026-10-05',
+        dailyChallengeCompletedDate: null,
+        dailyChallengeQuestionIds: ['q1', 'q2', 'q3', 'q4', 'q5'],
+        dailyChallengeBestCorrect: 0,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+
+  await assertSucceeds(
+    setDoc(
+      progressRef,
+      {
+        dailyChallengeCompletedDate: '2026-10-05',
+        dailyChallengeBestCorrect: 4,
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+});
+
+test('Firestore limita payload do desafio diário', async () => {
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        dailyChallengeQuestionIds: ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'],
+      }),
+    ),
+  );
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        dailyChallengeBestCorrect: 6,
       }),
     ),
   );

@@ -18,6 +18,7 @@ import 'package:calcquest/shared/theme/app_spacing.dart';
 import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_bottom_navigation_bar.dart';
 
+import '../../daily_challenge/presentation/daily_challenge_screen.dart';
 import '../../learning_path/presentation/learning_path_screen.dart';
 import '../../personalized_review/presentation/personalized_review_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
@@ -730,6 +731,95 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 
 
+
+  Widget _buildDailyChallengeCard(BuildContext context) {
+    final total = AppProgress.dailyChallengeQuestionIds.length;
+    final best = AppProgress.dailyChallengeBestCorrect;
+    final completed = AppProgress.dailyChallengeCompletedToday;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            AppColors.warningLight,
+            AppColors.surface,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
+        border: Border.all(color: AppColors.warning),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+            ),
+            child: Icon(
+              completed ? Icons.emoji_events_rounded : Icons.bolt_rounded,
+              color: AppColors.warningDark,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _copy(pt: 'Desafio diário', en: 'Daily challenge'),
+                  style: AppTypography.titleMedium.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xxs),
+                Text(
+                  completed
+                      ? _copy(
+                          pt: 'Concluído hoje • melhor resultado: $best/$total',
+                          en: 'Completed today • best score: $best/$total',
+                        )
+                      : _copy(
+                          pt: total > 0
+                              ? 'Até 5 questões das aulas que você já concluiu.'
+                              : 'Um novo conjunto é criado com base nas suas aulas concluídas.',
+                          en: total > 0
+                              ? 'Up to 5 questions from lessons you have completed.'
+                              : 'A new set is built from lessons you have completed.',
+                        ),
+                  style: AppTypography.bodySmall,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          FilledButton(
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const DailyChallengeScreen(),
+                ),
+              );
+
+              if (mounted) {
+                setState(() {});
+              }
+            },
+            child: Text(
+              completed
+                  ? _copy(pt: 'Refazer', en: 'Retry')
+                  : _copy(pt: 'Começar', en: 'Start'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildPersonalizedReviewCard(BuildContext context) {
     final pending = AppProgress.personalizedReviewQuestionCount;
 
@@ -1025,6 +1115,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                     end: 0.68,
                     child: _buildProgressOverview(),
                   ),
+                  if (AppProgress.completedContentLessonIds.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.lg),
+                    _entrance(
+                      begin: 0.28,
+                      end: 0.72,
+                      child: _buildDailyChallengeCard(context),
+                    ),
+                  ],
                   if (AppProgress.personalizedReviewQuestionCount > 0) ...[
                     const SizedBox(height: AppSpacing.lg),
                     _entrance(
