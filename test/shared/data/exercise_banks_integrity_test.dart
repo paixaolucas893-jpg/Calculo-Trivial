@@ -15,7 +15,7 @@ const exerciseBanks = [
   (
     name: 'Equações e Inequações',
     questions: mockEquationsExercises,
-    expectedCount: 24,
+    expectedCount: 50,
   ),
   (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 28),
   (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
@@ -150,6 +150,28 @@ void main() {
         equals(lessonIds),
         reason: 'Cada uma das 11 aulas de Equações precisa ter ao menos uma atividade.',
       );
+    });
+
+    test('cada aula de Equações possui ao menos quatro questões', () {
+      final countsByLesson = <String, int>{};
+
+      for (final question in mockEquationsExercises) {
+        final lessonId = question.contentLessonId!;
+        countsByLesson[lessonId] = (countsByLesson[lessonId] ?? 0) + 1;
+      }
+
+      final lessonIds = <String>{
+        ...equationsCourseLessons.map((lesson) => lesson.id),
+        ...precalculusEquationsSupplementLessons.map((lesson) => lesson.id),
+      };
+
+      for (final lessonId in lessonIds) {
+        expect(
+          countsByLesson[lessonId] ?? 0,
+          greaterThanOrEqualTo(4),
+          reason: '$lessonId precisa de cobertura suficiente para reduzir repetição.',
+        );
+      }
     });
 
     test('Funções cobre todas as quatorze aulas com metadados pedagógicos', () {
