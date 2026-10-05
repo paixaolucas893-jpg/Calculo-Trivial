@@ -2809,8 +2809,28 @@ const List<CourseLessonData> algebraCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '11',
+        title: 'Exemplo adicional de escolha estratégica',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Escolha a forma que revela o que importa',
+            problem:
+                'Reescreva x²−5x+6 na forma mais útil para identificar seus zeros.',
+            steps: [
+              'Procure dois números cujo produto seja 6 e cuja soma seja −5.',
+              'Os números são −2 e −3.',
+              'Fatore o trinômio.',
+              'Leia os zeros diretamente dos fatores.',
+            ],
+            result: 'x²−5x+6=(x−2)(x−3), com zeros x=2 e x=3.',
+            interpretation:
+                'A forma expandida evidencia coeficientes; a forma fatorada evidencia raízes e estrutura multiplicativa.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '12',
         title: 'Referências e aprofundamento',
         blocks: [
           ConceptBlockData(
