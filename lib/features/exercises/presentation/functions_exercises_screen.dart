@@ -104,7 +104,10 @@ class _FunctionsExercisesScreenState extends State<FunctionsExercisesScreen> {
     );
 
     setState(() => isShowingFeedback = true);
-    AppProgress.recordExerciseAnswer(isCorrect: isCorrect);
+    AppProgress.recordExerciseAnswer(
+      questionId: exercise.id,
+      isCorrect: isCorrect,
+    );
 
     if (isCorrect) {
       correctAnswers++;
