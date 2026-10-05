@@ -24,7 +24,7 @@ const exerciseBanks = [
     questions: mockContinuityExercises,
     expectedCount: 30,
   ),
-  (name: 'Derivadas', questions: mockDerivativesExercises, expectedCount: 20),
+  (name: 'Derivadas', questions: mockDerivativesExercises, expectedCount: 50),
 ];
 
 void main() {
