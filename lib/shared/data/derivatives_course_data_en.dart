@@ -8,7 +8,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 1 of 8 • Core idea',
     title: 'Rate of change and tangent line',
     description: 'Understand the derivative as instantaneous velocity and local slope.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'interpret the derivative geometrically and in real situations',
     symbol: "f'",
     sections: [
@@ -108,8 +108,46 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Cumulative example: average rate becoming instantaneous',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Velocity from the definition',
+            problem: 's(t)=t²+2t. Find the instantaneous velocity at t=3 using the derivative definition.',
+            steps: [
+              'Compute [s(3+h)−s(3)]/h.',
+              'Expand s(3+h)=(3+h)²+2(3+h).',
+              'Simplify the numerator to 8h+h².',
+              'Divide by h to get 8+h.',
+              'Let h→0.',
+            ],
+            result: 'v(3)=8.',
+            interpretation:
+                'Instantaneous rate appears as the limit of average velocities over smaller and smaller intervals.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Geometric check and interpretation',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Tangent slope',
+            problem: 'For f(x)=x²−1, find the tangent slope at x=2 and interpret its sign.',
+            steps: [
+              'From the definition or known rule, f′(x)=2x.',
+              'Evaluate at x=2: f′(2)=4.',
+              'Because the slope is positive, the function is locally increasing there.',
+            ],
+            result: 'The slope is 4.',
+            interpretation:
+                'The derivative gives both the magnitude and direction of local change.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -140,7 +178,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 2 of 8 • Basic rules',
     title: 'Constants, powers, and polynomials',
     description: 'Differentiate term by term and work with integer and fractional exponents.',
-    duration: '≈ 30 min',
+    duration: '≈ 42 min',
     objective: 'apply linearity and the power rule safely',
     symbol: 'xⁿ',
     sections: [
@@ -237,8 +275,40 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Cumulative example with mixed exponents',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Polynomial with a negative power',
+            problem: 'f(x)=3x⁴−2x⁻¹+5√x, with x>0.',
+            steps: [
+              'Differentiate 3x⁴ to get 12x³.',
+              'Differentiate −2x⁻¹ to get 2x⁻².',
+              'Rewrite 5√x as 5x¹ᐟ² and differentiate.',
+            ],
+            result: 'f′(x)=12x³+2/x²+5/(2√x).',
+            interpretation:
+                'One power rule covers many forms after suitable rewriting.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Consistency check',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Before accepting a derivative',
+            content:
+                'Check coefficients, exponents, domain restrictions, and whether constants disappeared correctly. For polynomials, the leading degree should drop by one.',
+            emphasis:
+                'A quick check catches many algebra errors before they propagate.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -269,7 +339,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 3 of 8 • Combinations',
     title: 'Product and quotient rules',
     description: 'Combine functions while preserving every required term.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'apply and check the product and quotient rules',
     symbol: 'u·v',
     sections: [
@@ -366,8 +436,42 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Cumulative example: product and quotient',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Quotient with a product in the numerator',
+            problem: 'f(x)=x²(x+1)/(x−1), with x≠1.',
+            steps: [
+              'Let u=x²(x+1) and v=x−1.',
+              'Use the product rule in u: u′=2x(x+1)+x².',
+              'Use the quotient rule: f′=(u′v−uv′)/v².',
+              'Substitute v′=1 and simplify only at the end.',
+            ],
+            result:
+                'f′(x)=[(3x²+2x)(x−1)−x²(x+1)]/(x−1)².',
+            interpretation:
+                'In combined expressions, organizing by layers reduces sign errors.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'How to verify the result',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Compare two strategies when possible',
+            content:
+                'If a product or quotient can be simplified first, differentiate the simplified form too and compare. The derivative expressions should agree on their common domain.',
+            emphasis:
+                'Different valid strategies can be used as a verification tool.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -394,7 +498,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 4 of 8 • Composition',
     title: 'The chain rule in layers',
     description: 'Differentiate composite functions from the outer layer to the inner one.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'identify outer and inner functions and apply the chain rule',
     symbol: 'f∘g',
     sections: [
@@ -484,8 +588,47 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Example with three layers',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Composition cascade',
+            problem: 'f(x)=√(1+(2x−1)²).',
+            steps: [
+              'Outer layer: √u=u¹ᐟ².',
+              'Middle layer: u=1+v².',
+              'Inner layer: v=2x−1.',
+              'Differentiate from outside inward and multiply the factors.',
+            ],
+            result:
+                'f′(x)=2(2x−1)/√(1+(2x−1)²).',
+            interpretation:
+                'Each layer contributes one factor to the final derivative.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Chain rule with elementary functions',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Composite exponential',
+            problem: 'f(x)=e^(3x²−1).',
+            steps: [
+              'The outer function is e^u.',
+              'The inner function is u=3x²−1.',
+              'The outer derivative keeps e^u.',
+              'Multiply by u′=6x.',
+            ],
+            result: 'f′(x)=6x e^(3x²−1).',
+            interpretation:
+                'The chain rule appears whenever a function is applied to another variable expression.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -512,7 +655,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 5 of 8 • Elementary functions',
     title: 'Sine, cosine, exponential, and logarithm',
     description: 'Learn the most common elementary derivatives with meaning.',
-    duration: '≈ 38 min',
+    duration: '≈ 42 min',
     objective: 'differentiate trigonometric, exponential, and logarithmic functions',
     symbol: 'eˣ',
     sections: [
@@ -609,8 +752,41 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Cumulative example with elementary functions',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Sum of elementary terms',
+            problem: 'f(x)=2sin x−3eˣ+ln x, with x>0.',
+            steps: [
+              'd/dx[2sin x]=2cos x.',
+              'd/dx[−3eˣ]=−3eˣ.',
+              'd/dx[ln x]=1/x.',
+            ],
+            result: 'f′(x)=2cos x−3eˣ+1/x.',
+            interpretation:
+                'Linearity lets you combine the standard derivative repertoire directly.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Domain and interpretation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A correct formula still has a domain',
+            content:
+                'Derivatives of logarithms, trigonometric expressions, and quotients inherit domain restrictions. A formula is meaningful only where the original function and derivative are defined.',
+            emphasis:
+                'Record the relevant domain before evaluating the derivative.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -637,7 +813,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 6 of 8 • Local geometry',
     title: 'Slope and tangent-line equation',
     description: 'Use f′(a) to build the line that best approximates the graph locally.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'calculate the slope and equation of a tangent line',
     symbol: 'y=mx+b',
     sections: [
@@ -727,8 +903,48 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Tangent and normal at the same point',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Two lines associated with the curve',
+            problem: 'For f(x)=x³ at x=1, find the tangent and normal lines.',
+            steps: [
+              'f(1)=1.',
+              'f′(x)=3x², so f′(1)=3.',
+              'Tangent: y−1=3(x−1).',
+              'The normal slope is −1/3.',
+              'Normal: y−1=−(1/3)(x−1).',
+            ],
+            result:
+                'Tangent: y=3x−2; normal: y−1=−(x−1)/3.',
+            interpretation:
+                'Tangent and normal share the contact point and have perpendicular directions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Numerical linearization',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Approximate a square root',
+            problem: 'Use the tangent to f(x)=√x at a=4 to estimate √4.1.',
+            steps: [
+              'f(4)=2.',
+              'f′(x)=1/(2√x), so f′(4)=1/4.',
+              'L(x)=2+(1/4)(x−4).',
+              'Evaluate L(4.1).',
+            ],
+            result: '√4.1 ≈ 2.025.',
+            interpretation:
+                'Linearization replaces a nonlinear calculation with a simple local estimate.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -755,7 +971,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 7 of 8 • Existence and analysis',
     title: 'Differentiability and critical points',
     description: 'Recognize corners, one-sided derivatives, and candidates for extrema.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'analyze existence of the derivative and locate critical points',
     symbol: 'f′=0',
     sections: [
@@ -851,8 +1067,58 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Examples of nondifferentiability',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Corner in absolute value',
+            problem: 'Analyze f(x)=|x−2| at x=2.',
+            steps: [
+              'To the left of 2, the slope is −1.',
+              'To the right of 2, the slope is 1.',
+              'Because the one-sided derivatives differ, f′(2) does not exist.',
+            ],
+            result: 'f is continuous at 2 but not differentiable there.',
+            interpretation:
+                'Continuity does not guarantee a unique tangent direction.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Vertical tangent',
+            problem: 'Consider f(x)=x^(1/3) at x=0.',
+            steps: [
+              'For x≠0, f′(x)=1/[3x^(2/3)].',
+              'As x→0, the derivative magnitude grows without bound.',
+              'There is no finite slope at x=0.',
+            ],
+            result: 'There is a vertical tangent at x=0.',
+            interpretation:
+                'The function is continuous, but no finite derivative exists at the point.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Classification using the sign of the derivative',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Critical point and sign change',
+            problem: 'For f(x)=x³−3x, classify the critical points.',
+            steps: [
+              'f′(x)=3x²−3=3(x−1)(x+1).',
+              'The critical points are x=−1 and x=1.',
+              'Analyze the sign of f′ on the intervals separated by −1 and 1.',
+              'f′ changes from positive to negative at −1 and from negative to positive at 1.',
+            ],
+            result:
+                'x=−1 is a local maximum and x=1 is a local minimum.',
+            interpretation:
+                'A sign change in the derivative classifies local behavior.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis',
         blocks: [
           ConceptBlockData(
@@ -879,7 +1145,7 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
     eyebrow: 'Lesson 8 of 8 • Applications',
     title: 'Motion, units, and modeling',
     description: 'Interpret derivatives in physical problems and organize the complete method.',
-    duration: '≈ 40 min',
+    duration: '≈ 45 min',
     objective: 'model instantaneous rates and interpret their results',
     symbol: 'v(t)',
     sections: [
@@ -975,8 +1241,46 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Application to related rates',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Growing circle area',
+            problem:
+                'The radius grows at 2 cm/s. How fast is the area changing when r=5 cm?',
+            steps: [
+              'Use A=πr².',
+              'Differentiate with respect to time: dA/dt=2πr·dr/dt.',
+              'Substitute r=5 and dr/dt=2.',
+            ],
+            result: 'dA/dt=20π cm²/s.',
+            interpretation:
+                'The chain rule connects the rate of the radius to the rate of the area.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Application to optimization',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Maximum of a quadratic model',
+            problem: 'Revenue is R(q)=40q−q². For which q is revenue maximized?',
+            steps: [
+              'Differentiate: R′(q)=40−2q.',
+              'Set R′(q)=0.',
+              'Solve q=20.',
+              'Because the parabola opens downward, the critical point is a maximum.',
+            ],
+            result: 'Revenue is maximized at q=20.',
+            interpretation:
+                'A critical point becomes meaningful when combined with the structure of the model.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Academic basis and synthesis',
         blocks: [
           ConceptBlockData(
