@@ -34,7 +34,7 @@ class ExerciseData {
 const List<ExerciseData> mockExercises = [
   ExerciseData(
     id: 'simplificacao-1',
-    title: 'Questão 1 de 24',
+    title: 'Questão 1 de 50',
     statement: 'Simplifique a expressão:\\n3x + 5x − 2x',
     correctOptionId: 'a',
     explanation: 'Somamos apenas os coeficientes dos termos semelhantes: 3 + 5 − 2 = 6. A parte literal x permanece, então a expressão simplificada é 6x.',
@@ -50,7 +50,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-2',
-    title: 'Questão 2 de 24',
+    title: 'Questão 2 de 50',
     statement: 'Simplifique a expressão:\\n7a − 2a + 4a',
     correctOptionId: 'c',
     explanation: 'Todos os termos possuem a mesma parte literal a. Somamos os coeficientes 7 − 2 + 4 = 9 e mantemos a variável, chegando a 9a.',
@@ -66,7 +66,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-3',
-    title: 'Questão 3 de 24',
+    title: 'Questão 3 de 50',
     statement: 'Calcule o valor de 2x² − 3x para x = −2.',
     correctOptionId: 'd',
     explanation: 'Substituímos x por −2: 2(−2)² − 3(−2). A potência vem primeiro: 2·4 + 6 = 14, portanto o valor numérico é 14.',
@@ -82,7 +82,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-4',
-    title: 'Questão 4 de 24',
+    title: 'Questão 4 de 50',
     statement: 'Qual é o coeficiente de −8x³?',
     correctOptionId: 'b',
     explanation: 'O coeficiente é o número que multiplica a parte literal. Em −8x³, a parte literal é x³ e o número que a acompanha é −8.',
@@ -98,7 +98,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-5',
-    title: 'Questão 5 de 24',
+    title: 'Questão 5 de 50',
     statement: 'Simplifique a expressão:\\n12x − 5x + 2x',
     correctOptionId: 'c',
     explanation: 'Como os três termos possuem x, somamos os coeficientes: 12 − 5 + 2 = 9. Assim, a expressão equivalente é 9x.',
@@ -114,7 +114,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-1',
-    title: 'Questão 6 de 24',
+    title: 'Questão 6 de 50',
     statement: 'Simplifique a expressão:\\n2(3x − 4) + x',
     correctOptionId: 'b',
     explanation: 'Aplicamos a distributiva em todos os termos do parêntese: 2(3x − 4) = 6x − 8. Depois somamos x e obtemos 7x − 8.',
@@ -130,7 +130,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-2',
-    title: 'Questão 7 de 24',
+    title: 'Questão 7 de 50',
     statement: 'Simplifique a expressão:\\n5a − 2(a + 3)',
     correctOptionId: 'c',
     explanation: 'O fator −2 multiplica a e também 3, produzindo −2a − 6. Então 5a − 2a − 6 = 3a − 6.',
@@ -146,7 +146,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencias-1',
-    title: 'Questão 8 de 24',
+    title: 'Questão 8 de 50',
     statement: 'Efetue a multiplicação:\\n(−3x²)(2x)',
     correctOptionId: 'd',
     explanation: 'Multiplicamos os coeficientes: −3·2 = −6. Para a mesma base x, somamos os expoentes: x²·x = x³. O produto é −6x³.',
@@ -162,7 +162,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-1',
-    title: 'Questão 9 de 24',
+    title: 'Questão 9 de 50',
     statement: 'Desenvolva o produto:\\n(x + 3)(x − 2)',
     correctOptionId: 'a',
     explanation: 'Distribuímos cada termo: x² − 2x + 3x − 6. Ao combinar −2x + 3x, obtemos x² + x − 6.',
@@ -178,7 +178,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'divisao-monomios-1',
-    title: 'Questão 10 de 24',
+    title: 'Questão 10 de 50',
     statement: 'Simplifique a expressão:\\n(12x³y²) / (3xy)',
     correctOptionId: 'b',
     explanation: 'Dividimos os coeficientes e subtraímos expoentes de bases iguais: 12/3 = 4, x³/x = x² e y²/y = y. Resultado: 4x²y.',
@@ -194,7 +194,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fator-comum-1',
-    title: 'Questão 11 de 24',
+    title: 'Questão 11 de 50',
     statement: 'Fatore a expressão:\\n6x + 9',
     correctOptionId: 'a',
     explanation: 'O maior fator comum entre 6x e 9 é 3. Colocando 3 em evidência, 6x vira 3·2x e 9 vira 3·3, então temos 3(2x + 3).',
@@ -210,7 +210,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quociente-potencias-1',
-    title: 'Questão 12 de 24',
+    title: 'Questão 12 de 50',
     statement: 'Simplifique, considerando x ≠ 0:\\nx⁵ / x²',
     correctOptionId: 'c',
     explanation: 'Na divisão de potências com mesma base, subtraímos os expoentes: x⁵/x² = x⁵⁻² = x³. A restrição x ≠ 0 evita divisão por zero.',
@@ -226,7 +226,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencia-potencia-1',
-    title: 'Questão 13 de 24',
+    title: 'Questão 13 de 50',
     statement: 'Simplifique a expressão:\\n(2x²)³',
     correctOptionId: 'd',
     explanation: 'Elevamos cada fator ao cubo: 2³ = 8 e (x²)³ = x⁶, pois multiplicamos os expoentes. Logo, a expressão vira 8x⁶.',
@@ -242,7 +242,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-3',
-    title: 'Questão 14 de 24',
+    title: 'Questão 14 de 50',
     statement: 'Simplifique a expressão:\\n3(x + 2) − 2(x − 1)',
     correctOptionId: 'b',
     explanation: 'Distribuindo, temos 3x + 6 − 2x + 2. Repare que −2 vezes −1 gera +2. Reduzindo os termos, obtemos x + 8.',
@@ -258,7 +258,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'valor-numerico-1',
-    title: 'Questão 15 de 24',
+    title: 'Questão 15 de 50',
     statement: 'Calcule 2a² − 3a para a = −2.',
     correctOptionId: 'c',
     explanation: 'Substituindo a por −2, fica 2(−2)² − 3(−2). Primeiro a potência: 2·4 + 6. Portanto, o valor é 14.',
@@ -274,7 +274,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quadrado-soma-1',
-    title: 'Questão 16 de 24',
+    title: 'Questão 16 de 50',
     statement: 'Desenvolva o produto notável:\\n(x + 4)²',
     correctOptionId: 'a',
     explanation: 'Usamos (a + b)² = a² + 2ab + b². Aqui, a = x e b = 4, então o resultado é x² + 8x + 16.',
@@ -290,7 +290,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'diferenca-quadrados-1',
-    title: 'Questão 17 de 24',
+    title: 'Questão 17 de 50',
     statement: 'Fatore a expressão:\\nx² − 9',
     correctOptionId: 'd',
     explanation: 'A expressão é uma diferença de quadrados: x² − 3². O padrão a² − b² = (a − b)(a + b) dá (x − 3)(x + 3).',
@@ -306,7 +306,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'soma-fracoes-algebricas-1',
-    title: 'Questão 18 de 24',
+    title: 'Questão 18 de 50',
     statement: 'Simplifique a expressão:\\nx/2 + x/3',
     correctOptionId: 'b',
     explanation: 'O mínimo múltiplo comum entre 2 e 3 é 6. Reescrevemos x/2 como 3x/6 e x/3 como 2x/6, somando para obter 5x/6.',
@@ -322,7 +322,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'termos-semelhantes-1',
-    title: 'Questão 19 de 24',
+    title: 'Questão 19 de 50',
     statement: 'Simplifique:\\n4x²y − 7x²y + 2x²y',
     correctOptionId: 'c',
     explanation: 'Todos os termos têm a mesma parte literal x²y. Somamos os coeficientes 4 − 7 + 2 = −1, então o resultado é −x²y.',
@@ -338,7 +338,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-1',
-    title: 'Questão 20 de 24',
+    title: 'Questão 20 de 50',
     statement: 'Simplifique:\\n2(x + 1) + (x − 3)(x + 3)',
     correctOptionId: 'a',
     explanation:
@@ -355,7 +355,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-estrutura-1',
-    title: 'Questão 21 de 24',
+    title: 'Questão 21 de 50',
     statement:
         'Considere P(x)=−3x⁵+2x²−7. Qual é o grau e o coeficiente líder?',
     correctOptionId: 'b',
@@ -373,7 +373,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-classificacao-1',
-    title: 'Questão 22 de 24',
+    title: 'Questão 22 de 50',
     statement: 'Qual expressão NÃO é um polinômio em x?',
     correctOptionId: 'c',
     explanation:
@@ -390,7 +390,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-1',
-    title: 'Questão 23 de 24',
+    title: 'Questão 23 de 50',
     statement: 'Calcule (2x²+3x−1) − (x²−5x+4).',
     correctOptionId: 'a',
     explanation:
@@ -407,7 +407,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-2',
-    title: 'Questão 24 de 24',
+    title: 'Questão 24 de 50',
     statement: 'Expanda (x−2)(x²+3x+4).',
     correctOptionId: 'd',
     explanation:
@@ -422,4 +422,451 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'd', text: 'x³ + x² − 2x − 8'),
     ],
   ),
+  ExerciseData(
+    id: 'linguagem-agrupamento-1',
+    title: 'Questão 25 de 50',
+    statement: 'Qual expressão representa “o quadrado da soma de x com 3”?',
+    correctOptionId: 'c',
+    explanation:
+        'A frase pede primeiro a soma x + 3 e depois o quadrado de toda essa soma. Por isso, o agrupamento é essencial e a expressão correta é (x + 3)².',
+    contentLessonId: 'algebra-01-linguagem',
+    skill: 'Traduzir linguagem verbal com agrupamento',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x² + 3'),
+      ExerciseOptionData(id: 'b', text: 'x² + 9'),
+      ExerciseOptionData(id: 'c', text: '(x + 3)²'),
+      ExerciseOptionData(id: 'd', text: '3x²'),
+    ],
+  ),
+  ExerciseData(
+    id: 'linguagem-modelagem-1',
+    title: 'Questão 26 de 50',
+    statement:
+        'Um serviço cobra taxa fixa de R\$ 12,00 mais R\$ 4,50 por hora de uso. Se h é o número de horas, qual expressão representa o custo total?',
+    correctOptionId: 'b',
+    explanation:
+        'O custo possui uma parte fixa de 12 e uma parte variável de 4,5 por hora. Para h horas, a parcela variável é 4,5h, então o total é 12 + 4,5h.',
+    contentLessonId: 'algebra-01-linguagem',
+    skill: 'Modelar situações com expressões algébricas',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '12h + 4,5'),
+      ExerciseOptionData(id: 'b', text: '12 + 4,5h'),
+      ExerciseOptionData(id: 'c', text: '16,5h'),
+      ExerciseOptionData(id: 'd', text: '4,5(h + 12)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'termos-semelhantes-2',
+    title: 'Questão 27 de 50',
+    statement: 'Simplifique:\n5x² − 3x + 2x² + 7x',
+    correctOptionId: 'a',
+    explanation:
+        'Os termos em x² são semelhantes entre si e os termos em x também. Assim, 5x² + 2x² = 7x² e −3x + 7x = 4x, resultando em 7x² + 4x.',
+    contentLessonId: 'algebra-02-termos-semelhantes',
+    skill: 'Combinar termos semelhantes de graus diferentes',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '7x² + 4x'),
+      ExerciseOptionData(id: 'b', text: '7x² + 10x'),
+      ExerciseOptionData(id: 'c', text: '10x² + 4x'),
+      ExerciseOptionData(id: 'd', text: '11x²'),
+    ],
+  ),
+  ExerciseData(
+    id: 'termos-semelhantes-3',
+    title: 'Questão 28 de 50',
+    statement: 'Qual termo é semelhante a 4a²b?',
+    correctOptionId: 'd',
+    explanation:
+        'Termos semelhantes precisam ter exatamente a mesma parte literal, com as mesmas variáveis e os mesmos expoentes. Portanto, −7a²b é semelhante a 4a²b.',
+    contentLessonId: 'algebra-02-termos-semelhantes',
+    skill: 'Reconhecer termos semelhantes',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4ab²'),
+      ExerciseOptionData(id: 'b', text: '7a²'),
+      ExerciseOptionData(id: 'c', text: '−7ab'),
+      ExerciseOptionData(id: 'd', text: '−7a²b'),
+    ],
+  ),
+  ExerciseData(
+    id: 'distributiva-4',
+    title: 'Questão 29 de 50',
+    statement: 'Simplifique:\n−3(2x − 5) + 4x',
+    correctOptionId: 'c',
+    explanation:
+        'Distribuindo −3, obtemos −6x + 15. Em seguida, somamos 4x ao termo em x: −6x + 4x = −2x. Logo, a expressão simplificada é −2x + 15.',
+    contentLessonId: 'algebra-03-distributiva',
+    skill: 'Aplicar distributiva com fator negativo',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−10x + 15'),
+      ExerciseOptionData(id: 'b', text: '−2x − 15'),
+      ExerciseOptionData(id: 'c', text: '−2x + 15'),
+      ExerciseOptionData(id: 'd', text: '2x + 15'),
+    ],
+  ),
+  ExerciseData(
+    id: 'distributiva-5',
+    title: 'Questão 30 de 50',
+    statement: 'Simplifique:\n2[3x − (x − 4)]',
+    correctOptionId: 'b',
+    explanation:
+        'Primeiro, retirar o parêntese muda o sinal de x − 4: 3x − x + 4 = 2x + 4. Multiplicando tudo por 2, obtemos 4x + 8.',
+    contentLessonId: 'algebra-03-distributiva',
+    skill: 'Combinar agrupamento, sinais e distributiva',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4x − 8'),
+      ExerciseOptionData(id: 'b', text: '4x + 8'),
+      ExerciseOptionData(id: 'c', text: '2x + 8'),
+      ExerciseOptionData(id: 'd', text: '6x + 4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'potencias-2',
+    title: 'Questão 31 de 50',
+    statement: 'Simplifique:\n(3a²b)²',
+    correctOptionId: 'd',
+    explanation:
+        'A potência atua sobre todos os fatores. Temos 3² = 9, (a²)² = a⁴ e b². Portanto, (3a²b)² = 9a⁴b².',
+    contentLessonId: 'algebra-04-potencias',
+    skill: 'Elevar monômios a uma potência',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '6a⁴b²'),
+      ExerciseOptionData(id: 'b', text: '9a²b²'),
+      ExerciseOptionData(id: 'c', text: '9a⁴b'),
+      ExerciseOptionData(id: 'd', text: '9a⁴b²'),
+    ],
+  ),
+  ExerciseData(
+    id: 'potencias-3',
+    title: 'Questão 32 de 50',
+    statement: 'Simplifique, considerando x ≠ 0:\n(2x³) / (8x)',
+    correctOptionId: 'a',
+    explanation:
+        'Dividimos os coeficientes, 2/8 = 1/4, e subtraímos os expoentes da mesma base: x³/x = x². Assim, o resultado é x²/4.',
+    contentLessonId: 'algebra-04-potencias',
+    skill: 'Simplificar quocientes de monômios',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x²/4'),
+      ExerciseOptionData(id: 'b', text: 'x²/6'),
+      ExerciseOptionData(id: 'c', text: 'x³/4'),
+      ExerciseOptionData(id: 'd', text: '4x²'),
+    ],
+  ),
+  ExerciseData(
+    id: 'produto-notavel-2',
+    title: 'Questão 33 de 50',
+    statement: 'Expanda:\n(x − 5)²',
+    correctOptionId: 'b',
+    explanation:
+        'Usamos (a − b)² = a² − 2ab + b². Com a = x e b = 5, obtemos x² − 10x + 25.',
+    contentLessonId: 'algebra-05-produtos-notaveis',
+    skill: 'Usar quadrado da diferença',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x² − 25'),
+      ExerciseOptionData(id: 'b', text: 'x² − 10x + 25'),
+      ExerciseOptionData(id: 'c', text: 'x² + 10x + 25'),
+      ExerciseOptionData(id: 'd', text: 'x² − 5x + 25'),
+    ],
+  ),
+  ExerciseData(
+    id: 'produto-notavel-3',
+    title: 'Questão 34 de 50',
+    statement: 'Expanda:\n(2x + 3)²',
+    correctOptionId: 'c',
+    explanation:
+        'Aplicando (a + b)² = a² + 2ab + b², temos (2x)² = 4x², 2·2x·3 = 12x e 3² = 9. O resultado é 4x² + 12x + 9.',
+    contentLessonId: 'algebra-05-produtos-notaveis',
+    skill: 'Expandir quadrado de binômio',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4x² + 9'),
+      ExerciseOptionData(id: 'b', text: '4x² + 6x + 9'),
+      ExerciseOptionData(id: 'c', text: '4x² + 12x + 9'),
+      ExerciseOptionData(id: 'd', text: '2x² + 12x + 9'),
+    ],
+  ),
+  ExerciseData(
+    id: 'produto-notavel-4',
+    title: 'Questão 35 de 50',
+    statement: 'Calcule o produto:\n(3x − 2)(3x + 2)',
+    correctOptionId: 'a',
+    explanation:
+        'Os fatores formam uma soma pela diferença: (a − b)(a + b) = a² − b². Com a = 3x e b = 2, o resultado é 9x² − 4.',
+    contentLessonId: 'algebra-05-produtos-notaveis',
+    skill: 'Usar produto da soma pela diferença',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '9x² − 4'),
+      ExerciseOptionData(id: 'b', text: '9x² + 4'),
+      ExerciseOptionData(id: 'c', text: '9x² − 12x + 4'),
+      ExerciseOptionData(id: 'd', text: '6x² − 4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fatoracao-2',
+    title: 'Questão 36 de 50',
+    statement: 'Fatore completamente:\n8x² + 12x',
+    correctOptionId: 'd',
+    explanation:
+        'O maior fator comum entre 8x² e 12x é 4x. Colocando-o em evidência, obtemos 4x(2x + 3), que está completamente fatorado.',
+    contentLessonId: 'algebra-06-fatoracao',
+    skill: 'Fatorar pelo máximo fator comum',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2x(4x + 6)'),
+      ExerciseOptionData(id: 'b', text: '4(2x² + 3x)'),
+      ExerciseOptionData(id: 'c', text: 'x(8x + 12)'),
+      ExerciseOptionData(id: 'd', text: '4x(2x + 3)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fatoracao-3',
+    title: 'Questão 37 de 50',
+    statement: 'Fatore:\nx² + 7x + 12',
+    correctOptionId: 'b',
+    explanation:
+        'Procuramos dois números cujo produto seja 12 e cuja soma seja 7. Os números 3 e 4 satisfazem as duas condições, então x² + 7x + 12 = (x + 3)(x + 4).',
+    contentLessonId: 'algebra-06-fatoracao',
+    skill: 'Fatorar trinômio quadrático mônico',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(x + 2)(x + 6)'),
+      ExerciseOptionData(id: 'b', text: '(x + 3)(x + 4)'),
+      ExerciseOptionData(id: 'c', text: '(x − 3)(x − 4)'),
+      ExerciseOptionData(id: 'd', text: '(x + 1)(x + 12)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fatoracao-4',
+    title: 'Questão 38 de 50',
+    statement: 'Fatore:\n4x² − 25',
+    correctOptionId: 'c',
+    explanation:
+        'Temos uma diferença de quadrados: 4x² = (2x)² e 25 = 5². Portanto, 4x² − 25 = (2x − 5)(2x + 5).',
+    contentLessonId: 'algebra-06-fatoracao',
+    skill: 'Fatorar diferença de quadrados com coeficiente',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(4x − 5)(x + 5)'),
+      ExerciseOptionData(id: 'b', text: '(2x − 5)²'),
+      ExerciseOptionData(id: 'c', text: '(2x − 5)(2x + 5)'),
+      ExerciseOptionData(id: 'd', text: '(4x − 25)(x + 1)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fracoes-algebricas-2',
+    title: 'Questão 39 de 50',
+    statement: 'Simplifique, com x ≠ 3:\n(x² − 9) / (x − 3)',
+    correctOptionId: 'a',
+    explanation:
+        'Fatoramos o numerador como diferença de quadrados: x² − 9 = (x − 3)(x + 3). Como x ≠ 3, cancelamos o fator comum x − 3 e obtemos x + 3.',
+    contentLessonId: 'algebra-07-fracoes-algebricas',
+    skill: 'Simplificar frações algébricas por fatoração',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x + 3'),
+      ExerciseOptionData(id: 'b', text: 'x − 3'),
+      ExerciseOptionData(id: 'c', text: 'x² + 3'),
+      ExerciseOptionData(id: 'd', text: '1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fracoes-algebricas-3',
+    title: 'Questão 40 de 50',
+    statement: 'Some, considerando x ≠ 0:\n2/x + 3/(2x)',
+    correctOptionId: 'd',
+    explanation:
+        'O denominador comum é 2x. Reescrevendo 2/x como 4/(2x), temos 4/(2x) + 3/(2x) = 7/(2x).',
+    contentLessonId: 'algebra-07-fracoes-algebricas',
+    skill: 'Somar frações algébricas com denominadores relacionados',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '5/(3x)'),
+      ExerciseOptionData(id: 'b', text: '5/(2x)'),
+      ExerciseOptionData(id: 'c', text: '7/x'),
+      ExerciseOptionData(id: 'd', text: '7/(2x)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fracoes-algebricas-4',
+    title: 'Questão 41 de 50',
+    statement: 'Multiplique, considerando x ≠ 0:\n(x/3) · (9/x²)',
+    correctOptionId: 'b',
+    explanation:
+        'Multiplicando numeradores e denominadores, obtemos 9x/(3x²). Simplificando 9/3 = 3 e x/x² = 1/x, resulta 3/x.',
+    contentLessonId: 'algebra-07-fracoes-algebricas',
+    skill: 'Multiplicar e simplificar frações algébricas',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '3x'),
+      ExerciseOptionData(id: 'b', text: '3/x'),
+      ExerciseOptionData(id: 'c', text: '9/x'),
+      ExerciseOptionData(id: 'd', text: 'x/3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fracoes-algebricas-5',
+    title: 'Questão 42 de 50',
+    statement:
+        'Simplifique e mantenha as restrições:\n(x² − 4) / (x² + x − 6)',
+    correctOptionId: 'c',
+    explanation:
+        'Fatoramos: x² − 4 = (x − 2)(x + 2) e x² + x − 6 = (x − 2)(x + 3). Cancelamos x − 2, mas as restrições originais permanecem: x ≠ 2 e x ≠ −3.',
+    contentLessonId: 'algebra-07-fracoes-algebricas',
+    skill: 'Simplificar frações algébricas preservando restrições',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(x + 2)/(x + 3), x ≠ −3'),
+      ExerciseOptionData(id: 'b', text: '(x − 2)/(x + 3), x ≠ 2, −3'),
+      ExerciseOptionData(id: 'c', text: '(x + 2)/(x + 3), x ≠ 2, −3'),
+      ExerciseOptionData(id: 'd', text: '1, x ≠ 2, −3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sintese-algebrica-2',
+    title: 'Questão 43 de 50',
+    statement: 'Simplifique:\n3(x − 2) + (x + 1)²',
+    correctOptionId: 'a',
+    explanation:
+        'Aplicamos distributiva e produto notável: 3(x − 2) = 3x − 6 e (x + 1)² = x² + 2x + 1. Somando, obtemos x² + 5x − 5.',
+    contentLessonId: 'algebra-08-sintese',
+    skill: 'Combinar distributiva e produto notável',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x² + 5x − 5'),
+      ExerciseOptionData(id: 'b', text: 'x² + 3x − 5'),
+      ExerciseOptionData(id: 'c', text: 'x² + 5x + 7'),
+      ExerciseOptionData(id: 'd', text: 'x² + 2x − 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sintese-algebrica-3',
+    title: 'Questão 44 de 50',
+    statement: 'Simplifique, com x ≠ 4:\n(x² − 16) / (x² − 8x + 16)',
+    correctOptionId: 'd',
+    explanation:
+        'Fatoramos x² − 16 = (x − 4)(x + 4) e x² − 8x + 16 = (x − 4)². Cancelando um fator x − 4, obtemos (x + 4)/(x − 4), mantendo x ≠ 4.',
+    contentLessonId: 'algebra-08-sintese',
+    skill: 'Combinar produtos notáveis e frações algébricas',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '1'),
+      ExerciseOptionData(id: 'b', text: '(x − 4)/(x + 4)'),
+      ExerciseOptionData(id: 'c', text: 'x + 4'),
+      ExerciseOptionData(id: 'd', text: '(x + 4)/(x − 4)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sintese-algebrica-4',
+    title: 'Questão 45 de 50',
+    statement: 'Fatore a expressão:\n2a(a − 3) − (a − 3)(a + 1)',
+    correctOptionId: 'b',
+    explanation:
+        'O fator comum é a − 3. Colocando-o em evidência, temos (a − 3)[2a − (a + 1)] = (a − 3)(a − 1).',
+    contentLessonId: 'algebra-08-sintese',
+    skill: 'Reconhecer fator comum em expressão composta',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(a − 3)(3a + 1)'),
+      ExerciseOptionData(id: 'b', text: '(a − 3)(a − 1)'),
+      ExerciseOptionData(id: 'c', text: '(a + 3)(a − 1)'),
+      ExerciseOptionData(id: 'd', text: 'a(a − 3)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sintese-algebrica-5',
+    title: 'Questão 46 de 50',
+    statement:
+        'Um aluno simplificou (x² + 6x + 9)/(x + 3) para x + 3. Qual condição precisa acompanhar essa simplificação?',
+    correctOptionId: 'c',
+    explanation:
+        'O numerador é (x + 3)². O cancelamento produz x + 3, mas a expressão original não está definida em x = −3. Portanto, a condição x ≠ −3 deve ser preservada.',
+    contentLessonId: 'algebra-08-sintese',
+    skill: 'Analisar simplificações e restrições de domínio',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x ≠ 0'),
+      ExerciseOptionData(id: 'b', text: 'x ≠ 3'),
+      ExerciseOptionData(id: 'c', text: 'x ≠ −3'),
+      ExerciseOptionData(id: 'd', text: 'Nenhuma restrição'),
+    ],
+  ),
+  ExerciseData(
+    id: 'polinomios-estrutura-2',
+    title: 'Questão 47 de 50',
+    statement:
+        'Considere P(x) = 7 − 2x⁴ + x². Qual é o grau e qual é o coeficiente líder de P?',
+    correctOptionId: 'a',
+    explanation:
+        'Escrevendo em ordem decrescente, P(x) = −2x⁴ + x² + 7. O maior expoente é 4, então o grau é 4, e o coeficiente do termo líder é −2.',
+    contentLessonId: 'algebra-09-monomios-polinomios',
+    skill: 'Identificar grau e coeficiente líder em forma não ordenada',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'grau 4 e coeficiente líder −2'),
+      ExerciseOptionData(id: 'b', text: 'grau 4 e coeficiente líder 7'),
+      ExerciseOptionData(id: 'c', text: 'grau 2 e coeficiente líder 1'),
+      ExerciseOptionData(id: 'd', text: 'grau 7 e coeficiente líder −2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'polinomios-classificacao-2',
+    title: 'Questão 48 de 50',
+    statement: 'Qual expressão NÃO é um polinômio em x?',
+    correctOptionId: 'd',
+    explanation:
+        'Em um polinômio, os expoentes da variável devem ser inteiros não negativos. Como √x = x^(1/2), a expressão √x + 1 possui expoente fracionário e não é polinomial.',
+    contentLessonId: 'algebra-09-monomios-polinomios',
+    skill: 'Distinguir polinômios de expressões não polinomiais',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '3x⁴ − x + 2'),
+      ExerciseOptionData(id: 'b', text: '−5x² + 7'),
+      ExerciseOptionData(id: 'c', text: '9'),
+      ExerciseOptionData(id: 'd', text: '√x + 1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'operacoes-polinomios-3',
+    title: 'Questão 49 de 50',
+    statement: 'Some:\n(3x² − 2x + 5) + (x² + 7x − 1)',
+    correctOptionId: 'c',
+    explanation:
+        'Somamos termos semelhantes: 3x² + x² = 4x², −2x + 7x = 5x e 5 − 1 = 4. Portanto, a soma é 4x² + 5x + 4.',
+    contentLessonId: 'algebra-10-operacoes-polinomios',
+    skill: 'Somar polinômios',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4x² + 9x + 4'),
+      ExerciseOptionData(id: 'b', text: '3x² + 5x + 4'),
+      ExerciseOptionData(id: 'c', text: '4x² + 5x + 4'),
+      ExerciseOptionData(id: 'd', text: '4x² + 5x + 6'),
+    ],
+  ),
+  ExerciseData(
+    id: 'operacoes-polinomios-4',
+    title: 'Questão 50 de 50',
+    statement: 'Expanda:\n(2x − 1)(x² + x + 3)',
+    correctOptionId: 'b',
+    explanation:
+        'Distribuímos 2x e depois −1: 2x³ + 2x² + 6x − x² − x − 3. Combinando termos semelhantes, resulta 2x³ + x² + 5x − 3.',
+    contentLessonId: 'algebra-10-operacoes-polinomios',
+    skill: 'Multiplicar binômio por trinômio',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2x³ + x² + 7x − 3'),
+      ExerciseOptionData(id: 'b', text: '2x³ + x² + 5x − 3'),
+      ExerciseOptionData(id: 'c', text: '2x³ + 3x² + 5x − 3'),
+      ExerciseOptionData(id: 'd', text: '2x³ + x² + 5x + 3'),
+    ],
+  ),
+
 ];
