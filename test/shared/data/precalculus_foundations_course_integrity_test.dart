@@ -60,7 +60,7 @@ void main() {
 
 
     test('mantém profundidade universitária em PT e EN', () {
-      final catalogs = <List<dynamic>>[
+      final catalogs = <List<CourseLessonData>>[
         precalculusFoundationsCourseLessons,
         localizedPrecalculusFoundationsCourseLessons(const Locale('en')),
       ];
