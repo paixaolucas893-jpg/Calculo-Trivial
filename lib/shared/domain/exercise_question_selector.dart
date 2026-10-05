@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:calcquest/shared/domain/question_selection_engine.dart';
+
 class ExerciseQuestionSelector {
   const ExerciseQuestionSelector._();
 
@@ -9,30 +11,11 @@ class ExerciseQuestionSelector {
     int questionCount = 10,
     Random? random,
   }) {
-    final uniqueQuestionIds = availableQuestionIds.toSet().toList();
-
-    if (uniqueQuestionIds.isEmpty || questionCount <= 0) {
-      return <String>[];
-    }
-
-    final previousIds = previousSessionIds.toSet();
-    final randomGenerator = random ?? Random();
-
-    final unseenQuestionIds =
-        uniqueQuestionIds
-            .where((questionId) => !previousIds.contains(questionId))
-            .toList()
-          ..shuffle(randomGenerator);
-
-    final previouslyUsedQuestionIds =
-        uniqueQuestionIds.where(previousIds.contains).toList()
-          ..shuffle(randomGenerator);
-
-    final targetCount = min(questionCount, uniqueQuestionIds.length);
-
-    return <String>[
-      ...unseenQuestionIds,
-      ...previouslyUsedQuestionIds,
-    ].take(targetCount).toList(growable: false);
+    return QuestionSelectionEngine.selectQuestionIds(
+      availableQuestionIds: availableQuestionIds,
+      primaryAvoidIds: previousSessionIds,
+      questionCount: questionCount,
+      random: random,
+    );
   }
 }
