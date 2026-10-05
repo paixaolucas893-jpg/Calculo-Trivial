@@ -3,7 +3,7 @@ import 'package:calcquest/shared/data/mock_exercise_data.dart';
 const List<ExerciseData> mockEquationsExercises = [
   ExerciseData(
     id: 'equacao-1',
-    title: 'Questão 1 de 24',
+    title: 'Questão 1 de 50',
     statement: 'Resolva a equação:\nx + 3 = 8',
     correctOptionId: 'b',
     explanation:
@@ -20,7 +20,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-2',
-    title: 'Questão 2 de 24',
+    title: 'Questão 2 de 50',
     statement: 'Resolva a equação:\n2x = 10',
     correctOptionId: 'c',
     explanation:
@@ -37,7 +37,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-3',
-    title: 'Questão 3 de 24',
+    title: 'Questão 3 de 50',
     statement: 'Resolva a equação:\nx - 4 = 9',
     correctOptionId: 'd',
     explanation:
@@ -54,7 +54,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-4',
-    title: 'Questão 4 de 24',
+    title: 'Questão 4 de 50',
     statement: 'Resolva a equação:\n3x + 2 = 11',
     correctOptionId: 'a',
     explanation:
@@ -71,7 +71,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-1',
-    title: 'Questão 5 de 24',
+    title: 'Questão 5 de 50',
     statement: 'Resolva a inequação:\nx + 2 > 7',
     correctOptionId: 'c',
     explanation:
@@ -88,7 +88,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-5',
-    title: 'Questão 6 de 24',
+    title: 'Questão 6 de 50',
     statement: 'Resolva a equação:\n5x - 7 = 18',
     correctOptionId: 'b',
     explanation:
@@ -105,7 +105,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-distributiva',
-    title: 'Questão 7 de 24',
+    title: 'Questão 7 de 50',
     statement: 'Resolva a equação:\n4(x - 2) = 12',
     correctOptionId: 'c',
     explanation:
@@ -122,7 +122,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-fracao',
-    title: 'Questão 8 de 24',
+    title: 'Questão 8 de 50',
     statement: 'Resolva a equação:\nx/3 + 2 = 6',
     correctOptionId: 'd',
     explanation:
@@ -139,7 +139,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-2',
-    title: 'Questão 9 de 24',
+    title: 'Questão 9 de 50',
     statement: 'Resolva a inequação:\n2x - 3 ≤ 7',
     correctOptionId: 'a',
     explanation:
@@ -156,7 +156,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-negativa',
-    title: 'Questão 10 de 24',
+    title: 'Questão 10 de 50',
     statement: 'Resolva a inequação:\n-3x > 12',
     correctOptionId: 'c',
     explanation:
@@ -173,7 +173,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-termos-dois-lados',
-    title: 'Questão 11 de 24',
+    title: 'Questão 11 de 50',
     statement: 'Resolva a equação:\n2x + 5 = x - 3',
     correctOptionId: 'c',
     explanation:
@@ -190,7 +190,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-distributiva-dois-lados',
-    title: 'Questão 12 de 24',
+    title: 'Questão 12 de 50',
     statement: 'Resolva a equação:\n3(x + 1) = 2x + 7',
     correctOptionId: 'b',
     explanation:
@@ -207,7 +207,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-fracionaria-2',
-    title: 'Questão 13 de 24',
+    title: 'Questão 13 de 50',
     statement: 'Resolva a equação:\n(x - 2) / 4 = 3',
     correctOptionId: 'd',
     explanation:
@@ -224,7 +224,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'sistema-linear-1',
-    title: 'Questão 14 de 24',
+    title: 'Questão 14 de 50',
     statement: 'Resolva o sistema:\nx + y = 7\nx - y = 1',
     correctOptionId: 'a',
     explanation:
@@ -241,7 +241,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-quadratica-1',
-    title: 'Questão 15 de 24',
+    title: 'Questão 15 de 50',
     statement: 'Resolva a equação:\nx² - 9 = 0',
     correctOptionId: 'c',
     explanation: 'Temos x² = 9. Portanto, x pode ser 3 ou -3.',
@@ -257,7 +257,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-quadratica-2',
-    title: 'Questão 16 de 24',
+    title: 'Questão 16 de 50',
     statement: 'Resolva a equação:\nx² - 5x + 6 = 0',
     correctOptionId: 'b',
     explanation: 'Fatorando: (x - 2)(x - 3) = 0. Logo, x = 2 ou x = 3.',
@@ -273,7 +273,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-3',
-    title: 'Questão 17 de 24',
+    title: 'Questão 17 de 50',
     statement: 'Resolva a inequação:\n5 - 2x < 9',
     correctOptionId: 'd',
     explanation:
@@ -290,7 +290,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-distributiva',
-    title: 'Questão 18 de 24',
+    title: 'Questão 18 de 50',
     statement: 'Resolva a inequação:\n3(x - 1) ≥ 2x + 4',
     correctOptionId: 'a',
     explanation:
@@ -307,7 +307,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-modular-1',
-    title: 'Questão 19 de 24',
+    title: 'Questão 19 de 50',
     statement: 'Resolva a equação:\n|x| = 5',
     correctOptionId: 'c',
     explanation: 'A distância de x até zero é 5. Portanto, x pode ser 5 ou -5.',
@@ -323,7 +323,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-sem-solucao',
-    title: 'Questão 20 de 24',
+    title: 'Questão 20 de 50',
     statement: 'Resolva a equação:\n2(x + 1) = 2x + 5',
     correctOptionId: 'b',
     explanation:
@@ -340,7 +340,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-identidade-1',
-    title: 'Questão 21 de 24',
+    title: 'Questão 21 de 50',
     statement: 'Resolva a equação:\n3(x + 2) = 3x + 6',
     correctOptionId: 'd',
     explanation:
@@ -357,7 +357,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'equacao-radical-1',
-    title: 'Questão 22 de 24',
+    title: 'Questão 22 de 50',
     statement: 'Resolva a equação:\n√(x + 5) = 4',
     correctOptionId: 'b',
     explanation:
@@ -374,7 +374,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-quadratica-1',
-    title: 'Questão 23 de 24',
+    title: 'Questão 23 de 50',
     statement: 'Resolva a inequação:\nx² - 5x + 6 < 0',
     correctOptionId: 'c',
     explanation:
@@ -391,7 +391,7 @@ const List<ExerciseData> mockEquationsExercises = [
   ),
   ExerciseData(
     id: 'inequacao-racional-1',
-    title: 'Questão 24 de 24',
+    title: 'Questão 24 de 50',
     statement: 'Resolva a inequação:\n(x - 1) / (x + 2) > 0',
     correctOptionId: 'a',
     explanation:
@@ -404,6 +404,454 @@ const List<ExerciseData> mockEquationsExercises = [
       ExerciseOptionData(id: 'b', text: '-2 < x < 1'),
       ExerciseOptionData(id: 'c', text: 'x ≤ -2 ou x ≥ 1'),
       ExerciseOptionData(id: 'd', text: 'x > -2'),
+    ],
+  ),
+
+  ExerciseData(
+    id: 'equacao-equivalencia-2',
+    title: 'Questão 25 de 50',
+    statement:
+        'Qual operação preserva a equivalência da equação x + 7 = 12?',
+    correctOptionId: 'b',
+    explanation:
+        'Uma equação permanece equivalente quando aplicamos a mesma operação aos dois lados. Subtrair 7 de ambos os lados preserva o conjunto de soluções.',
+    contentLessonId: 'equations-01-equilibrio',
+    skill: 'Reconhecer operações que preservam equivalência',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Subtrair 7 apenas do lado esquerdo'),
+      ExerciseOptionData(id: 'b', text: 'Subtrair 7 dos dois lados'),
+      ExerciseOptionData(id: 'c', text: 'Multiplicar apenas o lado direito por 7'),
+      ExerciseOptionData(id: 'd', text: 'Trocar x por 7'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-verificacao-1',
+    title: 'Questão 26 de 50',
+    statement: 'Qual valor satisfaz a equação 4x − 3 = 13?',
+    correctOptionId: 'c',
+    explanation:
+        'Testando x = 4, obtemos 4·4 − 3 = 16 − 3 = 13. Portanto, x = 4 satisfaz exatamente a equação.',
+    contentLessonId: 'equations-01-equilibrio',
+    skill: 'Verificar solução por substituição',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 2'),
+      ExerciseOptionData(id: 'b', text: 'x = 3'),
+      ExerciseOptionData(id: 'c', text: 'x = 4'),
+      ExerciseOptionData(id: 'd', text: 'x = 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-caso-especial-2',
+    title: 'Questão 27 de 50',
+    statement: 'Resolva:\n5(x − 2) = 5x − 10',
+    correctOptionId: 'd',
+    explanation:
+        'Distribuindo o lado esquerdo, obtemos 5x − 10 = 5x − 10. A igualdade é verdadeira para qualquer número real, então há infinitas soluções.',
+    contentLessonId: 'equations-04-casos-especiais',
+    skill: 'Reconhecer identidade algébrica',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 0'),
+      ExerciseOptionData(id: 'b', text: 'x = 2'),
+      ExerciseOptionData(id: 'c', text: 'Sem solução'),
+      ExerciseOptionData(id: 'd', text: 'Todos os reais'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-caso-especial-3',
+    title: 'Questão 28 de 50',
+    statement: 'Resolva:\n4(x + 1) = 4x + 9',
+    correctOptionId: 'c',
+    explanation:
+        'Distribuindo, temos 4x + 4 = 4x + 9. Subtraindo 4x dos dois lados, resulta 4 = 9, uma contradição. Portanto, não existe solução.',
+    contentLessonId: 'equations-04-casos-especiais',
+    skill: 'Reconhecer contradição em equação linear',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 5'),
+      ExerciseOptionData(id: 'b', text: 'x = −5'),
+      ExerciseOptionData(id: 'c', text: 'Sem solução'),
+      ExerciseOptionData(id: 'd', text: 'Todos os reais'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sistema-linear-2',
+    title: 'Questão 29 de 50',
+    statement: 'Resolva o sistema:\nx + y = 9\nx − y = 3',
+    correctOptionId: 'a',
+    explanation:
+        'Somando as duas equações, obtemos 2x = 12, então x = 6. Substituindo em x + y = 9, resulta y = 3.',
+    contentLessonId: 'equations-05-sistemas-lineares',
+    skill: 'Resolver sistema 2x2 por eliminação',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 6, y = 3'),
+      ExerciseOptionData(id: 'b', text: 'x = 3, y = 6'),
+      ExerciseOptionData(id: 'c', text: 'x = 9, y = 3'),
+      ExerciseOptionData(id: 'd', text: 'x = 6, y = 6'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sistema-linear-3',
+    title: 'Questão 30 de 50',
+    statement: 'Resolva o sistema:\n2x + y = 7\nx − y = 2',
+    correctOptionId: 'b',
+    explanation:
+        'Da segunda equação, y = x − 2. Substituindo na primeira: 2x + x − 2 = 7, então 3x = 9 e x = 3. Logo y = 1.',
+    contentLessonId: 'equations-05-sistemas-lineares',
+    skill: 'Resolver sistema 2x2 por substituição',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 2, y = 3'),
+      ExerciseOptionData(id: 'b', text: 'x = 3, y = 1'),
+      ExerciseOptionData(id: 'c', text: 'x = 1, y = 3'),
+      ExerciseOptionData(id: 'd', text: 'x = 4, y = −1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'sistema-linear-4',
+    title: 'Questão 31 de 50',
+    statement:
+        'Um ingresso adulto custa R\$ 20 e um infantil custa R\$ 12. Foram vendidos 10 ingressos por R\$ 168. Quantos eram adultos?',
+    correctOptionId: 'c',
+    explanation:
+        'Se a é o número de adultos e i o de infantis, então a + i = 10 e 20a + 12i = 168. Substituindo i = 10 − a, obtemos 8a = 48, logo a = 6.',
+    contentLessonId: 'equations-05-sistemas-lineares',
+    skill: 'Modelar problema com sistema linear',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4'),
+      ExerciseOptionData(id: 'b', text: '5'),
+      ExerciseOptionData(id: 'c', text: '6'),
+      ExerciseOptionData(id: 'd', text: '7'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-quadratica-3',
+    title: 'Questão 32 de 50',
+    statement: 'Resolva:\nx² − 4x − 5 = 0',
+    correctOptionId: 'd',
+    explanation:
+        'Fatorando, x² − 4x − 5 = (x − 5)(x + 1). Pelo princípio do produto nulo, x = 5 ou x = −1.',
+    contentLessonId: 'equations-06-quadraticas',
+    skill: 'Resolver quadrática por fatoração',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 1 ou x = 5'),
+      ExerciseOptionData(id: 'b', text: 'x = −5 ou x = −1'),
+      ExerciseOptionData(id: 'c', text: 'x = 4 ou x = −5'),
+      ExerciseOptionData(id: 'd', text: 'x = 5 ou x = −1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-quadratica-4',
+    title: 'Questão 33 de 50',
+    statement: 'Resolva:\n2x² − 3x − 2 = 0',
+    correctOptionId: 'b',
+    explanation:
+        'Fatorando, 2x² − 3x − 2 = (2x + 1)(x − 2). Assim, 2x + 1 = 0 ou x − 2 = 0, logo x = −1/2 ou x = 2.',
+    contentLessonId: 'equations-06-quadraticas',
+    skill: 'Resolver quadrática não mônica por fatoração',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 1/2 ou x = 2'),
+      ExerciseOptionData(id: 'b', text: 'x = −1/2 ou x = 2'),
+      ExerciseOptionData(id: 'c', text: 'x = −2 ou x = 1/2'),
+      ExerciseOptionData(id: 'd', text: 'x = −1 ou x = 2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-quadratica-5',
+    title: 'Questão 34 de 50',
+    statement: 'Resolva:\nx² + 2x − 7 = 0',
+    correctOptionId: 'a',
+    explanation:
+        'Pela fórmula quadrática, x = [−2 ± √(4 + 28)]/2 = [−2 ± √32]/2 = −1 ± 2√2.',
+    contentLessonId: 'equations-06-quadraticas',
+    skill: 'Aplicar fórmula quadrática',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = −1 ± 2√2'),
+      ExerciseOptionData(id: 'b', text: 'x = 1 ± 2√2'),
+      ExerciseOptionData(id: 'c', text: 'x = −2 ± √7'),
+      ExerciseOptionData(id: 'd', text: 'x = −1 ± √2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-modular-2',
+    title: 'Questão 35 de 50',
+    statement: 'Resolva:\n|x − 3| = 5',
+    correctOptionId: 'c',
+    explanation:
+        'A distância entre x e 3 é 5. Portanto, x − 3 = 5 ou x − 3 = −5, resultando em x = 8 ou x = −2.',
+    contentLessonId: 'equations-08-modulo-revisao',
+    skill: 'Resolver equação de valor absoluto',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 2 ou x = 8'),
+      ExerciseOptionData(id: 'b', text: 'x = −8 ou x = 2'),
+      ExerciseOptionData(id: 'c', text: 'x = −2 ou x = 8'),
+      ExerciseOptionData(id: 'd', text: 'x = 3 ou x = 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-modular-1',
+    title: 'Questão 36 de 50',
+    statement: 'Resolva:\n|x| < 4',
+    correctOptionId: 'b',
+    explanation:
+        'A desigualdade |x| < 4 significa que a distância de x até zero é menor que 4. Isso equivale a −4 < x < 4.',
+    contentLessonId: 'equations-08-modulo-revisao',
+    skill: 'Resolver inequação de valor absoluto do tipo menor que',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < −4 ou x > 4'),
+      ExerciseOptionData(id: 'b', text: '−4 < x < 4'),
+      ExerciseOptionData(id: 'c', text: 'x ≤ −4 ou x ≥ 4'),
+      ExerciseOptionData(id: 'd', text: '−4 ≤ x ≤ 4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-modular-2',
+    title: 'Questão 37 de 50',
+    statement: 'Resolva:\n|x + 1| ≥ 3',
+    correctOptionId: 'd',
+    explanation:
+        'Para |A| ≥ 3, temos A ≤ −3 ou A ≥ 3. Assim, x + 1 ≤ −3 ou x + 1 ≥ 3, resultando em x ≤ −4 ou x ≥ 2.',
+    contentLessonId: 'equations-08-modulo-revisao',
+    skill: 'Resolver inequação de valor absoluto do tipo maior que',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−4 ≤ x ≤ 2'),
+      ExerciseOptionData(id: 'b', text: '−2 ≤ x ≤ 4'),
+      ExerciseOptionData(id: 'c', text: 'x ≤ −2 ou x ≥ 4'),
+      ExerciseOptionData(id: 'd', text: 'x ≤ −4 ou x ≥ 2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-modular-sem-solucao-1',
+    title: 'Questão 38 de 50',
+    statement: 'Resolva:\n|2x − 1| = −3',
+    correctOptionId: 'a',
+    explanation:
+        'O valor absoluto de qualquer número real é sempre maior ou igual a zero. Portanto, ele nunca pode ser igual a −3 e a equação não possui solução real.',
+    contentLessonId: 'equations-08-modulo-revisao',
+    skill: 'Reconhecer impossibilidade em equação modular',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Sem solução real'),
+      ExerciseOptionData(id: 'b', text: 'x = −1'),
+      ExerciseOptionData(id: 'c', text: 'x = 1'),
+      ExerciseOptionData(id: 'd', text: 'Todos os reais'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-radical-2',
+    title: 'Questão 39 de 50',
+    statement: 'Resolva:\n√(x − 1) = 5',
+    correctOptionId: 'b',
+    explanation:
+        'Elevando os dois lados ao quadrado, obtemos x − 1 = 25. Logo x = 26, e a verificação confirma √25 = 5.',
+    contentLessonId: 'equations-09-radicais',
+    skill: 'Resolver equação radical simples',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 24'),
+      ExerciseOptionData(id: 'b', text: 'x = 26'),
+      ExerciseOptionData(id: 'c', text: 'x = 6'),
+      ExerciseOptionData(id: 'd', text: 'x = 25'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-radical-3',
+    title: 'Questão 40 de 50',
+    statement: 'Resolva:\n√(2x + 3) = x',
+    correctOptionId: 'c',
+    explanation:
+        'Como o lado esquerdo é não negativo, x deve ser não negativo. Elevando ao quadrado: 2x + 3 = x², ou x² − 2x − 3 = 0. As raízes são 3 e −1, mas apenas x = 3 satisfaz a equação original.',
+    contentLessonId: 'equations-09-radicais',
+    skill: 'Resolver equação radical com verificação de solução extrínseca',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = −1'),
+      ExerciseOptionData(id: 'b', text: 'x = −1 ou x = 3'),
+      ExerciseOptionData(id: 'c', text: 'x = 3'),
+      ExerciseOptionData(id: 'd', text: 'Sem solução'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-radical-4',
+    title: 'Questão 41 de 50',
+    statement: 'Resolva:\n√(x + 4) + 2 = x',
+    correctOptionId: 'd',
+    explanation:
+        'Isolamos o radical: √(x + 4) = x − 2, então x ≥ 2. Elevando ao quadrado: x + 4 = x² − 4x + 4, ou x² − 5x = 0. As candidatas são 0 e 5; apenas x = 5 atende x ≥ 2 e verifica a equação.',
+    contentLessonId: 'equations-09-radicais',
+    skill: 'Resolver equação radical com isolamento e verificação',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 0'),
+      ExerciseOptionData(id: 'b', text: 'x = 0 ou x = 5'),
+      ExerciseOptionData(id: 'c', text: 'x = 4'),
+      ExerciseOptionData(id: 'd', text: 'x = 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'equacao-radical-5',
+    title: 'Questão 42 de 50',
+    statement:
+        'Ao resolver uma equação com radicais elevando ambos os lados ao quadrado, qual cuidado é indispensável?',
+    correctOptionId: 'a',
+    explanation:
+        'Elevar ao quadrado pode introduzir soluções extrínsecas, isto é, valores que satisfazem a equação transformada, mas não a original. Por isso, toda solução candidata deve ser verificada na equação inicial.',
+    contentLessonId: 'equations-09-radicais',
+    skill: 'Reconhecer necessidade de verificar soluções extrínsecas',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Verificar as soluções na equação original'),
+      ExerciseOptionData(id: 'b', text: 'Trocar sempre o sinal das soluções'),
+      ExerciseOptionData(id: 'c', text: 'Descartar automaticamente raízes positivas'),
+      ExerciseOptionData(id: 'd', text: 'Multiplicar a equação por −1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-quadratica-2',
+    title: 'Questão 43 de 50',
+    statement: 'Resolva:\nx² − 9 > 0',
+    correctOptionId: 'a',
+    explanation:
+        'Fatorando, (x − 3)(x + 3) > 0. O produto é positivo fora das raízes, portanto x < −3 ou x > 3.',
+    contentLessonId: 'equations-10-inequacoes-quadraticas',
+    skill: 'Resolver inequação quadrática por análise de sinal',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < −3 ou x > 3'),
+      ExerciseOptionData(id: 'b', text: '−3 < x < 3'),
+      ExerciseOptionData(id: 'c', text: 'x ≤ −3 ou x ≥ 3'),
+      ExerciseOptionData(id: 'd', text: '−3 ≤ x ≤ 3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-quadratica-3',
+    title: 'Questão 44 de 50',
+    statement: 'Resolva:\nx² + x − 6 ≤ 0',
+    correctOptionId: 'c',
+    explanation:
+        'Fatorando, (x + 3)(x − 2) ≤ 0. Como a parábola abre para cima, a expressão é não positiva entre as raízes, incluindo-as: −3 ≤ x ≤ 2.',
+    contentLessonId: 'equations-10-inequacoes-quadraticas',
+    skill: 'Resolver inequação quadrática com extremos incluídos',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x ≤ −3 ou x ≥ 2'),
+      ExerciseOptionData(id: 'b', text: '−3 < x < 2'),
+      ExerciseOptionData(id: 'c', text: '−3 ≤ x ≤ 2'),
+      ExerciseOptionData(id: 'd', text: 'x < −3 ou x > 2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-quadratica-4',
+    title: 'Questão 45 de 50',
+    statement: 'Resolva:\n−x² + 4x + 5 > 0',
+    correctOptionId: 'b',
+    explanation:
+        'Os zeros são x = −1 e x = 5. Como o coeficiente de x² é negativo, a parábola abre para baixo e fica positiva entre as raízes. Logo, −1 < x < 5.',
+    contentLessonId: 'equations-10-inequacoes-quadraticas',
+    skill: 'Analisar sinal de quadrática com concavidade negativa',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < −1 ou x > 5'),
+      ExerciseOptionData(id: 'b', text: '−1 < x < 5'),
+      ExerciseOptionData(id: 'c', text: '−1 ≤ x ≤ 5'),
+      ExerciseOptionData(id: 'd', text: 'x ≤ −1 ou x ≥ 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-quadratica-5',
+    title: 'Questão 46 de 50',
+    statement:
+        'Para resolver uma inequação quadrática por tabela de sinais, quais pontos devem dividir a reta real em intervalos?',
+    correctOptionId: 'd',
+    explanation:
+        'Os zeros do polinômio são os pontos em que o sinal pode mudar. Eles dividem a reta em intervalos nos quais o sinal da expressão pode ser analisado.',
+    contentLessonId: 'equations-10-inequacoes-quadraticas',
+    skill: 'Identificar pontos críticos em inequação quadrática',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Apenas o vértice'),
+      ExerciseOptionData(id: 'b', text: 'Apenas o coeficiente líder'),
+      ExerciseOptionData(id: 'c', text: 'Somente x = 0'),
+      ExerciseOptionData(id: 'd', text: 'As raízes reais do polinômio'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-racional-2',
+    title: 'Questão 47 de 50',
+    statement: 'Resolva:\n(x + 1)/(x − 2) < 0',
+    correctOptionId: 'b',
+    explanation:
+        'Os pontos críticos são x = −1, que zera o numerador, e x = 2, que é excluído do domínio. O quociente é negativo apenas no intervalo (−1, 2).',
+    contentLessonId: 'equations-11-inequacoes-racionais',
+    skill: 'Resolver inequação racional por tabela de sinais',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < −1 ou x > 2'),
+      ExerciseOptionData(id: 'b', text: '−1 < x < 2'),
+      ExerciseOptionData(id: 'c', text: '−1 ≤ x < 2'),
+      ExerciseOptionData(id: 'd', text: 'x < 2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-racional-3',
+    title: 'Questão 48 de 50',
+    statement: 'Resolva:\n(x − 3)/(x + 1) ≥ 0',
+    correctOptionId: 'c',
+    explanation:
+        'Os pontos críticos são x = 3 e x = −1. O denominador impede x = −1, enquanto x = 3 pode ser incluído porque zera o numerador. A solução é x < −1 ou x ≥ 3.',
+    contentLessonId: 'equations-11-inequacoes-racionais',
+    skill: 'Distinguir zero do numerador e restrição do denominador',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−1 < x ≤ 3'),
+      ExerciseOptionData(id: 'b', text: 'x ≤ −1 ou x ≥ 3'),
+      ExerciseOptionData(id: 'c', text: 'x < −1 ou x ≥ 3'),
+      ExerciseOptionData(id: 'd', text: 'x < −1 ou x > 3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-racional-4',
+    title: 'Questão 49 de 50',
+    statement: 'Resolva:\n1/(x − 4) > 0',
+    correctOptionId: 'd',
+    explanation:
+        'O numerador 1 é sempre positivo. Portanto, o sinal da fração depende do denominador. Para a fração ser positiva, precisamos x − 4 > 0, isto é, x > 4.',
+    contentLessonId: 'equations-11-inequacoes-racionais',
+    skill: 'Analisar sinal de expressão racional simples',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < 4'),
+      ExerciseOptionData(id: 'b', text: 'x ≥ 4'),
+      ExerciseOptionData(id: 'c', text: 'x ≠ 4'),
+      ExerciseOptionData(id: 'd', text: 'x > 4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'inequacao-racional-5',
+    title: 'Questão 50 de 50',
+    statement:
+        'Em uma inequação racional, um valor que zera o denominador pode pertencer ao conjunto solução?',
+    correctOptionId: 'a',
+    explanation:
+        'Não. Se o denominador é zero, a expressão racional não está definida naquele valor. Por isso, esse ponto deve ser sempre excluído, independentemente do símbolo da inequação.',
+    contentLessonId: 'equations-11-inequacoes-racionais',
+    skill: 'Aplicar restrição de domínio em inequação racional',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Não, porque a expressão fica indefinida'),
+      ExerciseOptionData(id: 'b', text: 'Sim, quando a desigualdade usa ≥'),
+      ExerciseOptionData(id: 'c', text: 'Sim, quando o numerador também zera'),
+      ExerciseOptionData(id: 'd', text: 'Sim, se o valor for positivo'),
     ],
   ),
 
