@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:calcquest/shared/domain/exercise_question_selector.dart';
+import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
+import 'package:calcquest/shared/domain/question_performance.dart';
 import 'package:calcquest/shared/domain/question_selection_engine.dart';
 
 class AppProgress {
@@ -38,6 +41,9 @@ class AppProgress {
   static const String _dailyActivityDateKey = 'daily_activity_date';
   static const String _lastQuestionSessionKey = 'last_question_session';
   static const String _lastFinalTestSessionKey = 'last_final_test_session';
+  static const String _questionPerformanceKey = 'question_performance_v1';
+  static const String _lastPersonalizedReviewSessionKey =
+      'last_personalized_review_session_v1';
 
   static const List<String> _lessonIds = <String>[
     algebraFundamentalId,
@@ -73,6 +79,9 @@ class AppProgress {
       <String, Set<String>>{};
   static final Map<String, Set<String>> _lastFinalTestSessionIds =
       <String, Set<String>>{};
+  static final Map<String, QuestionPerformance> _questionPerformance =
+      <String, QuestionPerformance>{};
+  static final Set<String> _lastPersonalizedReviewSessionIds = <String>{};
 
   static Future<void> _saveQueue = Future<void>.value();
 
@@ -83,6 +92,13 @@ class AppProgress {
 
   static Set<String> get completedContentLessonIds =>
       Set<String>.unmodifiable(_completedContentLessonIds);
+
+  static Map<String, QuestionPerformance> get questionPerformance =>
+      Map<String, QuestionPerformance>.unmodifiable(_questionPerformance);
+
+  static int get personalizedReviewQuestionCount => _questionPerformance.values
+      .where((performance) => performance.needsReview)
+      .length;
 
   static int get incorrectAnswerAttempts =>
       max(0, totalAnswerAttempts - correctAnswerAttempts);
@@ -141,6 +157,8 @@ class AppProgress {
     _completedContentLessonIds.clear();
     _lastQuestionSessionIds.clear();
     _lastFinalTestSessionIds.clear();
+    _questionPerformance.clear();
+    _lastPersonalizedReviewSessionIds.clear();
 
     algebraFundamentalCompleted = false;
     equationsAndInequationsCompleted = false;
@@ -270,6 +288,39 @@ class AppProgress {
       _scopedKey(_dailyActivityDateKey, userId),
     );
 
+    final encodedPerformance = preferences.getString(
+      _scopedKey(_questionPerformanceKey, userId),
+    );
+
+    if (encodedPerformance != null && encodedPerformance.isNotEmpty) {
+      try {
+        final decoded = jsonDecode(encodedPerformance);
+
+        if (decoded is Map) {
+          for (final entry in decoded.entries) {
+            final questionId = entry.key?.toString();
+            final performance = QuestionPerformance.fromJson(entry.value);
+
+            if (questionId != null &&
+                questionId.isNotEmpty &&
+                performance != null) {
+              _questionPerformance[questionId] = performance;
+            }
+          }
+        }
+      } catch (_) {
+        // Ignore malformed legacy/local data and continue safely.
+      }
+    }
+
+    final previousReviewIds = preferences.getStringList(
+      _scopedKey(_lastPersonalizedReviewSessionKey, userId),
+    );
+
+    if (previousReviewIds != null) {
+      _lastPersonalizedReviewSessionIds.addAll(previousReviewIds);
+    }
+
     for (final lessonId in _lessonIds) {
       final questionIds = preferences.getStringList(
         _scopedKey('${_lastQuestionSessionKey}_$lessonId', userId),
@@ -350,6 +401,8 @@ class AppProgress {
     _mergeDailyActivity(data);
     _mergeQuestionSessions(data);
     _mergeFinalTestSessions(data);
+    _mergeQuestionPerformance(data);
+    _mergePersonalizedReviewSession(data);
   }
 
   static void _mergeQuestionSessions(Map<String, dynamic> data) {
@@ -389,6 +442,39 @@ class AppProgress {
           _lastFinalTestSessionIds[lessonId] = questionIds;
         }
       }
+    }
+  }
+
+
+  static void _mergeQuestionPerformance(Map<String, dynamic> data) {
+    final remotePerformance = data['questionPerformance'];
+
+    if (remotePerformance is! Map) {
+      return;
+    }
+
+    for (final entry in remotePerformance.entries) {
+      final questionId = entry.key?.toString();
+      final remote = QuestionPerformance.fromJson(entry.value);
+
+      if (questionId == null || questionId.isEmpty || remote == null) {
+        continue;
+      }
+
+      final local = _questionPerformance[questionId];
+      _questionPerformance[questionId] = local == null
+          ? remote
+          : local.merge(remote);
+    }
+  }
+
+  static void _mergePersonalizedReviewSession(Map<String, dynamic> data) {
+    final remoteIds = data['lastPersonalizedReviewSessionIds'];
+
+    if (remoteIds is Iterable) {
+      _lastPersonalizedReviewSessionIds
+        ..clear()
+        ..addAll(remoteIds.whereType<String>());
     }
   }
 
@@ -581,6 +667,19 @@ class AppProgress {
       );
     }
 
+    await preferences.setString(
+      _scopedKey(_questionPerformanceKey, _activeUserId),
+      jsonEncode(<String, dynamic>{
+        for (final entry in _questionPerformance.entries)
+          entry.key: entry.value.toJson(),
+      }),
+    );
+
+    await preferences.setStringList(
+      _scopedKey(_lastPersonalizedReviewSessionKey, _activeUserId),
+      _lastPersonalizedReviewSessionIds.toList(),
+    );
+
     for (final lessonId in _lessonIds) {
       final questionIds =
           _lastQuestionSessionIds[lessonId]?.toList() ?? <String>[];
@@ -638,6 +737,12 @@ class AppProgress {
         for (final entry in _lastFinalTestSessionIds.entries)
           entry.key: entry.value.toList(),
       },
+      'questionPerformance': <String, Map<String, dynamic>>{
+        for (final entry in _questionPerformance.entries)
+          entry.key: entry.value.toJson(),
+      },
+      'lastPersonalizedReviewSessionIds':
+          _lastPersonalizedReviewSessionIds.toList(),
       'updatedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
@@ -743,7 +848,35 @@ class AppProgress {
     return selectedCandidates;
   }
 
-  static void recordExerciseAnswer({required bool isCorrect}) {
+
+  static List<QuestionCandidate> selectPersonalizedReviewCandidates({
+    required Iterable<QuestionCandidate> candidates,
+    int questionCount = 10,
+  }) {
+    _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
+
+    final selected = PersonalizedReviewSessionBuilder.build(
+      candidates: candidates,
+      performanceByQuestionId: _questionPerformance,
+      previousSessionIds: _lastPersonalizedReviewSessionIds,
+      questionCount: questionCount,
+    );
+
+    _lastPersonalizedReviewSessionIds
+      ..clear()
+      ..addAll(selected.map((candidate) => candidate.questionId));
+
+    if (selected.isNotEmpty) {
+      _queueProgressSave();
+    }
+
+    return selected;
+  }
+
+  static void recordExerciseAnswer({
+    required String questionId,
+    required bool isCorrect,
+  }) {
     _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
 
     _normalizeDailyStatistics();
@@ -756,6 +889,11 @@ class AppProgress {
     }
 
     dailyAnsweredQuestions++;
+
+    final currentPerformance =
+        _questionPerformance[questionId] ?? const QuestionPerformance();
+    _questionPerformance[questionId] =
+        currentPerformance.record(isCorrect: isCorrect);
 
     revision.value++;
 
@@ -850,6 +988,8 @@ class AppProgress {
       'dailyActivityDate': dailyActivityDate,
       'lastQuestionSessionIds': <String, List<String>>{},
       'lastFinalTestSessionIds': <String, List<String>>{},
+      'questionPerformance': <String, Map<String, dynamic>>{},
+      'lastPersonalizedReviewSessionIds': <String>[],
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }
@@ -882,6 +1022,8 @@ class AppProgress {
       _lastStudyDateKey,
       _dailyAnsweredQuestionsKey,
       _dailyActivityDateKey,
+      _questionPerformanceKey,
+      _lastPersonalizedReviewSessionKey,
     ];
 
     for (final key in scopedKeys) {
