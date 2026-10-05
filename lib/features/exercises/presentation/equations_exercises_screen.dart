@@ -106,7 +106,10 @@ class _EquationsExercisesScreenState extends State<EquationsExercisesScreen> {
     );
 
     setState(() => isShowingFeedback = true);
-    AppProgress.recordExerciseAnswer(isCorrect: isCorrect);
+    AppProgress.recordExerciseAnswer(
+      questionId: exercise.id,
+      isCorrect: isCorrect,
+    );
 
     if (isCorrect) {
       correctAnswers++;
