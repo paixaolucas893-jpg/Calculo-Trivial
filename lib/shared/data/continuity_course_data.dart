@@ -9,7 +9,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Quando uma função é contínua?',
     description:
         'Conecte valor da função, limite e comportamento do gráfico em um ponto.',
-    duration: '≈ 28 min',
+    duration: '≈ 38 min',
     objective: 'verificar as três condições de continuidade em um ponto',
     symbol: 'C',
     sections: [
@@ -58,7 +58,54 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Continuidade unilateral', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'Extremos de intervalos', content: 'Em uma extremidade do domínio, usa-se continuidade pela direita ou pela esquerda. Em [a,b], a continuidade em a é verificada pela direita e em b pela esquerda.')]),
       LessonSectionData(number: '6', title: 'Leitura gráfica rigorosa', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Sem ruptura local', content: 'No gráfico, continuidade em a significa que a curva se aproxima da mesma altura pelos dois lados e que o ponto da função está exatamente nessa altura.', emphasis: '“Desenhar sem tirar o lápis” é uma metáfora; limite=valor é o critério matemático.')]),
       LessonSectionData(number: '7', title: 'Erros frequentes', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Existir f(a) não basta', content: 'Uma função pode estar definida em a e ainda ser descontínua ali. Também pode ter limite em a sem estar definida no ponto.', tone: LearningCardTone.warning)]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A definição em três condições é tratada como consequência direta da teoria de limites.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Verifique as três condições',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Continuidade em um ponto',
+            problem:
+                'Considere f(x)=(x²−1)/(x−1) para x≠1 e f(1)=2. f é contínua em x=1?',
+            steps: [
+              'f(1)=2 existe.',
+              'Para x≠1, simplifique para x+1.',
+              'Então lim x→1 f(x)=2.',
+              'Compare limite e valor da função.',
+            ],
+            result: 'Sim, f é contínua em x=1.',
+            interpretation:
+                'As três condições são satisfeitas: valor definido, limite existente e igualdade entre ambos.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Falha em uma única condição',
+            problem:
+                'Se lim x→3 f(x)=5, mas f(3)=1, a função é contínua em 3?',
+            steps: [
+              'O valor f(3) existe.',
+              'O limite existe e vale 5.',
+              'Mas lim x→3 f(x)≠f(3).',
+            ],
+            result: 'Não, há descontinuidade em x=3.',
+            interpretation:
+                'Basta uma das três condições falhar para perder continuidade no ponto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Continuidade versus derivabilidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Derivável implica contínua, mas não o contrário',
+            content:
+                'Toda função derivável em um ponto é contínua nele. Porém, funções como |x| são contínuas em x=0 e não deriváveis ali por causa do canto.',
+            emphasis:
+                'Continuidade controla ruptura; derivabilidade exige também uma inclinação local bem definida.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A definição em três condições é tratada como consequência direta da teoria de limites.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -89,7 +136,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Continuidade no domínio',
     description:
         'Use propriedades de polinômios, racionais, raízes e trigonometria.',
-    duration: '≈ 30 min',
+    duration: '≈ 40 min',
     objective: 'determinar intervalos de continuidade a partir do domínio',
     symbol: 'D',
     sections: [
@@ -138,7 +185,51 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Trigonométricas', blocks: [ConceptBlockData(visual: LessonVisual.graph, title: 'Seno, cosseno e quocientes', content: 'Seno e cosseno são contínuos em ℝ. Tangente e outras funções obtidas por quocientes são contínuas onde seus denominadores não anulam.')]),
       LessonSectionData(number: '6', title: 'Raízes e fronteiras do domínio', blocks: [WorkedExampleBlockData(title: 'Raiz composta', problem: 'Determine onde f(x)=√(5−x) é contínua.', steps: ['Exija 5−x≥0.','Logo x≤5.','A raiz é contínua em seu domínio.'], result: 'f é contínua em (−∞,5].', interpretation: 'No extremo x=5, a continuidade é pela esquerda.')]),
       LessonSectionData(number: '7', title: 'Intervalos máximos de continuidade', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Quebre o domínio nos pontos problemáticos', content: 'Zeros de denominadores, fronteiras de radicais e argumentos inválidos de logaritmos dividem o domínio em intervalos máximos nos quais a expressão permanece contínua.')]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A abordagem segue a classificação padrão de famílias contínuas e operações que preservam continuidade.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Domínio e continuidade em funções compostas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Raiz e denominador ao mesmo tempo',
+            problem: 'Determine onde f(x)=√(x−1)/(x−3) é contínua.',
+            steps: [
+              'A raiz exige x−1≥0, então x≥1.',
+              'O denominador exige x≠3.',
+              'Interseccione as restrições.',
+            ],
+            result: 'f é contínua em [1,3)∪(3,+∞).',
+            interpretation:
+                'A continuidade acompanha o domínio natural das funções elementares envolvidas.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Logaritmo de uma expressão',
+            problem: 'Determine onde g(x)=ln(4−x²) é contínua.',
+            steps: [
+              'O argumento do logaritmo deve ser positivo.',
+              'Resolva 4−x²>0.',
+              'Isso equivale a x²<4.',
+            ],
+            result: 'g é contínua em (−2,2).',
+            interpretation:
+                'Em composições, o domínio da função interna precisa cair no domínio da função externa.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Extremos de intervalos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Continuidade lateral também importa',
+            content:
+                'Em um extremo do domínio, a continuidade é verificada pelo lado disponível. Em [a,b], por exemplo, exige-se limite pela direita em a e pela esquerda em b.',
+            emphasis:
+                'Não se exige aproximação por pontos que não pertencem ao domínio.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A abordagem segue a classificação padrão de famílias contínuas e operações que preservam continuidade.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question: 'Onde √(x−3) é contínua no conjunto dos reais?',
@@ -168,7 +259,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Furos, saltos e assíntotas',
     description:
         'Diferencie descontinuidades removíveis, de salto e infinitas.',
-    duration: '≈ 32 min',
+    duration: '≈ 40 min',
     objective: 'classificar uma descontinuidade pelo comportamento dos limites',
     symbol: '!',
     sections: [
@@ -217,7 +308,52 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Descontinuidade infinita', blocks: [ConceptBlockData(visual: LessonVisual.infinity, title: 'Assíntota vertical', content: 'Se ao menos um limite lateral cresce sem limite em módulo, ocorre descontinuidade infinita e comportamento assintótico vertical.')]),
       LessonSectionData(number: '6', title: 'Oscilação', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Nem toda falha é salto ou infinito', content: 'Uma função pode oscilar indefinidamente perto de um ponto sem se aproximar de um único valor. Nesse caso o limite não existe.', tone: LearningCardTone.warning)]),
       LessonSectionData(number: '7', title: 'Diagnóstico por evidências', blocks: [WorkedExampleBlockData(title: 'Classifique a ruptura', problem: 'Se lim x→2⁻ f(x)=3, lim x→2⁺ f(x)=3 e f(2)=7, qual é o tipo?', steps: ['Os limites laterais coincidem.','O limite bilateral vale 3.','O valor da função é 7.'], result: 'Descontinuidade removível.', interpretation: 'Redefinir f(2)=3 corrige a continuidade.')]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A classificação distingue falhas removíveis, saltos, comportamento infinito e oscilatório.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Classifique pela forma do limite',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Descontinuidade removível',
+            problem: 'Classifique f(x)=(x²−4)/(x−2) em x=2.',
+            steps: [
+              'A função não está definida em x=2.',
+              'Para x≠2, simplifique para x+2.',
+              'O limite quando x→2 existe e vale 4.',
+            ],
+            result: 'A descontinuidade é removível.',
+            interpretation:
+                'Bastaria definir f(2)=4 para preencher o furo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Descontinuidade infinita',
+            problem: 'Classifique f(x)=1/(x−1)² em x=1.',
+            steps: [
+              'O denominador tende a zero positivo pelos dois lados.',
+              'A função cresce sem limite.',
+              'Há uma assíntota vertical em x=1.',
+            ],
+            result: 'A descontinuidade é infinita.',
+            interpretation:
+                'Não existe valor finito que possa ser atribuído ao ponto para restaurar continuidade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Oscilação também pode destruir o limite',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Nem toda descontinuidade é um salto ou assíntota',
+            content:
+                'Em sin(1/x) quando x→0, a função oscila indefinidamente entre −1 e 1. Ela não se aproxima de um único valor, portanto o limite não existe.',
+            emphasis:
+                'Classificar a descontinuidade exige observar como a função falha em se aproximar de um valor.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A classificação distingue falhas removíveis, saltos, comportamento infinito e oscilatório.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -248,7 +384,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Encontro entre duas regras',
     description:
         'Verifique continuidade em pontos de troca e nos extremos de intervalos.',
-    duration: '≈ 32 min',
+    duration: '≈ 40 min',
     objective: 'comparar limites laterais em funções definidas por partes',
     symbol: '{',
     sections: [
@@ -297,7 +433,54 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Exemplo com duas expressões', blocks: [WorkedExampleBlockData(title: 'As regras precisam se encontrar', problem: 'f(x)=2x+1 se x<2 e x²−1 se x≥2. É contínua em 2?', steps: ['Pela esquerda: 2·2+1=5.','Pela direita: 2²−1=3.','f(2)=3.'], result: 'Não é contínua em 2.', interpretation: 'O desacordo lateral impede continuidade.')]),
       LessonSectionData(number: '6', title: 'Mais de um ponto de troca', blocks: [ConceptBlockData(visual: LessonVisual.compare, title: 'Analise cada junção separadamente', content: 'Uma função com três ou mais trechos pode ter vários pontos críticos de continuidade. Cada ponto de troca exige sua própria comparação lateral.')]),
       LessonSectionData(number: '7', title: 'Modelagem por partes', blocks: [ConceptBlockData(visual: LessonVisual.engineering, title: 'Tarifas, controle e regimes físicos', content: 'Modelos por partes aparecem quando uma regra muda após um limiar. Continuidade indica se a transição entre regimes ocorre sem salto no valor modelado.', tone: LearningCardTone.information)]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Funções por partes consolidam limites laterais e condições locais de continuidade.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplos de encontro entre regras',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Duas fórmulas que se encontram',
+            problem:
+                'f(x)=x+2 para x<1 e f(x)=3x para x≥1. f é contínua em x=1?',
+            steps: [
+              'Limite pela esquerda: 1+2=3.',
+              'Limite pela direita: 3·1=3.',
+              'f(1)=3 pela segunda regra.',
+            ],
+            result: 'Sim, f é contínua em x=1.',
+            interpretation:
+                'As duas expressões produzem o mesmo valor de aproximação e o valor definido coincide com ele.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Um salto entre as regras',
+            problem:
+                'g(x)=2x para x<2 e g(x)=x+3 para x≥2. Analise x=2.',
+            steps: [
+              'Pela esquerda: 2·2=4.',
+              'Pela direita: 2+3=5.',
+              'Os limites laterais são diferentes.',
+            ],
+            result: 'g não é contínua em x=2.',
+            interpretation:
+                'Quando as duas regras chegam a alturas diferentes, surge uma descontinuidade de salto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Valor no ponto não corrige um salto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Primeiro os lados precisam concordar',
+            content:
+                'Se os limites laterais são diferentes, nenhuma escolha isolada para f(a) torna a função contínua. Só depois de garantir que os lados têm o mesmo limite faz sentido ajustar o valor no ponto.',
+            emphasis:
+                'Continuidade por partes depende primeiro da compatibilidade entre as regras vizinhas.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Funções por partes consolidam limites laterais e condições locais de continuidade.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -328,7 +511,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Escolha valores que eliminam rupturas',
     description:
         'Determine parâmetros e redefina pontos para tornar funções contínuas.',
-    duration: '≈ 34 min',
+    duration: '≈ 40 min',
     objective: 'montar e resolver condições de continuidade com parâmetros',
     symbol: 'k',
     sections: [
@@ -383,7 +566,40 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Parâmetro em uma das regras', blocks: [WorkedExampleBlockData(title: 'Faça os trechos coincidir', problem: 'f(x)=kx+1 se x<2 e x² se x≥2. Determine k.', steps: ['Limite esquerdo: 2k+1.','Limite direito e f(2): 4.','Resolva 2k+1=4.'], result: 'k=3/2.', interpretation: 'A igualdade lateral determina o parâmetro.')]),
       LessonSectionData(number: '6', title: 'Mais de um parâmetro', blocks: [ConceptBlockData(visual: LessonVisual.calculate, title: 'Pode surgir um sistema', content: 'Com duas constantes desconhecidas e duas condições independentes de junção, a continuidade pode gerar um sistema. Em cursos posteriores, continuidade e derivabilidade juntas fornecem condições adicionais.')]),
       LessonSectionData(number: '7', title: 'Verificação após resolver', blocks: [ConceptBlockData(visual: LessonVisual.checklist, title: 'Substitua de volta', content: 'Depois de encontrar o parâmetro, recalcule os limites laterais e o valor da função. Isso detecta erros algébricos antes de concluir.')]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Problemas paramétricos transformam a definição de continuidade em condições algébricas explícitas.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Parâmetros em mais de uma condição',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Ajuste simultâneo',
+            problem:
+                'f(x)=ax+b para x<1 e f(x)=x²+1 para x≥1. Se a=2, encontre b para continuidade.',
+            steps: [
+              'Pela direita e no ponto, f(1)=2.',
+              'Pela esquerda, o limite é a+b=2+b.',
+              'Iguale 2+b=2.',
+            ],
+            result: 'b=0.',
+            interpretation:
+                'O parâmetro é escolhido para fazer as regras coincidirem no ponto de transição.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Parâmetro não significa resposta automática',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Verifique existência e unicidade',
+            content:
+                'Ao determinar um parâmetro para continuidade, confirme se a equação de compatibilidade tem solução, se ela é única e se o valor encontrado respeita o domínio das expressões.',
+            emphasis:
+                'Ajustar um parâmetro é resolver uma condição matemática, não apenas igualar fórmulas mecanicamente.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Problemas paramétricos transformam a definição de continuidade em condições algébricas explícitas.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -414,7 +630,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Teorema do Valor Intermediário',
     description:
         'Use continuidade para garantir valores e localizar raízes em intervalos.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'aplicar o Teorema do Valor Intermediário corretamente',
     symbol: '∃',
     sections: [
@@ -463,7 +679,54 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Exemplo de existência de raiz', blocks: [WorkedExampleBlockData(title: 'Sem resolver a equação', problem: 'Mostre que x³+x−1=0 possui uma raiz em (0,1).', steps: ['A função é polinomial, logo contínua.','f(0)=−1.','f(1)=1.','Há mudança de sinal.'], result: 'Existe pelo menos uma raiz em (0,1).', interpretation: 'O teorema prova existência sem fornecer fórmula para a raiz.')]),
       LessonSectionData(number: '6', title: 'O que o teorema não afirma', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Existência não é unicidade', content: 'O TVI não diz que existe apenas um c, nem localiza exatamente esse valor. Também não pode ser usado sem verificar continuidade no intervalo.', tone: LearningCardTone.warning)]),
       LessonSectionData(number: '7', title: 'Conexão com métodos numéricos', blocks: [ConceptBlockData(visual: LessonVisual.engineering, title: 'Base para busca de raízes', content: 'A mudança de sinal em uma função contínua fundamenta métodos como a bisseção, que reduz sucessivamente um intervalo preservando uma raiz garantida.', tone: LearningCardTone.information)]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. O Teorema do Valor Intermediário aparece como consequência central da continuidade e base para existência de soluções.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Aplicações do Teorema do Valor Intermediário',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Existência de uma raiz',
+            problem: 'Mostre que p(x)=x³−x−1 tem ao menos uma raiz em (1,2).',
+            steps: [
+              'Polinômios são contínuos em ℝ.',
+              'p(1)=−1.',
+              'p(2)=5.',
+              'Como 0 está entre −1 e 5, aplique o TVI.',
+            ],
+            result: 'Existe c∈(1,2) tal que p(c)=0.',
+            interpretation:
+                'O TVI garante existência, mesmo sem fornecer a raiz exata.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Valor intermediário não é só zero',
+            problem:
+                'Se f é contínua em [0,4], f(0)=2 e f(4)=10, o que o TVI diz sobre o valor 7?',
+            steps: [
+              '7 está entre 2 e 10.',
+              'A função é contínua no intervalo fechado.',
+              'Aplique o TVI.',
+            ],
+            result: 'Existe c∈(0,4) tal que f(c)=7.',
+            interpretation:
+                'O teorema garante todos os valores intermediários, não apenas raízes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'O que o TVI não garante',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Existência não significa unicidade',
+            content:
+                'O TVI garante pelo menos um ponto que atinge o valor intermediário, mas não diz quantos pontos existem. Para unicidade, são necessárias hipóteses adicionais, como monotonicidade.',
+            emphasis:
+                'Não conclua “uma única raiz” apenas pela mudança de sinal.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. O Teorema do Valor Intermediário aparece como consequência central da continuidade e base para existência de soluções.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
@@ -495,7 +758,7 @@ const List<CourseLessonData> continuityCourseLessons = [
     title: 'Um roteiro para analisar continuidade',
     description:
         'Escolha uma estratégia confiável para pontos, intervalos e funções por partes.',
-    duration: '≈ 38 min',
+    duration: '≈ 45 min',
     objective: 'diagnosticar e justificar problemas de continuidade',
     symbol: '✓',
     sections: [
@@ -544,7 +807,53 @@ const List<CourseLessonData> continuityCourseLessons = [
       LessonSectionData(number: '5', title: 'Problema cumulativo', blocks: [WorkedExampleBlockData(title: 'Da definição ao parâmetro', problem: 'f(x)=(x²−1)/(x−1) para x<1 e kx+1 para x≥1. Ache k para continuidade em 1.', steps: ['Pela esquerda, simplifique para x+1 e obtenha 2.','Pela direita e no ponto, obtenha k+1.','Exija k+1=2.'], result: 'k=1.', interpretation: 'Combina limite removível, função por partes e parâmetro.')]),
       LessonSectionData(number: '6', title: 'Continuidade não implica derivabilidade', blocks: [ConceptBlockData(visual: LessonVisual.warning, title: 'Uma quina pode ser contínua', content: 'A função |x| é contínua em x=0, mas não é derivável ali porque as inclinações laterais não coincidem. Continuidade é necessária para derivabilidade, mas não suficiente.', tone: LearningCardTone.warning)]),
       LessonSectionData(number: '7', title: 'Ponte para Derivadas', blocks: [ConceptBlockData(visual: LessonVisual.route, title: 'Do valor contínuo à taxa instantânea', content: 'A derivada é definida por um limite de quocientes incrementais. Antes de estudar taxas instantâneas, é essencial reconhecer estabilidade e continuidade perto do ponto.', emphasis: 'Próxima unidade: derivabilidade e taxa instantânea.', tone: LearningCardTone.success)]),
-      LessonSectionData(number: '8', title: 'Base acadêmica e síntese final', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A unidade fecha a progressão limites → continuidade → derivabilidade, comum em Cálculo I.', tone: LearningCardTone.information)]),
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplos de análise completa',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Racional com furo',
+            problem: 'Analise a continuidade de f(x)=(x²−9)/(x−3).',
+            steps: [
+              'O domínio exclui x=3.',
+              'Para x≠3, simplifique para x+3.',
+              'O limite em x=3 vale 6.',
+              'Como f(3) não existe, há descontinuidade removível.',
+            ],
+            result: 'f é contínua em seu domínio e tem um furo removível em x=3.',
+            interpretation:
+                'Domínio e limite precisam ser analisados separadamente.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Composição com restrição de domínio',
+            problem: 'Analise onde f(x)=√(ln x) é contínua.',
+            steps: [
+              'ln x exige x>0.',
+              'A raiz exige ln x≥0.',
+              'Isso implica x≥1.',
+              'A composição de funções contínuas é contínua onde está definida.',
+            ],
+            result: 'f é contínua em [1,+∞).',
+            interpretation:
+                'A composição herda continuidade depois que todas as restrições de domínio são satisfeitas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Roteiro final de decisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Analise na ordem certa',
+            content:
+                '1) determine o domínio; 2) identifique pontos suspeitos; 3) calcule limites laterais quando necessário; 4) compare limite e valor da função; 5) classifique a descontinuidade; 6) use TVI somente após confirmar continuidade no intervalo adequado.',
+            emphasis:
+                'Uma análise organizada evita confundir existência do limite, valor da função e continuidade.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica e síntese final', blocks: [ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A unidade fecha a progressão limites → continuidade → derivabilidade, comum em Cálculo I.', tone: LearningCardTone.information)]),
     ],
     check: LessonCheckData(
       question:
