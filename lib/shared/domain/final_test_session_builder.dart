@@ -1,4 +1,5 @@
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
+import 'package:calcquest/shared/domain/question_metadata.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 
 class FinalTestSessionBuilder {
@@ -10,21 +11,16 @@ class FinalTestSessionBuilder {
     required Iterable<String> practiceQuestionIds,
     int questionCount = 10,
   }) {
-    final exerciseList = exercises.toList(growable: false);
-    final exercisesById = <String, ExerciseData>{
-      for (final exercise in exerciseList) exercise.id: exercise,
-    };
-
-    final selectedIds = AppProgress.selectFinalTestQuestionIds(
-      lessonId: lessonId,
-      availableQuestionIds: exerciseList.map((exercise) => exercise.id),
-      practiceQuestionIds: practiceQuestionIds,
-      questionCount: questionCount,
+    final candidates = QuestionMetadataAdapter.fromExercises(
+      moduleId: lessonId,
+      exercises: exercises,
     );
 
-    return selectedIds
-        .map((id) => exercisesById[id])
-        .whereType<ExerciseData>()
-        .toList(growable: false);
+    return AppProgress.selectFinalTestCandidates(
+      lessonId: lessonId,
+      candidates: candidates,
+      practiceQuestionIds: practiceQuestionIds,
+      questionCount: questionCount,
+    ).map((candidate) => candidate.exercise).toList(growable: false);
   }
 }
