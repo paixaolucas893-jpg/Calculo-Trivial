@@ -344,6 +344,21 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '14',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'Translation between verbal and symbolic language, interpretation of variables, and algebraic modeling follow OpenStax Algebra and Trigonometry 2e and College Algebra 2e, Sullivan, Precalculus, and Blitzer, Precalculus. The connection to functions and modeling anticipates the language used by Stewart, Thomas, and Larson in Calculus.',
+            emphasis:
+                'The references guide terminology, progression, and depth; the app examples and exercises are original.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -591,6 +606,21 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '12',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'Like terms, coefficients, literal parts, and reduction of expressions follow OpenStax Algebra and Trigonometry 2e and College Algebra 2e, Sullivan, Precalculus, and Blitzer, Precalculus. Structural reading also prepares simplifications used later in limits and derivatives.',
+            emphasis:
+                'Combining like terms is the distributive property used in reverse, not an isolated memorized rule.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Which expression is equivalent to 4x²−3x+2x²+5x?',
@@ -830,6 +860,21 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             title: 'Expanding and factoring reveal different structures',
             content:
                 'Limits and derivatives often require changing between expanded and factored forms. The distributive property is the bridge between them.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'The distributive property, sign control, and expansion of grouped expressions follow OpenStax Algebra and Trigonometry 2e, Sullivan, Precalculus, and Blitzer, Precalculus. Stewart, Thomas, and Larson rely on these techniques as algebraic infrastructure in limits and derivatives.',
+            emphasis:
+                'Correct distribution preserves equivalence at every step.',
             tone: LearningCardTone.information,
           ),
         ],
@@ -1098,6 +1143,21 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             title: 'Powers appear throughout functions, limits, and derivatives',
             content:
                 'Power functions and polynomials are built from these structures. Accurate exponent manipulation is essential for difference quotients, derivatives, and growth analysis.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'References and further study',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Academic basis for this lesson',
+            content:
+                'Exponent properties in algebraic expressions, products of powers, powers of powers, integer exponents, and related restrictions follow OpenStax Algebra and Trigonometry 2e and College Algebra 2e, Sullivan, and Blitzer. The bridge to power functions and growth prepares later work in Stewart, Thomas, and Larson.',
+            emphasis:
+                'Exponent laws are valid under specific hypotheses; domain and base restrictions cannot be ignored.',
             tone: LearningCardTone.information,
           ),
         ],

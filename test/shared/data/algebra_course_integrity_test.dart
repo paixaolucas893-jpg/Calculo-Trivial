@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calcquest/shared/data/algebra_course_data.dart';
 import 'package:calcquest/shared/data/localized_algebra_course_content.dart';
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
+import 'package:calcquest/shared/domain/course_lesson_data.dart';
 
 void main() {
   group('Integridade do curso de Álgebra Fundamental', () {
@@ -80,6 +81,34 @@ void main() {
       }
     });
 
+
+    test('todas as aulas possuem base acadêmica explícita em PT e EN', () {
+      final catalogs = <List<CourseLessonData>>[
+        algebraCourseLessons,
+        localizedAlgebraCourseLessons(const Locale('en')),
+      ];
+
+      for (final lessons in catalogs) {
+        for (final lesson in lessons) {
+          final referenceBlocks = lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<ConceptBlockData>()
+              .where(
+                (block) =>
+                    block.content.contains('OpenStax') &&
+                    (block.content.contains('Sullivan') ||
+                        block.content.contains('Blitzer')),
+              )
+              .length;
+
+          expect(
+            referenceBlocks,
+            greaterThanOrEqualTo(1),
+            reason: '${lesson.id} precisa manter referência acadêmica explícita.',
+          );
+        }
+      }
+    });
 
     test('cada aula de Álgebra possui ao menos quatro questões', () {
       final countsByLesson = <String, int>{};
