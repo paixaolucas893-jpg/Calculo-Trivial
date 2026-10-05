@@ -9,7 +9,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Aproximar antes de calcular',
     description:
         'Construa a intuição de limite e aprenda a ler cada parte da notação.',
-    duration: '≈ 28 min',
+    duration: '≈ 38 min',
     objective:
         'explicar com suas palavras o que um limite descreve',
     symbol: 'lim',
@@ -148,8 +148,42 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Exemplo cumulativo: tabela, gráfico e expressão',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Aproxime sem substituir diretamente',
+            problem: 'Estime lim x→2 (x²−4)/(x−2) usando valores próximos de 2.',
+            steps: [
+              'Escolha x=1,9 e x=1,99 pela esquerda.',
+              'Escolha x=2,1 e x=2,01 pela direita.',
+              'Calcule o quociente para cada valor.',
+              'Observe que os resultados se aproximam de 4.',
+            ],
+            result: 'O limite é 4, embora a expressão original não esteja definida em x=2.',
+            interpretation:
+                'O limite descreve o comportamento próximo ao ponto, não exige que a função esteja definida exatamente nele.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'O que o limite não afirma',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Limite e valor da função são informações diferentes',
+            content:
+                'É possível existir lim x→a f(x) mesmo que f(a) não exista ou tenha valor diferente do limite. A igualdade entre limite e valor só é exigida quando discutimos continuidade.',
+            emphasis:
+                'Não substitua automaticamente x=a antes de analisar a estrutura da função.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -195,7 +229,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites laterais, tabelas e gráficos',
     description:
         'Aprenda a investigar um ponto pelos dois lados e a reconhecer quando o limite não existe.',
-    duration: '≈ 30 min',
+    duration: '≈ 40 min',
     objective:
         'calcular limites laterais e comparar seus resultados',
     symbol: '→',
@@ -327,8 +361,55 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Exemplos de limites laterais',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Salto em função por partes',
+            problem: 'f(x)=1 para x<0 e f(x)=3 para x≥0. Analise os limites em x=0.',
+            steps: [
+              'Pela esquerda, a regra usada é f(x)=1.',
+              'Logo, lim x→0⁻ f(x)=1.',
+              'Pela direita, a regra usada é f(x)=3.',
+              'Logo, lim x→0⁺ f(x)=3.',
+            ],
+            result: 'Como 1≠3, o limite bilateral não existe.',
+            interpretation:
+                'O limite bilateral exige concordância entre os dois lados.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Assíntota com sinais diferentes',
+            problem: 'Analise 1/(x−2) quando x se aproxima de 2.',
+            steps: [
+              'Pela esquerda, x−2 é negativo e muito pequeno.',
+              'Então 1/(x−2)→−∞.',
+              'Pela direita, x−2 é positivo e muito pequeno.',
+              'Então 1/(x−2)→+∞.',
+            ],
+            result:
+                'Os limites laterais têm sinais opostos; o limite bilateral não existe.',
+            interpretation:
+                'Limites infinitos também precisam ser analisados lateralmente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Roteiro para funções por partes',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Escolha a regra correta em cada lado',
+            content:
+                '1) identifique o ponto de troca; 2) use a expressão válida à esquerda; 3) use a expressão válida à direita; 4) compare os resultados; 5) só então conclua sobre o limite bilateral.',
+            emphasis:
+                'O valor atribuído exatamente no ponto não altera os limites laterais.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -375,7 +456,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Propriedades e substituição direta',
     description:
         'Descubra quando basta substituir e como combinar limites conhecidos com segurança.',
-    duration: '≈ 30 min',
+    duration: '≈ 40 min',
     objective:
         'usar as propriedades algébricas e reconhecer funções contínuas',
     symbol: 'L',
@@ -498,8 +579,55 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Aplicação combinada das propriedades',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Limite de expressão composta por operações',
+            problem:
+                'Se lim x→a f(x)=2 e lim x→a g(x)=−1, calcule lim x→a [3f(x)²−2g(x)].',
+            steps: [
+              'Use a propriedade da potência: f(x)²→4.',
+              'Multiplique por 3: 12.',
+              'Como g(x)→−1, então −2g(x)→2.',
+              'Some os limites.',
+            ],
+            result: 'O limite é 14.',
+            interpretation:
+                'As leis de limites permitem decompor expressões complexas em operações simples.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Quando o quociente exige cuidado',
+            problem:
+                'Se lim x→a f(x)=5 e lim x→a g(x)=0, podemos concluir diretamente o limite de f(x)/g(x)?',
+            steps: [
+              'A lei do quociente exige limite do denominador diferente de zero.',
+              'Aqui g(x)→0.',
+              'É preciso investigar sinal, ordem de crescimento ou limites laterais.',
+            ],
+            result: 'Não há conclusão automática pela lei do quociente.',
+            interpretation:
+                'As propriedades de limites possuem hipóteses que precisam ser verificadas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Substituição direta e continuidade',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Por que substituir funciona em muitos casos',
+            content:
+                'Polinômios e outras funções elementares são contínuas em seus domínios. Nesses pontos, o limite pode ser calculado avaliando diretamente a função.',
+            emphasis:
+                'Substituição direta é consequência de continuidade, não uma regra universal sem condições.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -545,7 +673,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Fatoração revela o limite escondido',
     description:
         'Transforme expressões equivalentes para remover fatores responsáveis pela forma 0/0.',
-    duration: '≈ 32 min',
+    duration: '≈ 40 min',
     objective:
         'resolver limites indeterminados usando fator comum e produtos notáveis',
     symbol: '0/0',
@@ -683,8 +811,40 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Fatoração em padrões diferentes',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Diferença de cubos',
+            problem: 'Calcule lim x→2 (x³−8)/(x−2).',
+            steps: [
+              'Use x³−8=(x−2)(x²+2x+4).',
+              'Cancele x−2 apenas para x≠2.',
+              'Avalie x²+2x+4 em x=2.',
+            ],
+            result: 'O limite é 12.',
+            interpretation:
+                'A fatoração revela a função que coincide com a original nos pontos próximos de 2.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Escolha estratégica da fatoração',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'Reconheça o padrão antes de expandir',
+            content:
+                'Indeterminações 0/0 com polinômios frequentemente pedem fator comum, diferença de quadrados, trinômio ou diferença/soma de cubos. Expandir sem objetivo pode esconder o fator que precisa ser cancelado.',
+            emphasis:
+                'A técnica algébrica é escolhida pela estrutura da indeterminação.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -727,7 +887,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Racionalização com expressões conjugadas',
     description:
         'Elimine indeterminações envolvendo raízes sem alterar o valor da expressão.',
-    duration: '≈ 30 min',
+    duration: '≈ 40 min',
     objective:
         'identificar conjugados e racionalizar numeradores ou denominadores',
     symbol: '√',
@@ -843,8 +1003,54 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Dois exemplos de racionalização',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Raiz no numerador',
+            problem: 'Calcule lim x→0 [√(4+x)−2]/x.',
+            steps: [
+              'Multiplique pelo conjugado √(4+x)+2.',
+              'O numerador torna-se x.',
+              'Cancele x para x≠0.',
+              'Avalie 1/[√(4+x)+2] em x=0.',
+            ],
+            result: 'O limite é 1/4.',
+            interpretation:
+                'O conjugado transforma a diferença de raízes em uma expressão algébrica simples.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Raiz no denominador',
+            problem: 'Calcule lim x→9 (x−9)/(√x−3).',
+            steps: [
+              'Multiplique numerador e denominador pelo conjugado √x+3.',
+              'Use (√x−3)(√x+3)=x−9.',
+              'Cancele x−9.',
+              'Avalie √x+3 em x=9.',
+            ],
+            result: 'O limite é 6.',
+            interpretation:
+                'Racionalizar pode revelar uma simplificação que não era visível na forma original.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Quando usar o conjugado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Procure diferenças de radicais',
+            content:
+                'O conjugado é especialmente útil quando a substituição produz 0/0 e há soma ou diferença envolvendo raízes quadradas. Depois de racionalizar, procure fatores que possam ser cancelados.',
+            emphasis:
+                'Racionalização é uma transformação algébrica equivalente nos pontos permitidos.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -886,7 +1092,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites no infinito e assíntotas',
     description:
         'Compare termos dominantes para prever o comportamento de funções racionais.',
-    duration: '≈ 34 min',
+    duration: '≈ 42 min',
     objective:
         'calcular limites no infinito e interpretar assíntotas horizontais',
     symbol: '∞',
@@ -1012,8 +1218,54 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Comparação de crescimento',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Graus diferentes em função racional',
+            problem: 'Calcule lim x→∞ (3x²−1)/(2x³+x).',
+            steps: [
+              'Divida numerador e denominador por x³.',
+              'O numerador torna-se 3/x−1/x³.',
+              'O denominador tende a 2.',
+              'O numerador tende a 0.',
+            ],
+            result: 'O limite é 0.',
+            interpretation:
+                'Quando o denominador tem grau maior, ele domina o crescimento.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Assíntota horizontal',
+            problem: 'Calcule lim x→∞ (5x²+1)/(2x²−3).',
+            steps: [
+              'Divida tudo por x².',
+              'Os termos 1/x² e 3/x² tendem a zero.',
+              'Resta a razão dos coeficientes líderes.',
+            ],
+            result: 'O limite é 5/2.',
+            interpretation:
+                'Graus iguais produzem uma assíntota horizontal dada pela razão dos coeficientes líderes.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Infinito não é um número',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Interprete a notação corretamente',
+            content:
+                'Escrever f(x)→∞ descreve crescimento sem limite; não significa que a função atinge um número chamado infinito. As regras algébricas envolvendo ∞ são abreviações de comportamentos-limite.',
+            emphasis:
+                'Evite tratar ∞ como um valor real comum.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -1055,7 +1307,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Limites trigonométricos fundamentais',
     description:
         'Entenda por que sen(x)/x tende a 1 e aprenda a adaptar esse padrão.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'reconhecer e aplicar limites trigonométricos em radianos',
     symbol: 'sen',
     sections: [
@@ -1182,8 +1434,41 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Identidades que revelam o limite',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Tangente sobre x',
+            problem: 'Calcule lim x→0 tan x/x.',
+            steps: [
+              'Escreva tan x=sin x/cos x.',
+              'Reorganize como (sin x/x)·(1/cos x).',
+              'Use lim sin x/x=1 e cos 0=1.',
+            ],
+            result: 'O limite é 1.',
+            interpretation:
+                'Um limite trigonométrico novo pode ser reduzido a um limite fundamental conhecido.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Ângulos precisam estar em radianos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'O limite fundamental depende da unidade angular',
+            content:
+                'A identidade lim x→0 sin x/x=1 é válida quando x é medido em radianos. Em graus, surge um fator de conversão.',
+            emphasis:
+                'Radianos são a unidade natural do Cálculo trigonométrico.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica',
         blocks: [
           ConceptBlockData(
@@ -1225,7 +1510,7 @@ const List<CourseLessonData> limitsCourseLessons = [
     title: 'Como escolher a técnica certa',
     description:
         'Organize as ideias do módulo em um método de análise confiável.',
-    duration: '≈ 38 min',
+    duration: '≈ 45 min',
     objective:
         'diagnosticar um limite e justificar a técnica escolhida',
     symbol: '?',
@@ -1352,8 +1637,53 @@ const List<CourseLessonData> limitsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '8',
+        title: 'Exemplos de escolha de técnica',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Diagnóstico antes do cálculo',
+            problem: 'Calcule lim x→1 (x²−1)/(√x−1).',
+            steps: [
+              'A substituição produz 0/0.',
+              'Fatore x²−1=(x−1)(x+1).',
+              'Racionalize √x−1 usando √x+1.',
+              'Use x−1=(√x−1)(√x+1) para cancelar.',
+            ],
+            result: 'O limite é 4.',
+            interpretation:
+                'Alguns problemas exigem combinar técnicas, não escolher apenas uma.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Limite bilateral por análise lateral',
+            problem: 'Analise lim x→0 |x|/x.',
+            steps: [
+              'Para x<0, |x|=−x e o quociente vale −1.',
+              'Para x>0, |x|=x e o quociente vale 1.',
+              'Compare os limites laterais.',
+            ],
+            result: 'O limite bilateral não existe.',
+            interpretation:
+                'Reconhecer uma função por partes pode ser mais importante que manipular algebraicamente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Checklist de decisão',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Uma ordem eficiente de tentativa',
+            content:
+                '1) tente substituição direta; 2) identifique a indeterminação; 3) considere fatoração ou racionalização; 4) analise lados se houver troca de regra ou denominador zerando; 5) compare crescimento no infinito; 6) procure limites trigonométricos fundamentais.',
+            emphasis:
+                'A técnica deve responder à estrutura do problema, não a uma palavra-chave isolada.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '10',
         title: 'Base acadêmica e síntese final',
         blocks: [
           ConceptBlockData(
