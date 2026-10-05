@@ -180,6 +180,10 @@ service cloud.firestore {
           'lastFinalTestSessionIds',
           'questionPerformance',
           'lastPersonalizedReviewSessionIds',
+          'dailyChallengeDate',
+          'dailyChallengeCompletedDate',
+          'dailyChallengeQuestionIds',
+          'dailyChallengeBestCorrect',
           'updatedAt'
         ])
         && validLessonIds(data.completedLessonIds)
