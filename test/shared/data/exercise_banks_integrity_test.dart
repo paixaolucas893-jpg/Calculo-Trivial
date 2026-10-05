@@ -18,7 +18,7 @@ const exerciseBanks = [
     expectedCount: 50,
   ),
   (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 50),
-  (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
+  (name: 'Limites', questions: mockLimitsExercises, expectedCount: 30),
   (
     name: 'Continuidade',
     questions: mockContinuityExercises,

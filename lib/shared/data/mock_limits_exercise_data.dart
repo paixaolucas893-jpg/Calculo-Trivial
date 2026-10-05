@@ -174,7 +174,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-polinomial-negativo',
-    title: 'Questão 11 de 20',
+    title: 'Questão 11 de 30',
     contentLessonId: 'limites-03-propriedades',
     skill: 'Substituição com número negativo',
     statement: 'Calcule o limite:\n\nlim x → -1  (x³ + 2x)',
@@ -191,7 +191,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-fatoracao-terceiro',
-    title: 'Questão 12 de 20',
+    title: 'Questão 12 de 30',
     contentLessonId: 'limites-04-fatoracao',
     skill: 'Diferença de quadrados',
     difficulty: ExerciseDifficulty.intermediate,
@@ -208,7 +208,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-racionalizacao-2',
-    title: 'Questão 13 de 20',
+    title: 'Questão 13 de 30',
     contentLessonId: 'limites-05-racionalizacao',
     skill: 'Racionalização de diferença com raiz',
     difficulty: ExerciseDifficulty.intermediate,
@@ -225,7 +225,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-trigonometrico-2',
-    title: 'Questão 14 de 20',
+    title: 'Questão 14 de 30',
     contentLessonId: 'limites-07-trigonometricos',
     skill: 'Ajuste para a forma sen(u)/u',
     difficulty: ExerciseDifficulty.intermediate,
@@ -242,7 +242,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-cosseno',
-    title: 'Questão 15 de 20',
+    title: 'Questão 15 de 30',
     contentLessonId: 'limites-07-trigonometricos',
     skill: 'Identidade trigonométrica e conjugado',
     difficulty: ExerciseDifficulty.challenge,
@@ -261,7 +261,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-infinito-cubico',
-    title: 'Questão 16 de 20',
+    title: 'Questão 16 de 30',
     contentLessonId: 'limites-06-infinito',
     skill: 'Termos dominantes de grau cúbico',
     difficulty: ExerciseDifficulty.intermediate,
@@ -278,7 +278,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-infinito-grau-maior',
-    title: 'Questão 17 de 20',
+    title: 'Questão 17 de 30',
     contentLessonId: 'limites-06-infinito',
     skill: 'Crescimento sem limite',
     difficulty: ExerciseDifficulty.intermediate,
@@ -295,7 +295,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-lateral-reciproco-direita',
-    title: 'Questão 18 de 20',
+    title: 'Questão 18 de 30',
     contentLessonId: 'limites-02-laterais',
     skill: 'Comportamento infinito pela direita',
     statement: 'Calcule o limite lateral:\n\nlim x → 0⁺  1/x',
@@ -312,7 +312,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-lateral-reciproco-esquerda',
-    title: 'Questão 19 de 20',
+    title: 'Questão 19 de 30',
     contentLessonId: 'limites-02-laterais',
     skill: 'Comportamento infinito pela esquerda',
     statement: 'Calcule o limite lateral:\n\nlim x → 0⁻  1/x',
@@ -329,7 +329,7 @@ const List<ExerciseData> mockLimitsExercises = [
   ),
   ExerciseData(
     id: 'limite-bilateral-reciproco',
-    title: 'Questão 20 de 20',
+    title: 'Questão 20 de 30',
     contentLessonId: 'limites-08-sintese',
     skill: 'Diagnóstico de existência do limite bilateral',
     difficulty: ExerciseDifficulty.challenge,
@@ -344,4 +344,185 @@ const List<ExerciseData> mockLimitsExercises = [
       ExerciseOptionData(id: 'd', text: '0'),
     ],
   ),
+  ExerciseData(
+    id: 'limite-intuicao-grafico-1',
+    title: 'Questão 21 de 30',
+    statement:
+        'Um gráfico mostra que, quando x se aproxima de 2 por ambos os lados, f(x) se aproxima de 7, mas f(2) = 10. Qual é o valor de lim x → 2 f(x)?',
+    correctOptionId: 'b',
+    explanation:
+        'O limite depende do comportamento de f(x) quando x se aproxima de 2, e não necessariamente do valor exato de f(2). Como os valores se aproximam de 7 pelos dois lados, o limite é 7.',
+    contentLessonId: 'limites-01-intuicao',
+    skill: 'Distinguir valor da função e valor do limite',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '10'),
+      ExerciseOptionData(id: 'b', text: '7'),
+      ExerciseOptionData(id: 'c', text: '2'),
+      ExerciseOptionData(id: 'd', text: 'Não existe'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-intuicao-buraco-1',
+    title: 'Questão 22 de 30',
+    statement:
+        'Se f(x) = (x² − 1)/(x − 1) para x ≠ 1 e f(1) = 8, qual é lim x → 1 f(x)?',
+    correctOptionId: 'c',
+    explanation:
+        'Para x ≠ 1, fatoramos x² − 1 = (x − 1)(x + 1), então f(x) = x + 1. Quando x se aproxima de 1, x + 1 se aproxima de 2. O valor isolado f(1) = 8 não altera o limite.',
+    contentLessonId: 'limites-01-intuicao',
+    skill: 'Interpretar limite em descontinuidade removível',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '8'),
+      ExerciseOptionData(id: 'b', text: '1'),
+      ExerciseOptionData(id: 'c', text: '2'),
+      ExerciseOptionData(id: 'd', text: 'Não existe'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-propriedade-quociente-1',
+    title: 'Questão 23 de 30',
+    statement:
+        'Se lim x → a f(x) = 6 e lim x → a g(x) = 2, qual é lim x → a [f(x)/g(x)]?',
+    correctOptionId: 'a',
+    explanation:
+        'Pela propriedade do quociente, se o limite do denominador é diferente de zero, o limite do quociente é o quociente dos limites. Assim, 6/2 = 3.',
+    contentLessonId: 'limites-03-propriedades',
+    skill: 'Aplicar propriedade do quociente de limites',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '3'),
+      ExerciseOptionData(id: 'b', text: '4'),
+      ExerciseOptionData(id: 'c', text: '8'),
+      ExerciseOptionData(id: 'd', text: '12'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-racionalizacao-3',
+    title: 'Questão 24 de 30',
+    statement:
+        'Calcule:\nlim x → 0  (√(1 + x) − 1)/x',
+    correctOptionId: 'd',
+    explanation:
+        'A substituição direta produz 0/0. Multiplicando pelo conjugado, obtemos 1/[√(1 + x) + 1]. Quando x → 0, o denominador tende a 2, então o limite é 1/2.',
+    contentLessonId: 'limites-05-racionalizacao',
+    skill: 'Racionalizar expressão com raiz próxima de 1',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '0'),
+      ExerciseOptionData(id: 'b', text: '1'),
+      ExerciseOptionData(id: 'c', text: '2'),
+      ExerciseOptionData(id: 'd', text: '1/2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-infinito-assintota-horizontal-1',
+    title: 'Questão 25 de 30',
+    statement:
+        'Para f(x) = (4x² + 1)/(2x² − 3), qual é a assíntota horizontal?',
+    correctOptionId: 'b',
+    explanation:
+        'No infinito, quando numerador e denominador têm o mesmo grau, o limite é a razão dos coeficientes líderes: 4/2 = 2. Portanto, a assíntota horizontal é y = 2.',
+    contentLessonId: 'limites-06-infinito',
+    skill: 'Relacionar limite no infinito e assíntota horizontal',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'y = 0'),
+      ExerciseOptionData(id: 'b', text: 'y = 2'),
+      ExerciseOptionData(id: 'c', text: 'x = 2'),
+      ExerciseOptionData(id: 'd', text: 'y = 4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-trigonometrico-3',
+    title: 'Questão 26 de 30',
+    statement:
+        'Calcule:\nlim x → 0  sin(5x)/(2x)',
+    correctOptionId: 'c',
+    explanation:
+        'Reescrevemos sin(5x)/(2x) como (5/2)·[sin(5x)/(5x)]. O termo entre colchetes tende a 1 pelo limite trigonométrico fundamental. Logo, o resultado é 5/2.',
+    contentLessonId: 'limites-07-trigonometricos',
+    skill: 'Ajustar constante no limite trigonométrico fundamental',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2/5'),
+      ExerciseOptionData(id: 'b', text: '1'),
+      ExerciseOptionData(id: 'c', text: '5/2'),
+      ExerciseOptionData(id: 'd', text: '5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-sintese-tecnica-1',
+    title: 'Questão 27 de 30',
+    statement:
+        'Ao substituir diretamente x = 3 em (x² − 9)/(x − 3), aparece 0/0. Qual técnica deve ser tentada primeiro?',
+    correctOptionId: 'a',
+    explanation:
+        'A expressão envolve um polinômio fatorável no numerador. Como x² − 9 é uma diferença de quadrados, a fatoração permite cancelar o fator x − 3 e revelar o limite.',
+    contentLessonId: 'limites-08-sintese',
+    skill: 'Selecionar fatoração a partir da forma indeterminada',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Fatoração'),
+      ExerciseOptionData(id: 'b', text: 'Racionalização'),
+      ExerciseOptionData(id: 'c', text: 'Tabela de sinais'),
+      ExerciseOptionData(id: 'd', text: 'Derivação'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-sintese-tecnica-2',
+    title: 'Questão 28 de 30',
+    statement:
+        'Ao substituir diretamente em (√(x + 4) − 2)/x quando x → 0, aparece 0/0. Qual técnica é mais natural?',
+    correctOptionId: 'c',
+    explanation:
+        'A presença de uma diferença envolvendo raiz quadrada indica que multiplicar pelo conjugado é a técnica mais direta. Isso elimina a raiz do numerador e permite simplificar.',
+    contentLessonId: 'limites-08-sintese',
+    skill: 'Selecionar racionalização para limite com radical',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Divisão polinomial'),
+      ExerciseOptionData(id: 'b', text: 'Fatoração por agrupamento'),
+      ExerciseOptionData(id: 'c', text: 'Racionalização pelo conjugado'),
+      ExerciseOptionData(id: 'd', text: 'Tabela de valores apenas'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-sintese-laterais-1',
+    title: 'Questão 29 de 30',
+    statement:
+        'Para decidir se lim x → a f(x) existe, qual condição é necessária?',
+    correctOptionId: 'd',
+    explanation:
+        'Um limite bilateral existe apenas quando o limite pela esquerda e o limite pela direita existem e são iguais. Se os valores laterais diferem, o limite bilateral não existe.',
+    contentLessonId: 'limites-08-sintese',
+    skill: 'Diagnosticar existência de limite bilateral',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'f(a) precisa existir'),
+      ExerciseOptionData(id: 'b', text: 'f(a) precisa ser igual a zero'),
+      ExerciseOptionData(id: 'c', text: 'O limite pela direita precisa ser positivo'),
+      ExerciseOptionData(id: 'd', text: 'Os limites laterais precisam existir e ser iguais'),
+    ],
+  ),
+  ExerciseData(
+    id: 'limite-sintese-ordem-1',
+    title: 'Questão 30 de 30',
+    statement:
+        'Qual sequência de diagnóstico é mais adequada ao resolver um limite algébrico elementar?',
+    correctOptionId: 'b',
+    explanation:
+        'Uma estratégia eficiente é começar pela substituição direta. Se surgir uma forma indeterminada, analisamos a estrutura da expressão para escolher fatoração, racionalização, identidade trigonométrica ou comparação de graus.',
+    contentLessonId: 'limites-08-sintese',
+    skill: 'Organizar estratégia de resolução de limites',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Sempre fatorar antes de substituir'),
+      ExerciseOptionData(id: 'b', text: 'Substituir; diagnosticar; escolher a técnica adequada'),
+      ExerciseOptionData(id: 'c', text: 'Sempre racionalizar primeiro'),
+      ExerciseOptionData(id: 'd', text: 'Calcular f(a) e encerrar'),
+    ],
+  ),
+
 ];
