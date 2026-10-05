@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
+import 'package:calcquest/shared/domain/course_lesson_data.dart';
 
 void main() {
   group('Integridade dos fundamentos de Pré-Cálculo', () {
