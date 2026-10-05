@@ -20,7 +20,7 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     eyebrow: 'Unidade 0',
     title: 'Números reais e reta real',
     description: 'conjuntos numéricos, inclusão e intervalos',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'classificar números reais, interpretar inclusões entre conjuntos e representar desigualdades por intervalos na reta real',
     symbol: 'ℝ',
@@ -80,6 +80,109 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Densidade e ordem na reta real',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Entre dois reais existem infinitos outros',
+            content:
+                'A reta real é ordenada e densa: se a < b, sempre existe outro real entre eles, por exemplo (a + b)/2. O mesmo argumento pode ser repetido indefinidamente. Isso explica por que um intervalo contém infinitos pontos, mesmo quando suas extremidades estão muito próximas.',
+            emphasis:
+                'A ideia de “aproximar sem necessariamente atingir” será central em limites.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Racional e irracional não significam “simples” e “complicado”',
+            content:
+                'Um número racional possui representação p/q com p e q inteiros e q ≠ 0. Um irracional não admite essa forma. A classificação depende da estrutura do número, não da quantidade de casas decimais que enxergamos.',
+            emphasis:
+                '0,333… é racional porque vale 1/3; √2 é irracional apesar de poder ser aproximado decimalmente.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Operações com intervalos',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Interseção de duas restrições',
+            problem:
+                'Determine os reais que satisfazem simultaneamente x > −1 e x ≤ 4.',
+            steps: [
+              'A primeira condição corresponde a (−1, +∞).',
+              'A segunda corresponde a (−∞, 4].',
+              '“Simultaneamente” pede a interseção dos conjuntos.',
+              'A parte comum é (−1, 4].',
+            ],
+            result: 'A solução é (−1, 4].',
+            interpretation:
+                'Interseção representa valores que atendem a todas as restrições ao mesmo tempo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'União de conjuntos solução',
+            problem:
+                'Represente x < −2 ou x ≥ 3 em notação de intervalos.',
+            steps: [
+              'x < −2 corresponde a (−∞, −2).',
+              'x ≥ 3 corresponde a [3, +∞).',
+              'A palavra “ou” indica união.',
+            ],
+            result: '(−∞, −2) ∪ [3, +∞).',
+            interpretation:
+                'A união permite que o número pertença a qualquer um dos dois conjuntos.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Distância e valor absoluto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'A distância entre a e b é |a − b|',
+            content:
+                'A ordem dos pontos não altera a distância, porque |a − b| = |b − a|. Assim, a distância entre −3 e 5 é |−3 − 5| = 8.',
+            emphasis:
+                'Essa formulação conecta reta real, intervalos, valor absoluto e, mais tarde, a definição formal de limite.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Classifique e represente',
+            problem:
+                'Classifique −7/4 e √5 e escreva o conjunto {x ∈ ℝ : 1 ≤ x < 6} como intervalo.',
+            steps: [
+              '−7/4 é razão de inteiros, portanto racional.',
+              '√5 é irracional porque 5 não é quadrado perfeito.',
+              'A desigualdade inclui 1 e exclui 6.',
+            ],
+            result: '−7/4 ∈ ℚ, √5 ∈ ℝ∖ℚ e o intervalo é [1, 6).',
+            interpretation:
+                'Classificação numérica e notação de intervalos são linguagens diferentes para descrever propriedades dos reais.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e conexão com Pré-Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências centrais desta aula',
+            content:
+                'A organização dos sistemas numéricos, a reta real, intervalos, desigualdades e valor absoluto segue o tratamento introdutório de OpenStax Algebra and Trigonometry e College Algebra, além de Sullivan e Blitzer em Precalculus. A conexão com distância e aproximação prepara a linguagem usada por Stewart, Thomas e Larson em limites.',
+            emphasis:
+                'As referências orientam sequência, profundidade e terminologia; os exemplos do app são autorais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual intervalo representa x > −2?',
@@ -104,7 +207,7 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     eyebrow: 'Unidade 0',
     title: 'Operações, sinais e prioridade',
     description: 'ordem das operações, parênteses e frações',
-    duration: '≈ 12 min',
+    duration: '≈ 30 min',
     objective:
         'executar operações respeitando prioridade, sinais e agrupamentos, reduzindo erros que se propagam em álgebra e cálculo',
     symbol: '()÷×',
@@ -164,6 +267,117 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Estrutura antes do cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Uma expressão é uma árvore de operações',
+            content:
+                'Em 3 + 2(5 − 1)², a operação principal é a adição. Dentro do segundo termo existe uma multiplicação; dentro dela, uma potência; e dentro da potência, um agrupamento. Ler essa estrutura evita aplicar regras fora de ordem.',
+            emphasis:
+                'A prioridade não é uma lista arbitrária: ela informa como a expressão foi construída.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Frações funcionam como agrupadores',
+            content:
+                'Na expressão (a+b)/(c−d), todo o numerador e todo o denominador permanecem agrupados. Ignorar essa estrutura altera completamente o valor da expressão.',
+            emphasis:
+                'Uma barra de fração funciona como parênteses no numerador e no denominador.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Sinais e distributividade',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Sinal negativo diante de parênteses',
+            problem: 'Simplifique 7 − (3x − 5).',
+            steps: [
+              'Interprete a subtração como adição do oposto.',
+              'Troque o sinal de cada termo dentro do agrupamento: −(3x − 5)=−3x+5.',
+              'Some com 7.',
+            ],
+            result: '7 − (3x − 5)=12 − 3x.',
+            interpretation:
+                'O sinal negativo afeta todo o agrupamento, não apenas o primeiro termo.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distribuição com frações',
+            problem: 'Calcule 3/4 · (8 − 4/3).',
+            steps: [
+              'Resolva o agrupamento usando denominador comum: 8 − 4/3 = 20/3.',
+              'Multiplique: (3/4)(20/3).',
+              'Simplifique fatores comuns.',
+            ],
+            result: 'O valor é 5.',
+            interpretation:
+                'Frações não mudam as regras de prioridade; apenas exigem controle algébrico adicional.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Erros que se propagam',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Potência não se distribui sobre soma',
+            content:
+                '(a+b)² = a² + 2ab + b², e não a²+b². O termo 2ab surge porque estamos multiplicando (a+b)(a+b).',
+            emphasis:
+                'Esse erro reaparece em fatoração, funções, limites e derivadas; corrigir agora evita uma cadeia de erros depois.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Divisão por zero nunca é permitida',
+            content:
+                'Uma expressão que produz denominador zero está indefinida naquele ponto. Antes de simplificar uma fração algébrica, é preciso preservar as restrições do denominador original.',
+            emphasis:
+                'Cancelar fatores não “recupera” pontos excluídos do domínio.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Múltiplos níveis de prioridade',
+            problem: 'Calcule 2[3² − 4(1 − 5)] ÷ 5.',
+            steps: [
+              'Agrupamento interno: 1 − 5 = −4.',
+              'Potência: 3² = 9.',
+              'Produto: 4(−4)=−16.',
+              'Dentro dos colchetes: 9 − (−16)=25.',
+              'Então 2·25 ÷ 5 = 10.',
+            ],
+            result: 'O valor é 10.',
+            interpretation:
+                'Escrever uma etapa por linha reduz erros de sinal e torna a solução auditável.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e conexão com Pré-Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências centrais desta aula',
+            content:
+                'A leitura estrutural de expressões, ordem de operações, propriedades dos reais, distributividade e restrições de denominadores segue OpenStax Algebra and Trigonometry e College Algebra, Sullivan e Blitzer. Stewart, Thomas e Larson retomam essas mesmas habilidades como pré-requisitos operacionais para limites e derivadas.',
+            emphasis:
+                'O objetivo não é memorizar PEMDAS, mas compreender a estrutura algébrica que sustenta o cálculo posterior.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual é o valor de −2² + (−2)²?',
@@ -188,7 +402,7 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     eyebrow: 'Unidade 0',
     title: 'Variáveis, constantes e expressões',
     description: 'termos, coeficientes, símbolos e valor numérico',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'identificar a estrutura de expressões algébricas e interpretar corretamente variáveis, constantes, coeficientes e termos',
     symbol: '3x+2',
@@ -245,6 +459,108 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Expressões, equações e identidades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Três objetos diferentes',
+            content:
+                'Uma expressão, como 2x+3, representa um valor. Uma equação, como 2x+3=7, afirma uma igualdade que pode ser verdadeira apenas para certos valores. Uma identidade, como (a+b)²=a²+2ab+b², é verdadeira para todos os valores em que ambos os lados estão definidos.',
+            emphasis:
+                'Confundir esses objetos leva a manipulações sem justificativa.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Termo, fator e coeficiente não são sinônimos',
+            content:
+                'Em 6x²y, o número 6 é coeficiente e 6, x² e y são fatores do termo. Em 6x²y − 4x + 9, há três termos no nível principal.',
+            emphasis:
+                'A estrutura depende do nível da expressão: fatores formam termos; termos formam somas e diferenças.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Domínio já aparece nas expressões',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Descubra onde a expressão faz sentido',
+            problem: 'Determine os valores reais permitidos em 1/(x−4).',
+            steps: [
+              'O denominador não pode ser zero.',
+              'Imponha x−4 ≠ 0.',
+              'Logo, x ≠ 4.',
+            ],
+            result: 'O domínio é ℝ∖{4}.',
+            interpretation:
+                'Mesmo antes de estudar funções formalmente, uma expressão pode impor restrições sobre os valores da variável.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Substituição em expressão racional',
+            problem: 'Calcule (x²−1)/(x+1) em x=2.',
+            steps: [
+              'Verifique se x+1 é diferente de zero em x=2.',
+              'Substitua: (4−1)/(3).',
+              'Simplifique.',
+            ],
+            result: 'O valor é 1.',
+            interpretation:
+                'Substituir corretamente exige primeiro verificar se o valor pertence ao domínio da expressão.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Modelagem com unidades',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'Símbolos precisam de significado e unidade',
+            content:
+                'Se d representa distância em quilômetros e t tempo em horas, então d/t possui unidade km/h. Uma expressão algébrica bem formada também deve ser coerente dimensionalmente quando representa grandezas físicas.',
+            emphasis:
+                'Unidades ajudam a detectar erros: não faz sentido somar uma distância a uma velocidade.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Leia uma expressão completa',
+            problem:
+                'Na expressão C(n)=25+3,5n, interprete variável, constante, coeficiente e significado do modelo.',
+            steps: [
+              'n é a variável e representa uma quantidade contável.',
+              '25 é o termo constante: custo fixo.',
+              '3,5 é o coeficiente de n: custo adicional por unidade.',
+              'C(n) representa o custo total em função de n.',
+            ],
+            result:
+                'O modelo combina uma parte fixa com uma parte proporcional à quantidade.',
+            interpretation:
+                'A linguagem algébrica permite traduzir estrutura matemática em significado real.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e conexão com Pré-Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências centrais desta aula',
+            content:
+                'A terminologia de variáveis, expressões, equações, identidades, avaliação e domínio segue OpenStax College Algebra e Algebra and Trigonometry, Sullivan e Blitzer. A atenção a unidades e modelagem prepara o tratamento de funções e taxas em Stewart, Thomas e Larson.',
+            emphasis:
+                'A leitura simbólica precisa anteceder técnicas mais avançadas de manipulação.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Na expressão −6a³ + 4, qual é o coeficiente do termo com a³?',
@@ -269,7 +585,7 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     eyebrow: 'Unidade 0',
     title: 'Potências, raízes e expoentes',
     description: 'expoentes inteiros, racionais e restrições reais',
-    duration: '≈ 15 min',
+    duration: '≈ 25 min',
     objective:
         'usar propriedades de expoentes e interpretar raízes e expoentes racionais no conjunto dos números reais',
     symbol: 'xᵃ',
@@ -327,6 +643,104 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Leis dos expoentes com condições',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'As regras têm hipóteses',
+            content:
+                'Para bases não nulas, aᵐ/aⁿ=aᵐ⁻ⁿ. Já a⁰=1 exige a≠0. Quando aparecem expoentes racionais, o conjunto dos reais impõe restrições adicionais dependendo do índice da raiz.',
+            emphasis:
+                'Uma regra algébrica sem suas condições pode produzir expressões inválidas.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '√(x²) é |x|, não x em geral',
+            content:
+                'A raiz quadrada principal é não negativa. Como x² perde a informação do sinal de x, ao extrair a raiz obtemos √(x²)=|x|.',
+            emphasis:
+                'Se x<0, então |x|=−x; por isso escrever simplesmente √(x²)=x está errado sem a hipótese x≥0.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Radicais e racionalização',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Simplifique um radical',
+            problem: 'Simplifique √72.',
+            steps: [
+              'Fatore 72=36·2.',
+              'Use √(36·2)=√36·√2.',
+              'Como √36=6, obtenha 6√2.',
+            ],
+            result: '√72 = 6√2.',
+            interpretation:
+                'Procurar fatores quadrados perfeitos reduz o radical sem alterar seu valor.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Racionalize um denominador simples',
+            problem: 'Escreva 3/√5 com denominador racional.',
+            steps: [
+              'Multiplique numerador e denominador por √5.',
+              'No denominador, √5·√5=5.',
+            ],
+            result: '3/√5 = 3√5/5.',
+            interpretation:
+                'A racionalização produz uma forma equivalente; não muda o número representado.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Crescimento e escalas',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Expoentes mudam rapidamente a ordem de grandeza',
+            content:
+                'Em crescimento exponencial, aumentar o expoente em 1 multiplica o valor pela base. Essa característica distingue funções exponenciais de polinômios e será fundamental em modelos de população, juros e decaimento.',
+            emphasis:
+                'As propriedades estudadas aqui reaparecem diretamente em funções exponenciais e logarítmicas.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combine várias leis',
+            problem: 'Simplifique (x³·x⁻¹)²/x² para x≠0.',
+            steps: [
+              'No produto interno, x³·x⁻¹=x².',
+              'Eleve ao quadrado: (x²)²=x⁴.',
+              'Divida por x²: x⁴/x²=x².',
+            ],
+            result: 'A expressão simplifica para x², com x≠0.',
+            interpretation:
+                'A restrição x≠0 vem da expressão original e deve ser mantida mesmo após simplificação.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e conexão com Pré-Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Referências centrais desta aula',
+            content:
+                'As leis de expoentes, radicais, expoentes racionais e racionalização seguem OpenStax Algebra and Trigonometry e College Algebra, Sullivan e Blitzer. Stewart, Thomas e Larson utilizam essas técnicas repetidamente em limites, derivadas de potências e funções exponenciais.',
+            emphasis:
+                'A ênfase é preservar domínio e hipóteses enquanto simplificamos.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual expressão é equivalente a x^(−2), para x ≠ 0?',
@@ -351,7 +765,7 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
     eyebrow: 'Unidade 0',
     title: 'Valor absoluto e distância',
     description: 'módulo, distância e inequações simples',
-    duration: '≈ 15 min',
+    duration: '≈ 25 min',
     objective:
         'interpretar valor absoluto como distância e resolver relações simples de igualdade e desigualdade envolvendo módulo',
     symbol: '|x|',
@@ -410,6 +824,105 @@ const List<CourseLessonData> precalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Equações com valor absoluto',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '|u| = a descreve duas possibilidades',
+            content:
+                'Se a>0, então |u|=a equivale a u=a ou u=−a. Se a=0, a única possibilidade é u=0. Se a<0, não há solução real, pois valor absoluto nunca é negativo.',
+            emphasis:
+                'Essa regra vem diretamente da interpretação de distância.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Resolva uma equação modular',
+            problem: 'Resolva |2x−1|=5.',
+            steps: [
+              'Considere 2x−1=5 ou 2x−1=−5.',
+              'No primeiro caso, 2x=6 e x=3.',
+              'No segundo, 2x=−4 e x=−2.',
+            ],
+            result: 'As soluções são x=3 e x=−2.',
+            interpretation:
+                'Ambos os valores deixam 2x−1 a exatamente 5 unidades de zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequações e intervalos',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '|x−a| < r descreve uma vizinhança',
+            content:
+                'Para r>0, |x−a|<r equivale a a−r<x<a+r. Já |x−a|>r descreve pontos que estão fora dessa vizinhança: x<a−r ou x>a+r.',
+            emphasis:
+                'A linguagem de distância transforma inequações modulares em intervalos na reta real.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Região externa',
+            problem: 'Resolva |x+2| ≥ 4.',
+            steps: [
+              'Interprete como distância de x até −2 maior ou igual a 4.',
+              'Os pontos limite são −2−4=−6 e −2+4=2.',
+              'A solução fica fora do intervalo central.',
+            ],
+            result: 'x≤−6 ou x≥2.',
+            interpretation:
+                'O símbolo ≥ inclui os pontos cuja distância é exatamente 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Função módulo e gráfico',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'y=|x| é uma função definida por partes',
+            content:
+                'Para x≥0, |x|=x; para x<0, |x|=−x. O gráfico é formado por duas semirretas que se encontram na origem, produzindo um vértice.',
+            emphasis:
+                'Esse exemplo mostra que continuidade não implica necessariamente derivabilidade no ponto de encontro.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Exercícios guiados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Distância entre duas variáveis',
+            problem: 'Interprete |x−7|≤1,5.',
+            steps: [
+              'A expressão mede a distância de x até 7.',
+              'A distância máxima permitida é 1,5.',
+              'Subtraia e some 1,5 ao centro 7.',
+            ],
+            result: '5,5≤x≤8,5.',
+            interpretation:
+                'Essa forma aparece em tolerâncias de medição, margens de erro e aproximações.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Base acadêmica e conexão com Cálculo',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Referências centrais desta aula',
+            content:
+                'O tratamento de valor absoluto como distância, equações e inequações modulares segue OpenStax Algebra and Trigonometry e College Algebra, Sullivan e Blitzer. Stewart, Thomas e Larson usam |x−a| e |f(x)−L| para formalizar proximidade na definição de limite.',
+            emphasis:
+                'Dominar módulo como distância prepara diretamente a linguagem ε−δ do Cálculo.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual intervalo resolve |x − 2| < 4?',
@@ -437,7 +950,7 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     eyebrow: 'Unit 0',
     title: 'Real numbers and the real line',
     description: 'number sets, inclusion, and intervals',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'classify real numbers, interpret set inclusions, and represent inequalities as intervals on the real line',
     symbol: 'ℝ',
@@ -495,6 +1008,107 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Density and order on the real line',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Between two real numbers lie infinitely many others',
+            content:
+                'The real line is ordered and dense: if a < b, there is always another real number between them, such as (a + b)/2. Repeating the argument gives infinitely many intermediate values.',
+            emphasis:
+                'The idea of approaching a value without necessarily reaching it will become central in limits.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Rational and irrational describe structure',
+            content:
+                'A rational number can be written as p/q with integers p and q and q ≠ 0. An irrational number cannot. The classification depends on structure, not on how many decimal digits are displayed.',
+            emphasis:
+                '0.333… is rational because it equals 1/3; √2 is irrational even though it has decimal approximations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Operations with intervals',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Intersection of two restrictions',
+            problem: 'Find all real numbers satisfying x > −1 and x ≤ 4.',
+            steps: [
+              'x > −1 corresponds to (−1, +∞).',
+              'x ≤ 4 corresponds to (−∞, 4].',
+              '“And” asks for the intersection.',
+              'The common part is (−1, 4].',
+            ],
+            result: 'The solution is (−1, 4].',
+            interpretation:
+                'Intersection keeps values satisfying every restriction at once.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Union of solution sets',
+            problem: 'Write x < −2 or x ≥ 3 using intervals.',
+            steps: [
+              'x < −2 gives (−∞, −2).',
+              'x ≥ 3 gives [3, +∞).',
+              '“Or” indicates union.',
+            ],
+            result: '(−∞, −2) ∪ [3, +∞).',
+            interpretation:
+                'A union allows membership in either set.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Distance and absolute value',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: 'The distance between a and b is |a − b|',
+            content:
+                'Order does not change distance because |a − b| = |b − a|. For example, the distance between −3 and 5 is 8.',
+            emphasis:
+                'This connects the real line, intervals, absolute value, and later the formal definition of a limit.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Classify and represent',
+            problem:
+                'Classify −7/4 and √5, and write {x ∈ ℝ : 1 ≤ x < 6} as an interval.',
+            steps: [
+              '−7/4 is a ratio of integers, so it is rational.',
+              '√5 is irrational because 5 is not a perfect square.',
+              'The inequality includes 1 and excludes 6.',
+            ],
+            result: '−7/4 ∈ ℚ, √5 ∈ ℝ∖ℚ, and the interval is [1, 6).',
+            interpretation:
+                'Number classification and interval notation describe different properties of real numbers.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and Precalculus connection',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Core references for this lesson',
+            content:
+                'The treatment of number systems, the real line, intervals, inequalities, and absolute value follows OpenStax Algebra and Trigonometry and College Algebra, together with Sullivan and Blitzer Precalculus. The connection to distance and approximation prepares the language used by Stewart, Thomas, and Larson for limits.',
+            emphasis:
+                'The references guide sequence, depth, and terminology; the app examples are original.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Which interval represents x > −2?',
@@ -519,7 +1133,7 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     eyebrow: 'Unit 0',
     title: 'Operations, signs, and precedence',
     description: 'order of operations, grouping, and fractions',
-    duration: '≈ 12 min',
+    duration: '≈ 30 min',
     objective:
         'perform operations while respecting precedence, signs, and grouping so errors do not propagate into algebra and calculus',
     symbol: '()÷×',
@@ -575,6 +1189,117 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Structure before computation',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'An expression is a tree of operations',
+            content:
+                'In 3 + 2(5 − 1)², the top-level operation is addition. Inside the second term sits multiplication, then a power, then a grouped difference. Reading this structure prevents rules from being applied at the wrong level.',
+            emphasis:
+                'Precedence is not an arbitrary list; it tells us how the expression is built.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Fractions act as grouping symbols',
+            content:
+                'In (a+b)/(c−d), the entire numerator and denominator remain grouped. Ignoring that structure changes the expression completely.',
+            emphasis:
+                'A fraction bar groups its numerator and denominator just as parentheses do.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Signs and distributivity',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'A negative sign before parentheses',
+            problem: 'Simplify 7 − (3x − 5).',
+            steps: [
+              'Interpret subtraction as adding the opposite.',
+              'Change the sign of each term in the group.',
+              'Combine constants.',
+            ],
+            result: '7 − (3x − 5)=12 − 3x.',
+            interpretation:
+                'The negative sign affects the whole group, not just its first term.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Distribution with fractions',
+            problem: 'Evaluate 3/4 · (8 − 4/3).',
+            steps: [
+              'Use a common denominator inside the grouping: 8 − 4/3 = 20/3.',
+              'Multiply (3/4)(20/3).',
+              'Cancel common factors.',
+            ],
+            result: 'The value is 5.',
+            interpretation:
+                'Fractions do not change precedence rules; they only require additional algebraic control.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Errors that propagate',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A power does not distribute over addition',
+            content:
+                '(a+b)² = a² + 2ab + b², not a²+b². The middle term appears because the expression means (a+b)(a+b).',
+            emphasis:
+                'This mistake reappears in factoring, functions, limits, and derivatives.',
+            tone: LearningCardTone.warning,
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'Division by zero is never allowed',
+            content:
+                'An expression with zero denominator is undefined at that input. Simplifying a rational expression never restores an input excluded by the original denominator.',
+            emphasis:
+                'Domain restrictions must survive simplification.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Several precedence levels',
+            problem: 'Evaluate 2[3² − 4(1 − 5)] ÷ 5.',
+            steps: [
+              'Inside parentheses: 1 − 5 = −4.',
+              'Power: 3² = 9.',
+              'Product: 4(−4)=−16.',
+              'Inside brackets: 9 − (−16)=25.',
+              'Then 2·25 ÷ 5 = 10.',
+            ],
+            result: 'The value is 10.',
+            interpretation:
+                'Writing one step per line reduces sign errors and makes the solution auditable.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and Precalculus connection',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Core references for this lesson',
+            content:
+                'Structural reading of expressions, order of operations, real-number properties, distributivity, and denominator restrictions follows OpenStax Algebra and Trigonometry and College Algebra, Sullivan, and Blitzer. Stewart, Thomas, and Larson use the same skills as operational prerequisites for limits and derivatives.',
+            emphasis:
+                'The goal is not to memorize a mnemonic but to understand the algebraic structure supporting later calculus.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'What is −2² + (−2)²?',
@@ -598,7 +1323,7 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     eyebrow: 'Unit 0',
     title: 'Variables, constants, and expressions',
     description: 'terms, coefficients, symbols, and numerical value',
-    duration: '≈ 12 min',
+    duration: '≈ 25 min',
     objective:
         'identify the structure of algebraic expressions and correctly interpret variables, constants, coefficients, and terms',
     symbol: '3x+2',
@@ -655,6 +1380,108 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Expressions, equations, and identities',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: 'Three different mathematical objects',
+            content:
+                'An expression such as 2x+3 represents a value. An equation such as 2x+3=7 asserts an equality that may hold only for certain inputs. An identity such as (a+b)²=a²+2ab+b² holds for every input where both sides are defined.',
+            emphasis:
+                'Confusing these objects leads to unjustified algebraic manipulation.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Term, factor, and coefficient are not synonyms',
+            content:
+                'In 6x²y, 6 is the coefficient while 6, x², and y are factors. In 6x²y − 4x + 9, there are three top-level terms.',
+            emphasis:
+                'Structure depends on level: factors build terms, and terms build sums and differences.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Domain already appears in expressions',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Find where an expression makes sense',
+            problem: 'Determine the allowed real inputs of 1/(x−4).',
+            steps: [
+              'The denominator cannot be zero.',
+              'Require x−4 ≠ 0.',
+              'Therefore x ≠ 4.',
+            ],
+            result: 'The domain is ℝ∖{4}.',
+            interpretation:
+                'Even before formal function study, an expression can restrict the variable.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Substitution in a rational expression',
+            problem: 'Evaluate (x²−1)/(x+1) at x=2.',
+            steps: [
+              'Check that x+1 is nonzero at x=2.',
+              'Substitute: (4−1)/3.',
+              'Simplify.',
+            ],
+            result: 'The value is 1.',
+            interpretation:
+                'Correct substitution begins by checking whether the input belongs to the domain.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Modeling with units',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.engineering,
+            title: 'Symbols need meaning and units',
+            content:
+                'If d is distance in kilometers and t is time in hours, d/t has unit km/h. An algebraic model representing physical quantities should also be dimensionally coherent.',
+            emphasis:
+                'Units can expose mistakes: adding a distance to a speed is not meaningful.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Read a complete model',
+            problem:
+                'In C(n)=25+3.5n, interpret the variable, constant, coefficient, and model.',
+            steps: [
+              'n is the variable and represents a count.',
+              '25 is the constant term: fixed cost.',
+              '3.5 is the coefficient: added cost per unit.',
+              'C(n) is total cost as a function of n.',
+            ],
+            result:
+                'The model combines a fixed part with a part proportional to quantity.',
+            interpretation:
+                'Algebraic language translates mathematical structure into real meaning.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and Precalculus connection',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Core references for this lesson',
+            content:
+                'Terminology for variables, expressions, equations, identities, evaluation, and domain follows OpenStax College Algebra and Algebra and Trigonometry, Sullivan, and Blitzer. Attention to units and modeling prepares the treatment of functions and rates in Stewart, Thomas, and Larson.',
+            emphasis:
+                'Accurate symbolic reading must come before more advanced manipulation.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'In −6a³ + 4, what is the coefficient of a³?',
@@ -679,7 +1506,7 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     eyebrow: 'Unit 0',
     title: 'Powers, roots, and exponents',
     description: 'integer and rational exponents and real restrictions',
-    duration: '≈ 15 min',
+    duration: '≈ 25 min',
     objective:
         'use exponent laws and interpret roots and rational exponents over the real numbers',
     symbol: 'xᵃ',
@@ -737,6 +1564,104 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '4',
+        title: 'Exponent laws with conditions',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.notation,
+            title: 'Rules have hypotheses',
+            content:
+                'For nonzero bases, aᵐ/aⁿ=aᵐ⁻ⁿ, and a⁰=1 requires a≠0. Rational exponents add further real-domain restrictions depending on the index of the root.',
+            emphasis:
+                'An algebraic rule without its conditions can produce invalid expressions.',
+          ),
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '√(x²) is |x|, not always x',
+            content:
+                'The principal square root is nonnegative. Since squaring loses the sign of x, taking the principal square root gives √(x²)=|x|.',
+            emphasis:
+                'If x<0, then |x|=−x, so √(x²)=x is wrong without the hypothesis x≥0.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Radicals and rationalization',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Simplify a radical',
+            problem: 'Simplify √72.',
+            steps: [
+              'Factor 72=36·2.',
+              'Use √(36·2)=√36·√2.',
+              'Since √36=6, obtain 6√2.',
+            ],
+            result: '√72 = 6√2.',
+            interpretation:
+                'Perfect-square factors reduce a radical without changing its value.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Rationalize a simple denominator',
+            problem: 'Write 3/√5 with a rational denominator.',
+            steps: [
+              'Multiply numerator and denominator by √5.',
+              'The denominator becomes 5.',
+            ],
+            result: '3/√5 = 3√5/5.',
+            interpretation:
+                'Rationalization gives an equivalent form of the same number.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'Growth and scales',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'Exponents change orders of magnitude quickly',
+            content:
+                'In exponential growth, increasing the exponent by 1 multiplies the value by the base. This distinguishes exponential functions from polynomials and underlies population, interest, and decay models.',
+            emphasis:
+                'These properties return directly in exponential and logarithmic functions.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Combine several laws',
+            problem: 'Simplify (x³·x⁻¹)²/x² for x≠0.',
+            steps: [
+              'Inside the product, x³·x⁻¹=x².',
+              'Square it: (x²)²=x⁴.',
+              'Divide by x² to obtain x².',
+            ],
+            result: 'The expression simplifies to x², with x≠0.',
+            interpretation:
+                'The original restriction x≠0 must remain after simplification.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and Precalculus connection',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Core references for this lesson',
+            content:
+                'Exponent laws, radicals, rational exponents, and rationalization follow OpenStax Algebra and Trigonometry and College Algebra, Sullivan, and Blitzer. Stewart, Thomas, and Larson repeatedly use these techniques in limits, derivatives of powers, and exponential functions.',
+            emphasis:
+                'The emphasis is on preserving domain and hypotheses while simplifying.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Which expression equals x^(−2), for x ≠ 0?',
@@ -761,7 +1686,7 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
     eyebrow: 'Unit 0',
     title: 'Absolute value and distance',
     description: 'modulus, distance, and simple inequalities',
-    duration: '≈ 15 min',
+    duration: '≈ 25 min',
     objective:
         'interpret absolute value as distance and solve simple equalities and inequalities involving absolute value',
     symbol: '|x|',
@@ -813,6 +1738,105 @@ const List<CourseLessonData> _englishPrecalculusFoundationsCourseLessons = [
             title: 'Distances appear in the definition of limit',
             content:
                 'Later, expressions such as |x − a| and |f(x) − L| measure how close x is to a and how close f(x) is to L. Absolute value as distance prepares the formal language of limits.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '4',
+        title: 'Absolute-value equations',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.compare,
+            title: '|u| = a creates two possibilities',
+            content:
+                'If a>0, |u|=a means u=a or u=−a. If a=0, only u=0 works. If a<0, there is no real solution because absolute value is never negative.',
+            emphasis:
+                'The rule follows directly from the distance interpretation.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Solve an absolute-value equation',
+            problem: 'Solve |2x−1|=5.',
+            steps: [
+              'Use 2x−1=5 or 2x−1=−5.',
+              'The first gives x=3.',
+              'The second gives x=−2.',
+            ],
+            result: 'The solutions are x=3 and x=−2.',
+            interpretation:
+                'Both values place 2x−1 exactly 5 units from zero.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '5',
+        title: 'Inequalities and intervals',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.route,
+            title: '|x−a| < r describes a neighborhood',
+            content:
+                'For r>0, |x−a|<r is equivalent to a−r<x<a+r. By contrast, |x−a|>r describes points outside that neighborhood.',
+            emphasis:
+                'Distance language turns absolute-value inequalities into intervals on the real line.',
+          ),
+          WorkedExampleBlockData(
+            title: 'An exterior region',
+            problem: 'Solve |x+2| ≥ 4.',
+            steps: [
+              'Interpret distance from x to −2 as at least 4.',
+              'The boundary points are −6 and 2.',
+              'Keep the points outside the central interval.',
+            ],
+            result: 'x≤−6 or x≥2.',
+            interpretation:
+                'The symbol ≥ includes points whose distance is exactly 4.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '6',
+        title: 'The absolute-value function and its graph',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.graph,
+            title: 'y=|x| is a piecewise-defined function',
+            content:
+                'For x≥0, |x|=x; for x<0, |x|=−x. The graph consists of two rays meeting at the origin and forming a vertex.',
+            emphasis:
+                'This example shows that continuity does not necessarily imply differentiability at the joining point.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '7',
+        title: 'Guided exercises',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Distance around a target value',
+            problem: 'Interpret |x−7|≤1.5.',
+            steps: [
+              'The expression measures distance from x to 7.',
+              'The maximum allowed distance is 1.5.',
+              'Subtract and add 1.5 to the center 7.',
+            ],
+            result: '5.5≤x≤8.5.',
+            interpretation:
+                'This form appears in measurement tolerances, error margins, and approximations.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '8',
+        title: 'Academic basis and Calculus connection',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.infinity,
+            title: 'Core references for this lesson',
+            content:
+                'Absolute value as distance, equations, and inequalities follow OpenStax Algebra and Trigonometry and College Algebra, Sullivan, and Blitzer. Stewart, Thomas, and Larson use |x−a| and |f(x)−L| to formalize closeness in the definition of a limit.',
+            emphasis:
+                'Mastering absolute value as distance directly prepares the epsilon-delta language of Calculus.',
             tone: LearningCardTone.information,
           ),
         ],
