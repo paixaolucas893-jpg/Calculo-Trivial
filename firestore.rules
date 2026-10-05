@@ -219,6 +219,7 @@ service cloud.firestore {
           'dailyAnsweredQuestions',
           'dailyQuestionGoal',
           'lastQuestionSessionIds',
+          'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
           'lastPersonalizedReviewSessionIds',
