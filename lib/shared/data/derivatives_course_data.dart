@@ -9,7 +9,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Taxa de variação e reta tangente',
     description:
         'Entenda a derivada como velocidade instantânea e inclinação local.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'interpretar a derivada geometricamente e em situações reais',
     symbol: "f'",
     sections: [
@@ -75,7 +75,45 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Unidades e significado físico', blocks: [
         ConceptBlockData(visual: LessonVisual.engineering, title: 'Unidade da saída por unidade da entrada', content: 'Se s(t) está em metros e t em segundos, s′(t) está em m/s. Se C(q) está em reais e q em unidades produzidas, C′(q) tem unidade R\$/unidade.', tone: LearningCardTone.information),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplo cumulativo: taxa média virando taxa instantânea',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Velocidade a partir da definição',
+            problem: 's(t)=t²+2t. Encontre a velocidade instantânea em t=3 pela definição de derivada.',
+            steps: [
+              'Calcule [s(3+h)−s(3)]/h.',
+              'Expanda s(3+h)=(3+h)²+2(3+h).',
+              'Simplifique o numerador até obter 8h+h².',
+              'Divida por h: 8+h.',
+              'Faça h→0.',
+            ],
+            result: 'v(3)=8.',
+            interpretation:
+                'A taxa instantânea surge como limite das velocidades médias em intervalos cada vez menores.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Verificação geométrica e interpretação',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Inclinação da tangente',
+            problem: 'Para f(x)=x²−1, encontre a inclinação da tangente em x=2 e interprete o sinal.',
+            steps: [
+              'Da definição ou regra conhecida, f′(x)=2x.',
+              'Avalie em x=2: f′(2)=4.',
+              'Como a inclinação é positiva, a função cresce localmente nesse ponto.',
+            ],
+            result: 'A inclinação é 4.',
+            interpretation:
+                'O valor da derivada informa tanto a intensidade quanto a direção da variação local.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A derivada é apresentada como limite de quocientes incrementais, com leitura geométrica e aplicada.', tone: LearningCardTone.information),
       ]),
     ],
@@ -111,7 +149,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Constantes, potências e polinômios',
     description:
         'Derive termo a termo e trabalhe com expoentes inteiros e fracionários.',
-    duration: '≈ 30 min',
+    duration: '≈ 42 min',
     objective: 'aplicar linearidade e regra da potência com segurança',
     symbol: 'xⁿ',
     sections: [
@@ -183,7 +221,39 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Erros frequentes', blocks: [
         ConceptBlockData(visual: LessonVisual.warning, title: 'Não esqueça coeficientes e expoentes', content: 'Erros comuns incluem manter a constante aditiva, reduzir o expoente sem multiplicá-lo e aplicar a regra da potência a uma composição sem usar cadeia.', tone: LearningCardTone.warning),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplo cumulativo com expoentes variados',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Polinômio com potência negativa',
+            problem: 'f(x)=3x⁴−2x⁻¹+5√x, com x>0.',
+            steps: [
+              'Derive 3x⁴ para obter 12x³.',
+              'Derive −2x⁻¹ para obter 2x⁻².',
+              'Reescreva 5√x como 5x¹ᐟ² e derive.',
+            ],
+            result: 'f′(x)=12x³+2/x²+5/(2√x).',
+            interpretation:
+                'Uma única regra de potência cobre várias formas depois da reescrita adequada.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Cheque de consistência',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Antes de aceitar a derivada',
+            content:
+                'Verifique coeficientes, expoentes, domínio e se constantes desapareceram corretamente. Em polinômios, o grau deve cair em uma unidade no termo de maior grau.',
+            emphasis:
+                'Uma verificação rápida detecta muitos erros algébricos antes que eles se propaguem.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. As regras básicas são tratadas como consequências estruturais que substituem o uso repetido da definição por limite.', tone: LearningCardTone.information),
       ]),
     ],
@@ -215,7 +285,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Regras do produto e do quociente',
     description:
         'Combine funções preservando todos os termos necessários.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'aplicar e conferir as regras do produto e do quociente',
     symbol: 'u·v',
     sections: [
@@ -287,7 +357,41 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Erros frequentes', blocks: [
         ConceptBlockData(visual: LessonVisual.warning, title: 'Sinal e denominador', content: 'Na regra do quociente, trocar a ordem do numerador muda o sinal. Também é erro esquecer o quadrado no denominador.', tone: LearningCardTone.warning),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplo cumulativo: produto e quociente',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Quociente com produto no numerador',
+            problem: 'f(x)=x²(x+1)/(x−1), com x≠1.',
+            steps: [
+              'Defina u=x²(x+1) e v=x−1.',
+              'Use produto em u: u′=2x(x+1)+x².',
+              'Use quociente: f′=(u′v−uv′)/v².',
+              'Substitua v′=1 e simplifique apenas ao final.',
+            ],
+            result:
+                'f′(x)=[(3x²+2x)(x−1)−x²(x+1)]/(x−1)².',
+            interpretation:
+                'Em expressões combinadas, organização por camadas reduz erros de sinal.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Como conferir o resultado',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'Compare duas estratégias quando possível',
+            content:
+                'Se um produto ou quociente puder ser simplificado antes, derive também a forma simplificada e compare os resultados. As expressões derivadas devem ser equivalentes no domínio comum.',
+            emphasis:
+                'Estratégias diferentes são uma ferramenta de verificação.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Produto e quociente são apresentados com justificativa estrutural e comparação entre estratégias algébricas.', tone: LearningCardTone.information),
       ]),
     ],
@@ -319,7 +423,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Regra da cadeia por camadas',
     description:
         'Derive funções compostas da camada externa para a interna.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'identificar função externa, interna e aplicar a cadeia',
     symbol: 'f∘g',
     sections: [
@@ -379,7 +483,46 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Erro típico: esquecer a interna', blocks: [
         ConceptBlockData(visual: LessonVisual.warning, title: 'Derivar só a parte externa', content: 'Escrever d/dx[(g(x))^n]=n(g(x))^(n−1) está incompleto. É necessário multiplicar por g′(x).', tone: LearningCardTone.warning),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplo com três camadas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Composição em cascata',
+            problem: 'f(x)=√(1+(2x−1)²).',
+            steps: [
+              'Camada externa: √u=u¹ᐟ².',
+              'Camada intermediária: u=1+v².',
+              'Camada interna: v=2x−1.',
+              'Derive de fora para dentro e multiplique os fatores.',
+            ],
+            result:
+                'f′(x)=2(2x−1)/√(1+(2x−1)²).',
+            interpretation:
+                'Cada camada contribui com um fator para a derivada final.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Cadeia em funções elementares',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Exponencial composta',
+            problem: 'f(x)=e^(3x²−1).',
+            steps: [
+              'A função externa é e^u.',
+              'A interna é u=3x²−1.',
+              'A derivada externa mantém e^u.',
+              'Multiplique por u′=6x.',
+            ],
+            result: 'f′(x)=6x e^(3x²−1).',
+            interpretation:
+                'A cadeia aparece sempre que uma função está aplicada a outra expressão variável.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A cadeia é tratada como regra central para composições e ponte para diferenciação implícita e taxas relacionadas.', tone: LearningCardTone.information),
       ]),
     ],
@@ -411,7 +554,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Seno, cosseno, exponencial e logaritmo',
     description:
         'Memorize com significado as derivadas elementares mais usadas.',
-    duration: '≈ 38 min',
+    duration: '≈ 42 min',
     objective: 'derivar funções trigonométricas, exponenciais e logarítmicas',
     symbol: 'eˣ',
     sections: [
@@ -482,7 +625,40 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Domínio e radianos', blocks: [
         ConceptBlockData(visual: LessonVisual.warning, title: 'As fórmulas têm hipóteses', content: 'Logaritmos exigem argumento positivo no domínio real. Derivadas trigonométricas padrão usam radianos. Quocientes trigonométricos exigem denominadores não nulos.', tone: LearningCardTone.warning),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplo cumulativo com funções elementares',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Soma de termos elementares',
+            problem: 'f(x)=2sin x−3eˣ+ln x, com x>0.',
+            steps: [
+              'd/dx[2sin x]=2cos x.',
+              'd/dx[−3eˣ]=−3eˣ.',
+              'd/dx[ln x]=1/x.',
+            ],
+            result: 'f′(x)=2cos x−3eˣ+1/x.',
+            interpretation:
+                'Linearidade permite combinar diretamente o repertório de derivadas elementares.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Domínio e interpretação',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.warning,
+            title: 'A fórmula não existe em todo lugar',
+            content:
+                'Derivadas de logaritmos, funções trigonométricas e expressões com denominadores herdam restrições de domínio. Uma fórmula correta ainda precisa ser interpretada apenas onde faz sentido.',
+            emphasis:
+                'Sempre registre o domínio relevante antes de avaliar a derivada.',
+            tone: LearningCardTone.warning,
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. O repertório elementar é organizado para ser combinado com produto, quociente e cadeia.', tone: LearningCardTone.information),
       ]),
     ],
@@ -515,7 +691,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Inclinação e equação da tangente',
     description:
         'Use f′(a) para construir a reta que melhor aproxima o gráfico.',
-    duration: '≈ 32 min',
+    duration: '≈ 42 min',
     objective: 'calcular inclinação e equação da reta tangente',
     symbol: 'y=mx+b',
     sections: [
@@ -575,7 +751,47 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Exemplo completo', blocks: [
         WorkedExampleBlockData(title: 'Tangente a uma parábola', problem: 'Ache a tangente a f(x)=x² em x=2.', steps: ['f(2)=4.','f′(x)=2x.','f′(2)=4.','Use y−4=4(x−2).'], result: 'y=4x−4.', interpretation: 'A reta compartilha ponto e inclinação com a curva em x=2.'),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Tangente e normal no mesmo ponto',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Duas retas associadas à curva',
+            problem: 'Para f(x)=x³ em x=1, encontre tangente e normal.',
+            steps: [
+              'f(1)=1.',
+              'f′(x)=3x², então f′(1)=3.',
+              'Tangente: y−1=3(x−1).',
+              'A normal tem inclinação −1/3.',
+              'Normal: y−1=−(1/3)(x−1).',
+            ],
+            result:
+                'Tangente: y=3x−2; normal: y−1=−(x−1)/3.',
+            interpretation:
+                'Tangente e normal compartilham o ponto de contato e têm direções perpendiculares.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Linearização numérica',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Aproxime uma raiz',
+            problem: 'Use a tangente de f(x)=√x em a=4 para estimar √4,1.',
+            steps: [
+              'f(4)=2.',
+              'f′(x)=1/(2√x), então f′(4)=1/4.',
+              'L(x)=2+(1/4)(x−4).',
+              'Avalie L(4,1).',
+            ],
+            result: '√4,1 ≈ 2,025.',
+            interpretation:
+                'A linearização transforma um cálculo não linear em uma estimativa local simples.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A tangente é conectada à derivada, à normal e à aproximação linear local.', tone: LearningCardTone.information),
       ]),
     ],
@@ -608,7 +824,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Derivabilidade e pontos críticos',
     description:
         'Reconheça cantos, derivadas laterais e candidatos a extremos.',
-    duration: '≈ 36 min',
+    duration: '≈ 42 min',
     objective: 'analisar existência da derivada e localizar pontos críticos',
     symbol: 'f′=0',
     sections: [
@@ -675,7 +891,57 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Sinal da derivada', blocks: [
         ConceptBlockData(visual: LessonVisual.compare, title: 'Crescimento e decrescimento', content: 'Quando f′>0 em um intervalo, f cresce; quando f′<0, f decresce. Mudanças de sinal da derivada ajudam a classificar pontos críticos.'),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Exemplos de não derivabilidade',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Canto em valor absoluto',
+            problem: 'Analise f(x)=|x−2| em x=2.',
+            steps: [
+              'À esquerda de 2, a inclinação é −1.',
+              'À direita de 2, a inclinação é 1.',
+              'Como as derivadas laterais diferem, f′(2) não existe.',
+            ],
+            result: 'f é contínua em 2, mas não derivável em 2.',
+            interpretation:
+                'Continuidade não garante uma direção tangente única.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Tangente vertical',
+            problem: 'Considere f(x)=x^(1/3) em x=0.',
+            steps: [
+              'Para x≠0, f′(x)=1/[3x^(2/3)].',
+              'Quando x→0, a magnitude da derivada cresce sem limite.',
+              'Não existe inclinação finita em x=0.',
+            ],
+            result: 'Há tangente vertical em x=0.',
+            interpretation:
+                'A função é contínua, mas a derivada finita não existe no ponto.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Classificação por sinal da derivada',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Ponto crítico e mudança de sinal',
+            problem: 'Para f(x)=x³−3x, classifique os pontos críticos.',
+            steps: [
+              'f′(x)=3x²−3=3(x−1)(x+1).',
+              'Os pontos críticos são x=−1 e x=1.',
+              'Analise o sinal de f′ nos intervalos separados por −1 e 1.',
+              'f′ muda de positivo para negativo em −1 e de negativo para positivo em 1.',
+            ],
+            result:
+                'x=−1 é máximo local e x=1 é mínimo local.',
+            interpretation:
+                'A mudança de sinal da derivada classifica o comportamento local.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. Derivabilidade é conectada a continuidade, derivadas laterais e análise qualitativa por sinal.', tone: LearningCardTone.information),
       ]),
     ],
@@ -708,7 +974,7 @@ const List<CourseLessonData> derivativesCourseLessons = [
     title: 'Movimento, unidades e modelagem',
     description:
         'Interprete derivadas em problemas físicos e organize o método completo.',
-    duration: '≈ 40 min',
+    duration: '≈ 45 min',
     objective: 'modelar taxas instantâneas e interpretar seus resultados',
     symbol: 'v(t)',
     sections: [
@@ -774,7 +1040,45 @@ const List<CourseLessonData> derivativesCourseLessons = [
       LessonSectionData(number: '7', title: 'Problema cumulativo', blocks: [
         WorkedExampleBlockData(title: 'Movimento completo', problem: 's(t)=t³−6t²+9t. Encontre velocidade e aceleração.', steps: ['Derive s: v(t)=3t²−12t+9.','Derive novamente: a(t)=6t−12.','Interprete zeros de v como instantes de repouso.'], result: 'v(t)=3t²−12t+9 e a(t)=6t−12.', interpretation: 'Derivadas sucessivas descrevem camadas diferentes do movimento.'),
       ]),
-      LessonSectionData(number: '8', title: 'Base acadêmica e síntese', blocks: [
+
+      LessonSectionData(
+        number: '8',
+        title: 'Aplicação em taxas relacionadas',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Área de um círculo em crescimento',
+            problem:
+                'O raio cresce a 2 cm/s. Qual é a taxa de variação da área quando r=5 cm?',
+            steps: [
+              'Use A=πr².',
+              'Derive em relação ao tempo: dA/dt=2πr·dr/dt.',
+              'Substitua r=5 e dr/dt=2.',
+            ],
+            result: 'dA/dt=20π cm²/s.',
+            interpretation:
+                'A cadeia conecta a taxa do raio à taxa da área.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '9',
+        title: 'Aplicação em otimização',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Máximo de uma função quadrática',
+            problem: 'A receita é R(q)=40q−q². Para qual q a receita é máxima?',
+            steps: [
+              'Derive: R′(q)=40−2q.',
+              'Imponha R′(q)=0.',
+              'Resolva q=20.',
+              'Como a parábola é côncava para baixo, o ponto é máximo.',
+            ],
+            result: 'A receita é máxima em q=20.',
+            interpretation:
+                'O ponto crítico ganha significado quando combinado com a estrutura do modelo.',
+          ),
+        ],
+      ),      LessonSectionData(number: '10', title: 'Base acadêmica e síntese', blocks: [
         ConceptBlockData(visual: LessonVisual.idea, title: 'Referências', content: 'Stewart, Calculus; Thomas’ Calculus; OpenStax Calculus Volume 1; Larson & Edwards, Calculus; e Guidorizzi, Um Curso de Cálculo. A unidade encerra com movimento, taxas relacionadas, otimização e interpretação marginal, consolidando a derivada como ferramenta de modelagem.', tone: LearningCardTone.success),
       ]),
     ],
