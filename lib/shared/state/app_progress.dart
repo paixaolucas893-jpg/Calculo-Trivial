@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
-import 'package:calcquest/shared/domain/exercise_question_selector.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
 import 'package:calcquest/shared/domain/practice_question_rotation_selector.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
