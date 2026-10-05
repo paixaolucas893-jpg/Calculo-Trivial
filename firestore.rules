@@ -32,6 +32,47 @@ service cloud.firestore {
         ]);
     }
 
+    function validRecentPracticeList(values) {
+      return values is list
+        && values.size() <= 40;
+    }
+
+    function validRecentPracticeQuestions(values) {
+      return values is map
+        && values.keys().hasOnly([
+          'algebra-fundamental',
+          'equacoes-inequacoes',
+          'funcoes',
+          'limites',
+          'continuidade',
+          'derivadas'
+        ])
+        && (
+          !values.keys().hasAny(['algebra-fundamental'])
+          || validRecentPracticeList(values['algebra-fundamental'])
+        )
+        && (
+          !values.keys().hasAny(['equacoes-inequacoes'])
+          || validRecentPracticeList(values['equacoes-inequacoes'])
+        )
+        && (
+          !values.keys().hasAny(['funcoes'])
+          || validRecentPracticeList(values['funcoes'])
+        )
+        && (
+          !values.keys().hasAny(['limites'])
+          || validRecentPracticeList(values['limites'])
+        )
+        && (
+          !values.keys().hasAny(['continuidade'])
+          || validRecentPracticeList(values['continuidade'])
+        )
+        && (
+          !values.keys().hasAny(['derivadas'])
+          || validRecentPracticeList(values['derivadas'])
+        );
+    }
+
     function validQuestionPerformance(values) {
       return values is map
         && values.size() <= 300;
@@ -149,6 +190,7 @@ service cloud.firestore {
           'dailyQuestionGoal',
           'dailyActivityDate',
           'lastQuestionSessionIds',
+          'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
           'lastPersonalizedReviewSessionIds',
@@ -219,6 +261,7 @@ service cloud.firestore {
         && validDateKey(data.lastStudyDate)
         && validDateKey(data.dailyActivityDate)
         && validQuestionSessions(data.lastQuestionSessionIds)
+        && validRecentPracticeQuestions(data.recentPracticeQuestionIds)
         && validQuestionSessions(data.lastFinalTestSessionIds)
         && validQuestionPerformance(data.questionPerformance)
         && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
@@ -254,6 +297,7 @@ service cloud.firestore {
         && data.dailyAnsweredQuestions == 0
         && data.dailyQuestionGoal == 5
         && data.lastQuestionSessionIds == {}
+        && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
         && data.lastPersonalizedReviewSessionIds == []
@@ -323,6 +367,7 @@ service cloud.firestore {
         && data.dailyAnsweredQuestions == 0
         && data.dailyQuestionGoal == 5
         && data.lastQuestionSessionIds == {}
+        && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
         && data.lastPersonalizedReviewSessionIds == []
