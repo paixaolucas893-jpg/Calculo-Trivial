@@ -333,6 +333,21 @@ const List<CourseLessonData> algebraCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '14',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'A tradução entre linguagem verbal e simbólica, a interpretação de variáveis e a modelagem algébrica seguem o tratamento de OpenStax Algebra and Trigonometry 2e e College Algebra 2e, Sullivan, Precalculus, e Blitzer, Precalculus. A conexão com funções e modelagem antecipa a linguagem usada por Stewart, Thomas e Larson em Cálculo.',
+            emphasis:
+                'As referências orientam terminologia, progressão e profundidade; os exemplos e exercícios do app são autorais.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question:
@@ -618,6 +633,21 @@ const List<CourseLessonData> algebraCourseLessons = [
           ),
         ],
       ),
+      LessonSectionData(
+        number: '12',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'A identificação de termos semelhantes, coeficientes, partes literais e redução de expressões segue OpenStax Algebra and Trigonometry 2e e College Algebra 2e, Sullivan, Precalculus, e Blitzer, Precalculus. A leitura estrutural de expressões também prepara simplificações usadas posteriormente em limites e derivadas.',
+            emphasis:
+                'Combinar termos semelhantes é uma aplicação da distributividade em sentido inverso, não uma regra isolada de memorização.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
     ],
     check: LessonCheckData(
       question: 'Qual é a forma reduzida de 4x² − 3x + 2x² + 5x − 7?',
@@ -877,6 +907,21 @@ const List<CourseLessonData> algebraCourseLessons = [
                 'Em limites e derivadas, uma expressão pode precisar ser expandida para combinar termos ou fatorada para revelar cancelamentos. A distributiva é a ponte entre essas duas formas.',
             emphasis:
                 'Manipulação algébrica correta evita que um erro de sinal contamine uma solução inteira de Cálculo.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'A propriedade distributiva, o controle de sinais e a expansão de agrupamentos seguem OpenStax Algebra and Trigonometry 2e, Sullivan, Precalculus, e Blitzer, Precalculus. Stewart, Thomas e Larson retomam essas técnicas como infraestrutura algébrica em limites, derivadas e simplificações de expressões.',
+            emphasis:
+                'Distribuir corretamente significa preservar a equivalência da expressão em cada etapa.',
             tone: LearningCardTone.information,
           ),
         ],
@@ -1145,6 +1190,21 @@ const List<CourseLessonData> algebraCourseLessons = [
             title: 'Potências aparecem em funções, limites e derivadas',
             content:
                 'Funções potência e polinomiais são construídas com essas estruturas. Simplificar corretamente expoentes será essencial para quocientes incrementais, derivadas e análise de crescimento.',
+            tone: LearningCardTone.information,
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '11',
+        title: 'Referências e aprofundamento',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.idea,
+            title: 'Base acadêmica desta aula',
+            content:
+                'As propriedades de potências em expressões algébricas, produtos de potências, potência de potência, expoentes inteiros e restrições associadas seguem OpenStax Algebra and Trigonometry 2e e College Algebra 2e, Sullivan e Blitzer. A conexão com funções potência e crescimento prepara conteúdos de Stewart, Thomas e Larson.',
+            emphasis:
+                'As leis de expoentes são válidas sob hipóteses específicas; domínio e base não podem ser ignorados.',
             tone: LearningCardTone.information,
           ),
         ],
