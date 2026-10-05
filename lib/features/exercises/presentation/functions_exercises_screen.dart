@@ -5,6 +5,8 @@ import 'package:calcquest/shared/data/localized_functions_exercise_content.dart'
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 import 'package:calcquest/shared/domain/exercise_review_item.dart';
+import 'package:calcquest/shared/domain/module_mastery_policy.dart';
+import 'package:calcquest/shared/services/module_mastery_tracker.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -146,10 +148,19 @@ class _FunctionsExercisesScreenState extends State<FunctionsExercisesScreen> {
     });
   }
 
-  void _finishPractice() {
+  Future<void> _finishPractice() async {
     final practiceIds = sessionExercises.map((exercise) => exercise.id).toSet();
+    final evidence = await ModuleMasteryTracker.recordPracticeResult(
+      moduleId: AppProgress.functionsId,
+      correctAnswers: correctAnswers,
+      totalQuestions: sessionExercises.length,
+      legacyCompleted: AppProgress.functionsCompleted,
+    );
+    final decision = ModuleMasteryPolicy.evaluate(evidence);
 
-    if (reviewItems.isEmpty) {
+    if (!mounted) return;
+
+    if (reviewItems.isEmpty && decision.canTakeFinalTest) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => FunctionsFinalTestScreen(
@@ -167,6 +178,7 @@ class _FunctionsExercisesScreenState extends State<FunctionsExercisesScreen> {
           practiceQuestionIds: practiceIds,
           correctAnswers: correctAnswers,
           totalQuestions: sessionExercises.length,
+          canTakeFinalTest: decision.canTakeFinalTest,
         ),
       ),
     );
@@ -257,12 +269,14 @@ class _FunctionsPracticeReviewScreen extends StatefulWidget {
   final Set<String> practiceQuestionIds;
   final int correctAnswers;
   final int totalQuestions;
+  final bool canTakeFinalTest;
 
   const _FunctionsPracticeReviewScreen({
     required this.reviewItems,
     required this.practiceQuestionIds,
     required this.correctAnswers,
     required this.totalQuestions,
+    required this.canTakeFinalTest,
   });
 
   @override
@@ -284,6 +298,13 @@ class _FunctionsPracticeReviewScreenState
   void _continue() {
     if (!isLastItem) {
       setState(() => currentIndex++);
+      return;
+    }
+
+    if (!widget.canTakeFinalTest) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const FunctionsExercisesScreen()),
+      );
       return;
     }
 
@@ -362,9 +383,13 @@ class _FunctionsPracticeReviewScreenState
               ),
               const SizedBox(height: AppSpacing.xs),
               Text(
-                _isEnglish
-                    ? 'Review every mistake before starting the final test.'
-                    : 'Revise cada erro antes de iniciar o teste final.',
+                widget.canTakeFinalTest
+                    ? (_isEnglish
+                        ? 'Review every mistake before starting the final test.'
+                        : 'Revise cada erro antes de iniciar o teste final.')
+                    : (_isEnglish
+                        ? 'Review every mistake, then retry the practice. You need at least 70% before the final test.'
+                        : 'Revise cada erro e refaça a prática. Você precisa de pelo menos 70% antes da prova final.'),
                 style: AppTypography.bodyMedium,
               ),
               const SizedBox(height: AppSpacing.md),
@@ -434,10 +459,14 @@ class _FunctionsPracticeReviewScreenState
               ),
               PrimaryButton(
                 text: isLastItem
-                    ? (_isEnglish ? 'Start final test' : 'Iniciar teste final')
+                    ? widget.canTakeFinalTest
+                        ? (_isEnglish ? 'Start final test' : 'Iniciar teste final')
+                        : (_isEnglish ? 'Retry practice' : 'Refazer prática')
                     : (_isEnglish ? 'Next mistake' : 'Próximo erro'),
                 icon: isLastItem
-                    ? Icons.quiz_outlined
+                    ? widget.canTakeFinalTest
+                        ? Icons.quiz_outlined
+                        : Icons.refresh_rounded
                     : Icons.arrow_forward_rounded,
                 onPressed: _continue,
               ),
