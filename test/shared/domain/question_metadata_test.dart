@@ -93,7 +93,10 @@ void main() {
           ),
       ];
 
-      expect(candidates, hasLength(136));
+      final expectedQuestionCount = catalogs.values
+          .fold<int>(0, (total, exercises) => total + exercises.length);
+
+      expect(candidates, hasLength(expectedQuestionCount));
       expect(
         candidates.every(
           (candidate) =>

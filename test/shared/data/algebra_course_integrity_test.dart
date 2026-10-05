@@ -80,11 +80,29 @@ void main() {
       }
     });
 
-    test('as vinte e quatro atividades cobrem todas as aulas', () {
+
+    test('cada aula de Álgebra possui ao menos quatro questões', () {
+      final countsByLesson = <String, int>{};
+
+      for (final exercise in mockExercises) {
+        final lessonId = exercise.contentLessonId!;
+        countsByLesson[lessonId] = (countsByLesson[lessonId] ?? 0) + 1;
+      }
+
+      for (final lesson in algebraCourseLessons) {
+        expect(
+          countsByLesson[lesson.id] ?? 0,
+          greaterThanOrEqualTo(4),
+          reason: '${lesson.id} precisa de cobertura suficiente para reduzir repetição.',
+        );
+      }
+    });
+
+    test('as cinquenta atividades cobrem todas as aulas', () {
       final lessonIds = algebraCourseLessons.map((lesson) => lesson.id).toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockExercises, hasLength(24));
+      expect(mockExercises, hasLength(50));
 
       for (final exercise in mockExercises) {
         expect(
