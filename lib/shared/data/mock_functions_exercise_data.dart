@@ -3,7 +3,7 @@ import 'package:calcquest/shared/data/mock_exercise_data.dart';
 const List<ExerciseData> mockFunctionsExercises = [
   ExerciseData(
     id: 'funcoes-dominio',
-    title: 'Questão 1 de 50',
+    title: 'Questão 1 de 60',
     statement:
         'Considere a função:\n\nf(x) = √(x - 2)\n\nQual é o domínio de f?',
     correctOptionId: 'c',
@@ -21,7 +21,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-composicao',
-    title: 'Questão 2 de 50',
+    title: 'Questão 2 de 60',
     statement: 'Sejam:\n\nf(x) = 2x + 1\ng(x) = x²\n\nDetermine (f ∘ g)(x).',
     correctOptionId: 'b',
     explanation:
@@ -38,7 +38,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-inversa',
-    title: 'Questão 3 de 50',
+    title: 'Questão 3 de 60',
     statement:
         'Considere a função:\n\nf(x) = 3x - 6\n\nQual é a função inversa f⁻¹(x)?',
     correctOptionId: 'a',
@@ -56,7 +56,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-paridade',
-    title: 'Questão 4 de 50',
+    title: 'Questão 4 de 60',
     statement:
         'Considere a função:\n\nf(x) = x² + 4\n\nComo essa função pode ser classificada quanto à paridade?',
     correctOptionId: 'a',
@@ -74,7 +74,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-imagem-quadratica',
-    title: 'Questão 5 de 50',
+    title: 'Questão 5 de 60',
     statement:
         'Considere a função:\n\nf(x) = x² - 4x + 3\n\nQual é o menor valor assumido por f(x)?',
     correctOptionId: 'd',
@@ -92,7 +92,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-valor-numerico',
-    title: 'Questão 6 de 50',
+    title: 'Questão 6 de 60',
     statement:
         'Considere a função:\n\nf(x) = 2x² - x + 1\n\nQual é o valor de f(3)?',
     correctOptionId: 'b',
@@ -110,7 +110,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-raizes',
-    title: 'Questão 7 de 50',
+    title: 'Questão 7 de 60',
     statement:
         'Considere a função:\n\nf(x) = x² - 5x + 6\n\nQuais são os zeros de f?',
     correctOptionId: 'd',
@@ -128,7 +128,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-coeficiente-angular',
-    title: 'Questão 8 de 50',
+    title: 'Questão 8 de 60',
     statement:
         'Considere a função afim:\n\nf(x) = -3x + 4\n\nQual é o coeficiente angular?',
     correctOptionId: 'a',
@@ -146,7 +146,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-composicao-inversa',
-    title: 'Questão 9 de 50',
+    title: 'Questão 9 de 60',
     statement: 'Sejam:\n\nf(x) = x + 2\ng(x) = 3x\n\nDetermine (g ∘ f)(x).',
     correctOptionId: 'c',
     explanation:
@@ -163,7 +163,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-imagem-modulo',
-    title: 'Questão 10 de 50',
+    title: 'Questão 10 de 60',
     statement: 'Considere a função:\n\nf(x) = |x|\n\nQual é a imagem de f?',
     correctOptionId: 'b',
     explanation:
@@ -180,7 +180,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-dominio-racional',
-    title: 'Questão 11 de 50',
+    title: 'Questão 11 de 60',
     statement:
         'Considere a função:\n\nf(x) = 1 / (x - 4)\n\nQual é o domínio de f?',
     correctOptionId: 'c',
@@ -198,7 +198,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-valor-numerico-2',
-    title: 'Questão 12 de 50',
+    title: 'Questão 12 de 60',
     statement:
         'Considere a função:\n\nf(x) = -x² + 4x\n\nQual é o valor de f(2)?',
     correctOptionId: 'a',
@@ -215,7 +215,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-vertice',
-    title: 'Questão 13 de 50',
+    title: 'Questão 13 de 60',
     statement:
         'Considere a função:\n\nf(x) = x² - 6x + 5\n\nQual é o valor mínimo de f?',
     correctOptionId: 'd',
@@ -233,7 +233,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-crescimento-afim',
-    title: 'Questão 14 de 50',
+    title: 'Questão 14 de 60',
     statement:
         'Considere a função:\n\nf(x) = 2x + 1\n\nComo ela é classificada quanto ao crescimento?',
     correctOptionId: 'b',
@@ -251,7 +251,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-intersecao-eixo-y',
-    title: 'Questão 15 de 50',
+    title: 'Questão 15 de 60',
     statement:
         'Considere a função:\n\nf(x) = -3x + 6\n\nEm qual valor o gráfico intercepta o eixo y?',
     correctOptionId: 'c',
@@ -269,7 +269,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-inversa-2',
-    title: 'Questão 16 de 50',
+    title: 'Questão 16 de 60',
     statement:
         'Considere a função:\n\nf(x) = 2x + 4\n\nQual é a função inversa?',
     correctOptionId: 'a',
@@ -287,7 +287,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-composicao-3',
-    title: 'Questão 17 de 50',
+    title: 'Questão 17 de 60',
     statement: 'Sejam:\n\nf(x) = x²\ng(x) = x + 1\n\nDetermine (f ∘ g)(x).',
     correctOptionId: 'd',
     explanation:
@@ -304,7 +304,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-impar',
-    title: 'Questão 18 de 50',
+    title: 'Questão 18 de 60',
     statement:
         'Considere a função:\n\nf(x) = x³ - x\n\nComo ela é classificada quanto à paridade?',
     correctOptionId: 'b',
@@ -322,7 +322,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-exponencial',
-    title: 'Questão 19 de 50',
+    title: 'Questão 19 de 60',
     statement: 'Considere a função:\n\nf(x) = 2ˣ\n\nQual é o valor de f(3)?',
     correctOptionId: 'c',
     explanation: 'Substituindo x por 3, temos f(3) = 2³ = 8.',
@@ -338,7 +338,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-imagem-quadratica-2',
-    title: 'Questão 20 de 50',
+    title: 'Questão 20 de 60',
     statement:
         'Considere a função:\n\nf(x) = -(x - 1)² + 4\n\nQual é a imagem de f?',
     correctOptionId: 'a',
@@ -356,7 +356,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-logaritmo-1',
-    title: 'Questão 21 de 50',
+    title: 'Questão 21 de 60',
     statement: 'Resolva:\nlog₂(x) = 3',
     correctOptionId: 'c',
     explanation:
@@ -373,7 +373,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-radianos-1',
-    title: 'Questão 22 de 50',
+    title: 'Questão 22 de 60',
     statement: 'Converta 150° para radianos.',
     correctOptionId: 'b',
     explanation:
@@ -390,7 +390,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-circulo-unitario-1',
-    title: 'Questão 23 de 50',
+    title: 'Questão 23 de 60',
     statement: 'No círculo unitário, qual é o valor de sen(π/6)?',
     correctOptionId: 'a',
     explanation:
@@ -407,7 +407,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-trig-grafico-1',
-    title: 'Questão 24 de 50',
+    title: 'Questão 24 de 60',
     statement: 'Para f(x) = 3 sen(x), qual é a amplitude do gráfico?',
     correctOptionId: 'd',
     explanation:
@@ -424,7 +424,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-identidade-trig-1',
-    title: 'Questão 25 de 50',
+    title: 'Questão 25 de 60',
     statement: 'Qual expressão é identicamente igual a 1?',
     correctOptionId: 'b',
     explanation:
@@ -441,7 +441,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-inversa-trig-1',
-    title: 'Questão 26 de 50',
+    title: 'Questão 26 de 60',
     statement: 'Qual é o valor principal de arcsen(1/2)?',
     correctOptionId: 'c',
     explanation:
@@ -458,7 +458,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-conica-1',
-    title: 'Questão 27 de 50',
+    title: 'Questão 27 de 60',
     statement: 'Qual cônica é representada por x²/9 + y²/4 = 1?',
     correctOptionId: 'a',
     explanation:
@@ -475,7 +475,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-taxa-media-1',
-    title: 'Questão 28 de 50',
+    title: 'Questão 28 de 60',
     statement:
         'Considere f(x) = x². Qual é a taxa média de variação de f no intervalo [1, 3]?',
     correctOptionId: 'd',
@@ -494,7 +494,7 @@ const List<ExerciseData> mockFunctionsExercises = [
 
   ExerciseData(
     id: 'funcoes-dominio-raiz-2',
-    title: 'Questão 29 de 50',
+    title: 'Questão 29 de 60',
     statement: 'Determine o domínio de:\nf(x) = √(5 − 2x)',
     correctOptionId: 'b',
     explanation:
@@ -511,7 +511,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-racional-assintota-vertical-1',
-    title: 'Questão 30 de 50',
+    title: 'Questão 30 de 60',
     statement: 'Para f(x) = 2/(x − 3), qual é a assíntota vertical?',
     correctOptionId: 'c',
     explanation:
@@ -528,7 +528,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-racional-assintota-horizontal-1',
-    title: 'Questão 31 de 50',
+    title: 'Questão 31 de 60',
     statement: 'Para f(x) = (3x + 1)/(x − 2), qual é a assíntota horizontal?',
     correctOptionId: 'a',
     explanation:
@@ -545,7 +545,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-racional-simplificacao-1',
-    title: 'Questão 32 de 50',
+    title: 'Questão 32 de 60',
     statement:
         'Considere f(x) = (x² − 4)/(x − 2), com x ≠ 2. Qual expressão descreve f(x) no restante do domínio?',
     correctOptionId: 'd',
@@ -563,7 +563,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-exponencial-equacao-1',
-    title: 'Questão 33 de 50',
+    title: 'Questão 33 de 60',
     statement: 'Resolva:\n3ˣ = 27',
     correctOptionId: 'b',
     explanation:
@@ -580,7 +580,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-exponencial-crescimento-1',
-    title: 'Questão 34 de 50',
+    title: 'Questão 34 de 60',
     statement:
         'Uma população é modelada por P(t) = 500·1,08ᵗ. O que representa o fator 1,08?',
     correctOptionId: 'c',
@@ -598,7 +598,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-exponencial-decaimento-1',
-    title: 'Questão 35 de 50',
+    title: 'Questão 35 de 60',
     statement: 'Qual das funções representa decaimento exponencial?',
     correctOptionId: 'a',
     explanation:
@@ -615,7 +615,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-logaritmo-2',
-    title: 'Questão 36 de 50',
+    title: 'Questão 36 de 60',
     statement: 'Calcule:\nlog₁₀(0,01)',
     correctOptionId: 'd',
     explanation:
@@ -632,7 +632,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-logaritmo-propriedade-1',
-    title: 'Questão 37 de 50',
+    title: 'Questão 37 de 60',
     statement: 'Para a > 0, b > 0, qual identidade é correta?',
     correctOptionId: 'b',
     explanation:
@@ -649,7 +649,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-logaritmo-dominio-1',
-    title: 'Questão 38 de 50',
+    title: 'Questão 38 de 60',
     statement: 'Determine o domínio de:\nf(x) = ln(x − 4)',
     correctOptionId: 'c',
     explanation:
@@ -666,7 +666,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-circulo-unitario-2',
-    title: 'Questão 39 de 50',
+    title: 'Questão 39 de 60',
     statement: 'No círculo unitário, qual é o valor de cos(5π/3)?',
     correctOptionId: 'a',
     explanation:
@@ -683,7 +683,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-trig-periodo-1',
-    title: 'Questão 40 de 50',
+    title: 'Questão 40 de 60',
     statement: 'Qual é o período de f(x) = sin(2x)?',
     correctOptionId: 'c',
     explanation:
@@ -700,7 +700,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-trig-amplitude-deslocamento-1',
-    title: 'Questão 41 de 50',
+    title: 'Questão 41 de 60',
     statement: 'Para f(x) = 2cos(x) − 1, qual é a amplitude e a linha média?',
     correctOptionId: 'd',
     explanation:
@@ -717,7 +717,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-trig-periodo-cosseno-1',
-    title: 'Questão 42 de 50',
+    title: 'Questão 42 de 60',
     statement: 'Qual é o período de g(x) = cos(x/3)?',
     correctOptionId: 'b',
     explanation:
@@ -734,7 +734,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-equacao-trig-1',
-    title: 'Questão 43 de 50',
+    title: 'Questão 43 de 60',
     statement: 'Em 0 ≤ x < 2π, resolva:\nsin(x) = 1/2',
     correctOptionId: 'a',
     explanation:
@@ -751,7 +751,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-identidade-trig-2',
-    title: 'Questão 44 de 50',
+    title: 'Questão 44 de 60',
     statement: 'Para cos(x) ≠ 0, qual expressão é igual a tan(x)?',
     correctOptionId: 'c',
     explanation:
@@ -768,7 +768,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-inversa-trig-2',
-    title: 'Questão 45 de 50',
+    title: 'Questão 45 de 60',
     statement: 'Qual é o valor principal de arccos(−1)?',
     correctOptionId: 'd',
     explanation:
@@ -785,7 +785,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-inversa-trig-3',
-    title: 'Questão 46 de 50',
+    title: 'Questão 46 de 60',
     statement: 'Qual é o valor principal de arctan(1)?',
     correctOptionId: 'b',
     explanation:
@@ -802,7 +802,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-conica-2',
-    title: 'Questão 47 de 50',
+    title: 'Questão 47 de 60',
     statement: 'Qual cônica é representada por x² + y² = 25?',
     correctOptionId: 'a',
     explanation:
@@ -819,7 +819,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-conica-3',
-    title: 'Questão 48 de 50',
+    title: 'Questão 48 de 60',
     statement: 'Qual cônica é representada por x²/9 − y²/4 = 1?',
     correctOptionId: 'c',
     explanation:
@@ -836,7 +836,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-taxa-media-2',
-    title: 'Questão 49 de 50',
+    title: 'Questão 49 de 60',
     statement:
         'Para f(x) = 3x + 2, qual é a taxa média de variação no intervalo [1, 5]?',
     correctOptionId: 'c',
@@ -854,7 +854,7 @@ const List<ExerciseData> mockFunctionsExercises = [
   ),
   ExerciseData(
     id: 'funcoes-taxa-media-3',
-    title: 'Questão 50 de 50',
+    title: 'Questão 50 de 60',
     statement:
         'Para f(x) = x² + 1, qual é a taxa média de variação no intervalo [2, 4]?',
     correctOptionId: 'd',
@@ -868,6 +868,187 @@ const List<ExerciseData> mockFunctionsExercises = [
       ExerciseOptionData(id: 'b', text: '5'),
       ExerciseOptionData(id: 'c', text: '8'),
       ExerciseOptionData(id: 'd', text: '6'),
+    ],
+  ),
+
+  ExerciseData(
+    id: 'funcoes-composicao-dominio-1',
+    title: 'Questão 51 de 60',
+    statement:
+        'Se f(x)=√x e g(x)=x−3, qual é o domínio de (f∘g)(x)?',
+    correctOptionId: 'b',
+    explanation:
+        'Temos (f∘g)(x)=√(x−3). Para a raiz ser real, x−3≥0, portanto x≥3.',
+    contentLessonId: 'funcoes-02-composicao-inversa',
+    skill: 'Determinar domínio de composição',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x > 0'),
+      ExerciseOptionData(id: 'b', text: 'x ≥ 3'),
+      ExerciseOptionData(id: 'c', text: 'x ≠ 3'),
+      ExerciseOptionData(id: 'd', text: 'x ∈ ℝ'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-inversa-restricao-1',
+    title: 'Questão 52 de 60',
+    statement:
+        'Para que f(x)=x² tenha inversa como função real, qual restrição de domínio é suficiente?',
+    correctOptionId: 'c',
+    explanation:
+        'Em todo ℝ, x² não é injetiva. Restringindo o domínio a x≥0, a função torna-se estritamente crescente e sua inversa é f⁻¹(x)=√x.',
+    contentLessonId: 'funcoes-02-composicao-inversa',
+    skill: 'Reconhecer restrição necessária para invertibilidade',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x ≠ 0'),
+      ExerciseOptionData(id: 'b', text: 'x ≤ 1'),
+      ExerciseOptionData(id: 'c', text: 'x ≥ 0'),
+      ExerciseOptionData(id: 'd', text: 'x ∈ ℝ'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-transformacao-completa-1',
+    title: 'Questão 53 de 60',
+    statement:
+        'Partindo de y=x², qual transformação produz y=−2(x−3)²+1?',
+    correctOptionId: 'a',
+    explanation:
+        'x−3 desloca o gráfico 3 unidades para a direita; o fator −2 reflete no eixo x e estica verticalmente por fator 2; +1 desloca 1 unidade para cima.',
+    contentLessonId: 'funcoes-03-transformacoes-graficos',
+    skill: 'Interpretar múltiplas transformações de gráfico',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'direita 3, reflexão, estiramento por 2, cima 1'),
+      ExerciseOptionData(id: 'b', text: 'esquerda 3, reflexão, compressão por 2, cima 1'),
+      ExerciseOptionData(id: 'c', text: 'direita 1, reflexão, estiramento por 3, cima 2'),
+      ExerciseOptionData(id: 'd', text: 'esquerda 3, sem reflexão, cima 1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-racional-assintota-obliqua-1',
+    title: 'Questão 54 de 60',
+    statement:
+        'Qual é a assíntota oblíqua de f(x)=(x²+1)/(x−1)?',
+    correctOptionId: 'd',
+    explanation:
+        'Fazendo a divisão polinomial, (x²+1)/(x−1)=x+1+2/(x−1). Como o último termo tende a zero quando |x| cresce, a assíntota oblíqua é y=x+1.',
+    contentLessonId: 'funcoes-05-racionais',
+    skill: 'Determinar assíntota oblíqua por divisão polinomial',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'y = x − 1'),
+      ExerciseOptionData(id: 'b', text: 'y = 1'),
+      ExerciseOptionData(id: 'c', text: 'x = 1'),
+      ExerciseOptionData(id: 'd', text: 'y = x + 1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-exponencial-tempo-duplicacao-1',
+    title: 'Questão 55 de 60',
+    statement:
+        'Uma quantidade segue Q(t)=80·2^(t/5). Qual é o tempo de duplicação?',
+    correctOptionId: 'b',
+    explanation:
+        'A quantidade duplica quando o expoente aumenta em 1. Como isso ocorre a cada incremento de 5 em t, o tempo de duplicação é 5 unidades de tempo.',
+    contentLessonId: 'funcoes-06-exponenciais',
+    skill: 'Interpretar tempo de duplicação em modelo exponencial',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2'),
+      ExerciseOptionData(id: 'b', text: '5'),
+      ExerciseOptionData(id: 'c', text: '10'),
+      ExerciseOptionData(id: 'd', text: '80'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-log-equacao-1',
+    title: 'Questão 56 de 60',
+    statement:
+        'Resolva:\nln(x−1)=ln(4)',
+    correctOptionId: 'c',
+    explanation:
+        'Como ln é injetiva em seu domínio, x−1=4. Assim, x=5, que satisfaz a restrição x>1.',
+    contentLessonId: 'funcoes-07-logaritmos',
+    skill: 'Resolver equação logarítmica simples',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 3'),
+      ExerciseOptionData(id: 'b', text: 'x = 4'),
+      ExerciseOptionData(id: 'c', text: 'x = 5'),
+      ExerciseOptionData(id: 'd', text: 'x = e⁴'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-trig-fase-1',
+    title: 'Questão 57 de 60',
+    statement:
+        'Para f(x)=sin(x−π/4), qual é o deslocamento horizontal?',
+    correctOptionId: 'a',
+    explanation:
+        'Na forma sin(x−h), o gráfico de sin(x) é deslocado h unidades para a direita. Portanto, o deslocamento é π/4 para a direita.',
+    contentLessonId: 'funcoes-09-trigonometricas-graficos',
+    skill: 'Interpretar deslocamento de fase',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'π/4 para a direita'),
+      ExerciseOptionData(id: 'b', text: 'π/4 para a esquerda'),
+      ExerciseOptionData(id: 'c', text: 'π/2 para a direita'),
+      ExerciseOptionData(id: 'd', text: 'Sem deslocamento'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-trig-equacao-cosseno-1',
+    title: 'Questão 58 de 60',
+    statement:
+        'Em 0≤x<2π, resolva:\ncos(x)=−√2/2',
+    correctOptionId: 'd',
+    explanation:
+        'O cosseno é −√2/2 nos quadrantes II e III, com ângulo de referência π/4. Logo, x=3π/4 ou 5π/4.',
+    contentLessonId: 'funcoes-10-identidades-equacoes-trig',
+    skill: 'Resolver equação trigonométrica com cosseno',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = π/4 ou 7π/4'),
+      ExerciseOptionData(id: 'b', text: 'x = π/4 ou 5π/4'),
+      ExerciseOptionData(id: 'c', text: 'x = 3π/4 ou 7π/4'),
+      ExerciseOptionData(id: 'd', text: 'x = 3π/4 ou 5π/4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-conica-elipse-1',
+    title: 'Questão 59 de 60',
+    statement:
+        'Para x²/25+y²/9=1, qual é o comprimento do semieixo maior?',
+    correctOptionId: 'b',
+    explanation:
+        'Na forma padrão da elipse, o maior denominador é a². Como a²=25, temos a=5, que é o comprimento do semieixo maior.',
+    contentLessonId: 'funcoes-13-conicas',
+    skill: 'Interpretar parâmetros de uma elipse',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '3'),
+      ExerciseOptionData(id: 'b', text: '5'),
+      ExerciseOptionData(id: 'c', text: '9'),
+      ExerciseOptionData(id: 'd', text: '25'),
+    ],
+  ),
+  ExerciseData(
+    id: 'funcoes-taxa-media-secante-1',
+    title: 'Questão 60 de 60',
+    statement:
+        'Geometricamente, o que representa a taxa média de variação de f entre x=a e x=b?',
+    correctOptionId: 'c',
+    explanation:
+        'A taxa média [f(b)−f(a)]/(b−a) é exatamente a inclinação da reta secante que passa pelos pontos (a,f(a)) e (b,f(b)).',
+    contentLessonId: 'funcoes-14-taxa-media-sintese',
+    skill: 'Interpretar geometricamente a taxa média de variação',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'A área sob o gráfico'),
+      ExerciseOptionData(id: 'b', text: 'A inclinação da tangente em a'),
+      ExerciseOptionData(id: 'c', text: 'A inclinação da reta secante'),
+      ExerciseOptionData(id: 'd', text: 'O valor máximo de f'),
     ],
   ),
 
