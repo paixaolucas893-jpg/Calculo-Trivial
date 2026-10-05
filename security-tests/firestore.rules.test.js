@@ -436,7 +436,7 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
     .firestore();
 
   const oversizedPerformance = Object.fromEntries(
-    Array.from({ length: 301 }, (_, index) => [
+    Array.from({ length: 1501 }, (_, index) => [
       `q-${index}`,
       {
         attempts: 1,
@@ -547,7 +547,7 @@ test('cliente consegue sincronizar janela recente de prática', async () => {
       doc(db, 'users', 'user-a', 'progress', 'current'),
       {
         recentPracticeQuestionIds: {
-          'funcoes': Array.from({ length: 40 }, (_, index) => `q-${index}`),
+          'funcoes': Array.from({ length: 80 }, (_, index) => `q-${index}`),
         },
         updatedAt: serverTimestamp(),
       },
@@ -556,7 +556,7 @@ test('cliente consegue sincronizar janela recente de prática', async () => {
   );
 });
 
-test('Firestore limita a janela recente de prática a quarenta questões por módulo', async () => {
+test('Firestore limita a janela recente de prática a oitenta questões por módulo', async () => {
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -566,7 +566,7 @@ test('Firestore limita a janela recente de prática a quarenta questões por mó
       doc(db, 'users', 'user-a', 'progress', 'current'),
       validProgress({
         recentPracticeQuestionIds: {
-          'funcoes': Array.from({ length: 41 }, (_, index) => `q-${index}`),
+          'funcoes': Array.from({ length: 81 }, (_, index) => `q-${index}`),
         },
       }),
     ),
