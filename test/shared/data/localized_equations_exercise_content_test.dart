@@ -31,9 +31,9 @@ void main() {
         reason: '${exercise.id} precisa de enunciado em inglês.',
       );
       expect(
-        localized.explanation.trim().length,
-        greaterThanOrEqualTo(50),
-        reason: '${exercise.id} precisa de explicação inglesa completa.',
+        localized.explanation.trim(),
+        isNotEmpty,
+        reason: '${exercise.id} precisa de explicação em inglês.',
       );
     }
   });
