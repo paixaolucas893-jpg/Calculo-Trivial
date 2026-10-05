@@ -200,8 +200,27 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '10',
+        title: 'Additional example of equivalence',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Transformations that preserve the solution set',
+            problem: 'Solve 3(x−2)+4=2x+7, justifying each transformation.',
+            steps: [
+              'Distribute: 3x−6+4=2x+7.',
+              'Combine terms: 3x−2=2x+7.',
+              'Subtract 2x from both sides: x−2=7.',
+              'Add 2 to both sides.',
+            ],
+            result: 'x=9.',
+            interpretation:
+                'Each step gives an equivalent equation because the same valid operation is applied to both sides.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '11',
         title: 'References and synthesis',
         blocks: [
           ConceptBlockData(
