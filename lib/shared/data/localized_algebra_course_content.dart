@@ -2730,8 +2730,28 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '11',
+        title: 'Additional example of strategic representation',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Choose the form that reveals what matters',
+            problem:
+                'Rewrite x²−5x+6 in the form most useful for identifying its zeros.',
+            steps: [
+              'Find two numbers whose product is 6 and whose sum is −5.',
+              'The numbers are −2 and −3.',
+              'Factor the trinomial.',
+              'Read the zeros directly from the factors.',
+            ],
+            result: 'x²−5x+6=(x−2)(x−3), with zeros x=2 and x=3.',
+            interpretation:
+                'Expanded form highlights coefficients; factored form highlights zeros and multiplicative structure.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '12',
         title: 'References and further study',
         blocks: [
           ConceptBlockData(
