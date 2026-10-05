@@ -5,8 +5,8 @@ import 'package:calcquest/shared/data/localized_functions_exercise_content.dart'
 import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 
 void main() {
-  test('todas as cinquenta questões de Funções possuem versão em inglês', () {
-    expect(mockFunctionsExercises, hasLength(50));
+  test('todas as sessenta questões de Funções possuem versão em inglês', () {
+    expect(mockFunctionsExercises, hasLength(60));
 
     for (var index = 0; index < mockFunctionsExercises.length; index++) {
       final exercise = mockFunctionsExercises[index];
@@ -17,7 +17,7 @@ void main() {
 
       expect(
         localized.title,
-        'Question ${index + 1} of 50',
+        'Question ${index + 1} of 60',
         reason: '${exercise.id} não possui título inglês sincronizado.',
       );
       expect(
