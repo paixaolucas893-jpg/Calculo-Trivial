@@ -190,8 +190,27 @@ const List<CourseLessonData> equationsCourseLessons = [
           ),
         ],
       ),
+
       LessonSectionData(
         number: '10',
+        title: 'Exemplo adicional de equivalência',
+        blocks: [
+          WorkedExampleBlockData(
+            title: 'Transformações que preservam o conjunto solução',
+            problem: 'Resolva 3(x−2)+4=2x+7 justificando cada transformação.',
+            steps: [
+              'Distribua: 3x−6+4=2x+7.',
+              'Reduza: 3x−2=2x+7.',
+              'Subtraia 2x dos dois lados: x−2=7.',
+              'Some 2 aos dois lados.',
+            ],
+            result: 'x=9.',
+            interpretation:
+                'Cada etapa produz uma equação equivalente porque a mesma operação válida é aplicada aos dois membros.',
+          ),
+        ],
+      ),      LessonSectionData(
+        number: '11',
         title: 'Referências e síntese',
         blocks: [
           ConceptBlockData(
