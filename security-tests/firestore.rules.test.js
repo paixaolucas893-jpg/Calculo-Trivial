@@ -52,6 +52,7 @@ function validProgress(overrides = {}) {
     dailyActivityDate: null,
 
     lastQuestionSessionIds: {},
+    recentPracticeQuestionIds: {},
     lastFinalTestSessionIds: {},
     questionPerformance: {},
     lastPersonalizedReviewSessionIds: [],
@@ -529,6 +530,44 @@ test('Firestore limita payload do desafio diário', async () => {
       doc(db, 'users', 'user-a', 'progress', 'current'),
       validProgress({
         dailyChallengeBestCorrect: 6,
+      }),
+    ),
+  );
+});
+
+test('cliente consegue sincronizar janela recente de prática', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  await assertSucceeds(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      {
+        recentPracticeQuestionIds: {
+          'funcoes': Array.from({ length: 40 }, (_, index) => `q-${index}`),
+        },
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+});
+
+test('Firestore limita a janela recente de prática a quarenta questões por módulo', async () => {
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        recentPracticeQuestionIds: {
+          'funcoes': Array.from({ length: 41 }, (_, index) => `q-${index}`),
+        },
       }),
     ),
   );
