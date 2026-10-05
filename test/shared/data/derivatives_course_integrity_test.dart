@@ -66,13 +66,13 @@ void main() {
       }
     });
 
-    test('as vinte atividades cobrem todas as aulas', () {
+    test('as cinquenta atividades cobrem todas as aulas', () {
       final lessonIds = derivativesCourseLessons
           .map((lesson) => lesson.id)
           .toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockDerivativesExercises, hasLength(20));
+      expect(mockDerivativesExercises, hasLength(50));
 
       for (final exercise in mockDerivativesExercises) {
         expect(
