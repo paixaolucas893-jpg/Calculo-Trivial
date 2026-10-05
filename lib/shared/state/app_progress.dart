@@ -7,7 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:calcquest/shared/domain/exercise_question_selector.dart';
-import 'package:calcquest/shared/domain/final_test_question_selector.dart';
+import 'package:calcquest/shared/domain/question_metadata.dart';
+import 'package:calcquest/shared/domain/question_selection_engine.dart';
 
 class AppProgress {
   static const String algebraFundamentalId = 'algebra-fundamental';
@@ -694,10 +695,10 @@ class AppProgress {
     final previousFinalTestIds =
         _lastFinalTestSessionIds[lessonId] ?? <String>{};
 
-    final selectedQuestionIds = FinalTestQuestionSelector.select(
+    final selectedQuestionIds = QuestionSelectionEngine.selectQuestionIds(
       availableQuestionIds: availableQuestionIds,
-      practiceQuestionIds: practiceQuestionIds,
-      previousFinalTestIds: previousFinalTestIds,
+      primaryAvoidIds: practiceQuestionIds,
+      secondaryAvoidIds: previousFinalTestIds,
       questionCount: questionCount,
     );
 
@@ -709,6 +710,37 @@ class AppProgress {
     _queueProgressSave();
 
     return selectedQuestionIds;
+  }
+
+  static List<QuestionCandidate> selectFinalTestCandidates({
+    required String lessonId,
+    required Iterable<QuestionCandidate> candidates,
+    Iterable<String> practiceQuestionIds = const <String>[],
+    int questionCount = 10,
+  }) {
+    _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
+
+    final previousFinalTestIds =
+        _lastFinalTestSessionIds[lessonId] ?? <String>{};
+
+    final selectedCandidates = QuestionSelectionEngine.selectCandidates(
+      candidates: candidates,
+      moduleId: lessonId,
+      primaryAvoidIds: practiceQuestionIds,
+      secondaryAvoidIds: previousFinalTestIds,
+      questionCount: questionCount,
+    );
+
+    if (selectedCandidates.isEmpty) {
+      return <QuestionCandidate>[];
+    }
+
+    _lastFinalTestSessionIds[lessonId] = selectedCandidates
+        .map((candidate) => candidate.questionId)
+        .toSet();
+    _queueProgressSave();
+
+    return selectedCandidates;
   }
 
   static void recordExerciseAnswer({required bool isCorrect}) {
