@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
 import 'package:calcquest/shared/domain/exercise_question_selector.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
@@ -44,6 +45,13 @@ class AppProgress {
   static const String _questionPerformanceKey = 'question_performance_v1';
   static const String _lastPersonalizedReviewSessionKey =
       'last_personalized_review_session_v1';
+  static const String _dailyChallengeDateKey = 'daily_challenge_date_v1';
+  static const String _dailyChallengeCompletedDateKey =
+      'daily_challenge_completed_date_v1';
+  static const String _dailyChallengeQuestionIdsKey =
+      'daily_challenge_question_ids_v1';
+  static const String _dailyChallengeBestCorrectKey =
+      'daily_challenge_best_correct_v1';
 
   static const List<String> _lessonIds = <String>[
     algebraFundamentalId,
@@ -68,9 +76,12 @@ class AppProgress {
   static int correctAnswerAttempts = 0;
   static int studyStreak = 0;
   static int dailyAnsweredQuestions = 0;
+  static int dailyChallengeBestCorrect = 0;
 
   static String? lastStudyDate;
   static String? dailyActivityDate;
+  static String? dailyChallengeDate;
+  static String? dailyChallengeCompletedDate;
   static String? _activeUserId;
 
   static final Set<String> _completedLessonIds = <String>{};
@@ -82,6 +93,7 @@ class AppProgress {
   static final Map<String, QuestionPerformance> _questionPerformance =
       <String, QuestionPerformance>{};
   static final Set<String> _lastPersonalizedReviewSessionIds = <String>{};
+  static final Set<String> _dailyChallengeQuestionIds = <String>{};
 
   static Future<void> _saveQueue = Future<void>.value();
 
@@ -99,6 +111,19 @@ class AppProgress {
   static int get personalizedReviewQuestionCount => _questionPerformance.values
       .where((performance) => performance.needsReview)
       .length;
+
+  static Set<String> get dailyChallengeQuestionIds =>
+      Set<String>.unmodifiable(_dailyChallengeQuestionIds);
+
+  static bool get dailyChallengeCompletedToday =>
+      dailyChallengeCompletedDate == _dateKey(DateTime.now());
+
+  static double get dailyChallengeBestAccuracy {
+    if (_dailyChallengeQuestionIds.isEmpty) return 0;
+    return (dailyChallengeBestCorrect / _dailyChallengeQuestionIds.length)
+        .clamp(0.0, 1.0)
+        .toDouble();
+  }
 
   static int get incorrectAnswerAttempts =>
       max(0, totalAnswerAttempts - correctAnswerAttempts);
@@ -159,6 +184,7 @@ class AppProgress {
     _lastFinalTestSessionIds.clear();
     _questionPerformance.clear();
     _lastPersonalizedReviewSessionIds.clear();
+    _dailyChallengeQuestionIds.clear();
 
     algebraFundamentalCompleted = false;
     equationsAndInequationsCompleted = false;
@@ -174,9 +200,12 @@ class AppProgress {
     correctAnswerAttempts = 0;
     studyStreak = 0;
     dailyAnsweredQuestions = 0;
+    dailyChallengeBestCorrect = 0;
 
     lastStudyDate = null;
     dailyActivityDate = null;
+    dailyChallengeDate = null;
+    dailyChallengeCompletedDate = null;
   }
 
   static Future<void> loadProgress() async {
@@ -321,6 +350,25 @@ class AppProgress {
       _lastPersonalizedReviewSessionIds.addAll(previousReviewIds);
     }
 
+    dailyChallengeDate = preferences.getString(
+      _scopedKey(_dailyChallengeDateKey, userId),
+    );
+    dailyChallengeCompletedDate = preferences.getString(
+      _scopedKey(_dailyChallengeCompletedDateKey, userId),
+    );
+    dailyChallengeBestCorrect =
+        preferences.getInt(
+          _scopedKey(_dailyChallengeBestCorrectKey, userId),
+        ) ??
+        0;
+
+    final savedChallengeIds = preferences.getStringList(
+      _scopedKey(_dailyChallengeQuestionIdsKey, userId),
+    );
+    if (savedChallengeIds != null) {
+      _dailyChallengeQuestionIds.addAll(savedChallengeIds);
+    }
+
     for (final lessonId in _lessonIds) {
       final questionIds = preferences.getStringList(
         _scopedKey('${_lastQuestionSessionKey}_$lessonId', userId),
@@ -403,6 +451,7 @@ class AppProgress {
     _mergeFinalTestSessions(data);
     _mergeQuestionPerformance(data);
     _mergePersonalizedReviewSession(data);
+    _mergeDailyChallenge(data);
   }
 
   static void _mergeQuestionSessions(Map<String, dynamic> data) {
@@ -478,6 +527,50 @@ class AppProgress {
     }
   }
 
+
+  static void _mergeDailyChallenge(Map<String, dynamic> data) {
+    final remoteDate = data['dailyChallengeDate'];
+    final remoteCompletedDate = data['dailyChallengeCompletedDate'];
+    final remoteBestValue = data['dailyChallengeBestCorrect'];
+    final remoteIdsValue = data['dailyChallengeQuestionIds'];
+
+    if (remoteDate is String && remoteDate.isNotEmpty) {
+      if (dailyChallengeDate == null ||
+          remoteDate.compareTo(dailyChallengeDate!) > 0) {
+        dailyChallengeDate = remoteDate;
+        _dailyChallengeQuestionIds
+          ..clear()
+          ..addAll(
+            remoteIdsValue is Iterable
+                ? remoteIdsValue.whereType<String>()
+                : const <String>[],
+          );
+        dailyChallengeBestCorrect =
+            remoteBestValue is num ? remoteBestValue.toInt() : 0;
+      } else if (remoteDate == dailyChallengeDate) {
+        if (_dailyChallengeQuestionIds.isEmpty &&
+            remoteIdsValue is Iterable) {
+          _dailyChallengeQuestionIds.addAll(
+            remoteIdsValue.whereType<String>(),
+          );
+        }
+        if (remoteBestValue is num) {
+          dailyChallengeBestCorrect = max(
+            dailyChallengeBestCorrect,
+            remoteBestValue.toInt(),
+          );
+        }
+      }
+    }
+
+    if (remoteCompletedDate is String &&
+        remoteCompletedDate.isNotEmpty &&
+        (dailyChallengeCompletedDate == null ||
+            remoteCompletedDate.compareTo(dailyChallengeCompletedDate!) > 0)) {
+      dailyChallengeCompletedDate = remoteCompletedDate;
+    }
+  }
+
   static void _mergeStudyStreak(Map<String, dynamic> data) {
     final remoteLastStudyDate = data['lastStudyDate'];
 
@@ -533,6 +626,12 @@ class AppProgress {
     if (dailyActivityDate != today) {
       dailyActivityDate = today;
       dailyAnsweredQuestions = 0;
+    }
+
+    if (dailyChallengeDate != today) {
+      dailyChallengeDate = null;
+      dailyChallengeBestCorrect = 0;
+      _dailyChallengeQuestionIds.clear();
     }
 
     if (correctAnswerAttempts > totalAnswerAttempts) {
@@ -680,6 +779,37 @@ class AppProgress {
       _lastPersonalizedReviewSessionIds.toList(),
     );
 
+    if (dailyChallengeDate != null) {
+      await preferences.setString(
+        _scopedKey(_dailyChallengeDateKey, _activeUserId),
+        dailyChallengeDate!,
+      );
+    } else {
+      await preferences.remove(
+        _scopedKey(_dailyChallengeDateKey, _activeUserId),
+      );
+    }
+
+    if (dailyChallengeCompletedDate != null) {
+      await preferences.setString(
+        _scopedKey(_dailyChallengeCompletedDateKey, _activeUserId),
+        dailyChallengeCompletedDate!,
+      );
+    } else {
+      await preferences.remove(
+        _scopedKey(_dailyChallengeCompletedDateKey, _activeUserId),
+      );
+    }
+
+    await preferences.setInt(
+      _scopedKey(_dailyChallengeBestCorrectKey, _activeUserId),
+      dailyChallengeBestCorrect,
+    );
+    await preferences.setStringList(
+      _scopedKey(_dailyChallengeQuestionIdsKey, _activeUserId),
+      _dailyChallengeQuestionIds.toList(),
+    );
+
     for (final lessonId in _lessonIds) {
       final questionIds =
           _lastQuestionSessionIds[lessonId]?.toList() ?? <String>[];
@@ -743,6 +873,10 @@ class AppProgress {
       },
       'lastPersonalizedReviewSessionIds':
           _lastPersonalizedReviewSessionIds.toList(),
+      'dailyChallengeDate': dailyChallengeDate,
+      'dailyChallengeCompletedDate': dailyChallengeCompletedDate,
+      'dailyChallengeQuestionIds': _dailyChallengeQuestionIds.toList(),
+      'dailyChallengeBestCorrect': dailyChallengeBestCorrect,
       'updatedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
@@ -873,6 +1007,77 @@ class AppProgress {
     return selected;
   }
 
+
+  static List<QuestionCandidate> selectDailyChallengeCandidates({
+    required Iterable<QuestionCandidate> candidates,
+    int questionCount = 5,
+    DateTime? date,
+  }) {
+    _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
+
+    final challengeDate = (date ?? DateTime.now()).toLocal();
+    final today = _dateKey(challengeDate);
+    final candidatesById = <String, QuestionCandidate>{
+      for (final candidate in candidates)
+        candidate.questionId: candidate,
+    };
+
+    if (dailyChallengeDate == today &&
+        _dailyChallengeQuestionIds.isNotEmpty) {
+      final restored = _dailyChallengeQuestionIds
+          .map((questionId) => candidatesById[questionId])
+          .whereType<QuestionCandidate>()
+          .toList(growable: false);
+
+      if (restored.isNotEmpty) {
+        return restored;
+      }
+    }
+
+    final selected = DailyChallengeEngine.select(
+      candidates: candidates,
+      completedContentLessonIds: _completedContentLessonIds,
+      date: challengeDate,
+      questionCount: questionCount,
+    );
+
+    dailyChallengeDate = today;
+    dailyChallengeBestCorrect = 0;
+    _dailyChallengeQuestionIds
+      ..clear()
+      ..addAll(selected.map((candidate) => candidate.questionId));
+
+    _queueProgressSave();
+
+    return selected;
+  }
+
+  static void recordDailyChallengeResult({
+    required int correctAnswers,
+    required int totalQuestions,
+    DateTime? date,
+  }) {
+    if (totalQuestions <= 0 ||
+        correctAnswers < 0 ||
+        correctAnswers > totalQuestions) {
+      return;
+    }
+
+    final today = _dateKey((date ?? DateTime.now()).toLocal());
+
+    if (dailyChallengeDate != today) {
+      return;
+    }
+
+    dailyChallengeBestCorrect = max(
+      dailyChallengeBestCorrect,
+      correctAnswers,
+    );
+    dailyChallengeCompletedDate = today;
+    revision.value++;
+    _queueProgressSave();
+  }
+
   static void recordExerciseAnswer({
     required String questionId,
     required bool isCorrect,
@@ -990,6 +1195,10 @@ class AppProgress {
       'lastFinalTestSessionIds': <String, List<String>>{},
       'questionPerformance': <String, Map<String, dynamic>>{},
       'lastPersonalizedReviewSessionIds': <String>[],
+      'dailyChallengeDate': null,
+      'dailyChallengeCompletedDate': null,
+      'dailyChallengeQuestionIds': <String>[],
+      'dailyChallengeBestCorrect': 0,
       'updatedAt': FieldValue.serverTimestamp(),
     });
   }
@@ -1024,6 +1233,10 @@ class AppProgress {
       _dailyActivityDateKey,
       _questionPerformanceKey,
       _lastPersonalizedReviewSessionKey,
+      _dailyChallengeDateKey,
+      _dailyChallengeCompletedDateKey,
+      _dailyChallengeQuestionIdsKey,
+      _dailyChallengeBestCorrectKey,
     ];
 
     for (final key in scopedKeys) {
