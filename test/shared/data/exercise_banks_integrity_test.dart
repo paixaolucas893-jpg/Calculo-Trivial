@@ -22,7 +22,7 @@ const exerciseBanks = [
   (
     name: 'Continuidade',
     questions: mockContinuityExercises,
-    expectedCount: 20,
+    expectedCount: 30,
   ),
   (name: 'Derivadas', questions: mockDerivativesExercises, expectedCount: 20),
 ];

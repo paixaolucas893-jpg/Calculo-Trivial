@@ -244,4 +244,135 @@ const Map<String, _ExerciseTranslation> _englishContinuityExercises = {
       'd': 'Only at x = 1',
     },
   ),
+  'continuidade-condicoes-2': _ExerciseTranslation(
+    statement:
+        'Suppose lim x → 3 f(x) = 5, but f(3) = 2. What can we conclude about continuity at x = 3?',
+    explanation:
+        'For continuity at x = 3, the limit must exist and equal the function value. Here the limit is 5 while f(3) is 2, so f is not continuous at x = 3.',
+    skill: 'Apply equality between limit and function value',
+    options: {
+      'a': 'f is continuous because the limit exists',
+      'b': 'f is continuous because f(3) is defined',
+      'c': 'f is not continuous because the limit differs from f(3)',
+      'd': 'Nothing can be concluded',
+    },
+  ),
+  'continuidade-condicoes-3': _ExerciseTranslation(
+    statement:
+        'If f(a) exists but the one-sided limits at a are different, can f be continuous at a?',
+    explanation:
+        'No. Different one-sided limits mean the two-sided limit at a does not exist. Without the two-sided limit, one of the required conditions for continuity fails.',
+    skill: 'Relate one-sided limits to continuity',
+    options: {
+      'a': 'Yes, whenever f(a) exists',
+      'b': 'No, because the two-sided limit does not exist',
+      'c': 'Yes, if f(a) = 0',
+      'd': 'Yes, if the right-hand limit exists',
+    },
+  ),
+  'continuidade-partes-2': _ExerciseTranslation(
+    statement:
+        'Let f(x) = x² for x < 2 and f(x) = 3x − 2 for x ≥ 2. Is f continuous at x = 2?',
+    explanation:
+        'From the left, x² tends to 4. From the right, 3x − 2 tends to 4. Because the second rule includes x = 2, f(2) = 4. All three values agree, so f is continuous at x = 2.',
+    skill: 'Check continuity at a piecewise junction',
+    options: {
+      'a': 'Yes, because both one-sided limits and f(2) equal 4',
+      'b': 'No, because f(2) = 2',
+      'c': 'No, because the left-hand limit is 2',
+      'd': 'No, because piecewise functions are never continuous',
+    },
+  ),
+  'continuidade-partes-3': _ExerciseTranslation(
+    statement:
+        'Let f(x) = x + 4 for x < 1 and f(x) = 2x + 1 for x ≥ 1. What behavior occurs at x = 1?',
+    explanation:
+        'The left-hand limit is 1 + 4 = 5. The right-hand limit is 2·1 + 1 = 3. Since the one-sided limits are finite but different, there is a jump discontinuity.',
+    skill: 'Classify a jump in a piecewise function',
+    options: {
+      'a': 'Continuity',
+      'b': 'Removable discontinuity',
+      'c': 'Infinite discontinuity',
+      'd': 'Jump discontinuity',
+    },
+  ),
+  'continuidade-tvi-2': _ExerciseTranslation(
+    statement:
+        'If f is continuous on [0, 4], with f(0) = 2 and f(4) = 10, what does the Intermediate Value Theorem guarantee?',
+    explanation:
+        'Because f is continuous on the closed interval and 7 lies between f(0)=2 and f(4)=10, the IVT guarantees at least one c in (0,4) such that f(c)=7.',
+    skill: 'Apply the Intermediate Value Theorem to an intermediate value',
+    options: {
+      'a': 'f(c) = 7 for every c in (0,4)',
+      'b': 'There is exactly one c such that f(c) = 7',
+      'c': 'There is at least one c in (0,4) such that f(c) = 7',
+      'd': 'f(2) = 7 necessarily',
+    },
+  ),
+  'continuidade-tvi-3': _ExerciseTranslation(
+    statement:
+        'A function continuous on [1, 3] satisfies f(1) = 5 and f(3) = 9. Does the IVT guarantee a c in (1,3) with f(c) = 12?',
+    explanation:
+        'No. The IVT guarantees values between 5 and 9 because those are the endpoint function values. Since 12 is not between 5 and 9, the theorem gives no such guarantee.',
+    skill: 'Recognize the scope of the Intermediate Value Theorem',
+    options: {
+      'a': 'No, because 12 is not between 5 and 9',
+      'b': 'Yes, because f is continuous',
+      'c': 'Yes, and c = 2',
+      'd': 'Yes, provided f is increasing',
+    },
+  ),
+  'continuidade-tvi-raiz-1': _ExerciseTranslation(
+    statement:
+        'If f is continuous on [−2, 1], f(−2) < 0 and f(1) > 0, what does the IVT guarantee?',
+    explanation:
+        'Zero lies between a negative value and a positive value. Since f is continuous on the interval, the IVT guarantees at least one c in (−2,1) such that f(c)=0.',
+    skill: 'Use the IVT to guarantee existence of a root',
+    options: {
+      'a': 'f has exactly one root',
+      'b': 'There is at least one root in (−2,1)',
+      'c': 'The root is necessarily c = 0',
+      'd': 'f has no roots',
+    },
+  ),
+  'continuidade-sintese-roteiro-1': _ExerciseTranslation(
+    statement:
+        'What is the most appropriate first check when analyzing continuity of a function at x = a?',
+    explanation:
+        'The procedure starts with the domain and the function value at the point: first determine whether f(a) is defined. Then inspect the two-sided limit and finally compare the limit with f(a).',
+    skill: 'Organize a continuity-analysis procedure',
+    options: {
+      'a': 'Compute the derivative at a',
+      'b': 'Look for a horizontal asymptote',
+      'c': 'Apply the IVT immediately',
+      'd': 'Check whether f(a) is defined',
+    },
+  ),
+  'continuidade-sintese-classificacao-1': _ExerciseTranslation(
+    statement:
+        'At x = a, the two-sided limit exists and equals L, but f(a) does not exist. What is the most likely classification?',
+    explanation:
+        'When the two-sided limit exists and is finite but the function value is missing, the discontinuity is usually removable: defining f(a)=L restores continuity.',
+    skill: 'Classify a discontinuity from limit and function value',
+    options: {
+      'a': 'Jump discontinuity',
+      'b': 'Infinite discontinuity',
+      'c': 'Removable discontinuity',
+      'd': 'Automatic continuity',
+    },
+  ),
+  'continuidade-sintese-completa-1': _ExerciseTranslation(
+    statement:
+        'A rational function has denominator x(x − 2). On which intervals can it be continuous, assuming no factors cancel?',
+    explanation:
+        'Possible breaks occur where the denominator is zero: x=0 and x=2. A rational function is continuous on each interval of its domain, so the maximal intervals are (−∞,0), (0,2), and (2,+∞).',
+    skill: 'Combine domain and intervals of continuity',
+    options: {
+      'a': '(−∞,0), (0,2), and (2,+∞)',
+      'b': '(−∞,2) and (2,+∞)',
+      'c': 'All real numbers',
+      'd': '[0,2]',
+    },
+  ),
+
 };

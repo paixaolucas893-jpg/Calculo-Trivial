@@ -65,13 +65,13 @@ void main() {
       }
     });
 
-    test('as vinte atividades cobrem todas as aulas', () {
+    test('as trinta atividades cobrem todas as aulas', () {
       final lessonIds = continuityCourseLessons
           .map((lesson) => lesson.id)
           .toSet();
       final coveredLessonIds = <String>{};
 
-      expect(mockContinuityExercises, hasLength(20));
+      expect(mockContinuityExercises, hasLength(30));
 
       for (final exercise in mockContinuityExercises) {
         expect(
