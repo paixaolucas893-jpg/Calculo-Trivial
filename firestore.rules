@@ -32,6 +32,16 @@ service cloud.firestore {
         ]);
     }
 
+    function validQuestionPerformance(values) {
+      return values is map
+        && values.size() <= 300;
+    }
+
+    function validReviewSessionIds(values) {
+      return values is list
+        && values.size() <= 10;
+    }
+
     function validContentLessonIds(values) {
       return values is list
         && values.size() <= 63
@@ -135,6 +145,8 @@ service cloud.firestore {
           'dailyActivityDate',
           'lastQuestionSessionIds',
           'lastFinalTestSessionIds',
+          'questionPerformance',
+          'lastPersonalizedReviewSessionIds',
           'updatedAt'
         ])
         && data.keys().hasAll([
@@ -157,6 +169,8 @@ service cloud.firestore {
           'dailyQuestionGoal',
           'lastQuestionSessionIds',
           'lastFinalTestSessionIds',
+          'questionPerformance',
+          'lastPersonalizedReviewSessionIds',
           'updatedAt'
         ])
         && validLessonIds(data.completedLessonIds)
@@ -193,6 +207,8 @@ service cloud.firestore {
         && validDateKey(data.dailyActivityDate)
         && validQuestionSessions(data.lastQuestionSessionIds)
         && validQuestionSessions(data.lastFinalTestSessionIds)
+        && validQuestionPerformance(data.questionPerformance)
+        && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
         && data.updatedAt is timestamp
         && data.updatedAt == request.time;
     }
@@ -219,7 +235,9 @@ service cloud.firestore {
         && data.dailyAnsweredQuestions == 0
         && data.dailyQuestionGoal == 5
         && data.lastQuestionSessionIds == {}
-        && data.lastFinalTestSessionIds == {};
+        && data.lastFinalTestSessionIds == {}
+        && data.questionPerformance == {}
+        && data.lastPersonalizedReviewSessionIds == [];
     }
 
     function canonicalProgressUnchanged() {
@@ -282,7 +300,9 @@ service cloud.firestore {
         && data.dailyAnsweredQuestions == 0
         && data.dailyQuestionGoal == 5
         && data.lastQuestionSessionIds == {}
-        && data.lastFinalTestSessionIds == {};
+        && data.lastFinalTestSessionIds == {}
+        && data.questionPerformance == {}
+        && data.lastPersonalizedReviewSessionIds == [];
     }
 
     match /users/{userId} {
