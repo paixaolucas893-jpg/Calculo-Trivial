@@ -375,4 +375,124 @@ const Map<String, _ExerciseTranslation> _englishContinuityExercises = {
     },
   ),
 
+  'continuidade-significado-vizinhos-1': _ExerciseTranslation(
+    statement: 'Can a function be continuous at x=a even if its graph has a vertical tangent there?',
+    explanation: 'Yes. Continuity only requires the function value to exist, the limit to exist, and the two to be equal. A finite derivative is not one of the continuity conditions.',
+    skill: 'Distinguish continuity from differentiability',
+    options: {
+      'a': 'No, never',
+      'b': 'Yes, continuity does not require a finite derivative',
+      'c': 'Only if f(a)=0',
+      'd': 'Only for polynomials',
+    },
+  ),
+  'continuidade-dominio-log-1': _ExerciseTranslation(
+    statement: 'On which interval is f(x)=ln(x−2) continuous?',
+    explanation: 'The natural logarithm is continuous for positive arguments. We need x−2>0, so x>2. Therefore f is continuous on (2,+∞).',
+    skill: 'Determine the continuity interval of a logarithm',
+  ),
+  'continuidade-dominio-raiz-racional-1': _ExerciseTranslation(
+    statement: 'Determine the continuity domain of f(x)=√(x−1)/(x−3).',
+    explanation: 'The square root requires x≥1 and the denominator requires x≠3. Therefore the function is continuous on [1,3)∪(3,+∞).',
+    skill: 'Combine domain restrictions for continuity',
+  ),
+  'continuidade-removivel-parametro-2': _ExerciseTranslation(
+    statement: 'Define f(x)=(x²−4)/(x−2) for x≠2 and f(2)=k. Which k makes f continuous?',
+    explanation: 'For x≠2, the expression simplifies to x+2. The limit as x→2 is 4, so choose k=4.',
+    skill: 'Remove a discontinuity by choosing a parameter',
+  ),
+  'continuidade-partes-parametro-2': _ExerciseTranslation(
+    statement: 'If f(x)=2x+k for x<1 and f(x)=x²+2 for x≥1, which k makes f continuous at 1?',
+    explanation: 'The right-hand value and f(1) equal 3. The left-hand limit is 2+k. Setting 2+k=3 gives k=1.',
+    skill: 'Adjust a parameter in a piecewise function',
+  ),
+  'continuidade-salto-parametro-1': _ExerciseTranslation(
+    statement: 'A piecewise function has left-hand limit 2 and right-hand limit k at x=0. Which k removes the jump?',
+    explanation: 'To remove the jump, the one-sided limits must match. Therefore k=2.',
+    skill: 'Remove a jump by matching one-sided limits',
+  ),
+  'continuidade-tvi-polinomio-1': _ExerciseTranslation(
+    statement: 'Let p(x)=x³−x−1. If p(1)<0 and p(2)>0, what can we conclude?',
+    explanation: 'Polynomials are continuous on all real numbers. Since p changes sign between 1 and 2, the IVT guarantees at least one root in (1,2).',
+    skill: 'Apply the IVT to a polynomial with a sign change',
+    options: {
+      'a': 'The root is exactly 1.5',
+      'b': 'There are no roots',
+      'c': 'There are exactly three roots',
+      'd': 'There is at least one root in (1,2)',
+    },
+  ),
+  'continuidade-tvi-unicidade-1': _ExerciseTranslation(
+    statement: 'Does the Intermediate Value Theorem by itself guarantee uniqueness of a root?',
+    explanation: 'No. The IVT guarantees existence of at least one point attaining an intermediate value, but it does not guarantee uniqueness.',
+    skill: 'Distinguish existence from uniqueness in the IVT',
+    options: {
+      'a': 'No',
+      'b': 'Yes, always',
+      'c': 'Yes, if the interval is closed',
+      'd': 'Yes, if there is a sign change',
+    },
+  ),
+  'continuidade-infinita-racional-2': _ExerciseTranslation(
+    statement: 'What type of discontinuity does f(x)=1/(x−4)² have at x=4?',
+    explanation: 'As x approaches 4 from either side, the positive denominator tends to zero and f(x) grows without bound. This is an infinite discontinuity with a vertical asymptote.',
+    skill: 'Classify a two-sided infinite discontinuity',
+    options: {'a': 'Removable', 'b': 'Jump', 'c': 'Infinite', 'd': 'None'},
+  ),
+  'continuidade-oscilatoria-1': _ExerciseTranslation(
+    statement: 'Does f(x)=sin(1/x), for x≠0, have a limit as x→0?',
+    explanation: 'No. As x approaches zero, 1/x grows in magnitude and the sine oscillates indefinitely between −1 and 1 without approaching a single value.',
+    skill: 'Recognize an oscillatory discontinuity',
+    options: {'a': 'Yes, 0', 'b': 'Yes, 1', 'c': 'Yes, −1', 'd': 'Does not exist'},
+  ),
+  'continuidade-composicao-2': _ExerciseTranslation(
+    statement: 'If g is continuous at a and f is continuous at g(a), which limit expresses continuity of the composition?',
+    explanation: 'The composition f∘g is continuous at a and satisfies lim x→a f(g(x))=f(g(a)).',
+    skill: 'Use continuity of a composition',
+  ),
+  'continuidade-sintese-endpoint-1': _ExerciseTranslation(
+    statement: 'For continuity at the right endpoint b of [a,b], which one-sided condition is used?',
+    explanation: 'At the right endpoint, we approach from values less than b inside the domain. Therefore the left-hand limit must equal f(b).',
+    skill: 'Analyze continuity at a right endpoint',
+    options: {
+      'a': 'Only the right-hand limit',
+      'b': 'A two-sided limit is mandatory',
+      'c': 'The left-hand limit equals f(b)',
+      'd': 'No limit is needed',
+    },
+  ),
+  'continuidade-sintese-diferenciabilidade-1': _ExerciseTranslation(
+    statement: 'Which statement is true?',
+    explanation: 'Differentiability implies continuity. The converse is false, as shown by |x| at x=0.',
+    skill: 'Relate continuity and differentiability',
+    options: {
+      'a': 'Differentiability implies continuity',
+      'b': 'Continuity implies differentiability',
+      'c': 'The properties are equivalent',
+      'd': 'Neither implies the other',
+    },
+  ),
+  'continuidade-sintese-racional-furo-1': _ExerciseTranslation(
+    statement: 'For f(x)=(x²−1)/(x−1), which statement is correct at x=1?',
+    explanation: 'The expression simplifies to x+1 for x≠1, so the limit is 2. The original function is undefined at 1, so there is a removable discontinuity.',
+    skill: 'Diagnose a hole in a rational function',
+    options: {
+      'a': 'There is a jump',
+      'b': 'There is a removable discontinuity',
+      'c': 'There is a vertical asymptote',
+      'd': 'The function is continuous at 1',
+    },
+  ),
+  'continuidade-sintese-tvi-necessario-1': _ExerciseTranslation(
+    statement: 'Why is continuity essential in the Intermediate Value Theorem?',
+    explanation: 'Without continuity, a function may jump over an intermediate value. Continuity prevents such jumps on the interval and supports the existence guarantee.',
+    skill: 'Understand the central hypothesis of the IVT',
+    options: {
+      'a': 'Because every continuous function is linear',
+      'b': 'Because continuity guarantees uniqueness',
+      'c': 'Because continuity forces a positive derivative',
+      'd': 'Because without continuity intermediate values may be skipped',
+    },
+  ),
+
 };

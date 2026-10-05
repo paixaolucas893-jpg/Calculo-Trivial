@@ -17,12 +17,12 @@ const exerciseBanks = [
     questions: mockEquationsExercises,
     expectedCount: 50,
   ),
-  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 50),
-  (name: 'Limites', questions: mockLimitsExercises, expectedCount: 30),
+  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 60),
+  (name: 'Limites', questions: mockLimitsExercises, expectedCount: 45),
   (
     name: 'Continuidade',
     questions: mockContinuityExercises,
-    expectedCount: 30,
+    expectedCount: 45,
   ),
   (name: 'Derivadas', questions: mockDerivativesExercises, expectedCount: 50),
 ];

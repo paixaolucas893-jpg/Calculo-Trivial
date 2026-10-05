@@ -3,7 +3,7 @@ import 'package:calcquest/shared/data/mock_exercise_data.dart';
 const List<ExerciseData> mockContinuityExercises = [
   ExerciseData(
     id: 'continuidade-tres-condicoes',
-    title: 'Questão 1 de 30',
+    title: 'Questão 1 de 45',
     contentLessonId: 'continuidade-01-significado',
     skill: 'Três condições de continuidade',
     statement:
@@ -24,7 +24,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-polinomial',
-    title: 'Questão 2 de 30',
+    title: 'Questão 2 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Famílias de funções contínuas',
     statement: 'Em quais números reais f(x) = 3x² - 2x + 5 é contínua?',
@@ -41,7 +41,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-racional-dominio',
-    title: 'Questão 3 de 30',
+    title: 'Questão 3 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Domínio de função racional',
     statement: 'Onde a função f(x) = (x + 1) / (x - 2) não é contínua?',
@@ -58,7 +58,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-furo-corrigido',
-    title: 'Questão 4 de 30',
+    title: 'Questão 4 de 45',
     contentLessonId: 'continuidade-05-parametros',
     skill: 'Correção de descontinuidade removível',
     difficulty: ExerciseDifficulty.intermediate,
@@ -79,7 +79,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-furo-nao-corrigido',
-    title: 'Questão 5 de 30',
+    title: 'Questão 5 de 45',
     contentLessonId: 'continuidade-03-descontinuidades',
     skill: 'Classificação de furo removível',
     difficulty: ExerciseDifficulty.intermediate,
@@ -97,7 +97,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-partes-simples',
-    title: 'Questão 6 de 30',
+    title: 'Questão 6 de 45',
     contentLessonId: 'continuidade-04-partes',
     skill: 'Encontro de funções por partes',
     difficulty: ExerciseDifficulty.intermediate,
@@ -121,7 +121,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-salto',
-    title: 'Questão 7 de 30',
+    title: 'Questão 7 de 45',
     contentLessonId: 'continuidade-03-descontinuidades',
     skill: 'Descontinuidade de salto',
     statement:
@@ -139,7 +139,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-infinita',
-    title: 'Questão 8 de 30',
+    title: 'Questão 8 de 45',
     contentLessonId: 'continuidade-03-descontinuidades',
     skill: 'Descontinuidade infinita',
     statement: 'Qual tipo de descontinuidade f(x) = 1/(x - 2) possui em x = 2?',
@@ -156,7 +156,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-modulo',
-    title: 'Questão 9 de 30',
+    title: 'Questão 9 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Continuidade em ponto anguloso',
     statement: 'A função f(x) = |x| é contínua em x = 0?',
@@ -176,7 +176,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-parte-inteira',
-    title: 'Questão 10 de 30',
+    title: 'Questão 10 de 45',
     contentLessonId: 'continuidade-03-descontinuidades',
     skill: 'Saltos da função parte inteira',
     statement:
@@ -194,7 +194,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-seno',
-    title: 'Questão 11 de 30',
+    title: 'Questão 11 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Continuidade de função trigonométrica',
     statement: 'Em qual conjunto a função f(x) = sen(x) é contínua?',
@@ -211,7 +211,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-raiz',
-    title: 'Questão 12 de 30',
+    title: 'Questão 12 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Continuidade no domínio da raiz',
     statement: 'Em seu domínio real, onde f(x) = √x é contínua?',
@@ -228,7 +228,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-composicao',
-    title: 'Questão 13 de 30',
+    title: 'Questão 13 de 45',
     contentLessonId: 'continuidade-02-dominio',
     skill: 'Composição de funções contínuas',
     difficulty: ExerciseDifficulty.intermediate,
@@ -246,7 +246,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-valor-intermediario',
-    title: 'Questão 14 de 30',
+    title: 'Questão 14 de 45',
     contentLessonId: 'continuidade-06-valor-intermediario',
     skill: 'Teorema do Valor Intermediário',
     difficulty: ExerciseDifficulty.intermediate,
@@ -264,7 +264,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-parametro-ponto',
-    title: 'Questão 15 de 30',
+    title: 'Questão 15 de 45',
     contentLessonId: 'continuidade-05-parametros',
     skill: 'Definição de valor para remover furo',
     statement:
@@ -282,7 +282,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-parametro-partes',
-    title: 'Questão 16 de 30',
+    title: 'Questão 16 de 45',
     contentLessonId: 'continuidade-05-parametros',
     skill: 'Parâmetro em função por partes',
     difficulty: ExerciseDifficulty.challenge,
@@ -300,7 +300,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-valor-indefinido',
-    title: 'Questão 17 de 30',
+    title: 'Questão 17 de 45',
     contentLessonId: 'continuidade-05-parametros',
     skill: 'Identificação de valor ausente',
     statement:
@@ -321,7 +321,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-extremo-intervalo',
-    title: 'Questão 18 de 30',
+    title: 'Questão 18 de 45',
     contentLessonId: 'continuidade-04-partes',
     skill: 'Continuidade unilateral em extremo',
     statement:
@@ -339,7 +339,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-removivel-conceito',
-    title: 'Questão 19 de 30',
+    title: 'Questão 19 de 45',
     contentLessonId: 'continuidade-03-descontinuidades',
     skill: 'Reparação de descontinuidade removível',
     statement: 'Quando uma descontinuidade é chamada de removível?',
@@ -362,7 +362,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-inversa-dominio',
-    title: 'Questão 20 de 30',
+    title: 'Questão 20 de 45',
     contentLessonId: 'continuidade-07-sintese',
     skill: 'Roteiro completo de domínio e continuidade',
     difficulty: ExerciseDifficulty.challenge,
@@ -379,7 +379,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-condicoes-2',
-    title: 'Questão 21 de 30',
+    title: 'Questão 21 de 45',
     statement:
         'Suponha que lim x → 3 f(x) = 5, mas f(3) = 2. O que podemos concluir sobre a continuidade em x = 3?',
     correctOptionId: 'c',
@@ -397,7 +397,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-condicoes-3',
-    title: 'Questão 22 de 30',
+    title: 'Questão 22 de 45',
     statement:
         'Se f(a) existe, mas os limites laterais em a são diferentes, f pode ser contínua em a?',
     correctOptionId: 'b',
@@ -415,7 +415,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-partes-2',
-    title: 'Questão 23 de 30',
+    title: 'Questão 23 de 45',
     statement:
         'Considere f(x) = x² para x < 2 e f(x) = 3x − 2 para x ≥ 2. A função é contínua em x = 2?',
     correctOptionId: 'a',
@@ -433,7 +433,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-partes-3',
-    title: 'Questão 24 de 30',
+    title: 'Questão 24 de 45',
     statement:
         'Considere f(x) = x + 4 para x < 1 e f(x) = 2x + 1 para x ≥ 1. Qual tipo de comportamento ocorre em x = 1?',
     correctOptionId: 'd',
@@ -451,7 +451,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-tvi-2',
-    title: 'Questão 25 de 30',
+    title: 'Questão 25 de 45',
     statement:
         'Se f é contínua em [0, 4], com f(0) = 2 e f(4) = 10, qual afirmação é garantida pelo Teorema do Valor Intermediário?',
     correctOptionId: 'c',
@@ -469,7 +469,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-tvi-3',
-    title: 'Questão 26 de 30',
+    title: 'Questão 26 de 45',
     statement:
         'Uma função contínua em [1, 3] satisfaz f(1) = 5 e f(3) = 9. O TVI garante a existência de c em (1,3) com f(c) = 12?',
     correctOptionId: 'a',
@@ -487,7 +487,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-tvi-raiz-1',
-    title: 'Questão 27 de 30',
+    title: 'Questão 27 de 45',
     statement:
         'Se f é contínua em [−2, 1], f(−2) < 0 e f(1) > 0, o que o TVI garante?',
     correctOptionId: 'b',
@@ -505,7 +505,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-sintese-roteiro-1',
-    title: 'Questão 28 de 30',
+    title: 'Questão 28 de 45',
     statement:
         'Qual é a primeira verificação mais adequada ao analisar a continuidade de uma função em x = a?',
     correctOptionId: 'd',
@@ -523,7 +523,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-sintese-classificacao-1',
-    title: 'Questão 29 de 30',
+    title: 'Questão 29 de 45',
     statement:
         'Em x = a, o limite bilateral existe e vale L, mas f(a) não existe. Qual é a classificação mais provável?',
     correctOptionId: 'c',
@@ -541,7 +541,7 @@ const List<ExerciseData> mockContinuityExercises = [
   ),
   ExerciseData(
     id: 'continuidade-sintese-completa-1',
-    title: 'Questão 30 de 30',
+    title: 'Questão 30 de 45',
     statement:
         'Uma função racional tem denominador x(x − 2). Em quais intervalos ela pode ser contínua, assumindo que não haja cancelamentos?',
     correctOptionId: 'a',
@@ -555,6 +555,262 @@ const List<ExerciseData> mockContinuityExercises = [
       ExerciseOptionData(id: 'b', text: '(−∞,2) e (2,+∞)'),
       ExerciseOptionData(id: 'c', text: 'ℝ'),
       ExerciseOptionData(id: 'd', text: '[0,2]'),
+    ],
+  ),
+
+  ExerciseData(
+    id: 'continuidade-significado-vizinhos-1',
+    title: 'Questão 31 de 45',
+    statement:
+        'Uma função pode ser contínua em x=a mesmo que seu gráfico tenha uma tangente vertical nesse ponto?',
+    correctOptionId: 'b',
+    explanation: 'Sim. Continuidade exige apenas valor definido, limite existente e igualdade entre limite e valor. A inclinação da tangente não faz parte dessas três condições.',
+    contentLessonId: 'continuidade-01-significado',
+    skill: 'Distinguir continuidade de derivabilidade',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Não, nunca'),
+      ExerciseOptionData(id: 'b', text: 'Sim, continuidade não exige derivada finita'),
+      ExerciseOptionData(id: 'c', text: 'Somente se f(a)=0'),
+      ExerciseOptionData(id: 'd', text: 'Somente para polinômios'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-dominio-log-1',
+    title: 'Questão 32 de 45',
+    statement:
+        'Em qual intervalo f(x)=ln(x−2) é contínua?',
+    correctOptionId: 'c',
+    explanation: 'O logaritmo natural é contínuo em argumentos positivos. Precisamos x−2>0, isto é, x>2. Logo, f é contínua em (2,+∞).',
+    contentLessonId: 'continuidade-02-dominio',
+    skill: 'Determinar intervalo de continuidade de logaritmo',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(−∞,2)'),
+      ExerciseOptionData(id: 'b', text: '[2,+∞)'),
+      ExerciseOptionData(id: 'c', text: '(2,+∞)'),
+      ExerciseOptionData(id: 'd', text: 'ℝ'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-dominio-raiz-racional-1',
+    title: 'Questão 33 de 45',
+    statement:
+        'Determine o domínio de continuidade de f(x)=√(x−1)/(x−3).',
+    correctOptionId: 'd',
+    explanation: 'A raiz exige x≥1 e o denominador exige x≠3. Portanto, a função é contínua em [1,3)∪(3,+∞).',
+    contentLessonId: 'continuidade-02-dominio',
+    skill: 'Combinar restrições de domínio para continuidade',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(1,3)'),
+      ExerciseOptionData(id: 'b', text: '[1,+∞)'),
+      ExerciseOptionData(id: 'c', text: '(−∞,3)∪(3,+∞)'),
+      ExerciseOptionData(id: 'd', text: '[1,3)∪(3,+∞)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-removivel-parametro-2',
+    title: 'Questão 34 de 45',
+    statement:
+        'Defina f(x)=(x²−4)/(x−2) para x≠2 e f(2)=k. Qual k torna f contínua?',
+    correctOptionId: 'a',
+    explanation: 'Para x≠2, a expressão simplifica para x+2. O limite quando x→2 é 4. Portanto, devemos escolher k=4.',
+    contentLessonId: 'continuidade-05-parametros',
+    skill: 'Remover descontinuidade escolhendo parâmetro',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '4'),
+      ExerciseOptionData(id: 'b', text: '2'),
+      ExerciseOptionData(id: 'c', text: '0'),
+      ExerciseOptionData(id: 'd', text: '−4'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-partes-parametro-2',
+    title: 'Questão 35 de 45',
+    statement:
+        'Se f(x)=2x+k para x<1 e f(x)=x²+2 para x≥1, qual k torna f contínua em 1?',
+    correctOptionId: 'c',
+    explanation: 'O lado direito e o valor da função em 1 valem 3. O limite esquerdo é 2+k. Igualando 2+k=3, obtemos k=1.',
+    contentLessonId: 'continuidade-05-parametros',
+    skill: 'Ajustar parâmetro em função por partes',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−1'),
+      ExerciseOptionData(id: 'b', text: '0'),
+      ExerciseOptionData(id: 'c', text: '1'),
+      ExerciseOptionData(id: 'd', text: '3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-salto-parametro-1',
+    title: 'Questão 36 de 45',
+    statement:
+        'Uma função por partes tem limite esquerdo 2 e limite direito k em x=0. Para eliminar um salto, qual deve ser k?',
+    correctOptionId: 'b',
+    explanation: 'Para não haver salto, os limites laterais devem coincidir. Logo, k deve ser igual ao limite esquerdo, isto é, k=2.',
+    contentLessonId: 'continuidade-04-partes',
+    skill: 'Eliminar salto igualando limites laterais',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '0'),
+      ExerciseOptionData(id: 'b', text: '2'),
+      ExerciseOptionData(id: 'c', text: '−2'),
+      ExerciseOptionData(id: 'd', text: '1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-tvi-polinomio-1',
+    title: 'Questão 37 de 45',
+    statement:
+        'Considere p(x)=x³−x−1. Sabendo que p(1)<0 e p(2)>0, o que podemos concluir?',
+    correctOptionId: 'd',
+    explanation: 'Polinômios são contínuos em ℝ. Como p muda de sinal entre 1 e 2, o TVI garante pelo menos uma raiz em (1,2).',
+    contentLessonId: 'continuidade-06-valor-intermediario',
+    skill: 'Aplicar TVI a polinômio com mudança de sinal',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'A raiz é exatamente 1,5'),
+      ExerciseOptionData(id: 'b', text: 'Não existem raízes'),
+      ExerciseOptionData(id: 'c', text: 'Existem exatamente três raízes'),
+      ExerciseOptionData(id: 'd', text: 'Existe ao menos uma raiz em (1,2)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-tvi-unicidade-1',
+    title: 'Questão 38 de 45',
+    statement:
+        'O Teorema do Valor Intermediário, sozinho, garante unicidade de uma raiz?',
+    correctOptionId: 'a',
+    explanation: 'Não. O TVI garante existência de pelo menos um ponto que atinge um valor intermediário, mas não garante que esse ponto seja único.',
+    contentLessonId: 'continuidade-06-valor-intermediario',
+    skill: 'Distinguir existência de unicidade no TVI',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Não'),
+      ExerciseOptionData(id: 'b', text: 'Sim, sempre'),
+      ExerciseOptionData(id: 'c', text: 'Sim, se o intervalo for fechado'),
+      ExerciseOptionData(id: 'd', text: 'Sim, se houver mudança de sinal'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-infinita-racional-2',
+    title: 'Questão 39 de 45',
+    statement:
+        'Que tipo de descontinuidade possui f(x)=1/(x−4)² em x=4?',
+    correctOptionId: 'c',
+    explanation: 'Quando x se aproxima de 4 por qualquer lado, o denominador positivo tende a zero e f(x) cresce sem limite. Há uma descontinuidade infinita e assíntota vertical.',
+    contentLessonId: 'continuidade-03-descontinuidades',
+    skill: 'Classificar descontinuidade infinita bilateral',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Removível'),
+      ExerciseOptionData(id: 'b', text: 'Salto'),
+      ExerciseOptionData(id: 'c', text: 'Infinita'),
+      ExerciseOptionData(id: 'd', text: 'Nenhuma'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-oscilatoria-1',
+    title: 'Questão 40 de 45',
+    statement:
+        'A função f(x)=sin(1/x), para x≠0, possui limite quando x→0?',
+    correctOptionId: 'd',
+    explanation: 'Não. À medida que x se aproxima de zero, 1/x cresce em magnitude e o seno oscila indefinidamente entre −1 e 1, sem se aproximar de um único valor.',
+    contentLessonId: 'continuidade-03-descontinuidades',
+    skill: 'Reconhecer descontinuidade oscilatória',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Sim, vale 0'),
+      ExerciseOptionData(id: 'b', text: 'Sim, vale 1'),
+      ExerciseOptionData(id: 'c', text: 'Sim, vale −1'),
+      ExerciseOptionData(id: 'd', text: 'Não existe'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-composicao-2',
+    title: 'Questão 41 de 45',
+    statement:
+        'Se g é contínua em a e f é contínua em g(a), qual limite representa a continuidade da composição?',
+    correctOptionId: 'b',
+    explanation: 'A composição f∘g é contínua em a e satisfaz lim x→a f(g(x))=f(g(a)).',
+    contentLessonId: 'continuidade-02-dominio',
+    skill: 'Usar continuidade de composição',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'lim f(g(x)) = g(f(a))'),
+      ExerciseOptionData(id: 'b', text: 'lim f(g(x)) = f(g(a))'),
+      ExerciseOptionData(id: 'c', text: 'lim f(g(x)) = 0'),
+      ExerciseOptionData(id: 'd', text: 'lim f(g(x)) = f(a)+g(a)'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-sintese-endpoint-1',
+    title: 'Questão 42 de 45',
+    statement:
+        'Para continuidade em um extremo direito b de [a,b], qual condição lateral é usada?',
+    correctOptionId: 'c',
+    explanation: 'No extremo direito, aproximamo-nos por valores menores que b dentro do domínio. Portanto, usamos o limite pela esquerda e exigimos que ele seja igual a f(b).',
+    contentLessonId: 'continuidade-07-sintese',
+    skill: 'Analisar continuidade em extremo direito',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Somente limite pela direita'),
+      ExerciseOptionData(id: 'b', text: 'Limite bilateral obrigatoriamente'),
+      ExerciseOptionData(id: 'c', text: 'Limite pela esquerda igual a f(b)'),
+      ExerciseOptionData(id: 'd', text: 'Nenhum limite'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-sintese-diferenciabilidade-1',
+    title: 'Questão 43 de 45',
+    statement:
+        'Qual afirmação é verdadeira?',
+    correctOptionId: 'a',
+    explanation: 'Derivabilidade implica continuidade. Porém, continuidade não implica derivabilidade, como mostra |x| em x=0.',
+    contentLessonId: 'continuidade-07-sintese',
+    skill: 'Relacionar continuidade e derivabilidade',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Derivabilidade implica continuidade'),
+      ExerciseOptionData(id: 'b', text: 'Continuidade implica derivabilidade'),
+      ExerciseOptionData(id: 'c', text: 'São propriedades equivalentes'),
+      ExerciseOptionData(id: 'd', text: 'Nenhuma implica a outra'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-sintese-racional-furo-1',
+    title: 'Questão 44 de 45',
+    statement:
+        'Para f(x)=(x²−1)/(x−1), qual afirmação é correta sobre x=1?',
+    correctOptionId: 'b',
+    explanation: 'A expressão simplifica para x+1 quando x≠1, então o limite é 2. A função original não está definida em 1, logo há uma descontinuidade removível.',
+    contentLessonId: 'continuidade-07-sintese',
+    skill: 'Diagnosticar furo em função racional',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Há salto'),
+      ExerciseOptionData(id: 'b', text: 'Há descontinuidade removível'),
+      ExerciseOptionData(id: 'c', text: 'Há assíntota vertical'),
+      ExerciseOptionData(id: 'd', text: 'A função é contínua em 1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'continuidade-sintese-tvi-necessario-1',
+    title: 'Questão 45 de 45',
+    statement:
+        'Por que a hipótese de continuidade é essencial no Teorema do Valor Intermediário?',
+    correctOptionId: 'd',
+    explanation: 'Sem continuidade, a função pode “pular” um valor intermediário. A continuidade impede esses saltos no intervalo e sustenta a garantia de existência.',
+    contentLessonId: 'continuidade-07-sintese',
+    skill: 'Compreender a hipótese central do TVI',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'Porque toda função contínua é linear'),
+      ExerciseOptionData(id: 'b', text: 'Porque continuidade garante unicidade'),
+      ExerciseOptionData(id: 'c', text: 'Porque continuidade força derivada positiva'),
+      ExerciseOptionData(id: 'd', text: 'Porque sem continuidade valores intermediários podem ser saltados'),
     ],
   ),
 

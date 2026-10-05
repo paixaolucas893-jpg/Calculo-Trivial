@@ -5,8 +5,8 @@ import 'package:calcquest/shared/data/localized_continuity_exercise_content.dart
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
 
 void main() {
-  test('todas as trinta questões de Continuidade possuem versão em inglês', () {
-    expect(mockContinuityExercises, hasLength(30));
+  test('todas as quarenta e cinco questões de Continuidade possuem versão em inglês', () {
+    expect(mockContinuityExercises, hasLength(45));
 
     for (final exercise in mockContinuityExercises) {
       final localized = localizeContinuityExerciseContent(

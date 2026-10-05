@@ -5,8 +5,8 @@ import 'package:calcquest/shared/data/localized_limits_exercise_content.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
 
 void main() {
-  test('todas as trinta questões de Limites possuem versão em inglês', () {
-    expect(mockLimitsExercises, hasLength(30));
+  test('todas as quarenta e cinco questões de Limites possuem versão em inglês', () {
+    expect(mockLimitsExercises, hasLength(45));
 
     for (var index = 0; index < mockLimitsExercises.length; index++) {
       final exercise = mockLimitsExercises[index];
@@ -17,7 +17,7 @@ void main() {
 
       expect(
         localized.title,
-        'Question ${index + 1} of 30',
+        'Question ${index + 1} of 45',
         reason: '${exercise.id} não possui título inglês sincronizado.',
       );
       expect(
