@@ -145,6 +145,19 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             interpretation:
                 'The derivative gives both the magnitude and direction of local change.',
           ),
+          WorkedExampleBlockData(
+            title: 'Average rate versus instantaneous rate',
+            problem: 'For f(x)=x², compare the average rate from x=2 to x=2.1 with f′(2).',
+            steps: [
+              'Average rate: [2.1²−2²]/0.1.',
+              'Compute 4.41−4=0.41.',
+              'Divide by 0.1 to get 4.1.',
+              'Since f′(x)=2x, f′(2)=4.',
+            ],
+            result: 'The average rate 4.1 is already close to the instantaneous rate 4.',
+            interpretation:
+                'Shrinking the interval drives the secant slope toward the tangent slope.',
+          ),
         ],
       ),      LessonSectionData(
         number: '10',
@@ -291,6 +304,18 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             result: 'f′(x)=12x³+2/x²+5/(2√x).',
             interpretation:
                 'One power rule covers many forms after suitable rewriting.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Second derivative of a polynomial',
+            problem: 'If f(x)=x⁴−3x², find f″(x).',
+            steps: [
+              'First derivative: f′(x)=4x³−6x.',
+              'Differentiate again.',
+              'Use the power rule term by term.',
+            ],
+            result: 'f″(x)=12x²−6.',
+            interpretation:
+                'Higher derivatives describe how a rate of change itself changes.',
           ),
         ],
       ),
@@ -454,6 +479,18 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
                 'f′(x)=[(3x²+2x)(x−1)−x²(x+1)]/(x−1)².',
             interpretation:
                 'In combined expressions, organizing by layers reduces sign errors.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Direct product-rule check',
+            problem: 'Differentiate f(x)=x² sin x.',
+            steps: [
+              'Let u=x² and v=sin x.',
+              'Then u′=2x and v′=cos x.',
+              'Apply u′v+uv′.',
+            ],
+            result: 'f′(x)=2x sin x+x² cos x.',
+            interpretation:
+                'Both factors contribute because both vary with x.',
           ),
         ],
       ),
@@ -626,6 +663,18 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             interpretation:
                 'The chain rule appears whenever a function is applied to another variable expression.',
           ),
+          WorkedExampleBlockData(
+            title: 'Logarithmic composition',
+            problem: 'Differentiate f(x)=ln(x²+1).',
+            steps: [
+              'Outer derivative of ln u is 1/u.',
+              'Keep u=x²+1.',
+              'Multiply by u′=2x.',
+            ],
+            result: 'f′(x)=2x/(x²+1).',
+            interpretation:
+                'The inner derivative is essential even when the outer formula is familiar.',
+          ),
         ],
       ),      LessonSectionData(
         number: '10',
@@ -768,6 +817,18 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             result: 'f′(x)=2cos x−3eˣ+1/x.',
             interpretation:
                 'Linearity lets you combine the standard derivative repertoire directly.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Trigonometric and exponential composition',
+            problem: 'Differentiate f(x)=sin(2x)+e^(−x).',
+            steps: [
+              'Use the chain rule on sin(2x): 2cos(2x).',
+              'Use the chain rule on e^(−x): −e^(−x).',
+              'Add the derivatives.',
+            ],
+            result: 'f′(x)=2cos(2x)−e^(−x).',
+            interpretation:
+                'Standard elementary derivatives often appear together with the chain rule.',
           ),
         ],
       ),
@@ -941,6 +1002,19 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             result: '√4.1 ≈ 2.025.',
             interpretation:
                 'Linearization replaces a nonlinear calculation with a simple local estimate.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Horizontal tangent',
+            problem: 'Find the points where f(x)=x³−3x has a horizontal tangent.',
+            steps: [
+              'Differentiate: f′(x)=3x²−3.',
+              'Set f′(x)=0.',
+              'Solve x²=1.',
+              'Evaluate f at x=−1 and x=1.',
+            ],
+            result: 'Horizontal tangents occur at (−1,2) and (1,−2).',
+            interpretation:
+                'A zero derivative identifies where the tangent line is horizontal.',
           ),
         ],
       ),      LessonSectionData(
@@ -1277,6 +1351,18 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
             result: 'Revenue is maximized at q=20.',
             interpretation:
                 'A critical point becomes meaningful when combined with the structure of the model.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Marginal cost',
+            problem: 'If C(q)=100+5q+0.02q², find the marginal cost at q=50.',
+            steps: [
+              'Differentiate: C′(q)=5+0.04q.',
+              'Evaluate at q=50.',
+              'Interpret the result as approximate added cost per extra unit.',
+            ],
+            result: 'C′(50)=7.',
+            interpretation:
+                'Near 50 units, producing one additional unit changes cost by about 7 currency units.',
           ),
         ],
       ),      LessonSectionData(
