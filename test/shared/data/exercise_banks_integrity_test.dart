@@ -17,7 +17,7 @@ const exerciseBanks = [
     questions: mockEquationsExercises,
     expectedCount: 50,
   ),
-  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 28),
+  (name: 'Funções', questions: mockFunctionsExercises, expectedCount: 50),
   (name: 'Limites', questions: mockLimitsExercises, expectedCount: 20),
   (
     name: 'Continuidade',
@@ -205,6 +205,23 @@ void main() {
         equals(lessonIds),
         reason: 'Cada uma das 14 aulas de Funções precisa ter ao menos uma atividade.',
       );
+    });
+
+    test('cada aula de Funções possui ao menos três questões', () {
+      final countsByLesson = <String, int>{};
+
+      for (final question in mockFunctionsExercises) {
+        final lessonId = question.contentLessonId!;
+        countsByLesson[lessonId] = (countsByLesson[lessonId] ?? 0) + 1;
+      }
+
+      for (final lesson in precalculusFunctionsCourseLessons) {
+        expect(
+          countsByLesson[lesson.id] ?? 0,
+          greaterThanOrEqualTo(3),
+          reason: '${lesson.id} precisa de cobertura suficiente para reduzir repetição.',
+        );
+      }
     });
 
     test('todos os bancos possuem metadados pedagógicos completos', () {
