@@ -8,8 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
-import 'package:calcquest/shared/domain/exercise_question_selector.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
+import 'package:calcquest/shared/domain/practice_question_rotation_selector.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
 import 'package:calcquest/shared/domain/question_performance.dart';
 import 'package:calcquest/shared/domain/question_selection_engine.dart';
@@ -41,6 +41,8 @@ class AppProgress {
   static const String _dailyAnsweredQuestionsKey = 'daily_answered_questions';
   static const String _dailyActivityDateKey = 'daily_activity_date';
   static const String _lastQuestionSessionKey = 'last_question_session';
+  static const String _recentPracticeQuestionsKey =
+      'recent_practice_questions_v1';
   static const String _lastFinalTestSessionKey = 'last_final_test_session';
   static const String _questionPerformanceKey = 'question_performance_v1';
   static const String _lastPersonalizedReviewSessionKey =
@@ -88,6 +90,8 @@ class AppProgress {
   static final Set<String> _completedContentLessonIds = <String>{};
   static final Map<String, Set<String>> _lastQuestionSessionIds =
       <String, Set<String>>{};
+  static final Map<String, List<String>> _recentPracticeQuestionIds =
+      <String, List<String>>{};
   static final Map<String, Set<String>> _lastFinalTestSessionIds =
       <String, Set<String>>{};
   static final Map<String, QuestionPerformance> _questionPerformance =
@@ -181,6 +185,7 @@ class AppProgress {
     _completedLessonIds.clear();
     _completedContentLessonIds.clear();
     _lastQuestionSessionIds.clear();
+    _recentPracticeQuestionIds.clear();
     _lastFinalTestSessionIds.clear();
     _questionPerformance.clear();
     _lastPersonalizedReviewSessionIds.clear();
@@ -378,6 +383,15 @@ class AppProgress {
         _lastQuestionSessionIds[lessonId] = questionIds.toSet();
       }
 
+      final recentPracticeIds = preferences.getStringList(
+        _scopedKey('${_recentPracticeQuestionsKey}_$lessonId', userId),
+      );
+
+      if (recentPracticeIds != null && recentPracticeIds.isNotEmpty) {
+        _recentPracticeQuestionIds[lessonId] =
+            recentPracticeIds.take(40).toList(growable: false);
+      }
+
       final finalTestQuestionIds = preferences.getStringList(
         _scopedKey('${_lastFinalTestSessionKey}_$lessonId', userId),
       );
@@ -448,6 +462,7 @@ class AppProgress {
     _mergeStudyStreak(data);
     _mergeDailyActivity(data);
     _mergeQuestionSessions(data);
+    _mergeRecentPracticeQuestions(data);
     _mergeFinalTestSessions(data);
     _mergeQuestionPerformance(data);
     _mergePersonalizedReviewSession(data);
@@ -470,6 +485,32 @@ class AppProgress {
         if (questionIds.isNotEmpty) {
           _lastQuestionSessionIds[lessonId] = questionIds;
         }
+      }
+    }
+  }
+
+
+  static void _mergeRecentPracticeQuestions(Map<String, dynamic> data) {
+    final remoteHistory = data['recentPracticeQuestionIds'];
+
+    if (remoteHistory is! Map) {
+      return;
+    }
+
+    for (final lessonId in _lessonIds) {
+      final remoteIds = remoteHistory[lessonId];
+
+      if (remoteIds is! Iterable) {
+        continue;
+      }
+
+      final ids = remoteIds
+          .whereType<String>()
+          .take(40)
+          .toList(growable: false);
+
+      if (ids.isNotEmpty) {
+        _recentPracticeQuestionIds[lessonId] = ids;
       }
     }
   }
@@ -819,6 +860,14 @@ class AppProgress {
         questionIds,
       );
 
+      final recentPracticeIds =
+          _recentPracticeQuestionIds[lessonId] ?? const <String>[];
+
+      await preferences.setStringList(
+        _scopedKey('${_recentPracticeQuestionsKey}_$lessonId', _activeUserId),
+        recentPracticeIds,
+      );
+
       final finalTestQuestionIds =
           _lastFinalTestSessionIds[lessonId]?.toList() ?? <String>[];
 
@@ -863,6 +912,10 @@ class AppProgress {
         for (final entry in _lastQuestionSessionIds.entries)
           entry.key: entry.value.toList(),
       },
+      'recentPracticeQuestionIds': <String, List<String>>{
+        for (final entry in _recentPracticeQuestionIds.entries)
+          entry.key: entry.value,
+      },
       'lastFinalTestSessionIds': <String, List<String>>{
         for (final entry in _lastFinalTestSessionIds.entries)
           entry.key: entry.value.toList(),
@@ -905,11 +958,15 @@ class AppProgress {
   }) {
     _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
 
-    final previousSessionIds = _lastQuestionSessionIds[lessonId] ?? <String>{};
+    final previousSessionIds =
+        _lastQuestionSessionIds[lessonId] ?? <String>{};
+    final recentHistoryIds =
+        _recentPracticeQuestionIds[lessonId] ?? const <String>[];
 
-    final selectedQuestionIds = ExerciseQuestionSelector.select(
+    final selectedQuestionIds = PracticeQuestionRotationSelector.select(
       availableQuestionIds: availableQuestionIds,
       previousSessionIds: previousSessionIds,
+      recentHistoryIds: recentHistoryIds,
       questionCount: questionCount,
     );
 
@@ -918,6 +975,12 @@ class AppProgress {
     }
 
     _lastQuestionSessionIds[lessonId] = selectedQuestionIds.toSet();
+    _recentPracticeQuestionIds[lessonId] =
+        PracticeQuestionRotationSelector.appendToRecentHistory(
+      currentHistoryIds: recentHistoryIds,
+      selectedQuestionIds: selectedQuestionIds,
+      maxHistorySize: 40,
+    );
     _queueProgressSave();
 
     return selectedQuestionIds;
@@ -1192,6 +1255,7 @@ class AppProgress {
       'dailyQuestionGoal': dailyQuestionGoal,
       'dailyActivityDate': dailyActivityDate,
       'lastQuestionSessionIds': <String, List<String>>{},
+      'recentPracticeQuestionIds': <String, List<String>>{},
       'lastFinalTestSessionIds': <String, List<String>>{},
       'questionPerformance': <String, Map<String, dynamic>>{},
       'lastPersonalizedReviewSessionIds': <String>[],
@@ -1246,6 +1310,9 @@ class AppProgress {
     for (final lessonId in _lessonIds) {
       await preferences.remove(
         _scopedKey('${_lastQuestionSessionKey}_$lessonId', userId),
+      );
+      await preferences.remove(
+        _scopedKey('${_recentPracticeQuestionsKey}_$lessonId', userId),
       );
       await preferences.remove(
         _scopedKey('${_lastFinalTestSessionKey}_$lessonId', userId),
