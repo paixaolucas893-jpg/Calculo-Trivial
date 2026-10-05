@@ -15,7 +15,8 @@ class QuestionPerformance {
 
   bool get hasAttempts => attempts > 0;
 
-  bool get needsReview => incorrect > 0;
+  bool get needsReview =>
+      incorrect > 0 && (lastAnswerCorrect == false || accuracy < 0.80);
 
   double get accuracy {
     if (attempts <= 0) return 0;
@@ -46,10 +47,19 @@ class QuestionPerformance {
             ? lastAnswerCorrect
             : (other.lastAnswerCorrect ?? lastAnswerCorrect);
 
+    final mergedCorrect = correct > other.correct ? correct : other.correct;
+    final mergedIncorrect =
+        incorrect > other.incorrect ? incorrect : other.incorrect;
+    final largestAttempts =
+        attempts > other.attempts ? attempts : other.attempts;
+    final mergedAttempts = largestAttempts > mergedCorrect + mergedIncorrect
+        ? largestAttempts
+        : mergedCorrect + mergedIncorrect;
+
     return QuestionPerformance(
-      attempts: attempts > other.attempts ? attempts : other.attempts,
-      correct: correct > other.correct ? correct : other.correct,
-      incorrect: incorrect > other.incorrect ? incorrect : other.incorrect,
+      attempts: mergedAttempts,
+      correct: mergedCorrect,
+      incorrect: mergedIncorrect,
       lastAnswerCorrect: mergedLastAnswer,
     );
   }
