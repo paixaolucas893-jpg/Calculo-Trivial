@@ -19,6 +19,7 @@ import 'package:calcquest/shared/theme/app_typography.dart';
 import 'package:calcquest/shared/widgets/app_bottom_navigation_bar.dart';
 
 import '../../learning_path/presentation/learning_path_screen.dart';
+import '../../personalized_review/presentation/personalized_review_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../statistics/presentation/statistics_screen.dart';
 
@@ -728,6 +729,80 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
+
+  Widget _buildPersonalizedReviewCard(BuildContext context) {
+    final pending = AppProgress.personalizedReviewQuestionCount;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
+        border: Border.all(color: AppColors.warning),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.warningLight,
+              borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+            ),
+            child: const Icon(
+              Icons.psychology_alt_outlined,
+              color: AppColors.warningDark,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _copy(
+                    pt: 'Revisão personalizada',
+                    en: 'Personalized review',
+                  ),
+                  style: AppTypography.titleMedium.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.xxs),
+                Text(
+                  _copy(
+                    pt: '$pending questões com erros anteriores para reforçar.',
+                    en: '$pending questions from previous mistakes to reinforce.',
+                  ),
+                  style: AppTypography.bodySmall,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          FilledButton(
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const PersonalizedReviewScreen(),
+                ),
+              );
+
+              if (mounted) {
+                setState(() {});
+              }
+            },
+            child: Text(
+              _copy(pt: 'Revisar', en: 'Review'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildJourneySummary() {
     final completed = _completedModuleCount();
     final progress = completed / _moduleCount;
@@ -950,6 +1025,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                     end: 0.68,
                     child: _buildProgressOverview(),
                   ),
+                  if (AppProgress.personalizedReviewQuestionCount > 0) ...[
+                    const SizedBox(height: AppSpacing.lg),
+                    _entrance(
+                      begin: 0.30,
+                      end: 0.74,
+                      child: _buildPersonalizedReviewCard(context),
+                    ),
+                  ],
                   const SizedBox(height: AppSpacing.lg),
                   _entrance(
                     begin: 0.36,
