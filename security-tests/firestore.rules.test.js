@@ -53,6 +53,8 @@ function validProgress(overrides = {}) {
 
     lastQuestionSessionIds: {},
     lastFinalTestSessionIds: {},
+    questionPerformance: {},
+    lastPersonalizedReviewSessionIds: [],
 
     updatedAt: serverTimestamp(),
 
@@ -386,6 +388,77 @@ test('P1: cliente nao consegue fabricar estatisticas em progresso existente', as
         updatedAt: serverTimestamp(),
       },
       { merge: true },
+    ),
+  );
+});
+
+test('cliente consegue sincronizar resumo de desempenho da revisão personalizada', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  await assertSucceeds(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      {
+        totalAnswerAttempts: 1,
+        correctAnswerAttempts: 0,
+        incorrectAnswerAttempts: 1,
+        accuracy: 0,
+        dailyAnsweredQuestions: 1,
+        questionPerformance: {
+          'simplificacao-1': {
+            attempts: 1,
+            correct: 0,
+            incorrect: 1,
+            lastAnswerCorrect: false,
+          },
+        },
+        lastPersonalizedReviewSessionIds: ['simplificacao-1'],
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+});
+
+test('Firestore limita o tamanho do resumo e da sessão de revisão', async () => {
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const oversizedPerformance = Object.fromEntries(
+    Array.from({ length: 301 }, (_, index) => [
+      `q-${index}`,
+      {
+        attempts: 1,
+        correct: 0,
+        incorrect: 1,
+        lastAnswerCorrect: false,
+      },
+    ]),
+  );
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        questionPerformance: oversizedPerformance,
+      }),
+    ),
+  );
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        lastPersonalizedReviewSessionIds: Array.from(
+          { length: 11 },
+          (_, index) => `q-${index}`,
+        ),
+      }),
     ),
   );
 });
