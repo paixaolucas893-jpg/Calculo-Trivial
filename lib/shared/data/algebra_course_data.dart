@@ -2713,6 +2713,20 @@ const List<CourseLessonData> algebraCourseLessons = [
             emphasis:
                 'Equivalência não significa utilidade idêntica para toda pergunta.',
           ),
+          WorkedExampleBlockData(
+            title: 'Escolhendo a forma pelo objetivo',
+            problem:
+                'Para encontrar os zeros de x²−5x+6, qual forma é mais útil e quais são os zeros?',
+            steps: [
+              'O objetivo é encontrar valores que zeram a expressão.',
+              'Fatore x²−5x+6=(x−2)(x−3).',
+              'Iguale cada fator a zero.',
+              'Obtenha x=2 ou x=3.',
+            ],
+            result: 'A forma fatorada é a mais útil; os zeros são 2 e 3.',
+            interpretation:
+                'A mesma expressão pode ser reescrita para tornar uma informação específica mais visível.',
+          ),
         ],
       ),
       LessonSectionData(

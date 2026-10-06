@@ -118,6 +118,21 @@ const List<CourseLessonData> _englishEquationsCourseLessons = [
                 'Squaring both sides can introduce solutions. For example, x=−2 implies x²=4, but x²=4 also allows x=2. Such transformations require a final check.',
             tone: LearningCardTone.warning,
           ),
+          WorkedExampleBlockData(
+            title: 'A transformation that creates an extra solution',
+            problem:
+                'Compare the solution sets of x=−2 and the equation obtained by squaring both sides.',
+            steps: [
+              'The original equation x=−2 has solution set S={−2}.',
+              'Squaring both sides gives x²=4.',
+              'The new equation has solutions x=−2 and x=2.',
+              'Therefore the transformation produced an equation with an additional solution.',
+            ],
+            result:
+                'x=−2 implies x²=4, but the two equations are not equivalent.',
+            interpretation:
+                'Nonreversible transformations require checking solutions in the original equation.',
+          ),
         ],
       ),
       LessonSectionData(

@@ -2686,6 +2686,20 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             content:
                 'x²−5x+6 and (x−2)(x−3) are equivalent. Expanded form shows coefficients; factored form shows zeros. Equivalent does not mean equally useful for every question.',
           ),
+          WorkedExampleBlockData(
+            title: 'Choose the form from the goal',
+            problem:
+                'To find the zeros of x²−5x+6, which form is most useful and what are the zeros?',
+            steps: [
+              'The goal is to find values that make the expression zero.',
+              'Factor x²−5x+6=(x−2)(x−3).',
+              'Set each factor equal to zero.',
+              'Obtain x=2 or x=3.',
+            ],
+            result: 'Factored form is the most useful; the zeros are 2 and 3.',
+            interpretation:
+                'An equivalent form can be chosen specifically to expose the information the problem asks for.',
+          ),
         ],
       ),
       LessonSectionData(
