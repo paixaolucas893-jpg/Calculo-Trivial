@@ -108,6 +108,21 @@ const List<CourseLessonData> equationsCourseLessons = [
                 'Elevar ambos os membros ao quadrado pode introduzir soluções. Por exemplo, x=−2 implica x²=4, mas x²=4 também admite x=2. Por isso algumas transformações produzem apenas implicações e exigem verificação final.',
             tone: LearningCardTone.warning,
           ),
+          WorkedExampleBlockData(
+            title: 'Uma transformação que cria solução extra',
+            problem:
+                'Compare os conjuntos solução de x=−2 e da equação obtida ao elevar os dois membros ao quadrado.',
+            steps: [
+              'A equação original x=−2 tem solução S={−2}.',
+              'Elevando os dois membros ao quadrado, obtemos x²=4.',
+              'A nova equação possui soluções x=−2 e x=2.',
+              'Portanto, a transformação produziu uma equação com solução adicional.',
+            ],
+            result:
+                'x=−2 implica x²=4, mas as duas equações não são equivalentes.',
+            interpretation:
+                'Transformações não reversíveis exigem verificar as soluções na equação original.',
+          ),
         ],
       ),
       LessonSectionData(
