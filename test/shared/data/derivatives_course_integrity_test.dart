@@ -142,6 +142,11 @@ void main() {
           equals(portuguese[index].sections.length),
           reason: '${portuguese[index].id} deve manter paridade estrutural PT/EN.',
         );
+        expect(
+          english[index].takeaways.length,
+          equals(portuguese[index].takeaways.length),
+          reason: '${portuguese[index].id} deve manter a mesma síntese conceitual em PT/EN.',
+        );
       }
     });
 
