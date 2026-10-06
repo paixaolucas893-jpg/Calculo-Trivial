@@ -34,7 +34,7 @@ class ExerciseData {
 const List<ExerciseData> mockExercises = [
   ExerciseData(
     id: 'simplificacao-1',
-    title: 'Questão 1 de 50',
+    title: 'Questão 1 de 66',
     statement: 'Simplifique a expressão:\\n3x + 5x − 2x',
     correctOptionId: 'a',
     explanation: 'Somamos apenas os coeficientes dos termos semelhantes: 3 + 5 − 2 = 6. A parte literal x permanece, então a expressão simplificada é 6x.',
@@ -50,7 +50,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-2',
-    title: 'Questão 2 de 50',
+    title: 'Questão 2 de 66',
     statement: 'Simplifique a expressão:\\n7a − 2a + 4a',
     correctOptionId: 'c',
     explanation: 'Todos os termos possuem a mesma parte literal a. Somamos os coeficientes 7 − 2 + 4 = 9 e mantemos a variável, chegando a 9a.',
@@ -66,7 +66,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-3',
-    title: 'Questão 3 de 50',
+    title: 'Questão 3 de 66',
     statement: 'Calcule o valor de 2x² − 3x para x = −2.',
     correctOptionId: 'd',
     explanation: 'Substituímos x por −2: 2(−2)² − 3(−2). A potência vem primeiro: 2·4 + 6 = 14, portanto o valor numérico é 14.',
@@ -82,7 +82,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-4',
-    title: 'Questão 4 de 50',
+    title: 'Questão 4 de 66',
     statement: 'Qual é o coeficiente de −8x³?',
     correctOptionId: 'b',
     explanation: 'O coeficiente é o número que multiplica a parte literal. Em −8x³, a parte literal é x³ e o número que a acompanha é −8.',
@@ -98,7 +98,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'simplificacao-5',
-    title: 'Questão 5 de 50',
+    title: 'Questão 5 de 66',
     statement: 'Simplifique a expressão:\\n12x − 5x + 2x',
     correctOptionId: 'c',
     explanation: 'Como os três termos possuem x, somamos os coeficientes: 12 − 5 + 2 = 9. Assim, a expressão equivalente é 9x.',
@@ -114,7 +114,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-1',
-    title: 'Questão 6 de 50',
+    title: 'Questão 6 de 66',
     statement: 'Simplifique a expressão:\\n2(3x − 4) + x',
     correctOptionId: 'b',
     explanation: 'Aplicamos a distributiva em todos os termos do parêntese: 2(3x − 4) = 6x − 8. Depois somamos x e obtemos 7x − 8.',
@@ -130,7 +130,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-2',
-    title: 'Questão 7 de 50',
+    title: 'Questão 7 de 66',
     statement: 'Simplifique a expressão:\\n5a − 2(a + 3)',
     correctOptionId: 'c',
     explanation: 'O fator −2 multiplica a e também 3, produzindo −2a − 6. Então 5a − 2a − 6 = 3a − 6.',
@@ -146,11 +146,11 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencias-1',
-    title: 'Questão 8 de 50',
+    title: 'Questão 8 de 66',
     statement: 'Efetue a multiplicação:\\n(−3x²)(2x)',
     correctOptionId: 'd',
     explanation: 'Multiplicamos os coeficientes: −3·2 = −6. Para a mesma base x, somamos os expoentes: x²·x = x³. O produto é −6x³.',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Multiplicar monômios',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
@@ -162,7 +162,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-1',
-    title: 'Questão 9 de 50',
+    title: 'Questão 9 de 66',
     statement: 'Desenvolva o produto:\\n(x + 3)(x − 2)',
     correctOptionId: 'a',
     explanation: 'Distribuímos cada termo: x² − 2x + 3x − 6. Ao combinar −2x + 3x, obtemos x² + x − 6.',
@@ -178,11 +178,11 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'divisao-monomios-1',
-    title: 'Questão 10 de 50',
+    title: 'Questão 10 de 66',
     statement: 'Simplifique a expressão:\\n(12x³y²) / (3xy)',
     correctOptionId: 'b',
     explanation: 'Dividimos os coeficientes e subtraímos expoentes de bases iguais: 12/3 = 4, x³/x = x² e y²/y = y. Resultado: 4x²y.',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Dividir monômios',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
@@ -194,7 +194,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fator-comum-1',
-    title: 'Questão 11 de 50',
+    title: 'Questão 11 de 66',
     statement: 'Fatore a expressão:\\n6x + 9',
     correctOptionId: 'a',
     explanation: 'O maior fator comum entre 6x e 9 é 3. Colocando 3 em evidência, 6x vira 3·2x e 9 vira 3·3, então temos 3(2x + 3).',
@@ -210,11 +210,11 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quociente-potencias-1',
-    title: 'Questão 12 de 50',
+    title: 'Questão 12 de 66',
     statement: 'Simplifique, considerando x ≠ 0:\\nx⁵ / x²',
     correctOptionId: 'c',
     explanation: 'Na divisão de potências com mesma base, subtraímos os expoentes: x⁵/x² = x⁵⁻² = x³. A restrição x ≠ 0 evita divisão por zero.',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Usar quociente de potências',
     difficulty: ExerciseDifficulty.foundation,
     options: [
@@ -226,11 +226,11 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencia-potencia-1',
-    title: 'Questão 13 de 50',
+    title: 'Questão 13 de 66',
     statement: 'Simplifique a expressão:\\n(2x²)³',
     correctOptionId: 'd',
     explanation: 'Elevamos cada fator ao cubo: 2³ = 8 e (x²)³ = x⁶, pois multiplicamos os expoentes. Logo, a expressão vira 8x⁶.',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Calcular potência de potência',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
@@ -242,7 +242,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-3',
-    title: 'Questão 14 de 50',
+    title: 'Questão 14 de 66',
     statement: 'Simplifique a expressão:\\n3(x + 2) − 2(x − 1)',
     correctOptionId: 'b',
     explanation: 'Distribuindo, temos 3x + 6 − 2x + 2. Repare que −2 vezes −1 gera +2. Reduzindo os termos, obtemos x + 8.',
@@ -258,7 +258,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'valor-numerico-1',
-    title: 'Questão 15 de 50',
+    title: 'Questão 15 de 66',
     statement: 'Calcule 2a² − 3a para a = −2.',
     correctOptionId: 'c',
     explanation: 'Substituindo a por −2, fica 2(−2)² − 3(−2). Primeiro a potência: 2·4 + 6. Portanto, o valor é 14.',
@@ -274,7 +274,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'quadrado-soma-1',
-    title: 'Questão 16 de 50',
+    title: 'Questão 16 de 66',
     statement: 'Desenvolva o produto notável:\\n(x + 4)²',
     correctOptionId: 'a',
     explanation: 'Usamos (a + b)² = a² + 2ab + b². Aqui, a = x e b = 4, então o resultado é x² + 8x + 16.',
@@ -290,7 +290,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'diferenca-quadrados-1',
-    title: 'Questão 17 de 50',
+    title: 'Questão 17 de 66',
     statement: 'Fatore a expressão:\\nx² − 9',
     correctOptionId: 'd',
     explanation: 'A expressão é uma diferença de quadrados: x² − 3². O padrão a² − b² = (a − b)(a + b) dá (x − 3)(x + 3).',
@@ -306,7 +306,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'soma-fracoes-algebricas-1',
-    title: 'Questão 18 de 50',
+    title: 'Questão 18 de 66',
     statement: 'Simplifique a expressão:\\nx/2 + x/3',
     correctOptionId: 'b',
     explanation: 'O mínimo múltiplo comum entre 2 e 3 é 6. Reescrevemos x/2 como 3x/6 e x/3 como 2x/6, somando para obter 5x/6.',
@@ -322,7 +322,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'termos-semelhantes-1',
-    title: 'Questão 19 de 50',
+    title: 'Questão 19 de 66',
     statement: 'Simplifique:\\n4x²y − 7x²y + 2x²y',
     correctOptionId: 'c',
     explanation: 'Todos os termos têm a mesma parte literal x²y. Somamos os coeficientes 4 − 7 + 2 = −1, então o resultado é −x²y.',
@@ -338,7 +338,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-1',
-    title: 'Questão 20 de 50',
+    title: 'Questão 20 de 66',
     statement: 'Simplifique:\\n2(x + 1) + (x − 3)(x + 3)',
     correctOptionId: 'a',
     explanation:
@@ -355,7 +355,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-estrutura-1',
-    title: 'Questão 21 de 50',
+    title: 'Questão 21 de 66',
     statement:
         'Considere P(x)=−3x⁵+2x²−7. Qual é o grau e o coeficiente líder?',
     correctOptionId: 'b',
@@ -373,7 +373,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-classificacao-1',
-    title: 'Questão 22 de 50',
+    title: 'Questão 22 de 66',
     statement: 'Qual expressão NÃO é um polinômio em x?',
     correctOptionId: 'c',
     explanation:
@@ -390,7 +390,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-1',
-    title: 'Questão 23 de 50',
+    title: 'Questão 23 de 66',
     statement: 'Calcule (2x²+3x−1) − (x²−5x+4).',
     correctOptionId: 'a',
     explanation:
@@ -407,7 +407,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-2',
-    title: 'Questão 24 de 50',
+    title: 'Questão 24 de 66',
     statement: 'Expanda (x−2)(x²+3x+4).',
     correctOptionId: 'd',
     explanation:
@@ -424,7 +424,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'linguagem-agrupamento-1',
-    title: 'Questão 25 de 50',
+    title: 'Questão 25 de 66',
     statement: 'Qual expressão representa “o quadrado da soma de x com 3”?',
     correctOptionId: 'c',
     explanation:
@@ -441,7 +441,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'linguagem-modelagem-1',
-    title: 'Questão 26 de 50',
+    title: 'Questão 26 de 66',
     statement:
         'Um serviço cobra taxa fixa de R\$ 12,00 mais R\$ 4,50 por hora de uso. Se h é o número de horas, qual expressão representa o custo total?',
     correctOptionId: 'b',
@@ -459,7 +459,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'termos-semelhantes-2',
-    title: 'Questão 27 de 50',
+    title: 'Questão 27 de 66',
     statement: 'Simplifique:\n5x² − 3x + 2x² + 7x',
     correctOptionId: 'a',
     explanation:
@@ -476,7 +476,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'termos-semelhantes-3',
-    title: 'Questão 28 de 50',
+    title: 'Questão 28 de 66',
     statement: 'Qual termo é semelhante a 4a²b?',
     correctOptionId: 'd',
     explanation:
@@ -493,7 +493,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-4',
-    title: 'Questão 29 de 50',
+    title: 'Questão 29 de 66',
     statement: 'Simplifique:\n−3(2x − 5) + 4x',
     correctOptionId: 'c',
     explanation:
@@ -510,7 +510,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'distributiva-5',
-    title: 'Questão 30 de 50',
+    title: 'Questão 30 de 66',
     statement: 'Simplifique:\n2[3x − (x − 4)]',
     correctOptionId: 'b',
     explanation:
@@ -527,12 +527,12 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencias-2',
-    title: 'Questão 31 de 50',
+    title: 'Questão 31 de 66',
     statement: 'Simplifique:\n(3a²b)²',
     correctOptionId: 'd',
     explanation:
         'A potência atua sobre todos os fatores. Temos 3² = 9, (a²)² = a⁴ e b². Portanto, (3a²b)² = 9a⁴b².',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Elevar monômios a uma potência',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
@@ -544,12 +544,12 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'potencias-3',
-    title: 'Questão 32 de 50',
+    title: 'Questão 32 de 66',
     statement: 'Simplifique, considerando x ≠ 0:\n(2x³) / (8x)',
     correctOptionId: 'a',
     explanation:
         'Dividimos os coeficientes, 2/8 = 1/4, e subtraímos os expoentes da mesma base: x³/x = x². Assim, o resultado é x²/4.',
-    contentLessonId: 'algebra-04-potencias',
+    contentLessonId: 'precalculo-00-04-potencias-raizes',
     skill: 'Simplificar quocientes de monômios',
     difficulty: ExerciseDifficulty.intermediate,
     options: [
@@ -561,7 +561,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-2',
-    title: 'Questão 33 de 50',
+    title: 'Questão 33 de 66',
     statement: 'Expanda:\n(x − 5)²',
     correctOptionId: 'b',
     explanation:
@@ -578,7 +578,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-3',
-    title: 'Questão 34 de 50',
+    title: 'Questão 34 de 66',
     statement: 'Expanda:\n(2x + 3)²',
     correctOptionId: 'c',
     explanation:
@@ -595,7 +595,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'produto-notavel-4',
-    title: 'Questão 35 de 50',
+    title: 'Questão 35 de 66',
     statement: 'Calcule o produto:\n(3x − 2)(3x + 2)',
     correctOptionId: 'a',
     explanation:
@@ -612,7 +612,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fatoracao-2',
-    title: 'Questão 36 de 50',
+    title: 'Questão 36 de 66',
     statement: 'Fatore completamente:\n8x² + 12x',
     correctOptionId: 'd',
     explanation:
@@ -629,7 +629,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fatoracao-3',
-    title: 'Questão 37 de 50',
+    title: 'Questão 37 de 66',
     statement: 'Fatore:\nx² + 7x + 12',
     correctOptionId: 'b',
     explanation:
@@ -646,7 +646,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fatoracao-4',
-    title: 'Questão 38 de 50',
+    title: 'Questão 38 de 66',
     statement: 'Fatore:\n4x² − 25',
     correctOptionId: 'c',
     explanation:
@@ -663,7 +663,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fracoes-algebricas-2',
-    title: 'Questão 39 de 50',
+    title: 'Questão 39 de 66',
     statement: 'Simplifique, com x ≠ 3:\n(x² − 9) / (x − 3)',
     correctOptionId: 'a',
     explanation:
@@ -680,7 +680,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fracoes-algebricas-3',
-    title: 'Questão 40 de 50',
+    title: 'Questão 40 de 66',
     statement: 'Some, considerando x ≠ 0:\n2/x + 3/(2x)',
     correctOptionId: 'd',
     explanation:
@@ -697,7 +697,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fracoes-algebricas-4',
-    title: 'Questão 41 de 50',
+    title: 'Questão 41 de 66',
     statement: 'Multiplique, considerando x ≠ 0:\n(x/3) · (9/x²)',
     correctOptionId: 'b',
     explanation:
@@ -714,7 +714,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'fracoes-algebricas-5',
-    title: 'Questão 42 de 50',
+    title: 'Questão 42 de 66',
     statement:
         'Simplifique e mantenha as restrições:\n(x² − 4) / (x² + x − 6)',
     correctOptionId: 'c',
@@ -732,7 +732,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-2',
-    title: 'Questão 43 de 50',
+    title: 'Questão 43 de 66',
     statement: 'Simplifique:\n3(x − 2) + (x + 1)²',
     correctOptionId: 'a',
     explanation:
@@ -749,7 +749,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-3',
-    title: 'Questão 44 de 50',
+    title: 'Questão 44 de 66',
     statement: 'Simplifique, com x ≠ 4:\n(x² − 16) / (x² − 8x + 16)',
     correctOptionId: 'd',
     explanation:
@@ -766,7 +766,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-4',
-    title: 'Questão 45 de 50',
+    title: 'Questão 45 de 66',
     statement: 'Fatore a expressão:\n2a(a − 3) − (a − 3)(a + 1)',
     correctOptionId: 'b',
     explanation:
@@ -783,7 +783,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'sintese-algebrica-5',
-    title: 'Questão 46 de 50',
+    title: 'Questão 46 de 66',
     statement:
         'Um aluno simplificou (x² + 6x + 9)/(x + 3) para x + 3. Qual condição precisa acompanhar essa simplificação?',
     correctOptionId: 'c',
@@ -801,7 +801,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-estrutura-2',
-    title: 'Questão 47 de 50',
+    title: 'Questão 47 de 66',
     statement:
         'Considere P(x) = 7 − 2x⁴ + x². Qual par representa (grau, coeficiente líder)?',
     correctOptionId: 'a',
@@ -819,7 +819,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'polinomios-classificacao-2',
-    title: 'Questão 48 de 50',
+    title: 'Questão 48 de 66',
     statement: 'Qual expressão NÃO é um polinômio em x?',
     correctOptionId: 'd',
     explanation:
@@ -836,7 +836,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-3',
-    title: 'Questão 49 de 50',
+    title: 'Questão 49 de 66',
     statement: 'Some:\n(3x² − 2x + 5) + (x² + 7x − 1)',
     correctOptionId: 'c',
     explanation:
@@ -853,7 +853,7 @@ const List<ExerciseData> mockExercises = [
   ),
   ExerciseData(
     id: 'operacoes-polinomios-4',
-    title: 'Questão 50 de 50',
+    title: 'Questão 50 de 66',
     statement: 'Expanda:\n(2x − 1)(x² + x + 3)',
     correctOptionId: 'b',
     explanation:
@@ -868,5 +868,278 @@ const List<ExerciseData> mockExercises = [
       ExerciseOptionData(id: 'd', text: '2x³ + x² + 5x + 3'),
     ],
   ),
+  ExerciseData(
+    id: 'fundamentos-reais-1',
+    title: 'Questão 51 de 66',
+    statement: 'Qual dos números abaixo é racional?',
+    correctOptionId: 'b',
+    explanation:
+        'Um número racional pode ser escrito como razão entre dois inteiros, com denominador diferente de zero. O número −3/5 já está nessa forma, portanto pertence a ℚ.',
+    contentLessonId: 'precalculo-00-01-reais',
+    skill: 'Classificar números reais',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '√2'),
+      ExerciseOptionData(id: 'b', text: '−3/5'),
+      ExerciseOptionData(id: 'c', text: 'π'),
+      ExerciseOptionData(id: 'd', text: '√7'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-reais-2',
+    title: 'Questão 52 de 66',
+    statement: 'Represente em intervalo:\n−2 ≤ x < 4',
+    correctOptionId: 'c',
+    explanation:
+        'O ponto −2 pertence ao conjunto, por isso usamos colchete à esquerda. O ponto 4 não pertence, então usamos parêntese à direita. O intervalo é [−2, 4).',
+    contentLessonId: 'precalculo-00-01-reais',
+    skill: 'Representar desigualdades em intervalos',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '(−2, 4)'),
+      ExerciseOptionData(id: 'b', text: '[−2, 4]'),
+      ExerciseOptionData(id: 'c', text: '[−2, 4)'),
+      ExerciseOptionData(id: 'd', text: '(−2, 4]'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-reais-3',
+    title: 'Questão 53 de 66',
+    statement: 'Qual é a distância entre −3 e 5 na reta real?',
+    correctOptionId: 'd',
+    explanation:
+        'A distância entre dois números reais a e b é |a−b|. Assim, |−3−5|=|−8|=8. A distância é sempre não negativa.',
+    contentLessonId: 'precalculo-00-01-reais',
+    skill: 'Calcular distância na reta real',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2'),
+      ExerciseOptionData(id: 'b', text: '−8'),
+      ExerciseOptionData(id: 'c', text: '5'),
+      ExerciseOptionData(id: 'd', text: '8'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-reais-4',
+    title: 'Questão 54 de 66',
+    statement: 'Qual número é irracional?',
+    correctOptionId: 'a',
+    explanation:
+        '√7 é irracional porque 7 não é quadrado perfeito e sua raiz não pode ser escrita como razão entre dois inteiros. Já 0,25, −4 e 7/3 são racionais.',
+    contentLessonId: 'precalculo-00-01-reais',
+    skill: 'Distinguir racionais e irracionais',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '√7'),
+      ExerciseOptionData(id: 'b', text: '0,25'),
+      ExerciseOptionData(id: 'c', text: '−4'),
+      ExerciseOptionData(id: 'd', text: '7/3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-operacoes-1',
+    title: 'Questão 55 de 66',
+    statement: 'Calcule respeitando a prioridade das operações:\n3 + 2·5',
+    correctOptionId: 'b',
+    explanation:
+        'A multiplicação deve ser feita antes da adição. Primeiro 2·5=10; depois 3+10=13. Alterar essa ordem mudaria o valor da expressão.',
+    contentLessonId: 'precalculo-00-02-operacoes',
+    skill: 'Aplicar prioridade das operações',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '25'),
+      ExerciseOptionData(id: 'b', text: '13'),
+      ExerciseOptionData(id: 'c', text: '10'),
+      ExerciseOptionData(id: 'd', text: '16'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-operacoes-2',
+    title: 'Questão 56 de 66',
+    statement: 'Calcule:\n18 ÷ 3 · (2 + 1)',
+    correctOptionId: 'c',
+    explanation:
+        'Primeiro resolvemos o agrupamento: 2+1=3. Depois divisão e multiplicação têm a mesma prioridade e são executadas da esquerda para a direita: 18÷3=6 e 6·3=18.',
+    contentLessonId: 'precalculo-00-02-operacoes',
+    skill: 'Resolver expressão com agrupamento',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2'),
+      ExerciseOptionData(id: 'b', text: '6'),
+      ExerciseOptionData(id: 'c', text: '18'),
+      ExerciseOptionData(id: 'd', text: '54'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-operacoes-3',
+    title: 'Questão 57 de 66',
+    statement: 'Calcule:\n7 − (3 − 5)',
+    correctOptionId: 'd',
+    explanation:
+        'Resolva primeiro o parêntese: 3−5=−2. Em seguida, 7−(−2)=7+2=9. Subtrair um número negativo equivale a somar seu oposto.',
+    contentLessonId: 'precalculo-00-02-operacoes',
+    skill: 'Controlar sinais em agrupamentos',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−1'),
+      ExerciseOptionData(id: 'b', text: '5'),
+      ExerciseOptionData(id: 'c', text: '7'),
+      ExerciseOptionData(id: 'd', text: '9'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-operacoes-4',
+    title: 'Questão 58 de 66',
+    statement: 'Qual é o valor de −2²?',
+    correctOptionId: 'a',
+    explanation:
+        'Sem parênteses, a potência atua apenas sobre o 2: −2²=−(2²)=−4. Já (−2)² seria igual a 4 porque o sinal negativo faria parte da base.',
+    contentLessonId: 'precalculo-00-02-operacoes',
+    skill: 'Interpretar sinal e potência',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−4'),
+      ExerciseOptionData(id: 'b', text: '4'),
+      ExerciseOptionData(id: 'c', text: '−2'),
+      ExerciseOptionData(id: 'd', text: '2'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-linguagem-1',
+    title: 'Questão 59 de 66',
+    statement: 'Na expressão 5x − 7, qual é o coeficiente de x?',
+    correctOptionId: 'c',
+    explanation:
+        'O coeficiente é o número que multiplica a variável. Em 5x−7, o termo variável é 5x, portanto o coeficiente de x é 5.',
+    contentLessonId: 'precalculo-00-03-linguagem',
+    skill: 'Identificar coeficiente e termo',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−7'),
+      ExerciseOptionData(id: 'b', text: 'x'),
+      ExerciseOptionData(id: 'c', text: '5'),
+      ExerciseOptionData(id: 'd', text: '7'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-linguagem-2',
+    title: 'Questão 60 de 66',
+    statement: 'Qual expressão representa “o triplo de um número x aumentado de 4”?',
+    correctOptionId: 'b',
+    explanation:
+        'O triplo de x é 3x. A expressão “aumentado de 4” indica somar 4 ao resultado, produzindo 3x+4.',
+    contentLessonId: 'precalculo-00-03-linguagem',
+    skill: 'Traduzir linguagem verbal para algébrica',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '3(x + 4)'),
+      ExerciseOptionData(id: 'b', text: '3x + 4'),
+      ExerciseOptionData(id: 'c', text: 'x + 12'),
+      ExerciseOptionData(id: 'd', text: '4x + 3'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-linguagem-3',
+    title: 'Questão 61 de 66',
+    statement: 'Calcule 2a + 3 para a = −1.',
+    correctOptionId: 'd',
+    explanation:
+        'Substituímos a por −1: 2(−1)+3=−2+3=1. A substituição deve preservar o sinal do valor usado.',
+    contentLessonId: 'precalculo-00-03-linguagem',
+    skill: 'Avaliar expressão por substituição',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−5'),
+      ExerciseOptionData(id: 'b', text: '−1'),
+      ExerciseOptionData(id: 'c', text: '5'),
+      ExerciseOptionData(id: 'd', text: '1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-linguagem-4',
+    title: 'Questão 62 de 66',
+    statement: 'Qual valor deve ser excluído da expressão 1/(x − 2)?',
+    correctOptionId: 'a',
+    explanation:
+        'O denominador não pode ser zero. Impomos x−2≠0, portanto x≠2. Esse valor deve ser excluído do domínio da expressão.',
+    contentLessonId: 'precalculo-00-03-linguagem',
+    skill: 'Identificar restrição de domínio',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: '2'),
+      ExerciseOptionData(id: 'b', text: '−2'),
+      ExerciseOptionData(id: 'c', text: '0'),
+      ExerciseOptionData(id: 'd', text: '1'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-modulo-1',
+    title: 'Questão 63 de 66',
+    statement: 'Calcule |−7|.',
+    correctOptionId: 'b',
+    explanation:
+        'Valor absoluto representa distância até zero. O número −7 está a 7 unidades de zero, então |−7|=7.',
+    contentLessonId: 'precalculo-00-05-modulo',
+    skill: 'Interpretar valor absoluto',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−7'),
+      ExerciseOptionData(id: 'b', text: '7'),
+      ExerciseOptionData(id: 'c', text: '0'),
+      ExerciseOptionData(id: 'd', text: '14'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-modulo-2',
+    title: 'Questão 64 de 66',
+    statement: 'Resolva:\n|x − 3| = 5',
+    correctOptionId: 'c',
+    explanation:
+        'A distância de x até 3 deve ser 5. Assim, x−3=5 ou x−3=−5, resultando em x=8 ou x=−2.',
+    contentLessonId: 'precalculo-00-05-modulo',
+    skill: 'Resolver equação com valor absoluto',
+    difficulty: ExerciseDifficulty.intermediate,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x = 2 ou x = 8'),
+      ExerciseOptionData(id: 'b', text: 'x = −8 ou x = 2'),
+      ExerciseOptionData(id: 'c', text: 'x = −2 ou x = 8'),
+      ExerciseOptionData(id: 'd', text: 'x = 3 ou x = 5'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-modulo-3',
+    title: 'Questão 65 de 66',
+    statement: 'Resolva:\n|x − 4| < 2',
+    correctOptionId: 'd',
+    explanation:
+        'A desigualdade |x−4|<2 significa que a distância de x até 4 é menor que 2. Portanto, 4−2<x<4+2, isto é, 2<x<6.',
+    contentLessonId: 'precalculo-00-05-modulo',
+    skill: 'Interpretar inequação com valor absoluto',
+    difficulty: ExerciseDifficulty.challenge,
+    options: [
+      ExerciseOptionData(id: 'a', text: 'x < 2 ou x > 6'),
+      ExerciseOptionData(id: 'b', text: '2 ≤ x ≤ 6'),
+      ExerciseOptionData(id: 'c', text: 'x > 6'),
+      ExerciseOptionData(id: 'd', text: '2 < x < 6'),
+    ],
+  ),
+  ExerciseData(
+    id: 'fundamentos-modulo-4',
+    title: 'Questão 66 de 66',
+    statement: 'Se |x + 1| = 0, qual é o valor de x?',
+    correctOptionId: 'a',
+    explanation:
+        'Um valor absoluto só é zero quando a expressão dentro dele é zero. Portanto, x+1=0 e x=−1.',
+    contentLessonId: 'precalculo-00-05-modulo',
+    skill: 'Usar a condição de valor absoluto nulo',
+    difficulty: ExerciseDifficulty.foundation,
+    options: [
+      ExerciseOptionData(id: 'a', text: '−1'),
+      ExerciseOptionData(id: 'b', text: '0'),
+      ExerciseOptionData(id: 'c', text: '1'),
+      ExerciseOptionData(id: 'd', text: '−2'),
+    ],
+  ),
+
 
 ];
