@@ -11,7 +11,7 @@ export interface FinalTestOption {
  */
 export interface TrustedFinalTestQuestion {
   id: string;
-  contentLessonId: string;
+  contentLessonId?: string;
   statement: string;
   options: readonly FinalTestOption[];
   correctOptionId: string;
