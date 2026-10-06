@@ -74,7 +74,7 @@ class PracticeQuestionRotationSelector {
   static List<String> appendToRecentHistory({
     required Iterable<String> currentHistoryIds,
     required Iterable<String> selectedQuestionIds,
-    int maxHistorySize = 40,
+    int maxHistorySize = 80,
   }) {
     if (maxHistorySize <= 0) {
       return const <String>[];

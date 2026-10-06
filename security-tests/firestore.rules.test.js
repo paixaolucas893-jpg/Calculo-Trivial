@@ -435,8 +435,8 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
     .authenticatedContext('user-a')
     .firestore();
 
-  const oversizedPerformance = Object.fromEntries(
-    Array.from({ length: 301 }, (_, index) => [
+  const maxPerformance = Object.fromEntries(
+    Array.from({ length: 1500 }, (_, index) => [
       `q-${index}`,
       {
         attempts: 1,
@@ -445,6 +445,25 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
         lastAnswerCorrect: false,
       },
     ]),
+  );
+
+  const oversizedPerformance = {
+    ...maxPerformance,
+    'q-1500': {
+      attempts: 1,
+      correct: 0,
+      incorrect: 1,
+      lastAnswerCorrect: false,
+    },
+  };
+
+  await assertSucceeds(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        questionPerformance: maxPerformance,
+      }),
+    ),
   );
 
   await assertFails(
@@ -547,7 +566,7 @@ test('cliente consegue sincronizar janela recente de prática', async () => {
       doc(db, 'users', 'user-a', 'progress', 'current'),
       {
         recentPracticeQuestionIds: {
-          'funcoes': Array.from({ length: 40 }, (_, index) => `q-${index}`),
+          'funcoes': Array.from({ length: 80 }, (_, index) => `q-${index}`),
         },
         updatedAt: serverTimestamp(),
       },
@@ -556,7 +575,7 @@ test('cliente consegue sincronizar janela recente de prática', async () => {
   );
 });
 
-test('Firestore limita a janela recente de prática a quarenta questões por módulo', async () => {
+test('Firestore limita a janela recente de prática a oitenta questões por módulo', async () => {
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -566,7 +585,7 @@ test('Firestore limita a janela recente de prática a quarenta questões por mó
       doc(db, 'users', 'user-a', 'progress', 'current'),
       validProgress({
         recentPracticeQuestionIds: {
-          'funcoes': Array.from({ length: 41 }, (_, index) => `q-${index}`),
+          'funcoes': Array.from({ length: 81 }, (_, index) => `q-${index}`),
         },
       }),
     ),

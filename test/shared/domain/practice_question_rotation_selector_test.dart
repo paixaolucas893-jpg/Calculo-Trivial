@@ -63,10 +63,10 @@ void main() {
       );
     });
 
-    test('mantém janela recente com no máximo quarenta IDs', () {
+    test('mantém janela recente com no máximo oitenta IDs', () {
       var history = <String>[];
 
-      for (var session = 0; session < 6; session++) {
+      for (var session = 0; session < 10; session++) {
         history = PracticeQuestionRotationSelector.appendToRecentHistory(
           currentHistoryIds: history,
           selectedQuestionIds: List<String>.generate(
@@ -76,9 +76,9 @@ void main() {
         );
       }
 
-      expect(history, hasLength(40));
+      expect(history, hasLength(80));
       expect(history.first, 'q21');
-      expect(history.last, 'q60');
+      expect(history.last, 'q100');
     });
 
     test('rever uma questão move seu ID para o fim da janela', () {

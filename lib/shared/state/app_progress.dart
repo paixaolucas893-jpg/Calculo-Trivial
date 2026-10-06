@@ -389,7 +389,7 @@ class AppProgress {
 
       if (recentPracticeIds != null && recentPracticeIds.isNotEmpty) {
         _recentPracticeQuestionIds[lessonId] =
-            recentPracticeIds.take(40).toList(growable: false);
+            recentPracticeIds.take(80).toList(growable: false);
       }
 
       final finalTestQuestionIds = preferences.getStringList(
@@ -506,7 +506,7 @@ class AppProgress {
 
       final ids = remoteIds
           .whereType<String>()
-          .take(40)
+          .take(80)
           .toList(growable: false);
 
       if (ids.isNotEmpty) {
@@ -979,7 +979,7 @@ class AppProgress {
         PracticeQuestionRotationSelector.appendToRecentHistory(
       currentHistoryIds: recentHistoryIds,
       selectedQuestionIds: selectedQuestionIds,
-      maxHistorySize: 40,
+      maxHistorySize: 80,
     );
     _queueProgressSave();
 
