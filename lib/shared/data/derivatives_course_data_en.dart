@@ -533,7 +533,10 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: 'Each term differentiates one factor and keeps the other.',
     ),
-    takeaways: ['The product rule produces two terms.', 'Order and the subtraction sign matter in the quotient rule.', 'Simplify first when it reduces complexity.'
+    takeaways: [
+      'The product rule produces two terms.',
+      'Order and the subtraction sign matter in the quotient rule.',
+      'Simplify first when it reduces complexity.',
       'The derivative of a product requires two terms.',
       'The quotient rule preserves a specific order in the numerator.',
       'Simplifying before differentiating can be the best strategy.',
@@ -707,7 +710,10 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: 'The outer layer gives 4(3x−2)³ and the inner layer gives the factor 3.',
     ),
-    takeaways: ['Explicitly identify the outer and inner functions.', 'Differentiate the outer function while keeping the inner expression.', 'Multiply by the derivative of each inner layer.'
+    takeaways: [
+      'Explicitly identify the outer and inner functions.',
+      'Differentiate the outer function while keeping the inner expression.',
+      'Multiply by the derivative of each inner layer.',
       'The chain rule differentiates compositions layer by layer.',
       'Each inner layer contributes an additional derivative factor.',
       'Leibniz notation helps visualize dependencies.',
@@ -882,7 +888,11 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: 'The rate of cosine follows sine with a negative sign.',
     ),
-    takeaways: ['The derivative of sin(x) is cos(x).', 'The derivative of cos(x) is −sin(x).', 'eˣ remains unchanged and ln(x) gives 1/x.', 'For composite arguments, also apply the chain rule.'
+    takeaways: [
+      'The derivative of sin(x) is cos(x).',
+      'The derivative of cos(x) is −sin(x).',
+      'eˣ remains unchanged and ln(x) gives 1/x.',
+      'For composite arguments, also apply the chain rule.',
       'Sine, cosine, exponential, and logarithmic functions have their own fundamental derivatives.',
       'Calculus trigonometric formulas use radians.',
       'Compositions require the chain rule.',
@@ -1058,7 +1068,11 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: 'Since f′(x)=2x, we have f′(3)=6.',
     ),
-    takeaways: ['f′(a) gives the slope of the tangent.', 'The point of tangency is (a,f(a)).', 'Use y−f(a)=f′(a)(x−a).', 'The tangent line approximates the function locally.'
+    takeaways: [
+      'f′(a) gives the slope of the tangent.',
+      'The point of tangency is (a,f(a)).',
+      'Use y−f(a)=f′(a)(x−a).',
+      'The tangent line approximates the function locally.',
       'The tangent uses the point (a,f(a)) and slope f′(a).',
       'The normal line is perpendicular to the tangent.',
       'f′(a)=0 produces a horizontal tangent.',
@@ -1237,7 +1251,11 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: '|x| is continuous at zero, but its one-sided derivatives are different.',
     ),
-    takeaways: ['Differentiability guarantees continuity at the point.', 'Continuity alone does not guarantee differentiability.', 'Corners can be detected by different one-sided derivatives.', 'Critical points occur when f′=0 or does not exist.'
+    takeaways: [
+      'Differentiability guarantees continuity at the point.',
+      'Continuity alone does not guarantee differentiability.',
+      'Corners can be detected by different one-sided derivatives.',
+      'Critical points occur when f′=0 or does not exist.',
       'Every differentiable function is continuous at the point.',
       'Corners, cusps, and vertical tangents can prevent differentiability.',
       'Critical points are not automatically extrema.',
@@ -1416,7 +1434,11 @@ const List<CourseLessonData> derivativesCourseLessonsEn = [
       correctIndex: 0,
       explanation: 'The derivative divides the change in position by the change in time.',
     ),
-    takeaways: ['A derivative must be interpreted together with its units.', 'Velocity is the derivative of position; acceleration is the derivative of velocity.', 'Evaluating the derivative at a point gives an instantaneous rate.', 'The method ends with interpretation, not just algebra.'
+    takeaways: [
+      'A derivative must be interpreted together with its units.',
+      'Velocity is the derivative of position; acceleration is the derivative of velocity.',
+      'Evaluating the derivative at a point gives an instantaneous rate.',
+      'The method ends with interpretation, not just algebra.',
       'Velocity is the derivative of position and acceleration is the derivative of velocity.',
       'Related rates use the chain rule and implicit differentiation.',
       'Optimization uses critical points within a model and its domain.',
