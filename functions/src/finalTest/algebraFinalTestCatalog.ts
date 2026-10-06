@@ -397,6 +397,55 @@ readonly TrustedFinalTestQuestion[] = [
     ],
   },
 
+  {
+    id: "final-algebra-v1-31",
+    contentLessonId: "algebra-09-monomios-polinomios",
+    statement: "Qual e o grau do monomio 4x^3 y^2?",
+    correctOptionId: "d",
+    options: [
+      {id: "a", text: "2"},
+      {id: "b", text: "3"},
+      {id: "c", text: "4"},
+      {id: "d", text: "5"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-32",
+    contentLessonId: "algebra-09-monomios-polinomios",
+    statement: "Qual expressao e um polinomio em x?",
+    correctOptionId: "b",
+    options: [
+      {id: "a", text: "1/x + 2"},
+      {id: "b", text: "3x^2 - 5x + 1"},
+      {id: "c", text: "sqrt(x) + 1"},
+      {id: "d", text: "x^-2 + 4"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-33",
+    contentLessonId: "algebra-10-operacoes-polinomios",
+    statement: "Some: (2x^2 + 3x - 1) + (x^2 - x + 4).",
+    correctOptionId: "a",
+    options: [
+      {id: "a", text: "3x^2 + 2x + 3"},
+      {id: "b", text: "3x^2 + 4x + 3"},
+      {id: "c", text: "x^2 + 2x + 5"},
+      {id: "d", text: "3x^4 + 2x + 3"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-34",
+    contentLessonId: "algebra-10-operacoes-polinomios",
+    statement: "Multiplique: x(x^2 - 3x + 2).",
+    correctOptionId: "c",
+    options: [
+      {id: "a", text: "x^2 - 3x + 2"},
+      {id: "b", text: "x^3 - 3x + 2"},
+      {id: "c", text: "x^3 - 3x^2 + 2x"},
+      {id: "d", text: "x^3 - 3x^2 + 2"},
+    ],
+  },
+
 ];
 
 /**
