@@ -11,7 +11,7 @@ import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
 
 const exerciseBanks = [
-  (name: 'Álgebra Fundamental', questions: mockExercises, expectedCount: 50),
+  (name: 'Álgebra Fundamental', questions: mockExercises, expectedCount: 66),
   (
     name: 'Equações e Inequações',
     questions: mockEquationsExercises,
