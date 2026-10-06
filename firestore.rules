@@ -34,7 +34,7 @@ service cloud.firestore {
 
     function validRecentPracticeList(values) {
       return values is list
-        && values.size() <= 40;
+        && values.size() <= 80;
     }
 
     function validRecentPracticeQuestions(values) {
@@ -75,7 +75,7 @@ service cloud.firestore {
 
     function validQuestionPerformance(values) {
       return values is map
-        && values.size() <= 300;
+        && values.size() <= 1500;
     }
 
     function validReviewSessionIds(values) {
