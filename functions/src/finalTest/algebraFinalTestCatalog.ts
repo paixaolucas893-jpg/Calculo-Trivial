@@ -11,6 +11,7 @@ export interface FinalTestOption {
  */
 export interface TrustedFinalTestQuestion {
   id: string;
+  contentLessonId?: string;
   statement: string;
   options: readonly FinalTestOption[];
   correctOptionId: string;
@@ -37,6 +38,7 @@ export const ALGEBRA_FINAL_TEST_CATALOG:
 readonly TrustedFinalTestQuestion[] = [
   {
     id: "final-algebra-v1-01",
+    contentLessonId: "algebra-02-termos-semelhantes",
     statement: "Simplifique:\n9x + 4x - 6x",
     correctOptionId: "c",
     options: [
@@ -48,6 +50,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-02",
+    contentLessonId: "algebra-02-termos-semelhantes",
     statement: "Simplifique:\n11a - 3a + 5a",
     correctOptionId: "b",
     options: [
@@ -59,6 +62,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-03",
+    contentLessonId: "algebra-01-linguagem",
     statement: "Calcule 3x^2 - 2x para x = -3.",
     correctOptionId: "d",
     options: [
@@ -70,6 +74,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-04",
+    contentLessonId: "algebra-01-linguagem",
     statement: "Qual e o coeficiente de -12y^4?",
     correctOptionId: "a",
     options: [
@@ -81,6 +86,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-05",
+    contentLessonId: "algebra-03-distributiva",
     statement: "Simplifique:\n4(2x - 3) + 2x",
     correctOptionId: "b",
     options: [
@@ -92,6 +98,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-06",
+    contentLessonId: "algebra-03-distributiva",
     statement: "Simplifique:\n7a - 3(a + 2)",
     correctOptionId: "c",
     options: [
@@ -103,6 +110,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-07",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
     statement: "Efetue a multiplicacao:\n(-4x^3)(3x^2)",
     correctOptionId: "d",
     options: [
@@ -114,6 +122,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-08",
+    contentLessonId: "algebra-05-produtos-notaveis",
     statement: "Desenvolva:\n(x + 5)(x - 3)",
     correctOptionId: "a",
     options: [
@@ -125,6 +134,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-09",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
     statement: "Simplifique:\n(18x^4 y^3) / (6x^2 y)",
     correctOptionId: "b",
     options: [
@@ -136,6 +146,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-10",
+    contentLessonId: "algebra-06-fatoracao",
     statement: "Fatore:\n10x + 15",
     correctOptionId: "c",
     options: [
@@ -147,6 +158,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-11",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
     statement: "Simplifique, considerando x diferente de zero:\nx^7 / x^3",
     correctOptionId: "a",
     options: [
@@ -158,6 +170,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-12",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
     statement: "Simplifique:\n(3x^2)^2",
     correctOptionId: "d",
     options: [
@@ -169,6 +182,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-13",
+    contentLessonId: "algebra-03-distributiva",
     statement: "Simplifique:\n5(x - 1) - 2(x + 4)",
     correctOptionId: "b",
     options: [
@@ -180,6 +194,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-14",
+    contentLessonId: "algebra-01-linguagem",
     statement: "Calcule 4a^2 + 2a para a = -2.",
     correctOptionId: "c",
     options: [
@@ -191,6 +206,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-15",
+    contentLessonId: "algebra-05-produtos-notaveis",
     statement: "Desenvolva:\n(x + 6)^2",
     correctOptionId: "a",
     options: [
@@ -202,6 +218,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-16",
+    contentLessonId: "algebra-06-fatoracao",
     statement: "Fatore:\nx^2 - 25",
     correctOptionId: "d",
     options: [
@@ -213,6 +230,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-17",
+    contentLessonId: "algebra-07-fracoes-algebricas",
     statement: "Simplifique:\nx/4 + x/6",
     correctOptionId: "b",
     options: [
@@ -224,6 +242,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-18",
+    contentLessonId: "algebra-02-termos-semelhantes",
     statement: "Simplifique:\n8x^2 y - 5x^2 y - 4x^2 y",
     correctOptionId: "c",
     options: [
@@ -235,6 +254,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-19",
+    contentLessonId: "algebra-08-sintese",
     statement: "Simplifique:\n3(x + 2) + (x - 4)(x + 4)",
     correctOptionId: "a",
     options: [
@@ -246,6 +266,7 @@ readonly TrustedFinalTestQuestion[] = [
   },
   {
     id: "final-algebra-v1-20",
+    contentLessonId: "algebra-03-distributiva",
     statement: "Simplifique:\n2(3x - 5) - (x - 7)",
     correctOptionId: "d",
     options: [
@@ -255,6 +276,127 @@ readonly TrustedFinalTestQuestion[] = [
       {id: "d", text: "5x - 3"},
     ],
   },
+  {
+    id: "final-algebra-v1-21",
+    contentLessonId: "precalculo-00-01-reais",
+    statement: "Qual numero abaixo e irracional?",
+    correctOptionId: "a",
+    options: [
+      {id: "a", text: "sqrt(3)"},
+      {id: "b", text: "0,75"},
+      {id: "c", text: "-5"},
+      {id: "d", text: "7/2"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-22",
+    contentLessonId: "precalculo-00-01-reais",
+    statement: "Qual intervalo representa -1 < x <= 4?",
+    correctOptionId: "c",
+    options: [
+      {id: "a", text: "[-1, 4]"},
+      {id: "b", text: "(-1, 4)"},
+      {id: "c", text: "(-1, 4]"},
+      {id: "d", text: "[-1, 4)"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-23",
+    contentLessonId: "precalculo-00-02-operacoes",
+    statement: "Calcule: 4 + 3 * 2^2",
+    correctOptionId: "d",
+    options: [
+      {id: "a", text: "28"},
+      {id: "b", text: "20"},
+      {id: "c", text: "14"},
+      {id: "d", text: "16"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-24",
+    contentLessonId: "precalculo-00-02-operacoes",
+    statement: "Calcule: 8 - (3 - 6)",
+    correctOptionId: "b",
+    options: [
+      {id: "a", text: "5"},
+      {id: "b", text: "11"},
+      {id: "c", text: "-1"},
+      {id: "d", text: "17"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-25",
+    contentLessonId: "precalculo-00-03-linguagem",
+    statement: "Na expressao -6x + 9, qual e o coeficiente de x?",
+    correctOptionId: "a",
+    options: [
+      {id: "a", text: "-6"},
+      {id: "b", text: "6"},
+      {id: "c", text: "9"},
+      {id: "d", text: "x"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-26",
+    contentLessonId: "precalculo-00-03-linguagem",
+    statement: "Qual valor deve ser excluido do dominio de 1/(x+5)?",
+    correctOptionId: "c",
+    options: [
+      {id: "a", text: "5"},
+      {id: "b", text: "0"},
+      {id: "c", text: "-5"},
+      {id: "d", text: "1"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-27",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
+    statement: "Simplifique: sqrt(49x^2), considerando x >= 0.",
+    correctOptionId: "b",
+    options: [
+      {id: "a", text: "49x"},
+      {id: "b", text: "7x"},
+      {id: "c", text: "7x^2"},
+      {id: "d", text: "14x"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-28",
+    contentLessonId: "precalculo-00-04-potencias-raizes",
+    statement: "Qual e o valor de 5^0?",
+    correctOptionId: "d",
+    options: [
+      {id: "a", text: "0"},
+      {id: "b", text: "5"},
+      {id: "c", text: "25"},
+      {id: "d", text: "1"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-29",
+    contentLessonId: "precalculo-00-05-modulo",
+    statement: "Resolva |x-2|=4.",
+    correctOptionId: "a",
+    options: [
+      {id: "a", text: "x=-2 ou x=6"},
+      {id: "b", text: "x=2 ou x=4"},
+      {id: "c", text: "x=-4 ou x=2"},
+      {id: "d", text: "x=4 ou x=6"},
+    ],
+  },
+  {
+    id: "final-algebra-v1-30",
+    contentLessonId: "precalculo-00-05-modulo",
+    statement: "Qual desigualdade equivale a |x-3|<2?",
+    correctOptionId: "c",
+    options: [
+      {id: "a", text: "x<1 ou x>5"},
+      {id: "b", text: "1<=x<=5"},
+      {id: "c", text: "1<x<5"},
+      {id: "d", text: "x>5"},
+    ],
+  },
+
 ];
 
 /**

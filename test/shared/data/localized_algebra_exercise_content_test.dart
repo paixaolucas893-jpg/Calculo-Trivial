@@ -51,8 +51,8 @@ void main() {
       'Simplify the expression:\n(12x³y²) / (3xy)',
     );
   });
-  test('todas as cinquenta atividades possuem versão completa em inglês', () {
-    expect(mockExercises, hasLength(50));
+  test('todas as sessenta e seis atividades possuem versão completa em inglês', () {
+    expect(mockExercises, hasLength(66));
 
     for (var index = 0; index < mockExercises.length; index++) {
       final exercise = mockExercises[index];
@@ -63,7 +63,7 @@ void main() {
 
       expect(
         localized.title,
-        'Question ${index + 1} of 50',
+        'Question ${index + 1} of 66',
         reason: '${exercise.id} não possui título inglês sincronizado.',
       );
       expect(
