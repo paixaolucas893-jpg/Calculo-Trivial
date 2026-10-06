@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calcquest/shared/data/algebra_course_data.dart';
 import 'package:calcquest/shared/data/localized_algebra_course_content.dart';
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
+import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
 import 'package:calcquest/shared/domain/course_lesson_data.dart';
 
 void main() {
@@ -156,7 +157,13 @@ void main() {
       }
     });
 
-    test('cada aula de Álgebra possui ao menos quatro questões', () {
+    test('cada aula visível da trilha possui ao menos quatro questões', () {
+      final visibleLessons = <CourseLessonData>[
+        ...precalculusFoundationsCourseLessons,
+        ...algebraCourseLessons.where(
+          (lesson) => lesson.id != 'algebra-04-potencias',
+        ),
+      ];
       final countsByLesson = <String, int>{};
 
       for (final exercise in mockExercises) {
@@ -164,26 +171,37 @@ void main() {
         countsByLesson[lessonId] = (countsByLesson[lessonId] ?? 0) + 1;
       }
 
-      for (final lesson in algebraCourseLessons) {
+      for (final lesson in visibleLessons) {
         expect(
           countsByLesson[lesson.id] ?? 0,
           greaterThanOrEqualTo(4),
           reason: '${lesson.id} precisa de cobertura suficiente para reduzir repetição.',
         );
       }
+
+      expect(
+        countsByLesson['algebra-04-potencias'] ?? 0,
+        0,
+        reason: 'A aula removida da trilha não deve continuar recebendo questões.',
+      );
     });
 
-    test('as cinquenta atividades cobrem todas as aulas', () {
-      final lessonIds = algebraCourseLessons.map((lesson) => lesson.id).toSet();
+    test('as sessenta e seis atividades cobrem somente aulas visíveis', () {
+      final visibleLessonIds = <String>{
+        ...precalculusFoundationsCourseLessons.map((lesson) => lesson.id),
+        ...algebraCourseLessons
+            .where((lesson) => lesson.id != 'algebra-04-potencias')
+            .map((lesson) => lesson.id),
+      };
       final coveredLessonIds = <String>{};
 
-      expect(mockExercises, hasLength(50));
+      expect(mockExercises, hasLength(66));
 
       for (final exercise in mockExercises) {
         expect(
-          lessonIds,
+          visibleLessonIds,
           contains(exercise.contentLessonId),
-          reason: '${exercise.id} aponta para uma aula inexistente.',
+          reason: '${exercise.id} aponta para uma aula fora da trilha visível.',
         );
         expect(
           exercise.skill?.trim(),
@@ -201,8 +219,8 @@ void main() {
 
       expect(
         coveredLessonIds,
-        equals(lessonIds),
-        reason: 'Cada aula precisa ter ao menos uma atividade relacionada.',
+        equals(visibleLessonIds),
+        reason: 'Cada aula visível precisa ter cobertura no banco de prática.',
       );
     });
   });
