@@ -395,6 +395,20 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
     sections: [
       LessonSectionData(
         number: '1',
+        title: 'Prerequisite',
+        blocks: [
+          ConceptBlockData(
+            visual: LessonVisual.checklist,
+            title: 'What you should already know',
+            content:
+                'Before combining terms, you should recognize variables, coefficients, terms, constants, and the literal part of an algebraic expression.',
+            emphasis:
+                'In this lesson, the literal part stays unchanged; the goal is to decide when coefficients may be combined.',
+          ),
+        ],
+      ),
+      LessonSectionData(
+        number: '2',
         title: 'Terms must have the same literal part',
         blocks: [
           ConceptBlockData(
@@ -420,7 +434,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '2',
+        number: '3',
         title: 'Coefficient and literal part',
         blocks: [
           ConceptBlockData(
@@ -434,7 +448,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '3',
+        number: '4',
         title: 'Combining like terms',
         blocks: [
           ConceptBlockData(
@@ -458,7 +472,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '4',
+        number: '5',
         title: 'Signs belong to the term',
         blocks: [
           ConceptBlockData(
@@ -482,7 +496,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '5',
+        number: '6',
         title: 'Constants are like terms',
         blocks: [
           ConceptBlockData(
@@ -491,10 +505,22 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             content:
                 'All constants combine with other constants. They do not combine with variable terms unless the variable part has already been evaluated.',
           ),
+          WorkedExampleBlockData(
+            title: 'Variables and constants',
+            problem: 'Simplify 2x + 5 + 3x − 8.',
+            steps: [
+              'Group the x terms: 2x + 3x.',
+              'Group the constants: 5 − 8.',
+              'Compute: 5x and −3.',
+            ],
+            result: 'The reduced expression is 5x − 3.',
+            interpretation:
+                'Each type of term is handled within its own compatible group.',
+          ),
         ],
       ),
       LessonSectionData(
-        number: '6',
+        number: '7',
         title: 'More than one variable',
         blocks: [
           ConceptBlockData(
@@ -517,7 +543,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '7',
+        number: '8',
         title: 'Frequent errors',
         blocks: [
           ConceptBlockData(
@@ -537,7 +563,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '8',
+        number: '9',
         title: 'Guided exercises',
         blocks: [
           WorkedExampleBlockData(
@@ -566,7 +592,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '9',
+        number: '10',
         title: 'Practice before the final activity',
         blocks: [
           ConceptBlockData(
@@ -594,7 +620,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
         ],
       ),
       LessonSectionData(
-        number: '10',
+        number: '11',
         title: 'Connection to what comes next',
         blocks: [
           ConceptBlockData(
@@ -636,6 +662,7 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
       'Constants combine with constants.',
       'Multivariable terms require matching exponent patterns.',
       'Combining like terms is the distributive property in reverse.',
+      'Terms with different exponents cannot be combined.',
     ],
     closing:
         'Recognizing like terms is recognizing algebraic structure before doing arithmetic.',
@@ -769,6 +796,18 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             title: 'Different forms can represent the same expression',
             content:
                 '2(x+4) and 2x+8 have the same value for every real x. A valid algebraic transformation must preserve this identity.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Checking by substitution',
+            problem: 'Compare 3(x − 2) + x and 4x − 6 at x = 5.',
+            steps: [
+              'First expression: 3(5 − 2) + 5 = 9 + 5 = 14.',
+              'Second expression: 4·5 − 6 = 20 − 6 = 14.',
+              'Equality at one input is a useful check; distribution shows the equivalence holds for every x.',
+            ],
+            result: 'Both expressions give 14 at x = 5.',
+            interpretation:
+                'Testing values helps detect mistakes, but it does not replace a general algebraic justification.',
           ),
         ],
       ),
@@ -2363,6 +2402,19 @@ const List<CourseLessonData> _englishAlgebraCourseLessons = [
             title: 'Factor and simplify before multiplying',
             content:
                 'Multiply numerators and denominators, but factoring first can reveal cancellations and reduce the work.',
+          ),
+          WorkedExampleBlockData(
+            title: 'Multiplication with cancellation',
+            problem: 'Simplify [(x²−4)/(x²−x−2)]·[(x−2)/(x+2)].',
+            steps: [
+              'Factor x²−4=(x−2)(x+2).',
+              'Factor x²−x−2=(x−2)(x+1).',
+              'Record the original restrictions before cancelling.',
+              'Cancel the common factors that are allowed.',
+            ],
+            result: '(x−2)/(x+1), preserving the original restrictions.',
+            interpretation:
+                'The domain belongs to the original expression, not only to the final simplified form.',
           ),
         ],
       ),
