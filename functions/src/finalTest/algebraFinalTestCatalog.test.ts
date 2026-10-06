@@ -6,16 +6,25 @@ import {
   toPublicFinalTestQuestion,
 } from "./algebraFinalTestCatalog";
 
-const FOUNDATION_LESSON_IDS = new Set([
+const VISIBLE_ALGEBRA_LESSON_IDS = new Set([
   "precalculo-00-01-reais",
   "precalculo-00-02-operacoes",
   "precalculo-00-03-linguagem",
   "precalculo-00-04-potencias-raizes",
   "precalculo-00-05-modulo",
+  "algebra-01-linguagem",
+  "algebra-02-termos-semelhantes",
+  "algebra-03-distributiva",
+  "algebra-09-monomios-polinomios",
+  "algebra-10-operacoes-polinomios",
+  "algebra-05-produtos-notaveis",
+  "algebra-06-fatoracao",
+  "algebra-07-fracoes-algebricas",
+  "algebra-08-sintese",
 ]);
 
 test("Algebra final-test catalog keeps trusted lesson metadata", () => {
-  assert.equal(ALGEBRA_FINAL_TEST_CATALOG.length, 30);
+  assert.equal(ALGEBRA_FINAL_TEST_CATALOG.length, 34);
 
   const ids =
     ALGEBRA_FINAL_TEST_CATALOG
@@ -42,7 +51,7 @@ test("Algebra final-test catalog keeps trusted lesson metadata", () => {
 });
 
 test(
-  "Algebra final-test catalog covers every Precalculus Foundation lesson",
+  "Algebra final-test catalog covers every visible lesson in the Algebra path",
   () => {
     const covered = new Set(
       ALGEBRA_FINAL_TEST_CATALOG
@@ -58,11 +67,11 @@ test(
 
     for (
       const lessonId
-      of FOUNDATION_LESSON_IDS
+      of VISIBLE_ALGEBRA_LESSON_IDS
     ) {
       assert.ok(
         covered.has(lessonId),
-        `Missing secure final-test coverage for ${lessonId}`,
+        `Missing secure final-test coverage for visible lesson ${lessonId}`,
       );
     }
   },
