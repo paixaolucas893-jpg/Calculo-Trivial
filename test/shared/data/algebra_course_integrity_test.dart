@@ -42,6 +42,52 @@ void main() {
       expect(englishIds, equals(portugueseIds));
     });
 
+
+    test('português e inglês mantêm paridade estrutural por aula', () {
+      final englishLessons = localizedAlgebraCourseLessons(
+        const Locale('en'),
+      );
+
+      for (var index = 0; index < algebraCourseLessons.length; index++) {
+        final portuguese = algebraCourseLessons[index];
+        final english = englishLessons[index];
+
+        int workedExamples(CourseLessonData lesson) {
+          return lesson.sections
+              .expand((section) => section.blocks)
+              .whereType<WorkedExampleBlockData>()
+              .length;
+        }
+
+        expect(english.id, portuguese.id);
+        expect(
+          english.sections.length,
+          portuguese.sections.length,
+          reason: '${portuguese.id} precisa ter o mesmo número de seções em PT e EN.',
+        );
+        expect(
+          workedExamples(english),
+          workedExamples(portuguese),
+          reason: '${portuguese.id} precisa ter o mesmo número de exemplos resolvidos em PT e EN.',
+        );
+        expect(
+          english.takeaways.length,
+          portuguese.takeaways.length,
+          reason: '${portuguese.id} precisa ter a mesma síntese conceitual em PT e EN.',
+        );
+        expect(
+          english.duration,
+          portuguese.duration,
+          reason: '${portuguese.id} precisa manter a mesma duração estimada em PT e EN.',
+        );
+        expect(
+          english.check.choices.length,
+          portuguese.check.choices.length,
+          reason: '${portuguese.id} precisa manter o mesmo formato de check em PT e EN.',
+        );
+      }
+    });
+
     test('todas as aulas seguem estrutura universitária completa', () {
       for (final lesson in algebraCourseLessons) {
         expect(lesson.topicId, 'algebra-fundamental');
