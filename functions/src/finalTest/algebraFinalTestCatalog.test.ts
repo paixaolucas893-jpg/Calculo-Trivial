@@ -21,12 +21,19 @@ test("Algebra final-test catalog keeps trusted lesson metadata", () => {
   assert.equal(new Set(ids).size, ids.length);
 
   for (const question of ALGEBRA_FINAL_TEST_CATALOG) {
-    assert.equal(typeof question.contentLessonId, "string");
-    assert.ok(question.contentLessonId!.length > 0);
+    assert.equal(
+      typeof question.contentLessonId,
+      "string",
+    );
+    assert.ok(
+      (question.contentLessonId ?? "").length > 0,
+    );
   }
 });
 
-test("Algebra final-test catalog covers every Precalculus Foundation lesson", () => {
+test(
+  "Algebra final-test catalog covers every Precalculus Foundation lesson",
+  () => {
   const covered = new Set(
     ALGEBRA_FINAL_TEST_CATALOG
       .map((question) => question.contentLessonId)
@@ -39,9 +46,12 @@ test("Algebra final-test catalog covers every Precalculus Foundation lesson", ()
       `Missing secure final-test coverage for ${lessonId}`,
     );
   }
-});
+},
+);
 
-test("public Algebra final-test payload does not expose answer or lesson metadata", () => {
+test(
+  "public Algebra final-test payload omits trusted answer and lesson metadata",
+  () => {
   const publicQuestion = toPublicFinalTestQuestion(
     ALGEBRA_FINAL_TEST_CATALOG[0],
   );
@@ -51,5 +61,9 @@ test("public Algebra final-test payload does not expose answer or lesson metadat
     ["id", "options", "statement"],
   );
   assert.equal("correctOptionId" in publicQuestion, false);
-  assert.equal("contentLessonId" in publicQuestion, false);
-});
+  assert.equal(
+    "contentLessonId" in publicQuestion,
+    false,
+  );
+},
+);
