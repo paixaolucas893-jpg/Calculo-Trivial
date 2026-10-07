@@ -13,6 +13,7 @@ import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
+import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
@@ -162,7 +163,9 @@ class _PersonalizedReviewScreenState extends State<PersonalizedReviewScreen> {
 
     AppProgress.recordExerciseAnswer(
       questionId: currentCandidate.questionId,
+      contentLessonId: exercise.contentLessonId,
       isCorrect: isCorrect,
+      source: LearningActivitySource.personalizedReview,
     );
 
     if (isCorrect) {
