@@ -5,6 +5,17 @@ enum LearningActivitySource {
 }
 
 class LearningHistoryEntry {
+  static const int maxQuestionIdLength = 160;
+  static const int maxContentLessonIdLength = 160;
+
+  static const Set<String> _allowedJsonKeys = <String>{
+    'questionId',
+    'contentLessonId',
+    'isCorrect',
+    'source',
+    'occurredAtEpochMs',
+  };
+
   final String questionId;
   final String? contentLessonId;
   final bool isCorrect;
@@ -43,18 +54,43 @@ class LearningHistoryEntry {
   static LearningHistoryEntry? fromJson(dynamic value) {
     if (value is! Map) return null;
 
-    final questionId = value['questionId'];
-    final contentLessonId = value['contentLessonId'];
+    final keys = value.keys.whereType<String>().toSet();
+
+    if (keys.length != value.keys.length ||
+        !keys.every(_allowedJsonKeys.contains)) {
+      return null;
+    }
+
+    final questionIdValue = value['questionId'];
+    final contentLessonIdValue = value['contentLessonId'];
     final isCorrect = value['isCorrect'];
     final sourceName = value['source'];
     final occurredAtEpochMs = value['occurredAtEpochMs'];
 
-    if (questionId is! String ||
-        questionId.trim().isEmpty ||
+    if (questionIdValue is! String ||
+        !_isValidIdentifier(
+          questionIdValue,
+          maxLength: maxQuestionIdLength,
+        ) ||
         isCorrect is! bool ||
         sourceName is! String ||
-        occurredAtEpochMs is! num) {
+        occurredAtEpochMs is! int ||
+        occurredAtEpochMs <= 0) {
       return null;
+    }
+
+    String? contentLessonId;
+
+    if (contentLessonIdValue != null) {
+      if (contentLessonIdValue is! String ||
+          !_isValidIdentifier(
+            contentLessonIdValue,
+            maxLength: maxContentLessonIdLength,
+          )) {
+        return null;
+      }
+
+      contentLessonId = contentLessonIdValue.trim();
     }
 
     LearningActivitySource? source;
@@ -68,19 +104,21 @@ class LearningHistoryEntry {
 
     if (source == null) return null;
 
-    final timestamp = occurredAtEpochMs.toInt();
-
-    if (timestamp <= 0) return null;
-
     return LearningHistoryEntry(
-      questionId: questionId,
-      contentLessonId:
-          contentLessonId is String && contentLessonId.trim().isNotEmpty
-              ? contentLessonId
-              : null,
+      questionId: questionIdValue.trim(),
+      contentLessonId: contentLessonId,
       isCorrect: isCorrect,
       source: source,
-      occurredAtEpochMs: timestamp,
+      occurredAtEpochMs: occurredAtEpochMs,
     );
+  }
+
+  static bool _isValidIdentifier(
+    String value, {
+    required int maxLength,
+  }) {
+    final normalized = value.trim();
+
+    return normalized.isNotEmpty && normalized.length <= maxLength;
   }
 }
