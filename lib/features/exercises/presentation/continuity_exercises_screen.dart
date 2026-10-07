@@ -108,6 +108,7 @@ class _ContinuityExercisesScreenState extends State<ContinuityExercisesScreen> {
     setState(() => isShowingFeedback = true);
     AppProgress.recordExerciseAnswer(
       questionId: exercise.id,
+      contentLessonId: exercise.contentLessonId,
       isCorrect: isCorrect,
     );
 
