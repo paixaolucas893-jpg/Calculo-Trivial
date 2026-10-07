@@ -109,6 +109,7 @@ class _DerivativesExercisesScreenState
     setState(() => isShowingFeedback = true);
     AppProgress.recordExerciseAnswer(
       questionId: exercise.id,
+      contentLessonId: exercise.contentLessonId,
       isCorrect: isCorrect,
     );
 

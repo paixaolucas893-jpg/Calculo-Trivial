@@ -11,6 +11,8 @@ import 'package:calcquest/shared/data/localized_limits_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart';
 import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_functions_course_data.dart';
+import 'package:calcquest/shared/domain/course_lesson_data.dart';
+import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/services/premium_access_guard.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
@@ -83,8 +85,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     }
   }
 
-  Set<String> _availableContentLessonIds(Locale locale) {
-    final lessons = [
+  List<CourseLessonData> _localizedLessons(Locale locale) {
+    return <CourseLessonData>[
       ...localizedPrecalculusFoundationsCourseLessons(locale),
       ...localizedAlgebraCourseLessons(locale).where(
         (lesson) => lesson.id != 'algebra-04-potencias',
@@ -100,8 +102,17 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ? derivativesCourseLessonsEn
           : derivativesCourseLessons),
     ];
+  }
 
-    return lessons.map((lesson) => lesson.id).toSet();
+  Set<String> _availableContentLessonIds(Locale locale) {
+    return _localizedLessons(locale).map((lesson) => lesson.id).toSet();
+  }
+
+  Map<String, String> _lessonTitles(Locale locale) {
+    return <String, String>{
+      for (final lesson in _localizedLessons(locale))
+        lesson.id: lesson.title,
+    };
   }
 
   int _completedModuleCount() {
@@ -464,6 +475,158 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     );
   }
 
+  String _historySourceLabel(LearningActivitySource source) {
+    return switch (source) {
+      LearningActivitySource.practice =>
+        _copy(pt: 'Prática', en: 'Practice'),
+      LearningActivitySource.personalizedReview =>
+        _copy(pt: 'Revisão personalizada', en: 'Personalized review'),
+      LearningActivitySource.dailyChallenge =>
+        _copy(pt: 'Desafio diário', en: 'Daily challenge'),
+    };
+  }
+
+  String _historyTime(DateTime value) {
+    final local = value.toLocal();
+    final now = DateTime.now();
+    final sameDay =
+        now.year == local.year &&
+        now.month == local.month &&
+        now.day == local.day;
+    final hour = local.hour.toString().padLeft(2, '0');
+    final minute = local.minute.toString().padLeft(2, '0');
+
+    if (sameDay) {
+      return _copy(
+        pt: 'Hoje, $hour:$minute',
+        en: 'Today, $hour:$minute',
+      );
+    }
+
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+
+    return _isEnglish
+        ? '$month/$day/${local.year}, $hour:$minute'
+        : '$day/$month/${local.year}, $hour:$minute';
+  }
+
+  Widget _recentActivityCard(Locale locale) {
+    final entries = AppProgress.learningHistory.reversed.take(5).toList();
+    final titles = _lessonTitles(locale);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.cardPaddingLarge),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusLarge),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: entries.isEmpty
+          ? Text(
+              _copy(
+                pt: 'Seu histórico recente aparecerá aqui após responder novas questões.',
+                en: 'Your recent history will appear here after you answer new questions.',
+              ),
+              style: AppTypography.bodySmall,
+            )
+          : Column(
+              children: [
+                for (var index = 0; index < entries.length; index++) ...[
+                  Builder(
+                    builder: (context) {
+                      final entry = entries[index];
+                      final lessonTitle = entry.contentLessonId == null
+                          ? _copy(
+                              pt: 'Questão respondida',
+                              en: 'Answered question',
+                            )
+                          : titles[entry.contentLessonId] ??
+                              _copy(
+                                pt: 'Conteúdo estudado',
+                                en: 'Studied content',
+                              );
+
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 38,
+                            height: 38,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: entry.isCorrect
+                                  ? AppColors.successLight
+                                  : AppColors.errorLight,
+                              borderRadius: BorderRadius.circular(
+                                AppSpacing.radiusMedium,
+                              ),
+                            ),
+                            child: Icon(
+                              entry.isCorrect
+                                  ? Icons.check_rounded
+                                  : Icons.close_rounded,
+                              color: entry.isCorrect
+                                  ? AppColors.success
+                                  : AppColors.error,
+                              size: 20,
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  lessonTitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTypography.titleMedium.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(height: AppSpacing.xxs),
+                                Text(
+                                  '${_historySourceLabel(entry.source)} • ${_historyTime(entry.occurredAt)}',
+                                  style: AppTypography.bodySmall,
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  entry.isCorrect
+                                      ? _copy(
+                                          pt: 'Resposta correta',
+                                          en: 'Correct answer',
+                                        )
+                                      : _copy(
+                                          pt: 'Precisa revisar',
+                                          en: 'Needs review',
+                                        ),
+                                  style: AppTypography.labelSmall.copyWith(
+                                    color: entry.isCorrect
+                                        ? AppColors.success
+                                        : AppColors.error,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  if (index < entries.length - 1)
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                      child: Divider(height: 1),
+                    ),
+                ],
+              ],
+            ),
+    );
+  }
+
   Widget _buildLoadingScreen(AppLocalizations l10n) {
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -650,6 +813,16 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   _accuracyCard(),
+                  const SizedBox(height: AppSpacing.lg),
+                  _sectionTitle(
+                    _copy(pt: 'Atividade recente', en: 'Recent activity'),
+                    _copy(
+                      pt: 'Últimas respostas registradas no seu histórico de aprendizagem.',
+                      en: 'Your latest answers recorded in your learning history.',
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  _recentActivityCard(locale),
                 ],
               ),
             ),
