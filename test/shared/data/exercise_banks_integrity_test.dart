@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:calcquest/shared/data/algebra_course_data.dart';
 import 'package:calcquest/shared/data/equations_course_data.dart';
 import 'package:calcquest/shared/data/precalculus_equations_supplement_data.dart';
 import 'package:calcquest/shared/data/precalculus_functions_course_data.dart';
+import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
 import 'package:calcquest/shared/data/mock_continuity_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_derivatives_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_equations_exercise_data.dart';
@@ -118,6 +120,30 @@ void main() {
         }
       });
     }
+
+
+    test('Álgebra cobre exatamente as quatorze aulas visíveis da trilha', () {
+      final visibleLessonIds = <String>{
+        ...precalculusFoundationsCourseLessons.map((lesson) => lesson.id),
+        ...algebraCourseLessons
+            .where((lesson) => lesson.id != 'algebra-04-potencias')
+            .map((lesson) => lesson.id),
+      };
+
+      final coveredLessonIds = mockExercises
+          .map((question) => question.contentLessonId)
+          .whereType<String>()
+          .toSet();
+
+      expect(visibleLessonIds, hasLength(14));
+      expect(coveredLessonIds, equals(visibleLessonIds));
+      expect(
+        coveredLessonIds,
+        isNot(contains('algebra-04-potencias')),
+        reason:
+            'A aula antiga de potências não aparece na trilha e não deve receber questões.',
+      );
+    });
 
     test('Equações cobre todas as onze aulas com metadados pedagógicos', () {
       final lessonIds = <String>{
