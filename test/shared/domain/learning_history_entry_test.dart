@@ -43,6 +43,62 @@ void main() {
         }),
         isNull,
       );
+
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          'questionId': 'q-1',
+          'contentLessonId': 123,
+          'isCorrect': true,
+          'source': 'practice',
+          'occurredAtEpochMs': 1760000000000,
+        }),
+        isNull,
+      );
+
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          'questionId': 'q-1',
+          'isCorrect': true,
+          'source': 'practice',
+          'occurredAtEpochMs': 1760000000000.5,
+        }),
+        isNull,
+      );
+
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          'questionId': 'q-1',
+          'isCorrect': true,
+          'source': 'practice',
+          'occurredAtEpochMs': 1760000000000,
+          'freeText': 'campo inesperado',
+        }),
+        isNull,
+      );
+    });
+
+    test('rejeita identificadores acima dos limites definidos', () {
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          'questionId': 'q' * (LearningHistoryEntry.maxQuestionIdLength + 1),
+          'isCorrect': true,
+          'source': 'practice',
+          'occurredAtEpochMs': 1760000000000,
+        }),
+        isNull,
+      );
+
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          'questionId': 'q-1',
+          'contentLessonId':
+              'l' * (LearningHistoryEntry.maxContentLessonIdLength + 1),
+          'isCorrect': true,
+          'source': 'practice',
+          'occurredAtEpochMs': 1760000000000,
+        }),
+        isNull,
+      );
     });
   });
 }
