@@ -55,6 +55,7 @@ function validProgress(overrides = {}) {
     recentPracticeQuestionIds: {},
     lastFinalTestSessionIds: {},
     questionPerformance: {},
+    learningHistory: [],
     lastPersonalizedReviewSessionIds: [],
 
     dailyChallengeDate: null,
@@ -587,6 +588,52 @@ test('Firestore limita a janela recente de prática a oitenta questões por mód
         recentPracticeQuestionIds: {
           'funcoes': Array.from({ length: 81 }, (_, index) => `q-${index}`),
         },
+      }),
+    ),
+  );
+});
+
+test('cliente consegue sincronizar histórico recente limitado', async () => {
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const history = Array.from({ length: 100 }, (_, index) => ({
+    questionId: `q-${index}`,
+    contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+    isCorrect: index % 2 === 0,
+    source: 'practice',
+    occurredAtEpochMs: 1760000000000 + index,
+  }));
+
+  await assertSucceeds(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        learningHistory: history,
+      }),
+    ),
+  );
+});
+
+test('Firestore rejeita histórico com mais de cem eventos', async () => {
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const history = Array.from({ length: 101 }, (_, index) => ({
+    questionId: `q-${index}`,
+    contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+    isCorrect: true,
+    source: 'practice',
+    occurredAtEpochMs: 1760000000000 + index,
+  }));
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      validProgress({
+        learningHistory: history,
       }),
     ),
   );
