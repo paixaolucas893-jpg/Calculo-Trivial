@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
+import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
 import 'package:calcquest/shared/domain/practice_question_rotation_selector.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
@@ -45,6 +46,8 @@ class AppProgress {
       'recent_practice_questions_v1';
   static const String _lastFinalTestSessionKey = 'last_final_test_session';
   static const String _questionPerformanceKey = 'question_performance_v1';
+  static const String _learningHistoryKey = 'learning_history_v1';
+  static const int _maxLearningHistoryEntries = 100;
   static const String _lastPersonalizedReviewSessionKey =
       'last_personalized_review_session_v1';
   static const String _dailyChallengeDateKey = 'daily_challenge_date_v1';
@@ -96,6 +99,8 @@ class AppProgress {
       <String, Set<String>>{};
   static final Map<String, QuestionPerformance> _questionPerformance =
       <String, QuestionPerformance>{};
+  static final List<LearningHistoryEntry> _learningHistory =
+      <LearningHistoryEntry>[];
   static final Set<String> _lastPersonalizedReviewSessionIds = <String>{};
   static final Set<String> _dailyChallengeQuestionIds = <String>{};
 
@@ -111,6 +116,9 @@ class AppProgress {
 
   static Map<String, QuestionPerformance> get questionPerformance =>
       Map<String, QuestionPerformance>.unmodifiable(_questionPerformance);
+
+  static List<LearningHistoryEntry> get learningHistory =>
+      List<LearningHistoryEntry>.unmodifiable(_learningHistory);
 
   static int get personalizedReviewQuestionCount => _questionPerformance.values
       .where((performance) => performance.needsReview)
@@ -188,6 +196,7 @@ class AppProgress {
     _recentPracticeQuestionIds.clear();
     _lastFinalTestSessionIds.clear();
     _questionPerformance.clear();
+    _learningHistory.clear();
     _lastPersonalizedReviewSessionIds.clear();
     _dailyChallengeQuestionIds.clear();
 
@@ -347,6 +356,39 @@ class AppProgress {
       }
     }
 
+    final encodedHistory = preferences.getString(
+      _scopedKey(_learningHistoryKey, userId),
+    );
+
+    if (encodedHistory != null && encodedHistory.isNotEmpty) {
+      try {
+        final decoded = jsonDecode(encodedHistory);
+
+        if (decoded is Iterable) {
+          final entries = decoded
+              .map(LearningHistoryEntry.fromJson)
+              .whereType<LearningHistoryEntry>()
+              .toList()
+            ..sort(
+              (a, b) =>
+                  a.occurredAtEpochMs.compareTo(b.occurredAtEpochMs),
+            );
+
+          _learningHistory
+            ..clear()
+            ..addAll(
+              entries.length <= _maxLearningHistoryEntries
+                  ? entries
+                  : entries.sublist(
+                      entries.length - _maxLearningHistoryEntries,
+                    ),
+            );
+        }
+      } catch (_) {
+        // Ignore malformed legacy/local history and continue safely.
+      }
+    }
+
     final previousReviewIds = preferences.getStringList(
       _scopedKey(_lastPersonalizedReviewSessionKey, userId),
     );
@@ -465,6 +507,7 @@ class AppProgress {
     _mergeRecentPracticeQuestions(data);
     _mergeFinalTestSessions(data);
     _mergeQuestionPerformance(data);
+    _mergeLearningHistory(data);
     _mergePersonalizedReviewSession(data);
     _mergeDailyChallenge(data);
   }
@@ -556,6 +599,41 @@ class AppProgress {
           ? remote
           : local.merge(remote);
     }
+  }
+
+  static void _mergeLearningHistory(Map<String, dynamic> data) {
+    final remoteHistory = data['learningHistory'];
+
+    if (remoteHistory is! Iterable) {
+      return;
+    }
+
+    final byKey = <String, LearningHistoryEntry>{
+      for (final entry in _learningHistory) entry.deduplicationKey: entry,
+    };
+
+    for (final value in remoteHistory) {
+      final entry = LearningHistoryEntry.fromJson(value);
+
+      if (entry != null) {
+        byKey[entry.deduplicationKey] = entry;
+      }
+    }
+
+    final merged = byKey.values.toList()
+      ..sort(
+        (a, b) => a.occurredAtEpochMs.compareTo(b.occurredAtEpochMs),
+      );
+
+    _learningHistory
+      ..clear()
+      ..addAll(
+        merged.length <= _maxLearningHistoryEntries
+            ? merged
+            : merged.sublist(
+                merged.length - _maxLearningHistoryEntries,
+              ),
+      );
   }
 
   static void _mergePersonalizedReviewSession(Map<String, dynamic> data) {
@@ -815,6 +893,13 @@ class AppProgress {
       }),
     );
 
+    await preferences.setString(
+      _scopedKey(_learningHistoryKey, _activeUserId),
+      jsonEncode(
+        _learningHistory.map((entry) => entry.toJson()).toList(),
+      ),
+    );
+
     await preferences.setStringList(
       _scopedKey(_lastPersonalizedReviewSessionKey, _activeUserId),
       _lastPersonalizedReviewSessionIds.toList(),
@@ -924,6 +1009,9 @@ class AppProgress {
         for (final entry in _questionPerformance.entries)
           entry.key: entry.value.toJson(),
       },
+      'learningHistory': _learningHistory
+          .map((entry) => entry.toJson())
+          .toList(growable: false),
       'lastPersonalizedReviewSessionIds':
           _lastPersonalizedReviewSessionIds.toList(),
       'dailyChallengeDate': dailyChallengeDate,
@@ -1144,6 +1232,9 @@ class AppProgress {
   static void recordExerciseAnswer({
     required String questionId,
     required bool isCorrect,
+    String? contentLessonId,
+    LearningActivitySource source = LearningActivitySource.practice,
+    DateTime? occurredAt,
   }) {
     _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
 
@@ -1162,6 +1253,25 @@ class AppProgress {
         _questionPerformance[questionId] ?? const QuestionPerformance();
     _questionPerformance[questionId] =
         currentPerformance.record(isCorrect: isCorrect);
+
+    final timestamp = (occurredAt ?? DateTime.now()).toUtc();
+
+    _learningHistory.add(
+      LearningHistoryEntry(
+        questionId: questionId,
+        contentLessonId: contentLessonId,
+        isCorrect: isCorrect,
+        source: source,
+        occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
+      ),
+    );
+
+    if (_learningHistory.length > _maxLearningHistoryEntries) {
+      _learningHistory.removeRange(
+        0,
+        _learningHistory.length - _maxLearningHistoryEntries,
+      );
+    }
 
     revision.value++;
 
@@ -1258,6 +1368,7 @@ class AppProgress {
       'recentPracticeQuestionIds': <String, List<String>>{},
       'lastFinalTestSessionIds': <String, List<String>>{},
       'questionPerformance': <String, Map<String, dynamic>>{},
+      'learningHistory': <Map<String, dynamic>>[],
       'lastPersonalizedReviewSessionIds': <String>[],
       'dailyChallengeDate': null,
       'dailyChallengeCompletedDate': null,
@@ -1296,6 +1407,7 @@ class AppProgress {
       _dailyAnsweredQuestionsKey,
       _dailyActivityDateKey,
       _questionPerformanceKey,
+      _learningHistoryKey,
       _lastPersonalizedReviewSessionKey,
       _dailyChallengeDateKey,
       _dailyChallengeCompletedDateKey,
