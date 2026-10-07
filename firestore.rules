@@ -78,6 +78,11 @@ service cloud.firestore {
         && values.size() <= 1500;
     }
 
+    function validLearningHistory(values) {
+      return values is list
+        && values.size() <= 100;
+    }
+
     function validReviewSessionIds(values) {
       return values is list
         && values.size() <= 10;
@@ -193,6 +198,7 @@ service cloud.firestore {
           'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
+          'learningHistory',
           'lastPersonalizedReviewSessionIds',
           'dailyChallengeDate',
           'dailyChallengeCompletedDate',
@@ -222,6 +228,7 @@ service cloud.firestore {
           'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
+          'learningHistory',
           'lastPersonalizedReviewSessionIds',
           'dailyChallengeDate',
           'dailyChallengeCompletedDate',
@@ -265,6 +272,7 @@ service cloud.firestore {
         && validRecentPracticeQuestions(data.recentPracticeQuestionIds)
         && validQuestionSessions(data.lastFinalTestSessionIds)
         && validQuestionPerformance(data.questionPerformance)
+        && validLearningHistory(data.learningHistory)
         && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
         && validDateKey(data.dailyChallengeDate)
         && validDateKey(data.dailyChallengeCompletedDate)
@@ -301,6 +309,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
+        && data.learningHistory == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -371,6 +380,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
+        && data.learningHistory == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
