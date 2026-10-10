@@ -308,3 +308,24 @@ Inclui:
 - testes unitários para agrupamento, fallbacks, histórico órfão, deduplicação e ordenação determinística.
 
 Ainda não inclui priorização nem seleção da sessão. Essas responsabilidades permanecem para a FASE 10.3.
+
+
+### FASE 10.3 — Planner/seletor determinístico
+
+Implementada na camada de domínio.
+
+Inclui:
+
+- SmartReviewPlanItem e SmartReviewReason;
+- SmartReviewPlanner;
+- priorização determinística por evidência pedagógica;
+- prioridade para erros não resolvidos, erros recentes e baixa precisão;
+- composição em rodadas para distribuir a sessão entre habilidades elegíveis;
+- preferência por outra questão da mesma habilidade antes da repetição direta;
+- redução de repetição da sessão anterior quando o banco permite;
+- preferência por foundation/intermediate antes de challenge em remediação;
+- bloqueio de questões novas pertencentes a conteúdo ainda não estudado;
+- redução natural da sessão quando não há itens pertinentes;
+- ausência de qualquer alteração em XP, ouro, conclusão ou progresso canônico.
+
+A integração visual permanece para a FASE 10.4.
