@@ -174,6 +174,12 @@ void main() {
       final plan = SmartReviewPlanner.build(
         candidates: <QuestionCandidate>[
           candidate(
+            id: 'q-erro',
+            skill: 'Equações',
+            lessonId: 'lesson-1',
+            difficulty: ExerciseDifficulty.intermediate,
+          ),
+          candidate(
             id: 'q-desafio',
             skill: 'Equações',
             lessonId: 'lesson-1',
@@ -186,7 +192,7 @@ void main() {
           ),
         ],
         performanceByQuestionId: const <String, QuestionPerformance>{
-          'q-desafio': QuestionPerformance(
+          'q-erro': QuestionPerformance(
             attempts: 1,
             correct: 0,
             incorrect: 1,
