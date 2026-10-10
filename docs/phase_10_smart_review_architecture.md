@@ -287,3 +287,24 @@ FASE 10.5 — explicabilidade e recomendações para Tutor Trivial.
 FASE 10.6 — testes de regressão, segurança, privacidade e validação pedagógica.
 
 Nenhuma dessas subfases deve avançar para a release enquanto a estratégia de validação da versão em Teste Fechado não permitir.
+
+
+## 19. Status de implementação
+
+### FASE 10.2 — Agregador de desempenho por habilidade
+
+Implementada na camada de domínio.
+
+Inclui:
+
+- modelo SkillReviewSummary;
+- agregação determinística por skill;
+- fallback para subtopicId;
+- fallback final para questionId;
+- consolidação de tentativas, acertos, erros e erros não resolvidos;
+- sinais recentes derivados do LearningHistory;
+- deduplicação de candidatos por questionId;
+- descarte de eventos históricos de questões que não existem mais no banco disponível;
+- testes unitários para agrupamento, fallbacks, histórico órfão, deduplicação e ordenação determinística.
+
+Ainda não inclui priorização nem seleção da sessão. Essas responsabilidades permanecem para a FASE 10.3.
