@@ -329,3 +329,17 @@ Inclui:
 - ausência de qualquer alteração em XP, ouro, conclusão ou progresso canônico.
 
 A integração visual permanece para a FASE 10.4.
+
+
+### FASE 10.4 — Integração com Revisão Personalizada
+
+Implementada em branch.
+
+- PersonalizedReviewSessionBuilder usa SmartReviewPlanner primeiro;
+- seletor legado permanece como fallback quando o plano inteligente é vazio;
+- LearningHistory e conteúdos estudados passam a compor a seleção;
+- não há preenchimento artificial de sessão parcial;
+- sem mudança em XP, ouro, prova final ou progresso canônico;
+- testes cobrem questão equivalente, conteúdo futuro, sessão reduzida e determinismo.
+
+A explicabilidade visível permanece para a FASE 10.5.
