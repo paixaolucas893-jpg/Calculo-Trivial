@@ -1143,7 +1143,9 @@ class AppProgress {
     final selected = PersonalizedReviewSessionBuilder.build(
       candidates: candidates,
       performanceByQuestionId: _questionPerformance,
+      learningHistory: _learningHistory,
       previousSessionIds: _lastPersonalizedReviewSessionIds,
+      studiedContentLessonIds: _completedContentLessonIds,
       questionCount: questionCount,
     );
 
