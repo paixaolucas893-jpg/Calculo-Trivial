@@ -152,6 +152,7 @@ class _PersonalizedReviewScreenState extends State<PersonalizedReviewScreen> {
 
     return Semantics(
       container: true,
+      excludeSemantics: true,
       label: '${l10n.personalizedReviewWhyThisReview} $reason',
       child: Container(
         width: double.infinity,
