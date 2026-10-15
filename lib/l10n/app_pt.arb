@@ -1,37 +1,30 @@
 {
   "@@locale": "pt",
-
   "appName": "Cálculo Trivial",
   "appTagline": "Domine o cálculo. Evolua além.",
   "appSymbolSemanticLabel": "Símbolo do Cálculo Trivial",
   "loading": "Carregando",
-
   "home": "Início",
   "learningPath": "Trilhas",
   "statistics": "Progresso",
   "profile": "Perfil",
   "settings": "Configurações",
-
   "language": "Idioma",
   "portuguese": "Português",
   "english": "English",
   "languageSettingsSubtitle": "Escolha o idioma usado no aplicativo.",
   "languageUpdated": "Idioma atualizado",
-
   "account": "Conta",
   "accountSettings": "Ajustes da conta",
   "accountSettingsSubtitle": "Gerencie sua conta, preferências e assinatura.",
   "unidentifiedAccount": "Conta não identificada",
-
   "name": "Nome",
   "email": "E-mail",
   "password": "Senha",
   "confirmPassword": "Confirmar senha",
-
   "login": "Entrar",
   "createAccount": "Criar conta",
   "forgotPassword": "Esqueci minha senha",
-
   "loginAccessAccount": "Acesse sua conta",
   "loginJourneySubtitle": "Entre para iniciar ou continuar sua jornada.",
   "loginEmailHint": "Digite seu e-mail",
@@ -48,7 +41,6 @@
   "loginEnterEmailForReset": "Digite seu e-mail para receber a recuperação de senha.",
   "loginResetEmailSent": "Enviamos as instruções de recuperação para o seu e-mail.",
   "loginResetEmailError": "Não foi possível enviar a recuperação de senha.",
-
   "registerCreateAccountTitle": "Crie sua conta",
   "registerJourneySubtitle": "Comece sua jornada de aprendizagem.",
   "registerNameHint": "Digite seu nome",
@@ -64,17 +56,35 @@
   "registerOperationNotAllowed": "O cadastro por e-mail não está disponível.",
   "registerGenericError": "Não foi possível criar sua conta.",
   "registerUnexpectedError": "Ocorreu um erro inesperado ao criar sua conta.",
-
   "student": "Estudante",
   "emailNotProvided": "E-mail não informado",
-
   "levelLabel": "Nível {level}",
-  "@levelLabel": { "placeholders": { "level": { "type": "int" } } },
+  "@levelLabel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "xpAndGold": "{xp} XP • {gold} de ouro",
-  "@xpAndGold": { "placeholders": { "xp": { "type": "int" }, "gold": { "type": "int" } } },
+  "@xpAndGold": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "xpRemainingForNextLevel": "Faltam {xp} XP para o próximo nível.",
-  "@xpRemainingForNextLevel": { "placeholders": { "xp": { "type": "int" } } },
-
+  "@xpRemainingForNextLevel": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "achievements": "Conquistas",
   "premium": "Premium",
   "premiumActive": "Premium ativo",
@@ -83,7 +93,6 @@
   "freePlan": "Plano gratuito",
   "premiumManageSubscription": "Gerencie sua assinatura e suas compras.",
   "premiumDiscoverFeatures": "Conheça os recursos do Cálculo Trivial Premium.",
-
   "achievementCalculusOneMastered": "Cálculo I dominado",
   "achievementCalculusOneMasteredDescription": "Você concluiu Limites, Continuidade e Derivadas.",
   "achievementContinuityCompleted": "Funções sem interrupções",
@@ -98,7 +107,6 @@
   "achievementFirstLessonCompletedDescription": "Você iniciou sua jornada no Cálculo Trivial.",
   "achievementFirstAchievement": "Sua primeira conquista",
   "achievementFirstAchievementDescription": "Conclua a primeira aula para desbloquear.",
-
   "learningPathTitle": "Trilha de Aprendizagem",
   "learningPathSubtitle": "Avance módulo por módulo até dominar o Cálculo.",
   "mathematicalFoundations": "Fundamentos Matemáticos",
@@ -108,10 +116,15 @@
   "calculusTwo": "Cálculo II",
   "calculusTwoSubtitle": "Integrais, séries e equações diferenciais",
   "unlocked": "Desbloqueado",
-
   "dashboardFirstWelcome": "Bem-vindo, futuro engenheiro!",
   "dashboardWelcomeBack": "Bem-vindo de volta, {name}!",
-  "@dashboardWelcomeBack": { "placeholders": { "name": { "type": "String" } } },
+  "@dashboardWelcomeBack": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "dashboardFirstWelcomeSubtitle": "Sua jornada no Cálculo começa agora.",
   "dashboardWelcomeBackSubtitle": "Continue sua jornada no Cálculo.",
   "dashboardCurrentProgress": "Progresso atual",
@@ -134,21 +147,38 @@
   "level": "Nível",
   "xp": "XP",
   "gold": "Ouro",
-
   "statisticsYourProgress": "Seu progresso",
   "statisticsSubtitle": "Acompanhe sua evolução com dados reais dos seus estudos.",
   "statisticsCheckingPremium": "Verificando acesso Premium...",
   "statisticsTotalXp": "XP total",
   "statisticsLevelStudyMessage": "Nível {level} • Continue estudando para evoluir.",
-  "@statisticsLevelStudyMessage": { "placeholders": { "level": { "type": "int" } } },
+  "@statisticsLevelStudyMessage": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "statisticsCompletedLessons": "Aulas concluídas",
   "statisticsAccumulatedGold": "Ouro acumulado",
   "statisticsTodayActivity": "Atividade de hoje",
   "statisticsDailyGoal": "Meta diária",
   "statisticsDailyGoalCompleted": "Meta concluída! Você respondeu {answered} questões hoje.",
-  "@statisticsDailyGoalCompleted": { "placeholders": { "answered": { "type": "int" } } },
+  "@statisticsDailyGoalCompleted": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      }
+    }
+  },
   "statisticsDailyGoalRemaining": "Responda {remaining} questões para concluir a meta.",
-  "@statisticsDailyGoalRemaining": { "placeholders": { "remaining": { "type": "int" } } },
+  "@statisticsDailyGoalRemaining": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
   "statisticsStreakDay": "dia seguido",
   "statisticsStreakDays": "dias seguidos",
   "statisticsPerformance": "Desempenho",
@@ -162,10 +192,18 @@
   "statisticsProgressFirstLesson": "Conclua sua primeira aula para iniciar suas estatísticas.",
   "statisticsProgressAllCompleted": "Você concluiu todo o conteúdo disponível nesta versão.",
   "statisticsProgressRemaining": "{remaining} {lessonWord} no conteúdo atual.",
-  "@statisticsProgressRemaining": { "placeholders": { "remaining": { "type": "int" }, "lessonWord": { "type": "String" } } },
+  "@statisticsProgressRemaining": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      },
+      "lessonWord": {
+        "type": "String"
+      }
+    }
+  },
   "statisticsRemainingLesson": "aula restante",
   "statisticsRemainingLessons": "aulas restantes",
-
   "settingsPrivacyAndData": "Privacidade e dados",
   "settingsPrivacySubtitle": "Política de privacidade e exclusão de conta",
   "settingsNotifications": "Notificações",
@@ -205,7 +243,6 @@
   "settingsDeleteNetworkError": "Verifique sua conexão com a internet e tente novamente.",
   "settingsDeleteRequiresRecentLogin": "Entre novamente na conta antes de tentar excluí-la.",
   "settingsDeleteGenericError": "Não foi possível excluir a conta. Tente novamente.",
-
   "moduleDetailSubtitle": "Construa a base necessária para estudar Cálculo.",
   "moduleDetailCompleted": "Módulo concluído",
   "moduleDetailLessonOneCompleted": "Aula 1 concluída",
@@ -218,9 +255,17 @@
   "moduleDetailEquationsSubtitle": "Manipulação algébrica e resolução",
   "moduleDetailFunctionsTitle": "Aula 3 — Funções",
   "moduleDetailFunctionsSubtitle": "Domínio, imagem e gráficos",
-
   "exerciseQuestionProgress": "Questão {current} de {total}",
-  "@exerciseQuestionProgress": { "placeholders": { "current": { "type": "int" }, "total": { "type": "int" } } },
+  "@exerciseQuestionProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "exerciseAlgebraInstruction": "Escolha a melhor transformação algébrica.",
   "exerciseDifficultyFoundation": "Fundamentos",
   "exerciseDifficultyIntermediate": "Intermediária",
@@ -228,14 +273,19 @@
   "exerciseChooseAlternative": "Escolha uma alternativa antes de continuar.",
   "exerciseFinish": "Finalizar exercícios",
   "exerciseNextQuestion": "Próxima questão",
-
   "resultExercisesCompletedSemantic": "Exercícios concluídos",
   "resultGoalReached": "Objetivo atingido!",
   "resultKeepPracticing": "Continue praticando",
   "resultApprovedMessage": "Você alcançou o rendimento necessário para avançar.",
   "resultNeedEightyPercent": "Você precisa de pelo menos 80% para desbloquear a próxima aula.",
   "resultAccuracyPerformance": "{percentage}% de precisão",
-  "@resultAccuracyPerformance": { "placeholders": { "percentage": { "type": "int" } } },
+  "@resultAccuracyPerformance": {
+    "placeholders": {
+      "percentage": {
+        "type": "int"
+      }
+    }
+  },
   "resultCorrectAnswers": "Acertos",
   "resultIncorrectAnswers": "Erros",
   "resultAccuracy": "Precisão",
@@ -243,31 +293,55 @@
   "resultGoldEarned": "Ouro ganho",
   "resultReviewOneError": "Revisar 1 erro",
   "resultReviewErrors": "Revisar {count} erros",
-  "@resultReviewErrors": { "placeholders": { "count": { "type": "int" } } },
+  "@resultReviewErrors": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "resultReceiveReward": "Receber recompensa",
   "resultBackToPath": "Voltar para a trilha",
-
   "feedbackGoodAnalysis": "Boa análise!",
   "feedbackUnderstandError": "Vamos entender o erro",
   "feedbackYourAnswer": "Sua resposta: {answer}",
-  "@feedbackYourAnswer": { "placeholders": { "answer": { "type": "String" } } },
+  "@feedbackYourAnswer": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "feedbackCorrectAnswer": "Resposta correta: {answer}",
-  "@feedbackCorrectAnswer": { "placeholders": { "answer": { "type": "String" } } },
+  "@feedbackCorrectAnswer": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "feedbackStepByStep": "Explicação passo a passo",
   "feedbackViewResult": "Ver meu resultado",
   "feedbackContinuePracticing": "Continuar praticando",
-
   "reviewErrorsTitle": "Revisão dos erros",
   "reviewUnderstandEachAnswer": "Entenda cada resposta",
   "reviewScoreUnchanged": "Sua nota não será alterada durante a revisão.",
   "reviewErrorProgress": "Erro {current} de {total}",
-  "@reviewErrorProgress": { "placeholders": { "current": { "type": "int" }, "total": { "type": "int" } } },
+  "@reviewErrorProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "reviewYourAnswer": "Sua resposta",
   "reviewCorrectAnswer": "Resposta correta",
   "reviewExplanation": "Explicação",
   "reviewFinish": "Concluir revisão",
   "reviewNextError": "Próximo erro",
-
   "rewardUnlocked": "Recompensa desbloqueada",
   "rewardDerivativesDescription": "Você concluiu Derivadas e finalizou o módulo Cálculo I.",
   "rewardContinuityDescription": "Você concluiu a sequência de Continuidade em Cálculo I.",
@@ -280,7 +354,6 @@
   "rewardExperienceReceived": "Experiência recebida",
   "rewardGoldReceived": "Ouro recebido",
   "rewardProgress": "Progresso",
-
   "miniChallengeTitle": "Mini Desafio",
   "miniChallengeQuickTest": "Teste rápido",
   "miniChallengeSubtitle": "Escolha a resposta correta para liberar os próximos exercícios.",
@@ -289,7 +362,6 @@
   "miniChallengeIncorrect": "Resposta incorreta. Tente novamente.",
   "miniChallengeRespond": "Responder",
   "miniChallengeXpHint": "Você ganha XP ao acertar o desafio.",
-
   "back": "Voltar",
   "continueLabel": "Continuar",
   "finish": "Concluir",
@@ -311,7 +383,18 @@
   "limits": "Limites",
   "continuity": "Continuidade",
   "derivatives": "Derivadas",
-
   "approxMinutes": "≈ {minutes} min",
-  "@approxMinutes": { "placeholders": { "minutes": { "type": "int" } } }
+  "@approxMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "personalizedReviewWhyThisReview": "Por que esta revisão?",
+  "personalizedReviewReasonUnresolved": "Há um erro ainda não confirmado nesta habilidade.",
+  "personalizedReviewReasonRepeated": "Você teve dificuldades repetidas nesta habilidade.",
+  "personalizedReviewReasonLowAccuracy": "Seu histórico indica que vale reforçar esta habilidade.",
+  "personalizedReviewReasonReinforcement": "Esta questão ajuda a confirmar e reforçar esta habilidade.",
+  "personalizedReviewReasonPreviousMistake": "Esta questão foi escolhida a partir dos seus erros anteriores."
 }
