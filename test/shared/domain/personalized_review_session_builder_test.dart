@@ -3,8 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calcquest/shared/data/mock_exercise_data.dart';
 import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
+import 'package:calcquest/shared/domain/personalized_review_session_item.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
 import 'package:calcquest/shared/domain/question_performance.dart';
+import 'package:calcquest/shared/domain/smart_review_plan.dart';
 
 QuestionCandidate _candidate({
   required String id,
@@ -194,5 +196,88 @@ void main() {
         second.map((candidate) => candidate.questionId).toList(),
       );
     });
+    test('expõe motivo e contexto mínimo para o Tutor', () {
+      final selected = PersonalizedReviewSessionBuilder.buildDetailed(
+        candidates: <QuestionCandidate>[
+          _candidate(
+            id: 'q-erro',
+            lessonId: 'lesson-1',
+            skill: 'Distributiva',
+          ),
+          _candidate(
+            id: 'q-equivalente',
+            lessonId: 'lesson-1',
+            skill: 'Distributiva',
+          ),
+        ],
+        performanceByQuestionId: const <String, QuestionPerformance>{
+          'q-erro': QuestionPerformance(
+            attempts: 1,
+            incorrect: 1,
+            lastAnswerCorrect: false,
+          ),
+        },
+        learningHistory: const <LearningHistoryEntry>[
+          LearningHistoryEntry(
+            questionId: 'q-erro',
+            contentLessonId: 'lesson-1',
+            isCorrect: false,
+            source: LearningActivitySource.practice,
+            occurredAtEpochMs: 1760000000000,
+          ),
+        ],
+        studiedContentLessonIds: const <String>['lesson-1'],
+        questionCount: 1,
+      );
+
+      expect(selected, hasLength(1));
+
+      final item = selected.single;
+
+      expect(
+        item.source,
+        PersonalizedReviewSelectionSource.smartReview,
+      );
+      expect(item.questionId, 'q-equivalente');
+      expect(item.reason, SmartReviewReason.unresolvedError);
+      expect(item.skillKey, 'skill:distributiva');
+      expect(item.skillLabel, 'Distributiva');
+
+      final context = item.tutorContext;
+      expect(context, isNotNull);
+      expect(context!.moduleId, 'module');
+      expect(context.contentLessonId, 'lesson-1');
+      expect(context.skill, 'Distributiva');
+      expect(context.difficulty, ExerciseDifficulty.foundation);
+      expect(context.reviewReason, SmartReviewReason.unresolvedError);
+    });
+
+    test('contexto do Tutor não carrega histórico bruto ou identidade', () {
+      final item = PersonalizedReviewSessionItem(
+        candidate: _candidate(
+          id: 'q-1',
+          lessonId: 'lesson-1',
+          skill: 'Frações',
+        ),
+        source: PersonalizedReviewSelectionSource.smartReview,
+        reason: SmartReviewReason.lowAccuracy,
+        tutorContext: const TutorReviewContext(
+          moduleId: 'module',
+          contentLessonId: 'lesson-1',
+          skill: 'Frações',
+          difficulty: ExerciseDifficulty.foundation,
+          reviewReason: SmartReviewReason.lowAccuracy,
+        ),
+      );
+
+      final context = item.tutorContext!;
+
+      expect(context.moduleId, 'module');
+      expect(context.contentLessonId, 'lesson-1');
+      expect(context.skill, 'Frações');
+      expect(context.difficulty, ExerciseDifficulty.foundation);
+      expect(context.reviewReason, SmartReviewReason.lowAccuracy);
+    });
+
   });
 }
