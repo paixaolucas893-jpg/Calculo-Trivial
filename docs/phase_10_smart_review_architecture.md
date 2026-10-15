@@ -343,3 +343,43 @@ Implementada em branch.
 - testes cobrem questão equivalente, conteúdo futuro, sessão reduzida e determinismo.
 
 A explicabilidade visível permanece para a FASE 10.5.
+
+
+### FASE 10.5 — Explicabilidade e Tutor Trivial
+
+Implementada em branch.
+
+Inclui:
+
+- PersonalizedReviewSessionItem para preservar metadados da seleção sem alterar a API da tela;
+- fonte da seleção identificada como smartReview ou legacy;
+- motivo explicável por questão:
+  - erro não resolvido;
+  - dificuldade repetida na habilidade;
+  - baixa precisão;
+  - reforço/confirmação;
+- contexto mínimo em memória para futura integração com o Tutor:
+  - moduleId;
+  - contentLessonId;
+  - skill;
+  - difficulty;
+  - reviewReason;
+- nenhuma persistência adicional no Firestore;
+- nenhum nome, e-mail, texto livre ou histórico bruto enviado ao Tutor;
+- AppProgress expõe somente o contexto mínimo por questão quando necessário;
+- UI da Revisão Personalizada mostra “Por que esta revisão?” / “Why this review?”;
+- fallback legado recebe explicação genérica baseada em erros anteriores;
+- strings novas adicionadas aos ARBs PT/EN;
+- card com semântica única para evitar leitura duplicada em leitor de tela;
+- Tutor Trivial continua sem botão/chat nesta etapa porque a UI pública ainda não está ativa.
+
+A integração futura com o Tutor deverá consumir somente esse contexto mínimo e continuar resolvendo conteúdo confiável no backend.
+
+Testes cobrem:
+
+- motivo correto da seleção;
+- contexto mínimo preparado para o Tutor;
+- compatibilidade com a seleção inteligente existente.
+
+A FASE 10.6 permanece responsável pela regressão final, segurança, privacidade e validação pedagógica.
+
