@@ -387,7 +387,7 @@ A FASE 10.6 permanece responsável pela regressão final, segurança, privacidad
 
 ### FASE 10.6 — Regressão, segurança, privacidade e validação pedagógica
 
-Implementada em branch e aguardando CI final do head desta fase.
+Implementada e validada em branch.
 
 Cobertura adicionada:
 
@@ -437,6 +437,14 @@ Limite residual conhecido:
 - o cliente faz parsing estrito com LearningHistoryEntry.fromJson e ignora registros malformados;
 - LearningHistory não é progresso canônico e não concede recompensa;
 - um hardening futuro pode mover o histórico para representação/armazenamento com validação server-side mais granular caso o risco/escala justifique.
+
+Validação da FASE 10.6:
+
+- CI #109: sucesso;
+- Flutter analyze/test: sucesso;
+- Functions lint/build/test: sucesso;
+- Firestore Emulator/security tests: sucesso;
+- testes novos de autoridade canônica e privacidade: sucesso.
 
 Critério de conclusão da FASE 10:
 
