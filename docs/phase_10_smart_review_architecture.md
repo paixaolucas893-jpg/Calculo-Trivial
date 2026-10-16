@@ -383,3 +383,67 @@ Testes cobrem:
 
 A FASE 10.6 permanece responsável pela regressão final, segurança, privacidade e validação pedagógica.
 
+
+
+### FASE 10.6 — Regressão, segurança, privacidade e validação pedagógica
+
+Implementada em branch e aguardando CI final do head desta fase.
+
+Cobertura adicionada:
+
+- motivos de recomendação:
+  - unresolvedError;
+  - repeatedSkillError;
+  - lowAccuracy;
+  - reinforcement;
+- conteúdo futuro continua bloqueado;
+- sessões pequenas não são preenchidas artificialmente;
+- seleção permanece determinística;
+- questão equivalente continua preferida à repetição direta quando disponível;
+- evidência do Smart Review pode ser sincronizada sem alterar progresso canônico;
+- tentativa de combinar evidência com XP, ouro ou conclusão fabricados é rejeitada pelas Firestore Rules;
+- Firestore rejeita novos campos derivados como smartReviewReason e tutorReviewContext no documento de progresso;
+- contexto do Tutor permanece somente em memória;
+- reset/clearSession já limpam o estado derivado em memória por meio de _resetInMemory;
+- LearningHistory continua limitado a 100 eventos e parsing de entrada rejeita campos inesperados, tipos inválidos, IDs vazios/longos e texto livre.
+
+Privacidade:
+
+- nenhuma nova persistência foi criada para explicabilidade;
+- nenhum nome, e-mail, conversa do Tutor, resposta livre ou perfil psicológico é introduzido;
+- professor/instituição continuam sem acesso por esta funcionalidade;
+- contexto futuro do Tutor é mínimo e derivado da questão selecionada.
+
+Segurança:
+
+- Smart Review continua sem autoridade sobre XP, ouro, aprovação ou conclusão;
+- Security Rules preservam os campos canônicos;
+- dados derivados permanecem privados ao owner;
+- seleção e explicabilidade são executadas no cliente, mas não são fonte de verdade para recompensas.
+
+Validação pedagógica técnica:
+
+- erro não resolvido tem prioridade;
+- reincidência na habilidade pode ser distinguida de erro isolado;
+- baixa precisão pode justificar reforço após correção;
+- desempenho recuperado com erro recente pode gerar confirmação/reinforcement;
+- conteúdo não estudado não é introduzido;
+- dificuldade foundation/intermediate é preferida antes de challenge em remediação;
+- diversidade entre habilidades é preservada quando há evidência suficiente.
+
+Limite residual conhecido:
+
+- as Firestore Rules validam learningHistory como lista privada com no máximo 100 itens, mas não validam o schema de cada item individualmente;
+- o cliente faz parsing estrito com LearningHistoryEntry.fromJson e ignora registros malformados;
+- LearningHistory não é progresso canônico e não concede recompensa;
+- um hardening futuro pode mover o histórico para representação/armazenamento com validação server-side mais granular caso o risco/escala justifique.
+
+Critério de conclusão da FASE 10:
+
+- Flutter analyze/test verde;
+- Functions lint/build/test verde;
+- Firestore Emulator/security tests verde;
+- PR permanece dependente da FASE 9;
+- nenhuma alteração na release 1.2.0+24;
+- nenhuma nova AAB nesta fase.
+
