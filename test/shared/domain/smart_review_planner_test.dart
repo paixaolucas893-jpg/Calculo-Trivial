@@ -258,5 +258,89 @@ void main() {
 
       expect(plan, isEmpty);
     });
+    test('classifica dificuldade repetida sem depender de erro não resolvido', () {
+      final plan = SmartReviewPlanner.build(
+        candidates: <QuestionCandidate>[
+          candidate(
+            id: 'q-1',
+            skill: 'Frações',
+            lessonId: 'lesson-1',
+          ),
+        ],
+        performanceByQuestionId: const <String, QuestionPerformance>{
+          'q-1': QuestionPerformance(
+            attempts: 3,
+            correct: 1,
+            incorrect: 2,
+            lastAnswerCorrect: true,
+          ),
+        },
+        studiedContentLessonIds: const <String>['lesson-1'],
+        questionCount: 1,
+      );
+
+      expect(plan, hasLength(1));
+      expect(plan.single.reason, SmartReviewReason.repeatedSkillError);
+    });
+
+    test('classifica baixa precisão quando o erro já foi corrigido', () {
+      final plan = SmartReviewPlanner.build(
+        candidates: <QuestionCandidate>[
+          candidate(
+            id: 'q-1',
+            skill: 'Potências',
+            lessonId: 'lesson-1',
+          ),
+        ],
+        performanceByQuestionId: const <String, QuestionPerformance>{
+          'q-1': QuestionPerformance(
+            attempts: 2,
+            correct: 1,
+            incorrect: 1,
+            lastAnswerCorrect: true,
+          ),
+        },
+        studiedContentLessonIds: const <String>['lesson-1'],
+        questionCount: 1,
+      );
+
+      expect(plan, hasLength(1));
+      expect(plan.single.reason, SmartReviewReason.lowAccuracy);
+    });
+
+    test('usa reforço para confirmar habilidade com erro recente e precisão recuperada', () {
+      final plan = SmartReviewPlanner.build(
+        candidates: <QuestionCandidate>[
+          candidate(
+            id: 'q-1',
+            skill: 'Equações',
+            lessonId: 'lesson-1',
+          ),
+        ],
+        performanceByQuestionId: const <String, QuestionPerformance>{
+          'q-1': QuestionPerformance(
+            attempts: 5,
+            correct: 4,
+            incorrect: 1,
+            lastAnswerCorrect: true,
+          ),
+        },
+        learningHistory: const <LearningHistoryEntry>[
+          LearningHistoryEntry(
+            questionId: 'q-1',
+            contentLessonId: 'lesson-1',
+            isCorrect: false,
+            source: LearningActivitySource.practice,
+            occurredAtEpochMs: 1760000000000,
+          ),
+        ],
+        studiedContentLessonIds: const <String>['lesson-1'],
+        questionCount: 1,
+      );
+
+      expect(plan, hasLength(1));
+      expect(plan.single.reason, SmartReviewReason.reinforcement);
+    });
+
   });
 }
