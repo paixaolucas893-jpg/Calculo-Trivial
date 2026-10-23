@@ -15,6 +15,7 @@ import 'package:calcquest/shared/data/mock_functions_exercise_data.dart';
 import 'package:calcquest/shared/data/mock_limits_exercise_data.dart';
 import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
+import 'package:calcquest/shared/domain/smart_review_plan.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -126,6 +127,75 @@ class _PersonalizedReviewScreenState extends State<PersonalizedReviewScreen> {
       ExerciseDifficulty.intermediate => l10n.exerciseDifficultyIntermediate,
       ExerciseDifficulty.challenge => l10n.exerciseDifficultyChallenge,
     };
+  }
+
+  String _reviewReasonText(AppLocalizations l10n) {
+    final item = AppProgress.personalizedReviewSessionItem(
+      currentCandidate.questionId,
+    );
+
+    return switch (item?.reason) {
+      SmartReviewReason.unresolvedError =>
+        l10n.personalizedReviewReasonUnresolved,
+      SmartReviewReason.repeatedSkillError =>
+        l10n.personalizedReviewReasonRepeated,
+      SmartReviewReason.lowAccuracy =>
+        l10n.personalizedReviewReasonLowAccuracy,
+      SmartReviewReason.reinforcement =>
+        l10n.personalizedReviewReasonReinforcement,
+      null => l10n.personalizedReviewReasonPreviousMistake,
+    };
+  }
+
+  Widget _reviewReasonCard(AppLocalizations l10n) {
+    final reason = _reviewReasonText(l10n);
+
+    return Semantics(
+      container: true,
+      excludeSemantics: true,
+      label: '${l10n.personalizedReviewWhyThisReview} $reason',
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(AppSpacing.sm),
+        decoration: BoxDecoration(
+          color: AppColors.infoLight,
+          borderRadius: BorderRadius.circular(AppSpacing.radiusMedium),
+          border: Border.all(color: AppColors.info.withValues(alpha: 0.28)),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Icon(
+              Icons.info_outline_rounded,
+              size: 20,
+              color: AppColors.infoDark,
+            ),
+            const SizedBox(width: AppSpacing.xs),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.personalizedReviewWhyThisReview,
+                    style: AppTypography.labelMedium.copyWith(
+                      color: AppColors.infoDark,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.xxs),
+                  Text(
+                    reason,
+                    style: AppTypography.bodySmall.copyWith(
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   bool get isLastQuestion =>
@@ -294,6 +364,8 @@ class _PersonalizedReviewScreenState extends State<PersonalizedReviewScreen> {
                 skill: exercise.skill,
                 difficulty: _difficultyLabel(exercise.difficulty, l10n),
               ),
+              const SizedBox(height: AppSpacing.sm),
+              _reviewReasonCard(l10n),
               const SizedBox(height: AppSpacing.md),
               ExerciseQuestionCard(
                 isEnglish: _isEnglish,

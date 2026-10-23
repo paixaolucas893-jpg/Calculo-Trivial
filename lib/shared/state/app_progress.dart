@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
 import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
+import 'package:calcquest/shared/domain/personalized_review_session_item.dart';
 import 'package:calcquest/shared/domain/practice_question_rotation_selector.dart';
 import 'package:calcquest/shared/domain/question_metadata.dart';
 import 'package:calcquest/shared/domain/question_performance.dart';
@@ -102,6 +103,9 @@ class AppProgress {
   static final List<LearningHistoryEntry> _learningHistory =
       <LearningHistoryEntry>[];
   static final Set<String> _lastPersonalizedReviewSessionIds = <String>{};
+  static final Map<String, PersonalizedReviewSessionItem>
+      _currentPersonalizedReviewSessionItems =
+      <String, PersonalizedReviewSessionItem>{};
   static final Set<String> _dailyChallengeQuestionIds = <String>{};
 
   static Future<void> _saveQueue = Future<void>.value();
@@ -119,6 +123,18 @@ class AppProgress {
 
   static List<LearningHistoryEntry> get learningHistory =>
       List<LearningHistoryEntry>.unmodifiable(_learningHistory);
+
+  static PersonalizedReviewSessionItem? personalizedReviewSessionItem(
+    String questionId,
+  ) {
+    return _currentPersonalizedReviewSessionItems[questionId];
+  }
+
+  static TutorReviewContext? personalizedReviewTutorContext(
+    String questionId,
+  ) {
+    return _currentPersonalizedReviewSessionItems[questionId]?.tutorContext;
+  }
 
   static int get personalizedReviewQuestionCount => _questionPerformance.values
       .where((performance) => performance.needsReview)
@@ -198,6 +214,7 @@ class AppProgress {
     _questionPerformance.clear();
     _learningHistory.clear();
     _lastPersonalizedReviewSessionIds.clear();
+    _currentPersonalizedReviewSessionItems.clear();
     _dailyChallengeQuestionIds.clear();
 
     algebraFundamentalCompleted = false;
@@ -1140,12 +1157,26 @@ class AppProgress {
   }) {
     _activeUserId ??= FirebaseAuth.instance.currentUser?.uid;
 
-    final selected = PersonalizedReviewSessionBuilder.build(
+    final sessionItems = PersonalizedReviewSessionBuilder.buildDetailed(
       candidates: candidates,
       performanceByQuestionId: _questionPerformance,
+      learningHistory: _learningHistory,
       previousSessionIds: _lastPersonalizedReviewSessionIds,
+      studiedContentLessonIds: _completedContentLessonIds,
       questionCount: questionCount,
     );
+
+    final selected = sessionItems
+        .map((item) => item.candidate)
+        .toList(growable: false);
+
+    _currentPersonalizedReviewSessionItems
+      ..clear()
+      ..addEntries(
+        sessionItems.map(
+          (item) => MapEntry(item.questionId, item),
+        ),
+      );
 
     _lastPersonalizedReviewSessionIds
       ..clear()

@@ -638,3 +638,150 @@ test('Firestore rejeita histórico com mais de cem eventos', async () => {
     ),
   );
 });
+
+
+test('Smart Review pode sincronizar evidência sem alterar progresso canônico', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const progressRef = doc(
+    db,
+    'users',
+    'user-a',
+    'progress',
+    'current',
+  );
+
+  await assertSucceeds(
+    setDoc(
+      progressRef,
+      {
+        totalAnswerAttempts: 1,
+        correctAnswerAttempts: 0,
+        incorrectAnswerAttempts: 1,
+        accuracy: 0,
+        dailyAnsweredQuestions: 1,
+        questionPerformance: {
+          'q-smart-review': {
+            attempts: 1,
+            correct: 0,
+            incorrect: 1,
+            lastAnswerCorrect: false,
+          },
+        },
+        learningHistory: [
+          {
+            questionId: 'q-smart-review',
+            contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+            isCorrect: false,
+            source: 'personalizedReview',
+            occurredAtEpochMs: 1760000000000,
+          },
+        ],
+        lastPersonalizedReviewSessionIds: ['q-smart-review'],
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+
+  const snapshot = await getDoc(progressRef);
+  const data = snapshot.data();
+
+  assert.equal(data.totalXp, 0);
+  assert.equal(data.totalGold, 0);
+  assert.deepEqual(data.completedLessonIds, []);
+  assert.equal(data.functionsCompleted, false);
+});
+
+test('Smart Review não pode fabricar XP, ouro ou conclusão junto com evidência', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  await assertFails(
+    setDoc(
+      doc(db, 'users', 'user-a', 'progress', 'current'),
+      {
+        totalXp: 80,
+        totalGold: 35,
+        functionsCompleted: true,
+        completedLessonIds: ['funcoes'],
+        totalAnswerAttempts: 1,
+        correctAnswerAttempts: 0,
+        incorrectAnswerAttempts: 1,
+        accuracy: 0,
+        dailyAnsweredQuestions: 1,
+        questionPerformance: {
+          'q-smart-review': {
+            attempts: 1,
+            correct: 0,
+            incorrect: 1,
+            lastAnswerCorrect: false,
+          },
+        },
+        learningHistory: [
+          {
+            questionId: 'q-smart-review',
+            contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+            isCorrect: false,
+            source: 'personalizedReview',
+            occurredAtEpochMs: 1760000000000,
+          },
+        ],
+        lastPersonalizedReviewSessionIds: ['q-smart-review'],
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+});
+
+test('Firestore rejeita persistência de motivo derivado ou contexto do Tutor no progresso', async () => {
+  await seedProgress('user-a');
+
+  const db = testEnv
+    .authenticatedContext('user-a')
+    .firestore();
+
+  const progressRef = doc(
+    db,
+    'users',
+    'user-a',
+    'progress',
+    'current',
+  );
+
+  await assertFails(
+    setDoc(
+      progressRef,
+      {
+        smartReviewReason: 'lowAccuracy',
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+
+  await assertFails(
+    setDoc(
+      progressRef,
+      {
+        tutorReviewContext: {
+          moduleId: 'funcoes',
+          contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+          skill: 'Determinar domínio',
+          difficulty: 'foundation',
+          reviewReason: 'lowAccuracy',
+        },
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
+    ),
+  );
+});
