@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:calcquest/shared/data/localized_algebra_course_content.dart';
 import 'package:calcquest/shared/data/precalculus_foundations_course_data.dart';
 import 'package:calcquest/shared/domain/course_lesson_data.dart';
+import 'package:calcquest/shared/localization/lesson_ui_text.dart';
 import 'package:calcquest/shared/state/app_progress.dart';
 import 'package:calcquest/shared/theme/app_colors.dart';
 import 'package:calcquest/shared/theme/app_spacing.dart';
@@ -58,13 +59,12 @@ class _AlgebraCourseScreenState extends State<AlgebraCourseScreen> {
     final lessons = _lessons;
     final lesson = lessons[index];
     final isLast = index == lessons.length - 1;
+    final ui = LessonUiText.of(context);
 
     return CourseLessonScreen(
       lesson: lesson,
       onComplete: () => AppProgress.completeContentLesson(lesson.id),
-      actionLabel: isLast
-          ? (_isEnglish ? 'Complete lesson' : 'Concluir aula')
-          : (_isEnglish ? 'Complete and continue' : 'Concluir e continuar'),
+      actionLabel: isLast ? ui.completeLesson : ui.completeAndContinue,
       nextDestination: isLast
           ? null
           : (_) => _buildLessonScreen(index + 1),
