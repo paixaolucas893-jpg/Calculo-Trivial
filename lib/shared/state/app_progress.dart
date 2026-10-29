@@ -1278,13 +1278,13 @@ class AppProgress {
     final timestamp = (occurredAt ?? DateTime.now()).toUtc();
 
     final historyEntry = LearningHistoryEntry(
-        eventId: LearningHistoryEntry.newEventId(),
-        questionId: questionId,
-        contentLessonId: contentLessonId,
-        isCorrect: isCorrect,
-        source: source,
-        occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
-      );
+      eventId: LearningHistoryEntry.newEventId(),
+      questionId: questionId,
+      contentLessonId: contentLessonId,
+      isCorrect: isCorrect,
+      source: source,
+      occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
+    );
     _learningHistory.add(historyEntry);
     if (_activeUserId != null) {
       _unqueuedHistoryEvents.add(historyEntry);
