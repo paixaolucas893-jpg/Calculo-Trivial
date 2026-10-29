@@ -1,3 +1,5 @@
+import 'dart:math';
+
 enum LearningActivitySource {
   practice,
   personalizedReview,
@@ -9,6 +11,7 @@ class LearningHistoryEntry {
   static const int maxContentLessonIdLength = 160;
 
   static const Set<String> _allowedJsonKeys = <String>{
+    'eventId',
     'questionId',
     'contentLessonId',
     'isCorrect',
@@ -16,6 +19,7 @@ class LearningHistoryEntry {
     'occurredAtEpochMs',
   };
 
+  final String? eventId;
   final String questionId;
   final String? contentLessonId;
   final bool isCorrect;
@@ -23,6 +27,7 @@ class LearningHistoryEntry {
   final int occurredAtEpochMs;
 
   const LearningHistoryEntry({
+    this.eventId,
     required this.questionId,
     required this.isCorrect,
     required this.source,
@@ -30,10 +35,25 @@ class LearningHistoryEntry {
     this.contentLessonId,
   });
 
+  static final RegExp _uuidV4 = RegExp(
+    r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}',
+  );
+
+  static String newEventId() {
+    final random = Random.secure();
+    final bytes = List<int>.generate(16, (_) => random.nextInt(256));
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    final hex = bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+    return '${hex.substring(0, 8)}-${hex.substring(8, 12)}-'
+        '${hex.substring(12, 16)}-${hex.substring(16, 20)}-'
+        '${hex.substring(20)}';
+  }
+
   DateTime get occurredAt =>
       DateTime.fromMillisecondsSinceEpoch(occurredAtEpochMs).toLocal();
 
-  String get deduplicationKey => [
+  String get deduplicationKey => eventId ?? [
         questionId,
         contentLessonId ?? '',
         isCorrect ? '1' : '0',
@@ -43,6 +63,7 @@ class LearningHistoryEntry {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      if (eventId != null) 'eventId': eventId,
       'questionId': questionId,
       'contentLessonId': contentLessonId,
       'isCorrect': isCorrect,
@@ -58,6 +79,14 @@ class LearningHistoryEntry {
 
     if (keys.length != value.keys.length ||
         !keys.every(_allowedJsonKeys.contains)) {
+      return null;
+    }
+
+    final eventIdValue = value['eventId'];
+    if (eventIdValue != null &&
+        (eventIdValue is! String ||
+         eventIdValue.length != 36 ||
+         !_uuidV4.hasMatch(eventIdValue))) {
       return null;
     }
 
@@ -105,6 +134,7 @@ class LearningHistoryEntry {
     if (source == null) return null;
 
     return LearningHistoryEntry(
+      eventId: eventIdValue as String?,
       questionId: questionIdValue.trim(),
       contentLessonId: contentLessonId,
       isCorrect: isCorrect,

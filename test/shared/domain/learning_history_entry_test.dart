@@ -4,6 +4,38 @@ import 'package:calcquest/shared/domain/learning_history_entry.dart';
 
 void main() {
   group('LearningHistoryEntry', () {
+    test('gera IDs UUID v4 distintos e válidos', () {
+      final first = LearningHistoryEntry.newEventId();
+      final second = LearningHistoryEntry.newEventId();
+      expect(first, isNot(second));
+      expect(first.length, 36);
+      expect(first[14], '4');
+      expect('89ab'.contains(first[19]), isTrue);
+      expect(first.split('-').length, 5);
+    });
+
+    test('preserva IDs novos e aceita registros antigos', () {
+      final id = LearningHistoryEntry.newEventId();
+      final entry = LearningHistoryEntry(
+        eventId: id,
+        questionId: 'q-1',
+        isCorrect: true,
+        source: LearningActivitySource.practice,
+        occurredAtEpochMs: 1760000000000,
+      );
+      expect(LearningHistoryEntry.fromJson(entry.toJson())?.eventId, id);
+      final legacy = Map<String, dynamic>.from(entry.toJson())
+        ..remove('eventId');
+      expect(LearningHistoryEntry.fromJson(legacy)?.eventId, isNull);
+      expect(
+        LearningHistoryEntry.fromJson(<String, dynamic>{
+          ...entry.toJson(),
+          'eventId': 'not-a-uuid',
+        }),
+        isNull,
+      );
+    });
+
     test('serializa e restaura um evento válido', () {
       const entry = LearningHistoryEntry(
         questionId: 'q-1',
