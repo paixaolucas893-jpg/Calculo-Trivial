@@ -78,6 +78,35 @@ service cloud.firestore {
         && values.size() <= 1500;
     }
 
+    function validLearningHistory(values) {
+      return values is list
+        && values.size() <= 100;
+    }
+
+    function validLearningHistoryEvent(eventId) {
+      let data = request.resource.data;
+      return eventId.size() == 36
+        && eventId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}')
+        && data.keys().hasOnly(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
+        && data.keys().hasAll(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
+        && data.questionId is string
+        && data.questionId.size() >= 1
+        && data.questionId.size() <= 160
+        && data.questionId.matches('.*[^ ].*')
+        && (data.contentLessonId == null || (
+          data.contentLessonId is string
+          && data.contentLessonId.size() >= 1
+          && data.contentLessonId.size() <= 160
+          && data.contentLessonId.matches('.*[^ ].*')
+        ))
+        && data.isCorrect is bool
+        && data.source in ['practice','personalizedReview','dailyChallenge']
+        && data.occurredAtEpochMs is int
+        && data.occurredAtEpochMs > 0
+        && data.createdAt is timestamp
+        && data.createdAt == request.time;
+    }
+
     function validReviewSessionIds(values) {
       return values is list
         && values.size() <= 10;
@@ -222,6 +251,7 @@ service cloud.firestore {
           'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
+          'learningHistory',
           'lastPersonalizedReviewSessionIds',
           'dailyChallengeDate',
           'dailyChallengeCompletedDate',
@@ -265,6 +295,7 @@ service cloud.firestore {
         && validRecentPracticeQuestions(data.recentPracticeQuestionIds)
         && validQuestionSessions(data.lastFinalTestSessionIds)
         && validQuestionPerformance(data.questionPerformance)
+        && validLearningHistory(data.get('learningHistory', []))
         && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
         && validDateKey(data.dailyChallengeDate)
         && validDateKey(data.dailyChallengeCompletedDate)
@@ -301,6 +332,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -371,6 +403,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -381,6 +414,16 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, delete:
         if isOwner(userId);
+
+      match /learningHistory/{eventId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId)
+          && request.query.limit != null
+          && request.query.limit <= 100;
+        allow create: if isOwner(userId)
+          && validLearningHistoryEvent(eventId);
+        allow update, delete: if false;
+      }
 
       match /progress/current {
         allow read, delete:

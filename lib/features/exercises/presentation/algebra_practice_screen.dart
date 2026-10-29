@@ -106,6 +106,7 @@ class _AlgebraPracticeScreenState extends State<AlgebraPracticeScreen> {
     setState(() => isShowingFeedback = true);
     AppProgress.recordExerciseAnswer(
       questionId: exercise.id,
+      contentLessonId: exercise.contentLessonId,
       isCorrect: isCorrect,
     );
 

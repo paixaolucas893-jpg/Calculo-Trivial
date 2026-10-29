@@ -145,6 +145,7 @@ class _LimitsExercisesScreenState extends State<LimitsExercisesScreen> {
     setState(() => isShowingFeedback = true);
     AppProgress.recordExerciseAnswer(
       questionId: exercise.id,
+      contentLessonId: exercise.contentLessonId,
       isCorrect: isCorrect,
     );
 
