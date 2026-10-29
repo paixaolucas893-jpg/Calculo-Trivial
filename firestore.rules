@@ -83,6 +83,389 @@ service cloud.firestore {
         && values.size() <= 100;
     }
 
+    // Phase 9: each learning event is validated independently.
+    function validLearningHistoryEvent(eventId) {
+      let data = request.resource.data;
+
+      return eventId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
+      return values is list
+        && values.size() <= 10;
+    }
+
+    function validDailyChallengeIds(values) {
+      return values is list
+        && values.size() <= 5;
+    }
+
+    function validContentLessonIds(values) {
+      return values is list
+        && values.size() <= 63
+        && values.hasOnly([
+          'precalculo-00-01-reais',
+          'precalculo-00-02-operacoes',
+          'precalculo-00-03-linguagem',
+          'precalculo-00-04-potencias-raizes',
+          'precalculo-00-05-modulo',
+          'algebra-01-linguagem',
+          'algebra-02-termos-semelhantes',
+          'algebra-03-distributiva',
+          'algebra-04-potencias',
+          'algebra-09-monomios-polinomios',
+          'algebra-10-operacoes-polinomios',
+          'algebra-05-produtos-notaveis',
+          'algebra-06-fatoracao',
+          'algebra-07-fracoes-algebricas',
+          'algebra-08-sintese',
+          'equations-01-equilibrio',
+          'equations-02-primeiro-grau',
+          'equations-03-parenteses-fracoes',
+          'equations-04-casos-especiais',
+          'equations-05-sistemas-lineares',
+          'equations-06-quadraticas',
+          'equations-07-inequacoes',
+          'equations-08-modulo-revisao',
+          'equations-09-radicais',
+          'equations-10-inequacoes-quadraticas',
+          'equations-11-inequacoes-racionais',
+          'funcoes-01-conceito-dominio-imagem',
+          'funcoes-02-composicao-inversa',
+          'funcoes-03-transformacoes-graficos',
+          'funcoes-04-polinomiais',
+          'funcoes-05-racionais',
+          'funcoes-06-exponenciais',
+          'funcoes-07-logaritmos',
+          'funcoes-08-radianos-circulo',
+          'funcoes-09-trigonometricas-graficos',
+          'funcoes-10-identidades-equacoes-trig',
+          'funcoes-11-inversas-trig',
+          'funcoes-12-geometria-analitica',
+          'funcoes-13-conicas',
+          'funcoes-14-taxa-media-sintese',
+          'limites-01-intuicao',
+          'limites-02-laterais',
+          'limites-03-propriedades',
+          'limites-04-fatoracao',
+          'limites-05-racionalizacao',
+          'limites-06-infinito',
+          'limites-07-trigonometricos',
+          'limites-08-sintese',
+          'continuidade-01-significado',
+          'continuidade-02-dominio',
+          'continuidade-03-descontinuidades',
+          'continuidade-04-partes',
+          'continuidade-05-parametros',
+          'continuidade-06-valor-intermediario',
+          'continuidade-07-sintese',
+          'derivadas-01-significado',
+          'derivadas-02-regras-basicas',
+          'derivadas-03-produto-quociente',
+          'derivadas-04-cadeia',
+          'derivadas-05-elementares',
+          'derivadas-06-tangente',
+          'derivadas-07-derivabilidade',
+          'derivadas-08-aplicacoes'
+        ]);
+    }
+
+    function validDateKey(value) {
+      return value == null
+        || (
+          value is string
+          && value.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        );
+    }
+
+    function validProgress() {
+      let data = request.resource.data;
+
+      return data.keys().hasOnly([
+          'completedLessonIds',
+          'completedContentLessonIds',
+          'algebraFundamentalCompleted',
+          'equationsAndInequationsCompleted',
+          'functionsCompleted',
+          'limitsCompleted',
+          'continuityCompleted',
+          'derivativesCompleted',
+          'totalXp',
+          'totalGold',
+          'totalAnswerAttempts',
+          'correctAnswerAttempts',
+          'incorrectAnswerAttempts',
+          'accuracy',
+          'studyStreak',
+          'lastStudyDate',
+          'dailyAnsweredQuestions',
+          'dailyQuestionGoal',
+          'dailyActivityDate',
+          'lastQuestionSessionIds',
+          'recentPracticeQuestionIds',
+          'lastFinalTestSessionIds',
+          'questionPerformance',
+          'learningHistory',
+          'lastPersonalizedReviewSessionIds',
+          'dailyChallengeDate',
+          'dailyChallengeCompletedDate',
+          'dailyChallengeQuestionIds',
+          'dailyChallengeBestCorrect',
+          'updatedAt'
+        ])
+        && data.keys().hasAll([
+          'completedLessonIds',
+          'completedContentLessonIds',
+          'algebraFundamentalCompleted',
+          'equationsAndInequationsCompleted',
+          'functionsCompleted',
+          'limitsCompleted',
+          'continuityCompleted',
+          'derivativesCompleted',
+          'totalXp',
+          'totalGold',
+          'totalAnswerAttempts',
+          'correctAnswerAttempts',
+          'incorrectAnswerAttempts',
+          'accuracy',
+          'studyStreak',
+          'dailyAnsweredQuestions',
+          'dailyQuestionGoal',
+          'lastQuestionSessionIds',
+          'recentPracticeQuestionIds',
+          'lastFinalTestSessionIds',
+          'questionPerformance',
+          'learningHistory',
+          'lastPersonalizedReviewSessionIds',
+          'dailyChallengeDate',
+          'dailyChallengeCompletedDate',
+          'dailyChallengeQuestionIds',
+          'dailyChallengeBestCorrect',
+          'updatedAt'
+        ])
+        && validLessonIds(data.completedLessonIds)
+        && validContentLessonIds(data.completedContentLessonIds)
+        && data.algebraFundamentalCompleted is bool
+        && data.equationsAndInequationsCompleted is bool
+        && data.functionsCompleted is bool
+        && data.limitsCompleted is bool
+        && data.continuityCompleted is bool
+        && data.derivativesCompleted is bool
+        && data.totalXp is int
+        && data.totalXp >= 0
+        && data.totalXp <= 510
+        && data.totalGold is int
+        && data.totalGold >= 0
+        && data.totalGold <= 225
+        && data.totalAnswerAttempts is int
+        && data.totalAnswerAttempts >= 0
+        && data.correctAnswerAttempts is int
+        && data.correctAnswerAttempts >= 0
+        && data.correctAnswerAttempts <= data.totalAnswerAttempts
+        && data.incorrectAnswerAttempts is int
+        && data.incorrectAnswerAttempts
+          == data.totalAnswerAttempts - data.correctAnswerAttempts
+        && data.accuracy is number
+        && data.accuracy >= 0
+        && data.accuracy <= 1
+        && data.studyStreak is int
+        && data.studyStreak >= 0
+        && data.dailyAnsweredQuestions is int
+        && data.dailyAnsweredQuestions >= 0
+        && data.dailyQuestionGoal == 5
+        && validDateKey(data.lastStudyDate)
+        && validDateKey(data.dailyActivityDate)
+        && validQuestionSessions(data.lastQuestionSessionIds)
+        && validRecentPracticeQuestions(data.recentPracticeQuestionIds)
+        && validQuestionSessions(data.lastFinalTestSessionIds)
+        && validQuestionPerformance(data.questionPerformance)
+        && validLearningHistory(data.learningHistory)
+        && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
+        && validDateKey(data.dailyChallengeDate)
+        && validDateKey(data.dailyChallengeCompletedDate)
+        && validDailyChallengeIds(data.dailyChallengeQuestionIds)
+        && data.dailyChallengeBestCorrect is int
+        && data.dailyChallengeBestCorrect >= 0
+        && data.dailyChallengeBestCorrect <= 5
+        && data.updatedAt is timestamp
+        && data.updatedAt == request.time;
+    }
+
+    function canonicalProgressIsInitial() {
+      let data = request.resource.data;
+
+      return data.completedLessonIds == []
+        && data.completedContentLessonIds == []
+        && data.algebraFundamentalCompleted == false
+        && data.equationsAndInequationsCompleted == false
+        && data.functionsCompleted == false
+        && data.limitsCompleted == false
+        && data.continuityCompleted == false
+        && data.derivativesCompleted == false
+        && data.totalXp == 0
+        && data.totalGold == 0
+        && data.totalAnswerAttempts == 0
+        && data.correctAnswerAttempts == 0
+        && data.incorrectAnswerAttempts == 0
+        && data.accuracy == 0
+        && data.studyStreak == 0
+        && data.lastStudyDate == null
+        && data.dailyAnsweredQuestions == 0
+        && data.dailyQuestionGoal == 5
+        && data.lastQuestionSessionIds == {}
+        && data.recentPracticeQuestionIds == {}
+        && data.lastFinalTestSessionIds == {}
+        && data.questionPerformance == {}
+        && data.learningHistory == []
+        && data.lastPersonalizedReviewSessionIds == []
+        && data.dailyChallengeDate == null
+        && data.dailyChallengeCompletedDate == null
+        && data.dailyChallengeQuestionIds == []
+        && data.dailyChallengeBestCorrect == 0;
+    }
+
+    function canonicalProgressUnchanged() {
+      let before = resource.data;
+      let after = request.resource.data;
+
+      return after.completedLessonIds == before.completedLessonIds
+        && after.algebraFundamentalCompleted == before.algebraFundamentalCompleted
+        && after.equationsAndInequationsCompleted == before.equationsAndInequationsCompleted
+        && after.functionsCompleted == before.functionsCompleted
+        && after.limitsCompleted == before.limitsCompleted
+        && after.continuityCompleted == before.continuityCompleted
+        && after.derivativesCompleted == before.derivativesCompleted
+        && after.totalXp == before.totalXp
+        && after.totalGold == before.totalGold;
+    }
+
+    function clientStatisticsUpdateIsPlausible() {
+      let before = resource.data;
+      let after = request.resource.data;
+
+      return after.totalAnswerAttempts >= before.totalAnswerAttempts
+        && after.totalAnswerAttempts <= before.totalAnswerAttempts + 1
+        && after.correctAnswerAttempts >= before.correctAnswerAttempts
+        && after.correctAnswerAttempts <= before.correctAnswerAttempts + 1
+        && after.correctAnswerAttempts - before.correctAnswerAttempts
+          <= after.totalAnswerAttempts - before.totalAnswerAttempts
+        && (
+          after.dailyAnsweredQuestions == before.dailyAnsweredQuestions
+          || after.dailyAnsweredQuestions == before.dailyAnsweredQuestions + 1
+          || after.dailyAnsweredQuestions == 0
+          || after.dailyAnsweredQuestions == 1
+        )
+        && (
+          after.studyStreak == before.studyStreak
+          || after.studyStreak == before.studyStreak + 1
+          || after.studyStreak == 1
+        );
+    }
+
+    function canonicalProgressReset() {
+      let data = request.resource.data;
+
+      return data.completedLessonIds == []
+        && data.completedContentLessonIds == []
+        && data.algebraFundamentalCompleted == false
+        && data.equationsAndInequationsCompleted == false
+        && data.functionsCompleted == false
+        && data.limitsCompleted == false
+        && data.continuityCompleted == false
+        && data.derivativesCompleted == false
+        && data.totalXp == 0
+        && data.totalGold == 0
+        && data.totalAnswerAttempts == 0
+        && data.correctAnswerAttempts == 0
+        && data.incorrectAnswerAttempts == 0
+        && data.accuracy == 0
+        && data.studyStreak == 0
+        && data.lastStudyDate == null
+        && data.dailyAnsweredQuestions == 0
+        && data.dailyQuestionGoal == 5
+        && data.lastQuestionSessionIds == {}
+        && data.recentPracticeQuestionIds == {}
+        && data.lastFinalTestSessionIds == {}
+        && data.questionPerformance == {}
+        && data.learningHistory == []
+        && data.lastPersonalizedReviewSessionIds == []
+        && data.dailyChallengeDate == null
+        && data.dailyChallengeCompletedDate == null
+        && data.dailyChallengeQuestionIds == []
+        && data.dailyChallengeBestCorrect == 0;
+    }
+
+    match /users/{userId} {
+      allow read, delete:
+        if isOwner(userId);
+
+      // Reads are restricted to the owner; list queries must be bounded.
+      // Client-side updates and deletes are prohibited: retention/reset
+      // will use an authorized backend in later phases.
+      match /learningHistory/{eventId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId)
+          && request.query.limit != null
+          && request.query.limit <= 100;
+        allow create: if isOwner(userId)
+          && validLearningHistoryEvent(eventId);
+        allow update, delete: if false;
+      }
+
+      match /progress/current {
+        allow read, delete:
+          if isOwner(userId);
+
+        allow create:
+          if isOwner(userId)
+          && validProgress()
+          && canonicalProgressIsInitial();
+
+        allow update:
+          if isOwner(userId)
+          && validProgress()
+          && (
+            (canonicalProgressUnchanged() && clientStatisticsUpdateIsPlausible())
+            || canonicalProgressReset()
+          );
+      }
+    }
+  }
+})
+        && data.keys().hasOnly([
+          'questionId',
+          'contentLessonId',
+          'isCorrect',
+          'source',
+          'occurredAtEpochMs',
+          'createdAt'
+        ])
+        && data.keys().hasAll([
+          'questionId',
+          'contentLessonId',
+          'isCorrect',
+          'source',
+          'occurredAtEpochMs',
+          'createdAt'
+        ])
+        && data.questionId is string
+        && data.questionId.size() >= 1
+        && data.questionId.size() <= 160
+        && data.questionId.matches('.*[^ ].*')
+        && (
+          data.contentLessonId == null
+          || (
+            data.contentLessonId is string
+            && data.contentLessonId.size() >= 1
+            && data.contentLessonId.size() <= 160
+            && data.contentLessonId.matches('.*[^ ].*')
+          )
+        )
+        && data.isCorrect is bool
+        && data.source in ['practice', 'personalizedReview', 'dailyChallenge']
+        && data.occurredAtEpochMs is int
+        && data.occurredAtEpochMs > 0
+        && data.createdAt is timestamp
+        && data.createdAt == request.time;
+    }
+
     function validReviewSessionIds(values) {
       return values is list
         && values.size() <= 10;
