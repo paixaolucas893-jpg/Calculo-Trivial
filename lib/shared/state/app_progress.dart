@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:calcquest/shared/data/pending_learning_history_queue.dart';
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
 import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
@@ -105,6 +106,7 @@ class AppProgress {
   static final Set<String> _dailyChallengeQuestionIds = <String>{};
 
   static Future<void> _saveQueue = Future<void>.value();
+  static final List<LearningHistoryEntry> _unqueuedHistoryEvents = <LearningHistoryEntry>[];
 
   static final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
@@ -197,6 +199,7 @@ class AppProgress {
     _lastFinalTestSessionIds.clear();
     _questionPerformance.clear();
     _learningHistory.clear();
+    _unqueuedHistoryEvents.clear();
     _lastPersonalizedReviewSessionIds.clear();
     _dailyChallengeQuestionIds.clear();
 
@@ -1023,6 +1026,24 @@ class AppProgress {
   }
 
   static Future<void> _persistProgress() async {
+    // Stage new events durably before trying any network operations.
+    // Upload is intentionally deferred until reset/deletion semantics are
+    // implemented: sending now could resurrect history after a reset.
+    final userId = _activeUserId;
+    if (userId != null && userId.isNotEmpty &&
+        _unqueuedHistoryEvents.isNotEmpty) {
+      try {
+        final preferences = await SharedPreferences.getInstance();
+        final queue = PendingLearningHistoryQueue(preferences);
+        for (final event in List<LearningHistoryEntry>.of(_unqueuedHistoryEvents)) {
+          await queue.enqueue(userId, event);
+          _unqueuedHistoryEvents.remove(event);
+        }
+      } catch (error) {
+        debugPrint('AppProgress: erro ao guardar eventos pendentes: $error');
+      }
+    }
+
     await _saveLocalProgress();
 
     try {
@@ -1256,15 +1277,18 @@ class AppProgress {
 
     final timestamp = (occurredAt ?? DateTime.now()).toUtc();
 
-    _learningHistory.add(
-      LearningHistoryEntry(
-        questionId: questionId,
-        contentLessonId: contentLessonId,
-        isCorrect: isCorrect,
-        source: source,
-        occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
-      ),
+    final historyEntry = LearningHistoryEntry(
+      eventId: LearningHistoryEntry.newEventId(),
+      questionId: questionId,
+      contentLessonId: contentLessonId,
+      isCorrect: isCorrect,
+      source: source,
+      occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
     );
+    _learningHistory.add(historyEntry);
+    if (_activeUserId != null) {
+      _unqueuedHistoryEvents.add(historyEntry);
+    }
 
     if (_learningHistory.length > _maxLearningHistoryEntries) {
       _learningHistory.removeRange(

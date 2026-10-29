@@ -40,6 +40,40 @@ class LearningHistoryEventService {
     });
   }
 
+  /// Confirms an immutable event without generating another ID.
+  ///
+  /// A timeout can occur after the server has already committed the create.
+  /// On a failed write, read the same document from the server and accept
+  /// success only when the stored payload matches the original event.
+  /// If still offline, propagate the error so the caller keeps it pending.
+  Future<void> createOrConfirm({
+    required String userId,
+    required LearningHistoryEntry entry,
+  }) async {
+    try {
+      await create(userId: userId, entry: entry);
+    } catch (writeError) {
+      final id = entry.eventId;
+      if (id == null) rethrow;
+
+      try {
+        final snapshot = await _collection(userId)
+            .doc(id)
+            .get(const GetOptions(source: Source.server));
+        final stored = snapshot.data();
+        if (stored == null) rethrow;
+
+        final original = entry.toJson()..remove('eventId');
+        final matching = original.entries.every(
+          (field) => stored[field.key] == field.value,
+        );
+        if (!matching) rethrow;
+      } catch (_) {
+        Error.throwWithStackTrace(writeError, StackTrace.current);
+      }
+    }
+  }
+
   /// Loads the most recent entries, bounded by Firestore security rules.
   Future<List<LearningHistoryEntry>> recent({
     required String userId,
