@@ -11,10 +11,16 @@ import {
 } from '@firebase/rules-unit-testing';
 
 import {
+  collection,
+  deleteDoc,
   doc,
   getDoc,
+  getDocs,
+  limit,
+  query,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -637,4 +643,91 @@ test('Firestore rejeita histórico com mais de cem eventos', async () => {
       }),
     ),
   );
+});
+
+const eventId = '123e4567-e89b-42d3-a456-426614174000';
+
+function validHistoryEvent(overrides = {}) {
+  return {
+    questionId: 'funcoes-q1',
+    contentLessonId: 'funcoes-01-conceito-dominio-imagem',
+    isCorrect: true,
+    source: 'practice',
+    occurredAtEpochMs: 1760000000000,
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
+test('Phase 9.1: owner can create and read a validated event', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertSucceeds(setDoc(ref, validHistoryEvent()));
+  await assertSucceeds(getDoc(ref));
+});
+
+test('Phase 9.1: cross-user and unauthenticated access is denied', async () => {
+  const owner = testEnv.authenticatedContext('user-a').firestore();
+  const other = testEnv.authenticatedContext('user-b').firestore();
+  const guest = testEnv.unauthenticatedContext().firestore();
+  const path = ['users', 'user-a', 'learningHistory', eventId];
+  await assertSucceeds(setDoc(doc(owner, ...path), validHistoryEvent()));
+  await assertFails(getDoc(doc(other, ...path)));
+  await assertFails(getDoc(doc(guest, ...path)));
+  await assertFails(setDoc(doc(other, ...path), validHistoryEvent()));
+});
+
+test('Phase 9.1: unbounded list is denied; bounded owner query succeeds', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const events = collection(db, 'users', 'user-a', 'learningHistory');
+  await assertFails(getDocs(events));
+  await assertSucceeds(getDocs(query(events, limit(5))));
+  await assertFails(getDocs(query(events, limit(101))));
+});
+
+test('Phase 9.1: invalid event fields and identifiers are rejected', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  const invalid = [
+    { questionId: ' ' },
+    { questionId: 'x'.repeat(161) },
+    { contentLessonId: ' ' },
+    { contentLessonId: 'y'.repeat(161) },
+    { isCorrect: 'true' },
+    { source: 'admin' },
+    { occurredAtEpochMs: -1 },
+    { createdAt: new Date(0) },
+    { privileged: true },
+  ];
+  for (const override of invalid) {
+    await assertFails(setDoc(ref, validHistoryEvent(override)));
+  }
+  await assertFails(setDoc(
+    doc(db, 'users', 'user-a', 'learningHistory', 'not-uuid-v4'),
+    validHistoryEvent(),
+  ));
+});
+
+test('Phase 9.1: events cannot be overwritten, updated or deleted by client', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertSucceeds(setDoc(ref, validHistoryEvent()));
+  await assertFails(setDoc(ref, validHistoryEvent()));
+  await assertFails(updateDoc(ref, { isCorrect: false }));
+  await assertFails(deleteDoc(ref));
+});
+
+test('Phase 9.1: existing progress schema remains compatible with release', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const path = doc(db, 'users', 'user-a', 'progress', 'current');
+  const { learningHistory: _ignored, ...releaseFields } = validProgress();
+  await assertSucceeds(setDoc(path, releaseFields));
+  await assertSucceeds(setDoc(path, {
+    totalAnswerAttempts: 1,
+    correctAnswerAttempts: 1,
+    incorrectAnswerAttempts: 0,
+    accuracy: 1,
+    dailyAnsweredQuestions: 1,
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
 });
