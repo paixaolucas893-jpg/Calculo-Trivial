@@ -83,7 +83,6 @@ service cloud.firestore {
         && values.size() <= 100;
     }
 
-    // Phase 9: each learning event is validated independently.
     function validLearningHistoryEvent(eventId) {
       let data = request.resource.data;
 
@@ -395,9 +394,6 @@ service cloud.firestore {
       allow read, delete:
         if isOwner(userId);
 
-      // Reads are restricted to the owner; list queries must be bounded.
-      // Client-side updates and deletes are prohibited: retention/reset
-      // will use an authorized backend in later phases.
       match /learningHistory/{eventId} {
         allow get: if isOwner(userId);
         allow list: if isOwner(userId)
@@ -428,35 +424,16 @@ service cloud.firestore {
     }
   }
 })
-        && data.keys().hasOnly([
-          'questionId',
-          'contentLessonId',
-          'isCorrect',
-          'source',
-          'occurredAtEpochMs',
-          'createdAt'
-        ])
-        && data.keys().hasAll([
-          'questionId',
-          'contentLessonId',
-          'isCorrect',
-          'source',
-          'occurredAtEpochMs',
-          'createdAt'
-        ])
+        && data.keys().hasOnly(['questionId', 'contentLessonId', 'isCorrect', 'source', 'occurredAtEpochMs', 'createdAt'])
+        && data.keys().hasAll(['questionId', 'contentLessonId', 'isCorrect', 'source', 'occurredAtEpochMs', 'createdAt'])
         && data.questionId is string
         && data.questionId.size() >= 1
         && data.questionId.size() <= 160
         && data.questionId.matches('.*[^ ].*')
-        && (
-          data.contentLessonId == null
-          || (
-            data.contentLessonId is string
-            && data.contentLessonId.size() >= 1
-            && data.contentLessonId.size() <= 160
-            && data.contentLessonId.matches('.*[^ ].*')
-          )
-        )
+        && (data.contentLessonId == null || (data.contentLessonId is string
+          && data.contentLessonId.size() >= 1
+          && data.contentLessonId.size() <= 160
+          && data.contentLessonId.matches('.*[^ ].*')))
         && data.isCorrect is bool
         && data.source in ['practice', 'personalizedReview', 'dailyChallenge']
         && data.occurredAtEpochMs is int
