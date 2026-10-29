@@ -202,7 +202,6 @@ service cloud.firestore {
           'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
-          'learningHistory',
           'lastPersonalizedReviewSessionIds',
           'dailyChallengeDate',
           'dailyChallengeCompletedDate',
@@ -276,7 +275,7 @@ service cloud.firestore {
         && validRecentPracticeQuestions(data.recentPracticeQuestionIds)
         && validQuestionSessions(data.lastFinalTestSessionIds)
         && validQuestionPerformance(data.questionPerformance)
-        && validLearningHistory(data.learningHistory)
+        && validLearningHistory(data.get('learningHistory', []))
         && validReviewSessionIds(data.lastPersonalizedReviewSessionIds)
         && validDateKey(data.dailyChallengeDate)
         && validDateKey(data.dailyChallengeCompletedDate)
@@ -313,7 +312,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
-        && data.learningHistory == []
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -384,7 +383,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
-        && data.learningHistory == []
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -692,7 +691,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
-        && data.learningHistory == []
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
@@ -763,7 +762,7 @@ service cloud.firestore {
         && data.recentPracticeQuestionIds == {}
         && data.lastFinalTestSessionIds == {}
         && data.questionPerformance == {}
-        && data.learningHistory == []
+        && data.get('learningHistory', []) == []
         && data.lastPersonalizedReviewSessionIds == []
         && data.dailyChallengeDate == null
         && data.dailyChallengeCompletedDate == null
