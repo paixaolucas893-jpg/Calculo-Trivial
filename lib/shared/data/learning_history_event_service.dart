@@ -55,10 +55,14 @@ class LearningHistoryEventService {
         .get();
 
     return result.docs
-        .map((document) => LearningHistoryEntry.fromJson(<String, dynamic>{
-              ...document.data()..remove('createdAt'),
-              'eventId': document.id,
-            }))
+        .map((document) {
+          final fields = Map<String, dynamic>.from(document.data())
+            ..remove('createdAt');
+          return LearningHistoryEntry.fromJson(<String, dynamic>{
+            ...fields,
+            'eventId': document.id,
+          });
+        })
         .whereType<LearningHistoryEntry>()
         .toList(growable: false);
   }
