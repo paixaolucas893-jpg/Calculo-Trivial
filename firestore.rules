@@ -85,7 +85,8 @@ service cloud.firestore {
 
     function validLearningHistoryEvent(eventId) {
       let data = request.resource.data;
-      return eventId.matches('^[0-9a-f-]{36}')
+      return eventId.size() == 36
+        && eventId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}')
         && data.keys().hasOnly(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
         && data.keys().hasAll(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
         && data.questionId is string
