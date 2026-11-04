@@ -78,6 +78,35 @@ void main() {
     expect(await queue.pending('user-a'), isEmpty);
   });
 
+  test('corrupted outbox is not overwritten during enqueue', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    await prefs.setString(key, '{invalid-json');
+    final queue = PendingLearningHistoryQueue(prefs);
+
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    await expectLater(
+      queue.enqueue('user-a', makeEvent(LearningHistoryEntry.newEventId())),
+      throwsStateError,
+    );
+    expect(prefs.getString(key), '{invalid-json');
+  });
+
+  test('invalid events are rejected without losing stored data', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    const invalid = '[{"eventId":"not-a-uuid"}]';
+    await prefs.setString(key, invalid);
+    final queue = PendingLearningHistoryQueue(prefs);
+
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    await expectLater(
+      queue.acknowledge('user-a', LearningHistoryEntry.newEventId()),
+      throwsStateError,
+    );
+    expect(prefs.getString(key), invalid);
+  });
+
   test('requires a stable ID before queuing', () async {
     final prefs = await SharedPreferences.getInstance();
     final queue = PendingLearningHistoryQueue(prefs);
