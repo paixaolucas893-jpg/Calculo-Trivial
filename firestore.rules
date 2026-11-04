@@ -126,6 +126,16 @@ service cloud.firestore {
       );
     }
 
+    // Once the trusted backend rotates the history generation on reset,
+    // the legacy array must remain empty. Older application versions that
+    // submit cached events will be denied rather than restoring deleted data.
+    function legacyHistoryWriteAllowed(userId) {
+      let path = /databases/$(database)/documents/users/$(userId)/learningHistoryControl/current;
+      return !exists(path)
+        || get(path).data.generation == 0
+        || request.resource.data.get('learningHistory', []) == [];
+    }
+
     function validReviewSessionIds(values) {
       return values is list
         && values.size() <= 10;
@@ -241,6 +251,7 @@ service cloud.firestore {
           'recentPracticeQuestionIds',
           'lastFinalTestSessionIds',
           'questionPerformance',
+          'learningHistory',
           'lastPersonalizedReviewSessionIds',
           'dailyChallengeDate',
           'dailyChallengeCompletedDate',
@@ -459,11 +470,13 @@ service cloud.firestore {
         allow create:
           if isOwner(userId)
           && validProgress()
+          && legacyHistoryWriteAllowed(userId)
           && canonicalProgressIsInitial();
 
         allow update:
           if isOwner(userId)
           && validProgress()
+          && legacyHistoryWriteAllowed(userId)
           && (
             (canonicalProgressUnchanged() && clientStatisticsUpdateIsPlausible())
             || canonicalProgressReset()
