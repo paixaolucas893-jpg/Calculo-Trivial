@@ -19,6 +19,7 @@ class FakeResetDependencies implements LearningHistoryResetDependencies {
   };
   steps: string[] = [];
   shouldFailPurge = false;
+  shouldFailLegacy = false;
 
   /**
    * @param {string} uid Trusted user identifier.
@@ -43,6 +44,17 @@ class FakeResetDependencies implements LearningHistoryResetDependencies {
     this.steps.push("purge:" + uid);
     if (this.shouldFailPurge) {
       throw new Error("simulated purge failure");
+    }
+  }
+
+  /**
+   * @param {string} uid Trusted user identifier.
+   * @return {Promise<void>} Legacy history cleanup.
+   */
+  async clearLegacyHistory(uid: string): Promise<void> {
+    this.steps.push("legacy:" + uid);
+    if (this.shouldFailLegacy) {
+      throw new Error("simulated legacy cleanup failure");
     }
   }
 
@@ -74,6 +86,7 @@ test("reset blocks then purges before reactivating history", async () => {
   assert.deepEqual(deps.steps, [
     "begin:uid_a",
     "purge:uid_a",
+    "legacy:uid_a",
     "finish:uid_a",
   ]);
 });
@@ -94,6 +107,30 @@ test("failed deletion leaves barrier blocked for a safe retry", async () => {
   assert.deepEqual(deps.steps, ["begin:uid_a", "purge:uid_a"]);
 
   deps.shouldFailPurge = false;
+  const result = await service.reset("uid_a");
+  assert.deepEqual(result, {generation: 1, status: "active"});
+});
+
+test("legacy cleanup failure keeps the reset generation blocked", async () => {
+  const deps = new FakeResetDependencies();
+  deps.shouldFailLegacy = true;
+  const service = new LearningHistoryResetCoordinator(deps);
+
+  await assert.rejects(
+    () => service.reset("uid_a"),
+    /simulated legacy cleanup failure/,
+  );
+  assert.deepEqual(deps.state, {
+    generation: 1,
+    status: "resetting",
+  });
+  assert.deepEqual(deps.steps, [
+    "begin:uid_a",
+    "purge:uid_a",
+    "legacy:uid_a",
+  ]);
+
+  deps.shouldFailLegacy = false;
   const result = await service.reset("uid_a");
   assert.deepEqual(result, {generation: 1, status: "active"});
 });
