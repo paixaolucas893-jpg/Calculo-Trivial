@@ -79,3 +79,69 @@ test("purge surfaces remote errors without claiming success", async () => {
   );
   assert.deepEqual(paths, []);
 });
+
+test("legacy cleanup modifies only the history array", async () => {
+  const updates: unknown[] = [];
+  const fake = {
+    collection(name: string) {
+      assert.equal(name, "users");
+      return {
+        doc(uid: string) {
+          assert.equal(uid, "uid_a");
+          return {
+            collection(section: string) {
+              assert.equal(section, "progress");
+              return {
+                doc(id: string) {
+                  assert.equal(id, "current");
+                  return {
+                    async get() {
+                      return {exists: true};
+                    },
+                    async update(value: unknown) {
+                      updates.push(value);
+                    },
+                  };
+                },
+              };
+            },
+          };
+        },
+      };
+    },
+  } as unknown as Firestore;
+  await new LearningHistoryPurgeService(fake)
+    .clearLegacyHistory("uid_a");
+  assert.deepEqual(updates, [{learningHistory: []}]);
+});
+
+test("legacy cleanup does not recreate missing progress", async () => {
+  let updated = false;
+  const fake = {
+    collection() {
+      return {
+        doc() {
+          return {
+            collection() {
+              return {
+                doc() {
+                  return {
+                    async get() {
+                      return {exists: false};
+                    },
+                    async update() {
+                      updated = true;
+                    },
+                  };
+                },
+              };
+            },
+          };
+        },
+      };
+    },
+  } as unknown as Firestore;
+  await new LearningHistoryPurgeService(fake)
+    .clearLegacyHistory("uid_a");
+  assert.equal(updated, false);
+});
