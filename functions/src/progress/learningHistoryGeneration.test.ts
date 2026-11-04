@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   acceptsHistoryEvent,
+  acceptsHistoryEventAfterReset,
   beginHistoryReset,
   finishHistoryReset,
   parseHistoryGeneration,
@@ -88,4 +89,24 @@ test("events cannot use a newer or invalid generation", () => {
   assert.equal(acceptsHistoryEvent(state, 4), false);
   assert.equal(acceptsHistoryEvent(state, 3.5), false);
   assert.equal(acceptsHistoryEvent(state, 3), true);
+});
+
+test("trusted reset cutoff rejects older attempt timestamps", () => {
+  const state = {generation: 8, status: "active" as const};
+  assert.equal(
+    acceptsHistoryEventAfterReset(state, 8, 1000, 2000),
+    false,
+  );
+  assert.equal(
+    acceptsHistoryEventAfterReset(state, 7, 3000, 2000),
+    false,
+  );
+  assert.equal(
+    acceptsHistoryEventAfterReset(state, 8, 2000, 2000),
+    true,
+  );
+  assert.equal(
+    acceptsHistoryEventAfterReset(state, 8, 3000, -1),
+    false,
+  );
 });
