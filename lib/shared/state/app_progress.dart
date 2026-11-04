@@ -226,6 +226,9 @@ class AppProgress {
   }
 
   static Future<void> loadProgress() async {
+    // Complete the previous account's local outbox staging before switching
+    // the active user and clearing its in-memory pending events.
+    await _saveQueue;
     final user = FirebaseAuth.instance.currentUser;
 
     _activeUserId = user?.uid;
