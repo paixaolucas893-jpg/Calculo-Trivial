@@ -73,5 +73,4 @@ export class LearningHistoryPurgeService {
       await progress.update({learningHistory: []});
     }
   }
-
 }
