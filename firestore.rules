@@ -87,7 +87,7 @@ service cloud.firestore {
       let data = request.resource.data;
       return eventId.size() == 36
         && eventId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}')
-        && data.keys().hasOnly(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
+        && data.keys().hasOnly(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt','generation'])
         && data.keys().hasAll(['questionId','contentLessonId','isCorrect','source','occurredAtEpochMs','createdAt'])
         && data.questionId is string
         && data.questionId.size() >= 1
@@ -105,6 +105,25 @@ service cloud.firestore {
         && data.occurredAtEpochMs > 0
         && data.createdAt is timestamp
         && data.createdAt == request.time;
+    }
+
+    // Before any reset control exists, only legacy generation-zero
+    // attempts may be created. Once a reset creates a control document,
+    // the generation field is required and stale devices are rejected.
+    function validLearningHistoryGeneration(userId) {
+      let controlPath = /databases/$(database)/documents/users/$(userId)/learningHistoryControl/current;
+      let data = request.resource.data;
+      return (
+        !exists(controlPath)
+        && data.get('generation', 0) == 0
+      ) || (
+        exists(controlPath)
+        && get(controlPath).data.status == 'active'
+        && get(controlPath).data.generation is int
+        && data.keys().hasAll(['generation'])
+        && data.generation is int
+        && data.generation == get(controlPath).data.generation
+      );
     }
 
     function validReviewSessionIds(values) {
@@ -428,7 +447,8 @@ service cloud.firestore {
           && request.query.limit != null
           && request.query.limit <= 100;
         allow create: if isOwner(userId)
-          && validLearningHistoryEvent(eventId);
+          && validLearningHistoryEvent(eventId)
+          && validLearningHistoryGeneration(userId);
         allow update, delete: if false;
       }
 
