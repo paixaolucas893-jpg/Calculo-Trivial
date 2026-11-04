@@ -1,0 +1,47 @@
+import {
+  LearningHistoryGenerationState,
+} from "./learningHistoryGeneration";
+
+/**
+ * Backend-only reset dependencies. No client-callable endpoint is exposed.
+ */
+export interface LearningHistoryResetDependencies {
+  begin(uid: string): Promise<LearningHistoryGenerationState>;
+  purgeEvents(uid: string): Promise<void>;
+  finish(
+    uid: string,
+    expectedGeneration: number,
+  ): Promise<LearningHistoryGenerationState>;
+}
+
+/**
+ * Coordinates an event-history purge behind a persisted reset barrier.
+ *
+ * A failure after begin intentionally leaves the generation blocked.
+ * Retrying resumes the same generation and attempts the purge again.
+ * Do not expose this until legacy progress and client writes are guarded.
+ */
+export class LearningHistoryResetCoordinator {
+  /**
+   * @param {LearningHistoryResetDependencies} deps Trusted backend services.
+   */
+  constructor(
+    private readonly deps: LearningHistoryResetDependencies,
+  ) {}
+
+  /**
+   * Rotate and block, purge, then resume only after confirmed deletion.
+   *
+   * @param {string} uid Authenticated UID from a trusted backend.
+   * @return {Promise<LearningHistoryGenerationState>} Active generation.
+   */
+  async reset(uid: string): Promise<LearningHistoryGenerationState> {
+    const barrier = await this.deps.begin(uid);
+    if (barrier.status !== "resetting") {
+      throw new Error("Reset barrier was not activated.");
+    }
+
+    await this.deps.purgeEvents(uid);
+    return this.deps.finish(uid, barrier.generation);
+  }
+}
