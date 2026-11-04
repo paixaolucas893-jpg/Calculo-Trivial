@@ -44,4 +44,34 @@ export class LearningHistoryPurgeService {
 
     await this.firestore.recursiveDelete(history);
   }
+  /**
+   * Clears the old history array without deleting unrelated progress.
+   *
+   * This does not block an outdated client from writing the field again;
+   * a complete reset still requires a server-side legacy-write barrier.
+   *
+   * @param {string} uid Trusted user ID supplied by backend.
+   * @return {Promise<void>} Resolves after a confirmed server update.
+   */
+  async clearLegacyHistory(uid: string): Promise<void> {
+    if (
+      typeof uid !== "string" ||
+      uid.trim().length === 0 ||
+      uid.includes("/")
+    ) {
+      throw new Error("Invalid trusted user ID.");
+    }
+
+    const progress = this.firestore
+      .collection("users")
+      .doc(uid)
+      .collection("progress")
+      .doc("current");
+
+    const snapshot = await progress.get();
+    if (snapshot.exists) {
+      await progress.update({learningHistory: []});
+    }
+  }
+
 }
