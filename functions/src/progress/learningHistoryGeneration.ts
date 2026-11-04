@@ -107,3 +107,30 @@ export function acceptsHistoryEvent(
     Number.isSafeInteger(eventGeneration) &&
     eventGeneration === current.generation;
 }
+
+/**
+ * Reject attempts dated before a trusted server-side reset boundary.
+ *
+ * This is an additional consistency check, NOT an authorization boundary:
+ * occurredAtEpochMs is supplied by the client and can be falsified.
+ * Deploy only alongside server-enforced generation/epoch validation.
+ *
+ * @param {LearningHistoryGenerationState} state Server-side control state.
+ * @param {number} eventGeneration Supplied attempt generation.
+ * @param {number} occurredAtEpochMs Attempt timestamp.
+ * @param {number} resetAtEpochMs Trusted reset timestamp.
+ * @return {boolean} Whether the event passes both checks.
+ */
+export function acceptsHistoryEventAfterReset(
+  state: LearningHistoryGenerationState,
+  eventGeneration: number,
+  occurredAtEpochMs: number,
+  resetAtEpochMs: number,
+): boolean {
+  return acceptsHistoryEvent(state, eventGeneration) &&
+    Number.isSafeInteger(occurredAtEpochMs) &&
+    occurredAtEpochMs > 0 &&
+    Number.isSafeInteger(resetAtEpochMs) &&
+    resetAtEpochMs >= 0 &&
+    occurredAtEpochMs >= resetAtEpochMs;
+}
