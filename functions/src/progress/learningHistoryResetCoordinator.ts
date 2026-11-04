@@ -8,6 +8,7 @@ import {
 export interface LearningHistoryResetDependencies {
   begin(uid: string): Promise<LearningHistoryGenerationState>;
   purgeEvents(uid: string): Promise<void>;
+  clearLegacyHistory(uid: string): Promise<void>;
   finish(
     uid: string,
     expectedGeneration: number,
@@ -42,6 +43,9 @@ export class LearningHistoryResetCoordinator {
     }
 
     await this.deps.purgeEvents(uid);
+    // The legacy progress array is a separate persistence location.
+    // Never reopen event writes until it has also been cleared.
+    await this.deps.clearLegacyHistory(uid);
     return this.deps.finish(uid, barrier.generation);
   }
 }
