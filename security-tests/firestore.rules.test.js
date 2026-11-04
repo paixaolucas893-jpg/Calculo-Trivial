@@ -808,3 +808,45 @@ test('9.3: existing clients can still write legacy progress before reset', async
     updatedAt: serverTimestamp(),
   }, { merge: true }));
 });
+
+test('9.3: resetting barrier freezes progress writes and deletion', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+
+  await assertSucceeds(getDoc(ref));
+  await assertFails(setDoc(ref, {
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+  await assertFails(deleteDoc(ref));
+});
+
+test('9.3: resetting barrier blocks progress creation but not other users', async () => {
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const owner = testEnv.authenticatedContext('user-a').firestore();
+  const unaffected = testEnv.authenticatedContext('user-b').firestore();
+  const blocked = doc(owner, 'users', 'user-a', 'progress', 'current');
+  const allowed = doc(unaffected, 'users', 'user-b', 'progress', 'current');
+
+  await assertFails(setDoc(blocked, validProgress()));
+  await assertSucceeds(setDoc(allowed, validProgress()));
+});
+
+test('9.3: active generation permits clean progress updates', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+
+  await assertSucceeds(setDoc(ref, {
+    totalAnswerAttempts: 1,
+    correctAnswerAttempts: 1,
+    incorrectAnswerAttempts: 0,
+    accuracy: 1,
+    dailyAnsweredQuestions: 1,
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
