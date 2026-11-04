@@ -95,6 +95,54 @@ void main() {
     expect(restored.single.eventId, oldEvent.eventId);
   });
 
+  test('versioned event matches only its original active generation', () {
+    final entry = LearningHistoryEntry(
+      eventId: LearningHistoryEntry.newEventId(),
+      generation: 3,
+      questionId: 'q1',
+      isCorrect: true,
+      source: LearningActivitySource.practice,
+      occurredAtEpochMs: 1760000000000,
+    );
+    expect(
+      policy.canUploadVersioned(
+        state: const LearningHistoryGenerationState(
+          generation: 3,
+          status: 'active',
+        ),
+        entry: entry,
+      ),
+      isTrue,
+    );
+    expect(
+      policy.canUploadVersioned(
+        state: const LearningHistoryGenerationState(
+          generation: 4,
+          status: 'active',
+        ),
+        entry: entry,
+      ),
+      isFalse,
+    );
+    expect(
+      policy.canUploadVersioned(
+        state: const LearningHistoryGenerationState(
+          generation: 3,
+          status: 'resetting',
+        ),
+        entry: entry,
+      ),
+      isFalse,
+    );
+    expect(
+      policy.canUploadV1(
+        state: LearningHistoryGenerationState.legacy,
+        entry: entry,
+      ),
+      isFalse,
+    );
+  });
+
   test('an empty outbox does not require event reconciliation', () {
     expect(
       policy.canUploadAllV1(
