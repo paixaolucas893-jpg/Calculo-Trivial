@@ -236,6 +236,26 @@ class AppProgress {
       allowLegacyMigration: user != null,
     );
 
+    // Restore durable unsent attempts before reading the remote progress.
+    // This only affects the in-memory recent-history view: it neither
+    // acknowledges nor uploads events, and cannot resurrect reset outbox data.
+    if (user != null) {
+      try {
+        final preferences = await SharedPreferences.getInstance();
+        final pending = await PendingLearningHistoryQueue(preferences)
+            .pending(user.uid);
+        _mergeLearningHistory(<String, dynamic>{
+          'learningHistory':
+              pending.map((entry) => entry.toJson()).toList(growable: false),
+        });
+      } catch (error) {
+        debugPrint(
+          'AppProgress: não foi possível recuperar '
+          'eventos pendentes locais: $error',
+        );
+      }
+    }
+
     if (user == null) {
       _normalizeDailyStatistics();
       _applyCompletedLessons();
