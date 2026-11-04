@@ -1,0 +1,165 @@
+import 'dart:convert';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:calcquest/shared/data/pending_learning_history_queue.dart';
+import 'package:calcquest/shared/domain/learning_history_entry.dart';
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUp(() {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+  });
+
+  LearningHistoryEntry makeEvent(String id) => LearningHistoryEntry(
+        eventId: id,
+        questionId: 'q1',
+        isCorrect: true,
+        source: LearningActivitySource.practice,
+        occurredAtEpochMs: 1760000000000,
+      );
+
+  test('pending events survive queue re-instantiation', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final event = makeEvent(LearningHistoryEntry.newEventId());
+    await PendingLearningHistoryQueue(prefs).enqueue('user-a', event);
+    final restored = await PendingLearningHistoryQueue(prefs).pending('user-a');
+    expect(restored.single.eventId, event.eventId);
+  });
+
+  test('enqueues same ID once and keeps user queues isolated', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final event = makeEvent(LearningHistoryEntry.newEventId());
+    await Future.wait([
+      queue.enqueue('user-a', event),
+      queue.enqueue('user-a', event),
+    ]);
+    expect((await queue.pending('user-a')).length, 1);
+    expect(await queue.pending('user-b'), isEmpty);
+  });
+
+  test('acknowledgement removes only the confirmed ID', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final first = makeEvent(LearningHistoryEntry.newEventId());
+    final second = makeEvent(LearningHistoryEntry.newEventId());
+    await queue.enqueue('user-a', first);
+    await queue.enqueue('user-a', second);
+    await queue.acknowledge('user-a', first.eventId!);
+    expect((await queue.pending('user-a')).single.eventId, second.eventId);
+  });
+
+  test('clear discards only the selected user pending events', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final first = makeEvent(LearningHistoryEntry.newEventId());
+    final second = makeEvent(LearningHistoryEntry.newEventId());
+    await queue.enqueue('user-a', first);
+    await queue.enqueue('user-b', second);
+
+    await queue.clear('user-a');
+    expect(await queue.pending('user-a'), isEmpty);
+    expect((await queue.pending('user-b')).single.eventId, second.eventId);
+    expect(prefs.containsKey('user-a_learning_history_pending_v1'), isFalse);
+  });
+
+  test('clear cannot be undone by previously queued enqueues', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final pendingWrites = <Future<void>>[];
+    for (var i = 0; i < 12; i++) {
+      pendingWrites.add(
+        queue.enqueue('user-a', makeEvent(LearningHistoryEntry.newEventId())),
+      );
+    }
+    final clear = queue.clear('user-a');
+    await Future.wait(<Future<void>>[...pendingWrites, clear]);
+    expect(await queue.pending('user-a'), isEmpty);
+  });
+
+  test('corrupted outbox is not overwritten during enqueue', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    await prefs.setString(key, '{invalid-json');
+    final queue = PendingLearningHistoryQueue(prefs);
+
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    await expectLater(
+      queue.enqueue('user-a', makeEvent(LearningHistoryEntry.newEventId())),
+      throwsStateError,
+    );
+    expect(prefs.getString(key), '{invalid-json');
+  });
+
+  test('invalid events are rejected without losing stored data', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    const invalid = '[{"eventId":"not-a-uuid"}]';
+    await prefs.setString(key, invalid);
+    final queue = PendingLearningHistoryQueue(prefs);
+
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    await expectLater(
+      queue.acknowledge('user-a', LearningHistoryEntry.newEventId()),
+      throwsStateError,
+    );
+    expect(prefs.getString(key), invalid);
+  });
+
+  test('generation survives durable queue serialization', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final event = LearningHistoryEntry(
+      eventId: LearningHistoryEntry.newEventId(),
+      generation: 3,
+      questionId: 'q1',
+      isCorrect: true,
+      source: LearningActivitySource.practice,
+      occurredAtEpochMs: 1760000000000,
+    );
+    await PendingLearningHistoryQueue(prefs).enqueue('user-a', event);
+    final restored = await PendingLearningHistoryQueue(prefs).pending('user-a');
+    expect(restored.single.eventId, event.eventId);
+    expect(restored.single.generation, 3);
+  });
+
+  test('legacy queue entries keep unknown generation unchanged', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final event = makeEvent(LearningHistoryEntry.newEventId());
+    await PendingLearningHistoryQueue(prefs).enqueue('user-a', event);
+    final restored = await PendingLearningHistoryQueue(prefs).pending('user-a');
+    expect(restored.single.generation, isNull);
+    expect(restored.single.toJson().containsKey('generation'), isFalse);
+  });
+
+  test('invalid generation does not silently overwrite the outbox', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    final event = makeEvent(LearningHistoryEntry.newEventId()).toJson();
+    event['generation'] = -1;
+    final raw = jsonEncode(<Map<String, dynamic>>[event]);
+    await prefs.setString(key, raw);
+    final queue = PendingLearningHistoryQueue(prefs);
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    expect(prefs.getString(key), raw);
+  });
+
+  test('requires a stable ID before queuing', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    expect(
+      () => queue.enqueue(
+        'user-a',
+        const LearningHistoryEntry(
+          questionId: 'q1',
+          isCorrect: true,
+          source: LearningActivitySource.practice,
+          occurredAtEpochMs: 1760000000000,
+        ),
+      ),
+      throwsArgumentError,
+    );
+  });
+}

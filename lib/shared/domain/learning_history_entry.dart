@@ -12,6 +12,7 @@ class LearningHistoryEntry {
 
   static const Set<String> _allowedJsonKeys = <String>{
     'eventId',
+    'generation',
     'questionId',
     'contentLessonId',
     'isCorrect',
@@ -20,6 +21,9 @@ class LearningHistoryEntry {
   };
 
   final String? eventId;
+  /// Generation captured when the attempt occurred, never at upload retry.
+  /// Null means a legacy event whose generation is unknown.
+  final int? generation;
   final String questionId;
   final String? contentLessonId;
   final bool isCorrect;
@@ -28,6 +32,7 @@ class LearningHistoryEntry {
 
   const LearningHistoryEntry({
     this.eventId,
+    this.generation,
     required this.questionId,
     required this.isCorrect,
     required this.source,
@@ -64,6 +69,7 @@ class LearningHistoryEntry {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       if (eventId != null) 'eventId': eventId,
+      if (generation != null) 'generation': generation,
       'questionId': questionId,
       'contentLessonId': contentLessonId,
       'isCorrect': isCorrect,
@@ -83,6 +89,11 @@ class LearningHistoryEntry {
     }
 
     final eventIdValue = value['eventId'];
+    final generationValue = value['generation'];
+    if (value.containsKey('generation') &&
+        (generationValue is! int || generationValue < 0)) {
+      return null;
+    }
     if (eventIdValue != null &&
         (eventIdValue is! String ||
          eventIdValue.length != 36 ||
@@ -135,6 +146,7 @@ class LearningHistoryEntry {
 
     return LearningHistoryEntry(
       eventId: eventIdValue as String?,
+      generation: generationValue as int?,
       questionId: questionIdValue.trim(),
       contentLessonId: contentLessonId,
       isCorrect: isCorrect,

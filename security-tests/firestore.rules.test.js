@@ -438,9 +438,11 @@ test('cliente consegue sincronizar resumo de desempenho da revisão personalizad
 });
 
 test('Firestore limita o tamanho do resumo e da sessão de revisão', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
 
   const maxPerformance = Object.fromEntries(
     Array.from({ length: 1500 }, (_, index) => [
@@ -465,33 +467,27 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
   };
 
   await assertSucceeds(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        questionPerformance: maxPerformance,
-      }),
-    ),
+    setDoc(ref, {
+      questionPerformance: maxPerformance,
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 
   await assertFails(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        questionPerformance: oversizedPerformance,
-      }),
-    ),
+    setDoc(ref, {
+      questionPerformance: oversizedPerformance,
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 
   await assertFails(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        lastPersonalizedReviewSessionIds: Array.from(
-          { length: 11 },
-          (_, index) => `q-${index}`,
-        ),
-      }),
-    ),
+    setDoc(ref, {
+      lastPersonalizedReviewSessionIds: Array.from(
+        { length: 11 },
+        (_, index) => `q-${index}`,
+      ),
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 });
 
@@ -600,6 +596,7 @@ test('Firestore limita a janela recente de prática a oitenta questões por mód
 });
 
 test('cliente consegue sincronizar histórico recente limitado', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -615,14 +612,17 @@ test('cliente consegue sincronizar histórico recente limitado', async () => {
   await assertSucceeds(
     setDoc(
       doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
+      {
         learningHistory: history,
-      }),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
     ),
   );
 });
 
 test('Firestore rejeita histórico com mais de cem eventos', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -638,9 +638,11 @@ test('Firestore rejeita histórico com mais de cem eventos', async () => {
   await assertFails(
     setDoc(
       doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
+      {
         learningHistory: history,
-      }),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
     ),
   );
 });
@@ -730,4 +732,144 @@ test('Phase 9.1: existing progress schema remains compatible with release', asyn
     dailyAnsweredQuestions: 1,
     updatedAt: serverTimestamp(),
   }, { merge: true }));
+});
+
+async function seedHistoryControl(uid, generation, status) {
+  await testEnv.withSecurityRulesDisabled(async (context) => {
+    await setDoc(
+      doc(context.firestore(), 'users', uid,
+        'learningHistoryControl', 'current'),
+      { generation, status },
+    );
+  });
+}
+
+test('9.3: generation control is owner-readable and backend-write-only', async () => {
+  await seedHistoryControl('user-a', 1, 'active');
+  const owner = testEnv.authenticatedContext('user-a').firestore();
+  const other = testEnv.authenticatedContext('user-b').firestore();
+  const ref = doc(owner, 'users', 'user-a',
+    'learningHistoryControl', 'current');
+  await assertSucceeds(getDoc(ref));
+  await assertFails(getDoc(doc(other, 'users', 'user-a',
+    'learningHistoryControl', 'current')));
+  await assertFails(setDoc(ref, { generation: 2, status: 'active' }));
+  await assertFails(deleteDoc(ref));
+});
+
+test('9.3: reset in progress rejects individual history writes', async () => {
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertFails(setDoc(ref, validHistoryEvent({ generation: 1 })));
+});
+
+test('9.3: active reset rejects old generation and accepts new generation', async () => {
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertFails(setDoc(ref, validHistoryEvent()));
+  await assertFails(setDoc(ref, validHistoryEvent({ generation: 1 })));
+  await assertSucceeds(setDoc(ref, validHistoryEvent({ generation: 2 })));
+});
+
+test('9.3: legacy array cannot be restored after a reset', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+  const oldHistory = [{
+    questionId: 'q1',
+    contentLessonId: null,
+    isCorrect: true,
+    source: 'practice',
+    occurredAtEpochMs: 1760000000000,
+  }];
+  await assertFails(setDoc(ref, {
+    learningHistory: oldHistory,
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+  await assertSucceeds(setDoc(ref, {
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
+
+test('9.3: existing clients can still write legacy progress before reset', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+  await assertSucceeds(setDoc(ref, validProgress()));
+  await assertSucceeds(setDoc(ref, {
+    totalAnswerAttempts: 1,
+    correctAnswerAttempts: 1,
+    incorrectAnswerAttempts: 0,
+    accuracy: 1,
+    dailyAnsweredQuestions: 1,
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
+
+test('9.3: resetting barrier freezes progress writes and deletion', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+
+  await assertSucceeds(getDoc(ref));
+  await assertFails(setDoc(ref, {
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+  await assertFails(deleteDoc(ref));
+});
+
+test('9.3: resetting barrier blocks progress creation but not other users', async () => {
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const owner = testEnv.authenticatedContext('user-a').firestore();
+  const unaffected = testEnv.authenticatedContext('user-b').firestore();
+  const blocked = doc(owner, 'users', 'user-a', 'progress', 'current');
+  const allowed = doc(unaffected, 'users', 'user-b', 'progress', 'current');
+
+  await assertFails(setDoc(blocked, validProgress()));
+  await assertSucceeds(setDoc(allowed, validProgress()));
+});
+
+test('9.3: active generation permits clean progress updates', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+
+  await assertSucceeds(setDoc(ref, {
+    totalAnswerAttempts: 1,
+    correctAnswerAttempts: 1,
+    incorrectAnswerAttempts: 0,
+    accuracy: 1,
+    dailyAnsweredQuestions: 1,
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
+
+test('9.3: Firestore rejects queued attempts when reset rotates generation mid-sync', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const stale = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  const newEvent = doc(db, 'users', 'user-a', 'learningHistory',
+    '11111111-1111-4111-8111-111111111111');
+
+  // Device A has already read generation 1 and queued an offline attempt.
+  await seedHistoryControl('user-a', 1, 'active');
+
+  // Another device starts a reset before device A can submit its write.
+  await seedHistoryControl('user-a', 2, 'resetting');
+  await assertFails(setDoc(stale, validHistoryEvent({generation: 1})));
+  await assertFails(setDoc(newEvent, validHistoryEvent({generation: 2})));
+
+  // The trusted backend completes deletion and activates generation 2.
+  await seedHistoryControl('user-a', 2, 'active');
+  await assertFails(setDoc(stale, validHistoryEvent({generation: 1})));
+  await assertSucceeds(setDoc(newEvent, validHistoryEvent({generation: 2})));
+
+  // The old queued attempt cannot overwrite an already accepted new event.
+  await assertFails(setDoc(newEvent, validHistoryEvent({generation: 1})));
 });
