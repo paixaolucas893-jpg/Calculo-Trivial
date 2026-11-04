@@ -72,6 +72,19 @@ class PendingLearningHistoryQueue {
     });
   }
 
+  /// Discards this user's unsent events after an explicit reset or deletion.
+  ///
+  /// Uses the same serialization chain as enqueue/acknowledge so an earlier
+  /// pending write cannot restore events after the clear completes.
+  Future<void> clear(String userId) {
+    return _serialize(() async {
+      final removed = await _preferences.remove(_key(userId));
+      if (!removed) {
+        throw StateError('Failed to clear pending learning-history events.');
+      }
+    });
+  }
+
   Future<void> _serialize(Future<void> Function() action) {
     final result = _writes.then((_) => action());
     _writes = result.catchError((Object _) {});
