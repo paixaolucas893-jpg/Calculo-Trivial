@@ -850,3 +850,26 @@ test('9.3: active generation permits clean progress updates', async () => {
     updatedAt: serverTimestamp(),
   }, { merge: true }));
 });
+
+test('9.3: Firestore rejects queued attempts when reset rotates generation mid-sync', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const stale = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  const newEvent = doc(db, 'users', 'user-a', 'learningHistory',
+    '11111111-1111-4111-8111-111111111111');
+
+  // Device A has already read generation 1 and queued an offline attempt.
+  await seedHistoryControl('user-a', 1, 'active');
+
+  // Another device starts a reset before device A can submit its write.
+  await seedHistoryControl('user-a', 2, 'resetting');
+  await assertFails(setDoc(stale, validHistoryEvent({generation: 1})));
+  await assertFails(setDoc(newEvent, validHistoryEvent({generation: 2})));
+
+  // The trusted backend completes deletion and activates generation 2.
+  await seedHistoryControl('user-a', 2, 'active');
+  await assertFails(setDoc(stale, validHistoryEvent({generation: 1})));
+  await assertSucceeds(setDoc(newEvent, validHistoryEvent({generation: 2})));
+
+  // The old queued attempt cannot overwrite an already accepted new event.
+  await assertFails(setDoc(newEvent, validHistoryEvent({generation: 1})));
+});
