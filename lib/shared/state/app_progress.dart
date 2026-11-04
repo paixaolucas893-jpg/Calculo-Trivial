@@ -1355,6 +1355,14 @@ class AppProgress {
   static Future<void> resetProgress() async {
     final user = FirebaseAuth.instance.currentUser;
 
+    // Finish prior local staging before clearing it. Otherwise a queued
+    // progress save may recreate pending events after the reset.
+    await _saveQueue;
+    if (user != null) {
+      final preferences = await SharedPreferences.getInstance();
+      await PendingLearningHistoryQueue(preferences).clear(user.uid);
+    }
+
     _activeUserId = user?.uid;
     _resetInMemory();
     dailyActivityDate = _dateKey(DateTime.now());
@@ -1420,6 +1428,8 @@ class AppProgress {
     await userDocument.delete();
 
     final preferences = await SharedPreferences.getInstance();
+    // Never leave an outbox that could be replayed after local deletion.
+    await PendingLearningHistoryQueue(preferences).clear(userId);
 
     final scopedKeys = <String>[
       _completedLessonsKey,
