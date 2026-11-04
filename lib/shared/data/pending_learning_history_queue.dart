@@ -51,13 +51,16 @@ class PendingLearningHistoryQueue {
     return _serialize(() async {
       final items = _read(userId);
       if (items.any((item) => item.eventId == entry.eventId)) return;
-      await _preferences.setString(
+      final saved = await _preferences.setString(
         _key(userId),
         jsonEncode(<Map<String, dynamic>>[
           ...items.map((item) => item.toJson()),
           entry.toJson(),
         ]),
       );
+      if (!saved) {
+        throw StateError('Failed to persist pending learning-history event.');
+      }
     });
   }
 
@@ -68,7 +71,11 @@ class PendingLearningHistoryQueue {
           .where((entry) => entry.eventId != eventId)
           .map((entry) => entry.toJson())
           .toList(growable: false);
-      await _preferences.setString(_key(userId), jsonEncode(remaining));
+      final saved =
+          await _preferences.setString(_key(userId), jsonEncode(remaining));
+      if (!saved) {
+        throw StateError('Failed to acknowledge pending learning-history event.');
+      }
     });
   }
 
