@@ -622,6 +622,7 @@ test('cliente consegue sincronizar histórico recente limitado', async () => {
 });
 
 test('Firestore rejeita histórico com mais de cem eventos', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -637,9 +638,11 @@ test('Firestore rejeita histórico com mais de cem eventos', async () => {
   await assertFails(
     setDoc(
       doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
+      {
         learningHistory: history,
-      }),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
     ),
   );
 });
