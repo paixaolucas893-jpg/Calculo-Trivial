@@ -57,10 +57,18 @@ test("stale reset completion cannot reopen event writes", () => {
 });
 
 test("corrupt generation and overflow fail closed", () => {
-  assert.throws(() => parseHistoryGeneration({generation: -1, status: "active"}));
-  assert.throws(() => parseHistoryGeneration({generation: 1.5, status: "active"}));
-  assert.throws(() => parseHistoryGeneration({generation: "1", status: "active"}));
-  assert.throws(() => parseHistoryGeneration({generation: 1, status: "unknown"}));
+  assert.throws(
+    () => parseHistoryGeneration({generation: -1, status: "active"}),
+  );
+  assert.throws(
+    () => parseHistoryGeneration({generation: 1.5, status: "active"}),
+  );
+  assert.throws(
+    () => parseHistoryGeneration({generation: "1", status: "active"}),
+  );
+  assert.throws(
+    () => parseHistoryGeneration({generation: 1, status: "unknown"}),
+  );
   assert.throws(() => parseHistoryGeneration(null));
   assert.throws(
     () => beginHistoryReset({
