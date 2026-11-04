@@ -438,9 +438,11 @@ test('cliente consegue sincronizar resumo de desempenho da revisão personalizad
 });
 
 test('Firestore limita o tamanho do resumo e da sessão de revisão', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
 
   const maxPerformance = Object.fromEntries(
     Array.from({ length: 1500 }, (_, index) => [
@@ -465,33 +467,27 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
   };
 
   await assertSucceeds(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        questionPerformance: maxPerformance,
-      }),
-    ),
+    setDoc(ref, {
+      questionPerformance: maxPerformance,
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 
   await assertFails(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        questionPerformance: oversizedPerformance,
-      }),
-    ),
+    setDoc(ref, {
+      questionPerformance: oversizedPerformance,
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 
   await assertFails(
-    setDoc(
-      doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
-        lastPersonalizedReviewSessionIds: Array.from(
-          { length: 11 },
-          (_, index) => `q-${index}`,
-        ),
-      }),
-    ),
+    setDoc(ref, {
+      lastPersonalizedReviewSessionIds: Array.from(
+        { length: 11 },
+        (_, index) => `q-${index}`,
+      ),
+      updatedAt: serverTimestamp(),
+    }, { merge: true }),
   );
 });
 
@@ -600,6 +596,7 @@ test('Firestore limita a janela recente de prática a oitenta questões por mód
 });
 
 test('cliente consegue sincronizar histórico recente limitado', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -615,9 +612,11 @@ test('cliente consegue sincronizar histórico recente limitado', async () => {
   await assertSucceeds(
     setDoc(
       doc(db, 'users', 'user-a', 'progress', 'current'),
-      validProgress({
+      {
         learningHistory: history,
-      }),
+        updatedAt: serverTimestamp(),
+      },
+      { merge: true },
     ),
   );
 });
