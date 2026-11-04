@@ -18,7 +18,7 @@ type ControlData = {
  * In-memory transaction fake with atomic read/write ordering.
  *
  * @param {ControlData | null} initial Initial stored control state.
- * @return {{firestore: Firestore, get: () => ControlData | null}} Fake.
+ * @return {object} Fake transaction state.
  */
 function fakeStore(initial: ControlData | null): {
   firestore: Firestore;
