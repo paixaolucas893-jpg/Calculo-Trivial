@@ -731,3 +731,78 @@ test('Phase 9.1: existing progress schema remains compatible with release', asyn
     updatedAt: serverTimestamp(),
   }, { merge: true }));
 });
+
+async function seedHistoryControl(uid, generation, status) {
+  await testEnv.withSecurityRulesDisabled(async (context) => {
+    await setDoc(
+      doc(context.firestore(), 'users', uid,
+        'learningHistoryControl', 'current'),
+      { generation, status },
+    );
+  });
+}
+
+test('9.3: generation control is owner-readable and backend-write-only', async () => {
+  await seedHistoryControl('user-a', 1, 'active');
+  const owner = testEnv.authenticatedContext('user-a').firestore();
+  const other = testEnv.authenticatedContext('user-b').firestore();
+  const ref = doc(owner, 'users', 'user-a',
+    'learningHistoryControl', 'current');
+  await assertSucceeds(getDoc(ref));
+  await assertFails(getDoc(doc(other, 'users', 'user-a',
+    'learningHistoryControl', 'current')));
+  await assertFails(setDoc(ref, { generation: 2, status: 'active' }));
+  await assertFails(deleteDoc(ref));
+});
+
+test('9.3: reset in progress rejects individual history writes', async () => {
+  await seedHistoryControl('user-a', 1, 'resetting');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertFails(setDoc(ref, validHistoryEvent({ generation: 1 })));
+});
+
+test('9.3: active reset rejects old generation and accepts new generation', async () => {
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'learningHistory', eventId);
+  await assertFails(setDoc(ref, validHistoryEvent()));
+  await assertFails(setDoc(ref, validHistoryEvent({ generation: 1 })));
+  await assertSucceeds(setDoc(ref, validHistoryEvent({ generation: 2 })));
+});
+
+test('9.3: legacy array cannot be restored after a reset', async () => {
+  await seedProgress('user-a');
+  await seedHistoryControl('user-a', 2, 'active');
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+  const oldHistory = [{
+    questionId: 'q1',
+    contentLessonId: null,
+    isCorrect: true,
+    source: 'practice',
+    occurredAtEpochMs: 1760000000000,
+  }];
+  await assertFails(setDoc(ref, {
+    learningHistory: oldHistory,
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+  await assertSucceeds(setDoc(ref, {
+    learningHistory: [],
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
+
+test('9.3: existing clients can still write legacy progress before reset', async () => {
+  const db = testEnv.authenticatedContext('user-a').firestore();
+  const ref = doc(db, 'users', 'user-a', 'progress', 'current');
+  await assertSucceeds(setDoc(ref, validProgress()));
+  await assertSucceeds(setDoc(ref, {
+    totalAnswerAttempts: 1,
+    correctAnswerAttempts: 1,
+    incorrectAnswerAttempts: 0,
+    accuracy: 1,
+    dailyAnsweredQuestions: 1,
+    updatedAt: serverTimestamp(),
+  }, { merge: true }));
+});
