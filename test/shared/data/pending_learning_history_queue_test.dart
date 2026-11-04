@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -105,6 +107,43 @@ void main() {
       throwsStateError,
     );
     expect(prefs.getString(key), invalid);
+  });
+
+  test('generation survives durable queue serialization', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final event = LearningHistoryEntry(
+      eventId: LearningHistoryEntry.newEventId(),
+      generation: 3,
+      questionId: 'q1',
+      isCorrect: true,
+      source: LearningActivitySource.practice,
+      occurredAtEpochMs: 1760000000000,
+    );
+    await PendingLearningHistoryQueue(prefs).enqueue('user-a', event);
+    final restored = await PendingLearningHistoryQueue(prefs).pending('user-a');
+    expect(restored.single.eventId, event.eventId);
+    expect(restored.single.generation, 3);
+  });
+
+  test('legacy queue entries keep unknown generation unchanged', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final event = makeEvent(LearningHistoryEntry.newEventId());
+    await PendingLearningHistoryQueue(prefs).enqueue('user-a', event);
+    final restored = await PendingLearningHistoryQueue(prefs).pending('user-a');
+    expect(restored.single.generation, isNull);
+    expect(restored.single.toJson().containsKey('generation'), isFalse);
+  });
+
+  test('invalid generation does not silently overwrite the outbox', () async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'user-a_learning_history_pending_v1';
+    final event = makeEvent(LearningHistoryEntry.newEventId()).toJson();
+    event['generation'] = -1;
+    final raw = jsonEncode(<Map<String, dynamic>>[event]);
+    await prefs.setString(key, raw);
+    final queue = PendingLearningHistoryQueue(prefs);
+    await expectLater(queue.pending('user-a'), throwsStateError);
+    expect(prefs.getString(key), raw);
   });
 
   test('requires a stable ID before queuing', () async {
