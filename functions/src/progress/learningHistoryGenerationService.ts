@@ -25,7 +25,7 @@ export class LearningHistoryGenerationService {
 
   /**
    * @param {string} uid Trusted authenticated user ID.
-   * @return {import("firebase-admin/firestore").DocumentReference} Control.
+   * @return {DocumentReference} Firestore control reference.
    */
   private control(uid: string) {
     if (
