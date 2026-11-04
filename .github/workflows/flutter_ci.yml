@@ -89,6 +89,12 @@ jobs:
         working-directory: security-tests
         run: npm ci
 
+      # grpc-js 1.13.6 requires this module at runtime, but the existing
+      # security-tests lockfile does not include it.
+      - name: Install missing gRPC security-test dependency
+        working-directory: security-tests
+        run: npm install --no-save --package-lock=false @js-sdsl/ordered-map@4.4.2
+
       - name: Run Firestore rules security tests
         working-directory: .
         run: npx --yes firebase-tools emulators:exec --project demo-calculo-trivial --only firestore "npm --prefix security-tests run test:firestore"
