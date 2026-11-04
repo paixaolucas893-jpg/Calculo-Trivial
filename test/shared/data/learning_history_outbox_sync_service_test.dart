@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -170,4 +172,60 @@ void main() {
     await expectLater(service.sync('user-a'), throwsStateError);
     expect(calls, 0);
   });
+  test('overlapping sync is rejected and first attempt is acknowledged once',
+      () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final session = LearningHistoryGenerationSession()..bindUser('user-a');
+    final current = event(2);
+    await queue.enqueue('user-a', current);
+
+    final uploadStarted = Completer<void>();
+    final finishUpload = Completer<void>();
+    var uploadCalls = 0;
+    final service = LearningHistoryOutboxSyncService(
+      queue: queue,
+      session: session,
+      readGeneration: (_) async => active,
+      writeOrConfirm: (_, _) async {
+        uploadCalls++;
+        uploadStarted.complete();
+        await finishUpload.future;
+      },
+    );
+
+    final first = service.sync('user-a');
+    await uploadStarted.future;
+    await expectLater(service.sync('user-a'), throwsStateError);
+    expect((await queue.pending('user-a')).single.eventId, current.eventId);
+
+    finishUpload.complete();
+    expect(await first, 1);
+    expect(uploadCalls, 1);
+    expect(await queue.pending('user-a'), isEmpty);
+  });
+
+  test('failed synchronization releases guard for a later retry', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final session = LearningHistoryGenerationSession()..bindUser('user-a');
+    await queue.enqueue('user-a', event(2));
+    var attempts = 0;
+    final service = LearningHistoryOutboxSyncService(
+      queue: queue,
+      session: session,
+      readGeneration: (_) async => active,
+      writeOrConfirm: (_, _) async {
+        attempts++;
+        if (attempts == 1) throw StateError('offline');
+      },
+    );
+
+    await expectLater(service.sync('user-a'), throwsStateError);
+    expect((await queue.pending('user-a')).length, 1);
+    expect(await service.sync('user-a'), 1);
+    expect(attempts, 2);
+    expect(await queue.pending('user-a'), isEmpty);
+  });
+
 }
