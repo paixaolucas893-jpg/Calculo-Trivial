@@ -20,7 +20,22 @@ class LearningHistoryQueueSyncPolicy {
   }) {
     return state.allowsNewEvents &&
         state.generation == 0 &&
-        entry.eventId != null;
+        entry.eventId != null &&
+        (entry.generation == null || entry.generation == 0);
+  }
+
+  /// A versioned event is eligible only for its original active generation.
+  ///
+  /// The generation must be captured when the attempt is created. It must
+  /// never be assigned or rewritten during a retry after a server reset.
+  bool canUploadVersioned({
+    required LearningHistoryGenerationState state,
+    required LearningHistoryEntry entry,
+  }) {
+    return state.allowsNewEvents &&
+        entry.eventId != null &&
+        entry.generation != null &&
+        entry.generation == state.generation;
   }
 
   /// Fail closed if any queued event cannot be assigned to this generation.
