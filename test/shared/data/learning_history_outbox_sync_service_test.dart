@@ -74,7 +74,7 @@ void main() {
         generation: 2,
         status: 'resetting',
       ),
-      writeOrConfirm: (_, __) async {
+      writeOrConfirm: (_, _) async {
         wrote = true;
       },
     );
@@ -95,7 +95,7 @@ void main() {
       queue: queue,
       session: session,
       readGeneration: (_) async => active,
-      writeOrConfirm: (_, __) async {
+      writeOrConfirm: (_, _) async {
         throw StateError('network failure');
       },
     );
@@ -118,7 +118,7 @@ void main() {
       queue: queue,
       session: session,
       readGeneration: (_) async => active,
-      writeOrConfirm: (_, __) async {
+      writeOrConfirm: (_, _) async {
         session.bindUser('user-b');
       },
     );
@@ -139,7 +139,7 @@ void main() {
       queue: queue,
       session: session,
       readGeneration: (_) async => throw StateError('offline'),
-      writeOrConfirm: (_, __) async {
+      writeOrConfirm: (_, _) async {
         calls++;
       },
     );
@@ -162,7 +162,7 @@ void main() {
         calls++;
         return active;
       },
-      writeOrConfirm: (_, __) async {
+      writeOrConfirm: (_, _) async {
         calls++;
       },
     );
