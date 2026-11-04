@@ -129,6 +129,14 @@ service cloud.firestore {
     // Once the trusted backend rotates the history generation on reset,
     // the legacy array must remain empty. Older application versions that
     // submit cached events will be denied rather than restoring deleted data.
+    // A backend reset owns the progress document while the barrier is open.
+    // Blocking client writes prevents races with the legacy-array purge.
+    function progressWriteAllowedDuringHistoryReset(userId) {
+      let path = /databases/$(database)/documents/users/$(userId)/learningHistoryControl/current;
+      return !exists(path)
+        || get(path).data.status == 'active';
+    }
+
     function legacyHistoryWriteAllowed(userId) {
       let path = /databases/$(database)/documents/users/$(userId)/learningHistoryControl/current;
       return !exists(path)
@@ -463,17 +471,20 @@ service cloud.firestore {
       }
 
       match /progress/current {
-        allow read, delete:
-          if isOwner(userId);
+        allow read: if isOwner(userId);
+        allow delete: if isOwner(userId)
+          && progressWriteAllowedDuringHistoryReset(userId);
 
         allow create:
           if isOwner(userId)
+          && progressWriteAllowedDuringHistoryReset(userId)
           && validProgress()
           && legacyHistoryWriteAllowed(userId)
           && canonicalProgressIsInitial();
 
         allow update:
           if isOwner(userId)
+          && progressWriteAllowedDuringHistoryReset(userId)
           && validProgress()
           && legacyHistoryWriteAllowed(userId)
           && (
