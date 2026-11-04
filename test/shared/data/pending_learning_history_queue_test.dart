@@ -50,6 +50,34 @@ void main() {
     expect((await queue.pending('user-a')).single.eventId, second.eventId);
   });
 
+  test('clear discards only the selected user pending events', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final first = makeEvent(LearningHistoryEntry.newEventId());
+    final second = makeEvent(LearningHistoryEntry.newEventId());
+    await queue.enqueue('user-a', first);
+    await queue.enqueue('user-b', second);
+
+    await queue.clear('user-a');
+    expect(await queue.pending('user-a'), isEmpty);
+    expect((await queue.pending('user-b')).single.eventId, second.eventId);
+    expect(prefs.containsKey('user-a_learning_history_pending_v1'), isFalse);
+  });
+
+  test('clear cannot be undone by previously queued enqueues', () async {
+    final prefs = await SharedPreferences.getInstance();
+    final queue = PendingLearningHistoryQueue(prefs);
+    final pendingWrites = <Future<void>>[];
+    for (var i = 0; i < 12; i++) {
+      pendingWrites.add(
+        queue.enqueue('user-a', makeEvent(LearningHistoryEntry.newEventId())),
+      );
+    }
+    final clear = queue.clear('user-a');
+    await Future.wait(<Future<void>>[...pendingWrites, clear]);
+    expect(await queue.pending('user-a'), isEmpty);
+  });
+
   test('requires a stable ID before queuing', () async {
     final prefs = await SharedPreferences.getInstance();
     final queue = PendingLearningHistoryQueue(prefs);
