@@ -415,6 +415,13 @@ service cloud.firestore {
       allow read, delete:
         if isOwner(userId);
 
+      // Reset-generation control is owned exclusively by the backend.
+      // Clients may read only their own current generation.
+      match /learningHistoryControl/{controlId} {
+        allow get: if isOwner(userId) && controlId == 'current';
+        allow list, create, update, delete: if false;
+      }
+
       match /learningHistory/{eventId} {
         allow get: if isOwner(userId);
         allow list: if isOwner(userId)
