@@ -10,12 +10,14 @@ import 'package:calcquest/shared/domain/learning_history_generation_state.dart';
 /// Firestore rules remain the authoritative race barrier between reading the
 /// generation and committing a write. Unknown-generation events stay queued.
 class LearningHistoryOutboxSyncService {
-  const LearningHistoryOutboxSyncService({
+  LearningHistoryOutboxSyncService({
     required this.queue,
     required this.session,
     required this.readGeneration,
     required this.writeOrConfirm,
   });
+
+  bool _syncInProgress = false;
 
   final PendingLearningHistoryQueue queue;
   final LearningHistoryGenerationSession session;
@@ -30,6 +32,18 @@ class LearningHistoryOutboxSyncService {
   /// Any failed read, write, or acknowledgment propagates without deleting
   /// unconfirmed entries from the durable outbox.
   Future<int> sync(String userId) async {
+    if (_syncInProgress) {
+      throw StateError('Learning-history synchronization already in progress.');
+    }
+    _syncInProgress = true;
+    try {
+      return await _syncOnce(userId);
+    } finally {
+      _syncInProgress = false;
+    }
+  }
+
+  Future<int> _syncOnce(String userId) async {
     if (userId.trim().isEmpty || session.userId != userId) {
       throw StateError('Learning-history session does not match user.');
     }
