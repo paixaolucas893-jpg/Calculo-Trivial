@@ -26,17 +26,30 @@ class PendingLearningHistoryQueue {
   List<LearningHistoryEntry> _read(String userId) {
     final raw = _preferences.getString(_key(userId));
     if (raw == null) return <LearningHistoryEntry>[];
+
+    // Fail closed: never treat a corrupt outbox as empty and overwrite it.
+    final Object? decoded;
     try {
-      final data = jsonDecode(raw);
-      if (data is! List) return <LearningHistoryEntry>[];
-      return data
-          .map(LearningHistoryEntry.fromJson)
-          .whereType<LearningHistoryEntry>()
-          .where((event) => event.eventId != null)
-          .toList(growable: false);
+      decoded = jsonDecode(raw);
     } on FormatException {
-      return <LearningHistoryEntry>[];
+      throw StateError('Pending learning-history queue has invalid JSON.');
     }
+
+    if (decoded is! List) {
+      throw StateError('Pending learning-history queue is not a list.');
+    }
+
+    final events = <LearningHistoryEntry>[];
+    final ids = <String>{};
+    for (final rawEvent in decoded) {
+      final event = LearningHistoryEntry.fromJson(rawEvent);
+      final id = event?.eventId;
+      if (event == null || id == null || !ids.add(id)) {
+        throw StateError('Pending learning-history queue is malformed.');
+      }
+      events.add(event);
+    }
+    return events;
   }
 
   Future<List<LearningHistoryEntry>> pending(String userId) async {
