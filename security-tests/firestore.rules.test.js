@@ -438,6 +438,7 @@ test('cliente consegue sincronizar resumo de desempenho da revisão personalizad
 });
 
 test('Firestore limita o tamanho do resumo e da sessão de revisão', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -470,6 +471,7 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
       validProgress({
         questionPerformance: maxPerformance,
       }),
+      { merge: true },
     ),
   );
 
@@ -479,6 +481,7 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
       validProgress({
         questionPerformance: oversizedPerformance,
       }),
+      { merge: true },
     ),
   );
 
@@ -491,6 +494,7 @@ test('Firestore limita o tamanho do resumo e da sessão de revisão', async () =
           (_, index) => `q-${index}`,
         ),
       }),
+      { merge: true },
     ),
   );
 });
@@ -600,6 +604,7 @@ test('Firestore limita a janela recente de prática a oitenta questões por mód
 });
 
 test('cliente consegue sincronizar histórico recente limitado', async () => {
+  await seedProgress('user-a');
   const db = testEnv
     .authenticatedContext('user-a')
     .firestore();
@@ -618,6 +623,7 @@ test('cliente consegue sincronizar histórico recente limitado', async () => {
       validProgress({
         learningHistory: history,
       }),
+      { merge: true },
     ),
   );
 });
