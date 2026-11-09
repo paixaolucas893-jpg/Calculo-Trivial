@@ -1,147 +1,64 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import {
-  Firestore,
-} from "firebase-admin/firestore";
+import {Firestore} from "firebase-admin/firestore";
 
 import {
   LearningHistoryPurgeService,
 } from "./learningHistoryPurge";
 
 /**
- * Creates an Admin Firestore fake for exercising the purge target.
+ * Creates a Firestore instance that fails if accessed.
  *
- * @param {string[]} removedPaths Captures deleted collection paths.
- * @param {boolean} fail Whether the fake deletion fails.
- * @return {Firestore} Fake instance; no Firebase network calls.
+ * @return {Firestore} Guarded test double.
  */
-function fakeFirestore(
-  removedPaths: string[],
-  fail = false,
-): Firestore {
-  const fake = {
-    collection(root: string) {
-      assert.equal(root, "users");
-      return {
-        doc(uid: string) {
-          return {
-            collection(name: string) {
-              assert.equal(name, "learningHistory");
-              return {
-                path: `users/${uid}/${name}`,
-              };
-            },
-          };
-        },
-      };
+function forbiddenFirestore(): Firestore {
+  return {
+    collection() {
+      throw new Error("Legacy API must not access Firestore.");
     },
-    async recursiveDelete(target: {path: string}) {
-      if (fail) {
-        throw new Error("simulated Firestore failure");
-      }
-      removedPaths.push(target.path);
+    async recursiveDelete() {
+      throw new Error("Legacy API must not delete documents.");
     },
-  };
-  return fake as unknown as Firestore;
+  } as unknown as Firestore;
 }
 
-test("purge targets only the requested user history collection", async () => {
-  const paths: string[] = [];
+test("legacy event purge is disabled", async () => {
   const service = new LearningHistoryPurgeService(
-    fakeFirestore(paths),
+    forbiddenFirestore(),
   );
-  await service.purgeEvents("uid_a");
-  assert.deepEqual(
-    paths,
-    ["users/uid_a/learningHistory"],
-  );
-});
 
-test("purge refuses empty or path-like user identifiers", async () => {
-  const paths: string[] = [];
-  const service = new LearningHistoryPurgeService(
-    fakeFirestore(paths),
-  );
-  await assert.rejects(() => service.purgeEvents(" "));
-  await assert.rejects(() => service.purgeEvents("a/b"));
-  assert.deepEqual(paths, []);
-});
-
-test("purge surfaces remote errors without claiming success", async () => {
-  const paths: string[] = [];
-  const service = new LearningHistoryPurgeService(
-    fakeFirestore(paths, true),
-  );
   await assert.rejects(
     () => service.purgeEvents("uid_a"),
-    /simulated Firestore failure/,
+    /Legacy learning history purge is disabled/,
   );
-  assert.deepEqual(paths, []);
 });
 
-test("legacy cleanup modifies only the history array", async () => {
-  const updates: unknown[] = [];
-  const fake = {
-    collection(name: string) {
-      assert.equal(name, "users");
-      return {
-        doc(uid: string) {
-          assert.equal(uid, "uid_a");
-          return {
-            collection(section: string) {
-              assert.equal(section, "progress");
-              return {
-                doc(id: string) {
-                  assert.equal(id, "current");
-                  return {
-                    async get() {
-                      return {exists: true};
-                    },
-                    async update(value: unknown) {
-                      updates.push(value);
-                    },
-                  };
-                },
-              };
-            },
-          };
-        },
-      };
-    },
-  } as unknown as Firestore;
-  await new LearningHistoryPurgeService(fake)
-    .clearLegacyHistory("uid_a");
-  assert.deepEqual(updates, [{learningHistory: []}]);
+test("legacy progress cleanup is disabled", async () => {
+  const service = new LearningHistoryPurgeService(
+    forbiddenFirestore(),
+  );
+
+  await assert.rejects(
+    () => service.clearLegacyHistory("uid_a"),
+    /Legacy learning history cleanup is disabled/,
+  );
 });
 
-test("legacy cleanup does not recreate missing progress", async () => {
-  let updated = false;
-  const fake = {
-    collection() {
-      return {
-        doc() {
-          return {
-            collection() {
-              return {
-                doc() {
-                  return {
-                    async get() {
-                      return {exists: false};
-                    },
-                    async update() {
-                      updated = true;
-                    },
-                  };
-                },
-              };
-            },
-          };
-        },
-      };
-    },
-  } as unknown as Firestore;
-  await new LearningHistoryPurgeService(fake)
-    .clearLegacyHistory("uid_a");
-  assert.equal(updated, false);
+test("legacy methods reject invalid user identifiers", async () => {
+  const service = new LearningHistoryPurgeService(
+    forbiddenFirestore(),
+  );
+
+  for (const uid of ["", " ", "a/b"]) {
+    await assert.rejects(
+      () => service.purgeEvents(uid),
+      /Invalid trusted user ID/,
+    );
+
+    await assert.rejects(
+      () => service.clearLegacyHistory(uid),
+      /Invalid trusted user ID/,
+    );
+  }
 });

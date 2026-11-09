@@ -36,16 +36,41 @@ export class LearningHistoryResetCoordinator {
    * @param {string} uid Authenticated UID from a trusted backend.
    * @return {Promise<LearningHistoryGenerationState>} Active generation.
    */
+  /** Tracks reset operations running in this coordinator instance. */
+  private readonly activeResets = new Set<string>();
+
+  /**
+   * Prevents overlapping resets within this coordinator instance.
+   *
+   * @param {string} uid Authenticated user identifier.
+   * @return {Promise<LearningHistoryGenerationState>} Reset result.
+   */
+  /**
+   * Prevents overlapping resets in this coordinator instance.
+   *
+   * @param {string} uid Authenticated user identifier.
+   * @return {Promise<LearningHistoryGenerationState>} Reset result.
+   */
   async reset(uid: string): Promise<LearningHistoryGenerationState> {
-    const barrier = await this.deps.begin(uid);
-    if (barrier.status !== "resetting") {
-      throw new Error("Reset barrier was not activated.");
+    if (this.activeResets.has(uid)) {
+      throw new Error("History reset already in progress.");
     }
 
-    await this.deps.purgeEvents(uid);
-    // The legacy progress array is a separate persistence location.
-    // Never reopen event writes until it has also been cleared.
-    await this.deps.clearLegacyHistory(uid);
-    return this.deps.finish(uid, barrier.generation);
+    this.activeResets.add(uid);
+
+    try {
+      const barrier = await this.deps.begin(uid);
+      if (barrier.status !== "resetting") {
+        throw new Error("Reset barrier was not activated.");
+      }
+
+      await this.deps.purgeEvents(uid);
+      // The legacy progress array is a separate persistence location.
+      // Never reopen event writes until it has also been cleared.
+      await this.deps.clearLegacyHistory(uid);
+      return await this.deps.finish(uid, barrier.generation);
+    } finally {
+      this.activeResets.delete(uid);
+    }
   }
 }

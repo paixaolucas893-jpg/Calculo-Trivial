@@ -86,13 +86,30 @@ test("backend creates reset barrier before deleting anything", async () => {
   assert.deepEqual(store.get(), barrier);
 });
 
-test("repeated reset stays blocked until completion", async () => {
+test("repeated reset acquisition is rejected until completion", async () => {
   const store = fakeStore({generation: 3, status: "active"});
   const service = new LearningHistoryGenerationService(store.firestore);
-  await service.begin("uid_a");
-  const repeated = await service.begin("uid_a");
-  assert.deepEqual(repeated, {generation: 4, status: "resetting"});
+
+  const barrier = await service.begin("uid_a");
+  assert.deepEqual(barrier, {generation: 4, status: "resetting"});
+
+  await assert.rejects(
+    () => service.begin("uid_a"),
+    /already in progress/,
+  );
+
+  assert.deepEqual(store.get(), {
+    generation: 4,
+    status: "resetting",
+  });
+
   await assert.rejects(() => service.finish("uid_a", 3));
+
+  assert.deepEqual(store.get(), {
+    generation: 4,
+    status: "resetting",
+  });
+
   const active = await service.finish("uid_a", 4);
   assert.deepEqual(active, {generation: 4, status: "active"});
 });

@@ -1,38 +1,23 @@
 import {Firestore} from "firebase-admin/firestore";
 
 import {
-  LearningHistoryGenerationService,
-} from "./learningHistoryGenerationService";
-import {
-  LearningHistoryPurgeService,
-} from "./learningHistoryPurge";
-import {
   LearningHistoryResetCoordinator,
 } from "./learningHistoryResetCoordinator";
 
 /**
- * Internal composition root for the reset coordinator.
+ * Disabled legacy composition root.
  *
- * A privileged caller must authenticate the target user and explicitly
- * authorize reset before invoking it. There is deliberately no Firebase
- * callable, trigger or export from the Cloud Functions entrypoint.
+ * The old workflow does not authorize destructive stages with operationId.
+ * Do not reconnect it to a callable or a background worker.
  *
- * Do not expose this operation until client generation handling, offline
- * queue invalidation and the entire progress-reset contract are ready.
- *
- * @param {Firestore} firestore Privileged Admin SDK Firestore instance.
- * @return {LearningHistoryResetCoordinator} Internal reset coordinator.
+ * @param {Firestore} _firestore Unused legacy dependency.
  */
 export function createLearningHistoryResetCoordinator(
-  firestore: Firestore,
+  _firestore: Firestore,
 ): LearningHistoryResetCoordinator {
-  const generations = new LearningHistoryGenerationService(firestore);
-  const purge = new LearningHistoryPurgeService(firestore);
+  void _firestore;
 
-  return new LearningHistoryResetCoordinator({
-    begin: (uid) => generations.begin(uid),
-    purgeEvents: (uid) => purge.purgeEvents(uid),
-    clearLegacyHistory: (uid) => purge.clearLegacyHistory(uid),
-    finish: (uid, generation) => generations.finish(uid, generation),
-  });
+  throw new Error(
+    "Legacy history reset is disabled. Use the owned workflow.",
+  );
 }

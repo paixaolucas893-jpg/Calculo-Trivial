@@ -57,6 +57,10 @@ export class LearningHistoryGenerationService {
       const current = snapshot.exists ?
         parseHistoryGeneration(snapshot.data()) :
         {generation: 0, status: "active" as const};
+      if (current.status === "resetting") {
+        throw new Error("History reset already in progress.");
+      }
+
       const next = beginHistoryReset(current);
       tx.set(ref, next);
       return next;
@@ -82,6 +86,15 @@ export class LearningHistoryGenerationService {
         throw new Error("Missing history reset barrier.");
       }
       const current = parseHistoryGeneration(snapshot.data());
+      // Legacy finish cannot close an owned reset.
+      const persisted = snapshot.data();
+      if (
+        persisted &&
+        Object.prototype.hasOwnProperty.call(persisted, "operationId")
+      ) {
+        throw new Error("Owned reset requires operation authorization.");
+      }
+
       const next = finishHistoryReset(current, expectedGeneration);
       tx.set(ref, next);
       return next;
