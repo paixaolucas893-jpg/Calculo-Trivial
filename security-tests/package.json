@@ -11,6 +11,7 @@
     "firebase": "^12.18.0"
   },
   "overrides": {
-    "@grpc/grpc-js": "1.13.6"
+    "@grpc/grpc-js": "1.13.6",
+    "re2js": "2.8.7"
   }
 }
