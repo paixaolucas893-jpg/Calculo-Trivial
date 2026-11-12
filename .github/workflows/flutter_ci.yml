@@ -85,6 +85,14 @@ jobs:
       - name: Build Functions
         run: npm run build
 
+      - name: Install Firestore security test dependencies
+        working-directory: security-tests
+        run: npm ci
+
+      - name: Run Firestore rules security tests
+        working-directory: .
+        run: npx --yes firebase-tools emulators:exec --project demo-calculo-trivial --only firestore "npm --prefix security-tests run test:firestore"
+
       - name: Run Functions tests with Firestore Emulator
         working-directory: .
         run: npx --yes firebase-tools emulators:exec --project demo-calculo-trivial --only firestore "npm --prefix functions test"
