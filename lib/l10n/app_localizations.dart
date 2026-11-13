@@ -131,13 +131,13 @@ abstract class AppLocalizations {
   /// No description provided for @learningPath.
   ///
   /// In pt, this message translates to:
-  /// **'Trilha'**
+  /// **'Trilhas'**
   String get learningPath;
 
   /// No description provided for @statistics.
   ///
   /// In pt, this message translates to:
-  /// **'Estatísticas'**
+  /// **'Progresso'**
   String get statistics;
 
   /// No description provided for @profile.

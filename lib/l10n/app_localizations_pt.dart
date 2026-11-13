@@ -24,10 +24,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get home => 'Início';
 
   @override
-  String get learningPath => 'Trilha';
+  String get learningPath => 'Trilhas';
 
   @override
-  String get statistics => 'Estatísticas';
+  String get statistics => 'Progresso';
 
   @override
   String get profile => 'Perfil';

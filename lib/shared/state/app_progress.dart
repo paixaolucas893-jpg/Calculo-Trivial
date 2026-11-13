@@ -7,6 +7,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:calcquest/shared/data/pending_learning_history_queue.dart';
+import 'package:calcquest/shared/data/learning_history_generation_reader.dart';
+import 'package:calcquest/shared/data/learning_history_generation_session.dart';
+import 'package:calcquest/shared/domain/learning_history_attempt_factory.dart';
 import 'package:calcquest/shared/domain/daily_challenge_engine.dart';
 import 'package:calcquest/shared/domain/learning_history_entry.dart';
 import 'package:calcquest/shared/domain/personalized_review_session_builder.dart';
@@ -104,7 +108,13 @@ class AppProgress {
   static final Set<String> _lastPersonalizedReviewSessionIds = <String>{};
   static final Set<String> _dailyChallengeQuestionIds = <String>{};
 
+  // Verified per-account server generation. Unknown generations are NEVER
+  // silently reassigned when the device reconnects after a remote reset.
+  static final LearningHistoryGenerationSession _historyGenerationSession =
+      LearningHistoryGenerationSession();
+
   static Future<void> _saveQueue = Future<void>.value();
+  static final List<LearningHistoryEntry> _unqueuedHistoryEvents = <LearningHistoryEntry>[];
 
   static final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
@@ -197,6 +207,7 @@ class AppProgress {
     _lastFinalTestSessionIds.clear();
     _questionPerformance.clear();
     _learningHistory.clear();
+    _unqueuedHistoryEvents.clear();
     _lastPersonalizedReviewSessionIds.clear();
     _dailyChallengeQuestionIds.clear();
 
@@ -223,15 +234,54 @@ class AppProgress {
   }
 
   static Future<void> loadProgress() async {
+    // Complete the previous account's local outbox staging before switching
+    // the active user and clearing its in-memory pending events.
+    await _saveQueue;
     final user = FirebaseAuth.instance.currentUser;
 
     _activeUserId = user?.uid;
+    _historyGenerationSession.bindUser(user?.uid);
     _resetInMemory();
 
     await _loadLocalProgress(
       userId: _activeUserId,
       allowLegacyMigration: user != null,
     );
+
+    // Query the server only while loading, never inside a synchronous
+    // exercise answer. Offline and reset states remain unverified locally.
+    if (user != null) {
+      try {
+        final reader =
+            LearningHistoryGenerationReader(FirebaseFirestore.instance);
+        await _historyGenerationSession.refresh(reader.read);
+      } catch (error) {
+        debugPrint(
+          'AppProgress: geração do histórico indisponível; '
+          'novos eventos permanecerão sem geração confirmada: $error',
+        );
+      }
+    }
+
+    // Restore durable unsent attempts before reading the remote progress.
+    // This only affects the in-memory recent-history view: it neither
+    // acknowledges nor uploads events, and cannot resurrect reset outbox data.
+    if (user != null) {
+      try {
+        final preferences = await SharedPreferences.getInstance();
+        final pending = await PendingLearningHistoryQueue(preferences)
+            .pending(user.uid);
+        _mergeLearningHistory(<String, dynamic>{
+          'learningHistory':
+              pending.map((entry) => entry.toJson()).toList(growable: false),
+        });
+      } catch (error) {
+        debugPrint(
+          'AppProgress: não foi possível recuperar '
+          'eventos pendentes locais: $error',
+        );
+      }
+    }
 
     if (user == null) {
       _normalizeDailyStatistics();
@@ -1023,6 +1073,24 @@ class AppProgress {
   }
 
   static Future<void> _persistProgress() async {
+    // Stage new events durably before trying any network operations.
+    // Upload is intentionally deferred until reset/deletion semantics are
+    // implemented: sending now could resurrect history after a reset.
+    final userId = _activeUserId;
+    if (userId != null && userId.isNotEmpty &&
+        _unqueuedHistoryEvents.isNotEmpty) {
+      try {
+        final preferences = await SharedPreferences.getInstance();
+        final queue = PendingLearningHistoryQueue(preferences);
+        for (final event in List<LearningHistoryEntry>.of(_unqueuedHistoryEvents)) {
+          await queue.enqueue(userId, event);
+          _unqueuedHistoryEvents.remove(event);
+        }
+      } catch (error) {
+        debugPrint('AppProgress: erro ao guardar eventos pendentes: $error');
+      }
+    }
+
     await _saveLocalProgress();
 
     try {
@@ -1256,15 +1324,35 @@ class AppProgress {
 
     final timestamp = (occurredAt ?? DateTime.now()).toUtc();
 
-    _learningHistory.add(
-      LearningHistoryEntry(
-        questionId: questionId,
-        contentLessonId: contentLessonId,
-        isCorrect: isCorrect,
-        source: source,
-        occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
-      ),
-    );
+    final generationState = _historyGenerationSession.userId ==
+            FirebaseAuth.instance.currentUser?.uid &&
+            _activeUserId == _historyGenerationSession.userId
+        ? _historyGenerationSession.verifiedState
+        : null;
+    // Unknown/resetting generations retain a local-only legacy event.
+    // Never stamp the latest server generation during a later upload retry.
+    final historyEntry =
+        generationState != null && generationState.allowsNewEvents
+        ? const LearningHistoryAttemptFactory().create(
+            generationState: generationState,
+            questionId: questionId,
+            contentLessonId: contentLessonId,
+            isCorrect: isCorrect,
+            source: source,
+            occurredAt: timestamp,
+          )
+        : LearningHistoryEntry(
+            eventId: LearningHistoryEntry.newEventId(),
+            questionId: questionId,
+            contentLessonId: contentLessonId,
+            isCorrect: isCorrect,
+            source: source,
+            occurredAtEpochMs: timestamp.millisecondsSinceEpoch,
+          );
+    _learningHistory.add(historyEntry);
+    if (_activeUserId != null) {
+      _unqueuedHistoryEvents.add(historyEntry);
+    }
 
     if (_learningHistory.length > _maxLearningHistoryEntries) {
       _learningHistory.removeRange(
@@ -1330,6 +1418,15 @@ class AppProgress {
 
   static Future<void> resetProgress() async {
     final user = FirebaseAuth.instance.currentUser;
+    _historyGenerationSession.invalidate();
+
+    // Finish prior local staging before clearing it. Otherwise a queued
+    // progress save may recreate pending events after the reset.
+    await _saveQueue;
+    if (user != null) {
+      final preferences = await SharedPreferences.getInstance();
+      await PendingLearningHistoryQueue(preferences).clear(user.uid);
+    }
 
     _activeUserId = user?.uid;
     _resetInMemory();
@@ -1380,6 +1477,7 @@ class AppProgress {
 
   static Future<void> deleteCurrentUserData() async {
     final user = FirebaseAuth.instance.currentUser;
+    _historyGenerationSession.invalidate();
     final userId = user?.uid ?? _activeUserId;
 
     if (userId == null || userId.trim().isEmpty) {
@@ -1396,6 +1494,8 @@ class AppProgress {
     await userDocument.delete();
 
     final preferences = await SharedPreferences.getInstance();
+    // Never leave an outbox that could be replayed after local deletion.
+    await PendingLearningHistoryQueue(preferences).clear(userId);
 
     final scopedKeys = <String>[
       _completedLessonsKey,
@@ -1437,6 +1537,7 @@ class AppProgress {
     await preferences.remove(_limitsLegacyKey);
 
     _activeUserId = null;
+    _historyGenerationSession.bindUser(null);
     _saveQueue = Future<void>.value();
     _resetInMemory();
 
@@ -1445,6 +1546,7 @@ class AppProgress {
 
   static void clearSession() {
     _activeUserId = null;
+    _historyGenerationSession.bindUser(null);
     _saveQueue = Future<void>.value();
     _resetInMemory();
 

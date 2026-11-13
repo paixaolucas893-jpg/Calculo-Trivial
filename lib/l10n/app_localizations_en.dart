@@ -24,10 +24,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get learningPath => 'Learning Path';
+  String get learningPath => 'Paths';
 
   @override
-  String get statistics => 'Statistics';
+  String get statistics => 'Progress';
 
   @override
   String get profile => 'Profile';
